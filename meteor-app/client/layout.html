@@ -1,0 +1,22 @@
+<template name="layout">
+    {{#if currentUser}}
+        {{#ionBody}}
+            <!-- Вместо rendered, можно использовать side="left" -->
+            {{#ionSideMenuContainer side="left"}}
+                {{> ionMenus}}
+
+                {{#ionSideMenuContent}}
+
+                    {{> ionNavBar class="bar-fantasia"}}
+
+                    {{#ionNavView}}
+                        {{> yield}}
+                    {{/ionNavView}}
+
+                {{/ionSideMenuContent}}
+            {{/ionSideMenuContainer}}
+        {{/ionBody}}
+    {{else}}
+        {{> yield}}
+    {{/if}}
+</template>

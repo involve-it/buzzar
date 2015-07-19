@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="51b2b4b1-d16f-4860-8f49-4b5e966cbef8" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/content/avatars/30.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/content/avatars/39.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/content/avatars/8.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/content/avatars/avatar-no.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/.finished-upgraders" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/.id" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/CHANGELOG.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/accountButtons/_wrapLinks.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/accountButtons/accountButtons.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/accountButtons/accountButtons.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/config/accounts.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/style/app-ionic.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/style/app.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/t9n/arabic.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/autoForm.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/tests/client.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/tests/client.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/collections.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/t9n/config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/contacts/contacts.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/contacts/contacts.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/contacts/contacts.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/contacts/contactsShow/contactsShow.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/contacts/contactsShow/contactsShow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/cordova-plugins" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/douson.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/t9n/english.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/t9n/english.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/enrollAccount/enrollAccount.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/enrollAccount/enrollAccount.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/entry.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/server/entry.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/entry.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/error/error.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/error/error.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/signUp/extraSignUpFields.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/signUp/extraSignUpFields.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/forgotPassword/forgotPassword.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/forgotPassword/forgotPassword.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/t9n/french.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/t9n/german.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/t9n/hebrew.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/helpers.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/home/home.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/ionic.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/t9n/italian.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/layout.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/layout.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/layout.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/appLoading/loading.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/menu/menuProfile/menu-profile.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/menu/menuProfile/menu-profile.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/menu/menu.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/menu/menu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/menu/menu.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../meteor-app/.idea/meteor-app.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../meteor-app/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../meteor-app/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/contacts/noContacts/noContacts.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/style/accountsEntryStyle/ownEntry.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/package.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/packages" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/platforms" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/t9n/polish.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/t9n/portuguese.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/publish.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/release" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/resetPassword/resetPassword.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/resetPassword/resetPassword.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/tests/route.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/shared/router.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/router.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/t9n/russian.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/t9n/russian.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/tests/server.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/signIn/signIn.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/signIn/signIn.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/signUp/signUp.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/signUp/signUp.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/accountButtons/signedIn.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/t9n/slovene.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/social/social.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/social/social.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/t9n/spanish.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/t9n/swedish.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/userSettings/userSettings.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/view/userSettings/userSettings.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../meteor-app/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/verificationPending/verificationPending.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/client/views/verificationPending/verificationPending.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/packages/accounts-entry/versions.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/versions" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/accounts.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/conventions.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/db.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/kb/mongo.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/kb/native/react-native.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/knowledgebase-mg/animations.kb.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/knowledgebase-mg/cool-tool.kb.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/knowledgebase-mg/emails.kb.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/knowledgebase-mg/images.kb.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/knowledgebase-mg/meteor-server.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/knowledgebase-mg/meteor.kb.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/knowledgebase-mg/structure.kb.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/knowledgebase-mg/theory-git.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/knowledgebase-mg/tools.kb.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/knowledgebase-mg/ui.kb.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/meteor.kb.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/mobile.kb.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/packages.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.docs/tools.kb.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.dump/meteor/emotions.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.dump/meteor/emotions.metadata.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.dump/meteor/messages.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.dump/meteor/messages.metadata.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.dump/meteor/meteor_accounts_loginServiceConfiguration.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.dump/meteor/meteor_accounts_loginServiceConfiguration.metadata.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.dump/meteor/system.indexes.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.dump/meteor/users.bson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../meteor-app/.dump/meteor/users.metadata.json" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../meteor-app/.meteor/.finished-upgraders" afterPath="$PROJECT_DIR$/../meteor-app/.meteor/.finished-upgraders" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../meteor-app/client/views/chat.js" afterPath="$PROJECT_DIR$/../meteor-app/client/views/chat.js" />
+    </list>
+    <ignored path="ionic.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="ionic" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="contacts.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/view/contacts/contacts.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.26748466">
+              <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="russian.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/view/t9n/russian.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
+              <folding>
+                <element signature="e#0#41#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contacts.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/view/contacts/contacts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#41#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="collections.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/collections.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="publish.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/publish.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/router.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Html5" />
+        <option value="Less File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/client/layout.js" />
+        <option value="$PROJECT_DIR$/client/layout.html" />
+        <option value="$PROJECT_DIR$/packages/accounts-entry/client/views/signIn/signIn.html" />
+        <option value="$PROJECT_DIR$/client/view/menu/menu.js" />
+        <option value="$PROJECT_DIR$/client/view/contacts/noContacts/noContacts.html" />
+        <option value="$PROJECT_DIR$/client/view/contacts/contactsShow.js" />
+        <option value="$PROJECT_DIR$/client/view/contacts/contactsShow.html" />
+        <option value="$PROJECT_DIR$/client/layout.less" />
+        <option value="$PROJECT_DIR$/mobile-config.js" />
+        <option value="$PROJECT_DIR$/client/view/contacts/contacts.less" />
+        <option value="$PROJECT_DIR$/client/view/profile/menu-profile.html" />
+        <option value="$PROJECT_DIR$/client/view/home/home.html" />
+        <option value="$PROJECT_DIR$/lib/router.js" />
+        <option value="$PROJECT_DIR$/client/view/contacts/contacts.js" />
+        <option value="$PROJECT_DIR$/client/view/menu/menuProfile/menu-profile.html" />
+        <option value="$PROJECT_DIR$/client/view/menu/menuProfile/menu-profile.js" />
+        <option value="$PROJECT_DIR$/.meteor/packages" />
+        <option value="$PROJECT_DIR$/client/style/app-ionic.less" />
+        <option value="$PROJECT_DIR$/client/view/menu/menu.less" />
+        <option value="$PROJECT_DIR$/client/view/menu/menu.html" />
+        <option value="$PROJECT_DIR$/client/view/userSettings/userSettings.html" />
+        <option value="$PROJECT_DIR$/client/view/userSettings/userSettings.js" />
+        <option value="$PROJECT_DIR$/client/view/t9n/english.js" />
+        <option value="$PROJECT_DIR$/server/publish.js" />
+        <option value="$PROJECT_DIR$/lib/collections.js" />
+        <option value="$PROJECT_DIR$/client/view/t9n/russian.js" />
+        <option value="$PROJECT_DIR$/client/view/contacts/contacts.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1405" />
+    <option name="y" value="23" />
+    <option name="width" value="1155" />
+    <option name="height" value="1412" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Internationalization issues</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>CoffeeScript</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ionic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ionic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meteor-app-ionic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="enabled" />
+    <property name="js.meteor.project" value="true" />
+    <property name="js.meteor.library.was.enabled" value="true" />
+    <property name="recentsLimit" value="5" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="list.type.of.created.stylesheet" value="Less" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="jsx.switch.disabled" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/view/menu/menuProfile" />
+      <recent name="$PROJECT_DIR$/client/view/contacts/contactsShow" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Meteor.Meteor">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="JsTestDriver-test-runner" factoryName="JsTestDriver">
+      <setting name="configLocationType" value="CONFIG_FILE" />
+      <setting name="settingsFile" value="" />
+      <setting name="serverType" value="INTERNAL" />
+      <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="MongoRunConfiguration" factoryName="Mongo">
+      <setting name="path" value="" />
+      <setting name="shellParams" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="meteor-app-runner" factoryName="Meteor">
+      <option name="exePath" value="/usr/local/bin/meteor" />
+      <option name="startBrowserSettings">
+        <browser url="http://localhost:3000" />
+      </option>
+      <meteor-runner-state>
+        <startBrowserSettings>
+          <browser url="http://localhost:3000" />
+        </startBrowserSettings>
+      </meteor-runner-state>
+      <method />
+    </configuration>
+    <configuration default="false" name="Meteor" type="meteor-app-runner" factoryName="Meteor">
+      <option name="exePath" value="/usr/local/bin/meteor" />
+      <option name="startBrowserSettings">
+        <browser url="http://localhost:3000" />
+      </option>
+      <meteor-runner-state>
+        <startBrowserSettings>
+          <browser url="http://localhost:3000" />
+        </startBrowserSettings>
+      </meteor-runner-state>
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Meteor.Meteor" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="51b2b4b1-d16f-4860-8f49-4b5e966cbef8" name="Default" comment="" />
+      <created>1436479737235</created>
+      <option name="number" value="Default" />
+      <updated>1436479737235</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1405" y="23" width="1155" height="1412" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32998455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998455" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24438454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25888717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32998455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24438454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25888717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.meteor/packages">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2681764">
+          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/contacts/noContacts/noContacts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.099228226">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/menu/menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16090584">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.meteor/platforms">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.meteor/cordova-plugins">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/contacts/contacts.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.875">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/contacts/contactsShow/contactsShow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/contacts/contactsShow/contactsShow.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.875">
+          <caret line="11" column="105" selection-start-line="11" selection-start-column="105" selection-end-line="11" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/layout.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-38.75">
+          <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/home/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.0">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/menu/menuProfile/menu-profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.25">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/accounts-entry/CHANGELOG.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34359607">
+          <caret line="34" column="104" selection-start-line="34" selection-start-column="104" selection-end-line="34" selection-end-column="104" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/style/app-ionic.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.875">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/menu/menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5705522">
+          <caret line="53" column="42" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/menu/menu.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.73619634">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.055214725">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/menu/menuProfile/menu-profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/userSettings/userSettings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.047393367">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/userSettings/userSettings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="28" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/accounts-entry/client/t9n/russian.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.012106538">
+          <caret line="1" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="44" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/accounts-entry/client/views/signIn/signIn.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4347826">
+          <caret line="36" column="50" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/t9n/english.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.011848342">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.meteor/packages">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2770936">
+          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/publish.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/contacts/contacts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/collections.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/t9n/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/t9n/russian.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/view/contacts/contacts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.26748466">
+          <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

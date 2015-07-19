@@ -1,0 +1,79 @@
+<template name="ionMenus">
+    {{#ionSideMenus}}
+        {{#ionSideMenu}}
+            {{#ionView}}
+                <div class="bar bar-header bar-fantasia-dark">
+                    <h1 class="title">FANTASIA profile</h1>
+                </div>
+
+                {{#ionContent class="bg-side-menu"}}
+                    <div class="userProfile">
+                        {{> slideMenuUserProfile}}
+                    </div>
+                    {{#ionList class="navUserMenu"}}
+
+
+                        <div data-ion-menu-close class="{{isActiveRoute 'home'}}">
+                            {{#ionItem path='home' iconLeft=true }}
+                                <p>Home</p>
+                                {{> ionIcon icon="ios-home-outline" }}
+                            {{/ionItem}}
+                        </div>
+
+                        <div data-ion-menu-close class="{{isActiveRoute 'contacts'}}">
+                            {{#ionItem path='contacts' iconLeft=true }}
+                                <p>Contacts</p>
+                                {{> ionIcon icon="ios-people-outline" }}
+                            {{/ionItem}}
+                        </div>
+
+                        <div data-ion-menu-close class="{{isActiveRoute 'chats'}}">
+                            {{#ionItem iconLeft=true }}
+                                <p>Chats</p>
+                                {{> ionIcon icon="ios-chatboxes-outline" }}
+                            {{/ionItem}}
+                        </div>
+
+                        <div data-ion-menu-close class="{{isActiveRoute 'help'}}">
+                            {{#ionItem iconLeft=true }}
+                                <p>Help & feedback</p>
+                                {{> ionIcon icon="ios-help-outline" }}
+                            {{/ionItem}}
+                        </div>
+
+                        <div class="{{isActiveRoute 'settings'}}"  data-ion-menu-close>
+                            <a class="item item-icon-left" href="/settings">
+                                {{> ionIcon icon="ios-cog-outline" }}
+                                <p>Settings</p>
+                            </a>
+                        </div>
+
+                        <div data-ion-menu-close>
+                            <a class="item item-icon-left" href="/sign-out">
+                                {{> ionIcon icon="log-out" }}
+                                <p>Log out</p>
+                            </a>
+                        </div>
+
+                    {{/ionList}}
+                {{/ionContent}}
+            {{/ionView}}
+
+
+
+        {{/ionSideMenu}}
+    {{/ionSideMenus}}
+</template>
+
+
+
+<!--
+
+<div class="list">
+    <div class="item item-icon-left" data-ion-menu-close>
+        {{> ionIcon icon="ios-cog-outline" }}
+        <p>Settings</p>
+    </div>
+</div>
+
+-->

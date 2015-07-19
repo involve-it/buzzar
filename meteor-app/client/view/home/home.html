@@ -1,0 +1,29 @@
+<template name="home">
+
+    {{#contentFor "headerButtonLeft"}}
+        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            {{#if isAndroid}}
+                {{> ionIcon icon='android-more-vertical'}}
+            {{else}}
+                {{> ionIcon icon='navicon'}}
+            {{/if}}
+        </button>
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">HOME PAGE</h1>
+    {{/contentFor}}
+
+
+    {{#ionView}}
+        {{#ionContent}}
+            <div class="fake-box">
+                <h1 class="font-smoothing">FANTASIA</h1>
+                <h3>самый эмоциональный и потрясный чат</h3>
+
+                {{username}}
+
+            </div>
+        {{/ionContent}}
+    {{/ionView}}
+</template>
