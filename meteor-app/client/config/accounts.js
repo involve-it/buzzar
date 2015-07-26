@@ -22,4 +22,4 @@ Meteor.startup(function () {
         spinnerOptions: { color: "#000", top: "80%" } // options as per [spin.js](http://fgnass.github.io/spin.js/)
 
     });
-});
+});ImageII
