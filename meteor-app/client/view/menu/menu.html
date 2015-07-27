@@ -40,7 +40,12 @@
                                 {{> ionIcon icon="ios-help-outline" }}
                             {{/ionItem}}
                         </div>
-
+                        <div class="{{isActiveRoute 'posts.new'}}"  data-ion-menu-close>
+                            <a class="item item-icon-left" href="/posts/new">
+                                {{> ionIcon icon="ios-plus-empty" }}
+                                <p>New Post</p>
+                            </a>
+                        </div>
                         <div class="{{isActiveRoute 'settings'}}"  data-ion-menu-close>
                             <a class="item item-icon-left" href="/settings">
                                 {{> ionIcon icon="ios-cog-outline" }}

@@ -48,7 +48,17 @@ Router.map(function() {
             return Meteor.users.findOne({_id: this.params._id});
         }
     });
+    this.route('posts.new', {
+        path: '/posts/new',
+        waitOn: function() {
+            return [
 
+            ]
+        },
+        /*data: function () {
+            return Meteor.users.findOne({_id: this.params._id});
+        }*/
+    });
 });
 
 /***********************

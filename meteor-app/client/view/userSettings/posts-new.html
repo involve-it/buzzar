@@ -1,0 +1,43 @@
+<template name="postsNew">
+
+    <!--
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton path="home"}}
+    {{/contentFor}}
+    -->
+
+    {{#contentFor "headerButtonLeft"}}
+        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            {{#if isAndroid}}
+                {{> ionIcon icon='android-more-vertical'}}
+            {{else}}
+                {{> ionIcon icon='navicon'}}
+            {{/if}}
+        </button>
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Add New Post</h1>
+    {{/contentFor}}
+
+
+    {{#ionView}}
+        {{#ionContent}}
+
+        {{/ionContent}}
+    {{/ionView}}
+
+
+    {{#ionModal customTemplate=true}}
+        {{#autoForm collection="Posts" id="contacts-new-form" type="insert"}}
+            <div class="bar bar-header bar-stable">
+                <button data-dismiss="modal" type="button" class="button button-clear">Cancel</button>
+                <h2 class="title">New Post</h2>
+                <button type="submit" class="button button-positive button-clear">Add</button>
+            </div>
+            <div class="content has-header overflow-scroll">
+                {{> afQuickFields omitFields="avatarUrl,details.active"}}
+            </div>
+        {{/autoForm}}
+    {{/ionModal}}
+</template>
