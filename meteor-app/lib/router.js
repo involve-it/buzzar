@@ -54,10 +54,19 @@ Router.map(function() {
             return [
 
             ]
-        },
+        }
         /*data: function () {
             return Meteor.users.findOne({_id: this.params._id});
         }*/
+    });
+    this.route('posts.map',{
+        path: '/posts/map',
+        template: 'postsMap',
+        waitOn: function(){
+            return [
+                GoogleMaps.load({key: 'AIzaSyCE5a0IeEGQLptVSSW-5swNFNaRUXKEWss', libraries: 'geometry,places', v: '3'})
+            ];
+        }
     });
 });
 

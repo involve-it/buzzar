@@ -1,0 +1,24 @@
+<template name="postsMap">
+    {{#contentFor "headerButtonLeft"}}
+        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            {{#if isAndroid}}
+                {{> ionIcon icon='android-more-vertical'}}
+            {{else}}
+                {{> ionIcon icon='navicon'}}
+            {{/if}}
+        </button>
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">HOME PAGE</h1>
+    {{/contentFor}}
+
+    {{#ionView}}
+        {{#ionContent}}
+            <div><button id="add">Add random marker</button>&nbsp;<button id="clear">Clear all</button></div>
+            <div class="map-container" style="width: 100%; height: 100%;">
+                {{> googleMap name="map" options=mapOptions}}
+            </div>
+        {{/ionContent}}
+    {{/ionView}}
+</template>
