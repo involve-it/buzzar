@@ -23,7 +23,12 @@ Router.map(function() {
 
     this.route('settings', {
         template: 'userSettings',
-        controller: 'requireLoginController'
+        controller: 'requireLoginController',
+        waitOn: function() {
+            return [
+                Meteor.subscribe('users')
+            ]
+        }
     });
 
     this.route('contacts', {
