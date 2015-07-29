@@ -31,6 +31,17 @@ Router.map(function() {
         }
     });
 
+    this.route('settings.edit', {
+        path: '/settings/:_id/edit',
+        controller: 'requireLoginController',
+        waitOn: function() {
+            return []
+        },
+        data: function () {
+            return Meteor.users.findOne({_id: this.params._id});
+        }
+    });
+
     this.route('contacts', {
         path: 'contacts',
         controller: 'requireLoginController',
@@ -53,6 +64,12 @@ Router.map(function() {
             return Meteor.users.findOne({_id: this.params._id});
         }
     });
+
+    this.route('chats', {
+        template: 'conversations',
+        controller: 'requireLoginController'
+    });
+    
     this.route('posts.new', {
         path: '/posts/new',
         waitOn: function() {

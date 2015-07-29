@@ -17,7 +17,9 @@
     {{/contentFor}}
 
     {{#contentFor "headerButtonRight"}}
-        <button class="button button-clear" data-ion-modal="">{{> ionIcon icon="ios-more-outline"}}</button>
+        <button class="button button-clear pull-right button-random" data-action="share-profile">
+            {{> ionIcon icon="ios-more-outline"}}
+        </button>
     {{/contentFor}}
 
     {{#contentFor "headerTitle"}}
@@ -45,7 +47,7 @@
                             <div class="edit-settings">
 
                                 <div>
-                                    <a class="item item-icon-right" href="/settings">
+                                    <a class="item item-icon-right" href="{{pathFor 'settings.edit'}}">
                                         <p>Edit your profile</p>
                                         {{> ionIcon icon="ios-arrow-right"}}
                                     </a>

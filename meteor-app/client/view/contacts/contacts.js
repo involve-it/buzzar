@@ -6,7 +6,7 @@
 Template.contacts.helpers({
     contacts: function() {
         var contacts = Meteor.users.find({_id: { $ne: Meteor.userId() }});
-
+        
         return contacts;
         /*
         var currentUser = Meteor.user(),
@@ -31,9 +31,16 @@ Template.contacts.events({
         el.css('display','block')
     },
     'blur input[type=search]':function(e, tmpl) {
-        var el = $('.button-search-contacts');
-        if(el) {
-            //el.css('display','none');
-        }
+        
+    },
+    'click .button-search-contacts': function(e, tmpl) {
+        //reset search
+        var instance = EasySearch.getComponentInstance(
+            { index: 'users' }
+        );
+        instance.clear();
+        // clear search field
+        $('.input-search-contacts').val('');
+
     }
 });

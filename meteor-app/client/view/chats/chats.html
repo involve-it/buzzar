@@ -1,0 +1,48 @@
+<template name="conversations">
+    <!-- navigation buttons -->
+    {{#contentFor "headerButtonLeft"}}
+        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            {{#if isAndroid}}
+                {{> ionIcon icon='android-more-vertical'}}
+            {{else}}
+                {{> ionIcon icon='navicon'}}
+            {{/if}}
+        </button>
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Chats</h1>
+    {{/contentFor}}
+
+    {{#contentFor "headerButtonRight"}}
+        <button class="button button-clear" data-ion-modal="_messageNew">{{> ionIcon icon="ios-plus-empty"}}</button>
+    {{/contentFor}}
+
+
+
+    {{#ionView}}
+        {{#ionContent class="page-chats"}}
+            
+            {{#if chat}}
+                
+                {{#ionList}}
+
+                    <div class="messages-container has-header">
+                        {{#each getMessages}}
+                            {{> chatMessage }}
+                        {{/each}}
+                    </div>
+                    
+                    
+                    {{> replyArea}}
+                    
+                {{/ionList}}
+                
+            {{else}}
+                {{> noChats}}
+            {{/if}}
+            
+        {{/ionContent}}
+    {{/ionView}}
+    
+</template>
