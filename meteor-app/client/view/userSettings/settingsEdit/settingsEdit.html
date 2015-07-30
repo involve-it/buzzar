@@ -4,14 +4,16 @@
     {{/contentFor}}
 
     {{#contentFor "headerTitle"}}
-        <h1 class="title">Edit profile - title</h1>
+        <h1 class="title">Edit profile</h1>
     {{/contentFor}}
 
 
 
     {{#ionView}}
-        {{#ionContent class="padding"}}
-           
+        {{#ionContent class="padding settingsEdit"}}
+            {{#autoForm schema=userSchema collection='Meteor.users' template='plain' doc=currentUser type='update' id='editProfile' autosave=true}}
+                {{> afQuickField name='profile'}}
+            {{/autoForm}}
         {{/ionContent}}
     {{/ionView}}
     

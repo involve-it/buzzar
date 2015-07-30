@@ -43,5 +43,15 @@ Template.layout.events({
                 return true;
             }
         });
-    }
+    },
+    'click [data-action=edit-avatar]': function (event, template) {
+        IonActionSheet.show({
+            titleText: 'Edit picture',
+            buttons: [
+                { text: 'Photo Library' },
+                { text: 'Take Photo' }
+            ],
+            cancelText: 'Cancel'
+            }
+        )}
 });

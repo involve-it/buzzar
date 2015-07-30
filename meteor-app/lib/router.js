@@ -28,11 +28,14 @@ Router.map(function() {
             return [
                 Meteor.subscribe('users')
             ]
+        },
+        data: function () {
+            return Meteor.user();
         }
     });
 
     this.route('settings.edit', {
-        path: '/settings/:_id/edit',
+        path: '/settings/:_id',
         controller: 'requireLoginController',
         waitOn: function() {
             return []

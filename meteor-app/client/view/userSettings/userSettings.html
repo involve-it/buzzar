@@ -39,9 +39,9 @@
                             </div>
                             
                             <div class="profile-details">
-                                <div>Username</div>
-                                <div>NAME</div>
-                                <div>LAST NAME</div>
+                                <div>{{username}}</div>
+                                <div><input type="text" value="{{profile.firstName}}" placeholder="first name" readonly/></div>
+                                <div><input type="text" value="{{profile.lastName}}" placeholder="last name" readonly/></div>
                             </div>
                             
                             <div class="edit-settings">
@@ -71,7 +71,7 @@
                                     <p class="title">Contact</p>
                                     <div>
                                         <a class="item item-icon-right" href="/settings">
-                                            <p><strong>_id профайла:</strong> {{getIdProfile}}</p>
+                                            <p><strong>_id зарегистрированного:</strong> {{getIdProfile}}</p>
                                         </a>
                                     </div>
 
@@ -110,7 +110,8 @@
 </template>
 
 <template name="avatar">
-    <div class="img-avatar">
+    <div class="img-avatar" data-action="edit-avatar">
+        {{> ionIcon icon="ios-reverse-camera-outline" }}
         {{#if profile.image}}
             <a data-imagelightbox="a" href="{{profile.image}}?store=images"><img src="{{profile.image}}?store=thumbs"></a>
         {{else}}
