@@ -21,17 +21,25 @@ Template.slideMenuUserProfile.helpers({
         }
     },
     showUserName: function() {
-        var username = 'Вячеслав Александров',
-            LIMIT = 20,
+        var user = Meteor.users.findOne({_id: Meteor.userId()}),
+            firstName = user.profile.firstName || '',
+            lastName = user.profile.lastName || '';
+        
+        var username =  firstName + " " + lastName || user.username,
+            LIMIT = 25,
             result = [];
 
         for(var i = 0; i < LIMIT; i++) {
             result.push(username[i]);
         }
-
         result = result.join('');
-
-        return result;
+        if(username.length > LIMIT) {
+            return result + "...";
+        } else {
+            return result;
+        }
+        
+        
     }
 
 });
