@@ -6,8 +6,8 @@
     {{/contentFor}}
     -->
 
-    {{#contentFor "headerButtonLeft"}}
-        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+    {{#contentFor "headerButtonRight"}}
+        <button class="button button-clear pull-right" data-ion-menu-toggle="right">
             {{#if isAndroid}}
                 {{> ionIcon icon='android-more-vertical'}}
             {{else}}
@@ -16,8 +16,8 @@
         </button>
     {{/contentFor}}
 
-    {{#contentFor "headerButtonRight"}}
-        <button class="button button-clear pull-right button-random" data-action="share-profile">
+    {{#contentFor "headerButtonLeft"}}
+        <button class="button button-clear pull-left button-random" data-action="share-profile">
             {{> ionIcon icon="ios-more-outline"}}
         </button>
     {{/contentFor}}
