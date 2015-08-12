@@ -8,6 +8,7 @@ Meteor.startup(function () {
   // TAGS - basic search text entity. It has a name
   // and keywords (defined by some online resources, e.g. dictionaries).
   // record is created: defined by us now, later - automatically with approval
+  // 'related' is something that we could show along with this ... it should be generated with time and possibly go to other junction table
   bzr.collections.tags =  new Mongo.Collection('tagsNames');
   bzr.collections.tags.remove({});
   bzr.collections.tags.insert({
@@ -22,6 +23,9 @@ Meteor.startup(function () {
       'girl',
       'lady',
       'chick'
+    ],
+    related: [
+      'flowsers'
     ]
   });
   bzr.collections.tags.insert({
