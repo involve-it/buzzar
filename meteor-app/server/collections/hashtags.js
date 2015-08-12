@@ -9,15 +9,15 @@ Meteor.startup(function () {
   // and keywords (defined by some online resources, e.g. dictionaries).
   // record is created: defined by us now, later - automatically with approval
   // 'related' is something that we could show along with this ... it should be generated with time and possibly go to other junction table
-  bzr.collections.tags =  new Mongo.Collection('tagsNames');
-  bzr.collections.tags.remove({});
-  bzr.collections.tags.insert({
+  bzr.colls.tags =  new Mongo.Collection('tagsNames');
+  bzr.colls.tags.remove({});
+  bzr.colls.tags.insert({
     name: 'firewood'
   });
-  bzr.collections.tags.insert({
+  bzr.colls.tags.insert({
     name: 'cold beer'
   });
-  bzr.collections.tags.insert({
+  bzr.colls.tags.insert({
     name: 'girl',
     keyWords: [
       'girl',
@@ -28,7 +28,7 @@ Meteor.startup(function () {
       'flowsers'
     ]
   });
-  bzr.collections.tags.insert({
+  bzr.colls.tags.insert({
     name: 'roommate',
     keyWords: [
       'roommate',
@@ -40,40 +40,40 @@ Meteor.startup(function () {
   // it points to several TAGS in db (see tags array)
   // Hash means - it's subjective, fluid and talk-based.
   // record is created: user creates a hash in UI (new hash, merges hash, etc.)
-  bzr.collections.hashes =  new Mongo.Collection('hashtags');
-  bzr.collections.hashes.remove({});
-  bzr.collections.hashes.insert({
+  bzr.colls.hashes =  new Mongo.Collection('hashtags');
+  bzr.colls.hashes.remove({});
+  bzr.colls.hashes.insert({
     name: 'roommates who don\'t drink vodka',
     tags: [
       'vodka',
-      'roommates',         // we can do this as an id , pointing to tags array too.  bzr.collections.tags.find({name: {'roommates'}).. think
+      'roommates',         // we can do this as an id , pointing to tags array too.  bzr.colls.tags.find({name: {'roommates'}).. think
       'healthy lifestyle'  // possible that it's doesn't exist in tags collection
     ]
   });
 
-  bzr.collections.hashes.insert({
+  bzr.colls.hashes.insert({
     name: 'walking with your dog in this park',
     tags: [
-      bzr.collections.tags.findOne({name: 'firewood'})._id,
-      bzr.collections.tags.findOne({name: 'cold beer'})._id
+      bzr.colls.tags.findOne({name: 'firewood'})._id,
+      bzr.colls.tags.findOne({name: 'cold beer'})._id
     ],
     isGroup: false,
     popularity: 1
   });  
-  bzr.collections.hashes.insert({
+  bzr.colls.hashes.insert({
     name: 'firewood and beer in the countryside',
     tags: [
-      bzr.collections.tags.findOne({name: 'firewood'})._id,
-      bzr.collections.tags.findOne({name: 'cold beer'})._id
+      bzr.colls.tags.findOne({name: 'firewood'})._id,
+      bzr.colls.tags.findOne({name: 'cold beer'})._id
     ],
     isGroup: true,
     popularity: 1
   });
-  bzr.collections.hashes.insert({
+  bzr.colls.hashes.insert({
     name: 'girls-roommates',
     tags: [
-      bzr.collections.tags.findOne({name: 'girl'})._id,
-      bzr.collections.tags.findOne({name: 'roommate'})._id
+      bzr.colls.tags.findOne({name: 'girl'})._id,
+      bzr.colls.tags.findOne({name: 'roommate'})._id
     ],
     isGroup: true,
     popularity: 5
@@ -84,9 +84,9 @@ Meteor.startup(function () {
   // meantime we will offer him to create a HASHTAG based on that search:
   // we pick 'tags' from the tags found and let user type in the name
   // record is created: everytime user makes a search
-  bzr.collections.searches =  new Mongo.Collection('searches');
-  bzr.collections.searches.remove({});
-  bzr.collections.searches.insert({
+  bzr.colls.searches =  new Mongo.Collection('searches');
+  bzr.colls.searches.remove({});
+  bzr.colls.searches.insert({
     name: 'girls who whanna be roommates',
     amount: 5 // how many times was searched
   });

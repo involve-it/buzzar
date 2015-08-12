@@ -3,6 +3,6 @@
  */
 Meteor.startup(function(){
   bzr = {}
-  bzr.collections = {}
+  bzr.colls = {}
 
 });
