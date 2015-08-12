@@ -1,7 +1,7 @@
 <template name="contacts">
     <!-- navigation buttons -->
-    {{#contentFor "headerButtonLeft"}}
-        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+    {{#contentFor "headerButtonRight"}}
+        <button class="button button-clear pull-right" data-ion-menu-toggle="right">
             {{#if isAndroid}}
                 {{> ionIcon icon='android-more-vertical'}}
             {{else}}
@@ -14,7 +14,7 @@
         <h1 class="title">Contacts</h1>
     {{/contentFor}}
 
-    {{#contentFor "headerButtonRight"}}
+    {{#contentFor "headerButtonLeft"}}
         <button class="button button-clear" data-ion-modal="_contactsNew">{{> ionIcon icon="ios-plus-empty"}}</button>
     {{/contentFor}}
 
