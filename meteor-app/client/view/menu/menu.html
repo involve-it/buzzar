@@ -4,7 +4,7 @@
         {{#ionSideMenu side="right"}}
             {{#ionView}}
                 <div class="bar bar-header bar-fantasia-dark">
-                    <h1 class="title">FANTASIA profile</h1>
+                    <h1 class="title">BUZZAR profile</h1>
                 </div>
 
                 {{#ionContent class="bg-side-menu"}}
@@ -66,31 +66,8 @@
             {{/ionView}}
         {{/ionSideMenu}}
 
-        <!-- Right sideMenu -->
-        {{#ionSideMenu side="left"}}
-            {{#ionView}}
-                <div class="bar bar-header bar-fantasia-dark">
-                    <h1 class="title">FANTASIA profile</h1>
-                </div>
-
-                {{#ionContent class="bg-side-menu"}}
-                    <div class="userProfile">
-                        COPYYYYY
-                    </div>
-                    {{#ionList class="navUserMenu"}}
-
-                        <div data-ion-menu-close class="{{isActiveRoute 'chats'}}">
-                            {{#ionItem iconLeft=true }}
-                                <p>Chats ssssssss</p>
-                                {{> ionIcon icon="ios-chatboxes-outline" }}
-                            {{/ionItem}}
-                        </div>
-                        
-
-                    {{/ionList}}
-                {{/ionContent}}
-            {{/ionView}}
-        {{/ionSideMenu}}
+        <!-- Left toggleMenuLeft -->
+        {{> toggleMenuLeft}}
         
     {{/ionSideMenus}}
 </template>

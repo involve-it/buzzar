@@ -1,3 +1,13 @@
+
+@background-header-menu:          transparent;         //Background header toggleMenuLeft
+@background-base-plate:           #3a3b59;             //Background under search input
+@h2-header-text-color:            #A6A6A6;             //Text color h2 title
+@text-color-list-item:            #C2C2C2;
+@background-count-item:           #29BFD3;
+@color-count-item:                rgba(255,255,255,.7);
+
+
+
 .menu-profile {
 
   display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
@@ -51,6 +61,115 @@
 
 }
 
+
+
+/* 
+  Left toggleMenuLeft
+*/
+
+.menu-left {
+  
+  .bar-fantasia-dark {
+    background-color: @background-base-plate;
+    padding: 0;
+    
+    .bar {
+      background-color: @background-header-menu;
+      border-bottom: none;
+     
+      .item-input-wrapper {
+        background-color: rgba(0,0,0,.3);
+      }
+    }
+
+    .button-quick-search {
+      display: none;
+    }
+  }
+  
+  .bg-side-menu {
+    
+    .general-div {
+      padding-top: 20px;
+      
+      .section-holder {
+        margin: 16px 0 32px;
+      }
+      
+      /* LIST UL */
+      .list {
+        
+       .item {
+         background-color: transparent;
+         border-color: transparent;
+         padding: 8px 16px;
+         
+         &.parent > a:after  {
+           content: "\f104";
+           width: 24px;
+           margin-right: 0;
+           font-family: FontAwesome;
+           float: right;
+           text-align: center;
+           font-size: 18px;
+         }
+         
+         a {
+           color: @text-color-list-item;
+           text-decoration: none;
+           transition: all 0.15s ease-in-out; //list [a] animation
+         }
+       }
+        
+        .list-hidden {
+          display: none !important;
+          visibility: hidden !important;
+        }
+      }
+      
+      .box-title {
+        position: relative;
+        
+        .count-item {
+          position: absolute;
+          top: 3px;
+          vertical-align: baseline;
+          white-space: nowrap;
+          right: 0;
+          padding: 0 9px;
+          margin-right: 16px;
+          background-color: @background-count-item;
+          color: @color-count-item;
+          border-radius: 8px;
+        }
+        
+        h2.title {
+          position: relative;
+          text-align: left;
+          font-size: 18px;
+          line-height: 26px;
+          margin: 0 16px;
+          text-transform: uppercase;
+          font-weight: 700;
+          color: @h2-header-text-color;
+        }
+      }
+      
+      .prefix {
+        font-weight: 300;
+        opacity: .5;
+      }
+    }
+  }
+  
+  
+  
+  
+  
+  
+
+}
+/* END menu-left */  
 
 
 

@@ -10,3 +10,38 @@ Template.ionMenus.events({
 
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** 
+ * Template toggleMenuLeft 
+**/
+
+Template.toggleMenuLeft.events({
+    'focus input[type=search]': function(e, tmpl) {
+        var el = $('.button-quick-search');
+
+        el.css('display','block')
+    },
+    'blur input[type=search]':function(e, tmpl) {
+
+    }
+});
+
+
+
