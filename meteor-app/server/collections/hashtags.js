@@ -9,7 +9,7 @@ Meteor.startup(function () {
   // and keywords (defined by some online resources, e.g. dictionaries).
   // record is created: defined by us now, later - automatically with approval
   // 'related' is something that we could show along with this ... it should be generated with time and possibly go to other junction table
-  bzr.colls.tags =  new Mongo.Collection('tagsNames');
+  bzr.colls.tags =  new Mongo.Collection('tags');
   bzr.colls.tags.remove({});
   bzr.colls.tags.insert({
     name: 'firewood'
@@ -40,7 +40,7 @@ Meteor.startup(function () {
   // it points to several TAGS in db (see tags array)
   // Hash means - it's subjective, fluid and talk-based.
   // record is created: user creates a hash in UI (new hash, merges hash, etc.)
-  bzr.colls.hashes =  new Mongo.Collection('hashtags');
+  bzr.colls.hashes =  new Mongo.Collection('hashes');
   bzr.colls.hashes.remove({});
   bzr.colls.hashes.insert({
     name: 'roommates who don\'t drink vodka',
