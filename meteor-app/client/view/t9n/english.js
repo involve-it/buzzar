@@ -9,7 +9,9 @@ en = {
     getContactUsers:     'Найденные контакты',
     status:              'Status',
     active:              'Active',
-    inactive:            'Incative'
+    inactive:            'Incative',
+    views:               'Views',
+    left:                'Left'
 };
 
 T9n.map('en', en);

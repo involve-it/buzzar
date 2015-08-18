@@ -1,7 +1,10 @@
 
-@background-box-status:           rgba(32,162,179,1);
-@color-text-sub-menu:             rgba(255,255,255,1);
 
+@background-box-status:           rgba(32,162,179,1);
+@background-item-active:          rgba(158,158,158,1);
+@color-text-sub-menu:             rgba(255,255,255,1);
+@photoSize:                       100%;
+@colorVip:                        rgba(255,51,102,1);
 
 .bar {
 
@@ -21,5 +24,100 @@
     }
 
 
+  }
+  
+}
+
+
+.list {
+
+
+  .item {
+    &.item-active {
+      background-color:   @background-item-active;
+      color:              @color-text-sub-menu;
+    }
+    
+    display: -webkit-box;     /* Safari */
+    display: -moz-box;        /* Firefox 21- */
+    display: -ms-flexbox;     /* IE 10+ */
+    display: -webkit-flex;    /* Chrome */
+    display: flex;            /* Standard  */
+    
+    .photo {
+      -webkit-flex-basis:   105px;
+      flex-basis:           105px;
+      -webkit-flex-grow:    0;
+      flex-grow:            0;
+      -webkit-flex-shrink:  0;
+      flex-shrink:          0;
+      
+      
+      a.photo-wrapper {
+
+        img {
+          height:          @photoSize;
+          width:           @photoSize;
+          border-radius:   2px;
+        }
+      }
+    }
+
+    .description {
+      font-size: 12px;
+      font-family: "Roboto", sans-serif;
+      padding-left: 16px;
+
+      .title {
+        font-size: 16px;
+        white-space: normal;
+        font-weight: 400;
+      }
+
+      .price {
+        font-size: 18px;
+        font-weight: 700;
+        
+        .prefix {
+          font-size: 16px;
+        }
+      }
+
+      .count-view {
+        white-space: normal;
+        
+        .today {}
+      }
+
+      .progress {}
+      
+      .services {
+        
+        ul {
+          margin-top: 5px;
+          
+          li {
+            font-size: 9px;
+            text-transform: uppercase;
+            line-height: 20px;
+            height: 20px;
+            width: 25px;
+            text-align: center;
+            margin-right: 8px;
+            border-radius: 2px;
+            border: 1px solid rgba(147,147,147,.5);
+            color: rgba(147,147,147,.5);
+            display: inline-block;
+            list-style: none;
+            overflow: hidden;
+          }
+          
+          .vip {
+            color: @colorVip;
+            border-color: @colorVip;
+          }
+        }
+      }
+    }
   }
 }

@@ -9,7 +9,9 @@ var ru;
         getContactUsers:     'Найденные контакты',
         status:              'Статус',
         active:              'Активные',
-        inactive:            'Завершенные'
+        inactive:            'Завершенные',
+        views:               'Просмотров',
+        left:                'Осталось'
     };
 
 T9n.map('ru', ru);
