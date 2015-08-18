@@ -1,0 +1,34 @@
+<template name="myPosts">
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton path="home"}}
+    {{/contentFor}}
+
+    {{#contentFor "headerButtonRight"}}
+        <button class="button button-clear pull-right button-random" data-action="share-profile">
+            {{> ionIcon icon="ios-plus-outline"}}
+        </button>
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">My Posts</h1>
+    {{/contentFor}}
+
+    {{#ionView}}
+        
+        {{#ionSubheaderBar class='subHeader-status'}}
+            <div align='right' class="box-status">
+                <label class="toggle toggle-balanced">
+                    <input type="checkbox" checked >
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+                <span>{{t9n 'status'}}</span>                
+            </div>
+        {{/ionSubheaderBar}}
+        
+        {{#ionContent}}
+            {{> myItems}}   <!--1-->
+        {{/ionContent}}
+    {{/ionView}}
+</template>

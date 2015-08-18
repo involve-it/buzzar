@@ -5,8 +5,13 @@
 var ru;
 
     ru = {
-       getAllUsers:         'Все пользователи системы',
-       getContactUsers:     'Найденные контакты'
+        getAllUsers:         'Все пользователи системы',
+        getContactUsers:     'Найденные контакты',
+        status:              'Статус',
+        active:              'Активные',
+        inactive:            'Завершенные',
+        views:               'Просмотров',
+        left:                'Осталось'
     };
 
 T9n.map('ru', ru);
