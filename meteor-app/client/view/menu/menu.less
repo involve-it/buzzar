@@ -69,6 +69,10 @@
 
 .menu-left {
   
+  .not-has-subheader {
+    top:44px !important;
+  }
+  
   .bar-fantasia-dark {
     background-color: @background-base-plate;
     padding: 0;
@@ -162,19 +166,53 @@
     }
   }
   
-  
-  
-  
-  
-  
-
 }
-/* END menu-left */  
+/* END menu-left */
 
 
 
+/* 
+  Right toggleMenuRight
+*/
 
+.menu-right {
 
+  .not-has-subheader {
+    top:44px !important;
+  }
+  
+  .list {
+    
+    .item {
+      position: relative;
+      
+      p {
+        text-transform: capitalize;
+      }
+
+      .count-item {
+        position: absolute;
+        top: 10px;
+        vertical-align: baseline;
+        white-space: nowrap;
+        right: 0;
+        padding: 0 9px;
+        margin-right: 16px;
+        background-color: @background-count-item;
+        color: @color-count-item;
+        border-radius: 8px;
+      }
+    }
+  }
+  
+  .icon {
+    
+    /*Right menu icons*/
+    &.ion-ios-my-posts {}
+  }
+}
+
+/* END menu-right */
 
 
 

@@ -21,6 +21,11 @@ Router.map(function() {
         controller: 'requireLoginController'
     });
 
+    this.route('myPosts', {
+        path: 'myPosts',
+        controller: 'requireLoginController'
+    });
+
     this.route('settings', {
         template: 'userSettings',
         controller: 'requireLoginController',
