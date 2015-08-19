@@ -38,23 +38,12 @@
             </div>
             <div class="content has-header overflow-scroll">
                 Create new post:
-                {{> postsNewUrl }}
+                {{> postsNewForm }}
                 <br/>
                 OR
                 <br/>
                 Export existing post/url:
-                <input name="url" placeholder="original url" />
-                <a name="original-post-details" href="/posts/new/original-details">original post details >> </a>
-                <br/>
-                <select>
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
-                </select>
-
-                <hr/>
-
+                {{> postsNewUrl }}
             </div>
     {{/ionView}}
 </template>

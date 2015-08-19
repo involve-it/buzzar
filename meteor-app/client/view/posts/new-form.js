@@ -1,0 +1,2 @@
+Template.postsNewForm.created = function(){
+}
