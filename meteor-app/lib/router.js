@@ -17,7 +17,13 @@ Router.configure({
 
 Router.map(function() {
     this.route('home', {
+        path: '/home',
+        controller: 'requireLoginController'
+    });
+
+    this.route('search', {
         path: '/',
+        template: 'globalSearch',
         controller: 'requireLoginController'
     });
 
