@@ -1,5 +1,5 @@
 Template.postsNew.created = function(){
-  var data = o.runtime.newPost = {}
+  var data = bz.runtime.newPost = {}
 
   this.data ? _.extend(this.data, data) : _.extend({}, data);
 }

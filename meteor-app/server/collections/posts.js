@@ -6,33 +6,33 @@ STATES = [
   'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA',
   'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
 ];
-  o.cols.postTypes = new Mongo.Collection('postTypes');
-  o.cols.postTypes.remove({});
-  o.cols.postTypes.insert({
+  bz.cols.postTypes = new Mongo.Collection('postTypes');
+  bz.cols.postTypes.remove({});
+  bz.cols.postTypes.insert({
     name: 'trade'
   });
-  o.cols.postTypes.insert({
+  bz.cols.postTypes.insert({
     name: 'donate'
   });
-  o.cols.postTypes.insert({
+  bz.cols.postTypes.insert({
     name: 'jobs'
   });
-  o.cols.postTypes.insert({
+  bz.cols.postTypes.insert({
     name: 'housing'
   });
-  o.cols.postTypes.insert({
+  bz.cols.postTypes.insert({
     name: 'lost-and-found'
   });
-  o.cols.posts = new Mongo.Collection('posts');
-  o.cols.posts.remove({});
+  bz.cols.posts = new Mongo.Collection('posts');
+  bz.cols.posts.remove({});
 
-  o.cols.posts.before.insert(function (userId, doc) {
+  bz.cols.posts.before.insert(function (userId, doc) {
     //var gender = Random.choice(['men', 'women']);
     //var num = _.random(0, 50);
     //doc.avatarUrl = 'https://randomuser.me/api/portraits/thumb/' + gender + '/' + num + '.jpg';
   });
 
-  o.cols.posts.attachSchema(new SimpleSchema({
+  bz.cols.posts.attachSchema(new SimpleSchema({
     name: {
       type: Object
     },
@@ -103,7 +103,7 @@ STATES = [
   }));
 
 if(Meteor.isServer){
-  o.cols.posts.allow({
+  bz.cols.posts.allow({
     insert: function(){
       return true;
     }

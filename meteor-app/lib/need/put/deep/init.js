@@ -2,7 +2,7 @@
  * Created by ashot on 8/12/15.
  */
 
-o = {}
-o.cols = {}
+bz = {}
+bz.cols = {}
 
-o.runtime = {}
+bz.runtime = {}

@@ -1,9 +1,9 @@
 /**
  * Created by ashot on 8/18/15.
  */
-o.cols.places = new Mongo.Collection('places');
-o.cols.places.remove({});
-o.cols.places.insert({
+bz.cols.places = new Mongo.Collection('places');
+bz.cols.places.remove({});
+bz.cols.places.insert({
   name: 'Starbucks',
   coordinates: '...'
 });
