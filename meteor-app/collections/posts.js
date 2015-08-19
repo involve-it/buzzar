@@ -6,36 +6,33 @@ STATES = [
   'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA',
   'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
 ];
-//Posts = new Mongo.Collection('posts');
-Meteor.startup(function () {
-
-  ocn.cols.postTypes = new Mongo.Collection('postTypes');
-  ocn.cols.postTypes.remove({});
-  ocn.cols.postTypes.insert({
+  o.cols.postTypes = new Mongo.Collection('postTypes');
+  o.cols.postTypes.remove({});
+  o.cols.postTypes.insert({
     name: 'trade'
   });
-  ocn.cols.postTypes.insert({
+  o.cols.postTypes.insert({
     name: 'donate'
   });
-  ocn.cols.postTypes.insert({
+  o.cols.postTypes.insert({
     name: 'jobs'
   });
-  ocn.cols.postTypes.insert({
+  o.cols.postTypes.insert({
     name: 'housing'
   });
-  ocn.cols.postTypes.insert({
+  o.cols.postTypes.insert({
     name: 'lost-and-found'
   });
-  ocn.cols.posts = new Mongo.Collection('posts');
-  ocn.cols.posts.remove({});
+  o.cols.posts = new Mongo.Collection('posts');
+  o.cols.posts.remove({});
 
-  ocn.cols.posts.before.insert(function (userId, doc) {
+  o.cols.posts.before.insert(function (userId, doc) {
     //var gender = Random.choice(['men', 'women']);
     //var num = _.random(0, 50);
     //doc.avatarUrl = 'https://randomuser.me/api/portraits/thumb/' + gender + '/' + num + '.jpg';
   });
 
-  ocn.cols.posts.attachSchema(new SimpleSchema({
+  o.cols.posts.attachSchema(new SimpleSchema({
     name: {
       type: Object
     },
@@ -104,12 +101,9 @@ Meteor.startup(function () {
       optional: true
     }
   }));
-});
 
 if(Meteor.isServer){
-
-
-  ocn.cols.posts.allow({
+  o.cols.posts.allow({
     insert: function(){
       return true;
     }

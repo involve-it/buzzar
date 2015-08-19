@@ -5,34 +5,34 @@
 
 Meteor.startup(function () {
 
-  ocn.cols.siteTypes = new Mongo.Collection('siteTypes');
-  ocn.cols.siteTypes.remove({});
-  ocn.cols.siteTypes.insert({
+  o.cols.siteTypes = new Mongo.Collection('siteTypes');
+  o.cols.siteTypes.remove({});
+  o.cols.siteTypes.insert({
     name: 'trade'
   });
-  ocn.cols.siteTypes.insert({
+  o.cols.siteTypes.insert({
     name: 'charity'
   });
-  ocn.cols.siteTypes.insert({
+  o.cols.siteTypes.insert({
     name: 'jobs'
   });
-  ocn.cols.siteTypes.insert({
+  o.cols.siteTypes.insert({
     name: 'housing'
   });
 
   // SITES
-  ocn.cols.sites = new Mongo.Collection('sites');
-  ocn.cols.sites.remove({});
-  ocn.cols.sites.insert({
+  o.cols.sites = new Mongo.Collection('sites');
+  o.cols.sites.remove({});
+  o.cols.sites.insert({
     name: 'craigslist'
   });
-  ocn.cols.tags.insert({
+  o.cols.tags.insert({
     name: 'youcaring'
   });
-  ocn.cols.tags.insert({
+  o.cols.tags.insert({
     name: 'linkedin'
   });
-  ocn.cols.tags.insert({
+  o.cols.tags.insert({
     name: 'monster'
   });
 });
