@@ -1,0 +1,2 @@
+Template.postsNewUrl.created = function(){
+}

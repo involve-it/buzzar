@@ -21,11 +21,6 @@ Router.map(function() {
         controller: 'requireLoginController'
     });
 
-    this.route('myPosts', {
-        path: 'myPosts',
-        controller: 'requireLoginController'
-    });
-
     this.route('settings', {
         template: 'userSettings',
         controller: 'requireLoginController',
@@ -77,7 +72,21 @@ Router.map(function() {
         template: 'conversations',
         controller: 'requireLoginController'
     });
-    
+
+    // POSTS:
+    this.route('posts', {
+        path: '/posts',
+        controller: 'requireLoginController',
+        onBeforeAction: function(){
+            Router.go('/posts/my');
+        }
+
+    });
+
+    this.route('posts.my', {
+        path: '/posts/my',
+        controller: 'requireLoginController'
+    });
     this.route('posts.new', {
         path: '/posts/new',
         waitOn: function() {
@@ -88,6 +97,9 @@ Router.map(function() {
         /*data: function () {
             return Meteor.users.findOne({_id: this.params._id});
         }*/
+    });
+    this.route('posts.new.original-details', {
+        path: '/posts/new/original-details'
     });
     this.route('posts.map',{
         path: '/posts/map',
