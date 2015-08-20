@@ -15,7 +15,7 @@ Template.postsPlacesAutoform.onRendered(function() {
       var service = new google.maps.places.PlacesService(map);
       service.nearbySearch({
         location: Session.get('loc'),
-        radius: 10,
+        radius: 30,
         types: ['store']
       }, callbackNearbySearch);
     }
