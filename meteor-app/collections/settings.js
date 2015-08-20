@@ -4,6 +4,11 @@
 bz.cols.settings = new Mongo.Collection('settings');
 if(Meteor.isServer)  {
   bz.cols.settings.remove({});
+  bz.cols.settings.allow({
+    insert: function(){
+      return true;
+    }
+  })
   bz.cols.settings.insert({
     name: 'mapsKey',
     value: 'AIzaSyALawhBQHnhXiXDFhwZ-OSgS-ZZPHvDsRQ'
@@ -12,10 +17,7 @@ if(Meteor.isServer)  {
     name: 'isCordova',    // Cordova/phonegap mobile application flag
     value: Meteor.isCordova
   });
-  bz.cols.settings.insert({
-    name: 'isMobile',  // Web mobile flag
-    value: Meteor.isMobile // taken from this: meteor add mquandalle:ismobile
-  });
+
   Meteor.publish('settings', function(){
     return bz.cols.settings.find();
   });
@@ -23,5 +25,11 @@ if(Meteor.isServer)  {
 if(Meteor.isClient) {
   bz.runtime.settings = {}
   // see router - waitOn
+}
+if(Meteor.isClient){
+  bz.cols.settings.insert({
+    name: 'isMobile',  // Web mobile flag
+    value: Meteor.isMobile // taken from this: meteor add mquandalle:ismobile
+  });
 }
 
