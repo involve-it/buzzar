@@ -1,19 +1,78 @@
 <template name="globalSearch">
     <!-- navigation buttons -->
- 
 
-    {{#ionNavBar class="bar-positive" title="anothe"}}
-        <p>eee</p>
-    {{/ionNavBar}}
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton path="home" text="Home"}}
+    {{/contentFor}}
 
+    {{#contentFor "headerTitle"}}
+        {{> globalSearchField}}
+    {{/contentFor}}
 
+    {{#contentFor "headerButtonRight"}}
+        <button class="button button-clear">
+            {{> ionIcon icon="ios-list-outline"}}
+        </button>
+    {{/contentFor}}
+
+   <!-- <div style="background-color: black; height: 90px;" class="bar bar-header bar-fantasia nav-bar-block nav-bar-transition-ios nav-bar-direction-forward" data-navbar-container>
+        <h1 class="title title-center" style="left: 0px; right: 0px;">sdfsdf</h1>
+    </div>-->
+
+    
 
     {{#ionView}}
-        {{#ionContent class="page-contacts"}}
 
-            
+        {{#ionSubheaderBar class='subHeader-status'}}
+            {{> boxCategory}}
+        {{/ionSubheaderBar}}   
+    
+        {{#ionContent class="page-global-search has-subheader"}}
+
+            {{#if request}}
+
+                    <div class="">
+                        true true true true
+                    </div>
+
+            {{else}}
+                {{> noSearch}}
+            {{/if}}
 
         {{/ionContent}}
     {{/ionView}}
+    
+</template>
+
+
+
+<!-- search field -->
+<template name="globalSearchField">
+    <div class="search-field item-input-inset">
+
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            {{> esInput index="users" type="search" placeholder="Search ..." }}
+        </label>
+
+        <!--<button class="button button-clear button-search-field">
+            Cancel
+        </button>-->
+
+    </div>
+</template>
+
+<template name="boxCategory">
+
+    <ul class="category-list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+        <li>Item 8</li>
+    </ul>
     
 </template>
