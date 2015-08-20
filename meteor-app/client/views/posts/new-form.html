@@ -1,5 +1,14 @@
 <template name="postsNewForm">
 
- bla bla
-    <input id="input" />
+
+    <input class="js-post-title" placeholder="post title" type="text"/>
+    <input class="js-post-description" placeholder="post description" type="text"/>
+    <input class="js-post-price" placeholder="post price" type="number"/>
+
+    Select type:
+    <select class="js-post-type-select">
+       {{#each getSiteTypes }}
+           <option value="{{ name }}">{{ name }}</option>
+       {{/each}}
+    </select>
 </template>

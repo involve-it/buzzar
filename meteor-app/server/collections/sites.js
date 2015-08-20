@@ -19,6 +19,9 @@ Meteor.startup(function () {
   bz.cols.siteTypes.insert({
     name: 'housing'
   });
+  Meteor.publish('siteTypes', function(){
+    return bz.cols.siteTypes.find();
+  })
 
   // SITES
   bz.cols.sites = new Mongo.Collection('sites');
