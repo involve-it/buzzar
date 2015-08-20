@@ -3,8 +3,6 @@
     {{#contentFor "headerButtonLeft"}}
         {{>ionNavBackButton path="home"}}
     {{/contentFor}}
-
-
     {{#contentFor "headerButtonRight"}}
         <button class="button button-clear pull-right" data-ion-menu-toggle="right">
             {{#if isAndroid}}
@@ -13,21 +11,10 @@
                 {{> ionIcon icon='navicon'}}
             {{/if}}
         </button>
-        <!--<button class="button button-clear pull-right button-random" data-action="share-profile">
-            {{> ionIcon icon="ios-plus-outline"}}
-        </button>-->
     {{/contentFor}}
-
     {{#contentFor "headerTitle"}}
         <h1 class="title">Add New Post</h1>
     {{/contentFor}}
-
-    <!--{{#ionView}}-->
-        <!--{{#ionContent}}-->
-                <!--ion content-->
-        <!--{{/ionContent}}-->
-    <!--{{/ionView}}-->
-
 
     {{#ionView}}
 
@@ -37,6 +24,7 @@
                 <button type="submit" class="button button-positive button-clear">Add</button>
             </div>
             <div class="content has-header overflow-scroll">
+
                 Create new post:
                 {{> postsNewForm }}
                 <br/>
@@ -44,6 +32,11 @@
                 <br/>
                 Export existing post/url:
                 {{> postsNewUrl }}
+
+                <hr/>
+                <span>Post Location:</span>
+                {{> postsPlacesAutoform }}
             </div>
+
     {{/ionView}}
 </template>
