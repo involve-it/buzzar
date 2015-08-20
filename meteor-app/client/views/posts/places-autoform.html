@@ -4,18 +4,41 @@
                placeholder="Post Location"
                autocomplete="off" spellcheck="off"
                data-source="placesArray"/> -->
-        <label type="stacked" class="item item-input item-stacked-label">
+        <!--<label class="item item-input">-->
+        <!--<i class="icon ion-navigate placeholder-icon"></i>-->
+        <!--<input type="text" placeholder="Search">-->
+        <!--</label>-->
+        <label class="item item-input item-stacked-label">
             <span class="input-label">Location</span>
-            <input class="form-control typeahead" name="team" type="text"
-                   placeholder="Post Location"
-                   autocomplete="off" spellcheck="off"
-                   data-source="placesArray"/>
+
+            <div class="list list-inset">
+                <div class="row choose-place-buttons">
+                        <a class="button">
+                            <i class="icon ion-navigate placeholder-icon"></i>
+                        </a>
+                    <div class="place-btn padding">
+                        <input class="form-control typeahead capitalize" name="team" type="text"
+                               placeholder="place nearby"
+                               autocomplete="off" spellcheck="off"
+                               data-source="placesArray"/>
+                    </div>
+                    <div class="place-btn padding">
+                        <label class="item item-input item-select item-stacked-label">
+                            <div class="input-label">
+                                My Places
+                            </div>
+                            <select class="js-charity-type-select">
+                                <option value="roommates">Lost my pet</option>
+                                <option value="rent">Need money for food</option>
+                                <option value="buy">Emergency situation</option>
+                                <option value="buy">Other:</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
         </label>
-        <div class="list">
-
-
-
-        </div>
     </div>
 
 </template>
