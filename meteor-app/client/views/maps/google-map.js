@@ -7,8 +7,9 @@ Template.googleMapControl.helpers({
     if (GoogleMaps.loaded()) {
       // Map initialization options
       return {
-        center: new google.maps.LatLng(-37.8136, 144.9631),
-        zoom: 8
+        //center: new google.maps.LatLng(-37.8136, 144.9631),
+        center: new google.maps.LatLng(bz.runtime.maps.loc.lat, bz.runtime.maps.loc.lng),
+        zoom: 12
       };
     }
   }
@@ -29,8 +30,8 @@ Template.googleMapControl.events({
   'click #add': function () {
     var map = GoogleMaps.maps.map;
 
-    var latitude = random(-43, -10);
-    var longitude = random(113, 153);
+    var latitude = random(bz.runtime.maps.loc.lat-0.1, bz.runtime.maps.loc.lat + 0.1);
+    var longitude = random(bz.runtime.maps.loc.lng-0.1, bz.runtime.maps.loc.lng + 0.1);
     markers.push(new google.maps.Marker({
       position: new google.maps.LatLng(latitude, longitude),
       map: map.instance
