@@ -7,7 +7,7 @@ if(Meteor.isCordova || Meteor.isMobile) {
     waitOn: function () {
       return Meteor.subscribe('settings', function () {
         _.each(bz.cols.settings.find().fetch(), function (item) {
-          bz.runtime.settings[item.name] = item.value;
+          bz.config[item.name] = item.value;
         });
       });
     },
@@ -24,7 +24,7 @@ if(Meteor.isCordova || Meteor.isMobile) {
     waitOn: function () {
       return Meteor.subscribe('settings', function () {
         _.each(bz.cols.settings.find().fetch(), function (item) {
-          bz.runtime.settings[item.name] = item.value;
+          bz.config[item.name] = item.value;
         });
       });
     },
@@ -124,12 +124,14 @@ Router.map(function () {
   this.route('posts.new.original-details', {
     path: '/posts/new/original-details'
   });
-  this.route('posts.map', {
-    path: '/posts/map',
+  this.route('map', {
+    path: '/map',
     template: 'postsMap',
     waitOn: function () {
       return [
-        GoogleMaps.load({key: 'AIzaSyCE5a0IeEGQLptVSSW-5swNFNaRUXKEWss', libraries: 'geometry,places', v: '3'})
+        GoogleMaps.load({libraries: 'geometry,places', v: '3'})
+        //GoogleMaps.load({key: bz.config.mapsKey, libraries: 'geometry,places', v: '3'})
+        //GoogleMaps.load({key: 'AIzaSyCE5a0IeEGQLptVSSW-5swNFNaRUXKEWss', libraries: 'geometry,places', v: '3'})
       ];
     }
   });

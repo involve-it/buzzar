@@ -1,0 +1,12 @@
+<template name="googleMapControl">
+    <div class="google-map">
+        <div>
+            <button id="add">Add random marker</button>
+            &nbsp;
+            <button id="clear">Clear all</button>
+        </div>
+        <div class="map-container" style="width: 100%; height: 100%;">
+            {{> googleMap name="map" options=mapOptions}}
+        </div>
+    </div>
+</template>

@@ -5,17 +5,26 @@ bz.cols.settings = new Mongo.Collection('settings');
 if(Meteor.isServer)  {
   bz.cols.settings.remove({});
   bz.cols.settings.allow({
-    insert: function(){
-      return true;
+    insert: function(id, doc){
+      var ret = false;
+      if(doc.name === 'isMobile'){
+        ret = true;
+      }
+      return ret;
     }
-  })
+  });
   bz.cols.settings.insert({
-    name: 'mapsKey',
-    value: 'AIzaSyALawhBQHnhXiXDFhwZ-OSgS-ZZPHvDsRQ'
+    name: 'mode',    // Cordova/phonegap mobile application flag
+    value: 'dev'     // other options: prod, beta
   });
   bz.cols.settings.insert({
     name: 'isCordova',    // Cordova/phonegap mobile application flag
     value: Meteor.isCordova
+  });
+  bz.cols.settings.insert({
+    name: 'mapsKey',
+    //value: 'AIzaSyALawhBQHnhXiXDFhwZ-OSgS-ZZPHvDsRQ'
+    value: null
   });
 
   Meteor.publish('settings', function(){
@@ -23,7 +32,7 @@ if(Meteor.isServer)  {
   });
 }
 if(Meteor.isClient) {
-  bz.runtime.settings = {}
+  bz.config = {}
   // see router - waitOn
 }
 if(Meteor.isClient){

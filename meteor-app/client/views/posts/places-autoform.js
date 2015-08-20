@@ -47,7 +47,7 @@ function googlePlacesInit () {
 }
 function googleMapsLoad(){
   GoogleMaps.load({
-    //key: bz.runtime.settings.mapsKey,
+    //key: bz.config.mapsKey,
     libraries: 'places'  // also accepts an array if you need more than one
   });
 }
