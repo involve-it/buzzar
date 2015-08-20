@@ -1,0 +1,8 @@
+# ignore temp office files:
+~$*.xlsx
+~$*.docx
+~*.tmp
+
+.DS_Store
+
+# ignore these folders:

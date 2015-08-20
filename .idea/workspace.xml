@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="18c8f68c-e5ce-48db-8a46-f57377559468" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meteor-app/client/layouts/main-layout.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meteor-app/client/layouts/main-layout.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meteor-app/client/layouts/main-layout.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/map.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/new-form.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/new-url.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/new-url.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/page-new.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/.idea/dictionaries/douson.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/.idea/ionic.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/.idea/jsLibraryMappings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/.idea/mongoSettings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/.idea/watcherTasks.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/Map.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/new-form.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/new-url.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/new-url.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/new.js" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/layout.html" afterPath="$PROJECT_DIR$/meteor-app/client/layouts/main-layout-app.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/layout.js" afterPath="$PROJECT_DIR$/meteor-app/client/layouts/main-layout-app.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/layout.less" afterPath="$PROJECT_DIR$/meteor-app/client/layouts/main-layout-app.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/style/app-ionic.less" afterPath="$PROJECT_DIR$/meteor-app/client/style/app/app-ionic.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/style/app.scss" afterPath="$PROJECT_DIR$/meteor-app/client/style/app/app.scss" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/appLoading/loading.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/appLoading/loading.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/chats/chats.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/chats/chats.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/chats/chats.js" afterPath="$PROJECT_DIR$/meteor-app/client/views/chats/chats.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/chats/chats.less" afterPath="$PROJECT_DIR$/meteor-app/client/views/chats/chats.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/chats/noChats/noChats.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/chats/noChats/noChats.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/chats/replyArea/replyArea.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/chats/replyArea/replyArea.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/chats/replyArea/replyArea.js" afterPath="$PROJECT_DIR$/meteor-app/client/views/chats/replyArea/replyArea.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/contacts/contacts.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/contacts/contacts.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/contacts/contacts.js" afterPath="$PROJECT_DIR$/meteor-app/client/views/contacts/contacts.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/contacts/contacts.less" afterPath="$PROJECT_DIR$/meteor-app/client/views/contacts/contacts.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/contacts/contactsShow/contactsShow.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/contacts/contactsShow/contactsShow.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/contacts/contactsShow/contactsShow.js" afterPath="$PROJECT_DIR$/meteor-app/client/views/contacts/contactsShow/contactsShow.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/contacts/noContacts/noContacts.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/contacts/noContacts/noContacts.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/home/home.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/home/home.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/menu/menu.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/menu/menu.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/menu/menu.js" afterPath="$PROJECT_DIR$/meteor-app/client/views/menu/menu.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/menu/menu.less" afterPath="$PROJECT_DIR$/meteor-app/client/views/menu/menu.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/menu/toggleMenuLeft.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/menu/toggleMenuLeft.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/menu/toggleMenuRight.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/menu/toggleMenuRight.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/menu/userProfile/editUserProfile/editUserProfile.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/menu/userProfile/editUserProfile/editUserProfile.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/menu/userProfile/editUserProfile/editUserProfile.js" afterPath="$PROJECT_DIR$/meteor-app/client/views/menu/userProfile/editUserProfile/editUserProfile.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/menu/userProfile/editUserProfile/editUserProfile.less" afterPath="$PROJECT_DIR$/meteor-app/client/views/menu/userProfile/editUserProfile/editUserProfile.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/menu/userProfile/menuLinkProfile.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/menu/userProfile/menuLinkProfile.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/menu/userProfile/menuLinkProfile.js" afterPath="$PROJECT_DIR$/meteor-app/client/views/menu/userProfile/menuLinkProfile.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/items/my-items.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/items/my-items.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/map.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/map.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/map.less" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/map.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/my.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/page-my.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/my.less" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/page-my.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/new-form.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/new-form.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/new.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/page-new.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/original-details.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/original-details.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/original-details.js" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/original-details.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/places-autoform.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/places-autoform.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/places-autoform.js" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/places-autoform.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/posts/places-autoform.less" afterPath="$PROJECT_DIR$/meteor-app/client/views/posts/places-autoform.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/search/noSearch/noSearch.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/search/noSearch/noSearch.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/search/search.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/search/search.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/t9n/english.js" afterPath="$PROJECT_DIR$/meteor-app/client/views/t9n/english.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/t9n/russian.js" afterPath="$PROJECT_DIR$/meteor-app/client/views/t9n/russian.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/userSettings/settingsEdit/settingsEdit.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/userSettings/settingsEdit/settingsEdit.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/userSettings/settingsEdit/settingsEdit.js" afterPath="$PROJECT_DIR$/meteor-app/client/views/userSettings/settingsEdit/settingsEdit.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/userSettings/settingsEdit/settingsEdit.less" afterPath="$PROJECT_DIR$/meteor-app/client/views/userSettings/settingsEdit/settingsEdit.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/userSettings/userSettings.html" afterPath="$PROJECT_DIR$/meteor-app/client/views/userSettings/userSettings.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/userSettings/userSettings.js" afterPath="$PROJECT_DIR$/meteor-app/client/views/userSettings/userSettings.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/meteor-app/client/view/userSettings/userSettings.less" afterPath="$PROJECT_DIR$/meteor-app/client/views/userSettings/userSettings.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meteor-app/client/style/globals.less" afterPath="$PROJECT_DIR$/meteor-app/client/style/globals.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meteor-app/.meteor/packages" afterPath="$PROJECT_DIR$/meteor-app/.meteor/packages" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meteor-app/lib/router.js" afterPath="$PROJECT_DIR$/meteor-app/lib/router.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meteor-app/collections/settings.js" afterPath="$PROJECT_DIR$/meteor-app/collections/settings.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meteor-app/.meteor/versions" afterPath="$PROJECT_DIR$/meteor-app/.meteor/versions" />
+    </list>
+    <ignored path="buzzar.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/meteor-app/.meteor/local/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="buzzar" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="14" />
+    <option name="y" value="23" />
+    <option name="width" value="1874" />
+    <option name="height" value="1057" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="buzzar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="buzzar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="buzzar1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meteor-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="buzzar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="buzzar1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="HbShouldOpenHtmlAsHb" value="enabled" />
+    <property name="js.meteor.project" value="true" />
+    <property name="js.meteor.library.was.enabled" value="true" />
+    <property name="recentsLimit" value="5" />
+    <property name="restartRequiresConfirmation" value="true" />
+  </component>
+  <component name="RunManager" selected="Meteor.Meteor">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="JsTestDriver-test-runner" factoryName="JsTestDriver">
+      <setting name="configLocationType" value="CONFIG_FILE" />
+      <setting name="settingsFile" value="" />
+      <setting name="serverType" value="INTERNAL" />
+      <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="meteor-app-runner" factoryName="Meteor">
+      <option name="exePath" value="/usr/local/bin/meteor" />
+      <option name="startBrowserSettings">
+        <browser url="http://localhost:3000" />
+      </option>
+      <meteor-runner-state>
+        <startBrowserSettings>
+          <browser url="http://localhost:3000" />
+        </startBrowserSettings>
+      </meteor-runner-state>
+      <method />
+    </configuration>
+    <configuration default="false" name="Meteor" type="meteor-app-runner" factoryName="Meteor" workingDirectory="$PROJECT_DIR$/meteor-app">
+      <option name="exePath" value="/usr/local/bin/meteor" />
+      <option name="startBrowserSettings">
+        <browser url="http://localhost:3000" />
+      </option>
+      <meteor-runner-state>
+        <startBrowserSettings>
+          <browser url="http://localhost:3000" />
+        </startBrowserSettings>
+      </meteor-runner-state>
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Meteor.Meteor" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="18c8f68c-e5ce-48db-8a46-f57377559468" name="Default" comment="" />
+      <created>1440047039578</created>
+      <option name="number" value="Default" />
+      <updated>1440047039578</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="14" y="23" width="1874" height="1057" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39084134" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32969433" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.565356" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+</project>

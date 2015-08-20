@@ -4,7 +4,7 @@
 
 
 
-Template.layout.rendered = function () {
+Template.mainLayoutApp.rendered = function () {
     /*
     if(Meteor.userId()) {
         IonSideMenu.snapper.settings({
@@ -15,12 +15,7 @@ Template.layout.rendered = function () {
     }
     */
 };
-
-Template.home.helpers({
-
-});
-
-Template.layout.events({
+Template.mainLayoutApp.events({
     'click [data-action=share-profile]': function (event, template) {
         IonActionSheet.show({
             titleText: 'Share Profile',

@@ -1,2 +1,0 @@
-Template.postsNewUrl.created = function(){
-}

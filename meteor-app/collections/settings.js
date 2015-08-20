@@ -8,6 +8,14 @@ if(Meteor.isServer)  {
     name: 'mapsKey',
     value: 'AIzaSyALawhBQHnhXiXDFhwZ-OSgS-ZZPHvDsRQ'
   });
+  bz.cols.settings.insert({
+    name: 'isCordova',    // Cordova/phonegap mobile application flag
+    value: Meteor.isCordova
+  });
+  bz.cols.settings.insert({
+    name: 'isMobile',  // Web mobile flag
+    value: Meteor.isMobile // taken from this: meteor add mquandalle:ismobile
+  });
   Meteor.publish('settings', function(){
     return bz.cols.settings.find();
   });

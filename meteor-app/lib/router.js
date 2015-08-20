@@ -1,24 +1,41 @@
 /**
  * Created by douson on 03.07.15.
  */
-
-Router.configure({
-  layoutTemplate: 'layout',
-  waitOn: function () {
-    return Meteor.subscribe('settings', function () {
-      _.each(bz.cols.settings.find().fetch(), function (item) {
-        bz.runtime.settings[item.name] = item.value;
+if(Meteor.isCordova || Meteor.isMobile) {
+  Router.configure({
+    layoutTemplate: 'mainLayoutApp',
+    waitOn: function () {
+      return Meteor.subscribe('settings', function () {
+        _.each(bz.cols.settings.find().fetch(), function (item) {
+          bz.runtime.settings[item.name] = item.value;
+        });
       });
-    });
-  },
+    },
 
-  // the appNotFound template is used for unknown routes and missing lists
-  notFoundTemplate: 'appNotFound',
+    // the appNotFound template is used for unknown routes and missing lists
+    notFoundTemplate: 'appNotFound',
 
-  // show the appLoading template whilst the subscriptions below load their data
-  loadingTemplate: 'appLoading'
-});
+    // show the appLoading template whilst the subscriptions below load their data
+    loadingTemplate: 'appLoading'
+  });
+} else {
+  Router.configure({
+    layoutTemplate: 'mainLayout',
+    waitOn: function () {
+      return Meteor.subscribe('settings', function () {
+        _.each(bz.cols.settings.find().fetch(), function (item) {
+          bz.runtime.settings[item.name] = item.value;
+        });
+      });
+    },
 
+    // the appNotFound template is used for unknown routes and missing lists
+    notFoundTemplate: 'appNotFound',
+
+    // show the appLoading template whilst the subscriptions below load their data
+    loadingTemplate: 'appLoading'
+  });
+}
 Router.map(function () {
   this.route('home', {
     path: '/home',
