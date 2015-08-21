@@ -10,9 +10,8 @@ Meteor.methods({
     return ret;
   },
   parseUrl: function(url) {
-    // TBD
-  },
-
+    return bz.bus.parseUrl(url);
+  }
 });
 
 // INFO:
