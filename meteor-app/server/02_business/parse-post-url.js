@@ -19,7 +19,7 @@ function getContent(body){
   var textOnly = function(tag){
     tagClone =tag.clone();
     tagClone.children('div,section,nav,script,aside,figure,a').remove();
-    return tagClone.text().replace(' ', '').replace('\n', '');
+    return tagClone.text().replace(/ /g, '').replace(/\n/g, '');
   };
   var el, text, $el;
   var count = 0;
