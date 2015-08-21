@@ -7,8 +7,7 @@ Template.postTypeSelect.events({
   'change .js-post-type-select': function (e, v) {
     var name = e.target.value.toCapitalCase();
     setPostDetailsTemplate(name, v);
-  },
-
+  }
 });
 Template.postTypeSelect.rendered = function () {
   var name = this.$('.js-post-type-select').val().toCapitalCase();
@@ -46,15 +45,18 @@ Template.postHashesControl.events({
 Template.postDetailsCommon.helpers({
   getTitle: function(){
     return Session.get('post-title') || '';
+  },
+  getDescription: function(){
+    return Session.get('post-description') || '';
   }
-})
+});
 //$('.backdrop.visible.active .popup .popup-title').text().toLowerCase()
 Template.postPhotoUpload.helpers({
   getImageSrc: function () {
     var ret = '/img/content/avatars/avatar-no.png';
     return Session.get('postImgSrc') || ret;
   }
-})
+});
 Template.postPhotoUpload.events({
   'click [data-action=edit-avatar]': function (event, template) {
     IonActionSheet.show({

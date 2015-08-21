@@ -1,5 +1,5 @@
 Template.postsNewUrl.created = function(){
-}
+};
 Template.postsNewUrl.events({
   'keydown .js-original-url': function(e,v){
     var url = e.target.value;
@@ -14,11 +14,14 @@ Template.postsNewUrl.events({
     }
   },
   'click .js-scan-url': function (e, v) {
-    Meteor.call('parseUrl', 'http://sfbay.craigslist.org/eby/msg/5184098353.html', function(err, res) {
+    Meteor.call('parseUrl', v.$('.js-original-url').val(), function(err, res) {
       // async scan is done:
-      if(res ) {
+      if(res && res.success) {
         if (res.title){
           Session.set('post-title', res.title);
+        }
+        if (res.content){
+          Session.set('post-description', res.content);
         }
         if (res.imageUrl){
           Session.set('postImgSrc', res.imageUrl);
