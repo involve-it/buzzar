@@ -1,0 +1,35 @@
+
+RUN meteor:
+1. cd /Users/aarutunyan/Documents/meteor/mg-2/meteor_app
+2. rm .meteor/local/db/mongod.lock
+3. cd /Users/aarutunyan/Documents/meteor/mg-2/meteor_app
+4. sudo meteor --production --port 80 //production
+    sudo meteor --port 3000 // development
+
+
+if EARUSE .. error:
+    ps aux | grep node
+    sudo kill [PID]
+---------------------------
+KILL METEOR!!!
+sudo lsof -t -i:3000 // gives PID
+sudo kill PID
+
+
+Kill processes:
+
+e.g. MONGO 100,48 errors
+
+find process first:
+sudo lsof -t -i:3001 // gives PID
+sudo kill PID
+
+
+_________________________________
+
+MONGO backup/restore:
+    to backup mongo db:
+    mongodump -h localhost --port 3001 [or other]
+
+    to restore
+    mongorestore -h localhost --port 81 /Users/aarutunyan/Documents/meteor/backup/meteor --drop

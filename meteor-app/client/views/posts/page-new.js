@@ -39,10 +39,12 @@ Template.postsNew.events({
            other: {
              whatHappened: v.$('.js-charity-type-select').val()    //?
            }
+         },
+         status: {
+           visible: bz.const.posts.status.VISIBLE
          }
        }
      }
-     debugger;
      bz.cols.posts.insert(newPost);
    }
 });

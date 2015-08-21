@@ -99,3 +99,7 @@ if(Meteor.isServer){
     }
   });
 }
+if(Meteor.isClient){
+  Meteor.subscribe('posts-all');
+  Meteor.subscribe('posts-my');
+}
