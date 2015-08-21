@@ -3,13 +3,13 @@ Template.postsNew.created = function(){
   this.data ? _.extend(this.data, data) : _.extend({}, data);
 
   //temp
-  Meteor.call('parseUrl', 'https://en.wikipedia.org/wiki/NASA', function(error, response){
+  /*Meteor.call('parseUrl', 'https://en.wikipedia.org/wiki/NASA', function(error, response){
     if (response.success) {
       console.log('success\ntitle: ' + response.title + '\nurl: ' + response.imageUrl + '\ncontent: ' + response.content);
     } else {
       console.log('failed');
     }
-  });
+  });*/
 
 };
 Template.postsNew.events({
