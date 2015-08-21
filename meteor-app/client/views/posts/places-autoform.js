@@ -30,7 +30,6 @@ Template.postsPlacesAutoform.helpers({
     return bz.runtime.maps.places.find().fetch().map(function(object){ return {id: object._id, value: object.name}; });
   },
   selected: function (event, suggestion, datasetName) {
-    debugger;
     var mapsPlaceId = suggestion && suggestion.id;
     bz.runtime.newPost.location.mapsPlaceId = mapsPlaceId;
     // make it look selected:
@@ -47,7 +46,6 @@ Template.postsPlacesAutoform.events({
     }
   },
   'blur .js-nearby-places': function(){
-    debugger;
   }
 })
 Template.myPlacesPopover.events({
