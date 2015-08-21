@@ -57,50 +57,52 @@ function getContent(body){
   return null;
 }
 
+//returns url up to first '?' (if exists)
+function getBaseUrl(url){
+  if (url){
+    var index = url.indexOf('?');
+    if (index !== -1){
+      return url.slice(0, index);
+    }
+  }
+  return url;
+}
+//returns protocol and domain name
+function getDomainUrl(url){
+  if (url){
+    var constructed = '';
+    var index = url.indexOf('//');
+    if (index !== -1){
+      constructed+= url.slice(0, index + 2);
+      url = url.slice(index + 2);
+    }
+    index = url.indexOf('/');
+    if (index !== -1){
+      url = url.slice(0, index);
+    }
+    constructed += url;
+    return constructed;
+  }
+  return url;
+}
+//returns protocol + ':'
+function getProtocol(url){
+  if (url) {
+    var index = url.indexOf('//');
+    if (index !== -1) {
+      return url.slice(0, index);
+    }
+  }
+  return null;
+}
+
 bz.bus.parseHtml = function(html, url){
   var $ = cheerio.load(html);
   var body = $('body');
 
   //get image
   var imageUrl = getImageUrl(body);
-  //returns url up to first '?' (if exists)
-  var getBaseUrl = function(url){
-    if (url){
-      var index = url.indexOf('?');
-      if (index !== -1){
-        return url.slice(0, index);
-      }
-    }
-    return url;
-  };
-  //returns protocol and domain name
-  var getDomainUrl = function(url){
-    if (url){
-      var constructed = '';
-      var index = url.indexOf('//');
-      if (index !== -1){
-        constructed+= url.slice(0, index + 2);
-        url = url.slice(index + 2);
-      }
-      index = url.indexOf('/');
-      if (index !== -1){
-        url = url.slice(0, index);
-      }
-      constructed += url;
-      return constructed;
-    }
-    return url;
-  };
-  //returns protocol + ':'
-  var getProtocol = function(url){
-    if (url) {
-      var index = url.indexOf('//');
-      if (index !== -1) {
-        return url.slice(0, index);
-      }
-    }
-    return null;
-  };
+
   //construct image url
   if (url && url.length > 0 && imageUrl && (imageUrl.length <4 || imageUrl.slice(0,4).toUpperCase() !== 'HTTP')){
     //if url starts with '//', just append protocol
