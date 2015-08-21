@@ -46,7 +46,17 @@ Router.map(function () {
   this.route('search', {
     path: '/',
     template: 'globalSearch',
-    controller: 'requireLoginController'
+    controller: 'requireLoginController',
+    
+    /* ВРЕМЕННОЕ УДАЛИТЬ ПОСЛЕ СОЗДАНИЯ ДИЗАЙНА */
+    waitOn: function () {
+          return [
+              Meteor.subscribe('users'),
+              GoogleMaps.load({libraries: 'geometry,places', v: '3'})
+              //GoogleMaps.load({key: bz.config.mapsKey, libraries: 'geometry,places', v: '3'})
+              //GoogleMaps.load({key: 'AIzaSyCE5a0IeEGQLptVSSW-5swNFNaRUXKEWss', libraries: 'geometry,places', v: '3'})
+          ];
+    }
   });
 
   this.route('settings', {

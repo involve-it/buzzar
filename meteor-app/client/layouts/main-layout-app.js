@@ -4,14 +4,15 @@
 
 
 
-Template.mainLayoutApp.rendered = function () {
-    /*
-    if(Meteor.userId()) {
+Template.ionBody.rendered = function () {
+
+    /*side menu settings*/
+    
         IonSideMenu.snapper.settings({
-            disable: 'right',
-            speed: 1,
-            easing: 'ease'
+            /*disable: 'right',*/
+            touchToDrag: false,
+            /*dragger: document.getElementById('element here'),*/
+            hyperextensible: false
         });
-    }
-    */
+
 };
