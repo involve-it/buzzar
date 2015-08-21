@@ -1,29 +1,38 @@
 <template name="postsPlacesAutoform">
     <div class="view--places-autoform">
-        <!--<input class="form-control typeahead" name="team" type="text"
-               placeholder="Post Location"
-               autocomplete="off" spellcheck="off"
-               data-source="placesArray"/> -->
-        <!--<label class="item item-input">-->
-        <!--<i class="icon ion-navigate placeholder-icon"></i>-->
-        <!--<input type="text" placeholder="Search">-->
-        <!--</label>-->
         <label class="item item-input item-stacked-label">
             <span class="input-label">Location</span>
 
             <div class="list list-inset">
                 <div class="row choose-place-buttons">
-                        <a class="button">
-                            <i class="icon ion-navigate placeholder-icon"></i>
+                    <div class="card current-location-btn">
+                        <a class="button button-clear button-calm js-current-location-a">
+                            {{#if isAndroid}}
+                                <!--{{> ionIcon icon='ion-android-locate'}}-->
+                                <i class="icon ion-android-locate placeholder-icon"></i>
+                            {{else}}
+                                <i class="icon ion-navigate placeholder-icon"></i>
+                            {{/if}}
                         </a>
-                    <div class="place-btn padding">
-                        <input class="form-control typeahead capitalize" name="team" type="text"
-                               placeholder="place nearby"
-                               autocomplete="off" spellcheck="off"
-                               data-source="placesArray"/>
                     </div>
-                    <div class="place-btn padding">
-                        <label class="item item-input item-select item-stacked-label">
+                    <!--<div class="place-btn padding">-->
+                    <div class="card location-nearby js-location-nearby">
+                        <input class="form-control typeahead capitalize js-nearby-places" name="team" type="text"
+                               placeholder="place nearby"
+                               data-source="placesArray"
+
+                               autocomplete="on" spellcheck="off"
+                               data-opened="opened" data-selected="selected"
+                               data-min-length="0"
+                               data-autocompleted="autocompleted"
+                                />
+                    </div>
+                    <!--<div class="place-btn padding">-->
+                    <div class="card">
+                        <button class="button button-clear js-my-places-button" data-ion-popover="myPlacesPopover">
+                            My places
+                        </button>
+                        <!--<label class="item item-input item-select item-stacked-label">
                             <div class="input-label">
                                 My Places
                             </div>
@@ -33,7 +42,8 @@
                                 <option value="buy">Emergency situation</option>
                                 <option value="buy">Other:</option>
                             </select>
-                        </label>
+                        </label>-->
+
                     </div>
                 </div>
 
@@ -43,3 +53,26 @@
 
 </template>
 
+<template name="myPlacesPopover">
+
+    {{#ionPopover}}
+        <div class="content popover--my-places">
+            <div class="list">
+                {{#each getMyPlaces }}
+                    <a class="item item-icon-left js-my-place-item" name="{{name}}">
+                        {{ name }}
+                        {{> ionIcon icon="ios-location-outline"}}
+                    </a>
+                {{/each}}
+                <!--<a class="item item-icon-right" href="http://ionicframework.com/" target="_blank">
+                    Ionic
+                    {{> ionIcon icon="ios-arrow-right"}}
+                </a>
+                <a class="item item-icon-right" href="http://meteoric.github.io/" target="_blank">
+                    Meteoric
+                    {{> ionIcon icon="ios-arrow-right"}}
+                </a>-->
+            </div>
+        </div>
+    {{/ionPopover}}
+</template>

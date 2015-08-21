@@ -3,12 +3,13 @@
  */
 
 googlePlacesInit();
+bz.help.makeNamespace('bz.runtime.newPost.location');
 
-Template.postsPlacesAutoform.created = function(){
+Template.postsPlacesAutoform.created = function () {
   googleMapsLoad();
 }
 
-Template.postsPlacesAutoform.onRendered(function() {
+Template.postsPlacesAutoform.onRendered(function () {
   this.autorun(function () {
     if (GoogleMaps.loaded() && Session.get('loc')) {
       var map = document.createElement('div');
@@ -21,17 +22,68 @@ Template.postsPlacesAutoform.onRendered(function() {
     }
   });
 });
-Template.postsPlacesAutoform.rendered = function(){
+Template.postsPlacesAutoform.rendered = function () {
   Meteor.typeahead.inject();
 }
 Template.postsPlacesAutoform.helpers({
-  placesArray: function(){
-    return bz.runtime.maps.places.find().fetch().map(function(it){ return it.name; });
+  placesArray: function () {
+    return bz.runtime.maps.places.find().fetch().map(function(object){ return {id: object._id, value: object.name}; });
+  },
+  selected: function (event, suggestion, datasetName) {
+    debugger;
+    var mapsPlaceId = suggestion && suggestion.id;
+    bz.runtime.newPost.location.mapsPlaceId = mapsPlaceId;
+    // make it look selected:
+    $('.js-location-nearby').addClass('selected');
   }
 });
+Template.postsPlacesAutoform.events({
+  'click .js-current-location-a': function (e, v) {
+    v.$('.js-current-location-a').toggleClass('button-clear');
+    if (v.$('.js-current-location-a').hasClass('button-clear')) {
+      bz.runtime.newPost.location.current = false;
+    } else {
+      bz.runtime.newPost.location.current = true;
+    }
+  },
+  'blur .js-nearby-places': function(){
+    debugger;
+  }
+})
+Template.myPlacesPopover.events({
+  'click .js-my-place-item': function (e, v) {
+    bz.runtime.newPost.location.selectedMyPlaceId = this._id;
+    $('.js-my-places-button').text(this.name);
+    $('.js-my-places-button').removeClass('button-clear');
+    $('.js-my-places-button').addClass('button-calm');
+    $(e.target).addClass('selected');
+
+    try {
+      IonPopover.hide();
+    } catch (ex) {
+    }
+  },
+  'mousedown .js-my-place-item': function (e, v) {
+    $(e.target).addClass('selected');
+  }
+});
+Template.myPlacesPopover.helpers({
+  getMyPlaces: function () {
+    var places = [
+      {name: 'place 1', _id: '1'},
+      {name: 'place 1', _id: '2'},
+      {name: 'place 1', _id: '3'},
+      {name: 'place 1', _id: '4'},
+      {name: 'place 1', _id: '5'},
+      {name: 'place 2', _id: '6'}
+    ];
+    return places;
+  }
+});
+
 // HELPERS:
 
-function googlePlacesInit () {
+function googlePlacesInit() {
   bz.runtime.maps = {}
   //if(!Meteor.isCordova) {
   navigator.geolocation.getCurrentPosition(function (a) {
@@ -45,7 +97,7 @@ function googlePlacesInit () {
   //}
   bz.runtime.maps.places = new Meteor.Collection("maps.places"); // client-side only.
 }
-function googleMapsLoad(){
+function googleMapsLoad() {
   GoogleMaps.load({
     //key: bz.config.mapsKey,
     libraries: 'places'  // also accepts an array if you need more than one
