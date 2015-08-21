@@ -1,0 +1,59 @@
+<template name="pageHome">
+
+    {{#contentFor "headerButtonLeft"}}
+        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            {{#if isAndroid}}
+                {{> ionIcon icon='android-more-vertical'}}
+            {{else}}
+                {{> ionIcon icon='navicon'}}
+            {{/if}}
+        </button>
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">HOME PAGE</h1>
+
+        <button class="button button-clear pull-right" data-ion-menu-toggle="right">
+            {{#if isAndroid}}
+                {{> ionIcon icon='android-more-vertical'}}
+            {{else}}
+                {{> ionIcon icon='navicon'}}
+            {{/if}}
+        </button>
+
+    {{/contentFor}}
+
+
+    {{#ionView}}
+        {{#ionContent}}
+            <div class="wrapper-message padding-left padding-right">
+
+                <div class="fake-box">
+                    <h1 class="font-smoothing uppercase padding-bottom">Buzzar</h1>
+                    <!--<h3 class="capitalize">karm
+                    a has no deadline</h3>-->
+                    <h5 class="padding-bottom" style="text-align: center;">Online Crowd-finding (TM)</h5>
+                    <a class="button button-block button-assertive capitalize" href="/posts/new">
+                        Start your crowdfinding
+                    </a>
+                    {{username}}
+                </div>
+                <label class="item item-input">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input type="text" class="capitalize" placeholder="find people around you">
+                </label>
+
+                <div style="padding-top: 50px;">
+
+                    <div class="js-about-us hidden">
+                        {{> aboutUs }}
+                    </div>
+                    <button class="button button-calm capitalize js-read-more">
+                        <span>read more</span>
+                        <span class="hidden">show less</span>
+                    </button>
+                </div>
+            </div>
+        {{/ionContent}}
+    {{/ionView}}
+</template>

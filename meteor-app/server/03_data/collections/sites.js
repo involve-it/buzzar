@@ -8,19 +8,27 @@ Meteor.startup(function () {
   bz.cols.siteTypes = new Mongo.Collection('siteTypes');
   bz.cols.siteTypes.remove({});
   bz.cols.siteTypes.insert({
-    name: 'trade'
+    name: 'trade',
+    fullName: 'Buy & Sell',
+    order: 1
   });
   bz.cols.siteTypes.insert({
-    name: 'charity'
+    name: 'charity',
+    fullName: 'Need Your Help',
+    order: 0
   });
   bz.cols.siteTypes.insert({
-    name: 'jobs'
+    name: 'jobs',
+    fullName: 'Job Market',
+    order: 3
   });
   bz.cols.siteTypes.insert({
-    name: 'housing'
+    name: 'housing',
+    fullName: 'Housing Market',
+    order: 4
   });
   Meteor.publish('siteTypes', function(){
-    return bz.cols.siteTypes.find();
+    return bz.cols.siteTypes.find({}, {sort: ['order','asc']});
   })
 
   // SITES

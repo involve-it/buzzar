@@ -46,6 +46,7 @@ localstorage@1.0.3
 logging@1.0.7
 matb33:collection-hooks@0.7.14
 matteodem:easy-search@1.6.2
+mdg:camera@1.1.5
 meteor@1.1.6
 meteor-platform@1.2.2
 meteorhacks:aggregate@1.2.1
@@ -61,6 +62,7 @@ momentjs:moment@2.8.4
 mongo@1.1.0
 mongo-livedata@1.0.8
 mquandalle:ismobile@0.1.0
+mrt:cheerio@0.3.2
 mrt:underscore-string-latest@2.3.3
 npm-bcrypt@0.7.8_2
 observe-sequence@1.0.6
@@ -83,7 +85,6 @@ spacebars-compiler@1.0.6
 srp@1.0.3
 templating@1.1.1
 tracker@1.0.7
-twbs:bootstrap@3.3.5
 ui@1.0.6
 underscore@1.0.3
 url@1.0.4

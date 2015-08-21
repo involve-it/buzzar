@@ -39,6 +39,7 @@ if(Meteor.isCordova || Meteor.isMobile) {
 Router.map(function () {
   this.route('home', {
     path: '/home',
+    template: 'pageHome',
     controller: 'requireLoginController'
   });
 

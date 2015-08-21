@@ -1,14 +1,18 @@
 <template name="postsNewUrl">
     <div>
-        <input name="url" placeholder="original url" class="original-url js-original-url"/>
+
+        <!--<span>*note: try this url as a sample:-->
+        <!--<i>http://www.youcaring.com/ashley-reed-376889</i></span>-->
+
+            <label class="item item-input item-stacked-label">
+                <!--<span class="input-label">Original Url (optional)</span>-->
+                <div class="item1 item-input-inset">
+                    <input name="url" placeholder="Original Url (optional)" class="original-url js-original-url" type="text">
+                    <a name="original-post-details" class="button button-small disabled js-post-details-link" href="/posts/new/original-details">
+                        Check >>
+                    </a>
+                </div>
+            </label>
         <input type="button" value="scan" class="js-scan-url hidden"/>
-        <br/>
-        <a name="original-post-details" class="disabled js-post-details-link" href="/posts/new/original-details">original post details >> </a>
-        <br/>
-
-        <hr/>
-
-        <span>*note: try this url as a sample:
-        <i>http://www.youcaring.com/ashley-reed-376889</i></span>
     </div>
 </template>

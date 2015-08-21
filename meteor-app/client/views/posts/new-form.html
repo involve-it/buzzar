@@ -1,14 +1,120 @@
 <template name="postsNewForm">
 
+    <div class="item item-divider">
+        <h3 class="title">Basic</h3>
+    </div>
+    {{> postsNewUrl }}
+    {{> postTypeSelect }}
+    {{> postsPlacesAutoform }}
+    <div class="item item-divider">
+        <h3 class="title">Post Details</h3>
+    </div>
+    {{> postDetailsCommon }}
+    {{> postPhotoUpload }}
+    <div class="js-post-details-categorized"></div>
+    {{> postHashesControl }}
 
-    <input class="js-post-title" placeholder="post title" type="text"/>
-    <input class="js-post-description" placeholder="post description" type="text"/>
-    <input class="js-post-price" placeholder="post price" type="number"/>
+</template>
 
-    Select type:
-    <select class="js-post-type-select">
-       {{#each getSiteTypes }}
-           <option value="{{ name }}">{{ name }}</option>
-       {{/each}}
-    </select>
+<template name="postTypeSelect">
+    <label class="item item-input item-select">
+        <div class="input-label">
+            Select type
+        </div>
+        <select class="js-post-type-select">
+            {{#each getSiteTypes }}
+                <option value="{{ name }}">{{ fullName }}</option>
+            {{/each}}
+        </select>
+    </label>
+</template>
+
+<!--Forms for different types:-->
+<template name="postDetailsCommon">
+    <div class="item-details">
+
+        <label class="item item-input">
+            <span class="input-label">Title</span>
+            <input class="js-post-title" type="text" label-type="stacked" name="title" required=""
+                   data-schema-key="title" maxlength="200">
+        </label>
+        <label type="stacked" class="item item-input item-stacked-label">
+            <span class="input-label">Description</span>
+            <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
+                      data-schema-key="body"></textarea>
+        </label>
+    </div>
+</template>
+<template name="postDetailsTrade">
+    <label type="stacked" class="item item-input item-stacked-label">
+        <span class="input-label">Price</span>
+        <input class="js-post-price" type="number"
+               label-type="stacked"/>
+
+    </label>
+</template>
+<template name="postDetailsCharity">
+    <label class="item item-input item-select">
+        <div class="input-label">
+            What happened?
+        </div>
+        <select class="js-charity-type-select">
+            <option value="roommates">Lost my pet</option>
+            <option value="rent">Need money for food</option>
+            <option value="buy">Emergency situation</option>
+            <option value="buy">Other:</option>
+        </select>
+    </label>
+</template>
+<template name="postDetailsJobs">
+    <label class="item item-input">
+        <span class="input-label">Position</span>
+        <input class="js-job-title" type="text" label-type="stacked" name="title" maxlength="200">
+    </label>
+</template>
+<template name="postDetailsHousing">
+    <label class="item item-input item-select">
+        <div class="input-label">
+            Looking for
+        </div>
+        <select class="js-housing-type-select">
+            <option value="roommates">Roommates</option>
+            <option value="rent">Renting</option>
+            <option value="buy">Buying a house</option>
+            <option value="sell">Selling a house</option>
+        </select>
+    </label>
+</template>
+
+<template name="postHashesControl">
+    <label type="stacked" class="item item-input item-stacked-label padding-right">
+        <span class="input-label">Hashes</span>
+        <button class="button button-block button-stable js-hashes-holder" data-action="showPrompt">{{ getHashes }}</button>
+    </label>
+    <!--input with bottons know-how:-->
+    <!--<label class="item item-input item-stacked-label">
+        <span class="input-label">Original Url (optional)</span>
+        <div class="item item-input-inset">
+            <input name="url" placeholder="" class="original-url js-original-url" type="text">
+            <a name="original-post-details" class=" button button-small disabled js-post-details-link" href="/posts/new/original-details">
+                Check >>
+            </a>
+        </div>
+    </label>-->
+</template>
+<template name="postPhotoUpload">
+    <div class="post-photo-upload">
+        <!--<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>-->
+        <div class="owner-photo-wrap">
+            <div class="img-avatar" data-action="edit-avatar">
+                <i class="icon ion-camera"></i>
+
+                <img src="{{ getImageSrc }}" width="90" height="90">
+
+            </div>
+        </div>
+        <!--<a class="js-get-picture button">get pic</a>
+        <br/>
+        <a class="js-get-picture-lib button">get pic lib</a>-->
+    </div>
 </template>

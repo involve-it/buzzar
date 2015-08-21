@@ -24,15 +24,11 @@
                 <button type="submit" class="button button-positive button-clear">Add</button>
             </div>
             <div class="content has-header overflow-scroll">
-
-                Create new post:
-                {{> postsNewUrl }}
-                <br/>
                 {{> postsNewForm }}
 
-                <hr/>
-                <span>Post Location:</span>
-                {{> postsPlacesAutoform }}
+                <div class="padding">
+                    <button type="submit" class="button button-positive button-block js-create-post">Create Post</button>
+                </div>
             </div>
 
     {{/ionView}}
