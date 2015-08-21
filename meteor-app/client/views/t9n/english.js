@@ -5,8 +5,8 @@
 var en;
 
 en = {
-    getAllUsers:         'Все пользователи системы',
-    getContactUsers:     'Найденные контакты',
+    getAllUsers:         'Get all system users',
+    getContactUsers:     'Contacts found',
     status:              'Status',
     active:              'Active',
     inactive:            'Incative',

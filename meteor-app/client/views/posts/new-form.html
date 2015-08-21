@@ -10,6 +10,7 @@
         <h3 class="title">Post Details</h3>
     </div>
     {{> postDetailsCommon }}
+    {{> postPhotoUpload }}
     <div class="js-post-details-categorized"></div>
     {{> postHashesControl }}
 
@@ -31,7 +32,6 @@
 <!--Forms for different types:-->
 <template name="postDetailsCommon">
     <div class="item-details">
-        <!--<span>Post Location:</span>-->
 
         <label class="item item-input">
             <span class="input-label">Title</span>
@@ -49,7 +49,7 @@
     <label type="stacked" class="item item-input item-stacked-label">
         <span class="input-label">Price</span>
         <input class="js-post-price" type="number"
-               label-type="stacked" />
+               label-type="stacked"/>
 
     </label>
 </template>
@@ -89,10 +89,7 @@
 <template name="postHashesControl">
     <label type="stacked" class="item item-input item-stacked-label padding-right">
         <span class="input-label">Hashes</span>
-        <button class="button button-block button-stable" data-action="showPrompt">
-            <!--<span>Hashes: </span><b>#hash1, #hash2, #hash3</b>-->
-            #hash1, #hash2, #hash3
-        </button>
+        <button class="button button-block button-stable js-hashes-holder" data-action="showPrompt">{{ getHashes }}</button>
     </label>
     <!--input with bottons know-how:-->
     <!--<label class="item item-input item-stacked-label">
@@ -104,4 +101,20 @@
             </a>
         </div>
     </label>-->
+</template>
+<template name="postPhotoUpload">
+    <div class="post-photo-upload">
+        <!--<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>-->
+        <div class="owner-photo-wrap">
+            <div class="img-avatar" data-action="edit-avatar">
+                <i class="icon ion-camera"></i>
+
+                <img src="{{ getImageSrc }}" width="90" height="90">
+
+            </div>
+        </div>
+        <!--<a class="js-get-picture button">get pic</a>
+        <br/>
+        <a class="js-get-picture-lib button">get pic lib</a>-->
+    </div>
 </template>
