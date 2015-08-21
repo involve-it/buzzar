@@ -43,7 +43,11 @@ Template.postHashesControl.events({
     });
   }
 });
-
+Template.postDetailsCommon.helpers({
+  getTitle: function(){
+    return Session.get('post-title') || '';
+  }
+})
 //$('.backdrop.visible.active .popup .popup-title').text().toLowerCase()
 Template.postPhotoUpload.helpers({
   getImageSrc: function () {
@@ -93,12 +97,15 @@ Template.postPhotoUpload.events({
     });
   }
 });
-// HELPERS:
+// HELPERS:PostDetails
+/*function setTemplate(name, v) {
+  $('.js-post-details-categorized').empty();
+  Blaze.renderWithData(Template['postDetails' + name], v.data, $('.js-post-details-categorized')[0]);
+}*/
 function setPostDetailsTemplate(name, v) {
   $('.js-post-details-categorized').empty();
   Blaze.renderWithData(Template['postDetails' + name], v.data, $('.js-post-details-categorized')[0]);
 }
-
 // set new image to db:
 Meteor.startup(function () {
 
