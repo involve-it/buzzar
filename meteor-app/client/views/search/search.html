@@ -26,23 +26,24 @@
 
             {{#if searchHistory}}
 
-                <!--Если есть история поиска-->
+                <!--If search history is true-->
                 <div>Есть стория поиска</div>
 
             {{else}}
                 {{#if searchResult}}
 
-                    <!--Результат поиска, когда что-то найдено-->
+                    <!--Search result, if sth found-->
+                    <!--Code here-->
 
-                    <!--ЗАГРУЗКА КАРТЫ-->
+                    <!--Load google map control-->
                     {{> googleMapControl }}
 
-                    <!--Контрол панель (шторка)-->
+                    <!--Panel (search result)-->
                     {{> panelSearchResult}}
 
                 {{else}}
 
-                    <!--Бланк шаблона-->
+                    <!--Empty blank-->
                     {{> noSearch}}
 
                 {{/if}}
