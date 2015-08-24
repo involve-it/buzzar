@@ -11,4 +11,6 @@ Meteor.publish('posts-my', function () {
   });
 });
 
-
+Meteor.publish('posts-images', function () {
+    return bz.cols.images.find();
+});

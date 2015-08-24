@@ -48,3 +48,13 @@ Template.toggleMenuLeft.events({
 
 
 
+/**
+ * Template toggleMenuRight
+ **/
+
+Template.toggleMenuRight.helpers({
+    postsCount: function() {
+        return (bz.cols.posts.find({userId: Meteor.userId()}).count() === 0) ? '' : bz.cols.posts.find({userId: Meteor.userId()}).count();
+    }
+});
+
