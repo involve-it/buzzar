@@ -1,0 +1,35 @@
+<template name="postsNewPostPageShare">
+
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton path="home"}}
+    {{/contentFor}}
+    {{#contentFor "headerButtonRight"}}
+        <button class="button button-clear pull-right" data-ion-menu-toggle="right">
+            {{#if isAndroid}}
+                {{> ionIcon icon='android-more-vertical'}}
+            {{else}}
+                {{> ionIcon icon='navicon'}}
+            {{/if}}
+        </button>
+    {{/contentFor}}
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Add New Post</h1>
+    {{/contentFor}}
+
+    {{#ionView}}
+
+            <div class="bar bar-header bar-stable">
+                <button data-dismiss="modal" type="button" class="button button-clear">Cancel</button>
+                <h2 class="title">New Post</h2>
+                <button type="submit" class="button button-positive button-clear">Add</button>
+            </div>
+            <div class="content has-header overflow-scroll">
+                {{> postsNewForm }}
+
+                <div class="padding">
+                    <button type="submit" class="button button-positive button-block js-create-post">Create Post</button>
+                </div>
+            </div>
+
+    {{/ionView}}
+</template>

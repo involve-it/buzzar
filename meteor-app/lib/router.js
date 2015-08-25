@@ -125,6 +125,7 @@ Router.map(function () {
   });
   this.route('posts.new', {
     path: '/posts/new',
+    controller: 'requireLoginController',
     waitOn: function () {
       return []
     }
@@ -133,7 +134,9 @@ Router.map(function () {
      }*/
   });
   this.route('posts.new.original-details', {
-    path: '/posts/new/original-details'
+    path: '/posts/new/original-details',
+    controller: 'requireLoginController'
+
   });
   this.route('map', {
     path: '/map',
@@ -159,7 +162,8 @@ requireLoginController = RouteController.extend({
       if (Meteor.loggingIn()) {
         this.render(this.loadingTemplate);
       } else {
-        Router.go('entrySignIn');
+        Router.go('entrySignUp');
+        //Router.go('entrySignIn');
       }
     } else {
       this.next();
