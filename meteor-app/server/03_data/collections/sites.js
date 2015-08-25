@@ -34,7 +34,7 @@ Meteor.startup(function () {
   });
   Meteor.publish('siteTypes', function(){
     return bz.cols.siteTypes.find({}, {sort: ['order','asc']});
-  })
+  });
 
   // SITES
   bz.cols.sites = new Mongo.Collection('sites');
