@@ -31,10 +31,13 @@ Template.postsNew.events({
            hashes: bz.runtime.newPost.hashes,
            location: bz.runtime.newPost.location,
            url: v.$('.js-original-url').val(),
+           
            //details:
            title: v.$('.js-post-title').val(),
            description: v.$('.js-post-description').val(),
+           price: v.$('.js-post-price').val(),
            photos: [imgId],
+           
            // specific:
            other: {
              whatHappened: v.$('.js-charity-type-select').val()    //?

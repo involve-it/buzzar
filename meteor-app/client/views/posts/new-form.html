@@ -45,14 +45,15 @@
         </label>
     </div>
 </template>
+
 <template name="postDetailsTrade">
     <label type="stacked" class="item item-input item-stacked-label">
         <span class="input-label">Price</span>
-        <input class="js-post-price" type="number"
-               label-type="stacked"/>
+        <input class="js-post-price" type="number" value="{{ getPrice }}" label-type="stacked"/>
 
     </label>
 </template>
+
 <template name="postDetailsCharity">
     <label class="item item-input item-select">
         <div class="input-label">

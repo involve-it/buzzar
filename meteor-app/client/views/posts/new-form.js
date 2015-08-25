@@ -51,6 +51,13 @@ Template.postDetailsCommon.helpers({
   }
 });
 //$('.backdrop.visible.active .popup .popup-title').text().toLowerCase()
+
+Template.postDetailsTrade.helpers({
+    getPrice: function() {
+        return Session.get('post-price') || '';
+    }
+});
+
 Template.postPhotoUpload.helpers({
   getImageSrc: function () {
     var ret = '/img/content/avatars/avatar-no.png';

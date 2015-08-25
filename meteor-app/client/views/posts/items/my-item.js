@@ -25,6 +25,9 @@ Template.oneItem.helpers({
         
         return image;
         
+    },
+    getPrice: function() {
+        
     }
 });
 
