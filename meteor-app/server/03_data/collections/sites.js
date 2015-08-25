@@ -27,6 +27,11 @@ Meteor.startup(function () {
     fullName: 'Housing Market',
     order: 4
   });
+  bz.cols.siteTypes.insert({
+    name: 'criminal',
+    fullName: 'Criminal',
+    order: 5
+  });
   Meteor.publish('siteTypes', function(){
     return bz.cols.siteTypes.find({}, {sort: ['order','asc']});
   })
