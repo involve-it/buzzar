@@ -38,6 +38,3 @@ Template.oneItem.helpers({
 
 
 
-
-
-
