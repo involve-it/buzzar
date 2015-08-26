@@ -8,14 +8,20 @@ Meteor.startup(function () {
   bz.cols.siteTypes = new Mongo.Collection('siteTypes');
   bz.cols.siteTypes.remove({});
   bz.cols.siteTypes.insert({
-    name: 'trade',
-    fullName: 'Buy & Sell',
-    order: 1
+    name: 'help',
+    fullName: 'Need or Give Help',
+    order: 0
   });
   bz.cols.siteTypes.insert({
-    name: 'charity',
-    fullName: 'Need Your Help',
-    order: 0
+    name: 'connect',
+    fullName: 'Looking for Connections',
+    order: 1
+  });
+
+  bz.cols.siteTypes.insert({
+    name: 'trade',
+    fullName: 'Buy & Sell',
+    order: 2
   });
   bz.cols.siteTypes.insert({
     name: 'jobs',

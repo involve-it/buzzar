@@ -84,11 +84,11 @@ bz.cols.posts.before.insert(function (userId, doc) {
 
 //bz.cols.imagesData.remove({});
 if (Meteor.isServer) {
-  bz.cols.posts.allow({
+  /*bz.cols.posts.allow({
     insert: function () {
       return true;
     }
-  });
+  });*/
 }
 
 bz.cols.images = new Mongo.Collection('images');
@@ -139,4 +139,5 @@ if (Meteor.isServer) {
       visible: bz.const.posts.status.VISIBLE
     }
   });
+  // post: https://www.linkedin.com/profile/view?id=100149100
 }

@@ -118,11 +118,28 @@ Router.map(function () {
     }
 
   });
+  this.route('posts.details', {
+    path: '/post/:_id',
+    template: 'postsPageDetailsIon',
+    data: function () {
+      var ret =  bz.cols.posts.findOne({_id: this.params._id});
+      return ret;
+    },
+    //controller: 'requireLoginController',
+    onBeforeAction: function () {
+      if(!this.data()){
+        Router.go('/page-not-found');
+      }
+      this.next();
+    }
+  });
 
   this.route('posts.my', {
     path: '/posts/my',
     controller: 'requireLoginController'
   });
+
+  // create post flow:
   this.route('posts.new', {
     path: '/posts/new',
     controller: 'requireLoginController',
@@ -133,11 +150,20 @@ Router.map(function () {
      return Meteor.users.findOne({_id: this.params._id});
      }*/
   });
-  this.route('posts.new.original-details', {
+  this.route('posts.new.share', {
+    path: '/posts/new/share',
+    template: 'newPostPageShare',
+    controller: 'requireLoginController',
+    waitOn: function () {
+      return []
+    }
+  });
+  /*this.route('posts.new.original-details', {
     path: '/posts/new/original-details',
     controller: 'requireLoginController'
+  });*/
+  // end create post flow.
 
-  });
   this.route('map', {
     path: '/map',
     template: 'postsMap',
@@ -148,6 +174,11 @@ Router.map(function () {
         //GoogleMaps.load({key: 'AIzaSyCE5a0IeEGQLptVSSW-5swNFNaRUXKEWss', libraries: 'geometry,places', v: '3'})
       ];
     }
+  });
+
+  // COMMON:
+  this.route('pageNotFound', {
+    path: '/page-not-found'
   });
 });
 

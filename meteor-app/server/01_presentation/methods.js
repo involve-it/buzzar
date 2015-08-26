@@ -11,6 +11,12 @@ Meteor.methods({
   },
   parseUrl: function(url) {
     return bz.bus.parseUrl(url);
+  },
+  addNewPost: function(postObject) {
+    if(postObject){
+      return bz.cols.posts.insert(postObject);
+      //return 'EPzoQSGnGCSsPaQjm'
+    }
   }
 });
 
