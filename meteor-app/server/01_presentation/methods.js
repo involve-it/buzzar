@@ -17,6 +17,18 @@ Meteor.methods({
       return bz.cols.posts.insert(postObject);
       //return 'EPzoQSGnGCSsPaQjm'
     }
+  },
+  searchPostsByParams: function(params, onlyMy){
+    if(typeof params === 'boolean') { // first param is omitted, onlyMy is passed.
+      onlyMy = params;
+      params = undefined;
+    }
+    var posts, filter = params || {};
+    if (onlyMy){
+      filter.userId = Meteor.userId();
+    }
+    posts = bz.cols.posts.find(filter).fetch();
+    return posts;
   }
 });
 
