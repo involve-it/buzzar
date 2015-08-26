@@ -18,7 +18,8 @@ bz.bus.proximityHandler = {
             lat2: lat + dLat
         };
 
-        return bz.cols.posts.find({
+        //this is box-shaped filter for increased performance
+        var posts =  bz.cols.posts.find({
             'details.locations': {
                 $elemMatch: {
                     'coords.lat': {$gte: box.lat1, $lte: box.lat2},
@@ -26,6 +27,24 @@ bz.bus.proximityHandler = {
                 }
             }
         }).fetch();
+
+        //this if circular filter (as opposed to box-shaped above)
+        var results = [];
+        var found;
+        _.each(posts, function(post){
+            found = false;
+            _.each(post.details.locations, function(loc){
+                if (bz.bus.proximityHandler.distance(lat, lng, loc.coords.lat, loc.coords.lng) <= radius) {
+                    found = true;
+                    return false;
+                }
+            });
+            if (found){
+                results.push(post);
+            }
+        });
+
+        return results;
     },
     distance: function(lat1, lon1, lat2, lon2) {
         var radlat1 = lat1 * Math.PI/180;
