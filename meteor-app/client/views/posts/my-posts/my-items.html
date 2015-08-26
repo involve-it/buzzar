@@ -33,7 +33,10 @@
         </div>
 
         <div class="description">
-            <h3 class="title">{{details.title}}</h3> <!-- Define max characters-->
+            <a href="/post/{{_id}}">
+                <h3 class="title">{{details.title}}</h3> <!-- Define max characters-->
+            </a>
+
             {{#if details.price}}
                 <div class="price"> {{details.price}} <span class="prefix">$</span></div>
             {{/if}}

@@ -47,7 +47,14 @@ Template.postsNew.events({
            visible: bz.const.posts.status.VISIBLE
          }
        }
+       Meteor.call('addNewPost', newPost, function(err, res){
+         if(!err && res && res !=='') {
+           bz.runtime.newPost.postId = res;
+           Router.go('/posts/new/share');
+         }
+       });
+
      }
-     bz.cols.posts.insert(newPost);
+
    }
 });

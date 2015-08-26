@@ -1,7 +1,7 @@
-<template name="postsNewPostPageShare">
+<template name="newPostPageShare">
 
     {{#contentFor "headerButtonLeft"}}
-        {{>ionNavBackButton path="home"}}
+        {{>ionNavBackButton }}
     {{/contentFor}}
     {{#contentFor "headerButtonRight"}}
         <button class="button button-clear pull-right" data-ion-menu-toggle="right">
@@ -13,23 +13,47 @@
         </button>
     {{/contentFor}}
     {{#contentFor "headerTitle"}}
-        <h1 class="title">Add New Post</h1>
+        <h1 class="title">Share Your Post</h1>
     {{/contentFor}}
 
     {{#ionView}}
 
-            <div class="bar bar-header bar-stable">
+            <!--<div class="bar bar-header bar-stable">
                 <button data-dismiss="modal" type="button" class="button button-clear">Cancel</button>
                 <h2 class="title">New Post</h2>
                 <button type="submit" class="button button-positive button-clear">Add</button>
-            </div>
+            </div>-->
             <div class="content has-header overflow-scroll">
-                {{> postsNewForm }}
 
                 <div class="padding">
-                    <button type="submit" class="button button-positive button-block js-create-post">Create Post</button>
+                    <h5>Almost done!</h5>
+                    Now you can view your post using this Url: <a href="{{ getPostUrl }}">{{ getPostUrl }}</a>
+                    <br/>
+                    In addition, we highly encourage that you share your post using options below:
+                    <button class="js-get-code" data-ion-modal="postWidgetModal">Get Widget Code</button>
+                    <br/>
+                    <button class="js-get-code">Share in Facebook</button>
+                    <br/>
+
+                </div>
+                <div class="padding">
+                    <button type="submit" class="button button-positive button-block js-share-post">Share Post</button>
                 </div>
             </div>
 
     {{/ionView}}
+</template>
+<template name="postWidgetModal">
+    {{#ionModal title="Get Widget Code"}}
+        <div class="padding">
+            Code:
+            <br/>
+
+        </div>
+        <label type="stacked" class="item item-input item-stacked-label">
+            <span class="input-label">Code</span>
+            <textarea class="js-post-widget-code" rows="3" label-type="stacked" name="body" required=""
+                      data-schema-key="body" value="{{ getDescription }}"></textarea>
+        </label>
+    {{/ionModal}}
 </template>

@@ -46,15 +46,8 @@
     </div>
 </template>
 
-<template name="postDetailsTrade">
-    <label type="stacked" class="item item-input item-stacked-label">
-        <span class="input-label">Price</span>
-        <input class="js-post-price" type="number" value="{{ getPrice }}" label-type="stacked"/>
 
-    </label>
-</template>
-
-<template name="postDetailsCharity">
+<template name="postDetailsHelp">
     <label class="item item-input item-select">
         <div class="input-label">
             What happened?
@@ -65,6 +58,26 @@
             <option value="buy">Emergency situation</option>
             <option value="buy">Other:</option>
         </select>
+    </label>
+</template>
+<template name="postDetailsConnect">
+    <label class="item item-input item-select">
+        <div class="input-label">
+            I am looking for:
+        </div>
+        <select class="js-charity-type-select">
+            <option value="artists">artists and other creative people</option>
+            <option value="friends">friends</option>
+            <option value="professionals">professionals</option>
+            <option value="other">Other:</option>
+        </select>
+    </label>
+</template>
+<template name="postDetailsTrade">
+    <label type="stacked" class="item item-input item-stacked-label">
+        <span class="input-label">Price</span>
+        <input class="js-post-price" type="number" value="{{ getPrice }}" label-type="stacked"/>
+
     </label>
 </template>
 <template name="postDetailsJobs">
@@ -81,7 +94,7 @@
         <select class="js-housing-type-select">
             <option value="roommates">Roommates</option>
             <option value="rent">Renting</option>
-            <option value="rent">Renting out</option>
+            <option value="rentOut">Renting out</option>
             <option value="buy">Buying a house</option>
             <option value="sell">Selling a house</option>
         </select>
