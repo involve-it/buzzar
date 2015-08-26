@@ -106,7 +106,7 @@ Meteor.startup(function(){
     bz.cols.posts.remove({});
   }
 
-  clearDatabase();
-  fillDatabase();
-  console.log('Done');
+  //clearDatabase();
+  //fillDatabase();
+  //console.log('Done');
 });
