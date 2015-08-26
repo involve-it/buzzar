@@ -31,7 +31,19 @@ EasySearch.createSearchIndex('users', {
                 }
             }
         });
+        return query;
+    }
+});
 
+
+EasySearch.createSearchIndex('posts', {
+    collection: bz.cols.posts,
+    use: 'minimongo',
+    query: function (searchString, opts) {
+        // Default query that is used for searching
+        var query = EasySearch.getSearcher(this.use).defaultQuery(this, searchString);
+        
+       /* console.log(query);*/
         return query;
     }
 });
