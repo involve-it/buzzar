@@ -42,9 +42,9 @@
                 </div>
                 <label class="item item-input">
                     <i class="icon ion-search placeholder-icon"></i>
-                    <input type="text" class="capitalize" placeholder="find anything around you">
+                    <input type="text" class="capitalize js-search-text" placeholder="find anything around you">
                 </label>
-
+                <a name="original-post-details" class="button button-small disabled hidden js-search-posts-link" data-ion-modal="searchPostsModal">Check >></a>
                 <div style="padding-top: 50px;">
 
                     <div class="js-about-us hidden">
@@ -58,4 +58,18 @@
             </div>
         {{/ionContent}}
     {{/ionView}}
+</template>
+<template name="searchPostsModal">
+    {{#ionModal title="Url Post Details"}}
+        <div class="padding">
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" class="capitalize js-search-text-modal" placeholder="find anything around you">
+            </label>
+
+            <!--Title: <span>{{ getTitle }}</span>-->
+
+            {{> globalSearch }}
+        </div>
+    {{/ionModal}}
 </template>

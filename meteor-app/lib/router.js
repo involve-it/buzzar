@@ -45,7 +45,7 @@ Router.map(function () {
 
   this.route('search', {
     path: '/',
-    template: 'globalSearch',
+    template: 'globalSearchIon',
     controller: 'requireLoginController',
     
     /* ВРЕМЕННОЕ УДАЛИТЬ ПОСЛЕ СОЗДАНИЯ ДИЗАЙНА */
