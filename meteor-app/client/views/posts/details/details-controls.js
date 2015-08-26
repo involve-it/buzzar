@@ -23,14 +23,14 @@ Template.postDetailsPhoto.helpers({
   },*/
   getPhotoUrl: function() {
     var ret = '/img/content/avatars/avatar-no.png';
-    var photoId = Session.get('postDetailsImgSrc') || ret;
+    var photoId = Session.get('postDetailsImgSrc');
 
     if(photoId) {
-      var image = bz.cols.images.findOne({_id: photoId}).data;
+      var ret = bz.cols.images.findOne({_id: photoId}).data;
+    } else {
     }
 
-    return image;
-
+    return ret;
   },
 });
 Template.postDetailsPhoto.onRendered(function(){
