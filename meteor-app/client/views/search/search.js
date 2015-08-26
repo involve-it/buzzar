@@ -43,3 +43,8 @@ Template.globalSearch.helpers({
 
 Template.panelSearchResult.helpers({});
 
+Template.multipleResult.events({
+    'click .save .button': function(e) {
+        console.log('click e');
+    }
+});
