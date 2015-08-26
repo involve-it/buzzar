@@ -1,22 +1,5 @@
 <template name="globalSearch">
-    <!-- navigation buttons -->
 
-    {{#contentFor "headerButtonLeft"}}
-        {{>ionNavBackButton path="home" text="Home"}}
-    {{/contentFor}}
-
-    {{#contentFor "headerTitle"}}
-        {{> globalSearchField}}
-    {{/contentFor}}
-
-    {{#contentFor "headerButtonRight"}}
-        <button class="button button-clear">
-            {{> ionIcon icon="ios-list-outline"}}
-        </button>
-    {{/contentFor}}
-    
-
-    {{#ionView}}
 
         {{#ionSubheaderBar class='subHeader-status'}}
             {{> boxCategory}}
@@ -48,15 +31,16 @@
 
                 {{/if}}
             {{/if}}
-            
+
         {{/ionContent}}
-    {{/ionView}}
+
     
 </template>
 
+<!--
 
 
-<!-- search field -->
+&lt;!&ndash; search field &ndash;&gt;
 <template name="globalSearchField">
     <div class="search-field item-input-inset">
 
@@ -65,9 +49,9 @@
             {{> esInput index="users" type="search" placeholder="Search ..." }}
         </label>
 
-        <!--<button class="button button-clear button-search-field">
+        &lt;!&ndash;<button class="button button-clear button-search-field">
             Cancel
-        </button>-->
+        </button>&ndash;&gt;
 
     </div>
 </template>
@@ -158,4 +142,4 @@
         
         
     {{/ionList}}
-</template>
+</template>-->
