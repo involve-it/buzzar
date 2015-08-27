@@ -102,7 +102,4 @@ function load(){
     }
   });
   reposition(map);
-
-  console.log('done');
-
 }

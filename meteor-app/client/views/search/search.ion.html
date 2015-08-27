@@ -10,9 +10,7 @@
     {{/contentFor}}
 
     {{#contentFor "headerButtonRight"}}
-        <button class="button button-clear">
-            {{> ionIcon icon="ios-list-outline"}}
-        </button>
+        {{> showListMap}}
     {{/contentFor}}
 
 
@@ -54,6 +52,11 @@
 
 </template>
 
+<template name="showListMap">
+    <button class="button button-clear search-show-list-button" data-menu="multipleSearchTemplate">
+        {{> ionIcon icon="ios-list-outline"}}
+    </button>
+</template>
 
 <!-- search field -->
 <template name="globalSearchField">
@@ -64,235 +67,37 @@
             {{> esInput index="users" type="search" placeholder="Search ..." }}
         </label>
 
-        <!--<button class="button button-clear button-search-field">
+        <button class="button button-clear button-search-field">
             Cancel
-        </button>-->
+        </button>
 
     </div>
 </template>
 
 <template name="boxCategory">
+    {{#if getCategoryItems}}
     <ul class="category-list">
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-        <li>Item 5</li>
-        <li>Item 6</li>
-        <li>Item 7</li>
-        <li>Item 8</li>
+        {{#each getCategoryItems}}
+            <li class="item-category {{active}}" data-value="{{index}}">{{value}}</li>
+        {{/each}}
     </ul>
+    {{/if}}
 </template>
 
+<!--Load dinamic template-->
 <template name="panelSearchResult">
-    <div class="wrapper-panel-search-result">
-        <div class="top-area">
-            {{> ionIcon icon="minus-round"}}
-        </div>
-
-        <!--{{> oneResult}}-->
-        {{> multipleResult}}
-
-    </div>
+    {{#if activeTemplate}}
+        {{> Template.dynamic template=activeTemplate}}
+    {{/if}}
 </template>
 
-<template name="oneResult">
-    <div class="card-item">
-        <div class="title">
-            <h3>Title item</h3>
 
-            <p class="sub-title">Category or tags</p>
-        </div>
 
-        <div class="info-panel">
-            <div class="first-line">
-                <div class="rating"></div>
-                <div class="distance">
-                    <i class="ion-ios-navigate-outline"></i> 530 m
-                </div>
-            </div>
+<!--<template name="oneResult">
+    
+</template>-->
 
-            <div class="second-line">
-                <div class="service-panel">
-
-                    <div class="message">
-                        <button class="button btn-clear">
-                            {{> ionIcon icon="ios-email-outline"}}
-                            <p>Message</p>
-                        </button>
-                    </div>
-
-                    <div class="save">
-                        <button class="button btn-clear">
-                            {{> ionIcon icon="ios-heart-outline"}}
-                            <p>Save</p>
-                        </button>
-                    </div>
-
-                    <div class="route">
-                        <button class="button btn-clear">
-                            {{> ionIcon icon="ios-location-outline"}}
-                            <p>Route</p>
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="gallery">
-                <div class="photos">
-                    {{> photoGallery}}
-                </div>
-            </div>
-
-            <div class="bonus-panel" style="display: none">
-                ICON ICON ICON
-            </div>
-
-        </div>
-    </div>
-</template>
-
+<!--
 <template name="multipleResult">
 
-    <div class="multiple-search">
-        {{#ionList}}
-
-            {{#esEach index="posts"}}
-                {{#ionItem path="contacts.show" class=""}}
-                    <div class="card-item">
-                        <div class="photo">
-                            <img src="/img/content/avatars/avatar-no.png">
-                        </div>
-                        <div class="info-panel">
-                            <div class="first-line">
-                                <div class="rating"></div>
-                                <div class="save">
-                                    <button class="button btn-clear"> {{> ionIcon icon="ios-heart-outline"}} </button>
-                                </div>
-                            </div>
-                            <div class="second-line">
-                                <div class="title">
-                                    <h3>Title item</h3>
-                                </div>
-                                <div class="price">
-                                    <p>50 <span class="prefix">$</span></p>
-                                </div>
-                            </div>
-                            <div class="bottom-b">
-                                <div class="adding">30 min ago</div>
-                                <div class="location">NY</div>
-                                <div class="distance">
-                                    <i class="ion-ios-navigate-outline"></i> 530 m
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {{/ionItem}}
-
-
-
-
-
-
-
-
-                <!--
-                    {{#ionItem path="contacts.show" class=""}}
-                <div class="card-item">
-                    <div class="photo">
-                        <img src="/img/content/avatars/avatar-no.png">
-                    </div>
-                    <div class="info-panel">
-                        <div class="first-line">
-                            <div class="rating"></div>
-                            <div class="save">
-                                <button class="button btn-clear"> {{> ionIcon icon="ios-heart-outline"}} </button>
-                            </div>
-                        </div>
-                        <div class="second-line">
-                            <div class="title">
-                                <h3>Title item</h3>
-                            </div>
-                            <div class="price">
-                                <p>50 <span class="prefix">$</span></p>
-                            </div>
-                        </div>
-                        <div class="bottom-b">
-                            <div class="adding">30 min ago</div>
-                            <div class="location">NY</div>
-                            <div class="distance">
-                                <i class="ion-ios-navigate-outline"></i> 530 m
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {{/ionItem}}
-                    {{#ionItem path="contacts.show" class=""}}
-                <div class="card-item">
-                    <div class="photo">
-                        <img src="/img/content/avatars/avatar-no.png">
-                    </div>
-                    <div class="info-panel">
-                        <div class="first-line">
-                            <div class="rating"></div>
-                            <div class="save">
-                                <button class="button btn-clear"> {{> ionIcon icon="ios-heart-outline"}} </button>
-                            </div>
-                        </div>
-                        <div class="second-line">
-                            <div class="title">
-                                <h3>Title item</h3>
-                            </div>
-                            <div class="price">
-                                <p>50 <span class="prefix">$</span></p>
-                            </div>
-                        </div>
-                        <div class="bottom-b">
-                            <div class="adding">30 min ago</div>
-                            <div class="location">NY</div>
-                            <div class="distance">
-                                <i class="ion-ios-navigate-outline"></i> 530 m
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {{/ionItem}}
-                    {{#ionItem path="contacts.show" class=""}}
-                <div class="card-item">
-                    <div class="photo">
-                        <img src="/img/content/avatars/avatar-no.png">
-                    </div>
-                    <div class="info-panel">
-                        <div class="first-line">
-                            <div class="rating"></div>
-                            <div class="save">
-                                <button class="button btn-clear"> {{> ionIcon icon="ios-heart-outline"}} </button>
-                            </div>
-                        </div>
-                        <div class="second-line">
-                            <div class="title">
-                                <h3>Title item</h3>
-                            </div>
-                            <div class="price">
-                                <p>50 <span class="prefix">$</span></p>
-                            </div>
-                        </div>
-                        <div class="bottom-b">
-                            <div class="adding">30 min ago</div>
-                            <div class="location">NY</div>
-                            <div class="distance">
-                                <i class="ion-ios-navigate-outline"></i> 530 m
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {{/ionItem}}-->
-
-
-            {{/esEach}}
-
-        {{/ionList}}
-    </div>
-
-</template>
+</template>-->

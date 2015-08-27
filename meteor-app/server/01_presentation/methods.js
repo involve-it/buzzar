@@ -29,7 +29,10 @@ Meteor.methods({
     }
     posts = bz.cols.posts.find(filter).fetch();
     return posts;
-  }*/
+  },*/
+  getNearbyPosts: function(userId, lat, lng){
+    return bz.bus.proximityHandler.getNearbyPosts(userId, lat, lng);
+  }
 });
 
 // INFO:
