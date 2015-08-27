@@ -58,13 +58,13 @@
 
   /* SINGLE SEARCH */
   .wrapper-panel-search-result {
-    position: relative;
+    /*position: relative;
     bottom: 200px;
-    min-height: 200px;
+    min-height: 200px;*/
     
-    /*position: absolute;
+    position: absolute;
     bottom: 0;
-    min-height: 300px;*/
+    min-height: 300px;
     background-color: #FFFFFF;
     -webkit-box-shadow:            @box-shadow-wrapper-panel;
     -moz-box-shadow:               @box-shadow-wrapper-panel;
@@ -194,12 +194,14 @@
       }
     }
     
-   
-    /* MULTIPLE SEARCH */
+  }
+  
+  
+  /* MULTIPLE SEARCH */
+  .multipleResult {
+    display: none;
     .multiple-search {
 
-      
-      
       .item {
         padding: 10px;
 
@@ -233,8 +235,20 @@
           .info-panel {
             padding: 0 0 0 16px;
             width: 100%;
+            
 
             .first-line {
+              display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+              display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+              display: -ms-flexbox;      /* TWEENER - IE 10 */
+              display: -webkit-flex;     /* NEW - Chrome */
+              display: flex;
+              -webkit-flex-direction: row;
+              flex-direction: row;
+              -webkit-flex-wrap: nowrap;
+              flex-wrap: nowrap;
+              -webkit-justify-content: space-between;
+              justify-content: space-between;
               padding: 0;
               margin: 0;
               -webkit-align-items: flex-start; /* Safari 7.0+ */
@@ -243,13 +257,14 @@
               .rating {
 
                 i {
+                  color: @background-bar-fantasia;
                   font-size: 18px;
                 }
 
-                  &:before {
-                    line-height: 22px;
-                    padding: 0;
-                  }
+                &:before {
+                  line-height: 22px;
+                  padding: 0;
+                }
               }
 
               .save {
@@ -333,8 +348,20 @@
       }
 
     }
-    
+
+    &.show {
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: #FFFFFF;
+
+    }
   }
+
 }
 
 .global-search-bar {
