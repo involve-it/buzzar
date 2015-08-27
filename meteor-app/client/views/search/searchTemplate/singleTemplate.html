@@ -1,0 +1,60 @@
+<template name="singleSearchTemplate">
+    <div class="wrapper-panel-search-result">
+        <div class="top-area">
+            {{> ionIcon icon="minus-round"}}
+        </div>
+        <div class="card-item">
+            <div class="title">
+                <h3>Title item</h3>
+                <p class="sub-title">Category or tags</p>
+            </div>
+
+            <div class="info-panel">
+                <div class="first-line">
+                    <div class="rating"></div>
+                    <div class="distance">
+                        <i class="ion-ios-navigate-outline"></i> 530 m
+                    </div>
+                </div>
+
+                <div class="second-line">
+                    <div class="service-panel">
+
+                        <div class="message">
+                            <button class="button btn-clear">
+                                {{> ionIcon icon="ios-email-outline"}}
+                                <p>Message</p>
+                            </button>
+                        </div>
+
+                        <div class="save">
+                            <button class="button btn-clear">
+                                {{> ionIcon icon="ios-heart-outline"}}
+                                <p>Save</p>
+                            </button>
+                        </div>
+
+                        <div class="route">
+                            <button class="button btn-clear">
+                                {{> ionIcon icon="ios-location-outline"}}
+                                <p>Route</p>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="gallery">
+                    <div class="photos">
+                        {{> photoGallery}}
+                    </div>
+                </div>
+
+                <div class="bonus-panel" style="display: none">
+                    ICON ICON ICON
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>
