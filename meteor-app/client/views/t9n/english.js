@@ -11,7 +11,9 @@ en = {
     active:              'Active',
     inactive:            'Incative',
     views:               'Views',
-    left:                'Left'
+    left:                'Left',
+    // home page:
+    headliner:              'instant ad, based on location'
 };
 
 T9n.map('en', en);

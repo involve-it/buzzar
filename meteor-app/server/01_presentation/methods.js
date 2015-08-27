@@ -18,7 +18,7 @@ Meteor.methods({
       //return 'EPzoQSGnGCSsPaQjm'
     }
   },
-  searchPostsByParams: function(params, onlyMy){
+  /*searchPostsByParams: function(params, onlyMy){
     if(typeof params === 'boolean') { // first param is omitted, onlyMy is passed.
       onlyMy = params;
       params = undefined;
@@ -29,7 +29,7 @@ Meteor.methods({
     }
     posts = bz.cols.posts.find(filter).fetch();
     return posts;
-  }
+  }*/
 });
 
 // INFO:
