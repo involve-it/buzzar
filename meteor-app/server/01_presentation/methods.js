@@ -34,7 +34,7 @@ Meteor.methods({
     return bz.bus.proximityHandler.getNearbyPosts(userId, lat, lng);
   },
   reportLocation: function(userId, lat, lng){
-    bz.bus.proximityHandler.reportLocation(userId, lat, lng);
+    return bz.bus.proximityHandler.reportLocation(userId, lat, lng);
   }
 });
 

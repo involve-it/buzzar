@@ -27,6 +27,7 @@ bz.bus.proximityHandler = {
                 bz.cols.nearbyPosts.insert(post);
             });
         }
+        return posts;
     },
     getNearbyPosts: function(userId, lat, lng){
         var dLat = (radius/R) / Math.PI * 180;
