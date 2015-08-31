@@ -2,6 +2,12 @@
  * Created by douson on 06.07.15.
  */
 
+Template.ionSideMenuContent.rendered = function() {
+    
+    var template = this;
+    var content = this.find('.menu-content');
+    content.setAttribute('id', 'drag-content');
+};
 
 
 Template.ionBody.rendered = function () {
@@ -10,9 +16,12 @@ Template.ionBody.rendered = function () {
     
         IonSideMenu.snapper.settings({
             /*disable: 'right',*/
-            touchToDrag: false,
-            /*dragger: document.getElementById('element here'),*/
-            hyperextensible: false
+            /*touchToDrag: false,*/
+            /*hyperextensible: false,*/
+            element: document.getElementById('drag-content'),
+            dragger: document.getElementById('drag-right')
+            
+            
+            
         });
-
 };

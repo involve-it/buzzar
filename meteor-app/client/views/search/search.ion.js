@@ -14,7 +14,6 @@ Template.showListMap.events({
         event.preventDefault();
         
         var name = template.$(event.target).data('menu');
-        console.log(name);
         Session.set('activeTemplate', name);
 
         var showSearchList = $('.multipleResult');
