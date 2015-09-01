@@ -84,11 +84,16 @@ bz.cols.posts.before.insert(function (userId, doc) {
 
 //bz.cols.imagesData.remove({});
 if (Meteor.isServer) {
-  /*bz.cols.posts.allow({
-    insert: function () {
-      return true;
-    }
-  });*/
+  if(bz.config.env === 'dev'){  // todo: this is non-secure!
+    bz.cols.posts.allow({
+      insert: function () {
+        return true;
+      },
+      remove: function(){
+        return true;
+      }
+    });
+  }
 }
 
 bz.cols.images = new Mongo.Collection('images');

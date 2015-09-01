@@ -5,11 +5,7 @@ if(Meteor.isCordova || Meteor.isMobile) {
   Router.configure({
     layoutTemplate: 'mainLayoutApp',
     waitOn: function () {
-      return Meteor.subscribe('settings', function () {
-        _.each(bz.cols.settings.find().fetch(), function (item) {
-          bz.config[item.name] = item.value;
-        });
-      });
+      return Meteor.subscribe('settings');
     },
 
     // the appNotFound template is used for unknown routes and missing lists
@@ -23,7 +19,7 @@ if(Meteor.isCordova || Meteor.isMobile) {
     layoutTemplate: 'mainLayout',
     waitOn: function () {
       return Meteor.subscribe('settings', function () {
-        _.each(bz.cols.settings.find().fetch(), function (item) {
+        _.each(bz.cols.config.find().fetch(), function (item) {
           bz.config[item.name] = item.value;
         });
       });
