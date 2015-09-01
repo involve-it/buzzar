@@ -26,21 +26,25 @@ Template.showListMap.events({
 /* Make category list */
 Template.boxCategory.helpers({
   getCategoryItems: function () {
-    var data = data || [];
-
-    data = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
-    return _.map(data, function (value, index) {
-      return {value: value, index: index};
-    });
+    data = bz.cols.siteTypes.find().fetch();
+    return data;
   },
-  active: function () {
-    return (Session.get('activeCategory') === this.value) ? 'active' : '';
+  isActive: function (a, b) {
+    var cats = Session.get('activeCategoryIds') || [];
+    return (cats && cats.indexOf(this._id) !== -1) ? 'active' : '';
   }
 });
 
 Template.boxCategory.events({
-  'click .item-category': function (event, template) {
-    Session.set('activeCategory', this.value);
+  'click .item-category': function (e, v) {
+    var cats = Session.get('activeCategoryIds') || [],
+        ind = cats.indexOf(this._id);
+    if (ind !== -1) {
+      cats.splice(ind, 1);
+    } else {
+      cats.push(this._id);
+    }
+    Session.set('activeCategoryIds', cats);
     Session.set('activeTemplate', 'singleSearchTemplate');
   }
 });

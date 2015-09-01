@@ -1,0 +1,35 @@
+<template name="globalSearch">
+
+
+        {{#ionSubheaderBar class='subHeader-status'}}
+            {{> boxCategory}}
+        {{/ionSubheaderBar}}   
+    
+        {{#ionContent class="page-global-search has-subheader"}}
+
+            {{#if searchHistory}}
+
+                <!--If search history is true-->
+                <div>Есть стория поиска</div>
+
+            {{else}}
+                {{#if searchResult}}
+
+                    <!--Search result, if sth found-->
+                    <!--Code here-->
+
+                    <!--Load google map control-->
+                    {{> googleMapControl }}
+
+                    <!--Panel (search result)-->
+                    {{> panelSearchResult}}
+
+                {{else}}
+
+                    <!--Empty blank-->
+                    {{> noSearch}}
+
+                {{/if}}
+            {{/if}}
+        {{/ionContent}}
+</template>

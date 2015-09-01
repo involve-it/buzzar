@@ -17,7 +17,7 @@ Meteor.startup(function(){
             //37.314008, -121.791756
             Meteor.call('reportLocation', Meteor.userId(), position.coords.latitude, position.coords.longitude, function(err, posts){
                 //here posts - new posts only.
-                console.log(posts);
+                //console.log(posts);
             });
         }
     });
