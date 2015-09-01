@@ -13,15 +13,15 @@ Template.ionSideMenuContent.rendered = function() {
 Template.ionBody.rendered = function () {
 
     /*side menu settings*/
-    
+    if( Meteor.user() ) {
+      
         IonSideMenu.snapper.settings({
             /*disable: 'right',*/
             /*touchToDrag: false,*/
             /*hyperextensible: false,*/
             element: document.getElementById('drag-content'),
             dragger: document.getElementById('drag-right')
-            
-            
-            
         });
+      
+    }
 };
