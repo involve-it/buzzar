@@ -1,0 +1,57 @@
+// buzzar
+App ID
+1024999790877408
+App Secret
+233b7d2d9966586ccaf4e95b15070c45Reset
+Display Name
+
+Namespace
+
+App Domains
+http://dev.buzzar.com
+Contact Email
+
+Setup the Facebook SDK for JavaScript
+The following snippet of code will give the basic version of the SDK where the options are set to their most common defaults. You should insert it directly after the opening <body> tag on each page you want to load it:
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1024999790877408',
+      xfbml      : true,
+      version    : 'v2.4'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+Test your Facebook Integration
+Now that you've got the SDK setup, you can use it to perform a few common tasks. Social Plugins such as the Like Button and Comments Plugin can be inserted into HTML pages using the JavaScript SDK.
+Let's try adding a Like button, just copy and paste the line of code below anywhere inside the <body> of your page:
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+Reload your page, and you should see a Like button on it.
+
+
+
+
+//   dev buzzar:
+Dev Buzzar
+This app is in development mode and can only be used by app admins, developers and testers
+App ID
+1025008177543236
+API Version
+v2.4
+App Secret
+4fc9a62ae0c00d10fd8acdd2a66f695bReset

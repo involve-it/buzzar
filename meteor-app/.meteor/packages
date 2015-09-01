@@ -33,3 +33,8 @@ mrt:cheerio
 mdg:camera
 
 twbs:bootstrap
+accounts-facebook
+accounts-google
+accounts-twitter
+mikael:accounts-merge
+service-configuration
