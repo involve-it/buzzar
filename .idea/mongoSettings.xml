@@ -11,6 +11,14 @@
             </list>
           </option>
         </ServerConfiguration>
+        <ServerConfiguration>
+          <option name="label" value="new" />
+          <option name="serverUrls">
+            <list>
+              <option value="dev.buzzar.com:81" />
+            </list>
+          </option>
+        </ServerConfiguration>
       </list>
     </option>
   </component>

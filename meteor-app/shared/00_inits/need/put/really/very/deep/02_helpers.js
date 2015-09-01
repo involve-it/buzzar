@@ -137,7 +137,11 @@ Helpers.logError = function (exObject, message, logToRollbar) {
     }
   }
 }
+Helpers.log = function (text){
+  if (bz.config.env === 'dev' && console && console.log) {
 
+  }
+}
 Helpers.makeNamespace({
   path: 'bz.help',
   object: Helpers
