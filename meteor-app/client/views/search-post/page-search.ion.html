@@ -58,22 +58,6 @@
     </button>
 </template>
 
-<!-- search field -->
-<template name="globalSearchField">
-    <div class="search-field item-input-inset">
-
-        <label class="item-input-wrapper">
-            <i class="icon ion-ios-search placeholder-icon"></i>
-            {{> esInput index="users" type="search" placeholder="Search ..." }}
-        </label>
-
-        <button class="button button-clear button-search-field">
-            Cancel
-        </button>
-
-    </div>
-</template>
-
 <template name="boxCategory">
     {{#if getCategoryItems}}
     <ul class="category-list">
@@ -87,7 +71,8 @@
 <!--Load dinamic template-->
 <template name="panelSearchResult">
     {{#if activeTemplate}}
-        {{> Template.dynamic template=activeTemplate}}
+        <!--{{> Template.dynamic template=activeTemplate}}-->
+        {{> Template.dynamic template=activeTemplate data=getData}}
     {{/if}}
 </template>
 

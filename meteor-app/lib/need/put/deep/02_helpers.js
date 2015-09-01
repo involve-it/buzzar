@@ -7,7 +7,7 @@ var Helpers = {}
  * If some objects already exist, it will extend them. Dependant on the underscore.js library.
  * this can span multiple lines.
  *
- * @method MakeGlobalNamespaceAndObject
+ * @method makeNamespace
  * @param {Object} initialObject - main config object, containing:
  *	- path: names of objects in the chain, delimited by '.'
  *	- object: the object that will be placed into the namespace end.
@@ -70,8 +70,18 @@ Helpers.makeNamespace = function (initialObject) {
   namespace = buildFromName(subPaths, namespace);
   return retObj;
 };
+/**
+ * This function is for checking namespace existence from a string. Convenience method to replace tedious existence checks.
+ * If global namespace object exists, it will return true, otherwise - false. Dependant on the underscore.js library.
+ * @method checkNamespace
+ * @param {string} namespace - namespace to verify.
+ * @returns {bool} value showing if the namespace exists.
+ * @example if (bz && bz.lat && bz.lat.lon && bz.lat.lon[0] && bz.lat.lon[0].a ) can be replaced with one call "checkNamespace('bz.lat.lon[0].a')
+ *
+ */
+Helpers.checkNamespace = function(namespace){
 
-
+}
 /**
  * This function is for wrapping custom function for safe code execution
  * If exception of any kind is thrown, it will either be thrown
@@ -80,7 +90,7 @@ Helpers.makeNamespace = function (initialObject) {
  * @method MakeGlobalNamespaceAndObject
  * @param {Function} functionWithCode - function object, containing code to execute
  * @param [1..n] - any parameters, that should be passed into the function
- * @return {Object} object, that is returned by functionWithCode / error.
+ * @returns {Object} object, that is returned by functionWithCode / error.
  */
 Helpers.safeCode = function (functionWithCode) {
   var ret = undefined;
@@ -90,7 +100,7 @@ Helpers.safeCode = function (functionWithCode) {
       ret = functionWithCode.apply(functionWithCode, Array.prototype.slice.call(arguments, 1));
     } catch (ex) {
       ret = ex;
-      yc.helpers.logError(ex);
+      bz.help.logError(ex);
     }
   }
   return ret;

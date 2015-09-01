@@ -3,7 +3,6 @@
  */
 Meteor.startup(function(){
     var watchId = navigator.geolocation.watchPosition(function(position){
-        console.log('coords: ' + position.coords.latitude + ', ' + position.coords.longitude);
         var currentLocation = Session.get('currentLocation');
         if (!currentLocation || currentLocation.accuracy != position.coords.accuracy || currentLocation.latitude != position.coords.latitude || currentLocation.longitude != position.coords.longitude){
             Session.set('currentLocation', {

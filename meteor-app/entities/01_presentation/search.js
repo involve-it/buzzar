@@ -1,0 +1,90 @@
+/**
+ * Created by ashot on 8/26/15.
+ */
+
+
+//EASY SEARCH:
+/*
+ Meteor.users.initEasySearch('username', {
+ 'limit' : 2,
+ 'use' : 'minimongo'
+ });
+ */
+/*Meteor.users.initEasySearch('details.title', {
+  'limit' : 2,
+  'use' : 'minimongo'
+});*/
+EasySearch.createSearchIndex('users', {
+  field: 'username',
+  collection: Meteor.users,
+  use: 'minimongo',
+  query: function (searchString, opts) {
+    // Default query that is used for searching
+    var query = EasySearch.getSearcher(this.use).defaultQuery(this, searchString);
+
+    // Делает еще поиск и по полю email коллекции Meteor.users
+    query.$or.push({
+      emails: {
+        $elemMatch: {
+          address: {'$regex': '.*' + searchString + '.*', '$options': 'i'}
+        }
+      }
+    });
+    return query;
+  }
+});
+
+//bz.cols.posts.initEasySearch(['details.title', 'details.title']);
+
+Meteor.startup(function () {
+  EasySearch.createSearchIndex('posts', {
+    collection: bz.cols.posts,
+    field: 'details.title',
+    //field: '_id',
+    limit: 200,
+    //use: 'minimongo',
+    //'use' : 'elastic-search',
+    //use: 'mongo-db',
+    /*returnFields: {
+      details.title
+    },*/
+    changeResults: function(results){
+      return results;
+    },
+    query: function (searchString, opts) {
+      // Default query that is used for searching
+      var query = EasySearch.getSearcher(this.use).defaultQuery(this, searchString);
+      query.$or.push({
+        'details.title': {
+          '$regex': '.*' + searchString + '.*', '$options': 'i'
+        }
+      });
+      /* console.log(query);*/
+      return query;
+    }
+  });
+});
+
+// server-side search:
+if (Meteor.isServer) {
+  Meteor.startup(function () {
+
+  });
+
+  Meteor.methods({
+    search: function (query, options) {
+      options = options || {};
+
+      // guard against client-side DOS: hard limit to 50
+      if (options.limit) {
+        options.limit = Math.min(50, Math.abs(options.limit));
+      } else {
+        options.limit = 50;
+      }
+
+      // TODO fix regexp to support multiple tokens
+      var regex = new RegExp(".*" + query + '.*');
+      return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}}, options).fetch();
+    }
+  });
+}

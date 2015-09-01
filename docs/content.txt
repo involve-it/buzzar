@@ -1,0 +1,8 @@
+security:
+
+We are very concerned about your privacy and security.
+- We have phone numbers and real names of all registered users.
+- We keep track of details of any person who contacts you.
+- All our users are 18+ year old.
+- To contact someone both users (customer and add giver) have to enter Transaction Mode, during which we hold transaction's location and participants info.
+    If there is no 'Success' status set, we call both participants. If we can't reach any... SOMETHING BAD HAPPENED.
