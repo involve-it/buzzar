@@ -4,10 +4,32 @@
 //earth radius
 var R = 3961;
 //ad search radius (box, actually)
-var radius = 2;
+var radius = 1;
 bz.bus.proximityHandler = {
-    getNearbyPosts: function(userId, lat, lng){
+    reportLocation: function(userId, lat, lng){
+        var posts = bz.bus.proximityHandler.getNearbyPosts(userId, lat, lng),
+            nearbyPosts = bz.cols.nearbyPosts.find({nearbyUserId: userId}).fetch();
+        _.each(nearbyPosts, function(post){
+            if (_.find(post.details.locations, function(loc){
+                    return bz.bus.proximityHandler.withinRadius(lat, lng, loc);
+                })){
+                posts = _.filter(posts, function(newPost){
+                    return newPost._id != post._id;
+                });
+            } else {
+                bz.cols.nearbyPosts.remove({_id: post._id});
+            }
+        });
 
+        if (posts.length > 0) {
+            _.each(posts, function (post) {
+                post.nearbyUserId = userId;
+                bz.cols.nearbyPosts.insert(post);
+            });
+        }
+        return posts;
+    },
+    getNearbyPosts: function(userId, lat, lng){
         var dLat = (radius/R) / Math.PI * 180;
         var dLng = (radius/R/Math.cos(lat*Math.PI / 180)) / Math.PI * 180;
 
@@ -34,7 +56,7 @@ bz.bus.proximityHandler = {
         _.each(posts, function(post){
             found = false;
             _.each(post.details.locations, function(loc){
-                if (bz.bus.proximityHandler.distance(lat, lng, loc.coords.lat, loc.coords.lng) <= radius) {
+                if (bz.bus.proximityHandler.withinRadius(lat, lng, loc)) {
                     found = true;
                     return false;
                 }
@@ -59,5 +81,8 @@ bz.bus.proximityHandler = {
         var c  = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a)); // great circle distance in radians
          // great circle distance in miles
         return c * R;
+    },
+    withinRadius: function(lat, lng, loc){
+        return bz.bus.proximityHandler.distance(lat, lng, loc.coords.lat, loc.coords.lng) <= radius;
     }
 };

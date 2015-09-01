@@ -5,6 +5,10 @@
 @color-text-sub-menu:             rgba(255,255,255,1);
 @photoSize:                       100%;
 @colorVip:                        rgba(255,51,102,1);
+@color-text-description:          rgba(102,102,102,1);
+@color-text-price:                rgba(74,74,74,1);
+
+
 
 .bar {
 
@@ -34,92 +38,101 @@
 
   .item {
     &.item-active {
-      background-color:   @background-item-active;
-      color:              @color-text-sub-menu;
-    }
-    
-    display: -webkit-box;     /* Safari */
-    display: -moz-box;        /* Firefox 21- */
-    display: -ms-flexbox;     /* IE 10+ */
-    display: -webkit-flex;    /* Chrome */
-    display: flex;            /* Standard  */
-    
-    .photo {
-      -webkit-flex-basis:   105px;
-      flex-basis:           105px;
-      -webkit-flex-grow:    0;
-      flex-grow:            0;
-      -webkit-flex-shrink:  0;
-      flex-shrink:          0;
-      
-      
-      a.photo-wrapper {
-
-        img {
-          height:          @photoSize;
-          width:           @photoSize;
-          border-radius:   2px;
-        }
-      }
+      background-color: @background-item-active;
+      color: @color-text-sub-menu;
     }
 
-    .description {
-      font-size: 12px;
-      font-family: "Roboto", sans-serif;
-      padding-left: 16px;
-
-      a {
-        text-decoration: none;
-
-        .title {
-          font-size: 16px;
-          white-space: normal;
-          font-weight: 400;
-          
-        }
-      }
-
-      .price {
-        font-size: 18px;
-        font-weight: 700;
-        
-        .prefix {
-          font-size: 16px;
-        }
-      }
-
-      .count-view {
-        white-space: normal;
-        
-        .today {}
-      }
-
-      .progress {}
+    /*Active a link*/
+    &:active {
+      background-color: rgba(80,100,100,.1);
+    }
+    
+    a {
+      text-decoration: none;
       
-      .services {
-        
-        ul {
-          margin-top: 5px;
-          
-          li {
-            font-size: 9px;
-            text-transform: uppercase;
-            line-height: 20px;
-            height: 20px;
-            width: 25px;
-            text-align: center;
-            margin-right: 8px;
+      display: -webkit-box; /* Safari */
+      display: -moz-box; /* Firefox 21- */
+      display: -ms-flexbox; /* IE 10+ */
+      display: -webkit-flex; /* Chrome */
+      display: flex; /* Standard  */
+  
+      .photo {
+        -webkit-flex-basis: 105px;
+        flex-basis: 105px;
+        -webkit-flex-grow: 0;
+        flex-grow: 0;
+        -webkit-flex-shrink: 0;
+        flex-shrink: 0;
+  
+        .photo-wrapper {
+  
+          img {
+            height: @photoSize;
+            width: @photoSize;
             border-radius: 2px;
-            border: 1px solid rgba(147,147,147,.5);
-            color: rgba(147,147,147,.5);
-            display: inline-block;
-            list-style: none;
-            overflow: hidden;
           }
+        }
+      }
+  
+      .description {
+        font-size: 12px;
+        font-family: "Roboto", sans-serif;
+        padding-left: 16px;
+        color: @color-text-description;
+  
+          .title {
+            font-size: 16px;
+            white-space: normal;
+            font-weight: 400;
+  
+          }
+  
+        .price {
+          font-size: 18px;
+          font-weight: 700;
+          color: @color-text-price;
+  
+          .prefix {
+            font-size: 16px;
+          }
+        }
+  
+        .count-view {
+          white-space: normal;
+  
+          .today {
+          }
+        }
+  
+        .progress {
           
-          .vip {
-            color: @colorVip;
-            border-color: @colorVip;
+        }
+  
+        .services {
+  
+          ul {
+            margin-top: 5px;
+  
+            li {
+              font-size: 9px;
+              text-transform: uppercase;
+              line-height: 20px;
+              height: 20px;
+              width: 25px;
+              text-align: center;
+              margin-right: 8px;
+              border-radius: 2px;
+              border: 1px solid rgba(147, 147, 147, .5);
+              color: rgba(147, 147, 147, .5);
+              display: inline-block;
+              list-style: none;
+              overflow: hidden;
+            }
+  
+            .vip {
+              color: @colorVip;
+              border-color: @colorVip;
+            }
           }
         }
       }

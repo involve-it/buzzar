@@ -8,7 +8,7 @@
         </div>
 
         {{#each posts}}
-            {{> oneItem}}   <!--1-->
+            {{> oneItem}}
         {{/each}}
         <div class="item item-divider item-inactive">
             {{t9n 'inactive'}}
@@ -25,17 +25,16 @@
 <template name="oneItem">
     
     <div class="item">
-        
+        <a href="/post/{{_id}}">
         <div class="photo">
-            <a href="#" class="photo-wrapper">
+            <div class="photo-wrapper">
                 <img src="{{getPhotoUrl.data}}">
-            </a>
+            </div>
         </div>
 
         <div class="description">
-            <a href="/post/{{_id}}">
-                <h3 class="title">{{details.title}}</h3> <!-- Define max characters-->
-            </a>
+            
+            <h3 class="title">{{details.title}}</h3> <!-- Define max characters-->
 
             {{#if details.price}}
                 <div class="price"> {{details.price}} <span class="prefix">$</span></div>
@@ -50,7 +49,7 @@
                 </ul>
             </div>
         </div>
-
+        </a>
     </div>
     
 </template>

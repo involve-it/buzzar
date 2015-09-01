@@ -24,3 +24,6 @@ bz.cols.postTypes.insert({
 bz.cols.postTypes.insert({
   name: 'lost-and-found'
 });
+
+
+bz.cols.nearbyPosts = new Mongo.Collection('nearbyPosts');
