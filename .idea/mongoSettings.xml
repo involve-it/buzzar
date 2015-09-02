@@ -12,10 +12,10 @@
           </option>
         </ServerConfiguration>
         <ServerConfiguration>
-          <option name="label" value="new" />
+          <option name="label" value="dev.buzzar.io" />
           <option name="serverUrls">
             <list>
-              <option value="dev.buzzar.com:81" />
+              <option value="dev.buzzar.io:81" />
             </list>
           </option>
         </ServerConfiguration>
