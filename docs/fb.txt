@@ -55,3 +55,12 @@ API Version
 v2.4
 App Secret
 4fc9a62ae0c00d10fd8acdd2a66f695bReset
+
+
+// share:
+use this:
+https://developers.facebook.com/docs/sharing/best-practices
+https://atmospherejs.com/biasport/facebook-sdk
+
+check this:
+https://github.com/stevezhu/meteor-fbgraph

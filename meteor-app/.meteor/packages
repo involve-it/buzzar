@@ -38,3 +38,4 @@ accounts-google
 accounts-twitter
 mikael:accounts-merge
 service-configuration
+biasport:facebook-sdk
