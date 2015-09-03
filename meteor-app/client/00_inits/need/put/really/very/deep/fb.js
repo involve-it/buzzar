@@ -3,7 +3,6 @@
  */
 if(Meteor.isClient) {
   window.fbAsyncInit = function() {
-    debugger;
     FB.init({
       appId      : '1025008177543236',
       status     : true,

@@ -62,5 +62,6 @@ use this:
 https://developers.facebook.com/docs/sharing/best-practices
 https://atmospherejs.com/biasport/facebook-sdk
 
-check this:
+future: use this for fb graph (photo, friends # etc.):
 https://github.com/stevezhu/meteor-fbgraph
+http://stackoverflow.com/questions/30911944/meteor-how-to-get-access-to-facebook-graph-api-for-both-server-and-client-side

@@ -26,8 +26,9 @@ Template.postsNew.events({
        var newPost = {
 
          userId: userId,
+         type: v.$('.js-post-type-select').val(),
          details: {
-           type: v.$('.js-post-type-select').val(),
+
            hashes: bz.runtime.newPost.hashes,
            location: bz.runtime.newPost.location,
            url: v.$('.js-original-url').val(),

@@ -1,7 +1,7 @@
 /**
  * Created by syurdor on 7/27/2015.
  */
-var markers = [];
+var markersArr = [];
 Template.googleMapControl.helpers({
   mapOptions: function () {
     if (GoogleMaps.loaded()) {
@@ -29,46 +29,16 @@ Template.googleMapControl.onCreated(function () {
     load();
   });
 });
-
-Template.googleMapControl.events({
-  /*'click #add': function () {
-   var map = GoogleMaps.maps.map;
-
-   var latitude = random(bz.runtime.maps.loc.lat-0.1, bz.runtime.maps.loc.lat + 0.1);
-   var longitude = random(bz.runtime.maps.loc.lng-0.1, bz.runtime.maps.loc.lng + 0.1);
-   markers.push(new google.maps.Marker({
-   position: new google.maps.LatLng(latitude, longitude),
-   map: map.instance
-   }));
-   reposition(map.instance);
-   },
-   'click #clear': function () {
-   var map = GoogleMaps.maps.map;
-   for (var i in markers) {
-   markers[i].setMap(null);
-   }
-   markers = [];
-
-   //var cameraUpdate = google.maps.CameraUpdateFactory.newLatLng(new google.maps.LatLng(-37.8136, 144.9631));
-   map.instance.setCenter(new google.maps.LatLng(-37.8136, 144.9631));
-   markers.push(new google.maps.Marker({
-   position: map.options.center,
-   map: map.instance
-   }));
-   map.instance.setZoom(8);
-   }*/
+Template.googleMapControl.onDestroyed(function () {
+  console.log('googleMapControl.onDestroyed');
 });
-
-function pinClickHandler (){
-
-}
 
 // HELPERS:
 function random(min, max) {
   return (max - min) * Math.random() + min;
 }
 
-function reposition(map) {
+function reposition(markers, map) {
   var bounds = new google.maps.LatLngBounds();
   for (var i in markers) {
     bounds.extend(markers[i].position);
@@ -79,50 +49,77 @@ function reposition(map) {
 function load() {
 
   Tracker.autorun(function () {
-
-    //var posts = bz.cols.posts.find().fetch();
+    // use this for reactivity, todo: change for finding only posts around user:
+    bz.cols.posts.find().count();
     var query = Session.get('runtime.searchText'),
-      posts,
-      map = GoogleMaps.maps.map.instance, latitude, longitude,
-      openedWindow;
-    //if (query) {
-      if(!query && query === undefined) {
-        query = '';
-      }
-      Meteor.call('search', query, {}, function (err, res) {
-        posts = res;
-        markers = [];
+        posts,
+        map = GoogleMaps.maps.map.instance, latitude, longitude,
+        activeCats = Session.get('activeCategoryIds');
+    if (!query && query === undefined) {
+      query = '';
+    }
+    Meteor.call('search', query, activeCats, {}, function (err, res) {
+      posts = res;
 
-        _.each(posts, function (post) {
-          if (post.details && post.details.locations && post.details.locations.length > 0) {
-            latitude = post.details.locations[0].coords.lat;
-            longitude = post.details.locations[0].coords.lng;
-            var marker = new google.maps.Marker({
-              position: new google.maps.LatLng(latitude, longitude),
-              map: map,
-              title: post.details.title
-            });
+      // safely delete existing:
+      deleteMarkers(markersArr);
 
-            var infoWindow = new google.maps.InfoWindow({
-              content: '<h3>' + post.details.title + '</h3>' + post.details.description
-            });
-            marker.addListener('click', function () {
-              Session.set('search.selectedPost', post);
-            });
-            /*
-            marker.addListener('click', function () {
-              if (openedWindow) {
-                openedWindow.close();
-              }
-              infoWindow.open(map, marker);
-              openedWindow = infoWindow;
-            });*/
+      // create markers:
+      createMarkersFromPosts(posts, markersArr);
 
-            markers.push(marker);
-          }
-        });
-        reposition(map);
-      });
+      setMapOnAll(markersArr, map);
+
+      reposition(markersArr, map);
+    });
     //}
   });
+}
+window.clear = function(){
+  deleteMarkers(markers);
+
+}
+function createMarkersFromPosts(posts, markers){
+  _.each(posts, function (post) {
+    if (post.details && post.details.locations && post.details.locations.length > 0) {
+      latitude = post.details.locations[0].coords.lat;
+      longitude = post.details.locations[0].coords.lng;
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(latitude, longitude),
+        title: post.details.title
+      });
+
+      marker.addListener('click', markerClickHander);
+
+      markers.push(marker);
+    } else {
+    }
+  });
+}
+function removeEventListenersFromMarkers (markers){
+  if (markers && Array.isArray(markers)) {
+    _.each(markers, function(i, item){
+
+    })
+  }
+}
+function markerClickHander(){
+  Session.set('search.selectedPost', post);
+}
+// Sets the map on all markers in the array.
+function setMapOnAll(markers, map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+// Shows any markers currently in the array.
+function showMarkers(markers, map) {
+  setMapOnAll(markers, map);
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers(markers) {
+  setMapOnAll(markers, null);
+  //removeEventListenersFromMarkers(markers); //todo
+  markers.length = 0;
 }

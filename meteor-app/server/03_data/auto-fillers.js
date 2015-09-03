@@ -10,10 +10,12 @@ Meteor.startup(function(){
 //right-bottom: 37.295375, -121.797202
 //
 //----------- random stuff ------------------------------
+
   var lngMin = -121.995056,
     lngMax = -121.797202,
     latMin = 37.295375,
-    latMax = 37.404026;
+    latMax = 37.404026,
+      siteTypes = bz.cols.siteTypes.find().fetch().map(function(item) { return item._id; });
 
   var links = [
     'http://www.craigslist.org'
@@ -83,8 +85,9 @@ Meteor.startup(function(){
       title = getRandomTitle();
       bz.cols.posts.insert({
         userId: 'test',
+        type: siteTypes[_.random(0, siteTypes.length - 1)],
         details:{
-          type: 'sale',
+
           hash: title,
           locations: [location],
           title: title,
@@ -106,7 +109,7 @@ Meteor.startup(function(){
     bz.cols.posts.remove({});
   }
 
-  //clearDatabase();
-  //fillDatabase();
+  clearDatabase();
+  fillDatabase();
   //console.log('Done');
 });

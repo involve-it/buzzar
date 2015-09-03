@@ -27,18 +27,22 @@
 
                 <div class="padding">
                     <h5>Almost done!</h5>
-                    Now you can view your post using this Url: <a href="{{ getPostUrl }}">{{ getPostUrl }}</a>
+                    <!--Now you can view your post using this Url: <a href="{{ getPostUrl }}">{{ getPostUrl }}</a>-->
                     <br/>
                     In addition, we highly encourage that you share your post using options below:
-                    <button class="js-get-code" data-ion-modal="postWidgetModal">Get Widget Code</button>
+                    <button class="js-get-code" data-ion-modal="postWidgetModal">Get Widget Code</button><br/>
+                    <button class="js-get-code" data-ion-modal="postWidgetModal">Txt</button><br/>
+                    <button class="js-get-code" data-ion-modal="postWidgetModal">Email</button><br/>
                     <br/>
                     {{> facebookShare fbConfig}}
+
                     <button class="js-get-code">Share in Facebook</button>
                     <br/>
 
                 </div>
                 <div class="padding">
-                    <button type="submit" class="button button-positive button-block js-share-post">Share Post</button>
+                    <a href="{{ getPostUrl }}" type="submit" class="button button-positive button-block js-share-post">View My Post</a>
+                    <!--<button type="submit" class="button button-positive button-block js-share-post">Share Post</button>-->
                 </div>
             </div>
 

@@ -63,28 +63,41 @@ Meteor.startup(function () {
       return query;
     }
   });
+
+  /*if(Meteor.isClient){
+    debugger;
+    EasySearch.search('posts', '', function (error, data) {
+      // use data
+      debugger;
+    });
+  }*/
 });
 
 // server-side search:
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-
-  });
 
   Meteor.methods({
-    search: function (query, options) {
+    search: function (query, types, options) {
       options = options || {};
 
       // guard against client-side DOS: hard limit to 50
       if (options.limit) {
-        options.limit = Math.min(50, Math.abs(options.limit));
+        options.limit = Math.min(1000, Math.abs(options.limit));
       } else {
-        options.limit = 50;
+        options.limit = 1000; // todo
       }
 
       // TODO fix regexp to support multiple tokens
       var regex = new RegExp(".*" + query + '.*');
-      return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}}, options).fetch();
+      if (types && Array.isArray(types)) {
+        return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}, type: {$in: types}}, options).fetch();
+      } else {
+        return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}}, options).fetch();
+      }
+    },
+    // function for testing in the console Meteor runtime server-side:
+    console: function(){
+      debugger;
     }
   });
 }
