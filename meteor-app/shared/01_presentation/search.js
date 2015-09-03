@@ -89,7 +89,7 @@ if (Meteor.isServer) {
 
       // TODO fix regexp to support multiple tokens
       var regex = new RegExp(".*" + query + '.*');
-      if (types && Array.isArray(types)) {
+      if (types && Array.isArray(types) && types.length > 0) {
         return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}, type: {$in: types}}, options).fetch();
       } else {
         return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}}, options).fetch();

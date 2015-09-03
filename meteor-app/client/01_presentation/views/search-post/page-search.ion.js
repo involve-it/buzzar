@@ -45,7 +45,8 @@ Template.boxCategory.events({
       cats.push(this._id);
     }
     Session.set('activeCategoryIds', cats);
-    Session.set('activeTemplate', 'singleSearchTemplate');
+    //Session.set('activeTemplate', 'singleSearchTemplate');
+    Session.set('activeTemplate', null);
   }
 });
 

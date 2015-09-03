@@ -79,15 +79,18 @@ window.clear = function(){
 
 }
 function createMarkersFromPosts(posts, markers){
+  var defColor = 'FE7569';
   _.each(posts, function (post) {
     if (post.details && post.details.locations && post.details.locations.length > 0) {
       latitude = post.details.locations[0].coords.lat;
       longitude = post.details.locations[0].coords.lng;
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(latitude, longitude),
-        title: post.details.title
+        title: post.details.title,
+        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + (intToRGB(hashCode(post.type)) || defColor),
+        data: post  // our field
       });
-
+      console.log(post.type.color);
       marker.addListener('click', markerClickHander);
 
       markers.push(marker);
@@ -102,8 +105,8 @@ function removeEventListenersFromMarkers (markers){
     })
   }
 }
-function markerClickHander(){
-  Session.set('search.selectedPost', post);
+function markerClickHander(post){
+  Session.set('search.selectedPost', this.data);
 }
 // Sets the map on all markers in the array.
 function setMapOnAll(markers, map) {
@@ -122,4 +125,20 @@ function deleteMarkers(markers) {
   setMapOnAll(markers, null);
   //removeEventListenersFromMarkers(markers); //todo
   markers.length = 0;
+}
+// temp helpers:
+function hashCode(str) { // java String#hashCode
+  var hash = 0;
+  for (var i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return hash;
+}
+
+function intToRGB(i){
+  var c = (i & 0x00FFFFFF)
+      .toString(16)
+      .toUpperCase();
+
+  return "00000".substring(0, 6 - c.length) + c;
 }

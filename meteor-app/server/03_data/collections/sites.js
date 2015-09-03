@@ -10,27 +10,32 @@ Meteor.startup(function () {
   bz.cols.siteTypes.insert({
     name: 'help',
     fullName: 'Need or Give Help',
+    color: 'D86055',
     order: 0
   });
   bz.cols.siteTypes.insert({
     name: 'connect',
     fullName: 'Looking for Connections',
+    color: 'F77012',
     order: 1
   });
 
   bz.cols.siteTypes.insert({
     name: 'trade',
     fullName: 'Buy & Sell',
+    color: 'EF376C',
     order: 2
   });
   bz.cols.siteTypes.insert({
     name: 'jobs',
     fullName: 'Job Market',
+    color: '730928',
     order: 3
   });
   bz.cols.siteTypes.insert({
     name: 'housing',
     fullName: 'Housing Market',
+    color: 'B70808',
     order: 4
   });
   Meteor.publish('siteTypes', function(){

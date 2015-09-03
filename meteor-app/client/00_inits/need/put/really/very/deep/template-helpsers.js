@@ -3,6 +3,9 @@
  */
 var EARTH_RAD = T9n.getLanguage() === 'en'? 3959 : 6371e3; // radius of Earth, miles/meters
 // see this: http://www.movable-type.co.uk/scripts/latlong.html
+Template.registerHelper('isDevEnv', function (postIn) {
+  return bz.config.env === 'dev';
+});
 Template.registerHelper('getDistanceToPost', function (postIn) {
   var ret, post = postIn || this,
       x, y, xcur, ycur, curLoc, dist;

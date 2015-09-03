@@ -8,7 +8,9 @@
                 <h3>{{ details.title }}</h3>
                 <p class="sub-title">{{ details.type}}</p>
                 <p><a href="/post/{{_id}}">see details >></a></p>
+                {{#if isDevEnv }}
                 <p>{{_id}}</p>
+                {{/if}}
             </div>
 
             <div class="info-panel">
