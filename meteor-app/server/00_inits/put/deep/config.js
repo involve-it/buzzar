@@ -5,6 +5,7 @@ bz.help.makeNamespace({
   path: 'bz.config',
   object: {
     env: 'dev',
+    //env: 'prod',
     isCordova: Meteor.isCordova,
     mapsKey: ''
   }
