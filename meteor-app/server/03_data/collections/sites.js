@@ -38,6 +38,12 @@ Meteor.startup(function () {
     color: 'B70808',
     order: 4
   });
+  bz.cols.siteTypes.insert({
+    name: 'events',
+    fullName: 'Local events',
+    color: 'B70808',
+    order: 5
+  });
   Meteor.publish('siteTypes', function(){
     return bz.cols.siteTypes.find({}, {sort: ['order','asc']});
   });
