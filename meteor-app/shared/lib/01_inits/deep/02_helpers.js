@@ -143,6 +143,9 @@ Helpers.log = function (text){
 
   }
 }
+Helpers.collectionExists = function(name) {
+  return Meteor.connection._mongo_livedata_collections[name] !== null && Meteor.connection._mongo_livedata_collections[name] !== undefined;
+}
 Helpers.makeNamespace({
   path: 'bz.help',
   object: Helpers

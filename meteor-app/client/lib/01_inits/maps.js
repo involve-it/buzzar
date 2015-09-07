@@ -2,13 +2,14 @@
  * Created by root on 9/5/15.
  */
 /*if (Meteor.isClient) {
-  Meteor.startup(function() {
-    GoogleMaps.load();
-  });
-}*/
+ Meteor.startup(function() {
+ GoogleMaps.load();
+ });
+ }*/
 var Maps = {
   initLocation: function () {
-    bz.runtime.maps = {}
+    bz.help.makeNamespace('bz.runtime.maps');
+
     //if(!Meteor.isCordova) {
     navigator.geolocation.getCurrentPosition(function (a) {
       //bz.runtime.maps.currentGeoposition = a;
@@ -20,12 +21,15 @@ var Maps = {
     });
     //}
   },
-  initPlaces: function(){
-    var placesCol = new Meteor.Collection("maps.places"); // client-side only.
-    bz.help.makeNamespace('bz.runtime.maps.places', placesCol);
+  initPlaces: function () {
+    if (!bz.runtime.maps.places && !bz.help.collectionExists('maps.places')) {
+
+      var placesCol = new Meteor.Collection("maps.places"); // client-side only.
+      bz.help.makeNamespace('bz.runtime.maps.places', placesCol);
+    }
   },
   googleMapsLoad: function () {      // need run after doc.ready
-    if(!GoogleMaps.loaded()){
+    if (!GoogleMaps.loaded()) {
       GoogleMaps.load({
         //key: bz.config.mapsKey,
         libraries: 'places'  // also accepts an array if you need more than one
