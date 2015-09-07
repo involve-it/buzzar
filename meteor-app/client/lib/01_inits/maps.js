@@ -1,11 +1,11 @@
 /**
  * Created by root on 9/5/15.
  */
-if (Meteor.isClient) {
+/*if (Meteor.isClient) {
   Meteor.startup(function() {
     GoogleMaps.load();
   });
-}
+}*/
 var Maps = {
   initLocation: function () {
     bz.runtime.maps = {}

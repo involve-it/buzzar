@@ -133,7 +133,9 @@ Router.map(function () {
     path: '/posts/new',
     controller: 'requireLoginController',
     waitOn: function () {
-      return []
+      return [
+        bz.help.maps.googleMapsLoad()
+      ]
     }
     /*data: function () {
      return Meteor.users.findOne({_id: this.params._id});
@@ -158,6 +160,7 @@ Router.map(function () {
     template: 'pageMap',
     waitOn: function () {
       return [
+        bz.help.maps.googleMapsLoad()
         //GoogleMaps.load({libraries: 'geometry,places', v: '3'})
         //GoogleMaps.load({key: bz.config.mapsKey, libraries: 'geometry,places', v: '3'})
         //GoogleMaps.load({key: 'AIzaSyCE5a0IeEGQLptVSSW-5swNFNaRUXKEWss', libraries: 'geometry,places', v: '3'})
