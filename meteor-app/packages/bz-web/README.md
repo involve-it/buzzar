@@ -1,0 +1,1 @@
+This package should be loaded only in browser.
