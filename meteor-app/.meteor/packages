@@ -25,7 +25,6 @@ meteoric:autoform-ionic
 useraccounts:ionic
 matteodem:easy-search
 aldeed:simple-schema
-dburles:google-maps
 forwarder:autoform-wizard
 sergeyt:typeahead
 mquandalle:ismobile
@@ -40,3 +39,4 @@ mikael:accounts-merge
 service-configuration
 biasport:facebook-sdk
 raix:handlebar-helpers
+dburles:google-maps

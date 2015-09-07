@@ -4,6 +4,8 @@
 var markersArr = [];
 Template.googleMapControl.helpers({
   mapOptions: function () {
+    debugger;
+
     if (GoogleMaps.loaded()) {
       // Map initialization options
       var coords = new google.maps.LatLng(37.3, -121.8);
@@ -45,7 +47,7 @@ function reposition(markers, map) {
   }
   map.fitBounds(bounds);
 }
-
+ window.l = load;
 function load() {
 
   Tracker.autorun(function () {
@@ -91,7 +93,7 @@ function createMarkersFromPosts(posts, markers){
         data: post  // our field
       });
       console.log(post.type.color);
-      marker.addListener('click', markerClickHander);
+      marker.addListener('click', markerClickHandler);
 
       markers.push(marker);
     } else {
@@ -105,7 +107,7 @@ function removeEventListenersFromMarkers (markers){
     })
   }
 }
-function markerClickHander(post){
+function markerClickHandler(post){
   Session.set('search.selectedPost', this.data);
 }
 // Sets the map on all markers in the array.

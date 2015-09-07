@@ -2,7 +2,7 @@
  * Created by douson on 19.08.15.
  */
 
-Template.globalSearchIon.rendered = function () {
+Template.postsMap.rendered = function () {
   var classes = $('.bar');
   classes.addClass('global-search-bar');
 
@@ -13,32 +13,32 @@ Template.globalSearchIon.rendered = function () {
 };
 
 
-Template.globalSearchIon.helpers({
+Template.postsMap.helpers({
   searchResult: function () {
     var contacts = Meteor.users.find();
     /*console.log(contacts);*/
     return contacts;
   }
 });
-Template.globalSearch.rendered = function () {
+/*Template.postsMap.rendered = function () {
   var classes = $('.bar');
   classes.addClass('global-search-bar');
 
-  /*init Rate*/
+  /!*init Rate*!/
   $('.rating').raty({
     starType: 'i'
   });
   $(window).scrollTop();
-};
+};*/
 
 
-Template.globalSearch.helpers({
+/*Template.postsMap.helpers({
   searchResult: function () {
     var contacts = Meteor.users.find();
-    /*console.log(contacts);*/
+    /!*console.log(contacts);*!/
     return contacts;
   }
-});
+});*/
 
 Template.panelSearchResult.helpers({});
 

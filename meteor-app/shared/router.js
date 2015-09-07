@@ -36,22 +36,15 @@ Router.map(function () {
   this.route('home', {
     path: '/home',
     template: 'pageHome',
-    controller: 'requireLoginController'
+    controller: 'requireLoginController' //temp
   });
 
-  this.route('search', {
+  this.route('root', {
     path: '/',
-    template: 'globalSearchIon',
+    //template: 'home',
     controller: 'requireLoginController',
-    
-    /* ВРЕМЕННОЕ УДАЛИТЬ ПОСЛЕ СОЗДАНИЯ ДИЗАЙНА */
-    waitOn: function () {
-          return [
-              Meteor.subscribe('users'),
-              GoogleMaps.load({libraries: 'geometry,places', v: '3'})
-              //GoogleMaps.load({key: bz.config.mapsKey, libraries: 'geometry,places', v: '3'})
-              //GoogleMaps.load({key: 'AIzaSyCE5a0IeEGQLptVSSW-5swNFNaRUXKEWss', libraries: 'geometry,places', v: '3'})
-          ];
+    onBeforeAction: function () {
+      Router.go('/home');
     }
   });
 
@@ -130,13 +123,13 @@ Router.map(function () {
     }
   });
 
-  this.route('posts.my', {
+  this.route('postsMy', {
     path: '/posts/my',
     controller: 'requireLoginController'
   });
 
   // create post flow:
-  this.route('posts.new', {
+  this.route('postsNew', {
     path: '/posts/new',
     controller: 'requireLoginController',
     waitOn: function () {
@@ -146,7 +139,7 @@ Router.map(function () {
      return Meteor.users.findOne({_id: this.params._id});
      }*/
   });
-  this.route('posts.new.share', {
+  this.route('postsNewShare', {
     path: '/posts/new/share',
     template: 'newPostPageShare',
     controller: 'requireLoginController',
@@ -160,12 +153,23 @@ Router.map(function () {
   });*/
   // end create post flow.
 
-  this.route('map', {
+  this.route('pageMap', {
     path: '/map',
-    template: 'postsMap',
+    template: 'pageMap',
     waitOn: function () {
       return [
-        GoogleMaps.load({libraries: 'geometry,places', v: '3'})
+        //GoogleMaps.load({libraries: 'geometry,places', v: '3'})
+        //GoogleMaps.load({key: bz.config.mapsKey, libraries: 'geometry,places', v: '3'})
+        //GoogleMaps.load({key: 'AIzaSyCE5a0IeEGQLptVSSW-5swNFNaRUXKEWss', libraries: 'geometry,places', v: '3'})
+      ];
+    }
+  });
+  this.route('checkin', {
+    path: '/check-in',
+    template: 'pageCheckIn',
+    waitOn: function () {
+      return [
+        //GoogleMaps.load({libraries: 'geometry,places', v: '3'})
         //GoogleMaps.load({key: bz.config.mapsKey, libraries: 'geometry,places', v: '3'})
         //GoogleMaps.load({key: 'AIzaSyCE5a0IeEGQLptVSSW-5swNFNaRUXKEWss', libraries: 'geometry,places', v: '3'})
       ];

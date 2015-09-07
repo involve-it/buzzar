@@ -17,7 +17,7 @@
   {{#ionView}}
 
     {{#ionSubheaderBar class='subHeader-status'}}
-      {{> boxCategory}}
+      {{> categoryListButtons}}
     {{/ionSubheaderBar}}
 
     {{#ionContent class="page-global-search has-subheader"}}
@@ -51,37 +51,3 @@
   {{/ionView}}
 
 </template>
-
-<template name="showListMap">
-  <button class="button button-clear search-show-list-button" data-menu="multipleSearchTemplate">
-    {{> ionIcon icon="ios-list-outline"}}
-  </button>
-</template>
-
-<template name="boxCategory">
-  {{#if getCategoryItems}}
-    <ul class="category-list">
-      {{#each getCategoryItems}}
-        <li class="item-category {{isActive this}}" data-value="{{_id}}">{{name}}</li>
-      {{/each}}
-    </ul>
-  {{/if}}
-</template>
-
-<!--Load dinamic template-->
-<template name="panelSearchResult">
-  {{#if activeTemplate}}
-    <!--{{> Template.dynamic template=activeTemplate}}-->
-    {{> Template.dynamic template=activeTemplate data=getData}}
-  {{/if}}
-</template>
-
-
-<!--<template name="oneResult">
-    
-</template>-->
-
-<!--
-<template name="multipleResult">
-
-</template>-->

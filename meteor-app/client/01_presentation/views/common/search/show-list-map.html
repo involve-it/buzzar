@@ -1,0 +1,13 @@
+<template name="showListMap">
+  <button class="button button-clear search-show-list-button" data-menu="multipleSearchTemplate">
+    {{> ionIcon icon="ios-list-outline"}}
+  </button>
+</template>
+
+<!--Load dinamic template-->
+<template name="panelSearchResult">
+  {{#if activeTemplate}}
+    <!--{{> Template.dynamic template=activeTemplate}}-->
+    {{> Template.dynamic template=activeTemplate data=getData}}
+  {{/if}}
+</template>

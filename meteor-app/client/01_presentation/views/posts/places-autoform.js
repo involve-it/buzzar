@@ -2,11 +2,17 @@
  * Created by ashot on 8/19/15.
  */
 
-googlePlacesInit();
+
+//bz.help.maps.initLocation();
+//bz.help.maps.initPlaces();
+
 bz.help.makeNamespace('bz.runtime.newPost.location');
 
 Template.postsPlacesAutoform.created = function () {
-  googleMapsLoad();
+  bz.help.maps.initLocation();
+  bz.help.maps.initPlaces();
+  // doc.ready happened, so:
+  bz.help.maps.googleMapsLoad();
 }
 
 Template.postsPlacesAutoform.onRendered(function () {
@@ -81,26 +87,6 @@ Template.myPlacesPopover.helpers({
 
 // HELPERS:
 
-function googlePlacesInit() {
-  bz.runtime.maps = {}
-  //if(!Meteor.isCordova) {
-  navigator.geolocation.getCurrentPosition(function (a) {
-    //bz.runtime.maps.currentGeoposition = a;
-    bz.runtime.maps.loc = {
-      lat: a.coords.latitude,
-      lng: a.coords.longitude
-    };
-    Session.set('loc', bz.runtime.maps.loc);
-  });
-  //}
-  bz.runtime.maps.places = new Meteor.Collection("maps.places"); // client-side only.
-}
-function googleMapsLoad() {
-  GoogleMaps.load({
-    //key: bz.config.mapsKey,
-    libraries: 'places'  // also accepts an array if you need more than one
-  });
-}
 function callbackNearbySearch(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {

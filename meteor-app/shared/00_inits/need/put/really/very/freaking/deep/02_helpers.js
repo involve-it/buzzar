@@ -13,13 +13,14 @@ var Helpers = {}
  *	- object: the object that will be placed into the namespace end.
  *	  if object is not provided, just create the namespace, if it does not exist yet.
  *	OR initialObject can be a string, in which case consider it as a new namespace,
- *	  and the object non-defined.
+ *	  and the second parameter is the original object (or non-defined).
  * @return {Object} final object assigned to the namespace.
  */
 Helpers.makeNamespace = function (initialObject) {
   if (initialObject && typeof initialObject === 'string') {
     initialObject = {
-      path: initialObject
+      path: initialObject,
+      object: arguments[1]
     }
   };
   var buildFromName, first, foreverFirst, global, l1, l2, namespace, retObj, sc, subPaths;

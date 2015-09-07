@@ -3,7 +3,7 @@
  */
 
 
-
+bz.help.maps.initLocation();
 Template.mainLayout.rendered = function () {
 
 };

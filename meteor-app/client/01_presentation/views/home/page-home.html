@@ -40,7 +40,9 @@
                     </a>
                     {{username}}
                 </div>
-                <label class="item item-input">
+              {{> categoryListButtons}}
+
+              <label class="item item-input">
                     <i class="icon ion-search placeholder-icon"></i>
                     <input type="text" class="capitalize js-search-text" placeholder="find anything around you">
                 </label>
@@ -57,6 +59,7 @@
                     <a class="button button-calm capitalize" href="/">
                         <span>search page >></span>
                     </a>
+                    {{> checkInBtn }}
                 </div>
             </div>
         {{/ionContent}}
