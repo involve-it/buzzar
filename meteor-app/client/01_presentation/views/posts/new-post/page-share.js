@@ -12,7 +12,6 @@ Template.newPostPageShare.events({
       method: 'share',
       href: 'http://dev.buzzar.io' + postUrl,
     }, function(response){
-      debugger;
     });
   }
 });

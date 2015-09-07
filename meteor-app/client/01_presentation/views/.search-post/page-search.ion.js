@@ -15,7 +15,6 @@ Template.globalSearchIon.rendered = function () {
 
 Template.globalSearchIon.helpers({
   searchResult: function () {
-    debugger;
     var contacts = Meteor.users.find();
     /*console.log(contacts);*/
     return contacts;

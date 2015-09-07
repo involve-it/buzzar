@@ -8,7 +8,6 @@ if (Meteor.isClient) {
 }
 var Maps = {
   initLocation: function () {
-    debugger;
     bz.runtime.maps = {}
     //if(!Meteor.isCordova) {
     navigator.geolocation.getCurrentPosition(function (a) {
@@ -26,7 +25,6 @@ var Maps = {
     bz.help.makeNamespace('bz.runtime.maps.places', placesCol);
   },
   googleMapsLoad: function () {      // need run after doc.ready
-    debugger;
     if(!GoogleMaps.loaded()){
       GoogleMaps.load({
         //key: bz.config.mapsKey,

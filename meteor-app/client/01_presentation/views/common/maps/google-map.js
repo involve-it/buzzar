@@ -4,8 +4,6 @@
 var markersArr = [];
 Template.googleMapControl.helpers({
   mapOptions: function () {
-    debugger;
-
     if (GoogleMaps.loaded()) {
       // Map initialization options
       var coords = new google.maps.LatLng(37.3, -121.8);

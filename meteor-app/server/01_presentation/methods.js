@@ -3,7 +3,6 @@
  */
 Meteor.methods({
   getLocation : function(a, b, c) {
-    debugger;
   },
   parseHtml: function(html) {
     var ret = bz.bus.parseHtml(html);
