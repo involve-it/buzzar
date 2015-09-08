@@ -22,33 +22,57 @@ Package.onUse(function(api) {
     'less',
     'sha']
   , 'client');
+  // SERVER
+  api.use([
+    'deps',
+    'service-configuration',
+    'accounts-password',
+    'accounts-base',
+    'underscore',
+    'coffeescript'
+  ], 'server');
 
 
   api.addFiles([
-    'client/entry.coffee',
     'client/entry.less',
-    'client/helpers.coffee',
     'client/views/signIn/signIn.html',
-    'client/views/signIn/signIn.coffee',
     'client/views/signUp/signUp.html',
-    'client/views/signUp/signUp.coffee',
     'client/views/signUp/extraSignUpFields.html',
-    'client/views/signUp/extraSignUpFields.coffee',
     'client/views/forgotPassword/forgotPassword.html',
-    'client/views/forgotPassword/forgotPassword.coffee',
     'client/views/resetPassword/resetPassword.html',
-    'client/views/resetPassword/resetPassword.coffee',
     'client/views/enrollAccount/enrollAccount.html',
-    'client/views/enrollAccount/enrollAccount.coffee',
+
+  ], 'web.browser');
+  api.addFiles([
+    'client/entry.less',
+    'client/views/signIn/signIn.app.html',
+    'client/views/signUp/signUp.app.html',
+    'client/views/signUp/extraSignUpFields.app.html',
+    'client/views/forgotPassword/forgotPassword.app.html',
+    'client/views/resetPassword/resetPassword.app.html',
+    'client/views/enrollAccount/enrollAccount.app.html',
+
+  ], 'web.cordova');
+
+  api.addFiles([
     'client/views/social/social.html',
-    'client/views/social/social.coffee',
     'client/views/error/error.html',
-    'client/views/error/error.coffee',
     'client/views/accountButtons/accountButtons.html',
     'client/views/accountButtons/_wrapLinks.html',
     'client/views/accountButtons/signedIn.html',
-    'client/views/accountButtons/accountButtons.coffee',
     'client/views/verificationPending/verificationPending.html',
+
+    'client/entry.coffee',
+    'client/helpers.coffee',
+    'client/views/signIn/signIn.coffee',
+    'client/views/signUp/signUp.coffee',
+    'client/views/signUp/extraSignUpFields.coffee',
+    'client/views/forgotPassword/forgotPassword.coffee',
+    'client/views/resetPassword/resetPassword.coffee',
+    'client/views/enrollAccount/enrollAccount.coffee',
+    'client/views/social/social.coffee',
+    'client/views/error/error.coffee',
+    'client/views/accountButtons/accountButtons.coffee',
     'client/views/verificationPending/verificationPending.coffee',
     'client/t9n/english.coffee',
     'client/t9n/french.coffee',
@@ -61,18 +85,9 @@ Package.onUse(function(api) {
     'client/t9n/slovene.coffee',
     'client/t9n/russian.coffee',
     'client/t9n/arabic.coffee',
-    'client/t9n/hebrew.coffee'
-  ], 'client');
+    'client/t9n/hebrew.coffee',
 
-  // SERVER
-  api.use([
-    'deps',
-    'service-configuration',
-    'accounts-password',
-    'accounts-base',
-    'underscore',
-    'coffeescript'
-  ], 'server');
+  ], 'client');
 
   api.addFiles(['server/entry.coffee'], 'server');
 
