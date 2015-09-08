@@ -1,0 +1,3 @@
+see this for separation info:
+https://github.com/danielfbm/meteor-cordova-web-example
+http://meteor.redandivory.com/

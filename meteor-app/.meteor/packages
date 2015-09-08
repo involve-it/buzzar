@@ -18,10 +18,6 @@ anti:fake
 matb33:collection-hooks
 aldeed:collection2
 aldeed:autoform
-meteoric:ionic-sass
-meteoric:ionicons-sass
-meteoric:ionic
-meteoric:autoform-ionic
 useraccounts:ionic
 matteodem:easy-search
 aldeed:simple-schema
@@ -40,3 +36,4 @@ service-configuration
 biasport:facebook-sdk
 raix:handlebar-helpers
 dburles:google-maps
+arutune:bz-page-home
