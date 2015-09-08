@@ -1,0 +1,12 @@
+testing with tinytest:
+meteor test-packages --driver-package respondly:test-reporter arutune:bz-api -p 3333
+meteor test-packages arutune:bz-api -p 3333
+
+testing with velocity:
+npm install velocity-cli -g
+velocity test-package arutune:bz-api
+VELOCITY_TEST_PACKAGES=1 meteor test-packages --driver-package velocity:html-reporter arutune:bz-api -p 4444
+read this: (https://velocity.readme.io/docs/jasmine-testing-a-meteor-package)
+
+go to http://0.0.0.0:3333/ OR http://dev.buzzar.io:3333/ to check tests.
+(see this: http://howwedoapps.com/2015/07/20/how-i-develop-meteorjs-apps-part-2-testing-meteor-packages-for-humans)

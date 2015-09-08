@@ -13,10 +13,12 @@ var glob = {};
 Package.onUse(function (api) {
   api.versionsFrom('1.1.0.3');
 
-  api.use('templating','client');
-  api.use('iron:router',['client','server']);
-  api.use('iron:layout',['client','server']);
+  api.use('iron:router', ['client', 'server']);
+  api.use('iron:layout', ['client', 'server']);
+  api.use('service-configuration', ['server']);
+  //api.use('iron:layout', ['client', 'server']);
   api.use('underscore');
+  api.use(['templating'], 'client');
 
   // load all server/client/shared lib files:
   api.addFiles([
@@ -28,21 +30,22 @@ Package.onUse(function (api) {
     'server/lib/config.js'
   ], 'server');
   api.addFiles([
-      'client/lib/01_inits/accounts.js',
-    'client/lib/01_inits/cordova.js',
-      'client/lib/01_inits/fb.js',
-      'client/lib/01_inits/maps.js',
-      'client/lib/01_inits/t9.js',
-      'client/lib/01_inits/template-helpsers.js',
-      'client/lib/rates/jquery.raty.js',
-      'client/lib/animate/animate.css',
-      'client/lib/rates/jquery.raty.css'
+    'client/lib/01_inits/accounts.js',
+    'client/lib/01_inits/location.js',
+    'client/lib/01_inits/fb.js',
+    'client/lib/01_inits/maps.js',
+    'client/lib/01_inits/t9.js',
+    'client/lib/01_inits/template-helpsers.js',
+    'client/lib/rates/jquery.raty.js',
+    'client/lib/animate/animate.css',
+    'client/lib/rates/jquery.raty.css'
   ], 'client');
+
 });
-/*
- Package.onTest(function(api) {
- api.use('tinytest');
- api.use('arutune:bz-main');
- api.addFiles('bz-main-tests.js');
- });
- */
+
+Package.onTest(function (api) {
+  //api.use('tinytest');  // use in-built tinytets
+  api.use('sanjo:jasmine');
+  api.use('arutune:bz-api');
+  api.addFiles('bz-main-tests.js', ['client']);
+});

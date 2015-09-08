@@ -40,5 +40,5 @@ Package.onUse(function (api) {
 Package.onTest(function (api) {
   api.use('tinytest');
   api.use('arutune:bz-page-home');
-  api.addFiles('bz-page-home-tests.js');
+  api.addFiles('tests/bz-page-home.js');
 });
