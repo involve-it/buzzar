@@ -1,3 +1,4 @@
+  cd /projects/buzzar/buzzar1/meteor-app
 
 RUN meteor:
 1. cd /Users/aarutunyan/Documents/meteor/mg-2/meteor_app
@@ -23,6 +24,7 @@ e.g. MONGO 100,48 errors
 find process first:
 sudo lsof -t -i:3001 // gives PID
 sudo kill PID
+
 
 
 _________________________________

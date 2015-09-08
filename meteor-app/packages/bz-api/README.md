@@ -1,1 +1,1 @@
-Main entry loader for the app
+API: inits, configs, helpers, extends etc.

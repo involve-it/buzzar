@@ -1,7 +1,8 @@
 /**
  * Created by douson on 03.07.15.
  */
-if(Meteor.isCordova || Meteor.isMobile) {
+/*debugger;
+if (Meteor.isCordova || Meteor.isMobile) {
   Router.configure({
     layoutTemplate: 'mainLayoutApp',
     waitOn: function () {
@@ -31,13 +32,14 @@ if(Meteor.isCordova || Meteor.isMobile) {
     // show the appLoading template whilst the subscriptions below load their data
     loadingTemplate: 'appLoading'
   });
-}
+}*/
 Router.map(function () {
-  this.route('home', {
+  // moved to package bz-page-home
+  /*this.route('home', {
     path: '/home',
     template: 'pageHome',
     controller: 'requireLoginController' //temp
-  });
+  });*/
 
   this.route('root', {
     path: '/',
@@ -111,12 +113,12 @@ Router.map(function () {
     path: '/post/:_id',
     template: 'postsPageDetailsIon',
     data: function () {
-      var ret =  bz.cols.posts.findOne({_id: this.params._id});
+      var ret = bz.cols.posts.findOne({_id: this.params._id});
       return ret;
     },
     //controller: 'requireLoginController',
     onBeforeAction: function () {
-      if(!this.data()){
+      if (!this.data()) {
         Router.go('/page-not-found');
       }
       this.next();
@@ -150,9 +152,9 @@ Router.map(function () {
     }
   });
   /*this.route('posts.new.original-details', {
-    path: '/posts/new/original-details',
-    controller: 'requireLoginController'
-  });*/
+   path: '/posts/new/original-details',
+   controller: 'requireLoginController'
+   });*/
   // end create post flow.
 
   this.route('pageMap', {
