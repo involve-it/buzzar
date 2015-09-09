@@ -1,0 +1,8 @@
+foundation - 80k min (60 css + 20 js)
+skeleton - 20k css
+bs - 160k
+
+size of web page.
+1.7mb - smallest i could do was  - i turned off client/01 totally, letting it load from the package.
+1.8mb - With 01_presentation it will be
+With ionic framework.
