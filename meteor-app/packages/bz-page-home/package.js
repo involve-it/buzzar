@@ -21,21 +21,16 @@ Package.onUse(function (api) {
   api.use('arutune:bz-main');
   api.use('arutune:bz-control-honeycomb');
 
-  //Web only files
   api.addFiles([
-    'browser/router.js',
-    //'web/style.css',
-    //'web/home.html',
-    'browser/ui/page-home.html',
-    'browser/ui/page-home.js',
+    'web/router.js',
+  ], 'web');
+  api.addFiles([
+    'web/browser/page-home.html',
+    'web/browser/page-home.js',
   ], 'web.browser');
-
-
-  //Cordova only files
   api.addFiles([
-    'cordova/router.js',
-    'cordova/ui/page-home.html',
-    'cordova/ui/page-home.js',
+    'web/cordova/page-home.html',
+    'web/cordova/page-home.js',
   ], 'web.cordova');
 });
 Package.onTest(function (api) {

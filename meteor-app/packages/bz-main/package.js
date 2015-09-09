@@ -16,7 +16,7 @@ Package.onUse(function (api) {
   api.use('iron:router', ['client', 'server']);
   api.use('iron:layout', ['client', 'server']);
   api.use(['templating', 'less'], 'client');
-  api.use('fourseven:scss', ['server', 'web.cordova']);
+  api.use('juliancwirko:zf5', ['web.browser']);
 
   api.use('arutune:bz-api');
 
@@ -27,8 +27,9 @@ Package.onUse(function (api) {
     'meteoric:autoform-ionic',
   ], 'web.cordova');
 
-  api.addFiles('bz-main.js');
+
   api.addFiles([
+    'web/browser/style/foundation-main.scss',
     'web/browser/main-layout.html',
     'web/browser/main-layout.js',
     'web/browser/main-layout.less'
@@ -41,9 +42,6 @@ Package.onUse(function (api) {
     'web/cordova/main-layout.less',
     'web/cordova/style/app.scss'
   ], 'web.cordova');
-
-  api.addFiles('bz-main.js');
-
 
 });
 

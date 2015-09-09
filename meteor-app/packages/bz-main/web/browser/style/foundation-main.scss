@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+@import ".foundation/scss/normalize.scss";
+
+//local Foundation settings file. Copy it from git repo -> scss/foundation/_settings.scss near main .scss file. Then Uncomment the line below.
+//@import "settings"
+@import "foundation-custom-settings.scss";
+
+@import ".foundation/scss/foundation/components/buttons.scss";
