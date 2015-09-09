@@ -19,6 +19,7 @@ Package.onUse(function (api) {
   api.use('less', 'client');
 
   api.use('arutune:bz-main');
+  api.use('arutune:bz-control-honeycomb');
 
   //Web only files
   api.addFiles([

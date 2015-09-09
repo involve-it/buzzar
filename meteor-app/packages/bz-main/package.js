@@ -16,7 +16,7 @@ Package.onUse(function (api) {
   api.use('iron:router', ['client', 'server']);
   api.use('iron:layout', ['client', 'server']);
   api.use(['templating', 'less'], 'client');
-  api.use('fourseven:scss');
+  api.use('fourseven:scss', ['server', 'web.cordova']);
 
   api.use('arutune:bz-api');
 

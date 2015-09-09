@@ -17,7 +17,7 @@ Package.onUse(function (api) {
   api.use('iron:layout', ['client', 'server']);
   api.use('service-configuration', ['server']);
   //api.use('iron:layout', ['client', 'server']);
-  api.use('underscore');
+  api.use(['underscore', 'session']);
   api.use(['templating'], 'client');
 
   // load all server/client/shared lib files:
