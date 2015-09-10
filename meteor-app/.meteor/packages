@@ -27,7 +27,6 @@ mquandalle:ismobile
 mrt:cheerio
 mdg:camera
 
-twbs:bootstrap
 accounts-facebook
 accounts-google
 accounts-twitter
@@ -38,3 +37,4 @@ raix:handlebar-helpers
 dburles:google-maps
 arutune:bz-page-home
 angular
+fourseven:scss

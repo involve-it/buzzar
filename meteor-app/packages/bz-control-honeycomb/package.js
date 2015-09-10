@@ -23,8 +23,6 @@ Package.onUse(function (api) {
     'web.client/user.ng.html',
     'web.client/honeycomb.js',
     //'web.client/index.ng.html',
-
-
   ], 'client');
 });
 

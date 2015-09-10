@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Suffler function test</title>
+  <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.19.0.css">
+  <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+
+  <script src="//code.jquery.com/qunit/qunit-1.19.0.js"></script>
+  <script>
+    // note: it is a question if _shuffle is actually fair: it give this result occasionally for 2-element arrays:
+    //Generated array:  [-44, 22]
+    //Shuffled array:  [-44, 22]
+    QUnit.test("is Underscore Shuffle Fair", function (assert) {
+      var testFunction = _.shuffle,
+        array = randomArrayGenerator();
+      var isFair = isShuffleFair(testFunction, array);
+      assert.equal(isFair, true, "Underscorejs's shuffle function is definitely fair.");
+    });
+
+    // Example: This should return false
+    QUnit.test("clearly Unfair Shuffle", function (assert) {
+      //clearlyUnfairShuffle
+      var testFunction = function (array) {
+        return array;
+      };
+      var array = randomArrayGenerator();
+      var isFair = isShuffleFair(testFunction, array);
+
+      assert.equal(isFair, true, "A shuffle function that returns the array you gave it is definitely unfair.");
+
+    });
+    // Example: This should return false
+    QUnit.test("Another Clearly Unfair Shuffle", function (assert) {
+      //clearlyUnfairShuffle
+      var testFunction = function(array) {
+        return ([].concat(array)).sort(function(a, b) {return a-b;});
+      };
+      //var array = [2,0,6,1];
+      var array = randomArrayGenerator();
+      var isFair = isShuffleFair(testFunction, array);
+
+      assert.equal(isFair, true, "A shuffle function that sorts the array is definitely unfair");
+
+    });
+    // Example: This should return false
+    // TODO
+    /*QUnit.test("Shuffle tries to detect that it's being tested", function (assert) {
+      //clearlyUnfairShuffle
+      var lastArray;
+      var lastFairShuffle;
+      trickyShuffle = function (array) {
+        var isInTestingEnvironment = false;
+        // Am I being given the same array over and over again?
+        if (_.isEqual(lastArray, array)) {
+          isInTestingEnvironment = true;
+        }
+
+        // Am I being given an array that is sorted somehow, like the elements 0 through 51?
+        if (_.isEqual(array, ([].concat(array)).sort(function (a, b) {return a-b;}))) {
+          isInTestingEnvironment = true;
+        }
+
+        // Am I being fed my own last fair shuffle?
+        if (_.isEqual(lastFairShuffle, array)) {
+          isInTestingEnvironment = true;
+        }
+
+        // Clone the array into the last array
+        lastArray = [].concat(array);
+
+        // Am I in a testing environment?
+        if (isInTestingEnvironment) {
+          // Do a fair shuffle, to trick you into thinking I'm a fair shuffle when I really am not
+          lastFairShuffle = _.shuffle(array);
+          // This weird syntax clones an array
+          return [].concat(lastFairShuffle);
+        } else {
+          // Do a clearly unfair shuffle
+          return ([].concat(array)).sort();
+        }
+      };
+      assert.equal(true, false, "A shuffle function that sorts the array is definitely unfair");
+
+    });
+*/
+    /*var testingFunctionWrapper = function(array, testFunction) {
+      if (array.length === 0){
+        assert.equal(array.length !== 0, true, "Array should have elements.");
+
+      }
+      testFunction.call(testFunction, array);
+    }*/
+
+
+  </script>
+
+
+  <script type="text/javascript" src="../main.js"></script>
+
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+</body>
+</html>

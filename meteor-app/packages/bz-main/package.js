@@ -43,6 +43,10 @@ Package.onUse(function (api) {
     'web/cordova/style/app.scss'
   ], 'web.cordova');
 
+  api.addFiles([
+    'web/about-us.html'
+  ], 'web');
+
 });
 
 Package.onTest(function (api) {
