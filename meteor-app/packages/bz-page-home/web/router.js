@@ -32,8 +32,10 @@ Router.configure({
   //notFoundTemplate: 'appNotFound',
 
   // show the appLoading template whilst the subscriptions below load their data
-  //loadingTemplate: 'appLoading'
+  loadingTemplate: 'appLoading'
 });
+
+
 Router.map(function () {
   this.route('home', {
     path: '/home',

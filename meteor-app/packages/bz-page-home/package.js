@@ -18,6 +18,9 @@ Package.onUse(function (api) {
   api.use('templating', 'client');
   api.use('less', 'client');
 
+  
+  api.use('sacha:spin');
+  
   api.use('arutune:bz-main');
   api.use('arutune:bz-control-honeycomb');
 
@@ -25,8 +28,10 @@ Package.onUse(function (api) {
     'web/router.js',
   ], 'web');
   api.addFiles([
+    'web/browser/app-loading.html',
     'web/browser/page-home.html',
     'web/browser/page-home.js',
+    'web/browser/page-home.less'
   ], 'web.browser');
   api.addFiles([
     'web/cordova/page-home.html',

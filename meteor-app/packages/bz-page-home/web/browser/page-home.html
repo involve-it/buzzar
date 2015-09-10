@@ -1,4 +1,90 @@
 <template name="pageHome">
+    <div class="bz-home-page">
+        <div class="bz-container">
+            <div class="bz-header">
+                <nav id="bz-navbar">
+                    
+                    <div class="bz-logo">
+                        {{> bzMeteorLogo }}
+                    </div>
+                    
+                    <div class="bz-auth">
+                        {{> checkInBtn }}
+                    </div>
+                    
+                </nav><!-- navEND -->
+                
+                
+                <div class="bz-search">
+                    
+                    <div class="bz-category-buttons">
+                        {{> categoryListButtons}}
+                    </div>
+                    
+                    <div class="box-search">
+                        <form class="search" id="bz-search" role="search" method="post" action="#" >
+                            <i class="icon ion-search placeholder-icon"></i>
+                            <div class="search-field"><input type="search" placeholder="I am looking for OR I am going to ..." name="searchword"  autocomplete="off"></div>
+                            <button class="button bz-btn-search">Search</button>
+                        </form>
+                        
+                        <div class="bz-location-hint">
+                            <span class="warning-hint">(WARNING)</span> <span>Your location is not defined</span>
+    
+                            <a href="#" class="button">Default Button</a>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                
+                <div class="bz-container-background">
+                    <section id="blabla"></section>
+                </div>
+            </div>
+        </div>
+        
+        <!---->
+        
+    </div>
+    pagehome
+</template>
+
+
+<template name="bzMeteorLogo">
+    <div>
+        BUZZAR
+    </div>
+</template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<template name="pageHome0">
 
     {{#contentFor "headerButtonLeft"}}
         <button class="button button-clear pull-left" data-ion-menu-toggle="left">
