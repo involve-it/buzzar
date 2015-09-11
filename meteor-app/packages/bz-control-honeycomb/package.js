@@ -14,13 +14,12 @@ Package.onUse(function (api) {
   api.versionsFrom('1.1.0.3');
 
   api.use(['templating', 'less'], 'client');
-  api.use('angular');
+  api.use('angular', 'client');
   api.addFiles([
     //'lib/angular.js',
     'web.client/app.js',
-
+    'user.ng.html',
     'web.client/honeycomb.html',
-    'web.client/user.ng.html',
     'web.client/honeycomb.js',
     //'web.client/index.ng.html',
   ], 'client');

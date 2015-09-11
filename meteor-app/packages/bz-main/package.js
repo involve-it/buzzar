@@ -17,7 +17,7 @@ Package.onUse(function (api) {
   api.use('iron:layout', ['client', 'server']);
   api.use(['templating', 'less'], 'client');
   //api.use('juliancwirko:zf5', ['web.browser']);
-
+  api.use('fourseven:scss');
   api.use('arutune:bz-api');
 
   api.use([

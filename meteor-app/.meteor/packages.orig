@@ -27,6 +27,12 @@ mquandalle:ismobile
 mrt:cheerio
 mdg:camera
 
+<<<<<<< HEAD
+=======
+
+
+twbs:bootstrap
+>>>>>>> fe056e4070fcf83040cb7e954d22a89d3f854ba5
 accounts-facebook
 accounts-google
 accounts-twitter
@@ -36,3 +42,5 @@ biasport:facebook-sdk
 raix:handlebar-helpers
 dburles:google-maps
 arutune:bz-page-home
+angular
+fourseven:scss

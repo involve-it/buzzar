@@ -31,8 +31,6 @@
                         <div class="bz-location-hint">
                             <span class="warning-hint">(WARNING)</span> <span>Your location is not defined</span>
     
-                            <a href="#" class="button">Default Button</a>
-                            
                         </div>
                     </div>
                     
@@ -48,7 +46,21 @@
         <!---->
         
     </div>
-    pagehome
+  <a name="original-post-details" class="button button-small disabled hidden js-search-posts-link" data-ion-modal="searchPostsModal">Check >></a>
+  <div style="padding-top: 50px;">
+
+    <div class="js-about-us hidden">
+      {{> aboutUs }}
+    </div>
+    <button class="button button-calm capitalize js-read-more">
+      <span>read more</span>
+      <span class="hidden">show less</span>
+    </button>
+    {{> bzControlHoneycomb }}
+    <!--<a class="button button-calm capitalize" href="/">
+        <span>search page >></span>
+    </a>-->
+  </div>
 </template>
 
 
