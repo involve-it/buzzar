@@ -12,7 +12,6 @@ angular:angular@1.4.5
 anti:fake@0.4.1
 arutune:bz-api@0.0.1
 arutune:bz-control-honeycomb@0.0.1
-arutune:bz-control-search@0.0.1
 arutune:bz-main@0.0.1
 arutune:bz-page-home@0.0.1
 autoupdate@1.2.1

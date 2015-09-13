@@ -12,11 +12,12 @@ var Maps = {
     this.getLocation(function(loc){
       debugger;
       Session.set('loc', loc);
-    }, 22, 33);
+    });
     //}
   },
   getLocation: function(callback){
     var args = Array.prototype.slice.apply(arguments).slice(1);
+    var that = this;
     navigator.geolocation.getCurrentPosition(function (a) {
       //bz.runtime.maps.currentGeoposition = a;
       var loc = {
@@ -25,8 +26,8 @@ var Maps = {
       };
       //bz.runtime.maps.loc = loc;
       debugger;
-
-      callback.apply(this, args.unshift(loc));
+      args.unshift(loc)
+      callback.apply(that, args);
     });
   },
   initPlaces: function () {
