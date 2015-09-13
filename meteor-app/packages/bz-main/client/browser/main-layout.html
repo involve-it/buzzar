@@ -1,7 +1,51 @@
 <template name="mainLayout">
     {{#if currentUser}}
-        {{> yield}}
+
+        <div class="off-canvas-wrap" data-offcanvas>
+            <div class="inner-wrap">
+
+                <div class="js-button-left-off-canvas">
+                    <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
+                        <div class="bz-icon-menu"></div>
+                    </a>
+                </div>
+
+                <!-- Off Canvas Menu -->
+                {{> bzMenuLeft}}
+
+                <!-- main content goes here -->
+                {{> yield}}
+
+                <!-- close the off-canvas menu -->
+                <a class="exit-off-canvas"></a>
+
+            </div>
+        </div>
+        
+        
     {{else}}
         {{> yield}}
     {{/if}}
 </template>
+
+
+<!--MENU-->
+<template name="bzMenuLeft">
+    <nav class="left-off-canvas-menu">
+        {{> bzInnerMenuLeft}}
+    </nav>
+</template>
+
+<template name="bzInnerMenuLeft">
+	<!--<div>
+		{{> checkInBtn }}
+	</div>-->
+    <ul class="off-canvas-list">
+        <li><label>Foundation</label></li>
+        <li><a href="#">Item menu 1</a></li>
+        <li><a href="#">Item menu 2</a></li>
+        <li><a href="#">Item menu 3</a></li>
+        <li><a href="#">Item menu 4</a></li>
+    </ul>
+</template>
+<!--END MENU-->

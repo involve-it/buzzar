@@ -1,2 +1,13 @@
-@import ".foundation/scss/foundation/components/_global.scss";
-$button-bg-color: $warning-color !default;
+
+
+// We use these to control button border styles.
+$transparent-button-bg-color: transparent !default;
+
+
+
+button, .button {
+
+  &.transparent   {
+    background-color: $transparent-button-bg-color;
+  }
+}

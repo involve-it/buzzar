@@ -24,18 +24,22 @@ Package.onUse(function (api) {
     'meteoric:ionic',
     'meteoric:ionic-sass',
     'meteoric:ionicons-sass',
-    'meteoric:autoform-ionic',
+    'meteoric:autoform-ionic'
   ], 'web.cordova');
 
-
   api.addFiles([
-    'client/browser/style/foundation-main.scss',
+	  
+    'web/browser/style/foundation/js/foundation.js',
+	'web/browser/style/foundation/js/foundation/foundation.dropdown.js',
+    'web/browser/style/foundation/js/foundation/foundation.offcanvas.js'
+
+  ], 'web.browser');
+  
+  api.addFiles([
+    'web/browser/style/foundation-main.scss',
     'client/browser/main-layout.html',
     'client/browser/main-layout.js',
-    'client/browser/main-layout.less',
-    'client/browser/views/category-list-buttons.less',
-    'client/browser/views/category-list-buttons.html',
-    'client/browser/views/category-list-buttons.js',
+    'client/browser/main-layout.less'
   ], 'web.browser');
   api.addFiles([
     'client/cordova/main-layout.html',
