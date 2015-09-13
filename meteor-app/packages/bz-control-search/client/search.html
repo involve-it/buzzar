@@ -1,0 +1,17 @@
+<template name="bzControlSearch">
+
+  <div class="search-field">
+    <!--<input type="search" placeholder="I am looking for OR I am going to ..." name="searchword" autocomplete="off">-->
+
+    <input class="form-control typeahead capitalize js-nearby-places" name="team" type="text"
+           placeholder="place nearby"
+           data-source="placesArray"
+
+           autocomplete="on" spellcheck="off"
+           data-opened="opened" data-selected="selected"
+           data-min-length="0"
+           data-autocompleted="autocompleted"
+        />
+  </div>
+  <button class="button bz-btn-search">Search</button>
+</template>

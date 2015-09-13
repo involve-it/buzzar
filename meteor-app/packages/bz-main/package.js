@@ -29,22 +29,25 @@ Package.onUse(function (api) {
 
 
   api.addFiles([
-    'web/browser/style/foundation-main.scss',
-    'web/browser/main-layout.html',
-    'web/browser/main-layout.js',
-    'web/browser/main-layout.less'
+    'client/browser/style/foundation-main.scss',
+    'client/browser/main-layout.html',
+    'client/browser/main-layout.js',
+    'client/browser/main-layout.less',
+    'client/browser/views/category-list-buttons.less',
+    'client/browser/views/category-list-buttons.html',
+    'client/browser/views/category-list-buttons.js',
   ], 'web.browser');
   api.addFiles([
-    'web/cordova/main-layout.html',
-    'web/cordova/main-layout.js',
-    'web/cordova/main-layout.less',
-    'web/cordova/style/app-ionic.less',
-    'web/cordova/main-layout.less',
-    'web/cordova/style/app.scss'
+    'client/cordova/main-layout.html',
+    'client/cordova/main-layout.js',
+    'client/cordova/main-layout.less',
+    'client/cordova/style/app-ionic.less',
+    'client/cordova/main-layout.less',
+    'client/cordova/style/app.scss'
   ], 'web.cordova');
 
   api.addFiles([
-    'web/about-us.html'
+    'client/about-us.html'
   ], 'web');
 
 });

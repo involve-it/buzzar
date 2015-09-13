@@ -18,24 +18,28 @@ Package.onUse(function (api) {
   api.use('templating', 'client');
   api.use('less', 'client');
 
-  
+
   api.use('sacha:spin');
-  
+
   api.use('arutune:bz-main');
+  api.use('arutune:bz-control-search');
   api.use('arutune:bz-control-honeycomb');
 
   api.addFiles([
-    'web/router.js',
-  ], 'web');
+    'client/router.js',
+    'client/checkin-btn.less',
+    'client/checkin-btn.html',
+    'client/checkin-btn.js'
+  ], 'client');
   api.addFiles([
-    'web/browser/app-loading.html',
-    'web/browser/page-home.html',
-    'web/browser/page-home.js',
-    'web/browser/page-home.less'
+    'client/browser/app-loading.html',
+    'client/browser/page-home.html',
+    'client/browser/page-home.js',
+    'client/browser/page-home.less'
   ], 'web.browser');
   api.addFiles([
-    'web/cordova/page-home.html',
-    'web/cordova/page-home.js',
+    'client/cordova/page-home.html',
+    'client/cordova/page-home.js',
   ], 'web.cordova');
 });
 Package.onTest(function (api) {

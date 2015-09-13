@@ -9,17 +9,25 @@
 var Maps = {
   initLocation: function () {
     bz.help.makeNamespace('bz.runtime.maps');
-
-    //if(!Meteor.isCordova) {
+    this.getLocation(function(loc){
+      debugger;
+      Session.set('loc', loc);
+    }, 22, 33);
+    //}
+  },
+  getLocation: function(callback){
+    var args = Array.prototype.slice.apply(arguments).slice(1);
     navigator.geolocation.getCurrentPosition(function (a) {
       //bz.runtime.maps.currentGeoposition = a;
-      bz.runtime.maps.loc = {
+      var loc = {
         lat: a.coords.latitude,
         lng: a.coords.longitude
       };
-      Session.set('loc', bz.runtime.maps.loc);
+      //bz.runtime.maps.loc = loc;
+      debugger;
+
+      callback.apply(this, args.unshift(loc));
     });
-    //}
   },
   initPlaces: function () {
     if (!bz.runtime.maps.places && !bz.help.collectionExists('maps.places')) {

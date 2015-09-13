@@ -1,7 +1,7 @@
 <template name="mainLayout">
-  {{#if currentUser}}
+  <!--{{#if currentUser}}-->
     {{#ionBody}}
-      <!-- Вместо rendered, можно использовать side="left" -->
+
       {{#ionSideMenuContainer }}
 
         {{> ionMenus}}
@@ -9,7 +9,6 @@
         {{#ionSideMenuContent}}
           <!--<div id="drag-left"></div>-->
           <div id="drag-right"></div>
-
           {{> ionNavBar class="bar-fantasia"}}
 
           {{#ionNavView}}
@@ -19,7 +18,8 @@
         {{/ionSideMenuContent}}
       {{/ionSideMenuContainer}}
     {{/ionBody}}
-  {{else}}
+<!--  {{else}}
+    asdf
     {{> yield}}
-  {{/if}}
+  {{/if}}-->
 </template>

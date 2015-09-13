@@ -100,61 +100,6 @@ Router.map(function () {
     controller: 'requireLoginController'
   });
 
-  // POSTS:
-  this.route('posts', {
-    path: '/posts',
-    controller: 'requireLoginController',
-    onBeforeAction: function () {
-      Router.go('/posts/my');
-    }
-
-  });
-  this.route('posts.details', {
-    path: '/post/:_id',
-    template: 'postsPageDetailsIon',
-    data: function () {
-      var ret = bz.cols.posts.findOne({_id: this.params._id});
-      return ret;
-    },
-    //controller: 'requireLoginController',
-    onBeforeAction: function () {
-      if (!this.data()) {
-        Router.go('/page-not-found');
-      }
-      this.next();
-    }
-  });
-
-  this.route('postsMy', {
-    path: '/posts/my',
-    controller: 'requireLoginController'
-  });
-
-  // create post flow:
-  this.route('postsNew', {
-    path: '/posts/new',
-    controller: 'requireLoginController',
-    waitOn: function () {
-      return [
-        bz.help.maps.googleMapsLoad()
-      ]
-    }
-    /*data: function () {
-     return Meteor.users.findOne({_id: this.params._id});
-     }*/
-  });
-  this.route('postsNewShare', {
-    path: '/posts/new/share',
-    template: 'newPostPageShare',
-    controller: 'requireLoginController',
-    waitOn: function () {
-      return []
-    }
-  });
-  /*this.route('posts.new.original-details', {
-   path: '/posts/new/original-details',
-   controller: 'requireLoginController'
-   });*/
   // end create post flow.
 
   this.route('pageMap', {
