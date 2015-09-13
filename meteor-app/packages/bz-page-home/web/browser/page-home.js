@@ -15,3 +15,15 @@ Template.pageHome.events({
     }
   }
 })
+
+
+
+
+
+Template.pageHome.rendered = function () {
+
+  $(document).foundation({
+    
+  });
+
+};

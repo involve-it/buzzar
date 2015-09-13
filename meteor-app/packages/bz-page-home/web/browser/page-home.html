@@ -8,6 +8,10 @@
                         {{> bzMeteorLogo }}
                     </div>
                     
+                    <div class="bz-header-menu">
+                        {{> bzInnerMenuLeft}}
+                    </div>
+                    
                     <div class="bz-auth">
                         {{> checkInBtn }}
                     </div>
@@ -17,15 +21,18 @@
                 
                 <div class="bz-search">
                     
-                    <div class="bz-category-buttons">
-                        {{> categoryListButtons}}
-                    </div>
+                    
                     
                     <div class="box-search">
+
+                        <div class="bz-category-buttons">
+                            {{> categoryListButtons}}
+                        </div>
+                        
                         <form class="search" id="bz-search" role="search" method="post" action="#" >
                             <i class="icon ion-search placeholder-icon"></i>
                             <div class="search-field"><input type="search" placeholder="I am looking for OR I am going to ..." name="searchword"  autocomplete="off"></div>
-                            <button class="button bz-btn-search">Search</button>
+                            <button class="button bz-btn-search"></button>
                         </form>
                         
                         <div class="bz-location-hint">
@@ -35,7 +42,13 @@
                     </div>
                     
                 </div>
-                
+
+                <a data-dropdown="drop1" aria-controls="drop1" aria-expanded="false">Has Dropdown</a>
+                <ul id="drop1" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
+                    <li><a href="#">This is a link</a></li>
+                    <li><a href="#">This is another</a></li>
+                    <li><a href="#">Yet another</a></li>
+                </ul>
                 
                 <div class="bz-container-background">
                     <section id="blabla"></section>
@@ -57,7 +70,7 @@
       <span class="hidden">show less</span>
     </button>
     <!--{{> bzControlHoneycomb }}-->
-    <a class="button transparent button-calm capitalize" href="/">
+    <a class="button button-calm capitalize" href="/">
         <span>search page >></span>
     </a>
   </div>
@@ -66,7 +79,7 @@
 
 <template name="bzMeteorLogo">
     <div>
-        BUZZAR
+        BUZZAR<span>ound</span>
     </div>
 </template>
 
