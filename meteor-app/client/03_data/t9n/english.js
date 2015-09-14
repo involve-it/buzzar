@@ -15,7 +15,10 @@ en = {
   //sitewise:
   siteTitleElement: 'instant post, bound to location',
   // home page:
-  headliner: 'instant post, bound to location'
+  headliner: 'instant post, bound to location',
+  distance: 'Distance',
+  mile:                 'mile',
+  miles:                 'miles',
 };
 
 T9n.map('en', en);
