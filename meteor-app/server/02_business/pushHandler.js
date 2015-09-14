@@ -4,39 +4,37 @@
 
 Meteor.startup(function(){
   bz.bus.pushHandler = {
-    push: function(token, title, msg, type){
-      type = type || 'apn';
+    push: function(userIds, title, msg){
       var notification = {
             from:'',
             title: title,
             text: msg,
             badge: 1
-          },
-          t = {};
-      if (Array.isArray(token)){
-        notification.tokens = [];
-        _.each(token, function(e){
-          t = {};
-          t[type] = e;
-          notification.tokens.push(t);
-        });
-      } else {
-        t[type] = token;
-        notification.token = t;
+          };
+      var tokens = [];
+      if (!Array.isArray(userIds)) {
+        userIds = [userIds];
       }
-
-      CordovaPush.send(notification);
+      var userTokens = bz.cols.tokens.find({userId: {$in: userIds}}).fetch();
+      _.each(userTokens, function(e){
+        _.each(e.tokens, function(token){
+          tokens.push(token);
+        });
+      });
+      if (tokens.length > 0) {
+        notification.tokens = tokens;
+        CordovaPush.send(notification);
+      }
     },
     registerToken: function(userId, token){
       if (userId && token && Object.keys(token).length > 0) {
         var userTokens = bz.cols.tokens.findOne({userId: userId});
         if (userTokens) {
-          var platform = Object.keys(token)[0];
-          userTokens.tokens[platform] = token[platform];
+          userTokens.tokens.push(token);
         } else {
           userTokens = {
             userId: userId,
-            tokens: token
+            tokens: [token]
           };
           bz.cols.tokens.insert(userTokens);
         }
