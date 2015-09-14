@@ -28,14 +28,14 @@ Template.bzControlSearch.onRendered(function () {
 
   Meteor.typeahead.inject();
 
-
+  debugger;
   this.autorun(function () {
-    if (GoogleMaps.loaded() && Session.get('loc')) {
+    if (GoogleMaps.loaded() && Session.get('bz.api.loc')) {
       var map = document.createElement('div');
       debugger;
       var service = new google.maps.places.PlacesService(map);
       service.nearbySearch({
-        location: Session.get('loc'),
+        location: Session.get('bz.api.loc'),
         radius: 1000,
         types: ['store']
       }, callbackNearbySearch);
@@ -48,9 +48,17 @@ Template.bzControlSearch.helpers({
     debugger;
     return bz.runtime.maps.places.find().fetch().map(function(object){ return {id: object._id, value: object.name}; });
   },
+  joinedArray : function() {
+    debugger;
+    return bz.runtime.maps.places.find().fetch().map(function(object){ return {
+        id: object._id,
+        value: object.name
+      };
+    });
+  },
   selected: function (event, suggestion, datasetName) {
     var mapsPlaceId = suggestion && suggestion.id;
-    bz.runtime.newPost.location.mapsPlaceId = mapsPlaceId;
+    //bz.runtime.newPost.location.mapsPlaceId = mapsPlaceId;
     // make it look selected:
     $('.js-location-nearby').addClass('selected');
   }

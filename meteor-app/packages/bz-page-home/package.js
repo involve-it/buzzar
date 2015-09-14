@@ -22,6 +22,7 @@ Package.onUse(function (api) {
   api.use('sacha:spin');
   
   api.use('arutune:bz-main');
+  api.use('arutune:bz-control-search');
   api.use('arutune:bz-control-honeycomb');
 
   api.addFiles([
