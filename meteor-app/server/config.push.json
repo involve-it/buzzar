@@ -1,0 +1,11 @@
+{
+  "apn": {
+    "passphrase": "xxxxxxxxx",
+    "key": "apnProdKey.pem",
+    "cert": "apnProdCert.pem"
+  },
+  "production": true,
+  "badge": true,
+  "sound": true,
+  "alert": true
+}
