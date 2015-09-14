@@ -17,9 +17,7 @@ Meteor.startup(function(){
       }
       var userTokens = bz.cols.tokens.find({userId: {$in: userIds}}).fetch();
       _.each(userTokens, function(e){
-        _.each(e.tokens, function(token){
-          tokens.push(token);
-        });
+        tokens = tokens.concat(e.tokens);
       });
       if (tokens.length > 0) {
         notification.tokens = tokens;
