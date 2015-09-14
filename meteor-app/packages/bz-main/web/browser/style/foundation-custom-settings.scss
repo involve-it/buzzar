@@ -16,6 +16,7 @@ $btn-search: rgba(30,188,210, 1);
 $color-white-text: rgba(255,255,255, 1);
 $color-text-placeholder: rgba(255,255,255, .65);
 $content-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
+$font-family: "Roboto", sans-serif;
 
 
 
@@ -41,14 +42,18 @@ $content-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
   }
 }
 
-
+@mixin text-transition {
+  transition:         opacity .25s ease-in-out;
+  -moz-transition:    opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
 
 
 .off-canvas-wrap {
-  height: 100%;
+/*  height: 100%;*/
   
   .inner-wrap {
-    height: 100%;
+/*    height: 100%;*/
     
     .js-button-left-off-canvas {
       position: absolute;
@@ -113,7 +118,7 @@ $content-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
 
 .bz-home-page {
   //TODO: delete after will ending
-  font-family: "Roboto", sans-serif;
+  font-family: $font-family;
   font-size: 14px;
 
   .bz-container {
@@ -189,9 +194,7 @@ $content-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
             font-weight: normal;
             text-decoration: none;
             opacity: .85;
-            transition:         opacity .25s ease-in-out;
-            -moz-transition:    opacity .25s ease-in-out;
-            -webkit-transition: opacity .25s ease-in-out;
+            @include  text-transition;
 
             &:hover {
               opacity: 1;
@@ -372,6 +375,74 @@ $content-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
       }
     }
   }
+
+
+  .bz-footer {
+    background-color:     $bg-input-search-field;
+    color: $color-text-input-search-field;
+    
+    a {
+      font-weight: 100;
+      color: darken($color-text-input-search-field, 20%);
+      opacity: .85;
+      @include  text-transition;
+
+      &:hover {
+        color: $color-text-input-search-field;
+        opacity: 1;
+      }
+    }
+    
+    .bz-inline-list {
+      margin: 0;
+      list-style: none;
+      text-align: center;
+      li {
+        display: inline-block;
+        padding-right: 10px;
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+    
+    .bz-logo-footer {
+      text-transform: uppercase;
+      font-size: 45px;
+      font-weight: bold;
+      opacity: .85;
+      @include  text-transition;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+    
+    .bz-socila-buttons {
+      margin-top: 13px;
+      a {
+        display: inline-block;
+        font-size: 25px;
+        text-align: center;
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
+        border: 1px solid darken($color-text-input-search-field, 20%);
+
+        &:hover {
+          color: $color-text-input-search-field;
+        }
+      }
+      
+      
+    }
+
+    .bz-footer-menu {
+      margin-top: 20px;
+      
+    }
+  }
+  
 }
 
 
@@ -444,6 +515,13 @@ $content-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
           display: none;
         }
       }
+
+
+      .bz-footer {
+        padding: 40px 15px;
+        text-align: center;
+      }
+      
     }
   }
 
@@ -460,7 +538,10 @@ $content-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
     }
     /* END menu*/
 
-    
+    .bz-footer {
+      padding: 80px 40px;
+      
+    }
 
     
     
@@ -504,6 +585,10 @@ $content-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
         .bz-auth {
           display: none;
         }
+      }
+      
+      .bz-footer {
+        padding: 60px 20px;
       }
     }
     
