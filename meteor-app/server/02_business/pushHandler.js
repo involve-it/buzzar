@@ -1,7 +1,6 @@
 /**
  * Created by syurdor on 9/14/2015.
  */
-
 Meteor.startup(function(){
   bz.bus.pushHandler = {
     push: function(userIds, title, msg){
@@ -21,7 +20,7 @@ Meteor.startup(function(){
       });
       if (tokens.length > 0) {
         notification.tokens = tokens;
-        CordovaPush.send(notification);
+        Push.send(notification);
       }
     },
     registerToken: function(userId, token){
