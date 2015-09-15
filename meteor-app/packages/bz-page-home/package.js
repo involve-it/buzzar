@@ -26,19 +26,25 @@ Package.onUse(function (api) {
   api.use('arutune:bz-control-honeycomb');
 
   api.addFiles([
-    'web/router.js',
+    'web/router.js'
   ], 'web');
+  
   api.addFiles([
     'web/browser/app-loading.html',
     'web/browser/page-home.html',
     'web/browser/page-home.js',
-    'web/browser/page-home.less'
+    'web/browser/page-home.less',
+    'web/browser/module-around-you/page-around-you.html',
+    'web/browser/module-around-you/page-around-you.js',
+    'web/browser/module-around-you/page-around-you.less'
   ], 'web.browser');
+  
   api.addFiles([
     'web/cordova/page-home.html',
-    'web/cordova/page-home.js',
+    'web/cordova/page-home.js'
   ], 'web.cordova');
 });
+
 Package.onTest(function (api) {
   api.use('tinytest');
   api.use('arutune:bz-page-home');

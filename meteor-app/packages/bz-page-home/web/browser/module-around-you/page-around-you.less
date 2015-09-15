@@ -1,0 +1,106 @@
+
+
+
+/* MIXIN */
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius:    @radius;
+  border-radius:         @radius;
+}
+
+.display-flex-box() {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flex-flow(@param1, @param2) {
+  -webkit-flex-direction: @param1;
+  flex-direction:         @param1;
+  -webkit-flex-wrap:      @param2;
+  flex-wrap:              @param2;
+}
+
+.flex(@flex-grow, @flex-shrink) {
+  -webkit-flex:   @flex-grow @flex-shrink;
+  flex:           @flex-grow @flex-shrink ;
+}
+
+/* END MIXIN */
+
+
+.bz-around-you {
+  padding: 15px 0;
+  width: 100%;
+  
+  .title {
+    padding: 0 15px;
+  }
+  
+  .bz-items {
+    
+    
+    .bz-item {
+      .display-flex-box();
+      .flex-flow(row, nowrap);
+      
+      
+      .bz-side-a {
+        /*.flex();*/
+        max-width: 85px;
+        height: auto;
+        text-align: center;
+
+
+        .bz-avatar {
+          height: 85px;
+          max-width: 85px;
+          background-color: #cccccc;
+          .border-radius(2px);
+        }
+        
+        .bz-rating {
+          font-size: 7px;
+          padding: 8px 0;
+        }
+        
+        .bz-username {
+          font-size: 12px;
+          color: rgba(155,155,155, .95);
+          margin-top: -5px;
+        }
+      }
+      
+      .bz-side-b {
+        .flex(1, 0);
+        .border-radius(2px);
+        margin-left: 10px;
+        border: 1px solid #cccccc;
+        
+        .bz-photo {
+          overflow: hidden;
+          
+          img {
+            height: auto;
+            max-height: 140px;
+            width: 100% !important;
+            
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+ * Scale
+ */
+
+.bz-overlay-scale {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  transition: all 0.3s ease-out;
+}
+.bz-overlay-hover:hover .bz-overlay-scale {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}

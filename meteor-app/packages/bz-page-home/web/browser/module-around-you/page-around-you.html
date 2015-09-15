@@ -1,0 +1,40 @@
+<template name="aroundYou">
+    <div class="bz-around-you">
+        <h3 class="title">Buzz Around you</h3>
+
+        <div class="bz-items">
+            <div class="row">
+                {{> bzAroundYouItem}}
+    
+                {{> bzAroundYouItem}}
+    
+                {{> bzAroundYouItem}}
+            </div>
+        </div>
+        
+    </div>
+</template>
+
+<template name="bzAroundYouItem">
+    <div class="small-12 medium-6 large-4 columns left">
+        <div class="bz-item">
+            <div class="bz-side-a">
+                <div class="bz-avatar"></div>
+                <div class="bz-rating"></div>
+                <div class="bz-username">Daren Hazbik</div>
+            </div>
+            <div class="bz-side-b">
+                <div class="bz-photo bz-overlay-hover">
+                    <img class="bz-overlay-scale" src="https://images.unsplash.com/17/unsplash_525f012329589_1.JPG?q=80&fm=jpg&s=e084e2db8e7a20b7ff78dec0cce327a4" alt=""/>
+                </div>
+                <div class="bz-distance"></div>
+                <h4 class="bz-title">Sell iPhone 6s</h4>
+                <div class="bz-content"></div>
+                <div class="bz-item-footer">
+                    <div class="bz-price"></div>
+                    <div class="bz-category"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

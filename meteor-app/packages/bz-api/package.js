@@ -38,6 +38,10 @@ Package.onUse(function (api) {
     'client/lib/01_inits/template-helpsers.js',
     'client/lib/rates/jquery.raty.js',
     'client/lib/animate/animate.css',
+    'client/lib/rates/fonts/wbotelhos.eot',
+    'client/lib/rates/fonts/wbotelhos.svg',
+    'client/lib/rates/fonts/wbotelhos.ttf',
+    'client/lib/rates/fonts/wbotelhos.woff',
     'client/lib/rates/jquery.raty.css'
   ], 'client');
 
