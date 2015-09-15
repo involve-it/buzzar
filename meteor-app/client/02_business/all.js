@@ -11,22 +11,23 @@ _.extend(bz.buz, buz);
 
 if (Meteor.isCordova){
   Meteor.startup(function(){
-    CordovaPush.Configure({
+    Push.Configure({
       badge: true,
       sound: true,
       alert: true
     });
 
-    CordovaPush.addListener('token', function(token){
-      Meteor.call('registerPushToken', Meteor.userId(), token);
+    Push.addListener('token', function(token){
+      Meteor.call('registerPushToken', device.uuid, token);
     });
 
-    CordovaPush.addListener('message', function(notification){
+    Push.addListener('message', function(notification){
       //TODO: display notification
     });
 
-    CordovaPush.addListener('startup', function(notification){
+    Push.addListener('startup', function(notification){
       //TODO: display notification
     });
+
   });
 }
