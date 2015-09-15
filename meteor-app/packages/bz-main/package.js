@@ -24,7 +24,8 @@ Package.onUse(function (api) {
     'meteoric:ionic',
     'meteoric:ionic-sass',
     'meteoric:ionicons-sass',
-    'meteoric:autoform-ionic'
+    'meteoric:autoform-ionic',
+    'fortawesome:fontawesome'
   ], 'web.cordova');
 
   api.addFiles([

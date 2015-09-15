@@ -6,6 +6,7 @@
 
 @import "foundation/scss/foundation/components/_global.scss";
 
+
 $bg-input-search-field: rgba(54,60,78, 1);
 $color-text-input-search-field: rgba(255,255,255, .75);
 $height-input-btn: 52px;
@@ -14,6 +15,9 @@ $bg-header-color-1: #51B9C8;
 $btn-search: rgba(30,188,210, 1);
 $color-white-text: rgba(255,255,255, 1);
 $color-text-placeholder: rgba(255,255,255, .65);
+$content-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
+$font-family: "Roboto", sans-serif;
+
 
 
 @mixin color-placeholder {
@@ -38,12 +42,18 @@ $color-text-placeholder: rgba(255,255,255, .65);
   }
 }
 
+@mixin text-transition {
+  transition:         opacity .25s ease-in-out;
+  -moz-transition:    opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+
 
 .off-canvas-wrap {
-  height: 100%;
+/*  height: 100%;*/
   
   .inner-wrap {
-    height: 100%;
+/*    height: 100%;*/
     
     .js-button-left-off-canvas {
       position: absolute;
@@ -108,7 +118,7 @@ $color-text-placeholder: rgba(255,255,255, .65);
 
 .bz-home-page {
   //TODO: delete after will ending
-  font-family: "Roboto", sans-serif;
+  font-family: $font-family;
   font-size: 14px;
 
   .bz-container {
@@ -185,9 +195,7 @@ $color-text-placeholder: rgba(255,255,255, .65);
             font-weight: normal;
             text-decoration: none;
             opacity: .85;
-            transition:         opacity .25s ease-in-out;
-            -moz-transition:    opacity .25s ease-in-out;
-            -webkit-transition: opacity .25s ease-in-out;
+            @include  text-transition;
 
             &:hover {
               opacity: 1;
@@ -207,6 +215,65 @@ $color-text-placeholder: rgba(255,255,255, .65);
           position: relative;
           max-width: 650px;
           margin: 0 auto;
+
+			.bz-distance {
+              position: absolute;
+              top: 15px;
+              right: -55px;
+              min-width: 200px;
+              z-index: 100;
+              font-weight: 100;
+
+              /* Customize own dropdown */
+              .f-dropdown {
+
+                &.content {
+                  top: 25px !important;
+                  color: $color-text-input-search-field;
+                  background: lighten($bg-input-search-field, 5%);
+                  border: none;
+                  padding: 0;
+                  box-shadow: $content-box-shadow;
+
+                  label {
+                    font-weight: 100;
+                    color: $color-text-input-search-field;
+                    padding: 6px 10px;
+                    line-height: 32px;
+                    border-bottom: 1px solid lighten($bg-input-search-field, 10%);
+                    transition:         background .25s ease-in-out;
+                    -moz-transition:    background .25s ease-in-out;
+                    -webkit-transition: background .25s ease-in-out;
+
+                    &:hover {
+                      background: lighten($bg-input-search-field, 3%);
+                    }
+
+                    input {
+                      margin: 0 15px 0 0;
+                      padding-right: 15px;
+                    }
+                  }
+                  
+                }
+                &:before {
+                  border-color: transparent transparent lighten($bg-input-search-field, 5%) transparent;
+                }
+                &:after {
+                  border-color: transparent transparent lighten($bg-input-search-field, 5%) transparent;
+                }
+              }
+
+              /**/
+              
+              > div {
+                  outline: none;
+              }
+              
+              a {
+                  color: $color-text-input-search-field;
+              }
+			}
 
 
           .bz-category-buttons, .search-field {
@@ -242,10 +309,12 @@ $color-text-placeholder: rgba(255,255,255, .65);
           .search {
             position: relative;
             height:               $height-input-btn;
+	  
             
             .search-field {
               top: 0;
-              
+
+				
 
               input {
                 padding: 0;
@@ -307,6 +376,74 @@ $color-text-placeholder: rgba(255,255,255, .65);
       }
     }
   }
+
+
+  .bz-footer {
+    background-color:     $bg-input-search-field;
+    color: $color-text-input-search-field;
+    
+    a {
+      font-weight: 100;
+      color: darken($color-text-input-search-field, 20%);
+      opacity: .85;
+      @include  text-transition;
+
+      &:hover {
+        color: $color-text-input-search-field;
+        opacity: 1;
+      }
+    }
+    
+    .bz-inline-list {
+      margin: 0;
+      list-style: none;
+      text-align: center;
+      li {
+        display: inline-block;
+        padding-right: 10px;
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+    
+    .bz-logo-footer {
+      text-transform: uppercase;
+      font-size: 45px;
+      font-weight: bold;
+      opacity: .85;
+      @include  text-transition;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+    
+    .bz-socila-buttons {
+      margin-top: 13px;
+      a {
+        display: inline-block;
+        font-size: 25px;
+        text-align: center;
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
+        border: 1px solid darken($color-text-input-search-field, 20%);
+
+        &:hover {
+          color: $color-text-input-search-field;
+        }
+      }
+      
+      
+    }
+
+    .bz-footer-menu {
+      margin-top: 20px;
+      
+    }
+  }
+  
 }
 
 
@@ -379,6 +516,13 @@ $color-text-placeholder: rgba(255,255,255, .65);
           display: none;
         }
       }
+
+
+      .bz-footer {
+        padding: 40px 15px;
+        text-align: center;
+      }
+      
     }
   }
 
@@ -395,7 +539,10 @@ $color-text-placeholder: rgba(255,255,255, .65);
     }
     /* END menu*/
 
-    
+    .bz-footer {
+      padding: 80px 40px;
+      
+    }
 
     
     
@@ -439,6 +586,10 @@ $color-text-placeholder: rgba(255,255,255, .65);
         .bz-auth {
           display: none;
         }
+      }
+      
+      .bz-footer {
+        padding: 60px 20px;
       }
     }
     

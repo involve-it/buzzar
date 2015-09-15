@@ -17,8 +17,6 @@ Template.postsPlacesAutoform.created = function () {
 
 Template.postsPlacesAutoform.onRendered(function () {
   this.autorun(function () {
-    debugger;
-
     if (GoogleMaps.loaded() && Session.get('bz.api.loc')) {
       var map = document.createElement('div');
       var service = new google.maps.places.PlacesService(map);
