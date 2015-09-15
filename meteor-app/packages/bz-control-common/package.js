@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'arutune:bz-control-search',
+  name: 'arutune:bz-control-common',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -10,25 +10,21 @@ Package.describe({
   documentation: 'README.md'
 });
 
-Package.onUse(function (api) {
+Package.onUse(function(api) {
   api.versionsFrom('1.1.0.3');
-
   api.use(['templating', 'less'], 'client');
-  api.use(['arutune:bz-control-common'], 'client');
+
+  api.addFiles('bz-control-common.js');
 
   api.addFiles([
-    'style/search.less',
-    'client/search.html',
-    'client/search.js',
-    'resources/t9-en.js'
-  ], 'client');
-
-  api.addFiles('bz-control-search.js');
-
+      'client/browser/category-list-buttons.html',
+      'client/browser/category-list-buttons.js',
+      'client/browser/category-list-buttons.less'
+  ], 'web.browser');
 });
 
-Package.onTest(function (api) {
+Package.onTest(function(api) {
   api.use('tinytest');
-  api.use('arutune:bz-control-search');
-  api.addFiles('bz-control-search-tests.js');
+  api.use('arutune:bz-control-common');
+  api.addFiles('bz-control-common-tests.js');
 });

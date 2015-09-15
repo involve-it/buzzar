@@ -2,7 +2,7 @@
  * Created by ashot on 7/26/15.
  */
 Meteor.methods({
-  getLocation : function(a, b, c) {
+  getCurrentLocation : function(a, b, c) {
   },
   parseHtml: function(html) {
     var ret = bz.bus.parseHtml(html);
@@ -34,6 +34,9 @@ Meteor.methods({
   },
   reportLocation: function(userId, lat, lng){
     return bz.bus.proximityHandler.reportLocation(userId, lat, lng);
+  },
+  registerPushToken: function(deviceId, token){
+    bz.bus.pushHandler.registerToken(deviceId, token);
   }
 });
 

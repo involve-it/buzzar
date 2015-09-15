@@ -9,26 +9,30 @@
 var Maps = {
   initLocation: function () {
     bz.help.makeNamespace('bz.runtime.maps');
-    this.getLocation(function(loc){
-      debugger;
-      Session.set('loc', loc);
+    this.getCurrentLocation(function(loc){
+      Session.set('bz.api.loc', loc);
     });
     //}
   },
-  getLocation: function(callback){
+  getCurrentLocation: function(callback){
     var args = Array.prototype.slice.apply(arguments).slice(1);
     var that = this;
-    navigator.geolocation.getCurrentPosition(function (a) {
+    var loc = {
+      lat:   37.879568,
+      lng: -122.183728
+    }
+    args.unshift(loc)
+    callback.apply(that, args);
+    /*navigator.geolocation.getCurrentPosition(function (a) {
       //bz.runtime.maps.currentGeoposition = a;
       var loc = {
         lat: a.coords.latitude,
         lng: a.coords.longitude
       };
       //bz.runtime.maps.loc = loc;
-      debugger;
       args.unshift(loc)
       callback.apply(that, args);
-    });
+    });*/
   },
   initPlaces: function () {
     if (!bz.runtime.maps.places && !bz.help.collectionExists('maps.places')) {

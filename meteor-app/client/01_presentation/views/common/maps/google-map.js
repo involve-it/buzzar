@@ -54,7 +54,7 @@ function load() {
     var query = Session.get('runtime.searchText'),
         posts,
         map = GoogleMaps.maps.map.instance, latitude, longitude,
-        activeCats = Session.get('activeCategoryIds');
+        activeCats = Session.get('bz.control.category-list.activeCategories');
     if (!query && query === undefined) {
       query = '';
     }

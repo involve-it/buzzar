@@ -9,3 +9,7 @@ Accounts.validateNewUser(function(user) {
   // disable automatic registration for now:
   return false;
 });
+
+Accounts.onLogin(function(user){
+  console.log(user);
+});
