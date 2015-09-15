@@ -9,7 +9,7 @@
 
 $bg-input-search-field: rgba(54,60,78, 1);
 $color-text-input-search-field: rgba(255,255,255, .75);
-$height-input-btn: 52px;
+/*$height-input-btn: 52px;*/
 $bg-header-color-2: #87D0BF;
 $bg-header-color-1: #51B9C8;
 $btn-search: rgba(30,188,210, 1);
@@ -20,27 +20,7 @@ $font-family: "Roboto", sans-serif;
 
 
 
-@mixin color-placeholder {
-  ::-webkit-input-placeholder {
-    color: $color-text-placeholder;
-    font-weight: 100;
-  }
-  
-  :-moz-placeholder { /* Firefox 18- */
-    color: $color-text-placeholder;
-    font-weight: 100;
-  }
-  
-  ::-moz-placeholder {  /* Firefox 19+ */
-    color: $color-text-placeholder;
-    font-weight: 100;
-  }
-  
-  :-ms-input-placeholder {
-    color: $color-text-placeholder;
-    font-weight: 100;
-  }
-}
+
 
 @mixin text-transition {
   transition:         opacity .25s ease-in-out;
@@ -203,177 +183,7 @@ $font-family: "Roboto", sans-serif;
           }
         }
       }
-
-      .bz-search {
-        padding: 150px 0;
-        width: 850px;
-        margin: 0 auto;
-
-        
-
-        .box-search {
-          position: relative;
-          max-width: 650px;
-          margin: 0 auto;
-
-			.bz-distance {
-              position: absolute;
-              top: 15px;
-              right: -55px;
-              min-width: 200px;
-              z-index: 100;
-              font-weight: 100;
-
-              /* Customize own dropdown */
-              .f-dropdown {
-
-                &.content {
-                  top: 25px !important;
-                  color: $color-text-input-search-field;
-                  background: lighten($bg-input-search-field, 5%);
-                  border: none;
-                  padding: 0;
-                  box-shadow: $content-box-shadow;
-
-                  label {
-                    font-weight: 100;
-                    color: $color-text-input-search-field;
-                    padding: 6px 10px;
-                    line-height: 32px;
-                    border-bottom: 1px solid lighten($bg-input-search-field, 10%);
-                    transition:         background .25s ease-in-out;
-                    -moz-transition:    background .25s ease-in-out;
-                    -webkit-transition: background .25s ease-in-out;
-
-                    &:hover {
-                      background: lighten($bg-input-search-field, 3%);
-                    }
-
-                    input {
-                      margin: 0 15px 0 0;
-                      padding-right: 15px;
-                    }
-                  }
-                  
-                }
-                &:before {
-                  border-color: transparent transparent lighten($bg-input-search-field, 5%) transparent;
-                }
-                &:after {
-                  border-color: transparent transparent lighten($bg-input-search-field, 5%) transparent;
-                }
-              }
-
-              /**/
-              
-              > div {
-                  outline: none;
-              }
-              
-              a {
-                  color: $color-text-input-search-field;
-              }
-			}
-
-
-          .bz-category-buttons, .search-field {
-            z-index: 5;
-            left: 0;
-            right: 60px;
-            position: absolute;
-          }
-          
-          
-          .bz-category-buttons {
-            top:-50px;
-
-            .control--category-list-buttons {
-
-              li {
-                cursor: pointer;
-                font-weight: normal;
-                font-size: 14px;
-                background: transparent;
-                border: 1px solid rgba(255,255,255, 1);
-                color: rgba(255,255,255, 1);
-                opacity: .5;
-                padding: 0 13px;
-
-                &.active {
-                  opacity: 1;
-                }
-              }
-            }
-          }
-
-          .search {
-            position: relative;
-            height:               $height-input-btn;
-	  
-            
-            .search-field {
-              top: 0;
-
-				
-
-              input {
-                padding: 0;
-                text-indent: 10px;
-                width: 100%;
-                height:               $height-input-btn;
-                border: 0;
-                margin: 0;
-                outline: none;
-                background-color:     $bg-input-search-field;
-                color:                $color-text-input-search-field;
-              }
-              
-              @include color-placeholder;
-            }
-            
-            
-
-            .bz-btn-search {
-              position: absolute;
-              outline: none;
-              top: 0;
-              right: 0;
-              z-index: 6;
-              height:                 $height-input-btn;
-              width: 60px;
-              border: none;
-              padding: 0 12px;
-              background-color:       $btn-search;
-              color: rgba(255,255,255, .9);
-              font-weight: 300;
-              text-transform: uppercase;
-              
-              &:before {
-                background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDE1IDIwIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI2ZmZiIgZD0iTTE0LjUzMiwxOS4yMjJsLTEuMzksMC42NzFjLTAuNTQ4LDAuMjY1LTEuMjE3LDAuMDUyLTEuNDkzLTAuNDc2CWwtMi45NjEtNS42MzdsLTAuNzAyLDAuMTE4QzcuNjU2LDEzLjk0Nyw3LjMyOCwxNCw2Ljk4NSwxNEMzLjExOSwxNCwwLDEwLjg2NiwwLDdjMC0zLjg2NiwzLjExOS03LDYuOTg1LTdzNywzLjEzNCw3LDcJYzAsMS45NjEtMC44MTIsMy43MjktMi4xMTEsNWwtMC4wNzcsMC4wNzhsMy4wMjksNS44MDVDMTUuMTAzLDE4LjQxMSwxNS4wODEsMTguOTU3LDE0LjUzMiwxOS4yMjJ6IE0xMS45ODUsN2MwLTIuNzYxLTIuMjM5LTUtNS01CXMtNSwyLjIzOS01LDVjMCwyLjc2MiwyLjIzOSw1LDUsNVMxMS45ODUsOS43NjIsMTEuOTg1LDd6Ii8+PC9zdmc+");
-                background-repeat: no-repeat;
-                width: 15px;
-                height: 20px;
-                position: relative;
-                display: inline-block;
-                margin: 0 0 0 -1px;
-                background-size: 100%;
-                content: '';
-                vertical-align: middle;
-              }
-            }
-          }
-
-          .bz-location-hint {
-            padding: 7px 0;
-            color: rgba(255,255,255,.75);
-            font-weight: 100;
-
-            .warning-hint {
-              color: rgba(255,206,60, 1);
-            }
-          }
-        }
-      }
+      
     }
   }
 

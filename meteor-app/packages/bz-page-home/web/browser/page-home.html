@@ -33,6 +33,7 @@
                             <i class="icon ion-search placeholder-icon"></i>
                             <!--<div class="search-field"><input type="search" placeholder="I am looking for OR I am going to ..." name="searchword"  autocomplete="off"></div>-->
                             {{> bzControlSearch }}
+                            {{> bzDistance }}
                         </form>
                         
                         <div class="bz-location-hint">
@@ -142,7 +143,7 @@
 
 <template name="bzDistance">
     <div class="bz-distance">
-        <a data-dropdown="dropdown-distance" aria-controls="dropdown-distance" aria-expanded="false">{{t9n 'distance'}} &raquo;</a>
+        <a data-dropdown="dropdown-distance" aria-controls="dropdown-distance" aria-expanded="true">{{t9n 'distance'}} &raquo;</a>
         <div id="dropdown-distance" data-dropdown-content class="f-dropdown content" aria-hidden="true" tabindex="-1">
             <div>
                 <label for="distance1">

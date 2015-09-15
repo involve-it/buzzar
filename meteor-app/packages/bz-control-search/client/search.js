@@ -41,10 +41,10 @@ Template.bzControlSearch.helpers({
   },
   joinedArray: function () {
     var ret = [{
-      name: 'nba-teams',
+      name: 'google-places',
       valueKey: 'name',
       template: 'googlePlacesItem',
-      //header: '<h3 class="league-name">Google Places</h3>',
+      header: '<h3 class="league-name">Google Places</h3>',
       local: function () {
         ret = bz.runtime.maps.places.find().fetch().map(function (item) {
           return item;
@@ -54,10 +54,10 @@ Template.bzControlSearch.helpers({
       }
     },
       {
-        name: 'nhl-teams',
+        name: 'post-found',
         valueKey: 'name',
         template: 'postFoundItem',
-        //header: '<h3 class="league-name">NHL Teams</h3>',
+        header: '<h3 class="league-name">Post found</h3>',
         local: function () {
           //console.log(Session.get('bz.control.category-list.activeCategories'));
           var searchSelector, catList = Session.get('bz.control.category-list.activeCategories');
