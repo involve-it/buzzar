@@ -9,3 +9,10 @@ Template.bzAroundYouItem.rendered = function() {
     starType: 'i'
   });
 };
+
+
+Template.bzAroundYouItem.helpers({
+  categoryType: function() {
+    return 'trade';  
+  }
+});

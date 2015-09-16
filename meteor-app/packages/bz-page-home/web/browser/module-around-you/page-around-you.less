@@ -1,5 +1,6 @@
 
-
+@max-width-side-b: 280px;
+@white-color-text: rgba(255,255,255, 1);
 
 /* MIXIN */
 .border-radius(@radius) {
@@ -20,9 +21,37 @@
   flex-wrap:              @param2;
 }
 
+.justify-content(@param) {
+  -webkit-justify-content: @param;
+  justify-content: @param;
+}
+
 .flex(@flex-grow, @flex-shrink) {
   -webkit-flex:   @flex-grow @flex-shrink;
   flex:           @flex-grow @flex-shrink ;
+}
+
+.align-items(@param) {
+  -webkit-align-items: @param;
+  align-items: @param;
+}
+
+.bz-btn-category() {
+  height: 26px;
+  .border-radius(2px);
+  font-size: 12px;
+  padding: 6px 8px;
+  margin: 5px 0;
+}
+
+.type-category() {
+  /*Category type*/
+  &.type-category-trade     {background-color: rgba(81,185,200, 1);}
+  &.type-category-jobs      {background-color: rgba(121,121,121, 1);}
+  &.type-category-help      {background-color: rgba(121,206,33, 1);}
+  &.type-category-connect   {background-color: rgba(30,188,210, 1);}
+  &.type-category-housing   {background-color: rgba(241,186,56, 1);}
+  &.type-category-events    {background-color: rgba(0,150,136, 1);}
 }
 
 /* END MIXIN */
@@ -34,14 +63,18 @@
   
   .title {
     padding: 0 15px;
+    margin: 30px 0 15px 0;
   }
   
   .bz-items {
-    
+    .row {
+      max-width: 80rem;
+    }
     
     .bz-item {
       .display-flex-box();
       .flex-flow(row, nowrap);
+      margin-bottom: 30px;
       
       
       .bz-side-a {
@@ -75,9 +108,22 @@
         .border-radius(2px);
         margin-left: 10px;
         border: 1px solid #cccccc;
+        max-width: @max-width-side-b;
         
         .bz-photo {
+          position: relative;
           overflow: hidden;
+          z-index: 100;
+          &:after {
+            position: absolute;
+            content: '';
+            left: 0;
+            top: 0;
+            height: 36px;
+            width: 100%;
+            background-color: rgba(0,0,0, .4);
+            z-index: 101;
+          }
           
           img {
             height: auto;
@@ -86,10 +132,71 @@
             
           }
         }
+        
+        .bz-distance {
+          color: @white-color-text;
+          font-size: 12px;
+          font-weight: 100;
+          opacity: .95;
+          position: absolute;
+          top: 0;
+          right: 15px;
+          z-index: 102;
+          line-height: 36px;
+          
+          i {
+            padding-right: 3px;
+          }
+        }
+        
+        .bz-title {
+          font-size: 16px;
+          padding: 0 10px;
+          margin: 5px 0;
+        }
+        
+        .bz-content {
+          padding: 0 10px;
+          
+          p {
+            font-weight: 100;
+            font-size: 14px;
+            line-height: 1.4;
+          }
+        }
+        
+        .bz-item-footer {
+          min-height: 42px;
+          border-top: 1px solid rgba(0,0,0, .3);
+          padding: 0 10px;
+          .display-flex-box();
+          .justify-content(space-between);
+          .align-items(center);
+          
+          .bz-price {
+            font-size: 18px;
+            font-weight: 100;
+            
+            .bz-prefix {
+              font-weight: normal;
+            }
+          }
+          
+          .bz-category {
+            
+            .bz-btn-category {
+              /* button settings of the category type */
+              .bz-btn-category();
+              
+             .type-category();
+            }
+          }
+        }
       }
     }
   }
 }
+
 
 /*
  * Scale
@@ -98,9 +205,36 @@
 .bz-overlay-scale {
   -webkit-transform: scale(1);
   transform: scale(1);
+  -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
-.bz-overlay-hover:hover .bz-overlay-scale {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+
+.bz-overlay-hover:hover {
+  .bz-overlay-scale {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+/*
+ * Position cover on the photo
+ */
+
+.bz-position-cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 102;
+}
+
+
+
+@media only screen and (max-width: 40em) {
+
+  /* General menu from 0px to 640px */
+  .bz-item {
+    .justify-content(center);
+  }
 }
