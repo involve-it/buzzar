@@ -31,6 +31,20 @@ Template.bzControlSearch.onRendered(function () {
       fillNearByPlacesFromLocation(Session.get('bz.api.loc'), 1000);
     }
   });
+
+  /*$('.js-nearby-places').typeahead(/!* init *!/).on('typeahead:beforeclose', function($e) {
+   debugger;
+   $e.preventDefault();
+   });
+   $(document).on('click', function(e, e1){
+   debugger;
+   });*/
+  /*  $('#typeahead-input').on('typeahead:closed', function(e, d) {
+   $('#typeahead-input').focus();
+   });
+   ///
+
+   */
 });
 
 Template.bzControlSearch.helpers({
@@ -43,6 +57,7 @@ Template.bzControlSearch.helpers({
     var ret = [{
       name: 'google-places',
       valueKey: 'name',
+      displayKey: 'name',
       template: 'googlePlacesItem',
       header: '<h3 class="league-name">Google Places</h3>',
       local: function () {
@@ -56,6 +71,7 @@ Template.bzControlSearch.helpers({
       {
         name: 'post-found',
         valueKey: 'name',
+        displayKey: 'name',
         template: 'postFoundItem',
         header: '<h3 class="league-name">Post found</h3>',
         local: function () {
