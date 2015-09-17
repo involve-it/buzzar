@@ -4,6 +4,7 @@
 
 @height-input-btn: 52px;
 @btn-search: rgba(30,188,210, 1);
+@bz-input-field-margin-right: 100px;
 
 @color-text-placeholder: rgba(255, 255, 255, .85);
 @color-text-input-search-field: rgba(255,255,255, .75);
@@ -50,9 +51,8 @@
 
     .bz-distance {
       position: absolute;
-      top: 15px;
-      right: -55px;
-      min-width: 200px;
+      top: 0;
+      right: 60px;
       z-index: 10006;
       font-weight: 100;
 
@@ -70,7 +70,7 @@
     .bz-category-buttons, .search-field {
       z-index: 10005;
       left: 0;
-      right: 60px;
+      right: 0;
       position: absolute;
     }
 
@@ -115,6 +115,11 @@
 .bz-control--search {
   position: relative;
   height:                   @height-input-btn;
+
+  .bz-search-size {
+    margin-right: @bz-input-field-margin-right;
+    padding-right: 60px;
+  }
 
   /* Disable typeahead background style*/
   .tt-input {
@@ -216,7 +221,7 @@
     top: 0;
   
     input {
-      padding: 0;
+      padding: 0 10px 0 0;
       text-indent: 10px;
       width: 100%;
       height:               @height-input-btn;
@@ -234,7 +239,7 @@
     position: absolute;
     outline: none;
     top: 0;
-    right: -60px;
+    right: 0;
     z-index: 10006;
     height:                 @height-input-btn;
     width: 60px;
@@ -261,11 +266,97 @@
 }
 
 
+
+/* Customize select elements */
+
+.bz-dropdown {
+
+
+  .custom-dropdown-area {
+    min-width: @bz-input-field-margin-right;
+
+    &:hover {
+      .custom-dropdown-button, .custom-dropdown-options {
+        background-color: lighten(@bg-input-search-field, 5%);
+        border: none;
+
+        &:before {
+          border-color: transparent transparent lighten(@bg-input-search-field, 5%) transparent;
+        }
+        &:after {
+          border-color: transparent transparent lighten(@bg-input-search-field, 5%) transparent;
+        }
+      }
+      .custom-dropdown-options {}
+    }
+
+    .custom-dropdown-button {
+      border: none;
+      color: @color-text-input-search-field;
+      background-color: @bg-input-search-field;
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+);
+      height: @height-input-btn;
+      background-position: 100% center;
+      background-repeat: no-repeat;
+      line-height: @height-input-btn;
+      padding: 0 25px 0 8px;
+      text-align: center;
+    }
+    
+    .custom-dropdown-options {
+      background-color: lighten(@bg-input-search-field, 3%);
+      border: none;
+      box-shadow: @content-box-shadow;
+      margin-top: 0;
+
+      li.disabled {
+        /*background-color: @bg-input-search-field;*/
+        font-weight: 100;
+        color: rgba(180,180,180, .9);
+        text-transform: uppercase;
+        font-size: 12px;
+        text-align: center;
+      }
+      
+      li {
+        color: @color-text-input-search-field;
+        border-bottom: 1px solid lighten(@bg-input-search-field, 10%);
+        transition:         background .25s ease-in-out;
+        -moz-transition:    background .25s ease-in-out;
+        -webkit-transition: background .25s ease-in-out;
+
+        &:hover {
+          background: lighten(@bg-input-search-field, 3%);
+        }
+        
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      &:before {
+        border-color: transparent transparent lighten(@bg-input-search-field, 3%) transparent;
+      }
+      &:after {
+        border-color: transparent transparent lighten(@bg-input-search-field, 3%) transparent;
+      }
+    } 
+  }
+}
+
+
+
+
+/* END Customize select elements */
+
+
+
 /* Customize own dropdown */
-.f-dropdown {
+/*.f-dropdown {
 
   &.content {
-    top: 25px !important;
+    top: 35px !important;
+    left: -115px !important;
     color: @color-text-input-search-field;
     background: lighten(@bg-input-search-field, 5%);
     border: none;
@@ -299,7 +390,7 @@
   &:after {
     border-color: transparent transparent lighten(@bg-input-search-field, 5%) transparent;
   }
-} /* END Customize own dropdown */
+}*/ /* END Customize own dropdown */
 
 
 
@@ -313,6 +404,11 @@
 }
 
 
+@media only screen and (max-width: 40em) {
+  .custom-dropdown-options {
+    margin-left: -8px !important;
+  }
+}
 
 
 

@@ -29,14 +29,15 @@ Package.onUse(function (api) {
   ], 'web.cordova');
 
   api.addFiles([
-	  
+    'web/browser/style/foundation/js/foundation-select.js',
     'web/browser/style/foundation/js/foundation.js',
-	'web/browser/style/foundation/js/foundation/foundation.dropdown.js',
+	  'web/browser/style/foundation/js/foundation/foundation.dropdown.js',
     'web/browser/style/foundation/js/foundation/foundation.offcanvas.js'
 
   ], 'web.browser');
   
   api.addFiles([
+    'web/browser/style/foundation/foundation-select.css',
     'web/browser/style/foundation-main.scss',
     'web/browser/style/foundation-custom-settings.scss',
     /*'web/browser/style/foundation/scss/foundation/components/_buttons.scss',*/

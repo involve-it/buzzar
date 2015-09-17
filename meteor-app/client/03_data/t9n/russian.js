@@ -17,6 +17,7 @@ var ru;
         distance:             'Дистанция',
         mile:                 'миля',
         miles:                 'миль',
+        ft:                 'футов'
     };
 
 T9n.map('ru', ru);
