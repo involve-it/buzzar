@@ -117,8 +117,9 @@
   height:                   @height-input-btn;
 
   .bz-search-size {
-    margin-right: @bz-input-field-margin-right;
-    padding-right: 60px;
+    /*margin-right: @bz-input-field-margin-right;*/
+    margin-right: 60px;
+    /*padding-right: 60px;*/
   }
 
   /* Disable typeahead background style*/
@@ -221,7 +222,7 @@
     top: 0;
   
     input {
-      padding: 0 10px 0 0;
+      padding: 0 100px 0 0;
       text-indent: 10px;
       width: 100%;
       height:               @height-input-btn;
@@ -266,11 +267,9 @@
 }
 
 
-
 /* Customize select elements */
 
 .bz-dropdown {
-
 
   .custom-dropdown-area {
     min-width: @bz-input-field-margin-right;
@@ -343,11 +342,28 @@
     } 
   }
 }
-
-
-
-
 /* END Customize select elements */
+
+
+.search-field {
+  .twitter-typeahead {
+    width: 100%;
+  }
+}
+
+
+@media only screen and (max-width: 40em) {
+  .custom-dropdown-options {
+    margin-left: -8px !important;
+  }
+}
+
+
+
+
+
+
+
 
 
 
@@ -391,34 +407,3 @@
     border-color: transparent transparent lighten(@bg-input-search-field, 5%) transparent;
   }
 }*/ /* END Customize own dropdown */
-
-
-
-
-
-
-.search-field {
-  .twitter-typeahead {
-    width: 100%;
-  }
-}
-
-
-@media only screen and (max-width: 40em) {
-  .custom-dropdown-options {
-    margin-left: -8px !important;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
