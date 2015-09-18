@@ -1,54 +1,51 @@
 <template name="postsPlacesAutoform">
     <div class="view--places-autoform">
-        <label class="item item-input item-stacked-label">
-            <span class="input-label">Location</span>
-
-            <div class="list list-inset">
-                <div class="row choose-place-buttons">
-                    <div class="card current-location-btn">
-                        <a class="button button-clear button-calm js-current-location-a">
-                            {{#if isAndroid}}
-                                <!--{{> ionIcon icon='ion-android-locate'}}-->
-                                <i class="icon ion-android-locate placeholder-icon"></i>
-                            {{else}}
-                                <i class="icon ion-navigate placeholder-icon"></i>
-                            {{/if}}
-                        </a>
+        <div class="clearfix">
+            <label class="item item-input item-stacked-label">
+                <div class="medium-3 input-label left">Location</div>
+    
+                <div class="medium-5 large-7 left list list-inset">
+                    <div cdivs="row choose-place-buttons">
+                        <div class="card current-location-btn left">
+                            <a class="button small button-calm js-current-location-a">
+                                <i class="fa fa-location-arrow placeholder-icon"></i>
+                            </a>
+                        </div>
+                        <!--<div class="place-btn padding">-->
+                        <div class="card location-nearby js-location-nearby left">
+                            <input class="form-control typeahead capitalize js-nearby-places" name="team" type="text"
+                                   placeholder="place nearby"
+                                   data-source="placesArray"
+    
+                                   autocomplete="on" spellcheck="off"
+                                   data-opened="opened" data-selected="selected"
+                                   data-min-length="0"
+                                   data-autocompleted="autocompleted"
+                                    />
+                        </div>
+                        <!--<div class="place-btn padding">-->
+                        <div class="card left">
+                            <button class="button small js-my-places-button" data-ion-popover="myPlacesPopover">
+                                My places
+                            </button>
+                            <!--<label class="item item-input item-select item-stacked-label">
+                                <div class="input-label">
+                                    My Places
+                                </div>
+                                <select class="js-charity-type-select">
+                                    <option value="roommates">Lost my pet</option>
+                                    <option value="rent">Need money for food</option>
+                                    <option value="buy">Emergency situation</option>
+                                    <option value="buy">Other:</option>
+                                </select>
+                            </label>-->
+    
+                        </div>
                     </div>
-                    <!--<div class="place-btn padding">-->
-                    <div class="card location-nearby js-location-nearby">
-                        <input class="form-control typeahead capitalize js-nearby-places" name="team" type="text"
-                               placeholder="place nearby"
-                               data-source="placesArray"
-
-                               autocomplete="on" spellcheck="off"
-                               data-opened="opened" data-selected="selected"
-                               data-min-length="0"
-                               data-autocompleted="autocompleted"
-                                />
-                    </div>
-                    <!--<div class="place-btn padding">-->
-                    <div class="card">
-                        <button class="button button-clear js-my-places-button" data-ion-popover="myPlacesPopover">
-                            My places
-                        </button>
-                        <!--<label class="item item-input item-select item-stacked-label">
-                            <div class="input-label">
-                                My Places
-                            </div>
-                            <select class="js-charity-type-select">
-                                <option value="roommates">Lost my pet</option>
-                                <option value="rent">Need money for food</option>
-                                <option value="buy">Emergency situation</option>
-                                <option value="buy">Other:</option>
-                            </select>
-                        </label>-->
-
-                    </div>
+    
                 </div>
-
-            </div>
-        </label>
+            </label>
+        </div>
     </div>
 
 </template>

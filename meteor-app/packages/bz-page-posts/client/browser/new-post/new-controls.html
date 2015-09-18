@@ -1,109 +1,169 @@
 <template name="postsNewForm">
 
-    <div class="item item-divider">
+    <div class="item item-divider ">
         <h3 class="title">Basic</h3>
     </div>
-    {{> postsNewUrl }}
-    {{> postTypeSelect }}
-    {{> postsPlacesAutoform }}
+    
+    <div class="item-group">
+        {{> postsNewUrl }}
+        {{> postTypeSelect }}
+        {{> postsPlacesAutoform }}
+    </div>
+    
     <div class="item item-divider">
         <h3 class="title">Post Details</h3>
     </div>
-    {{> postDetailsCommon }}
-    {{> postPhotoUpload }}
-    <div class="js-post-details-categorized"></div>
-    {{> postHashesControl }}
 
+    <div class="item-group">
+        <div class="clearfix">
+            <div class="medium-3 input-label left">
+                {{> postPhotoUpload }}
+            </div>
+            
+            <div class="medium-5 large-7 left">
+                {{> postDetailsCommon }}
+            </div>
+        </div>    
+        <div class="js-post-details-categorized"></div>
+        {{> postHashesControl }}
+    </div>
+ 
 </template>
 
 <template name="postTypeSelect">
-    <label class="item item-input item-select">
-        <div class="input-label">Select type</div>
-        <select class="js-post-type-select">
-            {{#each getSiteTypes }}
-                <option value="{{ name }}">{{ fullName }}</option>
-            {{/each}}
-        </select>
-    </label>
+    <div class="clearfix">
+        <label class="item item-input item-select">
+            <div class="medium-3 input-label left">Select type</div>
+            <div class="medium-5 large-7 left">
+                <select class="js-post-type-select">
+                    {{#each getSiteTypes }}
+                        <option value="{{ name }}">{{ fullName }}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </label>
+    </div>
 </template>
 
 <!--Forms for different types:-->
 <template name="postDetailsCommon">
-    <div class="item-details">
+    <div class="clearfix">
+        <div class="item-details">
+    
+            <label class="item item-input">
+                <div class="input-label">Title</div>
+                <div class="">
+                <input class="js-post-title" type="text" label-type="stacked" name="title" required=""
+                       data-schema-key="title" maxlength="200" value="{{ getTitle }}">
+                </div>
+            </label>
+            
+            <label type="stacked" class="item item-input item-stacked-label">
+                <div class="input-label">Description</div>
+                <div class="">
+                <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
+                          data-schema-key="body" value="{{ getDescription }}"></textarea>
+                </div>
+            </label>
+            
+        </div>
+    </div>
+</template>
 
-        <label class="item item-input">
-            <span class="input-label">Title</span>
-            <input class="js-post-title" type="text" label-type="stacked" name="title" required=""
-                   data-schema-key="title" maxlength="200" value="{{ getTitle }}">
-        </label>
-        <label type="stacked" class="item item-input item-stacked-label">
-            <span class="input-label">Description</span>
-            <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
-                      data-schema-key="body" value="{{ getDescription }}"></textarea>
+<template name="postPhotoUpload">
+    <div class="post-photo-upload">
+        <!--<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>-->
+        <div class="bz-owner-photo-wrap">
+            <div class="img-avatar" data-action="edit-avatar">
+                <img src="{{ getImageSrc }}" width="160" height="160">
+            </div>
+        </div>
+        <!--<a class="js-get-picture button">get pic</a>
+        <br/>
+        <a class="js-get-picture-lib button">get pic lib</a>-->
+    </div>
+</template>
+
+<template name="postDetailsHelp">
+    <div class="clearfix padding-top">
+        <label class="item item-input item-select">
+            <div class="medium-3 input-label left">What happened?</div>
+            <div class="medium-5 large-7 left">
+                <select class="js-charity-type-select">
+                    <option value="roommates">Lost my pet</option>
+                    <option value="rent">Need money for food</option>
+                    <option value="buy">Emergency situation</option>
+                    <option value="buy">Other:</option>
+                </select>
+            </div>
         </label>
     </div>
 </template>
 
-
-<template name="postDetailsHelp">
-    <label class="item item-input item-select">
-        <div class="input-label">
-            What happened?
-        </div>
-        <select class="js-charity-type-select">
-            <option value="roommates">Lost my pet</option>
-            <option value="rent">Need money for food</option>
-            <option value="buy">Emergency situation</option>
-            <option value="buy">Other:</option>
-        </select>
-    </label>
-</template>
 <template name="postDetailsConnect">
+    <div class="clearfix padding-top">
     <label class="item item-input item-select">
-        <div class="input-label">
-            I am looking for:
+        <div class="medium-3 input-label left">I am looking for:</div>
+        <div class="medium-5 large-7 left">
+            <select class="js-charity-type-select">
+                <option value="artists">artists and other creative people</option>
+                <option value="friends">friends</option>
+                <option value="professionals">professionals</option>
+                <option value="other">Other:</option>
+            </select>
         </div>
-        <select class="js-charity-type-select">
-            <option value="artists">artists and other creative people</option>
-            <option value="friends">friends</option>
-            <option value="professionals">professionals</option>
-            <option value="other">Other:</option>
-        </select>
     </label>
+    </div>
 </template>
-<template name="postDetailsTrade">
-    <label type="stacked" class="item item-input item-stacked-label">
-        <span class="input-label">Price</span>
-        <input class="js-post-price" type="number" value="{{ getPrice }}" label-type="stacked"/>
 
-    </label>
-</template>
-<template name="postDetailsJobs">
-    <label class="item item-input">
-        <span class="input-label">Position</span>
-        <input class="js-job-title" type="text" label-type="stacked" name="title" maxlength="200">
-    </label>
-</template>
-<template name="postDetailsHousing">
-    <label class="item item-input item-select">
-        <div class="input-label">
-            Looking for
+<template name="postDetailsTrade">
+    <div class="clearfix padding-top">
+    <label type="stacked" class="item item-input item-stacked-label">
+        <div class="medium-3 input-label left">Price</div>
+        <div class="medium-5 large-7 left">
+            <input class="js-post-price" type="number" value="{{ getPrice }}" label-type="stacked"/>
         </div>
-        <select class="js-housing-type-select">
-            <option value="roommates">Roommates</option>
-            <option value="rent">Renting</option>
-            <option value="rentOut">Renting out</option>
-            <option value="buy">Buying a house</option>
-            <option value="sell">Selling a house</option>
-        </select>
     </label>
+    </div>
+</template>
+
+<template name="postDetailsJobs">
+    <div class="clearfix padding-top">
+        <label class="item item-input">
+            <div class="medium-3 input-label left">Position</div>
+            <div class="medium-5 large-7 left">
+                <input class="js-job-title" type="text" label-type="stacked" name="title" maxlength="200">
+            </div>
+        </label>
+    </div>
+</template>
+
+<template name="postDetailsHousing">
+    <div class="clearfix padding-top">
+    <label class="item item-input item-select">
+        <div class="medium-3 input-label left">Looking for</div>
+        <div class="medium-5 large-7 left">
+            <select class="js-housing-type-select">
+                <option value="roommates">Roommates</option>
+                <option value="rent">Renting</option>
+                <option value="rentOut">Renting out</option>
+                <option value="buy">Buying a house</option>
+                <option value="sell">Selling a house</option>
+            </select>
+        </div>
+    </label>
+    </div>
 </template>
 
 <template name="postHashesControl">
+    <div class="clearfix">
     <label type="stacked" class="item item-input item-stacked-label padding-right">
-        <span class="input-label">Hashes</span>
+        <div class="medium-3 input-label left">Hashes</div>
+        <div class="medium-5 large-7 left">
         <button class="button button-block button-stable js-hashes-holder" data-action="showPrompt">{{ getHashes }}</button>
+        </div>
     </label>
+    </div>
     <!--input with bottons know-how:-->
     <!--<label class="item item-input item-stacked-label">
         <span class="input-label">Original Url (optional)</span>
@@ -115,22 +175,9 @@
         </div>
     </label>-->
 </template>
-<template name="postPhotoUpload">
-    <div class="post-photo-upload">
-        <!--<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>-->
-        <div class="owner-photo-wrap">
-            <div class="img-avatar" data-action="edit-avatar">
-                <i class="icon ion-camera"></i>
 
-                <img src="{{ getImageSrc }}" width="90" height="90">
 
-            </div>
-        </div>
-        <!--<a class="js-get-picture button">get pic</a>
-        <br/>
-        <a class="js-get-picture-lib button">get pic lib</a>-->
-    </div>
-</template>
+
 
 
 
