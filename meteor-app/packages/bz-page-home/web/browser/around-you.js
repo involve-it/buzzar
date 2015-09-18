@@ -30,6 +30,8 @@ Template.bzAroundYouItem.helpers({
     return "trade";  
   },
   getAvatarImg: function () {},
-  getRank: function() {}
-  
+  getRank: function() {},
+  getTimeStamp: function(){
+    return Date.now();
+  }
 });

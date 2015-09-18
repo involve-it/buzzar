@@ -34,9 +34,9 @@ Package.onUse(function (api) {
     'web/browser/page-home.html',
     'web/browser/page-home.js',
     'web/browser/page-home.less',
-    'web/browser/module-around-you/page-around-you.html',
-    'web/browser/module-around-you/page-around-you.js',
-    'web/browser/module-around-you/page-around-you.less'
+    'web/browser/around-you.html',
+    'web/browser/around-you.js',
+    'web/browser/around-you.less'
   ], 'web.browser');
   
   api.addFiles([
