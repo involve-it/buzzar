@@ -19,8 +19,8 @@ Router.map(function () {
     }
   });
 
-  this.route('contacts', {
-    path: 'contacts',
+  this.route('myContacts', {
+    path: 'profile/contacts',
     controller: 'requireLoginController',
     waitOn: function () {
       return [
@@ -29,7 +29,7 @@ Router.map(function () {
     }
   });
 
-  this.route('contacts.show', {
+  /*this.route('contacts.show', {
     path: '/contacts/:_id',
     controller: 'requireLoginController',
     waitOn: function () {
@@ -38,7 +38,7 @@ Router.map(function () {
     data: function () {
       return Meteor.users.findOne({_id: this.params._id});
     }
-  });
+  });*/
 
   this.route('chats', {
     template: 'conversations',

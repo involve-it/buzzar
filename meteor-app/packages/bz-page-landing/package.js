@@ -23,6 +23,7 @@ Package.onUse(function(api) {
   api.addFiles([
     'client/browser/about-us.html',
     'client/browser/page-about-us.html',
+    'client/browser/page-contact-us.html',
 
   ], 'web.browser');
 });

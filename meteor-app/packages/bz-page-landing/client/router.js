@@ -6,4 +6,8 @@ Router.map(function () {
     path: '/about-us',
     template: 'pageAboutUs'
   });
+  this.route('contactUs', {
+    path: '/contacts',
+    template: 'pageContactUs'
+  });
 });
