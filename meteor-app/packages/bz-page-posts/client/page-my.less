@@ -37,15 +37,23 @@
 
 
   .item {
+    
+    border-bottom: 1px solid #cccccc;
+    background-color: #FFFFFF;
+    
     &.item-active {
       background-color: @background-item-active;
       color: @color-text-sub-menu;
+      height: 42px;
+      line-height: 42px;
+      font-size: 16px;
+      padding: 0 15px;
     }
 
     /*Active a link*/
-    &:active {
+    /*&:active {
       background-color: rgba(80,100,100,.1);
-    }
+    }*/
     
     a {
       text-decoration: none;
@@ -57,9 +65,13 @@
       display: flex; /* Standard  */
   
       .photo {
-        -webkit-flex-basis: 105px;
-        flex-basis: 105px;
+        
+        background-color: lighten(gray, 50%);
+        
+        -webkit-flex-basis: 170px;
+        flex-basis: 170px;
         -webkit-flex-grow: 0;
+        
         flex-grow: 0;
         -webkit-flex-shrink: 0;
         flex-shrink: 0;
@@ -75,15 +87,16 @@
       }
   
       .description {
-        font-size: 12px;
-        font-family: "Roboto", sans-serif;
+        width: 100%;
         padding-left: 16px;
         color: @color-text-description;
   
           .title {
-            font-size: 16px;
+            font-family: "Roboto", sans-serif;
+            font-size: 18px;
             white-space: normal;
-            font-weight: 400;
+            font-weight: normal;
+            padding: 10px 0 0 0;
   
           }
   
@@ -97,18 +110,19 @@
           }
         }
   
-        .count-view {
+        .bz-count-view {
           white-space: normal;
+          padding-top: 8px;
   
           .today {
           }
         }
   
-        .progress {
+        .bz-progress {
           
         }
   
-        .services {
+        .bz-services {
   
           ul {
             margin-top: 5px;
@@ -139,3 +153,9 @@
     }
   }
 }
+
+
+
+
+
+

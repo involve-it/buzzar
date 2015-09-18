@@ -9,7 +9,7 @@ Template.myItems.onCreated(function () {
 
 Template.myItems.helpers({
   posts: function () {
-    var posts = bz.cols.posts.find({userId: Meteor.userId()}).fetch();
+    var posts = bz.cols.posts.find(/*{userId: Meteor.userId()}*/).fetch();
     return posts;
   }
 });
