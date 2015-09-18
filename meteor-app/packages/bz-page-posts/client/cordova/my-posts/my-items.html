@@ -1,0 +1,55 @@
+<template name="myItems">
+
+
+    <div class="list">
+
+        <div class="item item-divider item-active">
+            {{t9n 'active'}}
+        </div>
+
+        {{#each posts}}
+            {{> oneItem}}
+        {{/each}}
+        <div class="item item-divider item-inactive">
+            {{t9n 'inactive'}}
+        </div>
+
+    </div>
+    
+    
+</template>
+
+
+
+
+<template name="oneItem">
+    
+    <div class="item">
+        <a href="/post/{{_id}}">
+        <div class="photo">
+            <div class="photo-wrapper">
+                <img src="{{getPhotoUrl.data}}">
+            </div>
+        </div>
+
+        <div class="description">
+            
+            <h3 class="title">{{details.title}}</h3> <!-- Define max characters-->
+
+            {{#if details.price}}
+                <div class="price"> {{details.price}} <span class="prefix">$</span></div>
+            {{/if}}
+            <div class="count-view">{{t9n 'views'}} 250 <span class="today">(15 today)</span></div>
+            <div class="progress">{{t9n 'left'}} 15 days</div>
+            <div class="services" style="display: none">
+                <ul>
+                    <li class="vip">VIP</li>
+                    <li class="up">UP</li>
+                    <li>...</li>
+                </ul>
+            </div>
+        </div>
+        </a>
+    </div>
+    
+</template>

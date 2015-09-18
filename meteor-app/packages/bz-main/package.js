@@ -56,6 +56,7 @@ Package.onUse(function (api) {
   ], 'web.cordova');
 
   api.addFiles([
+    'web/router.js',
     'web/about-us.html'
   ], 'web');
 

@@ -11,5 +11,5 @@ Accounts.validateNewUser(function(user) {
 });
 
 Accounts.onLogin(function(user){
-  console.log(user);
+  //console.log(user);
 });
