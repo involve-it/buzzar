@@ -6,9 +6,7 @@ var requireLoginController = bz.router.requireLoginController;
 Router.map(function () {
   this.route('home', {
     path: '/home',
-    template: 'pageHome',
-    //layoutTemplate: 'mainLayout'
-    controller: requireLoginController //temp
+    template: 'pageHome'
   });
 });
 
