@@ -4,11 +4,9 @@
         <div class="bz-items">
             <div class="row">
                 <h3 class="title">Buzz Around you</h3>
-                {{> bzAroundYouItem}}
-    
-                {{> bzAroundYouItem}}
-    
-                {{> bzAroundYouItem}}
+                {{#each aroundItem}}
+                    {{> bzAroundYouItem}}
+                {{/each}}
             </div>
         </div>
         
@@ -21,7 +19,7 @@
             <div class="bz-side-a">
                 <div class="bz-avatar"></div>
                 <div class="bz-rating"></div>
-                <div class="bz-username">Daren Hazbik</div>
+                <div class="bz-username">username</div>
             </div>
             <div class="bz-side-b">
                 <div class="arrow"></div>
@@ -30,17 +28,17 @@
                     <a class="bz-position-cover" href="#"></a>
                     <div class="bz-distance"><i class="fa fa-location-arrow"></i> 30 km</div>
                 </div>
-                <h4 class="bz-title">Sell iPhone 6s</h4>
+                <h4 class="bz-title">{{details.title}}</h4>
                 <div class="bz-content">
                     <p>
-                        With our iPhone 5s trade-in program, simply tell us your carrier and the condition of your iPhone ...        
+                        {{details.description}}
                     </p>
                 </div>
                 <div class="bz-item-footer">
-                    <div class="bz-price">300 <span class="bz-prefix">$</span></div>
+                    <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
                     <div class="bz-category">
                         <div class="button bz-btn-category type-category-{{categoryType}}">
-                            Category name
+                            {{categoryType}}
                         </div>
                     </div>
                 </div>

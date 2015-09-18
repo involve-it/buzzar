@@ -10,17 +10,26 @@ Template.bzAroundYouItem.rendered = function() {
   });
 };
 
+Template.aroundYou.helpers({
+  aroundItem: function() {
+    searchSelector = Session.get('bz.control.search-selector');
+
+    ret = bz.cols.posts.find(searchSelector, {limit:3}).fetch();
+    /*console.log(ret);*/
+    return ret;
+  }
+});
 
 Template.bzAroundYouItem.helpers({
+  
   categoryType: function() {
-    return 'trade';  
+    
+    /*var postTypes;
+    switch (postTypes) {}*/
+    
+    return "trade";  
   },
   getAvatarImg: function () {},
-  getPhotoItem: function () {},
-  getUserName: function() {},
-  getPrice: function() {},
-  getTitle: function() {},
-  getDescription: function() {},
   getRank: function() {}
   
 });
