@@ -1,38 +1,7 @@
 /**
  * Created by douson on 03.07.15.
  */
-/*debugger;
-if (Meteor.isCordova || Meteor.isMobile) {
-  Router.configure({
-    layoutTemplate: 'mainLayoutApp',
-    waitOn: function () {
-      return Meteor.subscribe('settings');
-    },
 
-    // the appNotFound template is used for unknown routes and missing lists
-    notFoundTemplate: 'appNotFound',
-
-    // show the appLoading template whilst the subscriptions below load their data
-    loadingTemplate: 'appLoading'
-  });
-} else {
-  Router.configure({
-    layoutTemplate: 'mainLayout',
-    waitOn: function () {
-      return Meteor.subscribe('settings', function () {
-        _.each(bz.cols.config.find().fetch(), function (item) {
-          bz.config[item.name] = item.value;
-        });
-      });
-    },
-
-    // the appNotFound template is used for unknown routes and missing lists
-    notFoundTemplate: 'appNotFound',
-
-    // show the appLoading template whilst the subscriptions below load their data
-    loadingTemplate: 'appLoading'
-  });
-}*/
 Router.map(function () {
   // moved to package bz-page-home
   /*this.route('home', {
@@ -47,30 +16,6 @@ Router.map(function () {
     controller: 'requireLoginController',
     onBeforeAction: function () {
       Router.go('/home');
-    }
-  });
-
-  this.route('settings', {
-    template: 'userSettings',
-    controller: 'requireLoginController',
-    waitOn: function () {
-      return [
-        Meteor.subscribe('users')
-      ]
-    },
-    data: function () {
-      return Meteor.user();
-    }
-  });
-
-  this.route('settings.edit', {
-    path: '/settings/:_id',
-    controller: 'requireLoginController',
-    waitOn: function () {
-      return []
-    },
-    data: function () {
-      return Meteor.users.findOne({_id: this.params._id});
     }
   });
 

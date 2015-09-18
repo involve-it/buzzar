@@ -17,6 +17,7 @@ arutune:bz-control-search@0.0.1
 arutune:bz-main@0.0.1
 arutune:bz-page-home@0.0.1
 arutune:bz-page-posts@0.0.1
+arutune:bz-page-user@0.0.1
 autoupdate@1.2.1
 base64@1.0.3
 biasport:facebook-sdk@0.2.2

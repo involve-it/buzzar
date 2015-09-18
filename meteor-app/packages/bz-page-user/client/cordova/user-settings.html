@@ -1,0 +1,121 @@
+<template name="userSettings">
+
+    <!--
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton path="home"}}
+    {{/contentFor}}
+    -->
+
+    {{#contentFor "headerButtonRight"}}
+        <button class="button button-clear pull-right" data-ion-menu-toggle="right">
+            {{#if isAndroid}}
+                {{> ionIcon icon='android-more-vertical'}}
+            {{else}}
+                {{> ionIcon icon='navicon'}}
+            {{/if}}
+        </button>
+    {{/contentFor}}
+
+    {{#contentFor "headerButtonLeft"}}
+        <button class="button button-clear pull-left button-random" data-action="share-profile">
+            {{> ionIcon icon="ios-more-outline"}}
+        </button>
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Settings</h1>
+    {{/contentFor}}
+
+
+    {{#ionView}}
+        {{#ionContent}}
+            <div class="page-settings">
+                <div class="profile-box has-header">
+                    <div class="card">
+                        <p class="title">Your profile details</p>
+                        <div class="profile-narrow">
+                            <div class="owner-photo-wrap">
+                                {{> avatar}}
+                            </div>
+                            
+                            <div class="profile-details">
+                                <div>{{username}}</div>
+                                <div><input type="text" value="{{profile.firstName}}" placeholder="first name" readonly/></div>
+                                <div><input type="text" value="{{profile.lastName}}" placeholder="last name" readonly/></div>
+                            </div>
+                            
+                            <div class="edit-settings">
+
+                                <div>
+                                    <a class="item item-icon-right" href="{{pathFor 'settings.edit'}}">
+                                        <p>Edit your profile</p>
+                                        {{> ionIcon icon="ios-arrow-right"}}
+                                    </a>
+                                </div>
+
+                                <div>
+                                    <a class="item item-icon-right" href="/settings">
+                                        <p>Your status</p>
+                                        {{> ionIcon icon="ios-arrow-right"}}
+                                    </a>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="profile-wide">
+
+                            <div class="buttons-info">
+                                <div class="item-details">
+                                    <p class="title">Contact</p>
+                                    <div>
+                                        <a class="item item-icon-right" href="/settings">
+                                            <p><strong>_id зарегистрированного:</strong> {{getIdProfile}}</p>
+                                        </a>
+                                    </div>
+
+                                    <div>
+                                        <a class="item item-icon-right" href="/settings">
+                                            <p><strong>Phone</strong>  Phone number</p>
+                                        </a>
+                                    </div>
+
+                                    <div>
+                                        <a class="item item-icon-right" href="/settings">
+                                            <p><strong>Skype</strong>  Username skype</p>
+                                        </a>
+                                    </div>
+                                    
+                                </div>
+                                <div class="item-details">
+                                    <p class="title">Social</p>
+                                    <div>
+                                        <a class="item item-icon-right" href="/settings">
+                                            <p><strong>_id гостя:</strong> {{getIdGuestUser}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div> 
+        {{/ionContent}}
+    {{/ionView}}
+
+</template>
+
+<template name="avatar">
+    <div class="img-avatar" data-action="edit-avatar">
+        {{> ionIcon icon="camera" }}
+        {{#if profile.image}}
+            <a data-imagelightbox="a" href="{{profile.image}}?store=images"><img src="{{profile.image}}?store=thumbs"></a>
+        {{else}}
+            <img src="/img/content/avatars/avatar-no.png" width="90" height="90" />
+        {{/if}}
+    </div>
+</template>
