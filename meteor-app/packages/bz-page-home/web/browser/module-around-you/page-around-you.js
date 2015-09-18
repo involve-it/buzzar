@@ -14,5 +14,13 @@ Template.bzAroundYouItem.rendered = function() {
 Template.bzAroundYouItem.helpers({
   categoryType: function() {
     return 'trade';  
-  }
+  },
+  getAvatarImg: function () {},
+  getPhotoItem: function () {},
+  getUserName: function() {},
+  getPrice: function() {},
+  getTitle: function() {},
+  getDescription: function() {},
+  getRank: function() {}
+  
 });
