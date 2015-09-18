@@ -23,8 +23,6 @@ Package.onUse(function (api) {
     'resources/t9-en.js'
   ], 'client');
 
-  api.addFiles('bz-control-search.js');
-
 });
 
 Package.onTest(function (api) {

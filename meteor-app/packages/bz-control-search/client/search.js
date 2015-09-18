@@ -82,6 +82,7 @@ Template.bzControlSearch.helpers({
           } else {
             searchSelector = {type: {$in: catList}}
           }
+          Session.set('bz.control.search-selector', searchSelector);
           var ret = _.unique(bz.cols.posts.find(searchSelector).fetch().map(function (item) {
             item.name = item.details.title;
             return item;
