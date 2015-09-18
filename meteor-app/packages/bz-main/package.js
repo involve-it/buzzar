@@ -57,7 +57,6 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'web/router.js',
-    'web/about-us.html'
   ], 'web');
 
 });
