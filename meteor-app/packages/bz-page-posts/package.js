@@ -20,7 +20,33 @@ Package.onUse(function(api) {
   api.use('arutune:bz-main');
 
   api.addFiles([
-    'web/router.js',
+    'client/router.js',
+      'client/page-my.less'
+  ], 'client');
+  api.addFiles([
+    //'client/browser/my-posts/my-items.less',
+    'client/browser/my-posts/my-items.html',
+    'client/browser/my-posts/my-items.js',
+
+    //'client/browser/my-posts/page-my.less',
+    'client/browser/my-posts/page-my.html',
+    'client/browser/my-posts/page-my.js',
+
+    //'client/browser/my-posts/page-my.less',
+    'client/browser/new-post/new-controls.less',
+    'client/browser/new-post/new-controls.html',
+    'client/browser/new-post/new-controls.js',
+    'client/browser/new-post/new-url.html',
+    'client/browser/new-post/new-url.js',
+    'client/browser/new-post/page-new.html',
+    'client/browser/new-post/page-new.js',
+
+
+    'client/browser/places-autoform.less',
+    'client/browser/places-autoform.html',
+    'client/browser/places-autoform.js',
+
+
   ], 'client');
 });
 

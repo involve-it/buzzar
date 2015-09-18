@@ -1,0 +1,26 @@
+<template name="postsNewUrl">
+    <div>
+
+        <!--<span>*note: try this url as a sample:-->
+        <!--<i>http://www.youcaring.com/ashley-reed-376889</i></span>-->
+
+            <label class="item item-input item-stacked-label">
+                <!--<span class="input-label">Original Url (optional)</span>-->
+                <div class="item1 item-input-inset">
+                    <input name="url" placeholder="Original Url (optional)" class="original-url js-original-url" type="text">
+                    <!--<a name="original-post-details" class="button button-small disabled js-post-details-link" href="/posts/new/original-details" >-->
+                    <a name="original-post-details" class="button button-small disabled js-post-details-link" data-ion-modal="parsedPostDetailsModal" >
+                        Check >>
+                    </a>
+                </div>
+            </label>
+        <input type="button" value="scan" class="js-scan-url hidden"/>
+    </div>
+</template>
+<template name="parsedPostDetailsModal">
+    <!--{{#ionModal title="Url Post Details"}}
+        <div class="padding">
+            Title: <span>{{ getTitle }}</span>
+        </div>
+    {{/ionModal}}-->
+</template>

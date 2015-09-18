@@ -1,0 +1,55 @@
+<template name="postsNewOriginalDetails">
+
+    <!--
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton path="home"}}
+    {{/contentFor}}
+    -->
+
+    {{#contentFor "headerButtonRight"}}
+        <button class="button button-clear pull-right" data-ion-menu-toggle="right">
+            {{#if isAndroid}}
+                {{> ionIcon icon='android-more-vertical'}}
+            {{else}}
+                {{> ionIcon icon='navicon'}}
+            {{/if}}
+        </button>
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Add New Post</h1>
+    {{/contentFor}}
+
+
+    {{#ionView}}
+        {{#ionContent}}
+
+        {{/ionContent}}
+    {{/ionView}}
+
+
+    {{#ionModal customTemplate=true}}
+        <!--{{#autoForm collection="Posts" id="contacts-new-form" type="insert"}}-->
+            <div class="bar bar-header bar-stable">
+                <button data-dismiss="modal" type="button" class="button button-clear">Cancel</button>
+                <h2 class="title">Original url details</h2>
+                <!--<button type="submit" class="button button-positive button-clear">Add</button>-->
+            </div>
+            <div class="content has-header overflow-scroll">
+                <!--{{> afQuickFields omitFields="avatarUrl,details.active"}}-->
+                <input name="url" placeholder="original url" />
+                <a name="original-post-details">original post details >> </a>
+                <br/>
+                <hr/>
+                <select>                            class
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </select>
+
+
+            </div>
+        <!--{{/autoForm}}-->
+    {{/ionModal}}
+</template>

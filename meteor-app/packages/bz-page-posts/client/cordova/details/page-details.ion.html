@@ -1,0 +1,24 @@
+<template name="postsPageDetailsIon">
+
+    {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton path=""}}
+    {{/contentFor}}
+    {{#contentFor "headerButtonRight"}}
+        <button class="button button-clear pull-right" data-ion-menu-toggle="right">
+            {{#if isAndroid}}
+                {{> ionIcon icon='android-more-vertical'}}
+            {{else}}
+                {{> ionIcon icon='navicon'}}
+            {{/if}}
+        </button>
+    {{/contentFor}}
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">{{ details.title }}</h1>
+    {{/contentFor}}
+
+    {{#ionView}}
+        <div class="content has-header overflow-scroll">
+            {{> postsDetails }}
+        </div>
+    {{/ionView}}
+</template>
