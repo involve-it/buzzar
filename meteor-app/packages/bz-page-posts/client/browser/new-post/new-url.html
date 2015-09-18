@@ -3,18 +3,26 @@
 
         <!--<span>*note: try this url as a sample:-->
         <!--<i>http://www.youcaring.com/ashley-reed-376889</i></span>-->
-
+        <div class="clearfix">
             <label class="item item-input item-stacked-label">
                 <!--<span class="input-label">Original Url (optional)</span>-->
                 <div class="item1 item-input-inset">
-                    <input name="url" placeholder="Original Url (optional)" class="original-url js-original-url" type="text">
+                    <div class="medium-3 input-label left">Url</div>
+                    <div class="medium-5 large-7 left">
+                        <input name="url" placeholder="Original Url (optional)" class="original-url js-original-url" type="text">
+                    </div>
                     <!--<a name="original-post-details" class="button button-small disabled js-post-details-link" href="/posts/new/original-details" >-->
-                    <a name="original-post-details" class="button button-small disabled js-post-details-link" data-ion-modal="parsedPostDetailsModal" >
-                        Check >>
-                    </a>
+                    <div class="small-2 medium-2 left">
+                        <a name="original-post-details" class="button small disabled js-post-details-link" data-ion-modal="parsedPostDetailsModal" >
+                            Check >>
+                        </a>
+                    </div>
                 </div>
             </label>
-        <input type="button" value="scan" class="js-scan-url hidden"/>
+            
+            <input type="button" value="scan" class="js-scan-url hidden"/>
+            
+        </div>
     </div>
 </template>
 <template name="parsedPostDetailsModal">
