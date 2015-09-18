@@ -3,7 +3,8 @@
  */
 Router.map(function () {
   this.route('settings', {
-    template: 'userSettings',
+    path: 'profile',
+    template: 'profileSettings',
     controller: 'requireLoginController',
     waitOn: function () {
       return [
@@ -12,6 +13,17 @@ Router.map(function () {
     },
     data: function () {
       return Meteor.user();
+    }
+  });
+  this.route('settings.edit', {
+    path: '/profile/edit',
+    template: 'userEdit',
+    controller: 'requireLoginController',
+    waitOn: function () {
+      return []
+    },
+    data: function () {
+      return Meteor.users.findOne({_id: this.params._id});
     }
   });
 
@@ -27,15 +39,5 @@ Router.map(function () {
     }
   });
 
-  this.route('settings.edit', {
-    path: '/settings/edit',
-    template: 'settingsEdit',
-    controller: 'requireLoginController',
-    waitOn: function () {
-      return []
-    },
-    data: function () {
-      return Meteor.users.findOne({_id: this.params._id});
-    }
-  });
+
 });

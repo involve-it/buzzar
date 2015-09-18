@@ -1,0 +1,95 @@
+<template name="profileSettings">
+
+  {{> bzNavBar}}
+
+  <div class="page-settings">
+    <div class="profile-box has-header">
+      <div class="card">
+        <p class="title">Your profile details</p>
+        <div class="profile-narrow">
+          <div class="owner-photo-wrap">
+            {{> avatar}}
+          </div>
+
+          <!--<div class="profile-details">
+                                <div>{{username}}</div>
+                                <div><input type="text" value="{{profile.firstName}}" placeholder="first name" readonly/></div>
+                                <div><input type="text" value="{{profile.lastName}}" placeholder="last name" readonly/></div>
+                            </div>-->
+
+          <div class="edit-settings">
+
+            <div>
+              <a href="{{pathFor 'settings.edit'}}">
+                <p>Edit your profile</p>
+                <!--{{> ionIcon icon="ios-arrow-right"}}-->
+              </a>
+            </div>
+
+            <div>
+                <p>Your status</p>
+                <!--{{> ionIcon icon="ios-arrow-right"}}-->
+                Location: {{ getStatusLocation }}
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="profile-wide">
+
+          <div class="buttons-info">
+            <div class="item-details">
+              <p class="title">Contact</p>
+              <div>
+                <!--<a class="item item-icon-right" href="/settings">-->
+                <p><strong>Profile Url:</strong>
+                  <a href="{{ getIdProfile}}">{{ getIdProfile}}</a>
+                </p>
+                <!--</a>-->
+              </div>
+
+              <div>
+                <!--<span class="item item-icon-right" href="/settings">-->
+                  <p><strong>Phone</strong>
+                    <!--Phone number-->
+                    <span>Upon request</span>
+
+                  </p>
+                <!--</a>-->
+              </div>
+
+              <div>
+                <!--<span class="item item-icon-right" href="/settings">-->
+                  <p><strong>Skype</strong>
+                    <!--Username skype-->
+                    <span>Hidden</span>
+                  </p>
+
+                <!--</a>-->
+              </div>
+
+            </div>
+            <div class="item-details">
+              <p class="title">Social</p>
+              <div>
+                <!--<a class="item item-icon-right" href="/settings">-->
+                <p><strong>Facebook profile: {{ getFaceBookDetails }}</strong></p>
+                <!--<p><strong>_id гостя:</strong> {{getIdGuestUser}}</p>-->
+                <!--</a>-->
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+  {{> bzFooter}}
+
+</template>

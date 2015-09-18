@@ -5,34 +5,28 @@
             <div class="page-settings">
                 <div class="profile-box has-header">
                     <div class="card">
-                        <p class="title">Your profile details</p>
+                        <p class="title">{{ username }} profile details</p>
                         <div class="profile-narrow">
                             <div class="owner-photo-wrap">
                                 {{> avatar}}
                             </div>
                             
-                            <div class="profile-details">
+                            <!--<div class="profile-details">
                                 <div>{{username}}</div>
                                 <div><input type="text" value="{{profile.firstName}}" placeholder="first name" readonly/></div>
                                 <div><input type="text" value="{{profile.lastName}}" placeholder="last name" readonly/></div>
-                            </div>
+                            </div>-->
                             
-                            <div class="edit-settings">
+                            <div class="">
+
+
 
                                 <div>
-                                    <a class="item item-icon-right" href="{{pathFor 'settings.edit'}}">
-                                        <p>Edit your profile</p>
+                                        <p>User status</p>
                                         <!--{{> ionIcon icon="ios-arrow-right"}}-->
-                                    </a>
+                                        Location: {{ getStatusLocation }}
                                 </div>
 
-                                <div>
-                                    <a class="item item-icon-right" href="/settings">
-                                        <p>Your status</p>
-                                        <!--{{> ionIcon icon="ios-arrow-right"}}-->
-                                    </a>
-                                </div>
-                                
                             </div>
                             
                         </div>
@@ -43,30 +37,41 @@
                                 <div class="item-details">
                                     <p class="title">Contact</p>
                                     <div>
-                                        <a class="item item-icon-right" href="/settings">
-                                            <p><strong>_id зарегистрированного:</strong> {{getIdProfile}}</p>
-                                        </a>
+                                        <!--<a class="item item-icon-right" href="/settings">-->
+                                            <p><strong>Profile Url:</strong>
+                                              <a href="{{ getIdProfile}}">{{ getIdProfile}}</a>
+                                            </p>
+                                        <!--</a>-->
                                     </div>
 
                                     <div>
-                                        <a class="item item-icon-right" href="/settings">
-                                            <p><strong>Phone</strong>  Phone number</p>
-                                        </a>
+                                        <!--<a class="item item-icon-right" href="/settings">-->
+                                            <p><strong>Phone</strong>
+                                              <!--Phone number-->
+                                              <a class="button">Request</a>
+
+                                            </p>
+                                        <!--</a>-->
                                     </div>
 
                                     <div>
-                                        <a class="item item-icon-right" href="/settings">
-                                            <p><strong>Skype</strong>  Username skype</p>
-                                        </a>
+                                        <!--<a class="item item-icon-right" href="/settings">-->
+                                            <p><strong>Skype</strong>
+                                              <!--Username skype-->
+                                              <a class="button">Request</a>
+                                            </p>
+
+                                        <!--</a>-->
                                     </div>
                                     
                                 </div>
                                 <div class="item-details">
                                     <p class="title">Social</p>
                                     <div>
-                                        <a class="item item-icon-right" href="/settings">
-                                            <p><strong>_id гостя:</strong> {{getIdGuestUser}}</p>
-                                        </a>
+                                        <!--<a class="item item-icon-right" href="/settings">-->
+                                      <p><strong>Facebook profile: {{ getFaceBookDetails }}</strong></p>
+                                            <!--<p><strong>_id гостя:</strong> {{getIdGuestUser}}</p>-->
+                                        <!--</a>-->
                                     </div>
                                 </div>
                             </div>

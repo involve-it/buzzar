@@ -20,13 +20,16 @@ Package.onUse(function(api) {
 
   api.addFiles(['client/router.js'], 'client');
   api.addFiles([
+    'client/browser/profile-settings.html',
+    'client/browser/profile-settings.js',
+
     'client/browser/user-settings.less',
     'client/browser/user-settings.html',
     'client/browser/user-settings.js',
 
-    'client/browser/settings-edit.less',
-    'client/browser/settings-edit.html',
-    'client/browser/settings-edit.js',
+    'client/browser/user-edit.less',
+    'client/browser/user-edit.html',
+    'client/browser/user-edit.js',
   ], 'web.browser');
 });
 
