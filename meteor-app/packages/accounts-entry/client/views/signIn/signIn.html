@@ -1,5 +1,5 @@
 <template name='entrySignIn'>
-  <div class="page-wrapper-auth">
+  <div class="page-wrapper-auth tmpl-background">
     <div class="">
       <div class="wrapper-auth">
         {{#if logo}}
@@ -61,10 +61,15 @@
             <p class="entry-signup-cta">{{t9n "dontHaveAnAccount"}} <a
                 href="{{pathFor 'entrySignUp'}}">{{t9n "signUp"}}</a></p>
           {{/if}}
-          <p class=""><a class="button js-login-with-fb-btn">Login with Facebook</a></p>
+            
+          <div class="social-auth">
+              <a class="button transparent btn-border btn-border-white js-login-with-fb-btn"><i class="fa fa-facebook"></i> Login with Facebook</a>
+          </div>
+            
           {{#if talkingToServer}}
             {{> spinner}}
           {{/if}}
+            
         </div>
       </div>
     </div>
