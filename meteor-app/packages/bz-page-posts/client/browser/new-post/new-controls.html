@@ -1,179 +1,202 @@
 <template name="postsNewForm">
 
-    <div class="item item-divider ">
-        <h3 class="title">Basic</h3>
-    </div>
-    
-    <div class="item-group">
-        {{> postsNewUrl }}
-        {{> postTypeSelect }}
-        {{> postsPlacesAutoform }}
-    </div>
-    
-    <div class="item item-divider">
-        <h3 class="title">Post Details</h3>
-    </div>
+  <div class="item item-divider ">
+    <h3 class="title">Basic</h3>
+  </div>
 
-    <div class="item-group">
-        <div class="clearfix">
-            <div class="medium-3 input-label left">
-                {{> postPhotoUpload }}
-            </div>
-            
-            <div class="medium-5 large-7 left">
-                {{> postDetailsCommon }}
-            </div>
-        </div>    
-        <div class="js-post-details-categorized"></div>
-        {{> postHashesControl }}
+  <div class="item-group">
+    {{> postsNewUrl }}
+    {{> postTypeSelect }}
+    {{> postsPlacesAutoform }}
+  </div>
+
+  <div class="item item-divider">
+    <h3 class="title">Post Details</h3>
+  </div>
+
+  <div class="item-group">
+    <div class="clearfix">
+      <div class="medium-3 input-label left">
+        {{> postPhotoUpload }}
+      </div>
+
+      <div class="medium-5 large-7 left">
+        {{> postDetailsCommon }}
+      </div>
     </div>
- 
+    <div class="js-post-details-categorized"></div>
+    <!--{{> postHashesControl }}-->
+  </div>
+
 </template>
 
 <template name="postTypeSelect">
-    <div class="clearfix">
-        <label class="item item-input item-select">
-            <div class="medium-3 input-label left">Select type</div>
-            <div class="medium-5 large-7 left">
-                <select class="js-post-type-select">
-                    {{#each getSiteTypes }}
-                        <option value="{{ name }}">{{ fullName }}</option>
-                    {{/each}}
-                </select>
-            </div>
-        </label>
-    </div>
+  <div class="clearfix">
+    <label class="item item-input item-select">
+      <div class="medium-3 input-label left">Select type</div>
+      <div class="medium-5 large-7 left">
+        <select class="js-post-type-select">
+          {{#each getSiteTypes }}
+            <option value="{{ name }}">{{ fullName }}</option>
+          {{/each}}
+        </select>
+      </div>
+    </label>
+  </div>
 </template>
 
 <!--Forms for different types:-->
 <template name="postDetailsCommon">
-    <div class="clearfix">
-        <div class="item-details">
-    
-            <label class="item item-input">
-                <div class="input-label">Title</div>
-                <div class="">
-                <input class="js-post-title" type="text" label-type="stacked" name="title" required=""
-                       data-schema-key="title" maxlength="200" value="{{ getTitle }}">
-                </div>
-            </label>
-            
-            <label type="stacked" class="item item-input item-stacked-label">
-                <div class="input-label">Description</div>
-                <div class="">
+  <div class="clearfix">
+    <div class="item-details">
+
+      <label class="item item-input">
+        <div class="input-label">Title</div>
+        <div class="">
+          <input class="js-post-title" type="text" label-type="stacked" name="title" required=""
+                 data-schema-key="title" maxlength="200" value="{{ getTitle }}">
+        </div>
+      </label>
+
+      <label type="stacked" class="item item-input item-stacked-label">
+        <div class="input-label">Description</div>
+        <div class="">
                 <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
                           data-schema-key="body" value="{{ getDescription }}"></textarea>
-                </div>
-            </label>
-            
         </div>
+      </label>
+
     </div>
+  </div>
 </template>
 
 <template name="postPhotoUpload">
-    <div class="post-photo-upload">
-        <!--<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>-->
-        <div class="bz-owner-photo-wrap">
-            <div class="img-avatar" data-action="edit-avatar">
-                <img src="{{ getImageSrc }}" width="160" height="160">
-            </div>
-        </div>
-        <!--<a class="js-get-picture button">get pic</a>
-        <br/>
-        <a class="js-get-picture-lib button">get pic lib</a>-->
+  <div class="post-photo-upload">
+    <!--<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>-->
+    <div class="bz-owner-photo-wrap">
+      <div class="img-avatar js-edit-avatar">
+        <img src="{{ getImageSrc }}" width="160" height="160">
+      </div>
     </div>
+
+    <!--<a class="js-get-picture button">get pic</a>
+    <br/>
+    <a class="js-get-picture-lib button">get pic lib</a>-->
+  </div>
+
+  <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    {{> uploadImageModal }}
+  </div>
 </template>
 
+<template name="uploadImageModal">
+  <h2 id="modalTitle">Upload profile image.</h2>
+
+  <button class="button js-photo-library">Photo library</button>
+  <button class="button js-take-photo">Take Photo</button>
+  <div class="row">
+  OR
+  </div>
+  <input type="text" placeholder="image url" class="js-image-url">
+  <button class="button js-use-image-url">Image Url</button>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+
+  <div data-alert class="alert-box alert hidden js-library-not-available-alert">
+    Photot Library is not available.
+    <a href="#" class="close">&times;</a>
+  </div>
+</template>
 <template name="postDetailsHelp">
-    <div class="clearfix padding-top">
-        <label class="item item-input item-select">
-            <div class="medium-3 input-label left">What happened?</div>
-            <div class="medium-5 large-7 left">
-                <select class="js-charity-type-select">
-                    <option value="roommates">Lost my pet</option>
-                    <option value="rent">Need money for food</option>
-                    <option value="buy">Emergency situation</option>
-                    <option value="buy">Other:</option>
-                </select>
-            </div>
-        </label>
-    </div>
+  <div class="clearfix padding-top">
+    <label class="item item-input item-select">
+      <div class="medium-3 input-label left">What happened?</div>
+      <div class="medium-5 large-7 left">
+        <select class="js-charity-type-select">
+          <option value="roommates">Lost my pet</option>
+          <option value="rent">Need money for food</option>
+          <option value="buy">Emergency situation</option>
+          <option value="buy">Other:</option>
+        </select>
+      </div>
+    </label>
+  </div>
 </template>
 
 <template name="postDetailsConnect">
-    <div class="clearfix padding-top">
+  <div class="clearfix padding-top">
     <label class="item item-input item-select">
-        <div class="medium-3 input-label left">I am looking for:</div>
-        <div class="medium-5 large-7 left">
-            <select class="js-charity-type-select">
-                <option value="artists">artists and other creative people</option>
-                <option value="friends">friends</option>
-                <option value="professionals">professionals</option>
-                <option value="other">Other:</option>
-            </select>
-        </div>
+      <div class="medium-3 input-label left">I am looking for:</div>
+      <div class="medium-5 large-7 left">
+        <select class="js-charity-type-select">
+          <option value="artists">artists and other creative people</option>
+          <option value="friends">friends</option>
+          <option value="professionals">professionals</option>
+          <option value="other">Other:</option>
+        </select>
+      </div>
     </label>
-    </div>
+  </div>
 </template>
 
 <template name="postDetailsTrade">
-    <div class="clearfix padding-top">
+  <div class="clearfix padding-top">
     <label type="stacked" class="item item-input item-stacked-label">
-        <div class="medium-3 input-label left">Price</div>
-        <div class="medium-5 large-7 left">
-            <input class="js-post-price" type="number" value="{{ getPrice }}" label-type="stacked"/>
-        </div>
+      <div class="medium-3 input-label left">Price</div>
+      <div class="medium-5 large-7 left">
+        <input class="js-post-price" type="number" value="{{ getPrice }}" label-type="stacked"/>
+      </div>
     </label>
-    </div>
+  </div>
 </template>
 
 <template name="postDetailsJobs">
-    <div class="clearfix padding-top">
-        <label class="item item-input">
-            <div class="medium-3 input-label left">Position</div>
-            <div class="medium-5 large-7 left">
-                <input class="js-job-title" type="text" label-type="stacked" name="title" maxlength="200">
-            </div>
-        </label>
-    </div>
+  <div class="clearfix padding-top">
+    <label class="item item-input">
+      <div class="medium-3 input-label left">Position</div>
+      <div class="medium-5 large-7 left">
+        <input class="js-job-title" type="text" label-type="stacked" name="title" maxlength="200">
+      </div>
+    </label>
+  </div>
 </template>
 
 <template name="postDetailsHousing">
-    <div class="clearfix padding-top">
+  <div class="clearfix padding-top">
     <label class="item item-input item-select">
-        <div class="medium-3 input-label left">Looking for</div>
-        <div class="medium-5 large-7 left">
-            <select class="js-housing-type-select">
-                <option value="roommates">Roommates</option>
-                <option value="rent">Renting</option>
-                <option value="rentOut">Renting out</option>
-                <option value="buy">Buying a house</option>
-                <option value="sell">Selling a house</option>
-            </select>
-        </div>
+      <div class="medium-3 input-label left">Looking for</div>
+      <div class="medium-5 large-7 left">
+        <select class="js-housing-type-select">
+          <option value="roommates">Roommates</option>
+          <option value="rent">Renting</option>
+          <option value="rentOut">Renting out</option>
+          <option value="buy">Buying a house</option>
+          <option value="sell">Selling a house</option>
+        </select>
+      </div>
     </label>
-    </div>
+  </div>
 </template>
 
 <template name="postHashesControl">
-    <div class="clearfix">
+  <div class="clearfix">
     <label type="stacked" class="item item-input item-stacked-label padding-right">
-        <div class="medium-3 input-label left">Hashes</div>
-        <div class="medium-5 large-7 left">
-        <button class="button button-block button-stable js-hashes-holder" data-action="showPrompt">{{ getHashes }}</button>
-        </div>
+      <div class="medium-3 input-label left">Hashes</div>
+      <div class="medium-5 large-7 left">
+        <button class="button button-block button-stable js-hashes-holder"
+                data-action="showPrompt">{{ getHashes }}</button>
+      </div>
     </label>
-    </div>
-    <!--input with bottons know-how:-->
-    <!--<label class="item item-input item-stacked-label">
-        <span class="input-label">Original Url (optional)</span>
-        <div class="item item-input-inset">
-            <input name="url" placeholder="" class="original-url js-original-url" type="text">
-            <a name="original-post-details" class=" button button-small disabled js-post-details-link" href="/posts/new/original-details">
-                Check >>
-            </a>
-        </div>
-    </label>-->
+  </div>
+  <!--input with bottons know-how:-->
+  <!--<label class="item item-input item-stacked-label">
+      <span class="input-label">Original Url (optional)</span>
+      <div class="item item-input-inset">
+          <input name="url" placeholder="" class="original-url js-original-url" type="text">
+          <a name="original-post-details" class=" button button-small disabled js-post-details-link" href="/posts/new/original-details">
+              Check >>
+          </a>
+      </div>
+  </label>-->
 </template>
 
 

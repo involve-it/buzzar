@@ -9,7 +9,7 @@ en = {
   getContactUsers: 'Contacts found',
   status: 'Status',
   active: 'Active',
-  inactive: 'Incative',
+  inactive: 'Inactive',
   views: 'Views',
   left: 'Left',
   //sitewise:

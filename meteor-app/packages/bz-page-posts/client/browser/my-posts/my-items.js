@@ -9,6 +9,16 @@ Template.myItems.onCreated(function () {
 
 Template.myItems.helpers({
   posts: function () {
+    //debugger;
+    var posts = bz.cols.posts.find({userId: Meteor.userId()}).fetch();
+    return posts.length !== 0;
+  },
+  activePosts: function () {
+    //debugger;
+    var posts = bz.cols.posts.find({userId: Meteor.userId()}).fetch();
+    return posts;
+  },
+  inactivePosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId()}).fetch();
     return posts;
   }

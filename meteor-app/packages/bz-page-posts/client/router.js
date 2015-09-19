@@ -14,7 +14,7 @@ Router.map(function () {
   });
   this.route('posts.details', {
     path: '/post/:_id',
-    template: 'postsPageDetailsIon',
+    template: 'postsPageDetails',
     data: function () {
       var ret = bz.cols.posts.findOne({_id: this.params._id});
       return ret;

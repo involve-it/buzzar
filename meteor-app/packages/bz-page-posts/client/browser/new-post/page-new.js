@@ -14,7 +14,7 @@ Template.postsNew.created = function(){
 };
 Template.postsNew.events({
    'click .js-create-post': function(e, v) {
-     var userId = Meteor.userId(), imgId;
+     var userId = Meteor.userId(), imgId, imgArr = [];
      // gather all data and submit for post-create:
      if(userId) {
        if(bz.runtime.newPost.postImage) {
@@ -22,7 +22,9 @@ Template.postsNew.events({
            data: bz.runtime.newPost.postImage,
            userId: userId
          });
-       }
+         imgArr.push(imgId);
+       };
+       var rad = $('.js-radius-slider').attr('data-slider') && Number.parseInt($('.js-radius-slider').attr('data-slider'));
        var newPost = {
 
          userId: userId,
@@ -31,13 +33,14 @@ Template.postsNew.events({
 
            hashes: bz.runtime.newPost.hashes,
            location: bz.runtime.newPost.location,
+           radius: rad,
            url: v.$('.js-original-url').val(),
            
            //details:
            title: v.$('.js-post-title').val(),
            description: v.$('.js-post-description').val(),
            price: v.$('.js-post-price').val(),
-           photos: [imgId],
+           photos: imgArr,
            
            // specific:
            other: {
@@ -48,13 +51,19 @@ Template.postsNew.events({
            visible: bz.const.posts.status.VISIBLE
          }
        }
-       Meteor.call('addNewPost', newPost, function(err, res){
-         if(!err && res && res !=='') {
-           bz.runtime.newPost.postId = res;
-           Router.go('/posts/new/share');
-         }
-       });
+       debugger;
+       if(newPost.details.photos.length === 0 || !newPost.details.title) {
+         alert('photo, details are required');
+       } else {
 
+         Meteor.call('addNewPost', newPost, function(err, res){
+           if(!err && res && res !=='') {
+             bz.runtime.newPost.postId = res;
+             Router.go('/posts/my');
+           }
+         });
+
+       }
      }
 
    }

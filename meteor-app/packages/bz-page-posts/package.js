@@ -10,7 +10,7 @@ Package.describe({
   documentation: 'README.md'
 });
 
-Package.onUse(function(api) {
+Package.onUse(function (api) {
   api.versionsFrom('1.1.0.3');
 
   api.use('iron:router', ['client', 'server']);
@@ -21,9 +21,13 @@ Package.onUse(function(api) {
 
   api.addFiles([
     'client/router.js',
-      'client/page-my.less'
+    'client/page-my.less'
   ], 'client');
   api.addFiles([
+    'client/browser/details/details-controls.html',
+    'client/browser/details/details-controls.js',
+    'client/browser/details/page-details.html',
+    'client/browser/details/page-details.js',
     //'client/browser/my-posts/my-items.less',
     'client/browser/my-posts/my-items.html',
     'client/browser/my-posts/my-items.js',
@@ -50,7 +54,7 @@ Package.onUse(function(api) {
   ], 'client');
 });
 
-Package.onTest(function(api) {
+Package.onTest(function (api) {
   api.use('tinytest');
   api.use('arutune:bz-page-posts');
   api.addFiles('bz-page-posts-tests.js');

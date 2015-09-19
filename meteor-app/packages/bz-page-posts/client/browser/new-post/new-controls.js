@@ -14,11 +14,11 @@ Template.postTypeSelect.rendered = function () {
   setPostDetailsTemplate(name, this);
 }
 
-Template.postHashesControl.destroyed = function(){
+Template.postHashesControl.destroyed = function () {
   $('[data-action="buttonTapped"]').off();
 }
 Template.postHashesControl.helpers({
-  getHashes: function(){
+  getHashes: function () {
     var arr = Session.get('hashes') || [];
     return arr.join(', ');
   }
@@ -34,28 +34,28 @@ Template.postHashesControl.events({
       inputPlaceholder: "Your Hashes"
       //js-hashes-holder
     });
-    $('[data-action="buttonTapped"]').click(function(e){
+    $('[data-action="buttonTapped"]').click(function (e) {
       var inpVal = $('input[name=prompt]').val();
       if ($(e.target).data().index === 0 && inpVal && inpVal.trim() !== '') {
-        Session.set('hashes', inpVal.trim().split(' ')) ;
+        Session.set('hashes', inpVal.trim().split(' '));
       }
     });
   }
 });
 Template.postDetailsCommon.helpers({
-  getTitle: function(){
+  getTitle: function () {
     return Session.get('post-title') || '';
   },
-  getDescription: function(){
+  getDescription: function () {
     return Session.get('post-description') || '';
   }
 });
 //$('.backdrop.visible.active .popup .popup-title').text().toLowerCase()
 
 Template.postDetailsTrade.helpers({
-    getPrice: function() {
-        return Session.get('post-price') || '';
-    }
+  getPrice: function () {
+    return Session.get('post-price') || '';
+  }
 });
 
 Template.postPhotoUpload.helpers({
@@ -65,52 +65,64 @@ Template.postPhotoUpload.helpers({
   }
 });
 Template.postPhotoUpload.events({
-  'click [data-action=edit-avatar]': function (event, template) {
-    IonActionSheet.show({
-      titleText: 'Edit picture',
-      buttons: [
-        {text: 'Photo Library'},
-        {text: 'Take Photo'}
-      ],
-      cancelText: 'Cancel',
-      cancel: function (res) {
-      },
-      buttonClicked: function (index, res) {
-        var options = {
-          width: 350,
-          height: 350,
-          quality: 75
+  'click .js-edit-avatar': function (event, template) {
+    $('.js-avatar-upload-modal').foundation('reveal', 'open');
+  }
+});
+Template.uploadImageModal.events({
+  'click .js-photo-library': function (e, v) {
+    var options = {
+      width: 350,
+      height: 350,
+      quality: 75
+    }
+    if (typeof Camera !== 'undefined') {
+      $('.js-avatar-upload-modal').foundation('reveal', 'close');
+
+      options.sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
+      MeteorCamera.getPicture(options, function (err, data) {
+        if (err) {
+          console.log('error', err);
         }
-        if (index === 0 && typeof Camera !== 'undefined') {
-          options.sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
-          MeteorCamera.getPicture(options, function (err, data) {
-            if (err) {
-              console.log('error', err);
-            }
-            if (data) {
-              Session.set('postImgSrc', data)
-            }
-          });
-        } else if (index === 1) {
-          MeteorCamera.getPicture(options, function (err, data) {
-            if (err) {
-              console.log('error', err);
-            }
-            if (data) {
-              Session.set('postImgSrc', data)
-            }
-          });
+        if (data) {
+          Session.set('postImgSrc', data)
         }
-        return true;
+      });
+
+    } else {
+      $('.js-library-not-available-alert').show();
+    }
+  },
+  'click .js-take-photo': function (e, v) {
+    $('.js-avatar-upload-modal').foundation('reveal', 'close');
+
+    var options = {
+      width: 350,
+      height: 350,
+      quality: 75
+    }
+
+    MeteorCamera.getPicture(options, function (err, data) {
+      if (err) {
+        console.log('error', err);
+      }
+      if (data) {
+        Session.set('postImgSrc', data)
       }
     });
+  },
+  'click .js-use-image-url': function (e, v) {
+    if ($('.js-image-url').val()) {
+      $('.js-avatar-upload-modal').foundation('reveal', 'close');
+      Session.set('postImgSrc', $('.js-image-url').val())
+    }
   }
 });
 // HELPERS:PostDetails
 /*function setTemplate(name, v) {
-  $('.js-post-details-categorized').empty();
-  Blaze.renderWithData(Template['postDetails' + name], v.data, $('.js-post-details-categorized')[0]);
-}*/
+ $('.js-post-details-categorized').empty();
+ Blaze.renderWithData(Template['postDetails' + name], v.data, $('.js-post-details-categorized')[0]);
+ }*/
 function setPostDetailsTemplate(name, v) {
   $('.js-post-details-categorized').empty();
   Blaze.renderWithData(Template['postDetails' + name], v.data, $('.js-post-details-categorized')[0]);
@@ -119,8 +131,8 @@ function setPostDetailsTemplate(name, v) {
 Meteor.startup(function () {
 
   Tracker.autorun(function () {
-    bz.runtime.newPost.postImage =  Session.get('postImgSrc');
-    bz.runtime.newPost.hashes =     Session.get('hashes');
+    bz.runtime.newPost.postImage = Session.get('postImgSrc');
+    bz.runtime.newPost.hashes = Session.get('hashes');
   });
 });
 

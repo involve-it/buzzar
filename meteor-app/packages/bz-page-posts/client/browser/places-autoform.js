@@ -27,6 +27,7 @@ Template.postsPlacesAutoform.onRendered(function () {
       }, callbackNearbySearch);
     }
   });
+  $(document).foundation();
 });
 Template.postsPlacesAutoform.rendered = function () {
   Meteor.typeahead.inject();
