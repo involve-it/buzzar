@@ -36,7 +36,7 @@ Template.postsNewUrl.events({
           Session.set('post-description', res.content);
         }
         if (res.imageUrl){
-          Session.set('postImgSrc', res.imageUrl);
+          Session.set('bz.posts.postImgSrc', res.imageUrl);
         }
       }
       v.$('.js-post-details-link').removeClass('disabled');

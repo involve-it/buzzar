@@ -15,15 +15,15 @@
   </div>
 
   <div class="item-group">
-    <div class="clearfix">
-      <div class="medium-3 input-label left">
+    <!--<div class="clearfix">-->
+      <div class="row">
         {{> postPhotoUpload }}
       </div>
 
-      <div class="medium-5 large-7 left">
+      <div class="row">
         {{> postDetailsCommon }}
       </div>
-    </div>
+    <!--</div>-->
     <div class="js-post-details-categorized"></div>
     <!--{{> postHashesControl }}-->
   </div>
@@ -75,7 +75,8 @@
     <!--<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>-->
     <div class="bz-owner-photo-wrap">
       <div class="img-avatar js-edit-avatar">
-        <img src="{{ getImageSrc }}" width="160" height="160">
+        <img src="{{ getImageSrc }}" width="60" height="60">
+        <a class="js-plus-img"><img src="/img/plus-button.png" style="width: 60px; height: 60px;"/> </a>
       </div>
     </div>
 
@@ -99,12 +100,16 @@
   </div>
   <input type="text" placeholder="image url" class="js-image-url">
   <button class="button js-use-image-url">Image Url</button>
+  <button class="button js-use-random-image-url">Random Image Url</button>
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 
   <div data-alert class="alert-box alert hidden js-library-not-available-alert">
-    Photot Library is not available.
+    Photo Library is not available.
     <a href="#" class="close">&times;</a>
   </div>
+  <img id="asdf" class="js-preview"/>
+  <hr/>
+  <button class="js-ok-btn">Ok</button>
 </template>
 <template name="postDetailsHelp">
   <div class="clearfix padding-top">
