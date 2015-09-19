@@ -6,7 +6,6 @@
  }
  Template.bzControlSearch.events({
  'keydown .js-search-text': function (e, v) {
- debugger;
  if (!isOn) {
  v.$('.js-search-posts-link').click();
  $('.js-search-text-modal').val($('.js-search-text').val())
@@ -33,11 +32,9 @@ Template.bzControlSearch.onRendered(function () {
   });
 
   /*$('.js-nearby-places').typeahead(/!* init *!/).on('typeahead:beforeclose', function($e) {
-   debugger;
    $e.preventDefault();
    });
    $(document).on('click', function(e, e1){
-   debugger;
    });*/
   /*  $('#typeahead-input').on('typeahead:closed', function(e, d) {
    $('#typeahead-input').focus();
@@ -120,14 +117,6 @@ Template.bzControlSearch.helpers({
   }
 });
 Template.bzControlSearch.events({
-  'click .js-current-location-a': function (e, v) {
-    v.$('.js-current-location-a').toggleClass('button-clear');
-    if (v.$('.js-current-location-a').hasClass('button-clear')) {
-      bz.runtime.newPost.location.current = false;
-    } else {
-      bz.runtime.newPost.location.current = true;
-    }
-  },
   'blur .js-nearby-places': function () {
   },
   'click .js-search-btn': function (e, v) {
@@ -171,7 +160,6 @@ function searchPostsReactive(searchText) {
     }
     Meteor.call('search', query, activeCats, {}, function (err, res) {
       posts = res;
-      debugger;
     });
   });
 }

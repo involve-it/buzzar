@@ -61,7 +61,7 @@ Template.postDetailsTrade.helpers({
 Template.postPhotoUpload.helpers({
   getImageSrc: function () {
     var ret = '/img/content/avatars/avatar-no.png';
-    return Session.get('postImgSrc') || ret;
+    return Session.get('bz.posts.postImgSrc') || ret;
   }
 });
 Template.postPhotoUpload.events({
@@ -88,7 +88,7 @@ Template.postPhotoUpload.events({
               console.log('error', err);
             }
             if (data) {
-              Session.set('postImgSrc', data)
+              Session.set('bz.posts.postImgSrc', data)
             }
           });
         } else if (index === 1) {
@@ -97,7 +97,7 @@ Template.postPhotoUpload.events({
               console.log('error', err);
             }
             if (data) {
-              Session.set('postImgSrc', data)
+              Session.set('bz.posts.postImgSrc', data)
             }
           });
         }
@@ -119,7 +119,7 @@ function setPostDetailsTemplate(name, v) {
 Meteor.startup(function () {
 
   Tracker.autorun(function () {
-    bz.runtime.newPost.postImage =  Session.get('postImgSrc');
+    bz.runtime.newPost.postImage =  Session.get('bz.posts.postImgSrc');
     bz.runtime.newPost.hashes =     Session.get('hashes');
   });
 });

@@ -37,9 +37,9 @@ Package.onUse(function (api) {
     'client/browser/my-posts/page-my.js',
 
     //'client/browser/my-posts/page-my.less',
-    'client/browser/new-post/new-controls.less',
-    'client/browser/new-post/new-controls.html',
-    'client/browser/new-post/new-controls.js',
+    'client/browser/new-post/new-post-controls.less',
+    'client/browser/new-post/new-post-controls.html',
+    'client/browser/new-post/new-post-controls.js',
     'client/browser/new-post/new-url.html',
     'client/browser/new-post/new-url.js',
     'client/browser/new-post/page-new.html',
