@@ -22,17 +22,18 @@ var Maps = {
       lng: -122.183728
     }
     args.unshift(loc)
-    callback.apply(that, args);
-    /*navigator.geolocation.getCurrentPosition(function (a) {
+    //callback.apply(that, args);
+    navigator.geolocation.getCurrentPosition(function (a) {
       //bz.runtime.maps.currentGeoposition = a;
       var loc = {
         lat: a.coords.latitude,
         lng: a.coords.longitude
       };
+      console.log(a);
       //bz.runtime.maps.loc = loc;
       args.unshift(loc)
       callback.apply(that, args);
-    });*/
+    });
   },
   initPlaces: function () {
     if (!bz.runtime.maps.places && !bz.help.collectionExists('maps.places')) {

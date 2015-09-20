@@ -22,8 +22,8 @@ Template.postsPlacesAutoform.onRendered(function () {
       var service = new google.maps.places.PlacesService(map);
       service.nearbySearch({
         location: Session.get('bz.api.loc'),
-        radius: 300,
-        types: ['store']
+        radius: 1
+        //types: ['store']
       }, callbackNearbySearch);
     }
   });
@@ -54,6 +54,20 @@ Template.postsPlacesAutoform.events({
   },
   'blur .js-nearby-places': function(){
 
+  },
+  'click .choose-place-buttons .panel': function(e,v){
+    if(e.target.nodeName !== "INPUT" && e.target.className.indexOf('tt-suggestion') === -1) { // strange bug
+
+      var panel = $(e.currentTarget).closest('.panel');
+      panel.toggleClass('callout');
+      if(panel.id === 'moving-ad'){
+        $('.js-current-location-a').click();
+      } else {
+        if (panel.hasClass('callout')){
+          panel.find('input.tt-input').focus();
+        }
+      }
+    }
   }
 })
 // HELPERS:
@@ -61,6 +75,7 @@ Template.postsPlacesAutoform.events({
 function callbackNearbySearch(results, status) {
   console.log('results: ', results);
   console.log('status: ', status);
+  console.log('length: ', results.length);
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
       bz.runtime.maps.places._collection.insert(results[i]);

@@ -43,6 +43,11 @@ Template.postHashesControl.events({
     });
   }
 });
+Template.postDetailsHelp.events({
+  'click .panel': function(){
+    $(e.target).closest('.panel').toggleClass('callout');
+  }
+});
 Template.postDetailsCommon.helpers({
   getTitle: function () {
     return Session.get('post-title') || '';

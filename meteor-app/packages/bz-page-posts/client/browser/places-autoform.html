@@ -2,27 +2,71 @@
   <div class="view--places-autoform">
     <div class="clearfix">
       <label class="item item-input item-stacked-label">
-        <div class="medium-3 input-label left">Location</div>
+        <div class="row input-label">Locations (where would you like this post to be created? No more than 3)</div>
+        <!--<div class="medium-3 input-label left">Locations (where would you like this post to be created? No more than 3)</div>-->
 
         <div class="row choose-place-buttons">
-          <div class="card current-location-btn left">
-            <a class="button small button-calm js-current-location-a">
-              <i class="fa fa-location-arrow placeholder-icon"></i>
-            </a>
-          </div>
-          OR
-          <!--<div class="place-btn padding">-->
-          <div class="card location-nearby js-location-nearby left">
-            <input class="form-control typeahead capitalize js-nearby-places" name="team" type="text"
-                   placeholder="place nearby"
-                   data-source="placesArray"
+          <!--<a class="js-plus-img"><img src="/img/plus-button.png" style="width: 60px; height: 60px;"/> </a>-->
+          <ul class="small-block-grid-3">
+            <li>
+              <div class="panel">
+                <h5><b class="uppercase">Moving with you ad</b> - Use my current location live
+                  (online when your app is running/you are logged in to the website).
+                </h5>
 
-                   autocomplete="on" spellcheck="off"
-                   data-opened="opened" data-selected="selected"
-                   data-min-length="0"
-                   data-autocompleted="autocompleted"
-                />
-          </div>
+                <div class="current-location-btn">
+                <a class="button small button-calm js-current-location-a" style="display: none;">
+                  <i class="fa fa-location-arrow placeholder-icon"></i>
+                </a>
+              </div>
+              </div>
+            </li>
+            <li>
+              <div class="panel" id="moving-ad">
+                <h5><b class="uppercase">bulletin boards ad 1</b> - Specify Location 1
+                (online when you are within a Radius from the board address)
+                </h5>
+                * If empty - Ad will be bound to your current location.
+                <div class="location-nearby js-location-nearby">
+                <input class="form-control typeahead capitalize js-nearby-places" name="team" type="text" id="place1"
+                       placeholder="address, zip or place nearby"
+                       data-source="placesArray"
+
+                       autocomplete="on" spellcheck="off"
+                       data-opened="opened" data-selected="selected"
+                       data-min-length="0"
+                       data-autocompleted="autocompleted"
+                  />
+              </div>
+              </div>
+
+            </li>
+            <li>
+              <div class="panel">
+                <h5><b class="uppercase">bulletin boards ad 2</b> - Specify Location 2
+                  (online when you are within a Radius from the board address)
+                </h5>
+                * If empty - Ad will be bound to your current location.
+
+                <div class="location-nearby js-location-nearby">
+                  <input class="form-control typeahead capitalize js-nearby-places" name="team" type="text"
+                         placeholder="address, zip or place nearby"
+                         data-source="placesArray"
+
+                         autocomplete="on" spellcheck="off"
+                         data-opened="opened" data-selected="selected"
+                         data-min-length="0"
+                         data-autocompleted="autocompleted"
+                    />
+                </div>
+              </div>
+
+            </li>
+          </ul>
+
+
+          <!--<div class="place-btn padding">-->
+
           <!--<div class="place-btn padding">-->
           <!--<div class="card left">
             <button class="button small js-my-places-button disabled" data-ion-popover="myPlacesPopover">
@@ -35,15 +79,15 @@
           <div class="medium-3 input-label left">
             <label>Choose radius (your status will be "online" only if you stay within)</label>
           </div>
-          <div class="medium-5 large-7">
+          <div class="medium-9 large-7">
             <div class="small-10 medium-11 columns">
-              <div class="range-slider js-radius-slider" data-slider data-options="display_selector: #sliderOutput3; start: 1; end: 5; initial: 1;">
+              <div class="range-slider js-radius-slider" data-slider data-options="display_selector: #sliderOutput3; start: 50; end: 2000; initial: 200;">
                 <span class="range-slider-handle" role="slider" tabindex="0"></span>
                 <span class="range-slider-active-segment"></span>
               </div>
             </div>
             <div class="small-2 medium-1 columns">
-              <span id="sliderOutput3"></span>mi
+              <span id="sliderOutput3"></span>ft
             </div>
           </div>
         </div>
