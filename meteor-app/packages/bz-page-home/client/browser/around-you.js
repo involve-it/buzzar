@@ -22,13 +22,14 @@ Template.aroundYou.helpers({
 Template.bzAroundYouItem.helpers({
 
   categoryType: function() {
+    /*debugger;
 
     var postsId = bz.cols.posts.find({_id: this._id}).fetch()[0].type;
     
     if(postsId) {
       var ret = bz.cols.siteTypes.find({_id: postsId}).fetch()[0].name;
-    }
-    return ret;
+    }*/
+    return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
     
   
   },
@@ -36,5 +37,16 @@ Template.bzAroundYouItem.helpers({
   getRank: function() {},
   getTimeStamp: function(){
     return Date.now();
+  },
+  getUserName: function() {
+    return Meteor.users.findOne(this.userId).username.toCapitalCase();
+  },
+  getImgSrc: function(){
+    var ret, phId = this.details.photos[0];
+    if(phId){
+      ret = bz.cols.images.findOne(phId);
+      ret = ret && ret.data;
+    }
+    return ret;
   }
 });

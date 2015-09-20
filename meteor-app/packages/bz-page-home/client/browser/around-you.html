@@ -19,12 +19,13 @@
             <div class="bz-side-a">
                 <div class="bz-avatar"></div>
                 <div class="bz-rating"></div>
-                <div class="bz-username">username</div>
+                <div class="bz-username">{{ getUserName }}</div>
             </div>
             <div class="bz-side-b">
                 <div class="arrow"></div>
                 <div class="bz-photo bz-overlay-hover">
-                    <img width="400" height="300" class="bz-overlay-scale" src="http://lorempixel.com/400/300/?{{getTimeStamp}}" alt=""/>
+                    <img width="400" height="300" class="bz-overlay-scale" src="{{ getImgSrc }}" alt=""/>
+                    <!--<img width="400" height="300" class="bz-overlay-scale" src="http://lorempixel.com/400/300/?{{getTimeStamp}}" alt=""/>-->
                     <a class="bz-position-cover" href="#"></a>
                     <div class="bz-distance"><i class="fa fa-location-arrow"></i> 30 km</div>
                 </div>

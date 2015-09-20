@@ -3,7 +3,7 @@
  */
 
 Template.myItems.onCreated(function () {
-  return Meteor.subscribe('posts-images');
+  //return Meteor.subscribe('posts-images');
 });
 
 
@@ -14,7 +14,7 @@ Template.myItems.helpers({
   }
 });
 
-Template.oneItem.helpers({
+Template.onePostRowItem.helpers({
   getPhotoUrl: function () {
     var photo = bz.cols.posts.findOne({_id: this._id}),
       photoId = photo.details.photos && photo.details.photos[0] || undefined;

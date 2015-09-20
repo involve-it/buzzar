@@ -97,6 +97,7 @@ if (Meteor.isServer) {
 }
 
 bz.cols.images = new Mongo.Collection('images');
+
 if(Meteor.isServer){
   bz.cols.images.allow({
     insert: function () {
@@ -107,6 +108,7 @@ if(Meteor.isServer){
 if(Meteor.isClient){
   Meteor.subscribe('posts-all');
   Meteor.subscribe('posts-my');
+  Meteor.subscribe('posts-images');
 }
 
 

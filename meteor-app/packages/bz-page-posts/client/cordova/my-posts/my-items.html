@@ -8,7 +8,7 @@
         </div>
 
         {{#each posts}}
-            {{> oneItem}}
+            {{> onePostRowItem}}
         {{/each}}
         <div class="item item-divider item-inactive">
             {{t9n 'inactive'}}
@@ -22,7 +22,7 @@
 
 
 
-<template name="oneItem">
+<template name="onePostRowItem">
     
     <div class="item">
         <a href="/post/{{_id}}">

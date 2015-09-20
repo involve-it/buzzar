@@ -13,12 +13,15 @@
  }
  }
  });*/
-bz.help.maps.getCurrentLocation(function(loc){
-  Session.set('bz.control.search.location', {
-    coords: loc,
-    name: 'My Location'
+Meteor.startup(function () {
+  bz.help.maps.getCurrentLocation(function (loc) {
+    Session.set('bz.control.search.location', {
+      coords: loc,
+      name: 'My Location'
+    });
   });
 });
+
 Template.bzControlSearch.created = function () {
   bz.help.maps.initLocation();
   bz.help.maps.initPlaces();
@@ -46,6 +49,7 @@ Template.bzControlSearch.onRendered(function () {
    ///
 
    */
+  Session.set('bz.control.search.searchedText', '');
 });
 
 Template.bzControlSearch.helpers({
@@ -125,13 +129,32 @@ Template.bzControlSearch.events({
   },
   'click .js-search-btn': function (e, v) {
     var text = $('.js-nearby-places.tt-input').val();
-    if(text) {
+    if (text) {
       Session.set('bz.control.search.searchedText', text);
     }
     return false;
   },
+  //typeahead:
+  'change .js-nearby-places': function (e) {
+    var val = e.target.value;
+    if (!val || val.trim() === '') {
+      Session.set('bz.control.search.searchedText', '');
+    }
+  },
+  'typeahead:change .js-nearby-places': function (e, v, val) {
+    val = val && val.trim() || '';
+    Session.set('bz.control.search.searchedText', val);
+  },
+  'typeahead:select .js-nearby-places': function (e, v, val) {
+    val = val.name && val.name.trim() || '';
+    Session.set('bz.control.search.searchedText', val);
+    $('.js-nearby-places').typeahead('close');
+  },
+  'keydown .js-nearby-places': function (e, v, val) {
 
-})
+  }
+
+});
 
 // HELPERS:
 function fillNearByPlacesFromLocation(loc, radius) {

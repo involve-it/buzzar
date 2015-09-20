@@ -25,8 +25,10 @@ Meteor.startup(function () {
 }*/
 function searchPostsReactive() {
   Tracker.autorun(function () {
+    bz.cols.searchRt._collection.remove({});
     bz.cols.posts.find().count();
     var searchedText = Session.get('bz.control.search.searchedText');
+    searchedText = searchedText && searchedText.trim();
     if(searchedText) {
       var query = searchedText,
       //map = GoogleMaps.maps.map.instance, latitude, longitude,
@@ -34,15 +36,16 @@ function searchPostsReactive() {
       if (!query && query === undefined) {
         query = '';
       }
-      Meteor.call('search', query, activeCats, {}, function (err, results) {
+      Meteor.call('search', query, activeCats, {limit: 10}, function (err, results) {
+        bz.cols.searchRt._collection.remove({});
         if (results && results.length > 0) {
           for (var i = 0; i < results.length; i++) {
             bz.cols.searchRt._collection.upsert({_id: results[i]._id}, results[i]);
-            //      bz.runtime.maps.places._collection.upsert({name: results[i].name}, results[i]);
-
           }
         }
       });
+    } else {
+
     }
   });
 }
