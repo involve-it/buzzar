@@ -22,26 +22,27 @@ Package.onUse(function (api) {
   api.use('sacha:spin');
   
   api.use('arutune:bz-main');
-  api.use('arutune:bz-control-search');
+  api.use('arutune:bz-page-search');
   api.use('arutune:bz-control-honeycomb');
 
   api.addFiles([
-    'web/router.js'
+    'client/router.js',
+    'client/controller.js'
   ], 'web');
   
   api.addFiles([
-    'web/browser/app-loading.html',
-    'web/browser/page-home.html',
-    'web/browser/page-home.js',
-    'web/browser/page-home.less',
-    'web/browser/around-you.html',
-    'web/browser/around-you.js',
-    'web/browser/around-you.less'
+    'client/browser/app-loading.html',
+    'client/browser/page-home.html',
+    'client/browser/page-home.js',
+    'client/browser/page-home.less',
+    'client/browser/around-you.html',
+    'client/browser/around-you.js',
+    'client/browser/around-you.less'
   ], 'web.browser');
   
   api.addFiles([
-    'web/cordova/page-home.html',
-    'web/cordova/page-home.js'
+    'client/cordova/page-home.html',
+    'client/cordova/page-home.js'
   ], 'web.cordova');
 });
 

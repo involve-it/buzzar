@@ -6,8 +6,6 @@
 //bz.help.maps.initLocation();
 //bz.help.maps.initPlaces();
 
-bz.help.makeNamespace('bz.runtime.newPost.location');
-
 Template.postsPlacesAutoform.created = function () {
   bz.help.maps.initLocation();
   bz.help.maps.initPlaces();
@@ -17,12 +15,12 @@ Template.postsPlacesAutoform.created = function () {
 
 Template.postsPlacesAutoform.onRendered(function () {
   this.autorun(function () {
-    if (GoogleMaps.loaded() && Session.get('bz.api.loc')) {
+    if (GoogleMaps.loaded() && Session.get('bz.api.maps.recentLoc')) {
       var map = document.createElement('div');
       var service = new google.maps.places.PlacesService(map);
       service.nearbySearch({
-        location: Session.get('bz.api.loc'),
-        radius: 1
+        location: Session.get('bz.api.maps.recentLoc'),
+        radius: 2 // km, 1.24 miß
         //types: ['store']
       }, callbackNearbySearch);
     }

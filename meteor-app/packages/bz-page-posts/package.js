@@ -21,6 +21,7 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'client/router.js',
+    'client/controller.js',
     'client/page-my.less'
   ], 'client');
   api.addFiles([

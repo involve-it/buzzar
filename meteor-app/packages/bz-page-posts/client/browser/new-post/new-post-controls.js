@@ -44,7 +44,7 @@ Template.postHashesControl.events({
   }
 });
 Template.postDetailsHelp.events({
-  'click .panel': function(){
+  'click .panel': function(e,v){
     $(e.target).closest('.panel').toggleClass('callout');
   }
 });

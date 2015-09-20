@@ -10,7 +10,7 @@ var Maps = {
   initLocation: function () {
     bz.help.makeNamespace('bz.runtime.maps');
     this.getCurrentLocation(function(loc){
-      Session.set('bz.api.loc', loc);
+      //Session.set('bz.api.loc', loc);
     });
     //}
   },
@@ -31,7 +31,8 @@ var Maps = {
       };
       console.log(a);
       //bz.runtime.maps.loc = loc;
-      args.unshift(loc)
+      args.unshift(loc);
+      Session.set('bz.api.maps.recentLoc', loc);
       callback.apply(that, args);
     });
   },

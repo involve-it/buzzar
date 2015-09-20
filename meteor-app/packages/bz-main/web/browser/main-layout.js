@@ -13,4 +13,9 @@ Template.mainLayout.rendered = function () {
   });
   
 };
+Template.bzNavBar.helpers({
+  getLocationName: function(){ //FromSearchControl
+    return Session.get('bz.control.search.location') && Session.get('bz.control.search.location').name;
+  }
+})
 

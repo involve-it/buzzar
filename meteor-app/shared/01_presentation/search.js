@@ -77,7 +77,7 @@ Meteor.startup(function () {
 if (Meteor.isServer) {
 
   Meteor.methods({
-    search: function (query, types, options) {
+    search: function (textToSearch, types, options) {
       options = options || {};
 
       // guard against client-side DOS: hard limit to 50
@@ -88,7 +88,7 @@ if (Meteor.isServer) {
       }
 
       // TODO fix regexp to support multiple tokens
-      var regex = new RegExp(".*" + query + '.*');
+      var regex = new RegExp(".*" + textToSearch + '.*');
       if (types && Array.isArray(types) && types.length > 0) {
         return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}, type: {$in: types}}, options).fetch();
       } else {

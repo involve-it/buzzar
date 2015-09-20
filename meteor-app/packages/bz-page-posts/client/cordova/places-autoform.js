@@ -17,13 +17,13 @@ Template.postsPlacesAutoform.created = function () {
 
 Template.postsPlacesAutoform.onRendered(function () {
   this.autorun(function () {
-    if (GoogleMaps.loaded() && Session.get('bz.api.loc')) {
+    if (GoogleMaps.loaded() && Session.get('bz.api.maps.recentLoc')) {
       var map = document.createElement('div');
       var service = new google.maps.places.PlacesService(map);
       service.nearbySearch({
-        location: Session.get('bz.api.loc'),
+        location: Session.get('bz.api.maps.recentLoc'),
         radius: 30,
-        types: ['store']
+        //types: ['store']
       }, callbackNearbySearch);
     }
   });

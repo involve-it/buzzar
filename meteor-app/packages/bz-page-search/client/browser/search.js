@@ -13,8 +13,12 @@
  }
  }
  });*/
-
-
+bz.help.maps.getCurrentLocation(function(loc){
+  Session.set('bz.control.search.location', {
+    coords: loc,
+    name: 'My Location'
+  });
+});
 Template.bzControlSearch.created = function () {
   bz.help.maps.initLocation();
   bz.help.maps.initPlaces();
@@ -26,8 +30,8 @@ Template.bzControlSearch.onRendered(function () {
 
   Meteor.typeahead.inject();
   this.autorun(function () {
-    if (GoogleMaps.loaded() && Session.get('bz.api.loc')) {
-      fillNearByPlacesFromLocation(Session.get('bz.api.loc'), 1000);
+    if (GoogleMaps.loaded() && Session.get('bz.control.search.location')) {
+      fillNearByPlacesFromLocation(Session.get('bz.control.search.location'), 1);   // 1km ~ 10 min walk
     }
   });
 
@@ -120,10 +124,11 @@ Template.bzControlSearch.events({
   'blur .js-nearby-places': function () {
   },
   'click .js-search-btn': function (e, v) {
-    var text = $('.js-nearby-places').val();
+    var text = $('.js-nearby-places.tt-input').val();
     if(text) {
-      searchPostsReactive(text);
+      Session.set('bz.control.search.searchedText', text);
     }
+    return false;
   },
 
 })
@@ -133,33 +138,17 @@ function fillNearByPlacesFromLocation(loc, radius) {
   var map = document.createElement('div');
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
-    location: loc,
+    location: loc.coords,
     radius: radius,
-    types: ['store']
+    //types: ['store']
   }, callbackNearbySearch);
 }
 function callbackNearbySearch(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
-      bz.runtime.maps.places._collection.insert(results[i]);
+      bz.runtime.maps.places._collection.upsert({name: results[i].name}, results[i]);
     }
   }
   //Session.set('bz.control.search.places', bz.runtime.maps.places.find().fetch());
   //return bz.runtime.maps.places;
-}
-
-function searchPostsReactive(searchText) {
-  Tracker.autorun(function () {
-    bz.cols.posts.find().count();
-    var query = searchText,
-        posts,
-        map = GoogleMaps.maps.map.instance, latitude, longitude,
-        activeCats = Session.get('bz.control.category-list.activeCategories');
-    if (!query && query === undefined) {
-      query = '';
-    }
-    Meteor.call('search', query, activeCats, {}, function (err, res) {
-      posts = res;
-    });
-  });
 }
