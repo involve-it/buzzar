@@ -1,0 +1,49 @@
+<template name="aroundYou">
+    <div class="bz-around-you">
+
+        <div class="bz-items">
+            <div class="row">
+                <h3 class="title">Buzz Around you</h3>
+                {{#each aroundItem}}
+                    {{> bzAroundYouItem}}
+                {{/each}}
+            </div>
+        </div>
+        
+    </div>
+</template>
+
+<template name="bzAroundYouItem">
+    <div class="small-12 medium-6 large-4 columns left">
+        <div class="bz-item">
+            <div class="bz-side-a">
+                <div class="bz-avatar"></div>
+                <div class="bz-rating"></div>
+                <div class="bz-username">{{ getUserName }}</div>
+            </div>
+            <div class="bz-side-b">
+                <div class="arrow"></div>
+                <div class="bz-photo bz-overlay-hover">
+                    <img width="400" height="300" class="bz-overlay-scale" src="{{ getImgSrc }}" alt=""/>
+                    <!--<img width="400" height="300" class="bz-overlay-scale" src="http://lorempixel.com/400/300/?{{getTimeStamp}}" alt=""/>-->
+                    <a class="bz-position-cover" href="#"></a>
+                    <div class="bz-distance"><i class="fa fa-location-arrow"></i> 30 km</div>
+                </div>
+                <h4 class="bz-title">{{details.title}}</h4>
+                <div class="bz-content">
+                    <p>
+                        {{details.description}}
+                    </p>
+                </div>
+                <div class="bz-item-footer">
+                    <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
+                    <div class="bz-category">
+                        <div class="button bz-btn-category type-category-{{categoryType}}">
+                            {{categoryType}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

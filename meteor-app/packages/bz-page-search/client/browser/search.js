@@ -64,7 +64,7 @@ Template.bzControlSearch.helpers({
       valueKey: 'name',
       displayKey: 'name',
       template: 'googlePlacesItem',
-      header: '<h3 class="league-name">Google Places</h3>',
+      header: '<h3 class="league-name">Places Nearby</h3>',
       local: function () {
         ret = bz.runtime.maps.places.find().fetch().map(function (item) {
           return item;
@@ -149,9 +149,14 @@ Template.bzControlSearch.events({
     val = val.name && val.name.trim() || '';
     Session.set('bz.control.search.searchedText', val);
     $('.js-nearby-places').typeahead('close');
+    $('.js-nearby-places').blur();
   },
   'keydown .js-nearby-places': function (e, v, val) {
-
+    if(e.keyCode === 13){
+      // enter bnt hit
+      $('.js-nearby-places').typeahead('close');
+      $('.js-nearby-places').blur();
+    }
   }
 
 });

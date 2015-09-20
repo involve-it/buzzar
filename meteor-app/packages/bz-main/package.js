@@ -29,34 +29,36 @@ Package.onUse(function (api) {
   ], 'web.cordova');
 
   api.addFiles([
-    'web/browser/style/foundation/js/foundation-select.js',
-    'web/browser/style/foundation/js/foundation.js',
-	  'web/browser/style/foundation/js/foundation/foundation.dropdown.js',
-    'web/browser/style/foundation/js/foundation/foundation.offcanvas.js'
+    'client/browser/style/foundation/js/foundation-select.js',
+    'client/browser/style/foundation/js/foundation.js',
+	  'client/browser/style/foundation/js/foundation/foundation.dropdown.js',
+    'client/browser/style/foundation/js/foundation/foundation.offcanvas.js'
 
   ], 'web.browser');
   
   api.addFiles([
-    'web/browser/style/foundation/foundation-select.css',
-    'web/browser/style/foundation-main.scss',
-    'web/browser/style/foundation-custom-settings.scss',
+    'client/browser/style/foundation/foundation-select.css',
+    'client/browser/style/foundation-main.scss',
+    'client/browser/style/foundation-custom-settings.scss',
     /*'web/browser/style/foundation/scss/foundation/components/_buttons.scss',*/
-    'web/browser/style/_buttons.scss',
-    'web/browser/main-layout.html',
-    'web/browser/main-layout.js',
-    'web/browser/main-layout.less'
+    'client/browser/style/_buttons.scss',
+    'client/browser/main-layout.html',
+    'client/browser/main-layout.js',
+    'client/browser/main-layout.less'
   ], 'web.browser');
   api.addFiles([
-    'web/cordova/main-layout.html',
-    'web/cordova/main-layout.js',
-    'web/cordova/main-layout.less',
-    'web/cordova/style/app-ionic.less',
-    'web/cordova/main-layout.less',
-    'web/cordova/style/app.scss'
+    'client/cordova/main-layout.html',
+    'client/cordova/main-layout.js',
+    'client/cordova/main-layout.less',
+    'client/cordova/style/app-ionic.less',
+    'client/cordova/main-layout.less',
+    'client/cordova/style/app.scss'
   ], 'web.cordova');
 
   api.addFiles([
-    'web/router.js',
+    'client/router.js',
+    'client/app-loading.html',
+
   ], 'web');
 
 });

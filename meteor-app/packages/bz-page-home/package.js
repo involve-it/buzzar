@@ -31,16 +31,18 @@ Package.onUse(function (api) {
   ], 'web');
   
   api.addFiles([
-    'client/browser/app-loading.html',
+    'client/browser/around-you.html',
+    'client/browser/around-you.js',
+    'client/browser/around-you.less',
     'client/browser/page-home.html',
     'client/browser/page-home.js',
     'client/browser/page-home.less',
-    'client/browser/around-you.html',
-    'client/browser/around-you.js',
-    'client/browser/around-you.less'
   ], 'web.browser');
   
   api.addFiles([
+    'client/cordova/around-you.html',
+    'client/cordova/around-you.js',
+    'client/cordova/around-you.less',
     'client/cordova/page-home.html',
     'client/cordova/page-home.js'
   ], 'web.cordova');
