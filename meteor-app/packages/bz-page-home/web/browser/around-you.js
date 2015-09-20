@@ -12,22 +12,25 @@ Template.bzAroundYouItem.rendered = function() {
 
 Template.aroundYou.helpers({
   aroundItem: function() {
-    searchSelector = Session.get('bz.control.search-selector');
+    var searchSelector = Session.get('bz.control.search-selector');
+    var ret = bz.cols.posts.find(searchSelector, {limit:3}).fetch();
 
-    ret = bz.cols.posts.find(searchSelector, {limit:3}).fetch();
-    /*console.log(ret);*/
     return ret;
   }
 });
 
 Template.bzAroundYouItem.helpers({
-  
+
   categoryType: function() {
+
+    var postsId = bz.cols.posts.find({_id: this._id}).fetch()[0].type;
     
-    /*var postTypes;
-    switch (postTypes) {}*/
+    if(postsId) {
+      var ret = bz.cols.siteTypes.find({_id: postsId}).fetch()[0].name;
+    }
+    return ret;
     
-    return "trade";  
+  
   },
   getAvatarImg: function () {},
   getRank: function() {},

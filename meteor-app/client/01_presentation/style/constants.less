@@ -3,3 +3,72 @@
 @h-title-color:       rgba(89,99,107,.95);
 @sub-title-color:     rgba(153,153,153,.95);
 @roboto-font-family:  "Roboto", sans-serif;
+
+
+@max-width-side-b: 280px;
+@white-color-text: rgba(255,255,255, 1);
+
+@background-bar-fantasia:   #1EBCD2; //buzzar color, old color #8097ff
+
+@bg-header-color-2: #87D0BF;
+@bg-header-color-1: #51B9C8;
+
+/* MIXIN */
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius:    @radius;
+  border-radius:         @radius;
+}
+
+.display-flex-box() {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flex-flow(@param1, @param2) {
+  -webkit-flex-direction: @param1;
+  flex-direction:         @param1;
+  -webkit-flex-wrap:      @param2;
+  flex-wrap:              @param2;
+}
+
+.justify-content(@param) {
+  -webkit-justify-content: @param;
+  justify-content:         @param;
+}
+
+.flex(@flex-grow, @flex-shrink) {
+  -webkit-flex:   @flex-grow @flex-shrink;
+  flex:           @flex-grow @flex-shrink ;
+}
+
+.align-items(@param) {
+  -webkit-align-items: @param;
+  align-items:         @param;
+}
+
+.bz-btn-category() {
+  height: 26px;
+  .border-radius(2px);
+  font-size: 12px;
+  padding: 6px 8px;
+  margin: 5px 0;
+}
+
+.type-category() {
+  /*Category type*/
+  &.type-category-trade     {background-color: rgba(81,185,200, 1);}
+  &.type-category-jobs      {background-color: rgba(121,121,121, 1);}
+  &.type-category-help      {background-color: rgba(121,206,33, 1);}
+  &.type-category-connect   {background-color: rgba(30,188,210, 1);}
+  &.type-category-housing   {background-color: rgba(241,186,56, 1);}
+  &.type-category-events    {background-color: rgba(0,150,136, 1);}
+}
+
+/* END MIXIN */
+
+
+
+
+
+
