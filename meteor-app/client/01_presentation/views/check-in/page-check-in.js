@@ -7,7 +7,6 @@
 }*/
 
 function onReady() {
-  debugger;
 }
 Template.pageCheckIn.rendered = function(){
 }

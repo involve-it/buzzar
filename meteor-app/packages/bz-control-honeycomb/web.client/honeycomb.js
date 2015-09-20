@@ -1,6 +1,12 @@
 /**
  * Created by Ashot on 9/8/15.
  */
+Template.bzControlHoneycomb.helpers({
+  getPostImg: function(){
+
+    return bz.const.randomImageSite + '?ts=' + Date.now();
+  }
+})
 Template.bzControlHoneycomb.rendered = function () {
   //ng-app="socially"
   //angular.module('socially',['angular-meteor']);

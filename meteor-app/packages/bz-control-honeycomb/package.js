@@ -19,6 +19,8 @@ Package.onUse(function (api) {
     //'lib/angular.js',
     'web.client/app.js',
     'user.ng.html',
+
+    'web.client/honeycomb.less',
     'web.client/honeycomb.html',
     'web.client/honeycomb.js',
     //'web.client/index.ng.html',
