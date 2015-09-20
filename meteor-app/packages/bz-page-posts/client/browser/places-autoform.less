@@ -16,12 +16,19 @@
         min-width: 50px;
         .button {
           border: 1px transparent solid;
+          &.selected {
+            border-color: #0a9dc7;
+            background-color: #11c1f3;
+            color: #fff;
+          }
+          &.button-clear {
+            background-color: transparent;
+            color: #008CBA;
+            border: 1px #008CBA solid;
+          }
+
         }
-        .button.button-clear {
-          background-color: transparent;
-          color: #008CBA;
-          border: 1px #008CBA solid;
-        }
+
       }
       &.location-nearby {
         &.selected {

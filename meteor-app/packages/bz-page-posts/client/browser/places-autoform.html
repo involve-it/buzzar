@@ -6,10 +6,11 @@
 
         <div class="row choose-place-buttons">
           <div class="card current-location-btn left">
-            <a class="button small button-calm js-current-location-a button-clear">
+            <a class="button small button-calm js-current-location-a">
               <i class="fa fa-location-arrow placeholder-icon"></i>
             </a>
           </div>
+          OR
           <!--<div class="place-btn padding">-->
           <div class="card location-nearby js-location-nearby left">
             <input class="form-control typeahead capitalize js-nearby-places" name="team" type="text"
@@ -23,12 +24,12 @@
                 />
           </div>
           <!--<div class="place-btn padding">-->
-          <div class="card left">
+          <!--<div class="card left">
             <button class="button small js-my-places-button disabled" data-ion-popover="myPlacesPopover">
               My places
             </button>
 
-          </div>
+          </div>-->
         </div>
         <div class="row choose-radius">
           <div class="medium-3 input-label left">
@@ -50,28 +51,4 @@
     </div>
   </div>
 
-</template>
-
-<template name="myPlacesPopover">
-
-  {{#ionPopover}}
-    <div class="content popover--my-places">
-      <div class="list">
-        {{#each getMyPlaces }}
-          <a class="item item-icon-left js-my-place-item" name="{{name}}">
-            {{ name }}
-            {{> ionIcon icon="ios-location-outline"}}
-          </a>
-        {{/each}}
-        <!--<a class="item item-icon-right" href="http://ionicframework.com/" target="_blank">
-                    Ionic
-                    {{> ionIcon icon="ios-arrow-right"}}
-                </a>
-                <a class="item item-icon-right" href="http://meteoric.github.io/" target="_blank">
-                    Meteoric
-                    {{> ionIcon icon="ios-arrow-right"}}
-                </a>-->
-      </div>
-    </div>
-  {{/ionPopover}}
 </template>
