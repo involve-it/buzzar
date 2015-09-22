@@ -28,3 +28,7 @@ Template.pageHome.rendered = function () {
   });
 
 };
+
+
+
+

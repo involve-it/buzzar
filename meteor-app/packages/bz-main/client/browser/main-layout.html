@@ -63,13 +63,14 @@
           {{> bzMeteorLogo }}
         </div>
         <div class="bz-location-name">
-          {{ getLocationName }}
+            <i class="fa fa-map-marker"></i> {{#if getLocationName}} <span>{{ getLocationName }}</span> {{else}} <span>Your location is not defined</span> {{/if}}
         </div>
         <div class="bz-header-menu">
           {{> bzInnerMenuLeft}}
         </div>
-        <a href="{{ pathFor 'postsNew'}}" class="button alert">New Post</a>
-
+        <div class="bz-header-button">
+          <a href="{{ pathFor 'postsNew'}}" class="button bz-small alert">New Post</a>
+        </div>
         <div class="bz-auth">
           {{> checkInBtn }}
         </div>

@@ -15,13 +15,9 @@
             <i class="icon ion-search placeholder-icon"></i>
             <!--<div class="search-field"><input type="search" placeholder="I am looking for OR I am going to ..." name="searchword"  autocomplete="off"></div>-->
             {{> bzControlSearch }}
-            {{> bzDistance }}
+            
           </form>
-
-          <div class="bz-location-hint">
-            <span class="warning-hint">(WARNING)</span> <span>Your location is not defined</span>
-
-          </div>
+            
         </div>
       </div>
 
@@ -73,19 +69,6 @@
     <a href="/home" style="color: white;">
       BUZZAR<span>ound</span>
     </a>
-  </div>
-</template>
-
-<template name="bzDistance">
-  <div class="bz-distance">
-    <form id="dropdown-distance" class="bz-dropdown">
-      <select data-prompt="{{t9n 'distance'}}">
-        <option value="200-ft">200 {{t9n 'ft'}}</option>
-        <option value="1-mile">1 {{t9n 'mile'}}</option>
-        <option value="5-miles">5 {{t9n 'miles'}}</option>
-        <option value="20-miles">20 {{t9n 'miles'}}</option>
-      </select>
-    </form>
   </div>
 </template>
 

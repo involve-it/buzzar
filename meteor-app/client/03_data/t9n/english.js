@@ -17,8 +17,8 @@ en = {
   // home page:
   headliner: 'instant post, bound to location',
   distance: 'Distance',
-  mile: 'mile',
-  miles: 'miles',
+  mile: 'ml',
+  miles: 'ml',
   ft: 'ft'
 };
 

@@ -13,6 +13,31 @@
  }
  }
  });*/
+
+
+Template.bzDistance.rendered = function() {
+  $("#selectDis").trigger("change", true);
+};
+
+Template.bzDistance.events({
+  'change #selectDis': function(e) {
+
+    var $this = $(this);
+
+    console.log($this);
+
+
+  },
+  'click #selectDis': function(e) {
+
+    var $this = $(this);
+
+    console.log($this);
+
+  }
+});
+
+
 Meteor.startup(function () {
   bz.help.maps.getCurrentLocation(function (loc) {
     Session.set('bz.control.search.location', {
