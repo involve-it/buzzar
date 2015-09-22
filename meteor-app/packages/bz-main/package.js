@@ -29,14 +29,18 @@ Package.onUse(function (api) {
   ], 'web.cordova');
 
   api.addFiles([
-    'client/browser/style/foundation/js/foundation-select.js',
+
+    'client/browser/style/foundation/js/vendor/modernizr.js',
     'client/browser/style/foundation/js/foundation.js',
+    'client/browser/style/foundation/js/foundation-select.js',
+    'client/browser/style/foundation/js/foundation/foundation.tooltip.js',
 	  'client/browser/style/foundation/js/foundation/foundation.dropdown.js',
-    'client/browser/style/foundation/js/foundation/foundation.offcanvas.js'
+    'client/browser/style/foundation/js/foundation/foundation.offcanvas.js',
 
   ], 'web.browser');
   
   api.addFiles([
+      'client/controller.js',
     'client/browser/style/foundation/foundation-select.css',
     'client/browser/style/foundation-main.scss',
     'client/browser/style/foundation-custom-settings.scss',

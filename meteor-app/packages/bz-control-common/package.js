@@ -17,9 +17,14 @@ Package.onUse(function(api) {
   api.addFiles('bz-control-common.js');
 
   api.addFiles([
+      'client/resources/t9-en.js',
+
       'client/browser/category-list-buttons.html',
       'client/browser/category-list-buttons.js',
-      'client/browser/category-list-buttons.less'
+      'client/browser/category-list-buttons.less',
+      'client/browser/search-location.html',
+      'client/browser/search-location.js',
+      'client/browser/search-location.less'
   ], 'web.browser');
 });
 

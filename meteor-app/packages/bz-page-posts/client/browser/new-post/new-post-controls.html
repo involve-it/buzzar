@@ -16,16 +16,21 @@
 
   <div class="item-group">
     <!--<div class="clearfix">-->
-      <div class="row">
-        {{> postPhotoUpload }}
-      </div>
+    <div class="row">
+      {{> postPhotoUpload }}
+    </div>
 
-      <div class="row">
-        {{> postDetailsCommon }}
-      </div>
-    <!--</div>-->
-    <div class="js-post-details-categorized"></div>
-    <!--{{> postHashesControl }}-->
+    <div class="row">
+      {{> postDetailsCommon }}
+    </div>
+
+    <div class="js-post-details-categorized row"></div>
+    <div class="row">
+      <!--{{> postHashesControl }}-->
+    </div>
+    <div class="row">
+      {{> postProfileInfo }}
+    </div>
   </div>
 
 </template>
@@ -85,7 +90,8 @@
     <a class="js-get-picture-lib button">get pic lib</a>-->
   </div>
 
-  <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+  <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
+       role="dialog">
     {{> uploadImageModal }}
   </div>
 </template>
@@ -96,7 +102,7 @@
   <button class="button js-photo-library">Photo library</button>
   <button class="button js-take-photo">Take Photo</button>
   <div class="row">
-  OR
+    OR
   </div>
   <input type="text" placeholder="image url" class="js-image-url">
   <button class="button js-use-image-url">Image Url</button>
@@ -119,9 +125,15 @@
         <li>
           <div class="panel radius">Lost my pet</div>
         </li>
-        <li><div class="panel radius">Need money for food</div></li>
-        <li><div class="panel radius">Emergency situation</div></li>
-        <li><div class="panel radius">Other</div></li>
+        <li>
+          <div class="panel radius">Need money for food</div>
+        </li>
+        <li>
+          <div class="panel radius">Emergency situation</div>
+        </li>
+        <li>
+          <div class="panel radius">Other</div>
+        </li>
       </ul>
       <div class="medium-5 large-7 left hidden">
         <select class="js-charity-type-select">
@@ -212,7 +224,13 @@
   </label>-->
 </template>
 
-
+<template name="postProfileInfo">
+  <div class="large-6 columns">
+    <label>Incognito mode</label>
+    <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Yes</label>
+    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">No</label>
+  </div>
+</template>
 
 
 

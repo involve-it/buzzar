@@ -1,0 +1,33 @@
+<template name="bzControlSearchLocation">
+  <br/>
+  <br/>
+  <br/>
+  <div class="bz-control--search-location search-field">
+    <div class="form-group bz-search-size">
+
+      <!--<input type="search" placeholder="I am looking for OR I am going to ..." name="searchword" autocomplete="off">-->
+
+      <!-- <input class="form-control typeahead capitalize js-nearby-places" name="team" type="text"
+              placeholder="place nearby"
+              data-source="placesArray"
+
+              autocomplete="on" spellcheck="off"
+              data-opened="opened" data-selected="selected"
+              data-min-length="0"
+              data-autocompleted="autocompleted"
+           />-->
+      <input class="form-control typeahead js-nearby-places" name="team" type="text"
+             placeholder="{{ t9n 'searchLocationText'}}"
+             data-sets="joinedArray"
+
+             autocomplete="on" spellcheck="off"
+             data-min-length="0"
+             data-opened="opened" data-selected="selected1"
+             data-template="teamList"
+          />
+    </div>
+      
+  </div>
+
+
+</template>
