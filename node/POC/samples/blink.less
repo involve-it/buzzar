@@ -1,0 +1,16 @@
+
+// TEMP: blinking border around location:
+@keyframes blink {
+  50% {
+    border-color: #ff0000;
+    border-width: 2px;
+    border-style: solid;
+  }
+}
+.bz-location-name.blinked {
+  animation-name: blink ;
+  animation-duration: .5s ;
+  animation-timing-function: step-end ;
+  animation-iteration-count: infinite ;
+  animation-direction: alternate ;
+}

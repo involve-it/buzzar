@@ -22,6 +22,7 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'client/router.js',
+    'client/model.js',
     'client/controller.js',
     'resources/t9-en.js'
   ], 'client');

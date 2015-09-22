@@ -13,18 +13,46 @@
  }
  }
  });*/
+Meteor.startup(function () {
+  bz.help.maps.getCurrentLocation(function (loc) {
+    Session.set('bz.control.search.location', {
+      coords: loc,
+      name: 'My Location'
+    });
+  });
+});
 
-
-Template.bzControlSearch.created = function () {
-  //bzControlSearchCreated();
+Template.bzControlSearchLocation.created = function () {
+  bz.help.maps.initLocation();
+  bz.help.maps.initPlaces();
+  // doc.ready happened, so:
+  bz.help.maps.googleMapsLoad();
 }
 
-Template.bzControlSearch.onRendered(function () {
+Template.bzControlSearchLocation.onRendered(function () {
+
   Meteor.typeahead.inject();
+  this.autorun(function () {
+    if (GoogleMaps.loaded() && Session.get('bz.control.search.location')) {
+      fillNearByPlacesFromLocation(Session.get('bz.control.search.location'), 1);   // 1km ~ 10 min walk
+    }
+  });
+
+  /*$('.js-nearby-places').typeahead(/!* init *!/).on('typeahead:beforeclose', function($e) {
+   $e.preventDefault();
+   });
+   $(document).on('click', function(e, e1){
+   });*/
+  /*  $('#typeahead-input').on('typeahead:closed', function(e, d) {
+   $('#typeahead-input').focus();
+   });
+   ///
+
+   */
   Session.set('bz.control.search.searchedText', '');
 });
 
-Template.bzControlSearch.helpers({
+Template.bzControlSearchLocation.helpers({
   placesArray: function () {
     return bz.runtime.maps.places.find().fetch().map(function (object) {
       return {id: object._id, value: object.name};
@@ -96,7 +124,7 @@ Template.bzControlSearch.helpers({
     $('.js-location-nearby').addClass('selected');
   }
 });
-Template.bzControlSearch.events({
+Template.bzControlSearchLocation.events({
   'blur .js-nearby-places': function () {
   },
   'click .js-search-btn': function (e, v) {
@@ -133,3 +161,22 @@ Template.bzControlSearch.events({
 
 });
 
+// HELPERS:
+function fillNearByPlacesFromLocation(loc, radius) {
+  var map = document.createElement('div');
+  var service = new google.maps.places.PlacesService(map);
+  service.nearbySearch({
+    location: loc.coords,
+    radius: radius,
+    //types: ['store']
+  }, callbackNearbySearch);
+}
+function callbackNearbySearch(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      bz.runtime.maps.places._collection.upsert({name: results[i].name}, results[i]);
+    }
+  }
+  //Session.set('bz.control.search.places', bz.runtime.maps.places.find().fetch());
+  //return bz.runtime.maps.places;
+}
