@@ -41,7 +41,13 @@ Meteor.startup(function () {
   bz.cols.siteTypes.insert({
     name: 'events',
     fullName: 'Local events',
-    color: 'B70808',
+    color: '333308',
+    order: 5
+  });
+  bz.cols.siteTypes.insert({
+    name: 'services',
+    fullName: 'Need or provide service',
+    color: '370808',
     order: 5
   });
   Meteor.publish('siteTypes', function(){

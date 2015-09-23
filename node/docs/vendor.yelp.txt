@@ -1,0 +1,5 @@
+API v2.0
+Consumer Key	hXSdjS1jlEsBuf1IgSIMdw
+Consumer Secret	rIQhb5XI5pjWvLRnA8Dkrr4DRi0
+Token	v5rNRAHLK0Is7H9gsCF2fwUjvks0X9gR
+Token Secret	qVqB06AiObkjkM4BSdKeFG66DvE

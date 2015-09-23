@@ -39,7 +39,11 @@ Template.bzAroundYouItem.helpers({
     return Date.now();
   },
   getUserName: function() {
-    return Meteor.users.findOne(this.userId).username.toCapitalCase();
+    var ret = '';
+    if(Meteor.user()) {
+      ret = Meteor.user().username.toCapitalCase();
+    }
+    return ret;
   },
   getImgSrc: function(){
     var ret, phId = this.details.photos[0];

@@ -86,13 +86,13 @@ Template.myPlacesPopover.helpers({
 });
 
 // HELPERS:
-
+/*
 function callbackNearbySearch(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
       bz.runtime.maps.places._collection.insert(results[i]);
     }
   }
-}
+}*/
 // INFO:
 // see this for autoforms: https://github.com/sergeyt/meteor-typeahead/, http://typeahead.meteor.com/

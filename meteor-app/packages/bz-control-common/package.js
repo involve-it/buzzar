@@ -22,9 +22,7 @@ Package.onUse(function(api) {
       'client/browser/category-list-buttons.html',
       'client/browser/category-list-buttons.js',
       'client/browser/category-list-buttons.less',
-      'client/browser/search-location.html',
-      'client/browser/search-location.js',
-      'client/browser/search-location.less'
+
   ], 'web.browser');
 });
 

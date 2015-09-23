@@ -12,3 +12,11 @@ Router.map(function () {
     }
   });
 });
+// load google maps before some routes
+Router.onBeforeAction(function() {
+  bz.help.maps.googleMapsLoad();
+
+  this.next();
+}, {
+  only: ['home']
+});

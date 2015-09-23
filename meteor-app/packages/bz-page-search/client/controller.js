@@ -19,33 +19,42 @@ Meteor.startup(function () {
   }
   searchPostsReactive();
 
+  bz.help.maps.initPlacesCollection();
+  Template.bzControlSearch.onCreated(function () {
+    debugger;
+
+    bz.help.maps.initLocation();
+
+    // doc.ready happened, so:
+    //bz.help.maps.googleMapsLoad();
+  });
+  Template.bzControlSearch.onCreated(function () {
+    debugger;
+
+    bz.help.maps.initLocation();
+    //bz.help.maps.initPlacesCollection();
+
+    // doc.ready happened, so:
+    //bz.help.maps.googleMapsLoad();
+  });
+
   // fill google maps locations into bz.runtime.maps.places:
   Tracker.autorun(function () {
-    if (GoogleMaps.loaded() && Session.get('bz.control.search.location')) {
-      fillNearByPlacesFromLocation(Session.get('bz.control.search.location'), SEARCH_RADIUS);
+    //bz.help.maps.initPlacesCollection();
+    bz.runtime.maps.places._collection.remove({});
+    if (Session.get('bz.control.search.location')) {
+      if (GoogleMaps.loaded()) {
+        fillNearByPlacesFromLocationGoogle(Session.get('bz.control.search.location'), SEARCH_RADIUS);
+      }
+
+      fillNearByPlacesFromLocationYelp(Session.get('bz.control.search.location'), SEARCH_RADIUS);
     }
   });
 });
 
 
-// HELPERS:
-/*function callbackNearbySearch(results, status) {
- console.log('results: ', results);
- console.log('status: ', status);
- console.log('length: ', results.length);
- if (status === google.maps.places.PlacesServiceStatus.OK) {
- for (var i = 0; i < results.length; i++) {
- bz.runtime.maps.places._collection.insert(results[i]);
- }
- }
- }*/
 Meteor.startup(function () {
-  Template.bzControlSearch.onCreated(function () {
-    bz.help.maps.initLocation();
-    bz.help.maps.initPlaces();
-    // doc.ready happened, so:
-    bz.help.maps.googleMapsLoad();
-  });
+
 });
 
 
@@ -75,26 +84,52 @@ function searchPostsReactive() {
     }
   });
 }
-function fillNearByPlacesFromLocation(loc, radius) {
+setSearchedText = function (text) {
+  return Session.set('bz.control.search.searchedText', text);
+}
+
+// HELPERS:
+function fillNearByPlacesFromLocationYelp(loc, radius) {
+  /*var map = document.createElement('div');
+   var service = new google.maps.places.PlacesService(map);
+   service.nearbySearch({
+   location: loc.coords,
+   radius: radius,
+   //types: ['store']
+   }, callbackNearbySearchYelp);*/
+  //callbackNearbySearchYelp(window.yelpRes.businesses, 'OK'); // stub, todo
+}
+function callbackNearbySearchYelp(results, status) {
+  if (status === 'OK') {
+    for (var i = 0; i < results.length; i++) {
+      results[i].searchEngine = 'yelp';
+      bz.runtime.maps.places._collection.upsert({name: results[i].name}, results[i]);
+    }
+  }
+  //Session.set('bz.control.search.places', bz.runtime.maps.places.find().fetch());
+  //return bz.runtime.maps.places;
+}
+function fillNearByPlacesFromLocationGoogle(loc, radius) {
   var map = document.createElement('div');
   var service = new google.maps.places.PlacesService(map);
   /*service.nearbySearch({
+   location: loc.coords,
+   radius: radius,
+   //types: ['store']
+   }, callbackNearbySearch);*/
+  //console.log(radius);
+  service.nearbySearch({
+    //service.radarSearch({
     location: loc.coords,
     radius: radius,
-    //types: ['store']
-  }, callbackNearbySearch);*/
-  console.log(radius);
-  //service.nearbySearch({
-  service.radarSearch({
-    location: loc.coords,
-    radius: radius,
-    types: allTypes
-  }, callbackNearbySearch);
+    //types: allTypes
+  }, callbackNearbySearchGoogle);
 }
-function callbackNearbySearch(results, status) {
-  bz.runtime.maps.places._collection.remove({});
+
+function callbackNearbySearchGoogle(results, status, html_attributions, next_page_token) {
+  debugger;
   if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
-    res1 = _.filter(results, function(item) {
+    res1 = _.filter(results, function (item) {
       return _.intersection(['locality'], item.types).length === 0;
     });
     results = res1;

@@ -31,6 +31,10 @@ Package.onUse(function (api) {
 
     //'client/browser/page-search-results.html',
     //'client/browser/page-search-results.js',
+    'client/browser/search-location.html',
+    'client/browser/search-location.js',
+    'client/browser/search-location.less',
+
     'client/browser/search-results.html',
     'client/browser/search-results.js',
     'client/browser/search.html',

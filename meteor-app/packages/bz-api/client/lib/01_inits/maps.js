@@ -36,7 +36,7 @@ var Maps = {
      callback.apply(that, args);
     });
   },
-  initPlaces: function () {
+  initPlacesCollection: function () {
     if (!bz.runtime.maps.places && !bz.help.collectionExists('maps.places')) {
 
       var placesCol = new Meteor.Collection("maps.places"); // client-side only.

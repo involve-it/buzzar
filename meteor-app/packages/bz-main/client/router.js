@@ -13,18 +13,15 @@ Router.configure({
   onBeforeAction: function () { // temp for closing whole site.
     //debugger;
     var openRoutes = Router.current().url === Router.routes['entrySignUp'].path() || Router.current().url === Router.routes['entrySignIn'].path();
-    if (!Meteor.user() && !openRoutes) {
+    if (Meteor.absoluteUrl() === 'http://buzzar.io/' && !Meteor.user() && !openRoutes) {
       if (Meteor.loggingIn()) {
         this.render(this.loadingTemplate);
       } else {
         Router.go('entrySignUp');
-        this.next();
-
-        //Router.go('entrySignIn');
       }
     } else {
-      this.next();
     }
+    this.next();
   },
   // the appNotFound template is used for unknown routes and missing lists
   //notFoundTemplate: 'appNotFound',
