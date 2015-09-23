@@ -26,7 +26,9 @@ Package.onUse(function (api) {
   ], 'client');
   api.addFiles([
     'client/browser/details/details-controls.html',
+    'client/browser/details/details-controls.less',
     'client/browser/details/details-controls.js',
+      
     'client/browser/details/page-details.html',
     'client/browser/details/page-details.js',
     //'client/browser/my-posts/my-items.less',

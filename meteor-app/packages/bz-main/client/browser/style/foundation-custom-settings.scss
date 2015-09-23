@@ -124,7 +124,7 @@ body {
 
   #bz-navbar {
     position: relative;
-    padding: 5px 0;
+    padding: 0;
     display: -webkit-box; /* Safari */
     display: -moz-box; /* Firefox 21- */
     display: -ms-flexbox; /* IE 10+ */
@@ -321,6 +321,11 @@ body {
     }
     
     .bz-wrap-page {
+      
+      /* Photos - details controls */
+      .photos {
+        height: 250px;
+      }
 
 
           /* search */
@@ -481,6 +486,11 @@ body {
     
     .bz-wrap-page {
 
+      /* Photos - details controls */
+      .photos {
+        height: 450px;
+      }
+      
       
           /* search */
           .bz-search {
