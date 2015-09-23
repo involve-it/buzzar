@@ -2,93 +2,115 @@
 
   {{> bzNavBar}}
 
-  <div class="page-settings">
-    <div class="profile-box has-header">
-      <div class="card">
-        <p class="title">Your profile details</p>
-        <div class="profile-narrow">
-          <div class="owner-photo-wrap">
-            {{> avatar}}
-          </div>
+    <div class="bz-block-light">
+        <div class="bz-container-body">
+            <div class="main-content">
+    
+    
+                  <div class="page-settings">
+                    <div class="profile-box">
 
-          <!--<div class="profile-details">
-                                <div>{{username}}</div>
-                                <div><input type="text" value="{{profile.firstName}}" placeholder="first name" readonly/></div>
-                                <div><input type="text" value="{{profile.lastName}}" placeholder="last name" readonly/></div>
-                            </div>-->
+                        <div class="item item-divider">
+                            <h3 class="title">Your profile details</h3>
+                        </div>
 
-          <div class="edit-settings">
 
-            <div>
-              <a href="{{pathFor 'settings.edit'}}">
-                <p>Edit your profile</p>
-                <!--{{> ionIcon icon="ios-arrow-right"}}-->
-              </a>
+                        <div>
+                            <a href="{{pathFor 'settings.edit'}}">
+                                <p>Edit your profile</p>
+                            </a>
+                        </div>
+                        
+                        
+                        <div class="item-group">
+                        <div class="clearfix">
+                            <div class="item-details">
+                                <label class="item item-input">
+                                    <div class="small-12 medium-3 input-label left">
+                                        <div class="text-center">{{> avatar}}</div>
+                                    </div>
+                                    
+                                    <div class="small-12 medium-9 large-9 left">
+                                        <p>Text for photo detail</p>
+                                        <button class="small">Photo</button> &nbsp;
+                                        <button class="small">Take a photo</button>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        </div>
+
+                        
+                        <div class="item-group">
+                        <div class="clearfix">
+                            <h5 class="title">Your status</h5>
+                            <div class="item-details">
+                                <label class="item item-input">
+                                    <div class="small-12 medium-3 input-label left ">Location</div>
+                                    <div class="small-12 medium-9 large-9 left">
+                                        <p>{{ getStatusLocation }}</p>  
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        </div>
+                        
+
+                        <div class="item-group">
+                        <div class="clearfix">
+                            <h5 class="title">Contact</h5>
+                            <div class="item-details">
+                                <label class="item item-input">
+                                    <div class="small-12 medium-3 input-label left ">Profile Url</div>
+                                    <div class="small-12 medium-9 large-9 left">
+                                        <p><a href="{{ getIdProfile}}">{{ getIdProfile}}</a></p>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="item-details">
+                                <label class="item item-input">
+                                    <div class="small-12 medium-3 input-label left ">Phone</div>
+                                    <div class="small-12 medium-9 large-9 left">
+                                        <p>Upon request</p>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="item-details">
+                                <label class="item item-input">
+                                    <div class="small-12 medium-3 input-label left ">Skype</div>
+                                    <div class="small-12 medium-9 large-9 left">
+                                        <p>Hidden</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        </div>
+
+
+                        <div class="item-group">
+                        <div class="clearfix">
+                            <h5 class="title">Social</h5>
+                            <div class="item-details">
+                                <label class="item item-input">
+                                    <div class="small-12 medium-3 input-label left ">Facebook profile</div>
+                                    <div class="small-12 medium-9 large-9 left">
+                                        <p>-------</p>
+                                        <!--{{ getFaceBookDetails }}-->
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        </div>
+                        
+
+                    </div>
+                  </div>
+
             </div>
-
-            <div>
-                <p>Your status</p>
-                <!--{{> ionIcon icon="ios-arrow-right"}}-->
-                Location: {{ getStatusLocation }}
-            </div>
-
-          </div>
-
         </div>
-
-        <div class="profile-wide">
-
-          <div class="buttons-info">
-            <div class="item-details">
-              <p class="title">Contact</p>
-              <div>
-                <!--<a class="item item-icon-right" href="/settings">-->
-                <p><strong>Profile Url:</strong>
-                  <a href="{{ getIdProfile}}">{{ getIdProfile}}</a>
-                </p>
-                <!--</a>-->
-              </div>
-
-              <div>
-                <!--<span class="item item-icon-right" href="/settings">-->
-                  <p><strong>Phone</strong>
-                    <!--Phone number-->
-                    <span>Upon request</span>
-
-                  </p>
-                <!--</a>-->
-              </div>
-
-              <div>
-                <!--<span class="item item-icon-right" href="/settings">-->
-                  <p><strong>Skype</strong>
-                    <!--Username skype-->
-                    <span>Hidden</span>
-                  </p>
-
-                <!--</a>-->
-              </div>
-
-            </div>
-            <div class="item-details">
-              <p class="title">Social</p>
-              <div>
-                <!--<a class="item item-icon-right" href="/settings">-->
-                <p><strong>Facebook profile: {{ getFaceBookDetails }}</strong></p>
-                <!--<p><strong>_id гостя:</strong> {{getIdGuestUser}}</p>-->
-                <!--</a>-->
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-
-      </div>
     </div>
-  </div>
-
-
 
   {{> bzFooter}}
 
