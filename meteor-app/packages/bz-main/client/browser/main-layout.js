@@ -14,11 +14,7 @@ Template.mainLayout.rendered = function () {
   
 };
 
-Template.bzLocationName.helpers({
-  getLocationName: function(){ //FromSearchControl
-    return Session.get('bz.control.search.location') && Session.get('bz.control.search.location').name;
-  }
-});
+
 
 
 
