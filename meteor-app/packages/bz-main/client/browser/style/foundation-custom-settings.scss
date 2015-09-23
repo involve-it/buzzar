@@ -44,10 +44,16 @@ body {
 }
 
 .off-canvas-wrap {
-/*  height: 100%;*/
+  /*height: 100%;*/
+  position: initial; //without router
   
   .inner-wrap {
-/*    height: 100%;*/
+    /*height: 100%;*/
+    position: absolute; //without router
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     
     .js-button-left-off-canvas {
       position: absolute;
