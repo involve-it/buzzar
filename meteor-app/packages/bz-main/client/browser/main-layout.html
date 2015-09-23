@@ -1,5 +1,5 @@
 <template name="mainLayout">
-  {{#if currentUser}}
+  <!--{{#if currentUser}}-->
 
     <div class="off-canvas-wrap" data-offcanvas>
       <div class="inner-wrap">
@@ -29,9 +29,9 @@
     </div>
 
 
-  {{else}}
+<!--  {{else}}
     {{> yield}}
-  {{/if}}
+  {{/if}}-->
 </template>
 
 
@@ -45,12 +45,20 @@
 <template name="bzInnerMenuLeft">
   <ul class="off-canvas-list">
     <li><label>Foundation</label></li>
-    <li class="{{isActiveRoute 'postsMy'}}"><a href="{{pathFor 'postsMy'}}">My posts</a></li>
+    {{#if currentUser}}
+      {{> checkingUserMenu}}
+    {{/if}}  
     <!--<li class="{{isActiveRoute 'postsNew'}}"><a href="{{pathFor 'postsNew'}}" class="alert">New Post</a></li>-->
     <li class="{{isActiveRoute 'pageMap'}}"><a href="{{pathFor 'pageMap'}}">Map</a></li>
-    <li class="{{isActiveRoute 'settings'}}"><a href="{{pathFor 'settings'}}">Settings</a></li>
+   
   </ul>
 </template>
+
+<template name="checkingUserMenu">
+    <li class="{{isActiveRoute 'postsMy'}}"><a href="{{pathFor 'postsMy'}}">My posts</a></li>
+    <li class="{{isActiveRoute 'settings'}}"><a href="{{pathFor 'settings'}}">Settings</a></li>
+</template>
+
 <!--END MENU-->
 
 
@@ -62,24 +70,27 @@
         <div class="bz-logo">
           {{> bzMeteorLogo }}
         </div>
-        <div class="bz-location-name">
-            <i class="fa fa-map-marker"></i> {{#if getLocationName}} <span>{{ getLocationName }}</span> {{else}} <span>Your location is not defined</span> {{/if}}
-        </div>
+        
+        {{> bzLocationName}}          
+          
         <div class="bz-header-menu">
           {{> bzInnerMenuLeft}}
         </div>
         <div class="bz-header-button">
           <a href="{{ pathFor 'postsNew'}}" class="button bz-small alert">New Post</a>
         </div>
-        <div class="bz-auth">
+          
+        <!--<div class="bz-auth">
           {{> checkInBtn }}
-        </div>
+        </div>-->
 
       </nav>
       <!-- navEND -->
     </div>
   </div>
 </template>
+
+
 
 
 <template name="bzFooter">

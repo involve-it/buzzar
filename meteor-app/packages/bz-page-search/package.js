@@ -39,6 +39,10 @@ Package.onUse(function (api) {
     'client/browser/search-results.js',
     'client/browser/search.html',
     'client/browser/search.js',
+
+    'client/browser/location-name/location-name.html',
+    'client/browser/location-name/location-name.js',
+    'client/browser/location-name/location-name.less'
   ], 'web.browser');
 
 });

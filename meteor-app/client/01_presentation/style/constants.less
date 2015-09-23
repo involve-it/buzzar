@@ -2,6 +2,7 @@
 
 @h-title-color:       rgba(89,99,107,.95);
 @sub-title-color:     rgba(153,153,153,.95);
+@text-link-green:     rgba(32, 171, 173, 0.95);
 @roboto-font-family:  "Roboto", sans-serif;
 
 
@@ -67,7 +68,19 @@
 
 /* END MIXIN */
 
+input:not([type]).input-clear,
+input[type="text"].input-clear {
+  padding: 0;
+  margin: 0;
+}
 
+
+ul.none-list {
+
+  li {
+    list-style: none;
+  }
+}
 
 
 

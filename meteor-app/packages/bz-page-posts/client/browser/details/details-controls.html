@@ -1,34 +1,61 @@
 <template name="postsDetails">
+    <div class="bz-block-light">
+        <div class="bz-container-body">
+            <div class="main-content">
+    
+               <!-- <div class="item item-divider">
+                    <h3 class="title">Basic</h3>
+                </div>
+                {{> postTypeSelect }}
+                {{> postsPlacesAutoform }}-->
 
-    <div class="item item-divider">
-        <h3 class="title">Basic</h3>
+                {{> postDetailsPhoto }}
+                
+                
+                <div class="item item-divider">
+                    <h3 class="title">Post Details</h3>
+                </div>
+                
+                {{> postDetailsDetailsCommon }}
+                
+                <div class="js-post-details-categorized"></div>
+                {{> postDetailsHashesControl }}
+                
+            </div>
+        </div>
     </div>
-<!--    {{> postTypeSelect }}
-    {{> postsPlacesAutoform }}-->
-    <div class="item item-divider">
-        <h3 class="title">Post Details</h3>
-    </div>
-    {{> postDetailsDetailsCommon }}
-    {{> postDetailsPhoto }}
-    <div class="js-post-details-categorized"></div>
-    {{> postDetailsHashesControl }}
-
 </template>
+
 
 <!--Forms for different types:-->
 <template name="postDetailsDetailsCommon">
-    <div class="item-details">
+    <div class="item-group">
+    <div class="clearfix">
+        <div class="item-details">
+            <label class="item item-input">
+                <div class="small-12 medium-3 input-label left">Title</div>
+                <div class="small-12 medium-9 large-9 left">
+                    <input class="js-post-title" type="text" label-type="stacked" name="title" required=""
+                           data-schema-key="title" maxlength="200" value="{{ getTitle }}" disabled>
+                </div>
+            </label>
+        </div>
+    </div>
+    </div>
 
-        <label class="item item-input">
-            <span class="input-label">Title</span>
-            <input class="js-post-title" type="text" label-type="stacked" name="title" required=""
-                   data-schema-key="title" maxlength="200" value="{{ getTitle }}" disabled>
-        </label>
-        <label type="stacked" class="item item-input item-stacked-label">
-            <span class="input-label">Description</span>
-            <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
-                      data-schema-key="body" value="{{ getDescription }}" disabled></textarea>
-        </label>
+    <div class="item-group">
+    <div class="clearfix">
+        <div class="item-details">
+            <label type="stacked" class="item item-input item-stacked-label">
+                <div class="small-12 medium-3 input-label left">Description</div>
+                <div class="small-12 medium-9 large-9 left">
+                   <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
+                             data-schema-key="body" value="{{ getDescription }}" disabled>
+                   </textarea>
+                </div>
+            </label>
+        </div>
+    </div>
     </div>
 </template>
 
@@ -88,6 +115,8 @@
 </template>
 
 <template name="postDetailsHashesControl">
+    {{#if getHashes}}
+        
     <label type="stacked" class="item item-input item-stacked-label padding-right">
         <span class="input-label">Hashes</span>
         <button class="button button-block button-stable js-hashes-holder">{{ getHashes }}</button>
@@ -102,20 +131,33 @@
             </a>
         </div>
     </label>-->
+        
+        {{/if}}
 </template>
+
 <template name="postDetailsPhoto">
-    <div class="post-photo-upload">
-        <!--<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>-->
+    <div class="photos">
+        <div class="single-photo cover-img" style="background-image: url('{{ getPhotoUrl }}')"></div>
+    </div>
+    
+    
+    
+    
+    <!-- 09.23.15 old markup-->
+    <!--<div class="post-photo-upload">
+        &lt;!&ndash;<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>&ndash;&gt;
         <div class="owner-photo-wrap">
             <div class="img-avatar" data-action="edit-avatar">
                 <i class="icon ion-camera"></i>
 
-                <img src="{{ getPhotoUrl }}" width="90" height="90">
+                <img src="{{ getPhotoUrl }}" >
 
             </div>
         </div>
-        <!--<a class="js-get-picture button">get pic</a>
+        &lt;!&ndash;<a class="js-get-picture button">get pic</a>
         <br/>
-        <a class="js-get-picture-lib button">get pic lib</a>-->
-    </div>
+        <a class="js-get-picture-lib button">get pic lib</a>&ndash;&gt;
+    </div>-->
+    <!-- END 09.23.15 old markup-->
+    
 </template>

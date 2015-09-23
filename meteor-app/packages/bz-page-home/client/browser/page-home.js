@@ -23,8 +23,12 @@ Template.pageHome.events({
 Template.pageHome.rendered = function () {
   
   $('select').foundationSelect();
+  
   $(document).foundation({
-    
+    offcanvas : {
+      open_method: 'move',
+      close_on_click : true
+    }
   });
 
 };

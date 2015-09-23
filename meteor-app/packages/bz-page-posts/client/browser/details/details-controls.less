@@ -1,0 +1,29 @@
+
+.transition(@type, @deley) {
+  -webkit-transition: @type @deley;
+  -moz-transition:    @type @deley;
+  -o-transition:      @type @deley;
+  transition:         @type @deley;
+}
+
+
+.photos {
+  height: 600px;
+  width: 100%;
+  margin: 0;
+  padding-bottom: 30px;
+  .transition(height, .2s);
+  
+  
+  .single-photo {
+
+    &.cover-img {
+      background-position: 50% 50%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+  }
+}
+
