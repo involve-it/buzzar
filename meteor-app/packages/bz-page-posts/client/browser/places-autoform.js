@@ -8,7 +8,7 @@
 
 Template.postsPlacesAutoform.created = function () {
   bz.help.maps.initLocation();
-  bz.help.maps.initPlaces();
+  bz.help.maps.initPlacesCollection();
   // doc.ready happened, so:
   bz.help.maps.googleMapsLoad();
 }

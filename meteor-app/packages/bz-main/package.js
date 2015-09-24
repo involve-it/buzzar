@@ -53,7 +53,7 @@ Package.onUse(function (api) {
   api.addFiles([
     'client/cordova/main-layout.html',
     'client/cordova/main-layout.js',
-    'client/cordova/main-layout.less',
+      //'client/cordova/main-layout.less',
     'client/cordova/style/app-ionic.less',
     'client/cordova/main-layout.less',
     'client/cordova/style/app.scss'
