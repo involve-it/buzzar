@@ -1,118 +1,127 @@
 <template name="userEdit">
   {{> bzNavBar}}
 
-  <div class="page-settings">
-    <div class="profile-box has-header">
-      <div class="card">
-        <p class="title">Edit Your profile</p>
+    <div class="bz-block-light">
+        <div class="bz-container-body">
+            <div class="main-content">
+                
+                <div class="page-settings">
+                <div class="profile-box">
 
-        <div class="profile-narrow">
-          <div class="owner-photo-wrap">
-            {{> avatar}}
-          </div>
 
-          <!--<div class="profile-details">
-                                <div>{{username}}</div>
-                                <div><input type="text" value="{{profile.firstName}}" placeholder="first name" readonly/></div>
-                                <div><input type="text" value="{{profile.lastName}}" placeholder="last name" readonly/></div>
-                            </div>-->
+                    <div class="item item-divider">
+                        <h3 class="title">Edit Your profile</h3>
+                    </div>
+                    
 
-          <div class="edit-settings">
-            <div>
-                <p>Your status</p>
-                <select data-prompt="{{t9n 'distance'}}">
-                  <option value="200-ft">Online</option>
-                  <option value="1-mile">Offline</option>
-                  <option value="5-miles">Invisible</option>
-                </select>
-                <!--{{> ionIcon icon="ios-arrow-right"}}-->
-                Location: {{ getStatusLocation }}
+                    <div class="item-group">
+                        <div class="clearfix">
+                            <div class="item-details">
+                                <label class="item item-input">
+                                    <div class="small-12 medium-3 input-label left">
+                                        <div>{{> avatar}}</div>
+                                    </div>
+
+                                    <div class="small-12 medium-9 large-9 left">
+                                        <!--<div class="profile-details">
+                                            <div>{{username}}</div>
+                                            <div><input type="text" value="{{profile.firstName}}" placeholder="first name" readonly/></div>
+                                            <div><input type="text" value="{{profile.lastName}}" placeholder="last name" readonly/></div>
+                                        </div>-->
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item-group">
+                        <div class="clearfix">
+                            <div class="item-details">
+                                <label class="item item-input">
+                                    <div class="small-12 medium-3 input-label left ">Your status</div>
+                                    <div class="small-12 medium-9 large-9 left">
+                                        <select>
+                                            <option value="200-ft">Online</option>
+                                            <option value="1-mile">Offline</option>
+                                            <option value="5-miles">Invisible</option>
+                                        </select>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item-group">
+                        <div class="clearfix">
+                            <div class="item-details">
+                                <label class="item item-input">
+                                    <div class="small-12 medium-3 input-label left ">Location</div>
+                                    <div class="small-12 medium-9 large-9 left">
+                                        {{ getStatusLocation }}
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="item-group">
+                        <div class="clearfix">
+                            <h5 class="title">Contact</h5>
+                            <div class="item-details">
+                                <label class="item item-input">
+                                    <div class="small-12 medium-3 input-label left ">Phone</div>
+                                    <div class="small-12 medium-9 large-9 left">
+                                        <select>
+                                            <option value="200-ft">Public</option>
+                                            <option value="1-mile">Upon request</option>
+                                            <option value="5-miles">Hide</option>
+                                        </select>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="item-details">
+                                <label class="item item-input">
+                                    <div class="small-12 medium-3 input-label left ">Skype</div>
+                                    <div class="small-12 medium-9 large-9 left">
+                                        <select>
+                                            <option value="200-ft">Public</option>
+                                            <option value="1-mile">Upon request</option>
+                                            <option value="5-miles">Hide</option>
+                                        </select>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item-group">
+                        <div class="clearfix">
+                            <h5 class="title">Social</h5>
+                            <div class="item-details">
+                                <label class="item item-input">
+                                    <div class="small-12 medium-3 input-label left ">Facebook profile</div>
+                                    <div class="small-12 medium-9 large-9 left">
+                                        <select>
+                                            <option value="200-ft" selected="selected">Public</option>
+                                            <option value="1-mile">Upon request</option>
+                                            <option value="5-miles">Hide</option>
+                                        </select>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                                      
+                    
+
+                </div>
+              </div>
+
             </div>
-
-          </div>
-
         </div>
-
-        <div class="profile-wide">
-
-          <div class="buttons-info">
-            <div class="item-details">
-              <p class="title">Contact</p>
-
-              <div>
-                <!--<a class="item item-icon-right" href="/settings">-->
-                <!--<p><strong>Profile Url:</strong>
-                  <a href="{{ getIdProfile}}">{{ getIdProfile}}</a>
-                </p>-->
-                <!--</a>-->
-              </div>
-
-              <div>
-                <!--<a class="item item-icon-right" href="/settings">-->
-                  <p><strong>Phone</strong>
-                    <!--Phone number-->
-                    <!--<a class="button">Public</a>-->
-
-                  <!--<form id="dropdown-distance" class="bz-dropdown">
-                    <select data-prompt="Distance" style="display: none;">
-                      <option value="200-ft">Public</option>
-                      <option value="1-mile">Upon request</option>
-                      <option value="5-miles">Hide</option>
-                    </select>
-                  </form>-->
-                  <!--<form id="dropdown-distance" class="bz-dropdown" >-->
-                    <select data-prompt="{{t9n 'distance'}}">
-                      <option value="200-ft">Public</option>
-                      <option value="1-mile">Upon request</option>
-                      <option value="5-miles">Hide</option>
-                    </select>
-                  <!--</form>-->
-
-                  </p>
-                <!--</a>-->
-              </div>
-
-              <div>
-                <!--<a class="item item-icon-right" href="/settings">-->
-                  <p><strong>Skype</strong>
-                    <select data-prompt="{{t9n 'distance'}}">
-                      <option value="200-ft">Public</option>
-                      <option value="1-mile">Upon request</option>
-                      <option value="5-miles">Hide</option>
-                    </select>
-                    <!--Username skype-->
-                    <!--<a class="button">Request</a>-->
-                  </p>
-
-                <!--</a>-->
-              </div>
-
-            </div>
-            <div class="item-details">
-              <p class="title">Social</p>
-
-              <div>
-                <!--<a class="item item-icon-right" href="/settings">-->
-                <p><strong>Facebook profile: {{ getFaceBookDetails }}</strong></p>
-                <select data-prompt="{{t9n 'distance'}}">
-                  <option value="200-ft" selected="selected">Public</option>
-                  <option value="1-mile">Upon request</option>
-                  <option value="5-miles">Hide</option>
-                </select>
-                <!--<p><strong>_id гостя:</strong> {{getIdGuestUser}}</p>-->
-                <!--</a>-->
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-
-      </div>
     </div>
-  </div>
-
-
 
   {{> bzFooter}}
 
