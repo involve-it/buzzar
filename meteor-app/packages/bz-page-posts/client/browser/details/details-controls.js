@@ -26,7 +26,7 @@ Template.postDetailsPhoto.helpers({
     var photoId = Session.get('postDetailsImgSrc');
 
     if(photoId) {
-      var ret = bz.cols.images.findOne({_id: photoId}).data;
+      //ret = bz.cols.images.findOne({_id: photoId}).data;
     } else {
     }
 
@@ -37,7 +37,9 @@ Template.postDetailsPhoto.onRendered(function(){
   if(this.data.details.photos) {
     Session.set('postDetailsImgSrc', this.data.details.photos[0]);
   }
-})
+  $(document).foundation();
+  $(document).foundation('clearing', 'reflow');
+});
 // HELPERS:PostDetails
 /*function setTemplate(name, v) {
   $('.js-post-details-categorized').empty();

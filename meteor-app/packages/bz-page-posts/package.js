@@ -17,6 +17,7 @@ Package.onUse(function (api) {
   api.use('iron:layout', ['client', 'server']);
   api.use('templating', 'client');
   api.use('less', 'client');
+  //api.use('alethes:pages');
   api.use('arutune:bz-main');
 
   api.addFiles([
@@ -55,6 +56,9 @@ Package.onUse(function (api) {
 
 
   ], 'client');
+  api.addFiles([
+      'server/model.js'
+  ], 'server');
 });
 
 Package.onTest(function (api) {

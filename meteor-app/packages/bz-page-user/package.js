@@ -18,18 +18,25 @@ Package.onUse(function(api) {
   api.use('less', 'client');
   api.use('arutune:bz-main');
 
-  api.addFiles(['client/router.js'], 'client');
   api.addFiles([
-    'client/browser/profile-settings.html',
-    'client/browser/profile-settings.js',
+    'client/router.js',
+    'client/model.js',
+    'client/controller.js'
+  ], 'client');
+  api.addFiles([
+    'client/browser/common.html',
+    'client/browser/common.js',
+
+    'client/browser/profile.html',
+    'client/browser/profile.js',
 
     'client/browser/user-settings.less',
     'client/browser/user-settings.html',
     'client/browser/user-settings.js',
 
-    'client/browser/user-edit.less',
-    'client/browser/user-edit.html',
-    'client/browser/user-edit.js',
+    'client/browser/profile-edit.less',
+    'client/browser/profile-edit.html',
+    'client/browser/profile-edit.js',
   ], 'web.browser');
 });
 

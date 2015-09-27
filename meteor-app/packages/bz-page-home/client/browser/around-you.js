@@ -8,6 +8,13 @@ Template.bzAroundYouItem.rendered = function() {
   $('.bz-rating').raty({
     starType: 'i'
   });
+  var lineH = $('.bz-content .post-item-text').css('line-height');
+  if (Number.parseInt(lineH) !== 'NaN'){
+    lineH = Number.parseInt(lineH);
+  } else {
+    lineH = 20;
+  }
+  $('.bz-content .post-item-text').css('max-height', lineH * 2);
 };
 
 Template.aroundYou.helpers({

@@ -2,7 +2,7 @@
  * Created by Ashot on 9/18/15.
  */
 Router.map(function () {
-  this.route('settings', {
+  this.route('myProfile', {
     path: 'profile',
     template: 'profileSettings',
     controller: 'requireLoginController',
@@ -23,7 +23,7 @@ Router.map(function () {
       return []
     },
     data: function () {
-      return Meteor.users.findOne({_id: this.params._id});
+      return Meteor.user();
     }
   });
 

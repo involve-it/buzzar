@@ -92,31 +92,11 @@
 
   <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
        role="dialog">
-    {{> uploadImageModal }}
+    {{> uploadImageModal 'bz.posts.postImgSrc'}}
   </div>
 </template>
 
-<template name="uploadImageModal">
-  <h2 id="modalTitle">Upload profile image.</h2>
 
-  <button class="button js-photo-library">Photo library</button>
-  <button class="button js-take-photo">Take Photo</button>
-  <div class="row">
-    OR
-  </div>
-  <input type="text" placeholder="image url" class="js-image-url">
-  <button class="button js-use-image-url">Image Url</button>
-  <button class="button js-use-random-image-url">Random Image Url</button>
-  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-
-  <div data-alert class="alert-box alert hidden js-library-not-available-alert">
-    Photo Library is not available.
-    <a href="#" class="close">&times;</a>
-  </div>
-  <img id="asdf" class="js-preview"/>
-  <hr/>
-  <button class="js-ok-btn">Ok</button>
-</template>
 <template name="postDetailsHelp">
   <div class="clearfix padding-top">
     <label class="item item-input item-select">

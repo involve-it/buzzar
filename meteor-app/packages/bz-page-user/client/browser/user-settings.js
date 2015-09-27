@@ -3,8 +3,6 @@
  */
 
 Template.userSettings.onCreated(function () {
-
-
 });
 
 Template.userSettings.helpers({
@@ -45,3 +43,4 @@ Template.userSettings.events({
     )*/
   }
 });
+

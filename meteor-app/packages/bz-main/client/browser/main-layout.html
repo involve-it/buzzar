@@ -1,65 +1,38 @@
 <template name="mainLayout">
-  <!--{{#if currentUser}}-->
+<!--{{#if currentUser}}-->
 
-    <div class="off-canvas-wrap" data-offcanvas>
-      <div class="inner-wrap">
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
 
-        <div class="js-button-left-off-canvas">
-          <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
+      <div class="js-button-left-off-canvas">
+        <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
 
-            <div class="bz-icon-menu"></div>
-          </a>
-        </div>
-
-        <!-- Off Canvas Menu -->
-        {{> bzMenuLeft}}
-
-        <!-- main content goes here -->
-
-
-        <div class="bz-wrap-page">
-          {{> yield}}
-        </div>
-
-
-        <!-- close the off-canvas menu -->
-        <a class="exit-off-canvas"></a>
-
+          <div class="bz-icon-menu"></div>
+        </a>
       </div>
+
+      <!-- Off Canvas Menu -->
+      {{> bzMenuLeft}}
+
+      <!-- main content goes here -->
+
+
+      <div class="bz-wrap-page">
+        {{> yield}}
+      </div>
+
+
+      <!-- close the off-canvas menu -->
+      <a class="exit-off-canvas"></a>
+
     </div>
+  </div>
 
 
-<!--  {{else}}
-    {{> yield}}
-  {{/if}}-->
+    <!--  {{else}}
+  {{> yield}}
+{{/if}}-->
 </template>
-
-
-<!--MENU-->
-<template name="bzMenuLeft">
-  <nav class="left-off-canvas-menu">
-    {{> bzInnerMenuLeft}}
-  </nav>
-</template>
-
-<template name="bzInnerMenuLeft">
-  <ul class="off-canvas-list">
-    <li><label>Foundation</label></li>
-    {{#if currentUser}}
-      {{> checkingUserMenu}}
-    {{/if}}  
-    <!--<li class="{{isActiveRoute 'postsNew'}}"><a href="{{pathFor 'postsNew'}}" class="alert">New Post</a></li>-->
-    <li class="{{isActiveRoute 'pageMap'}}"><a href="{{pathFor 'pageMap'}}">Map</a></li>
-   
-  </ul>
-</template>
-
-<template name="checkingUserMenu">
-    <li class="{{isActiveRoute 'postsMy'}}"><a href="{{pathFor 'postsMy'}}">My posts</a></li>
-    <li class="{{isActiveRoute 'settings'}}"><a href="{{pathFor 'settings'}}">Settings</a></li>
-</template>
-
-<!--END MENU-->
 
 
 <template name="bzNavBar">
@@ -70,16 +43,16 @@
         <div class="bz-logo">
           {{> bzMeteorLogo }}
         </div>
-        
-        {{> bzLocationName}}          
-          
+
+        {{> bzLocationName}}
+
         <div class="bz-header-menu">
           {{> bzInnerMenuLeft}}
         </div>
         <div class="bz-header-button">
           <a href="{{ pathFor 'postsNew'}}" class="button bz-small alert">New Post</a>
         </div>
-          
+
         <!--<div class="bz-auth">
           {{> checkInBtn }}
         </div>-->
@@ -89,8 +62,6 @@
     </div>
   </div>
 </template>
-
-
 
 
 <template name="bzFooter">

@@ -32,7 +32,21 @@ Router.configure({
 
 bz.help.makeNamespace('bz.router');
 
+// let's extend the router with convenience method:
+Router.signIn = function(isReturnBack){
+  var sR = '/sign-in';
+  if(Router.routes['entrySignIn']) {
+    sR = Router.routes['entrySignIn'].url()
+  } else {
 
+  }
+  if(isReturnBack) {
+    Session.set('fromWhere', window.document.location.href);
+    //Session.set('fromWhere', 'http://dev.buzzar.io/post/jYYDxpvEXgtq93uDr');
+
+  }
+  Router.go(sR);
+};
 /***********************
  * requireLoginController
  ************************/
