@@ -2,6 +2,9 @@
  * Created by root on 9/15/15.
  */
 
+Template.bzAroundYouItem.onCreated(function(){
+  Meteor.subscribe('bz.users.all');
+})
 Template.bzAroundYouItem.rendered = function() {
 
   /*init Rate*/
@@ -37,18 +40,22 @@ Template.bzAroundYouItem.helpers({
       var ret = bz.cols.siteTypes.find({_id: postsId}).fetch()[0].name;
     }*/
     return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
-    
-  
   },
-  getAvatarImg: function () {},
+  getAvatarImg: function () {
+    var ret ='';
+    if(this.userId && Meteor.users.findOne(this.userId)) {
+      ret = Meteor.users.findOne(this.userId).profile.image;
+    }
+    return ret;
+  },
   getRank: function() {},
   getTimeStamp: function(){
     return Date.now();
   },
   getUserName: function() {
     var ret = '';
-    if(Meteor.user()) {
-      ret = Meteor.user().username.toCapitalCase();
+    if(this.userId && Meteor.users.findOne(this.userId)) {
+      ret = Meteor.users.findOne(this.userId).username.toCapitalCase();
     }
     return ret;
   },
