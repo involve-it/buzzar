@@ -8,7 +8,7 @@
                         <p class="title">{{ username }} profile details</p>
                         <div class="profile-narrow">
                             <div class="owner-photo-wrap">
-                                {{> avatar}}
+                                {{> avatarThumbnail}}
                             </div>
                             
                             <!--<div class="profile-details">
@@ -89,13 +89,3 @@
 
 </template>
 
-<template name="avatar">
-    <div class="img-avatar" data-action="edit-avatar">
-        <!--{{> ionIcon icon="camera" }}-->
-        {{#if profile.image}}
-            <a data-imagelightbox="a" href="{{profile.image}}?store=images"><img src="{{profile.image}}?store=thumbs"></a>
-        {{else}}
-            <img src="/img/content/avatars/avatar-no.png" width="90" height="90" />
-        {{/if}}
-    </div>
-</template>

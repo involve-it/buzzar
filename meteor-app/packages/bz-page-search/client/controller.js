@@ -21,7 +21,6 @@ Meteor.startup(function () {
 
   bz.help.maps.initPlacesCollection();
   Template.bzControlSearch.onCreated(function () {
-    debugger;
 
     bz.help.maps.initLocation();
 
@@ -29,7 +28,6 @@ Meteor.startup(function () {
     //bz.help.maps.googleMapsLoad();
   });
   Template.bzControlSearch.onCreated(function () {
-    debugger;
 
     bz.help.maps.initLocation();
     //bz.help.maps.initPlacesCollection();
@@ -127,7 +125,6 @@ function fillNearByPlacesFromLocationGoogle(loc, radius) {
 }
 
 function callbackNearbySearchGoogle(results, status, html_attributions, next_page_token) {
-  debugger;
   if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
     res1 = _.filter(results, function (item) {
       return _.intersection(['locality'], item.types).length === 0;

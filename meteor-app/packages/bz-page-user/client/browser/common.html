@@ -1,0 +1,18 @@
+<template name="avatarThumbnail">
+  <div class="img-avatar">
+      <a><img src="{{ getAvatarImage }}"></a>
+  </div>
+  {{#if canWrite }}
+  <div class="edit-image-holder">
+    <a class="js-edit-image-icon">
+      <i class="fa fa-pencil"></i>
+
+    </a>
+    <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
+         role="dialog">
+
+      {{> uploadImageModal 'bz.user.profileImgUploaded'}}
+    </div>
+  </div>
+  {{/if}}
+</template>

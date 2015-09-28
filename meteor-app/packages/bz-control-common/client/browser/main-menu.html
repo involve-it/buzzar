@@ -1,0 +1,50 @@
+<!--MENU-->
+<template name="bzMenuLeft">
+  <nav class="left-off-canvas-menu">
+    {{> bzInnerMenuLeft}}
+  </nav>
+</template>
+
+<template name="bzInnerMenuLeft">
+  <ul class="off-canvas-list">
+    <li><label>Main pages</label></li>
+    {{#if currentUser}}
+      {{> checkingUserMenu}}
+    {{/if}}
+    <!--<li class="{{isActiveRoute 'postsNew'}}"><a href="{{pathFor 'postsNew'}}" class="alert">New Post</a></li>-->
+    <li class="{{isActiveRoute 'pageMap'}}"><a href="{{pathFor 'pageMap'}}">Map</a></li>
+
+    {{> bzControlMenuHashes }}
+
+    {{#if currentUser }}
+      <li><label></label></li>
+      <li>
+        <!--<div data-ion-menu-close>-->
+          <a class="item item-icon-left" href="/sign-out">
+            <i class="fa fa-sign-out"></i>
+
+            <span>Sign out</span>
+          </a>
+        <!--</div>-->
+      </li>
+    {{/if}}
+
+  </ul>
+</template>
+
+<template name="checkingUserMenu">
+  <li class="{{isActiveRoute 'postsMy'}}"><a href="{{pathFor 'postsMy'}}">My posts</a></li>
+  <li class="{{isActiveRoute 'myProfile'}}"><a href="{{pathFor 'myProfile'}}">My profile</a></li>
+</template>
+
+<!--END MENU-->
+
+<template name="bzControlMenuHashes">
+  <li><label>Hashes</label></li>
+
+  <!--<ul>-->
+    {{#each getUserHashes }}
+      <li><a>{{ name }}</a></li>
+    {{/each}}
+  <!--</ul>-->
+</template>

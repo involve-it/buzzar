@@ -1,0 +1,57 @@
+/**
+ * Created by Ashot on 9/26/15.
+ */
+Template.bzControlReviews.onCreated(function(){
+});
+Template.bzControlReviews.events({
+
+});
+Template.bzControlReviews.helpers({
+  getReviews: function(){
+    return bz.cols.reviews.find({type: 'postType', entityId: this.postId}, { sort: { dateTime: -1}});
+  }
+});
+Template.bzControlReviewItem.helpers({
+  getTime: function(){
+    //debugger;
+    var d = new Date(this.dateTime);
+    return d.toLocaleString();
+  }
+});
+Template.bzControlAddReview.onCreated(function(){
+  //this.data.postId = this.data.toString();
+});
+Template.bzControlAddReview.onRendered(function(){
+  $('.js-rating-select').foundationSelect();
+});
+Template.bzControlAddReview.events({
+  'click .js-post-btn': function(e, v){
+    //debugger;
+    var text = $('.js-post-text-input').val(),
+        userId = Meteor.userId(),
+        postId = this.postId,
+        rating = $('.js-rating-select').val();
+    if(!userId){
+      // todo: after login the process should be continued
+      /*var loginFunc = accountsClientOrServer.onLogin(function(){
+
+      });*/
+      Router.signIn(true);
+    } else {
+      if(text.trim() && postId){
+        bz.cols.reviews.insert({
+          entityId: postId,
+          type: 'postType',
+          user: Meteor.user(),
+          userId: Meteor.userId(),
+          text: text.trim(),
+          rating: rating || undefined,
+          dateTime: Date.now()
+        });
+        $('.js-post-text-input').val('');
+      }
+    }
+
+
+  }
+})

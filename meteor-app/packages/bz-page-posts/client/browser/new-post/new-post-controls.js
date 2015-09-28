@@ -83,84 +83,8 @@ Template.postPhotoUpload.events({
     $('.js-avatar-upload-modal').foundation('reveal', 'open');
   }
 });
-Template.uploadImageModal.events({
-  'click .js-photo-library': function (e, v) {
-    var options = {
-      width: 350,
-      height: 350,
-      quality: 75
-    }
-    if (typeof Camera !== 'undefined') {
-
-      options.sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
-      MeteorCamera.getPicture(options, function (err, data) {
-        if (err) {
-          console.log('error', err);
-        }
-        if (data) {
-          Session.set('bz.posts.postImgSrc', data)
-        }
-      });
-
-    } else {
-      $('.js-library-not-available-alert').show();
-    }
-  },
-  'click .js-take-photo': function (e, v) {
-    //$('.js-avatar-upload-modal').foundation('reveal', 'close');
-
-    var options = {
-      width: 350,
-      height: 350,
-      quality: 75
-    }
-
-    MeteorCamera.getPicture(options, function (err, data) {
-      if (err) {
-        console.log('error', err);
-      }
-      if (data) {
-        Session.set('bz.posts.postImgSrc', data)
-      }
-    });
-  },
-  'click .js-use-image-url': function (e, v) {
-    if ($('.js-image-url').val()) {
-      Session.set('bz.posts.postImgSrc', $('.js-image-url').val());
-    }
-  },
-  'click .js-use-random-image-url': function (e, v) {
-    var imgData,
-        randomImgUrl = bz.const.randomImageSite + '?ts=' +  Date.now();
-
-    getDataFromImgUrl(randomImgUrl, 400, 300, function(imgData){
-      Session.set('bz.posts.postImgSrc', imgData);
-    });
-  },
-  'click .js-ok-btn': function(){
-    $('.js-avatar-upload-modal').foundation('reveal', 'close');
-  }
-});
-// HELPERS:
-function getDataFromImgUrl(url, w, h, cb){
-  var img, canvas, ctx, ret;
-  var img = $('#asdf')[0];
-  img.setAttribute('crossOrigin', 'anonymous');
-  canvas = document.createElement('canvas');
-
-  ctx = canvas.getContext("2d");
-  img.onload = function () {
-    canvas.width = img.offsetWidth;
-    canvas.height = img.offsetHeight;
-    ctx.drawImage(img, 0, 0);
-    ret = canvas.toDataURL();
-    cb.call(this, ret);
-  }
-  img.src = url;
 
 
-  return ret;
-}
 function setPostDetailsTemplate(name, v) {
   $('.js-post-details-categorized').empty();
   Blaze.renderWithData(Template['postDetails' + name], v.data, $('.js-post-details-categorized')[0]);

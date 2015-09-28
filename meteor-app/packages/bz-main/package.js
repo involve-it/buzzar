@@ -33,6 +33,7 @@ Package.onUse(function (api) {
     'client/browser/style/foundation/js/vendor/modernizr.js',
     'client/browser/style/foundation/js/foundation.js',
     'client/browser/style/foundation/js/foundation-select.js',
+    'client/browser/style/foundation/js/foundation/foundation.clearing.js',
     'client/browser/style/foundation/js/foundation/foundation.tooltip.js',
 	  'client/browser/style/foundation/js/foundation/foundation.dropdown.js',
     'client/browser/style/foundation/js/foundation/foundation.offcanvas.js',
