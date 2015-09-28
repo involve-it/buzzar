@@ -25,7 +25,7 @@
               {{/if}}
             </div>
           {{/if}}
-          {{> entryError}}
+          <!--{{> entryError}}-->
           {{#unless otherLoginServices}}
             <div class="email-option">
               <h3>{{t9n "signIn"}}</h3>
@@ -68,9 +68,7 @@
                 href="{{pathFor 'entrySignUp'}}">{{t9n "signUp"}}</a></p>
           {{/if}}
             
-          <div class="social-auth">
-              <!--<a class="button transparent btn-border btn-border-white js-login-with-fb-btn"><i class="fa fa-facebook"></i> Login with Facebook</a>-->
-          </div>
+          <!--{{> socialButtons}}-->
             
           {{#if talkingToServer}}
             {{> spinner}}

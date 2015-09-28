@@ -80,6 +80,9 @@
                                     <button type="submit" class="submit btn btn-primary">{{t9n "signUp"}}</button>
                                   </form>
                                 {{/if}}
+
+                                    {{> socialButtons}}
+                                    
                                 {{#if both}}
                                   <p class="entry-agreement">{{t9n "clickAgree"}}
                                     <a href="{{privacyUrl}}">{{t9n "privacyPolicy"}}</a> {{t9n "and"}}
