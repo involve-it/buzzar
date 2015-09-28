@@ -24,7 +24,7 @@ Template.bzDistance.events({
 
     var $this = $(this);
 
-    console.log($this);
+    /*console.log($this);*/
 
 
   },
@@ -32,7 +32,7 @@ Template.bzDistance.events({
 
     var $this = $(this);
 
-    console.log($this);
+    /*console.log($this);*/
 
   }
 });

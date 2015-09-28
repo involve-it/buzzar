@@ -177,3 +177,14 @@ AccountsEntry.entrySignUpEvents = {
 Template.entrySignUp.helpers(AccountsEntry.entrySignUpHelpers)
 
 Template.entrySignUp.events(AccountsEntry.entrySignUpEvents)
+
+
+Template.entrySignUp.rendered = ->
+  $(document).foundation abide:
+    live_validate: true
+    validate_on_blur: true
+    focus_on_invalid: true
+    error_labels: true
+    timeout: 1000
+    patterns: email: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+  return

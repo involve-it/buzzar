@@ -31,14 +31,15 @@
                                 {{else}}
                                     <p class="entry-signin-cta">{{t9n "ifYouAlreadyHaveAnAccount"}} <a href="{{pathFor 'entrySignIn'}}">{{t9n "signin"}}</a>.</p>
                                 {{/if}}
-                                {{> entryError}}
+                                <!--{{> entryError}}-->
                                 {{#if passwordLoginService}}
-                                  <form class="entry-form {{signupClass}}" id='signUp'>
+                                  <form class="entry-form {{signupClass}}" id='signUp' data-abide>
                                     {{#if showUsername}}
                                         
                                       <div class="form-group">
                                         <div class="input-symbol">
-                                         <input autofocus name="username" placeholder="{{t9n "username"}}" type="string" class="form-control" value=''  autocapitalize="none" autocomplete="off" autocorrect="off">
+                                         <input autofocus name="username" placeholder="{{t9n "username"}}" type="string" class="form-control" value=''  autocapitalize="none" autocomplete="off" autocorrect="off" required>
+                                         <small class="error">A valid username is required</small>
                                         </div>
                                       </div>
                                         
@@ -49,24 +50,28 @@
                                       <div class="form-group">
                                         {{#if showUsername}}
                                             <div class="input-symbol">
-                                              <input type="email" placeholder="{{t9n 'emailAddress'}}" class="form-control" value='{{emailAddress}}'  autocapitalize="none" autocomplete="off" autocorrect="off">
+                                              <input type="email" placeholder="{{t9n 'emailAddress'}}" class="form-control" value='{{emailAddress}}'  autocapitalize="none" autocomplete="off" autocorrect="off" required>
+                                                <small class="error">A valid email address is required</small>
                                             </div>
                                         {{else}}
-                                          <input autofocus type="email" placeholder="{{t9n 'emailAddress'}}" class="form-control" value='{{emailAddress}}'  autocapitalize="none" autocomplete="off" autocorrect="off" >
+                                          <input autofocus type="email" placeholder="{{t9n 'emailAddress'}}" class="form-control" value='{{emailAddress}}'  autocapitalize="none" autocomplete="off" autocorrect="off" required>
+                                            <small class="error">A valid email address is required</small>
                                         {{/if}}
                                       </div>
                                     {{/if}}
                         
                                     <div class="form-group">
                                        <div class="input-symbol">
-                                           <input type="password" placeholder="{{t9n "password"}}" class="form-control" value=''>
+                                           <input type="password" placeholder="{{t9n "password"}}" class="form-control" value='' required>
+                                           <small class="error">Your password must match the requirements</small>
                                         </div>
                                     </div>
                         
                                     {{#if showSignupCode}}
                                       <div class="form-group">
                                           <div class="input-symbol">
-                                            <input name="signupCode" placeholder="{{t9n "signupCode"}}"  type="string" class="form-control" value=''  autocapitalize="none" autocomplete="off" autocorrect="off" >
+                                            <input name="signupCode" placeholder="{{t9n "signupCode"}}"  type="string" class="form-control" value=''  autocapitalize="none" autocomplete="off" autocorrect="off" required>
+                                              <small class="error">Your Sign up code must match the requirements</small>
                                           </div>    
                                       </div>
                                     {{/if}}
