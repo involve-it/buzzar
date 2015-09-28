@@ -139,3 +139,53 @@
       margin: 0;
     }
   }
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+.choose-place-buttons {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap:      wrap;
+  flex-wrap:              wrap;
+  
+  > div {
+    display: -webkit-flex;
+    display: flex;
+  }
+    
+  .location-nearby {
+    .twitter-typeahead {
+      width: 100%;
+    }
+  }
+  
+  .panel {
+    position: relative;
+    z-index: 10;
+    
+    h5 {
+      text-align: center;
+    }
+    .note {
+      font-size: 14px; color: #999;
+    }
+    
+    &.callout {
+      background-color: rgba(30,188,210, .1);
+      /*position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0, .2);
+      z-index: 11;*/
+    }
+  }
+}
