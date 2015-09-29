@@ -38,6 +38,8 @@
         bottom_postfix = 'bottom';
       } else if (this.settings.open_method === 'overlap') {
         move_class = 'offcanvas-overlap';
+      } else if (this.settings.open_method === 'reveal') {
+        move_class = 'reveal';
       }
 
       S(this.scope).off('.offcanvas')

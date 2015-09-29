@@ -2,30 +2,30 @@
 <!--{{#if currentUser}}-->
 
   <div class="off-canvas-wrap" data-offcanvas>
-    <div class="inner-wrap">
+        <div class="inner-wrap">
+        
+          <!-- Off Canvas Menu -->
+          {{> bzMenuLeft}}
+        
+          <!-- close the off-canvas menu -->
+          <a class="exit-off-canvas"></a>
+        
+        </div>
 
-      <div class="js-button-left-off-canvas">
-        <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
-
-          <div class="bz-icon-menu"></div>
-        </a>
-      </div>
-
-      <!-- Off Canvas Menu -->
-      {{> bzMenuLeft}}
-
-      <!-- main content goes here -->
-
-
-      <div class="bz-wrap-page">
-        {{> yield}}
-      </div>
-
-
-      <!-- close the off-canvas menu -->
-      <a class="exit-off-canvas"></a>
-
-    </div>
+        <div class="bz-wrap-page">
+          
+            <div class="js-button-left-off-canvas">
+              <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
+            
+                  <div class="bz-icon-menu"></div>
+              </a>
+            </div>
+        
+            <div class="bz-main">
+                {{> yield}}
+            </div>
+            
+        </div>
   </div>
 
 

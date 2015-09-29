@@ -44,8 +44,64 @@ body {
 }
 
 .off-canvas-wrap {
-  /*height: 100%;*/
-  position: initial; //without router
+  height: 100%;
+  /*position: initial;*/ //without router
+
+  .js-button-left-off-canvas {
+    position: absolute;
+    top: 18px;
+    left: 30px;
+    z-index: 1001;
+
+    .bz-icon {
+      display: block;
+      width: 26px;
+      height: 26px;
+      position: relative;
+    }
+
+    .bz-icon-menu {
+      background: #FFFFFF;
+    }
+
+    [class*='bz-icon-'] {
+      position: absolute;
+      top: 50%;
+      width: 25px;
+      height: 3px;
+    }
+
+    [class*='bz-icon-']::before,
+    [class*='bz-icon-']::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #FFFFFF;
+      -webkit-transition: all 0.2s cubic-bezier(0, 0.99, 0.2, 1);
+      transition: all 0.2s cubic-bezier(0, 0.99, 0.2, 1);
+    }
+
+    .bz-icon-menu:before {
+      -webkit-transform: translateY(-300%);
+      transform: translateY(-300%);
+    }
+
+    .bz-icon-menu:after {
+      -webkit-transform: translateY(300%);
+      transform: translateY(300%);
+    }
+
+    :hover > .bz-icon-menu:before {
+      -webkit-transform: translateY(-12px);
+      transform: translateY(-12px);
+    }
+
+    :hover > .bz-icon-menu:after {
+      -webkit-transform: translateY(12px);
+      transform: translateY(12px);
+    }
+  }
   
   .inner-wrap {
     /*height: 100%;*/
@@ -55,61 +111,6 @@ body {
     left: 0;
     right: 0;
     
-    .js-button-left-off-canvas {
-      position: absolute;
-      top: 18px;
-      left: 30px;
-      z-index: 99;
-      
-      .bz-icon {
-          display: block;
-          width: 26px;
-          height: 26px;
-          position: relative;
-      }
-
-      .bz-icon-menu {
-        background: #FFFFFF;
-      }
-      
-      [class*='bz-icon-'] {
-        position: absolute;
-        top: 50%;
-        width: 25px;
-        height: 3px;
-      }
-      
-      [class*='bz-icon-']::before,
-      [class*='bz-icon-']::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: #FFFFFF;
-        -webkit-transition: all 0.2s cubic-bezier(0, 0.99, 0.2, 1);
-        transition: all 0.2s cubic-bezier(0, 0.99, 0.2, 1);
-      }
-      
-      .bz-icon-menu:before {
-        -webkit-transform: translateY(-300%);
-        transform: translateY(-300%);
-      }
-      
-      .bz-icon-menu:after {
-        -webkit-transform: translateY(300%);
-        transform: translateY(300%);
-      }
-      
-      :hover > .bz-icon-menu:before {
-        -webkit-transform: translateY(-12px);
-        transform: translateY(-12px);
-      }
-      
-      :hover > .bz-icon-menu:after {
-        -webkit-transform: translateY(12px);
-        transform: translateY(12px);
-      }
-    }
   }
 }
 
