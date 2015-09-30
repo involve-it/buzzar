@@ -15,24 +15,23 @@
  });*/
 
 
-Template.bzDistance.rendered = function() {
+/*Template.bzDistance.rendered = function() {
   $("#selectDis").trigger("change", true);
-};
+};*/
 
 Template.bzDistance.events({
   'change #selectDis': function(e) {
-
-    var $this = $(this);
-
-    /*console.log($this);*/
-
-
+    
   },
-  'click #selectDis': function(e) {
+  'click #select-selectDis li': function(e) {
+    var target = $(e.target);
+    if (target.is('li.disable')) {
+      return false;
+    }
 
-    var $this = $(this);
-
-    /*console.log($this);*/
+    var ret = target.text();
+    
+    console.log(ret);
 
   }
 });
