@@ -6,7 +6,11 @@
 </template>
 
 <template name="bzInnerMenuLeft">
-  <ul class="off-canvas-list">
+  <div class="user-area">
+      USER HERE
+  </div>
+    
+    <ul class="off-canvas-list">
     <li><label>Main pages</label></li>
     {{#if currentUser}}
       {{> checkingUserMenu}}
@@ -19,13 +23,9 @@
     {{#if currentUser }}
       <li><label></label></li>
       <li>
-        <!--<div data-ion-menu-close>-->
           <a class="item item-icon-left" href="/sign-out">
-            <i class="fa fa-sign-out"></i>
-
-            <span>Sign out</span>
+            <i class="fa fa-sign-out"></i><span>Sign out</span>
           </a>
-        <!--</div>-->
       </li>
     {{/if}}
 

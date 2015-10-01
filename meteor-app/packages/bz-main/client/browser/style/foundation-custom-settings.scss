@@ -202,7 +202,7 @@ body {
     position: relative;
     background-image: -webkit-linear-gradient(-35deg, $bg-header-color-1, $bg-header-color-2);
     background-image: linear-gradient(135deg, $bg-header-color-1, $bg-header-color-2);
-    background-color: $bg-header-color-1
+    background-color: $bg-header-color-1;
   }
 
   .nav-bg-transparent {
@@ -454,6 +454,9 @@ body {
     .bz-header-menu {
       display: block;
     }
+    .user-area {
+      display: none;
+    }
     /* END menu*/
 
     
@@ -479,6 +482,10 @@ body {
 
     .bz-header-menu {
       display: none;
+    }
+
+    .user-area {
+      display: block;
     }
     /* END menu*/
 
