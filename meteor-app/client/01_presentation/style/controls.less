@@ -1,5 +1,12 @@
 @import "constants.less";
 
+.menu-transition() {
+  transition:         all .25s ease-in-out;
+  -moz-transition:    all .25s ease-in-out;
+  -webkit-transition: all .25s ease-in-out;
+}
+
+
 .btn {
   cursor: pointer;
   display: inline-block;
@@ -47,6 +54,27 @@
      background: none; 
      box-shadow: none; 
      color: #666666; 
+  }
+}
+
+.btn-drop {
+  outline: none;
+  background-color: transparent;
+  padding: 5px 9px;
+  height: auto;
+  line-height: 14px;
+  position: relative;
+  top: 8px;
+  right: -2px;
+  float: right;
+  color: @off-canvas-link-color-i;
+  .menu-transition();
+  
+  &.arrow-down {
+    -webkit-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    .menu-transition();
   }
 }
 
@@ -108,7 +136,7 @@
 }
 
 nav.left-off-canvas-menu {
-  background-color: @bg-menu-color-1;
+  background-color: rgba(84,84,97, 1);
   .translate3d(0, 0, 0);
   -webkit-transition:-webkit-transform 500ms ease;
   -moz-transition:-moz-transform 500ms ease;
@@ -118,7 +146,6 @@ nav.left-off-canvas-menu {
   li {
     
     a {
-      text-transform: uppercase;
       border-bottom: none;
       
       i{
@@ -131,23 +158,80 @@ nav.left-off-canvas-menu {
       }
       
       &:hover {
-        background-color: rgba(0,0,0, .1);
+        background-color: rgba(0,0,0, .2);
         color: @white-color-text;
+        
+        i {
+          color: #51B9C8;
+        }
       }
     }
     
     label {
-      background-color: darken(@bg-menu-color-1, 5%);
+      background-color: rgba(0,0,0, .1);
       border-top: none;
     }
   }
+  
+  .log-out {
+    border-top: 1px solid rgba(0,0,0, .1);
+  }
 }
 
+/**
+* USER AREA
+**/
 .user-area {
-  padding: 20px;
-  background: rgba(100,100,100, .2);
-  color: #FFFFFF;
+  background: rgba(0,0,0, .15);
+  .menu-transition();
+  
+  .user-area-box {
+    padding: 12px 0;
+    margin: 0 12px;
+    
+    .user-area-avatar {
+      float: left;
+      width: 45px;
+      height: 45px;
+      margin: 7px 9px 0 0;
+      
+      img {
+        .border-radius(2px);
+      }
+    }
+
+    .user-area-side {
+      overflow: hidden;
+      line-height: 18px;
+      margin-top: 7px;
+      position: relative;
+      
+      .user-area-user-name {
+        color: @off-canvas-link-color-i;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 44px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 80%;
+        width: 100%;
+        display: inline-block;
+      }
+    }
+  }
+  &.user-panel-expand {
+    background: rgba(0,0,0, .35);
+    .menu-transition();
+  }
+  
+  .user-area-menu {
+    overflow: hidden;
+    height: 0;
+    .menu-transition();
+  }
 }
+/*END user area*/
 
 .reveal {
 
