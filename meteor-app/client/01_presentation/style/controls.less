@@ -79,7 +79,7 @@
 }
 
 .bz-header-button {
-  
+  margin-right: 15px;
   a {
     .border-radius(2px);
     margin: 0;
@@ -118,8 +118,7 @@
 
 /*.bz-wrap-page,*/
 .js-button-left-off-canvas,
-.bz-wrap-page,
-.exit-off-canvas {
+.bz-wrap-page {
   .translate3d(0, 0, 0);
   -webkit-transition:-webkit-transform 500ms ease;
   -moz-transition:-moz-transform 500ms ease;
@@ -233,6 +232,19 @@ nav.left-off-canvas-menu {
 }
 /*END user area*/
 
+.exit-off-canvas {
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  .translate3d(0px, 0, 0);
+  -webkit-transition:-webkit-transform 500ms ease;
+  -moz-transition:-moz-transform 500ms ease;
+  -o-transition:-o-transform 500ms ease;
+  transition:transform 500ms ease;
+}
+
 .reveal {
 
   .bz-wrap-page,
@@ -253,6 +265,7 @@ nav.left-off-canvas-menu {
     right: 0;
     top: 0;
     z-index: 10002;
+
   }
 
   .inner-wrap {
@@ -262,12 +275,8 @@ nav.left-off-canvas-menu {
     .left-off-canvas-menu {
       .translate3d(0, 0, 0);
     }
-  
-    
   }
 }
-
-
 /*END menu style*/
 
 

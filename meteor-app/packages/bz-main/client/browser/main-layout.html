@@ -37,14 +37,16 @@
 
 <template name="bzNavBar">
   <div class="bz-nav-bg-default">
-    <div class="bz-container-body">
+    <div class="">
       <nav id="bz-navbar">
 
         <div class="bz-logo">
-          {{> bzMeteorLogo }}
+            {{> bzMeteorLogo }}
+            
+            {{> bzLocationName}}
         </div>
 
-        {{> bzLocationName}}
+        
 
         <div class="bz-header-menu">
           {{> bzInnerMenuLeft}}
