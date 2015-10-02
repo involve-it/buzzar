@@ -15,12 +15,13 @@
  });*/
 
 
-Template.bzDistance.rendered = function() {
-  $("#selectDis").trigger("change", true);
+Template.bzDistance.rendered = function () {
+  //$("#selectDis").trigger("change", true);
+  $('select').foundationSelect();
 };
 
 Template.bzDistance.events({
-  'change #selectDis': function(e) {
+  'change #selectDis': function (e) {
 
     var $this = $(this);
 
@@ -28,7 +29,7 @@ Template.bzDistance.events({
 
 
   },
-  'click #selectDis': function(e) {
+  'click #selectDis': function (e) {
 
     var $this = $(this);
 
@@ -64,26 +65,41 @@ Template.bzControlSearch.helpers({
     });
   },
   joinedArray: function () {
-    var ret = [{
-      name: 'google-places',
-      valueKey: 'name',
-      displayKey: 'name',
-      template: 'googlePlacesItem',
-      header: '<h3 class="league-name">Places Nearby</h3>',
-      local: function () {
-        ret = bz.runtime.maps.places.find().fetch().map(function (item) {
-          return item;
-        });
+    var ret = [
+      {
+        name: 'google-places',
+        valueKey: 'name',
+        displayKey: 'name',
+        template: 'googlePlacesItem',
+        header: '<h3 class="league-name">Google Places Nearby</h3>',
+        local: function () {
+          ret = bz.runtime.maps.places.find({searchEngine: 'google'}).fetch().map(function (item) {
+            return item;
+          });
 
-        return ret;
-      }
-    },
+          return ret;
+        }
+      },
+      {
+        name: 'yelp-places',
+        valueKey: 'name',
+        displayKey: 'name',
+        template: 'googlePlacesItem',
+        header: '<h3 class="league-name">Yelp Places Nearby</h3>',
+        local: function () {
+          ret = bz.runtime.maps.places.find().fetch().map(function (item) {
+            return item;
+          });
+
+          return ret;
+        }
+      },
       {
         name: 'post-found',
         valueKey: 'name',
         displayKey: 'name',
         template: 'postFoundItem',
-        header: '<h3 class="league-name">Post found</h3>',
+        header: '<h3 class="league-name">Posts found</h3>',
         local: function () {
           //console.log(Session.get('bz.control.category-list.activeCategories'));
           var searchSelector, catList = Session.get('bz.control.category-list.activeCategories');
@@ -157,7 +173,7 @@ Template.bzControlSearch.events({
     $('.js-nearby-places').blur();
   },
   'keydown .js-nearby-places': function (e, v, val) {
-    if(e.keyCode === 13){
+    if (e.keyCode === 13) {
       // enter bnt hit
       $('.js-nearby-places').typeahead('close');
       $('.js-nearby-places').blur();
