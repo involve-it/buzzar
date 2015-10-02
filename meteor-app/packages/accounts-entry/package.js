@@ -41,6 +41,8 @@ Package.onUse(function(api) {
     'client/views/forgotPassword/forgotPassword.html',
     'client/views/resetPassword/resetPassword.html',
     'client/views/enrollAccount/enrollAccount.html',
+    'client/views/socialButtons/social-buttons.html',
+    'client/views/socialButtons/social-buttons.js'
 
   ], 'web.browser');
   api.addFiles([

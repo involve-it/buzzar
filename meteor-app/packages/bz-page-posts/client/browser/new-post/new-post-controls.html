@@ -37,9 +37,10 @@
 
 <template name="postTypeSelect">
   <div class="clearfix">
-    <label class="item item-input item-select">
-      <div class="medium-3 input-label left">Select type</div>
-      <div class="medium-5 large-7 left">
+      <div class="item-details">
+      <label class="item item-input item-select">
+      <div class="small-12 medium-3 input-label left">Select type</div>
+      <div class="small-12 medium-9 large-9 left">
         <select class="js-post-type-select">
           {{#each getSiteTypes }}
             <option value="{{ name }}">{{ fullName }}</option>
@@ -47,6 +48,7 @@
         </select>
       </div>
     </label>
+    </div>    
   </div>
 </template>
 
@@ -56,23 +58,26 @@
     <div class="item-details">
 
       <label class="item item-input">
-        <div class="input-label">Title</div>
-        <div class="">
+        <div class="small-12 medium-3 input-label left">Title</div>
+        <div class="small-12 medium-9 large-9 left">
           <input class="js-post-title" type="text" label-type="stacked" name="title" required=""
                  data-schema-key="title" maxlength="200" value="{{ getTitle }}">
         </div>
       </label>
-
-      <label type="stacked" class="item item-input item-stacked-label">
-        <div class="input-label">Description</div>
-        <div class="">
-                <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
-                          data-schema-key="body" value="{{ getDescription }}"></textarea>
-        </div>
-      </label>
-
     </div>
   </div>
+
+    <div class="clearfix">
+        <div class="item-details">
+            <label type="stacked" class="item item-input item-stacked-label">
+                <div class="small-12 medium-3 input-label left">Description</div>
+                <div class="small-12 medium-9 large-9 left">
+                        <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
+                                  data-schema-key="body" value="{{ getDescription }}"></textarea>
+                </div>
+            </label>
+        </div>
+    </div>
 </template>
 
 <template name="postPhotoUpload">
@@ -205,11 +210,15 @@
 </template>
 
 <template name="postProfileInfo">
-  <div class="large-6 columns">
-    <label>Incognito mode</label>
-    <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Yes</label>
-    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">No</label>
-  </div>
+    <div class="clearfix">
+        <div class="item-details">
+                <div class="medium-3 input-label left">Incognito mode</div>
+                <div class="medium-5 large-7 left input-clear">
+                    <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Yes</label>
+                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">No</label>
+                </div>
+        </div>
+    </div>
 </template>
 
 

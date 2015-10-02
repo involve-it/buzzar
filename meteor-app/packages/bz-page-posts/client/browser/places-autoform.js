@@ -57,6 +57,7 @@ Template.postsPlacesAutoform.events({
     if(e.target.nodeName !== "INPUT" && e.target.className.indexOf('tt-suggestion') === -1) { // strange bug
 
       var panel = $(e.currentTarget).closest('.panel');
+      
       panel.toggleClass('callout');
       if(panel.id === 'moving-ad'){
         $('.js-current-location-a').click();

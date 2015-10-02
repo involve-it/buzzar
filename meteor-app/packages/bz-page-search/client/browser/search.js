@@ -29,11 +29,15 @@ Template.bzDistance.events({
 
 
   },
-  'click #selectDis': function (e) {
+  'click #select-selectDis li': function(e) {
+    var target = $(e.target);
+    if (target.is('li.disable')) {
+      return false;
+    }
 
-    var $this = $(this);
-
-    console.log($this);
+    var ret = target.text();
+    
+    console.log(ret);
 
   }
 });

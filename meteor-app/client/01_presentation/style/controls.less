@@ -1,5 +1,12 @@
 @import "constants.less";
 
+.menu-transition() {
+  transition:         all .25s ease-in-out;
+  -moz-transition:    all .25s ease-in-out;
+  -webkit-transition: all .25s ease-in-out;
+}
+
+
 .btn {
   cursor: pointer;
   display: inline-block;
@@ -50,8 +57,29 @@
   }
 }
 
-.bz-header-button {
+.btn-drop {
+  outline: none;
+  background-color: transparent;
+  padding: 5px 9px;
+  height: auto;
+  line-height: 14px;
+  position: relative;
+  top: 8px;
+  right: -2px;
+  float: right;
+  color: @off-canvas-link-color-i;
+  .menu-transition();
   
+  &.arrow-down {
+    -webkit-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    .menu-transition();
+  }
+}
+
+.bz-header-button {
+  margin-right: 15px;
   a {
     .border-radius(2px);
     margin: 0;
@@ -64,3 +92,198 @@
   padding: 10px 20px 11px;
   font-size: .8rem;
 }
+
+
+
+
+/* reveal menu style */
+
+.translate3d(@tx, @ty, @tz) {
+  -webkit-transform:translate3d(@tx, @ty, @tz);
+  -moz-transform:translate3d(@tx, @ty, @tz);
+  -ms-transform:translate(@tx, @ty);
+  -o-transform:translate3d(@tx, @ty, @tz);
+  transform:translate3d(@tx, @ty, @tz)
+}
+
+// Transition Variables
+@menu-slide:transform 500ms ease;
+
+.menu-transition(@menu-slide) {
+  -webkit-transition:-webkit-@menu-slide;
+  -moz-transition:-moz-@menu-slide;
+  -o-transition:-o-@menu-slide;
+  transition:@menu-slide;
+}
+
+/*.bz-wrap-page,*/
+.js-button-left-off-canvas,
+.bz-wrap-page {
+  .translate3d(0, 0, 0);
+  -webkit-transition:-webkit-transform 500ms ease;
+  -moz-transition:-moz-transform 500ms ease;
+  -o-transition:-o-transform 500ms ease;
+  transition:transform 500ms ease;
+}
+
+.bz-wrap-page {
+  position: relative;
+  z-index: 999;
+  height: 100%;
+  background: #FFFFFF;
+  overflow-y: auto;
+}
+
+nav.left-off-canvas-menu {
+  background-color: rgba(84,84,97, 1);
+  .translate3d(0, 0, 0);
+  -webkit-transition:-webkit-transform 500ms ease;
+  -moz-transition:-moz-transform 500ms ease;
+  -o-transition:-o-transform 500ms ease;
+  transition:transform 500ms ease;
+  z-index: 1;
+  li {
+    
+    a {
+      border-bottom: none;
+      
+      i{
+        color: @off-canvas-link-color-i;
+        font-size: 20px;
+      }
+      
+      span {
+        padding-left: 20px;
+      }
+      
+      &:hover {
+        background-color: rgba(0,0,0, .2);
+        color: @white-color-text;
+        
+        i {
+          color: #51B9C8;
+        }
+      }
+    }
+    
+    label {
+      background-color: rgba(0,0,0, .1);
+      border-top: none;
+    }
+  }
+  
+  .log-out {
+    border-top: 1px solid rgba(0,0,0, .1);
+  }
+}
+
+/**
+* USER AREA
+**/
+.user-area {
+  background: rgba(0,0,0, .15);
+  .menu-transition();
+  
+  .user-area-box {
+    padding: 12px 0;
+    margin: 0 12px;
+    
+    .user-area-avatar {
+      float: left;
+      width: 45px;
+      height: 45px;
+      margin: 7px 9px 0 0;
+      
+      img {
+        .border-radius(2px);
+      }
+    }
+
+    .user-area-side {
+      overflow: hidden;
+      line-height: 18px;
+      margin-top: 7px;
+      position: relative;
+      
+      .user-area-user-name {
+        color: @off-canvas-link-color-i;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 44px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 80%;
+        width: 100%;
+        display: inline-block;
+      }
+    }
+  }
+  &.user-panel-expand {
+    background: rgba(0,0,0, .35);
+    .menu-transition();
+  }
+  
+  .user-area-menu {
+    overflow: hidden;
+    height: 0;
+    .menu-transition();
+  }
+}
+/*END user area*/
+
+.exit-off-canvas {
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  .translate3d(0px, 0, 0);
+  -webkit-transition:-webkit-transform 500ms ease;
+  -moz-transition:-moz-transform 500ms ease;
+  -o-transition:-o-transform 500ms ease;
+  transition:transform 500ms ease;
+}
+
+.reveal {
+
+  .bz-wrap-page,
+  .exit-off-canvas {
+    .translate3d(250px, 0, 0);
+  }
+  
+  .exit-off-canvas {
+    -webkit-backface-visibility: hidden;
+    box-shadow: -4px 0 4px rgba(0, 0, 0, 0.5), 4px 0 4px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    background: rgba(0, 0, 0, 0.2);
+    bottom: 0;
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10002;
+
+  }
+
+  .inner-wrap {
+    min-height: 100%; 
+    -webkit-overflow-scrolling: touch;
+    
+    .left-off-canvas-menu {
+      .translate3d(0, 0, 0);
+    }
+  }
+}
+/*END menu style*/
+
+
+
+
+
+
+
+
+
