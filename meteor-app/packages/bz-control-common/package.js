@@ -29,6 +29,12 @@ Package.onUse(function(api) {
 
   api.addFiles([
 
+
+
+    'client/browser/location/choose-location.html',
+    'client/browser/location/choose-location.js',
+    'client/browser/location/choose-location.less',
+
     'client/browser/category-list-buttons.html',
     'client/browser/category-list-buttons.js',
     'client/browser/category-list-buttons.less',

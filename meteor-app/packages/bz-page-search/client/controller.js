@@ -95,7 +95,6 @@ function fillNearByPlacesFromLocationYelp(loc, radius) {
    radius: radius,
    //types: ['store']
    }, callbackNearbySearchYelp);*/
-  debugger;
   callbackNearbySearchYelp(window.yelpRes.businesses, 'OK'); // stub, todo
 }
 function callbackNearbySearchYelp(results, status) {

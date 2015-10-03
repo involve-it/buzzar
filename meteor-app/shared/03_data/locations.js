@@ -40,7 +40,7 @@ if(Meteor.isClient){
 
 
 // post schema:
-if (Meteor.isServer && false) {
+if (Meteor.isServer && true) {
 // see http://sfbay.craigslist.org/sby/prk/5147998963.html
 // click google map link, see: 37.3715461,-121.996919
   bz.cols.locations.insert({

@@ -22,3 +22,32 @@ getDataFromImgUrl = function(url, img$, w, h, cb){
 
   return ret;
 }
+saveLocationByName = function(locName){
+  var ret = $.Deferred(), googlePlace, yelpPlace;
+  // 1. try to get coords for the name:
+    // google:
+    // ..
+    // yelp:
+    // ..
+  if (googlePlace || yelpPlace) {
+
+
+    // 2. save to locations history collection
+    if (locName && Meteor.userId()) {
+      bz.cols.locations.remove({
+        name: locName
+      });
+      bz.cols.locations.insert({
+        userId: Meteor.userId(),
+        name: locName,
+        timestamp: Date.now()
+      });
+    }
+    ret.resolve(true);
+
+  } else {
+    ret.resolve(false);
+  }
+  // 2. set sitewide current location:
+  return ret;
+}
