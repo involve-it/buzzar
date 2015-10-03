@@ -1,0 +1,38 @@
+Package.describe({
+  name: 'bz-page-chat',
+  version: '0.0.1',
+  // Brief, one-line summary of the package.
+  summary: '',
+  // URL to the Git repository containing the source code for this package.
+  git: '',
+  // By default, Meteor will default to using README.md for documentation.
+  // To avoid submitting documentation, set this field to null.
+  documentation: 'README.md'
+});
+
+Package.onUse(function(api) {
+  api.versionsFrom('1.1.0.3');
+
+  api.use('iron:router', ['client', 'server']);
+  api.use('iron:layout', ['client', 'server']);
+  api.use('templating', 'client');
+  api.use('less', 'client');
+  //api.use('alethes:pages');
+  api.use('arutune:bz-main');
+  api.use([
+      'client/browser/page-chats-all.html',
+      'client/browser/page-chats-all.js'
+  ])
+
+  api.addFiles([
+    'client/router.js',
+    'client/controller.js',
+    'client/page-chats.less'
+  ], 'client');
+});
+
+Package.onTest(function(api) {
+  api.use('tinytest');
+  api.use('bz-page-chat');
+  api.addFiles('bz-page-chat-tests.js');
+});
