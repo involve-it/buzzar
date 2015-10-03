@@ -1,0 +1,57 @@
+@image-width: 85px;
+@image-height: 100px;
+.post-photo-upload {
+  .image-holder {
+    display: inline-block;
+    min-width: @image-width;
+    width: @image-width;
+    min-height: @image-height;
+    height: @image-height;
+  }
+
+  .owner-photo-wrap {
+    //position: absolute;
+    //left: 15px;
+    //top: 5px;
+
+    .img-avatar {
+      cursor: pointer;
+      position: relative;
+      padding: 0;
+
+      i {
+        color: #FFFFFF;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        font-size: 20px;
+        padding: 0 4px;
+        border-radius: 2px;
+        background-color: rgba(0,0,0,.2);
+      }
+    }
+
+    .owner-photo_bubble-wrap div {
+      font-size: 12px;
+      color: #666666;
+      margin: 10px 0;
+    }
+
+    .img-avatar img {
+      padding: 1px;
+      border-radius: 2px;
+    }
+
+    .user-name-label {
+      font-size: 16px;
+      font-weight: 300;
+      padding: 0;
+      text-align: left;
+    }
+
+    .email-label {}
+
+    .phone-label {}
+
+  }
+}

@@ -6,30 +6,31 @@
 </template>
 
 <template name="bzInnerMenuLeft">
-  <ul class="off-canvas-list">
-    <li><label>Main pages</label></li>
-    {{#if currentUser}}
-      {{> checkingUserMenu}}
-    {{/if}}
-    <!--<li class="{{isActiveRoute 'postsNew'}}"><a href="{{pathFor 'postsNew'}}" class="alert">New Post</a></li>-->
-    <li class="{{isActiveRoute 'pageMap'}}"><a href="{{pathFor 'pageMap'}}">Map</a></li>
-
-    {{> bzControlMenuHashes }}
-
-    {{#if currentUser }}
-      <li><label></label></li>
-      <li>
-        <!--<div data-ion-menu-close>-->
-          <a class="item item-icon-left" href="/sign-out">
-            <i class="fa fa-sign-out"></i>
-
-            <span>Sign out</span>
-          </a>
-        <!--</div>-->
-      </li>
-    {{/if}}
-
-  </ul>
+    <div class="user-area" role="user-expand-menu">
+        <div class="user-area-box clearfix">
+            <a href="#" class="user-area-avatar"><img src="/img/content/avatars/avatar-no.png"></a>
+            <div class="user-area-side">
+                <a href="#" class="user-area-user-name"> USER HERE </a>
+                <button class="button transparent btn-drop" role="expand-menu-trigger"><i class="fa fa-chevron-down"></i></button>
+            </div>
+        </div>
+        <div class="user-area-menu clearfix">
+            <ul class="off-canvas-list" role="expand-menu-dropdown">
+                {{> bzSignOutListMenu}}
+            </ul>
+        </div>
+    </div>
+    
+    <ul class="off-canvas-list">
+        <li><label>Main pages</label></li>
+        {{#if currentUser}}
+          {{> checkingUserMenu}}
+        {{/if}}
+        
+        <li class="{{isActiveRoute 'pageMap'}}"><a href="{{pathFor 'pageMap'}}">Map</a></li>
+        
+        {{> bzControlMenuHashes }}
+    </ul>
 </template>
 
 <template name="checkingUserMenu">
@@ -47,4 +48,20 @@
       <li><a>{{ name }}</a></li>
     {{/each}}
   <!--</ul>-->
+</template>
+
+<template name="bzSignOutListMenu">
+    {{#if currentUser }}
+        <li class="log-out">
+            <a class="item item-icon-left" href="/sign-out">
+                <i class="fa fa-sign-out"></i><span>Sign out</span>
+            </a>
+        </li>
+    {{else}}
+        <li class="log-out">
+            <a class="item item-icon-left" href="/sign-in">
+                <i class="fa fa-sign-in"></i><span>Sign in</span>
+            </a>
+        </li>
+    {{/if}}
 </template>

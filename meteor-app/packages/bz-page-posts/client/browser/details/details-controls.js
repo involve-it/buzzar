@@ -53,3 +53,6 @@ function setPostDetailsTemplate(name, v) {
 Meteor.startup(function () {
 });
 
+     Template.bzAroundYouItem.helpers({
+
+     })

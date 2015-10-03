@@ -26,4 +26,23 @@ bz.help.safeCode(function(){
   if (Number.prototype.toDegrees === undefined) {
     Number.prototype.toDegrees = function() { return this * 180 / Math.PI; };
   }
+  // UNDERSCORE:
+  if(_ && !_.guid) {
+    _.guid = function () {
+      function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+      }
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+          s4() + '-' + s4() + s4() + s4();
+    }
+  }
+  if(_ && !_.param) {
+    _.param = function(parameters){
+      return _.map(_.keys(parameters), function(item){
+        return item + '=' + parameters[item];
+      }).join('&');
+    }
+  }
 });

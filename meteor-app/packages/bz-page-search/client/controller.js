@@ -95,7 +95,8 @@ function fillNearByPlacesFromLocationYelp(loc, radius) {
    radius: radius,
    //types: ['store']
    }, callbackNearbySearchYelp);*/
-  //callbackNearbySearchYelp(window.yelpRes.businesses, 'OK'); // stub, todo
+  debugger;
+  callbackNearbySearchYelp(window.yelpRes.businesses, 'OK'); // stub, todo
 }
 function callbackNearbySearchYelp(results, status) {
   if (status === 'OK') {
@@ -133,6 +134,8 @@ function callbackNearbySearchGoogle(results, status, html_attributions, next_pag
     console.log(res1.length);
     for (var i = 0; i < results.length; i++) {
       //console.log(results[i])
+      results[i].searchEngine = 'google';
+
       bz.runtime.maps.places._collection.upsert({name: results[i].name}, results[i]);
     }
   }

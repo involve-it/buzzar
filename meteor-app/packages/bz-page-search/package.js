@@ -13,19 +13,24 @@ Package.describe({
 Package.onUse(function (api) {
   api.versionsFrom('1.1.0.3');
 
-  api.use('iron:router', ['client', 'server']);
-  api.use('iron:layout', ['client', 'server']);
-  api.use('templating', 'client');
+  api.use(['iron:router', 'iron:layout', 'accounts-base', 'service-configuration', 'oauth1'], ['client', 'server']);
+  api.use(['templating', 'http'], 'client');
   api.use('less', 'client');
+  //api.use('ssing128:yelp-meteor', 'client');
   api.use('arutune:bz-main');
   api.use(['arutune:bz-control-common'], 'client');
 
+  api.addFiles([
+    //'server/yelp.js',
+    'server/model.js'
+  ], 'server');
   api.addFiles([
     'client/router.js',
     'client/model.js',
     'client/controller.js',
     'resources/t9-en.js'
   ], 'client');
+
   api.addFiles([
     'style/search.less',
 
