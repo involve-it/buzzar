@@ -6,7 +6,7 @@ Template.bzControlMenuHashes.onCreated(function(){
 });
 Template.bzControlMenuHashes.helpers({
   getUserHashes: function(){
-    debugger;
+    //debugger;
     return bz.cols.hashes.find();
   }
 })

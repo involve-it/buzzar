@@ -44,6 +44,8 @@ Package.onUse(function (api) {
     'client/browser/new-post/new-post-controls.less',
     'client/browser/new-post/new-post-controls.html',
     'client/browser/new-post/new-post-controls.js',
+    'client/browser/new-post/add-new-location.html',
+    'client/browser/new-post/add-new-location.js',
     'client/browser/new-post/new-url.html',
     'client/browser/new-post/new-url.js',
     'client/browser/new-post/page-new.html',

@@ -24,6 +24,7 @@ Package.onUse(function(api) {
     'client/browser/about-us.html',
     'client/browser/page-about-us.html',
     'client/browser/page-contact-us.html',
+    'client/browser/page-contact-us.js',
 
   ], 'web.browser');
 });

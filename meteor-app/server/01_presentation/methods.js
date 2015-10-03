@@ -37,6 +37,15 @@ Meteor.methods({
   },
   registerPushToken: function(deviceId, token){
     bz.bus.pushHandler.registerToken(deviceId, token);
+  },
+  sendMessageContactUs: function(msg, userId){
+    // send email here:
+
+    var ret = bz.cols.contactUsMsgs.insert({
+      text: msg,
+      userId: userId //optional
+    });
+    return ret;
   }
 });
 

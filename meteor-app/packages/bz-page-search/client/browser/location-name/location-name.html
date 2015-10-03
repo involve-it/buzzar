@@ -7,56 +7,55 @@
     </div>
 
     <div id="choose-locations" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-        <div class="header-toolbar">
-            <div class="header-toolbar-title">
-                <span>Some introductory text</span>
-            </div>
-
-            <div class="header-toolbar-search">
-                <div class="header-toolbar-search-field">
-                    <input type="text" id="choose-location-search" class="input-clear"/>
-                </div>
-            </div>
-
-            <div class="header-toolbar-regions">
-                <div class="row">
-                    <div class="small-12 medium-6 large-4 columns left">
-                        <ul class="none-list">
-                            <li><a href="#"> Auto location </a></li>
-                            <li><a href="#"> City #2 </a></li>
-                            <li><a href="#"> City #3 </a></li>
-                            <li><a href="#"> City #4 </a></li>
-                            <li><a href="#"> City #5 </a></li>
-                            <li><a href="#"> City #6 </a></li>
-                        </ul>
-                    </div>
-                    <div class="small-12 medium-6 large-4 columns left">
-                        <ul class="none-list">
-                            <li><a href="#"> City #1 </a></li>
-                            <li><a href="#"> City #2 </a></li>
-                            <li><a href="#"> City #3 </a></li>
-                            <li><a href="#"> City #4 </a></li>
-                            <li><a href="#"> City #5 </a></li>
-                            <li><a href="#"> City #6 </a></li>
-                        </ul>
-                    </div>
-                    <div class="small-12 medium-6 large-4 columns left">
-                        <ul class="none-list">
-                            <li><a href="#"> City #1 </a></li>
-                            <li><a href="#"> City #2 </a></li>
-                            <li><a href="#"> City #3 </a></li>
-                            <li><a href="#"> City #4 </a></li>
-                            <li><a href="#"> City #5 </a></li>
-                            <li><a href="#"> City #6 </a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+      {{> bzChooseLocationModal}}
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     </div>
 
+</template>
+<template name="bzChooseLocationModal">
+  <div class="header-toolbar">
+    <div class="header-toolbar-title">
+      <span>Set your location</span>
+    </div>
+
+    <div class="header-toolbar-search">
+      <div class="header-toolbar-search-field">
+        <input type="text" id="choose-location-search" class="input-clear"/>
+        <button class="js-set-location-button">Set</button>
+      </div>
+    </div>
+
+    <div class="header-toolbar-regions">
+      <div class="row">
+        <div class="small-12 medium-6 large-4 columns left">
+          <ul class="none-list js-locations-list">
+            <li><a href="#" data-location="current"> Current location </a></li>
+            <li><a href="#" data-location="City #2"> City #2 </a></li>
+            <li><a href="#" data-location="City #2"> City #3 </a></li>
+
+          </ul>
+        </div>
+        <div class="small-12 medium-6 large-4 columns left">
+          <ul class="none-list js-locations-list">
+            <li><a href="#"> City #1 </a></li>
+            <li><a href="#"> City #2 </a></li>
+            <li><a href="#"> City #3 </a></li>
+            <li><a href="#"> City #4 </a></li>
+            <li><a href="#"> City #5 </a></li>
+            <li><a href="#"> City #6 </a></li>
+          </ul>
+        </div>
+        <div class="small-12 medium-6 large-4 columns left">
+          <ul class="none-list">
+            <li><a href="#"> City #1 </a></li>
+            <li><a href="#"> City #2 </a></li>
+            <li><a href="#"> City #3 </a></li>
+            <li><a href="#"> City #4 </a></li>
+            <li><a href="#"> City #5 </a></li>
+            <li><a href="#"> City #6 </a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

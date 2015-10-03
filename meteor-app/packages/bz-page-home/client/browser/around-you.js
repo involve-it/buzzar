@@ -53,7 +53,7 @@ Template.bzAroundYouItem.helpers({
     return ret;
   },
   getImgSrc: function(){
-    var ret, phId = this.details.photos[0];
+    var ret, phId = this.details.photos && this.details.photos[0];
     if(phId){
       ret = bz.cols.images.findOne(phId);
       ret = ret && ret.data;
