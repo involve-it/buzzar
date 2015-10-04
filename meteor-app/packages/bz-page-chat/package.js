@@ -20,9 +20,9 @@ Package.onUse(function(api) {
   //api.use('alethes:pages');
   api.use('arutune:bz-main');
   api.use([
-      'client/browser/page-chats-all.html',
-      'client/browser/page-chats-all.js'
-  ])
+      //'client/browser/page-chats-all.html',
+      //'client/browser/page-chats-all.js'
+  ]);
 
   api.addFiles([
     'client/router.js',

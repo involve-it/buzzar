@@ -20,8 +20,10 @@
 
     <div class="header-toolbar-search">
       <div class="header-toolbar-search-field">
-        <input type="text" id="choose-location-search" class="input-clear"/>
-        <button class="js-set-location-button">Set</button>
+          <form id="bzSetLocationForm">
+            {{> bzControlSearchLocation }}
+            <div class="margin-left"><button class="button btn-default bz-small js-set-location-button">Set</button></div>
+          </form>
       </div>
     </div>
 
