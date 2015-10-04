@@ -1,0 +1,3 @@
+hash will be concatenated from:
+ 'searched text' + 'chosen location' = query
+ each of 3 should be clickable - to find either by text or by loc or by both
