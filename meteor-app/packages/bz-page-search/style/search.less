@@ -157,10 +157,9 @@
         width: 100%;
         box-shadow: @content-box-shadow;
         
-        .tt-dataset- {
+        .tt-dataset {
 
-          /*mixin  header*/
-          .inner-dataset-autocomplete() {
+         
             
             .tt-cursor {
               background-color: rgba(81,185,200, .99);
@@ -218,15 +217,9 @@
 
               }
             }
-          } /*END MIXIN*/
+
           
-          &google-places {
-            .inner-dataset-autocomplete();
-          }
           
-          &post-found {
-            .inner-dataset-autocomplete();
-          }
         }
 
         
@@ -280,7 +273,9 @@
       content: '';
       vertical-align: middle;
     }
-  }  
+  }
+  
+  &.location {}
 }
 
 

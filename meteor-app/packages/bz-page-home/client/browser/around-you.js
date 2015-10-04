@@ -4,14 +4,17 @@
 
 Template.bzAroundYouItem.onCreated(function(){
   Meteor.subscribe('bz.users.all');
-})
+});
+
 Template.bzAroundYouItem.rendered = function() {
 
   /*init Rate*/
   $('.bz-rating').raty({
     starType: 'i'
   });
+  
   var lineH = $('.bz-content .post-item-text').css('line-height');
+  console.log(lineH);
   if (Number.parseInt(lineH) !== 'NaN'){
     lineH = Number.parseInt(lineH);
   } else {

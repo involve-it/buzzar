@@ -28,9 +28,10 @@
         {{/if}}
         
         <li class="{{isActiveRoute 'pageMap'}}"><a href="{{pathFor 'pageMap'}}">Map</a></li>
-        
-        {{> bzControlMenuHashes }}
     </ul>
+
+    {{> bzControlMenuHashes }}
+    
 </template>
 
 <template name="checkingUserMenu">
@@ -41,13 +42,13 @@
 <!--END MENU-->
 
 <template name="bzControlMenuHashes">
-  <li><label>Hashes</label></li>
-
-  <!--<ul>-->
-    {{#each getUserHashes }}
-      <li><a>{{ name }}</a></li>
-    {{/each}}
-  <!--</ul>-->
+    <ul class="off-canvas-list only-menu-left">
+        <li><label>Hashes</label></li>
+    
+        {{#each getUserHashes }}
+          <li><a>{{ name }}</a></li>
+        {{/each}}
+    </ul>
 </template>
 
 <template name="bzSignOutListMenu">

@@ -1,0 +1,63 @@
+<template name="bzLocationName">
+
+    <div class="bz-location-name">
+        <a href="#" data-reveal-id="choose-locations">
+            <i class="fa fa-map-marker"></i> {{#if getLocationName}} <span>{{ getLocationName }}</span> {{else}} <span>Your location is not defined</span> {{/if}}
+        </a>
+    </div>
+
+    <div id="choose-locations" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      {{> bzChooseLocationModal}}
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+
+</template>
+<template name="bzChooseLocationModal">
+  <div class="header-toolbar">
+    <div class="header-toolbar-title">
+      <span>Set your location</span>
+    </div>
+
+    <div class="header-toolbar-search">
+      <div class="header-toolbar-search-field">
+          <form id="bzSetLocationForm">
+            {{> bzControlSearchLocation }}
+            <div class="margin-left"><button class="button btn-default bz-small js-set-location-button">Set</button></div>
+          </form>
+      </div>
+    </div>
+
+    <div class="header-toolbar-regions">
+      <div class="row">
+        <div class="small-12 medium-6 large-4 columns left">
+          <ul class="none-list js-locations-list">
+            <li><a href="#" data-location="current"> Current location </a></li>
+            <li><a href="#" data-location="City #2"> City #2 </a></li>
+            <li><a href="#" data-location="City #2"> City #3 </a></li>
+
+          </ul>
+        </div>
+        <div class="small-12 medium-6 large-4 columns left">
+          <ul class="none-list js-locations-list">
+            <li><a href="#"> City #1 </a></li>
+            <li><a href="#"> City #2 </a></li>
+            <li><a href="#"> City #3 </a></li>
+            <li><a href="#"> City #4 </a></li>
+            <li><a href="#"> City #5 </a></li>
+            <li><a href="#"> City #6 </a></li>
+          </ul>
+        </div>
+        <div class="small-12 medium-6 large-4 columns left">
+          <ul class="none-list">
+            <li><a href="#"> City #1 </a></li>
+            <li><a href="#"> City #2 </a></li>
+            <li><a href="#"> City #3 </a></li>
+            <li><a href="#"> City #4 </a></li>
+            <li><a href="#"> City #5 </a></li>
+            <li><a href="#"> City #6 </a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

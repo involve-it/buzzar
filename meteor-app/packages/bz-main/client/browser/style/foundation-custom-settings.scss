@@ -348,13 +348,23 @@ body {
 
                   .bz-search-size {
                     margin: 0;
-                    
-                    input {
-                      padding: 0;
-                      -webkit-border-radius: 2px 2px 0 0;
-                      -moz-border-radius: 2px 2px 0 0;
-                      border-radius: 2px 2px 0 0;
+
+                    .twitter-typeahead {
+                      input {
+                        padding: 0;
+                        -webkit-border-radius: 2px 2px 0 0;
+                        -moz-border-radius: 2px 2px 0 0;
+                        border-radius: 2px 2px 0 0;
+                      }
+                      
+                      .tt-menu {
+                        &.tt-open {
+                          z-index: 1000 !important;
+                        }
+                      }
                     }
+                    
+                    
                   }
 
                   .bz-btn-search {
@@ -457,7 +467,8 @@ body {
     .bz-header-menu {
       display: block;
     }
-    .user-area {
+    .user-area,
+    .only-menu-left {
       display: none;
     }
     /* END menu*/
@@ -487,7 +498,8 @@ body {
       display: none;
     }
 
-    .user-area {
+    .user-area,
+    .only-menu-left {
       display: block;
     }
     /* END menu*/
