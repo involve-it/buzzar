@@ -6,8 +6,10 @@
         </a>
     </div>
 
-    <div id="choose-locations" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-      {{> bzChooseLocationModal}}
+    <div id="choose-locations" class="reveal-modal" data-reveal aria-labelledby="modalTitle"
+         aria-hidden="true" role="dialog">
+      <!--{{> bzChooseLocationModal}}-->
+      <div class="js-location-modal-holder"></div>
       <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     </div>
 
@@ -20,8 +22,17 @@
 
     <div class="header-toolbar-search">
       <div class="header-toolbar-search-field">
-        <input type="text" id="choose-location-search" class="input-clear js-location-name-input"/>
-        <button class="js-set-location-button">Set</button>
+        <input class="form-control typeahead js-location-name-input" name="team" type="text" style="height: 44px;"
+               placeholder="{{ t9n 'searchLocationText'}}"
+               data-sets="placesArray"
+
+               autocomplete="on" spellcheck="off"
+               data-min-length="0"
+               data-opened="opened" data-selected="selected1"
+               data-template="teamList"
+          />
+        <!--<input type="text" id="choose-location-search" class="input-clear js-location-name-input"/>-->
+        <button class="js-set-location-button small">Set</button>
       </div>
     </div>
 

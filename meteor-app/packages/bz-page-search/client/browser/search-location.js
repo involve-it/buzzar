@@ -16,6 +16,7 @@ Template.bzControlSearchLocation.created = function () {
   bz.help.maps.initPlaces();
   // doc.ready happened, so:
   bz.help.maps.googleMapsLoad();*/
+
 }
 
 Template.bzControlSearchLocation.onRendered(function () {
