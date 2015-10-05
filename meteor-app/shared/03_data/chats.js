@@ -4,7 +4,7 @@
 
 bz.cols.chats = new Mongo.Collection('bz.chats');
 if(Meteor.isServer){
-  bz.cols.chats.remove({});
+  //bz.cols.chats.remove({});
 }
 
 bz.cols.chats.before.insert(function (userId, doc) {
@@ -16,10 +16,10 @@ if (Meteor.isServer) {
     bz.cols.chats.allow({
       insert: function () {
         return true;
-      }/*,
+      },
       remove: function(){
         return true;
-      }*/
+      }
     });
   //}
 }
@@ -31,6 +31,9 @@ if(Meteor.isServer){
     return bz.cols.chats.find({
       userId: userId
     });
+  });
+  Meteor.publish('bz.chats.id', function(chatId){
+    return bz.cols.chats.find(chatId);
   });
 }
 
@@ -57,5 +60,8 @@ if (Meteor.isServer) {
 if(Meteor.isServer){
   Meteor.publish('bz.messages.users', function(usersArr){
     return bz.cols.messages.find({userId: {$in: usersArr}, toUserId: {$in: usersArr}});
+  });
+  Meteor.publish('bz.messages.chatId', function(chatId){
+    return bz.cols.messages.find({chatId: chatId});
   });
 }

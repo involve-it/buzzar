@@ -7,18 +7,18 @@
     <div class="item item-divider item-inactive">
       {{t9n 'inactive'}}
     </div>
-    {{#if chat}}
+    {{#if getChats}}
       <div class="item item-divider item-active">
         {{t9n 'active'}}
       </div>
 
 
-      {{#each getMessages}}
-        {{> chatMessage }}
+      {{#each getChats}}
+        {{> chatItem }}
       {{/each}}
 
 
-      {{> replyArea}}
+      <!--{{> replyArea}}-->
 
     {{else}}
       {{> noChats}}
@@ -59,6 +59,19 @@
 
 </template>
 
+
+<template name="chatItem">
+  <div class="bz-chat-item">
+    <a href="/chat/{{ _id }}">
+      Chat with:
+      {{#each users }}
+        User: {{ this }} <br/>
+      {{/each }}
+      Last: {{ timeBegin }}
+    </a>
+  </div>
+
+</template>
 
 <template name="chatMessage">
   <div class="conversations--message-wrapper">

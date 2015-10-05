@@ -44,7 +44,9 @@ Template.userSettings.events({
     /*var qs = {
       toUser: this._id
     }*/
-    Router.go('/chats/' + this._id)
+    debugger;
+    bz.buz.chats.addConversationIfFirstMessage(Meteor.userId(), this._id);
+    Router.go('/chat/' + this._id)
   }
 });
 

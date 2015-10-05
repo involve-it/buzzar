@@ -21,7 +21,7 @@ Template.bzChatId.onRendered(function() {
 
 Template.bzChatId.created = function () {
   currentUser = Meteor.user();
-  friendUserId = Router.current().params.userId;
+  //friendUserId = Router.current().params.userId;
 };
 
 Template.bzChatId.rendered = function () {
@@ -48,7 +48,8 @@ Template.bzChatId.events({
             return false;
         }
         if(messageText != '') {
-          sendMessage.call(this, messageText, v);
+          sendMessage.call(this, messageText, this.chatId, this.user._id);
+          v.$('#message-input').val('');
         }//end if
     }
   },
@@ -62,7 +63,8 @@ Template.bzChatId.events({
               return false;
           }
           if(messageText != '') {
-            sendMessage.call(this, messageText, v);
+            sendMessage.call(this, messageText, this.chatId, this.user._id);
+            v.$('#message-input').val('');
           }
       }
   }

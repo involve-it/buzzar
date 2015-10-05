@@ -7,9 +7,9 @@ Template.bzChatsMy.onCreated(function () {
 });
 
 Template.bzChatsMy.helpers({
-  posts: function () {
-    var posts = bz.cols.posts.find({userId: Meteor.userId()}).fetch();
-    return posts;
+  getChats: function () {
+    var chats = bz.cols.chats.find({userId: Meteor.userId()});
+    return chats;
   }
 });
 
