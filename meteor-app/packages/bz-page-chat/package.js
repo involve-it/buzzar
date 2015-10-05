@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'bz-page-chat',
+  name: 'arutune:bz-page-chat',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -19,16 +19,20 @@ Package.onUse(function(api) {
   api.use('less', 'client');
   //api.use('alethes:pages');
   api.use('arutune:bz-main');
-
-  api.use([
-      'client/browser/page-chats-all.html',
-      'client/browser/page-chats-all.js'
-  ]);
-
   api.addFiles([
     'client/router.js',
     'client/controller.js',
     'client/page-chats.less'
+  ], 'client');
+  api.addFiles([
+    'client/browser/chat-id.less',
+    'client/browser/chat-id.html',
+      'client/browser/chat-id.js',
+      'client/browser/chats-all.html',
+      'client/browser/chats-all.js',
+    'client/browser/page-chats.less',
+    'client/browser/page-chats.html',
+      'client/browser/page-chats.js'
   ], 'client');
 });
 

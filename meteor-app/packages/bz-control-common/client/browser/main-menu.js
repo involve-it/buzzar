@@ -10,6 +10,11 @@ Template.bzControlMenuHashes.helpers({
   }
 });
 
+Template.bzInnerMenuLeft.helpers({
+  getCurrentUserName: function(){
+    return Meteor.user() && Meteor.user().username;
+  }
+})
 Template.bzInnerMenuLeft.events({
   'click .btn-drop': function(e) {
     e.preventDefault();

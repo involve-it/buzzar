@@ -40,10 +40,10 @@ Router.map(function () {
     }
   });*/
 
-  this.route('chats', {
+  /*this.route('chats', {
     template: 'conversations',
     controller: 'requireLoginController'
-  });
+  });*/
 
   // end create post flow.
 

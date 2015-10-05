@@ -1,2 +1,0 @@
-Template.postsNewOriginalDetails.create = function(){
-}

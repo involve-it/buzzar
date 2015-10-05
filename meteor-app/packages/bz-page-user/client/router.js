@@ -32,7 +32,10 @@ Router.map(function () {
     template: 'userSettings',
     //controller: 'requireLoginController',
     waitOn: function () {
-      return []
+      //var user = Meteor.users.findOne({_id: Meteor.userId()});
+      return [
+        Meteor.subscribe('users')
+      ]
     },
     data: function () {
       return Meteor.users.findOne({_id: this.params._id});

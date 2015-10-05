@@ -40,11 +40,19 @@ Meteor.methods({
   },
   sendMessageContactUs: function(msg, userId){
     // send email here:
-
+    var emailOptions = {
+      from: 'info@buzzar.io',
+      to: 'arutune@gmail.com',
+      subject: 'from Fantasia: subscribeMe',
+      text: 'New message: " ' + msg + '", please contact this user: ' +  userId
+    }
     var ret = bz.cols.contactUsMsgs.insert({
       text: msg,
+      options: emailOptions,
       userId: userId //optional
     });
+
+    Email.send(emailOptions);
     return ret;
   }
 });

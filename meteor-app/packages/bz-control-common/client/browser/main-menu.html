@@ -10,7 +10,7 @@
         <div class="user-area-box clearfix">
             <a href="#" class="user-area-avatar"><img src="/img/content/avatars/avatar-no.png"></a>
             <div class="user-area-side">
-                <a href="#" class="user-area-user-name"> USER HERE </a>
+                <a href="/profile" class="user-area-user-name"> {{ getCurrentUserName }} </a>
                 <button class="button transparent btn-drop" role="expand-menu-trigger"><i class="fa fa-chevron-down"></i></button>
             </div>
         </div>
@@ -37,6 +37,8 @@
 <template name="checkingUserMenu">
   <li class="{{isActiveRoute 'postsMy'}}"><a href="{{pathFor 'postsMy'}}">My posts</a></li>
   <li class="{{isActiveRoute 'myProfile'}}"><a href="{{pathFor 'myProfile'}}">My profile</a></li>
+  <li class="{{isActiveRoute 'chats.my'}}"><a href="/chats/my">Messages</a></li>
+  <!--<li class="{{isActiveRoute 'chats.my'}}"><a href="{{pathFor 'chats.my'}}">Messages</a></li>-->
 </template>
 
 <!--END MENU-->

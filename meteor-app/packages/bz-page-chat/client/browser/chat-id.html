@@ -1,0 +1,56 @@
+<template name="bzChatId">
+
+<!--  <div class="bz-container nav-bg-transparent">
+    <div class="bz-header">-->
+    <div class="page--chat">
+
+            <div class="inner-content">
+                <!-- loading menu button -->
+
+                <!-- Delete after design
+                <div class="nav-group left">
+                    <div id="menu">
+                        <a role="button" href="#" class="btn btn-navbar-toggle">gg</a>
+                    </div>
+                </div>
+                -->
+
+                <h3 class="title">{{getFriendUserName}}</h3>
+
+                <!--<div class="nav-group right">
+                    <form role="search" method="post" action="#" class="search" id="search">
+                        <input type="search" placeholder="search..." name="searchword" class="search-field" autocomplete="off">
+                    </form>
+                </div>-->
+            </div>
+        </div>
+        <!--<canvas id="world" width="900" height="600" style="position: absolute; left: -120.5px; top: 159px;"></canvas>-->
+        <!--{{> cloudsVisialization }}-->
+
+        <div class="messages-container has-header">
+
+            {{#each getMessages}}
+                {{> chatMessage }}
+            {{/each}}
+
+        </div>
+        <div class="user-inputs-messages">
+
+            <div class="user-inputs">
+                <p style="display: none">Me:</p>
+                <textarea class="btn--input-message" id="message-input" name="textMessage" data-autoresize rows="1"></textarea>
+                <!--<input id="message-input" type="text" name="textMessage" value="" placeholder="Your message" class="btn-input-message"> - -->
+                <input id="send-btn" type="button" value="send" class="btn--send">
+            </div>
+
+            <!-- Messages friend
+            <div class="user-inputs">
+                <p>Friend:</p>
+                <input id="message-input1" type="text" value="" placeholder="Your message" class="btn-input-message">
+                <input id="send-btn1" type="button" value="send" class="btn-send">
+            </div> -->
+        </div>
+<!--    </div>
+  </div>
+  {{> bzFooter}}-->
+</template>

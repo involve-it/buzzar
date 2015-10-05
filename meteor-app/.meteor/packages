@@ -43,3 +43,5 @@ raix:push@2.6.12
 arutune:bz-page-posts
 arutune:bz-page-user
 arutune:bz-page-landing
+arutune:bz-page-chat
+momentjs:moment

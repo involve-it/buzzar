@@ -1,0 +1,74 @@
+<template name="bzChatsMy">
+
+
+  <div class="list">
+
+
+    <div class="item item-divider item-inactive">
+      {{t9n 'inactive'}}
+    </div>
+    {{#if chat}}
+      <div class="item item-divider item-active">
+        {{t9n 'active'}}
+      </div>
+
+
+      {{#each getMessages}}
+        {{> chatMessage }}
+      {{/each}}
+
+
+      {{> replyArea}}
+
+    {{else}}
+      {{> noChats}}
+    {{/if}}
+  </div>
+
+
+</template>
+<template name="replyArea">
+  <div id="replyArea">
+    <div class="user-inputs-messages">
+
+      <div class="user-inputs">
+        <form>
+          <textarea class="btn--input-message" id="message-input" name="textMessage" placeholder="Send Message &crarr;" data-autoresize rows="1"></textarea>
+          <!--<input id="message-input" type="text" name="textMessage" value="" placeholder="Your message" class="btn-input-message"> - -->
+          <input id="send-btn" type="button" value="send" class="btn--send">
+        </form>
+      </div>
+
+    </div>
+  </div>
+</template>
+
+<template name="noChats">
+
+  <div class="wrapper-message padding-left padding-right">
+    <div class="title-message">You have<br>no conversations yet</div>
+    <div class="subtitle-message">Start messaging by pressing the pencil button in the top right corner or press button below.</div>
+
+    <div class="padding-top">
+      <button class="button button-outline  button-positive goContacts">
+        go to the Contacts
+      </button>
+    </div>
+
+  </div>
+
+</template>
+
+
+<template name="chatMessage">
+  <div class="conversations--message-wrapper">
+    <div class="message {{ getMessageClass}}">
+      <div class="box-message">
+        {{ text }}
+      </div>
+      <span class="timeStamp">{{timestampToTime timestamp}}</span>
+    </div>
+
+  </div>
+
+</template>

@@ -6,24 +6,22 @@ Template.userSettings.onCreated(function () {
 });
 
 Template.userSettings.helpers({
-  username: function () {
+  userName: function () {
     // username of logged in user
-    var user = Meteor.users.findOne({_id: Meteor.userId()});
-    return user && user.username;
+    return this.username;
   },
   getIdProfile: function () {
     //console.log('ID профайла пользователя ' + this._id);
     return Meteor.absoluteUrl() + 'user/' + this._id;
   },
-  getIdGuestUser: function () {
+/*  getIdGuestUser: function () {
     //console.log('ID гостя ( залогиненного ) ' + Meteor.userId());
     return Meteor.userId();
-  },
+  },*/
   getFaceBookDetails: function () {
     return 'N/A';
   },
   getStatusLocation: function () {
-
   }
 });
 
@@ -41,6 +39,12 @@ Template.userSettings.events({
           cancelText: 'Cancel'
         }
     )*/
+  },
+  'click .js-send-message-btn': function(e,v){
+    /*var qs = {
+      toUser: this._id
+    }*/
+    Router.go('/chats/' + this._id)
   }
 });
 

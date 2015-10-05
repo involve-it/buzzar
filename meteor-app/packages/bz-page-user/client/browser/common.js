@@ -14,7 +14,7 @@ Template.avatarThumbnail.helpers({
     return ret;
   },
   canWrite: function(){
-    return !this.read;
+    return this.write;
   }
 })
 Template.avatarThumbnail.events({
