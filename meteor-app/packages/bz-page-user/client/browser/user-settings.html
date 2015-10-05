@@ -2,99 +2,76 @@
 
     {{> bzNavBar}}
 
-            <div class="page-settings">
-                <div class="profile-box has-header">
+    <div class="page-settings">
+        <div class="profile-box">
+            <div>
+                <p class="title">{{ username }} profile details</p>
+                <div class="profile-narrow">
+                    <div class="owner-photo-wrap">
+                        {{> avatarThumbnail read=true}}
+                    </div>
+            
                     <div>
-                        <p class="title">{{ username }} profile details</p>
-                        <div class="profile-narrow">
-                            <div class="owner-photo-wrap">
-                                {{> avatarThumbnail read=true}}
+                        <div>
+                        <p>User status</p> Location: {{ getStatusLocation }}
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <button class="js-send-message-btn">Send Message</button>
+                </div>
+            
+                <div class="row">
+                    User name: {{ userName }}
+                </div>
+            
+                <div class="profile-wide">
+                    <div class="buttons-info">
+                        <div class="item-details">
+                            <p class="title">Contact</p>
+                            <div>
+                                <p>
+                                    <strong>Profile Url:</strong>
+                                    <a href="{{ getIdProfile}}">{{ getIdProfile}}</a>
+                                </p>
                             </div>
-                            
-                            <!--<div class="profile-details">
-                                <div>{{username}}</div>
-                                <div><input type="text" value="{{profile.firstName}}" placeholder="first name" readonly/></div>
-                                <div><input type="text" value="{{profile.lastName}}" placeholder="last name" readonly/></div>
-                            </div>-->
-                            
-                            <div class="">
-
-
-
+                    
+                            {{#if userHasPhone }}
                                 <div>
-                                        <p>User status</p>
-                                        <!--{{> ionIcon icon="ios-arrow-right"}}-->
-                                        Location: {{ getStatusLocation }}
+                                    <p>
+                                        <strong>Phone</strong>
+                                        <a class="button">Request</a>
+                                    </p>
                                 </div>
-
+                            {{/if}}
+                    
+                            {{#if userHasSkype }}
+                                <div>
+                                    <p>
+                                        <strong>Skype</strong>
+                                        <!--Username skype-->
+                                        <a class="button">Request</a>
+                                    </p>
+                                </div>
+                            {{/if}}
+                        </div>
+                    
+                        {{#if userHasFb }}
+                            <div class="item-details">
+                                <p class="title">Social</p>
+                                <div>                                            
+                                    <p>
+                                        <strong>Facebook profile: {{ getFaceBookDetails }}</strong>
+                                    </p>
+                                </div>
                             </div>
-                            
-                        </div>
-                        <div class="row">
-                          <button class="js-send-message-btn">Send Message</button>
-                        </div>
-                        <div class="row">
-                          User name: {{ userName }}
-                        </div>
-                        <div class="profile-wide">
-
-                            <div class="buttons-info">
-                              <div class="item-details">
-                                    <p class="title">Contact</p>
-                                    <div>
-                                        <!--<a class="item item-icon-right" href="/settings">-->
-                                            <p><strong>Profile Url:</strong>
-                                              <a href="{{ getIdProfile}}">{{ getIdProfile}}</a>
-                                            </p>
-                                        <!--</a>-->
-                                    </div>
-                                  {{#if userHasPhone }}
-                                    <div>
-                                        <!--<a class="item item-icon-right" href="/settings">-->
-                                            <p>
-                                              <strong>Phone</strong>
-                                              <!--Phone number-->
-                                              <a class="button">Request</a>
-
-                                            </p>
-                                        <!--</a>-->
-                                    </div>
-                                  {{/if}}
-
-                                  {{#if userHasSkype }}
-                                  <div>
-                                        <!--<a class="item item-icon-right" href="/settings">-->
-                                            <p><strong>Skype</strong>
-                                              <!--Username skype-->
-                                              <a class="button">Request</a>
-                                            </p>
-
-                                        <!--</a>-->
-                                    </div>
-                                  {{/if}}
-
-                                </div>
-                              {{#if userHasFb }}
-                                <div class="item-details">
-                                    <p class="title">Social</p>
-                                    <div>
-                                        <!--<a class="item item-icon-right" href="/settings">-->
-                                      <p><strong>Facebook profile: {{ getFaceBookDetails }}</strong></p>
-                                            <!--<p><strong>_id гостя:</strong> {{getIdGuestUser}}</p>-->
-                                        <!--</a>-->
-                                    </div>
-                                </div>
-                              {{/if}}
-                            </div>
-
-                        </div>
-
-
+                        {{/if}}
                     </div>
                 </div>
             </div>
-
-
+        </div>
+    </div>
 
     {{> bzFooter}}
 

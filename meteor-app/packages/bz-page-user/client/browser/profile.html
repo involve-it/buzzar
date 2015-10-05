@@ -5,111 +5,80 @@
   <div class="bz-block-light">
     <div class="bz-container-body">
       <div class="main-content">
-
-
         <div class="page-settings">
           <div class="profile-box">
-
-            <div class="item item-divider">
-              <h3 class="title">Your profile details</h3>
-            </div>
-
-
-            <div>
-              <a href="{{pathFor 'settings.edit'}}">
-                <p>Edit your profile</p>
-              </a>
-            </div>
-
-
-            <div class="item-group">
-              <div class="clearfix">
-                <div class="item-details">
-                  <label class="item item-input">
-                    <div class="small-12 medium-3 input-label left">
-                      <div class="text-center">{{> avatarThumbnail }}</div>
-                    </div>
-
-                    <!--<div class="small-12 medium-9 large-9 left">
-                                        <p>Text for photo detail</p>
-                                        <button class="small">Photo</button> &nbsp;
-                                        <button class="small">Take a photo</button>
-                                    </div>
-                                  <div class="row">
-                                    {{> postPhotoUpload }}
-                                  </div>-->
-                  </label>
+              
+            <!--SIDE A-->
+            <div class="side-a text-center small-12 medium-4 columns">
+                <div class="item item-divider">
+                    <h3 class="title">User profile details</h3>
                 </div>
-              </div>
-            </div>
-
-
-            <div class="item-group">
-              <div class="clearfix">
-                <h5 class="title">Your status</h5>
-
-                <div class="item-details">
-                  <label class="item item-input">
-                    <div class="small-12 medium-3 input-label left ">Location</div>
-                    <div class="small-12 medium-9 large-9 left">
-                      <p>{{ getStatusLocation }}</p>
-                    </div>
-                  </label>
+                
+                <div class="user-avatar">
+                    <div>{{> avatarThumbnail }}</div>
                 </div>
-              </div>
-            </div>
-
-
-            <div class="item-group">
-              <div class="clearfix">
-                <h5 class="title">Contact</h5>
-
-                <div class="item-details">
-                  <label class="item item-input">
-                    <div class="small-12 medium-3 input-label left ">Profile Url</div>
-                    <div class="small-12 medium-9 large-9 left">
-                      <p><a href="{{ getIdProfile}}">{{ getIdProfile}}</a></p>
-                    </div>
-                  </label>
+                
+                <div class="user-info">
+                    <div class="user-name"> USER NAME </div>
+                    <div class="user-location"> San-Francisco, CA </div>
+                </div>
+                
+                <div class="user-attainment">
+                    <div class="count-posts">86<span>posts</span></div>
+                    <div class="count-comments">1,1k<span>comments</span></div>
+                    <div class="count-smth">666<span>something</span></div>
                 </div>
 
-                <div class="item-details">
-                  <label class="item item-input">
-                    <div class="small-12 medium-3 input-label left ">Phone</div>
-                    <div class="small-12 medium-9 large-9 left">
-                      <p>Upon request</p>
+
+
+                <div class="btn-edit-account">
+                    <a class="button btn-default" href="{{pathFor 'settings.edit'}}">Edit your profile</a>
+                </div>
+                
+            </div>
+            
+            <!--SIDE B-->
+            <div class="side-b small-12 medium-8 large-8 columns">
+                
+                <div class="item-divider">
+                    <h3 class="title">Your personal settings</h3>
+                </div>
+                <div class="user-item overflow">
+                    <div class="item-details">
+                        <div class="small-12 medium-2 bz-input-label columns">Profile Url</div>
+                        <div class="small-12 medium-10 large-10 bz-input-result columns">
+                            <div class="bz-text-overflow-ellipsis">
+                                <a href="{{ getIdProfile}}">{{ getIdProfile}}</a>
+                            </div>
+                        </div>
                     </div>
-                  </label>
+    
+                    <div class="item-details">
+                        <div class="small-12 medium-2 bz-input-label columns">Phone</div>
+                        <div class="small-12 medium-10 large-10 bz-input-result columns">Upon request</div>
+                    </div>
+    
+                    <div class="item-details">
+                        <div class="small-12 medium-2 bz-input-label columns">Skype</div>
+                        <div class="small-12 medium-10 large-10 bz-input-result columns">Hidden</div>
+                    </div>
                 </div>
 
-                <div class="item-details">
-                  <label class="item item-input">
-                    <div class="small-12 medium-3 input-label left ">Skype</div>
-                    <div class="small-12 medium-9 large-9 left">
-                      <p>Hidden</p>
-                    </div>
-                  </label>
+                <div class="clearfix"></div>
+
+                <div class="item item-divider">
+                    <h3 class="title">Your external links</h3>
                 </div>
-              </div>
+                <div class="user-item overflow">
+                    <div class="item-details">
+                        <div class="small-12 medium-2 bz-input-label columns">Facebook Url</div>
+                        <div class="small-12 medium-10 large-10 bz-input-result columns">-------<!--{{ getFaceBookDetails }}--></div>
+                    </div>
+                </div>
+                
             </div>
 
-
-            <div class="item-group">
-              <div class="clearfix">
-                <h5 class="title">Social</h5>
-
-                <div class="item-details">
-                  <label class="item item-input">
-                    <div class="small-12 medium-3 input-label left ">Facebook profile</div>
-                    <div class="small-12 medium-9 large-9 left">
-                      <p>-------</p>
-                      <!--{{ getFaceBookDetails }}-->
-                    </div>
-                  </label>
-                </div>
-              </div>
-            </div>
-
+            <div class="clearfix"></div>
 
           </div>
         </div>
