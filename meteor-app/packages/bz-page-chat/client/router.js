@@ -48,11 +48,29 @@ Router.map(function () {
     }
   });
 
+  this.route('chatsmy1', {
+    path: '/chats/my1',
+    template: 'bzPageChats',
+    controller: 'requireLoginController'
+  });
+
   this.route('chats.my', {
     path: '/chats/my',
     template: 'bzPageChats',
-    layoutTemplate: 'mainLayout',
-    controller: 'requireLoginController'
+    controller: 'requireLoginController',
+    /*waitOn: function(){
+      debugger;
+      return [
+        Meteor.subscribe('bz.chats.my', Meteor.userId())
+      ]
+    },
+    data: function() {
+      debugger;
+
+      return bz.cols.chats.find({
+        userId: Meteor.userId()
+      });
+    }*/
   });
 
   // create post flow:

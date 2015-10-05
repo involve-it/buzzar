@@ -12,24 +12,24 @@ bz.cols.chats.before.insert(function (userId, doc) {
 
 //bz.cols.imagesData.remove({});
 if (Meteor.isServer) {
-  if(bz.config.env === 'dev'){  // todo: this is non-secure!
+  //if(bz.config.env === 'dev'){  // todo: this is non-secure!
     bz.cols.chats.allow({
       insert: function () {
         return true;
-      },
+      }/*,
       remove: function(){
         return true;
-      }
+      }*/
     });
-  }
+  //}
 }
 if(Meteor.isServer){
-  Meteor.publish('chats-all', function(){
+  Meteor.publish('bz.chats.all', function(){
     return bz.cols.chats.find(); // todo: non-sec, testing only
   });
-  Meteor.publish('chats-my', function(){
-    return bz.cols.locations.find({
-      userId: this.userId
+  Meteor.publish('bz.chats.my', function(userId){
+    return bz.cols.chats.find({
+      userId: userId
     });
   });
 }
