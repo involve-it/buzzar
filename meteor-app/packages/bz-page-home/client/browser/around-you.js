@@ -14,7 +14,6 @@ Template.bzAroundYouItem.rendered = function() {
   });
   
   var lineH = $('.bz-content .post-item-text').css('line-height');
-  console.log(lineH);
   if (Number.parseInt(lineH) !== 'NaN'){
     lineH = Number.parseInt(lineH);
   } else {

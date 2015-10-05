@@ -30,12 +30,15 @@
             <!--<div class="bz-distance"><i class="fa fa-location-arrow"></i> 30 km</div>-->
           </a>
         </div>
-        <h4 class="bz-title">{{details.title}}</h4>
 
         <div class="bz-content">
-          <p class="post-item-text">
-            {{details.description}}
-          </p>
+            <h4 class="bz-title">{{details.title}}</h4>
+            <p class="post-item-text">
+                {{details.description}}
+            </p>
+            <div class="bz-text-align-right">
+                <a class="bz-read-more" href="/post/{{_id}}">Read more</a>
+            </div>
         </div>
         <div class="bz-item-footer">
           <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
