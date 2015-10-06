@@ -14,7 +14,7 @@ sendMessage = function (messageText, chat, friendUserId){
   });
   createChatIfFirstMessage(currentUser._id, friendUserId);
   makeChatActive(chat);
-  //scrollMessages();
+  scrollMessages();
 
 }
 scrollMessages = function () {

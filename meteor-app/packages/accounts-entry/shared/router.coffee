@@ -2,6 +2,7 @@ Router.map ->
 
   @route "entrySignIn",
     path: "/sign-in"
+    layoutTemplate: 'basicLayout'
     onBeforeAction: ->
       Session.set('entryError', undefined)
       Session.set('buttonText', 'in')
@@ -33,6 +34,7 @@ Router.map ->
 
   @route "entrySignUp",
     path: "/sign-up"
+    layoutTemplate: 'basicLayout'
     onBeforeAction: ->
       Session.set('entryError', undefined)
       Session.set('buttonText', 'up')
@@ -61,12 +63,14 @@ Router.map ->
 
   @route "entryForgotPassword",
     path: "/forgot-password"
+    layoutTemplate: 'basicLayout'
     onBeforeAction: ->
       Session.set('entryError', undefined)
       @next()
 
   @route 'entrySignOut',
     path: '/sign-out'
+    layoutTemplate: 'basicLayout'
     onBeforeAction: ()->
       Session.set('entryError', undefined)
       if not AccountsEntry.settings.homeRoute
@@ -77,12 +81,14 @@ Router.map ->
 
   @route 'entryVerificationPending',
     path: '/verification-pending'
+    layoutTemplate: 'basicLayout'
     onBeforeAction: ->
       Session.set('entryError', undefined)
       @next()
 
   @route 'entryResetPassword',
     path: 'reset-password/:resetToken'
+    layoutTemplate: 'basicLayout'
     onBeforeAction: ->
       Session.set('entryError', undefined)
       Session.set('resetToken', @params.resetToken)
@@ -90,6 +96,7 @@ Router.map ->
 
   @route 'entryEnrollAccount',
     path: 'enroll-account/:resetToken'
+    layoutTemplate: 'basicLayout'
     onBeforeAction: ->
       Session.set('entryError', undefined)
       Session.set('resetToken', @params.resetToken)

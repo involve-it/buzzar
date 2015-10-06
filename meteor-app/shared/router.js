@@ -62,6 +62,7 @@ Router.map(function () {
   this.route('checkin', {
     path: '/check-in',
     template: 'pageCheckIn',
+    layoutTemplate: 'basicLayout',
     waitOn: function () {
       return [
         //GoogleMaps.load({libraries: 'geometry,places', v: '3'})

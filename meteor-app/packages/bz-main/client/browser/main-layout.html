@@ -2,43 +2,72 @@
 <!--{{#if currentUser}}-->
 
   <div class="off-canvas-wrap" data-offcanvas>
-        <div class="inner-wrap">
-        
-          <!-- Off Canvas Menu -->
-          {{> bzMenuLeft}}
-        
-          <!-- close the off-canvas menu -->
-          <a class="exit-off-canvas"></a>
-        
+    <div class="inner-wrap">
+
+      <!-- Off Canvas Menu -->
+      {{> bzMenuLeft}}
+
+      <!-- close the off-canvas menu -->
+      <a class="exit-off-canvas"></a>
+
+    </div>
+
+    <div class="bz-wrap-page">
+
+      <div class="js-button-left-off-canvas">
+        <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
+
+          <div class="bz-icon-menu"></div>
+        </a>
+      </div>
+
+      <div class="bz-main">
+
+        {{> bzNavBar}}
+
+        <div class="bz-block-light">
+          <div class="bz-container-body">
+            {{> yield}}
+          </div>
         </div>
-
-        <div class="bz-wrap-page">
-          
-            <div class="js-button-left-off-canvas">
-              <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
-            
-                  <div class="bz-icon-menu"></div>
-              </a>
-            </div>
-        
-            <div class="bz-main">
-
-              {{> bzNavBar}}
-
-              <div class="bz-block-light">
-                <div class="bz-container-body">
-                {{> yield}}
-                </div>
-              </div>
-              {{> bzFooter}}
-            </div>
-        </div>
+        {{> bzFooter}}
+      </div>
+    </div>
   </div>
 
 
-    <!--  {{else}}
+  <!--  {{else}}
   {{> yield}}
 {{/if}}-->
+</template>
+<template name="basicLayout">
+
+    <div class="off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+        <!-- Off Canvas Menu -->
+        {{> bzMenuLeft}}
+
+        <!-- close the off-canvas menu -->
+        <a class="exit-off-canvas"></a>
+
+      </div>
+
+      <div class="bz-wrap-page">
+
+        <div class="js-button-left-off-canvas">
+          <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
+
+            <div class="bz-icon-menu"></div>
+          </a>
+        </div>
+
+        <div class="bz-main">
+          {{> yield}}
+        </div>
+
+      </div>
+    </div>
 </template>
 
 <template name="mainLayoutHome">
