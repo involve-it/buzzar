@@ -4,7 +4,7 @@
 var requireLoginController = bz.router.requireLoginController;
 // POSTS:
 Router.map(function () {
-  this.route('map', {
+  this.route('bz.map', {
     path: '/map',
     template: 'bzPageMap',
     waitOn: function () {

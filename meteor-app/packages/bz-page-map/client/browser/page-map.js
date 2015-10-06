@@ -13,6 +13,8 @@ Template.bzPageMap.rendered = function () {
 /* Dynamic template */
 Template.panelSearchResult.helpers({
   activeTemplate: function () {
+    //debugger;
+
     return Session.get('activeTemplate');
   },
   getData: function () {

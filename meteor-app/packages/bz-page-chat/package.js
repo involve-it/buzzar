@@ -10,7 +10,7 @@ Package.describe({
   documentation: 'README.md'
 });
 
-Package.onUse(function(api) {
+Package.onUse(function (api) {
   api.versionsFrom('1.1.0.3');
 
   api.use('iron:router', ['client', 'server']);
@@ -27,16 +27,18 @@ Package.onUse(function(api) {
   api.addFiles([
     'client/browser/chat-id.less',
     'client/browser/chat-id.html',
-      'client/browser/chat-id.js',
-      'client/browser/chats-all.html',
-      'client/browser/chats-all.js',
+    'client/browser/chat-id.js',
+    'client/browser/chats-all.html',
+    'client/browser/chats-all.js',
+    'client/browser/controls.html',
+    'client/browser/controls.js',
     'client/browser/page-chats.less',
     'client/browser/page-chats.html',
-      'client/browser/page-chats.js'
+    'client/browser/page-chats.js'
   ], 'client');
 });
 
-Package.onTest(function(api) {
+Package.onTest(function (api) {
   api.use('tinytest');
   api.use('bz-page-chat');
   api.addFiles('bz-page-chat-tests.js');

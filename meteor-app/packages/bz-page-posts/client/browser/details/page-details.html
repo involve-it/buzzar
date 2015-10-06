@@ -1,6 +1,8 @@
 <template name="postsPageDetails">
       <div class="main-content">
         {{> postsDetails }}
+        {{> bzUserProfileBasic getUserObj}}
+
         {{> bzControlReviews postId = _id}}
         {{> bzControlAddReview postId = _id}}
 

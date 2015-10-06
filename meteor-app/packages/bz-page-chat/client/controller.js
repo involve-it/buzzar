@@ -3,7 +3,7 @@
  */
 bz.help.makeNamespace('bz.buz.chats');
 
-sendMessage = function (messageText, chat, friendUserId){
+sendMessage = function (messageText, chat, friendUserId) {
   bz.cols.messages.insert({
     userId: currentUser._id,
     toUserId: friendUserId,
@@ -24,21 +24,21 @@ scrollMessages = function () {
   //$('.messages-container').animate({"scrollTop": $('.messages-container')[0].scrollHeight}, "100");
   //this.$messages[0].scrollTop = this.$messages[0].scrollHeight;
 }
-makeChatActive = function(chat){
+makeChatActive = function (chat) {
   //var chat = bz.cols.chats.findOne(chatId);
-  if(chat && !chat.active) {
+  if (chat && !chat.active) {
     //chat && (chat.active = true);
     bz.cols.chats.update(chat._id, {$set: {activated: true}});
   }
 }
-createChatIfFirstMessage = function(userFrom, userTo) {
+createChatIfFirstMessage = function (userFrom, userTo) {
   //var usersArr = [userFrom, userTo];
   /*bz.cols.chats.remove({
-    userId: userTo
-  });
-  bz.cols.chats.remove({
-    userId: userFrom
-  });*/
+   userId: userTo
+   });
+   bz.cols.chats.remove({
+   userId: userFrom
+   });*/
   var chatId, chats1, chats2, chatsAll;
   chats1 = bz.cols.chats.find({
     userId: userFrom,
@@ -49,18 +49,18 @@ createChatIfFirstMessage = function(userFrom, userTo) {
     users: {$in: [userFrom]}
   }).fetch();
   chatsAll = _.union(chats1, chats2);
-  _.each(chatsAll, function(item){
+  _.each(chatsAll, function (item) {
     //bz.cols.chats.remove(item._id);
   });
   /*bz.cols.chats.remove({
-    userId: userFrom
-  });*/
-  if(chatsAll.length === 0) {
+   userId: userFrom
+   });*/
+  if (chatsAll.length === 0) {
     /*bz.cols.chats.insert({
-      userId: userFrom,
-      users: [userTo],
-      timeBegin: Date.now()
-    });*/
+     userId: userFrom,
+     users: [userTo],
+     timeBegin: Date.now()
+     });*/
     chatId = bz.cols.chats.insert({
       userId: userFrom,
       users: [userTo, userFrom],
@@ -72,40 +72,39 @@ createChatIfFirstMessage = function(userFrom, userTo) {
   }
   return chatId;
 }
-bz.buz.chats.createChatIfFirstMessage = createChatIfFirstMessage;
 
-getUniqueChatsForUser = function(userId, all){
+getUniqueChatsForUser = function (userId, all) {
   var chatsArr = [];
   //var chats = _.union(bz.cols.chats.find({userId: userId}).fetch(), bz.cols.chats.find({users: {$in: [userId]}}).fetch());
   /*var chats = bz.cols.chats.find({
-    $or: [
+   $or: [
 
-      {
-        userId: userId
-      },
-      {
-        users: {$in: [userId]}
-      }
-    ]
-  }).fetch();*/
+   {
+   userId: userId
+   },
+   {
+   users: {$in: [userId]}
+   }
+   ]
+   }).fetch();*/
   /*var chats = bz.cols.chats.find({
-    users: {$in: [userId]}
-  }).fetch();
-  var users1 = _.unique(_.map(chats, function(item) {
-    return item.users[0]
-  }));
-  _.each(users1, function(usr){
-    var chats1 = bz.cols.chats.findOne({
-        userId: Meteor.userId(), users: {$in: [usr]}},
-      {sort: {timeBegin: -1}});
-    //chats.tsFormatted = moment(chats1.timeBegin).fromNow();
-    chatsArr.push(chats1);
-  });
+   users: {$in: [userId]}
+   }).fetch();
+   var users1 = _.unique(_.map(chats, function(item) {
+   return item.users[0]
+   }));
+   _.each(users1, function(usr){
+   var chats1 = bz.cols.chats.findOne({
+   userId: Meteor.userId(), users: {$in: [usr]}},
+   {sort: {timeBegin: -1}});
+   //chats.tsFormatted = moment(chats1.timeBegin).fromNow();
+   chatsArr.push(chats1);
+   });
    return chatsArr;
 
    */
   var chats;
-  if(all){
+  if (all) {
     var chats = bz.cols.chats.find({
       users: {$in: [userId]}
     }).fetch();
@@ -119,23 +118,45 @@ getUniqueChatsForUser = function(userId, all){
   return chats;
 }
 
+showMessageModal = function (msgObj, userObj) {
+  //debugger;
+  var data = {
+      messageText: msgObj.text,
+      chatId: msgObj.chatId,
+      user: userObj
+    },
+    parentNode = $('.js-message-popup-placeholder')[0];
+  Blaze.renderWithData(Template.bzChatMessagePopup, data, parentNode);
+  $('.js-chat-message-modal').foundation('reveal', 'open');
+  setTimeout(function () {
+    $('.js-chat-message-modal').foundation('reveal', 'close');
+  }, 5000);
+}
+
 Template.registerHelper("timestampToTime", function (timestamp) {
   var date = new Date(timestamp);
   return moment(date).fromNow();
 });
-Meteor.startup(function(){
+Meteor.startup(function () {
   /*bz.cols.messages.find().observeChanges({
-    added: function(a, b){
-      console.log(a);
-      console.log(b);
-    }
-  });*/
-  (function() {
+   added: function(a, b){
+   console.log(a);
+   console.log(b);
+   }
+   });*/
+  (function () {
     var initializing = true;
     bz.cols.messages.find().observeChanges({
-      added: function(id, doc) {
-        if (!initializing) {
-          console.log(doc);
+      added: function (id, doc) {
+        if (Meteor.userId() === doc.toUserId) {
+
+          if (!initializing) {
+            //console.log(doc);
+            //debugger;
+            var userObj = Meteor.users.findOne(doc.userId);
+            debugger;
+            bz.buz.chats.showMessageModal(doc, userObj);
+          }
         }
       }
     });
@@ -143,3 +164,6 @@ Meteor.startup(function(){
   })();
 });
 
+// EXPOSE EXTERNAL API:
+bz.buz.chats.createChatIfFirstMessage = createChatIfFirstMessage;
+bz.buz.chats.showMessageModal = showMessageModal;

@@ -6,12 +6,18 @@ Template.avatarThumbnail.onCreated(function(){
 });
 Template.avatarThumbnail.helpers({
   getAvatarImage: function(e, v){
-    var user = Meteor.users.findOne(Meteor.userId()),
+    //debugger;
+    var ret = this.image;
+    if (ret){
+
+    } else {
+      ret = '/img/content/avatars/avatar-no.png';
+      /*var user = Meteor.users.findOne(Meteor.userId()),
         ret = '/img/content/avatars/avatar-no.png';
-    if(user && user.profile && user.profile.image) {
-      ret = user.profile.image;
+      if(user && user.profile && user.profile.image) {
+        ret = user.profile.image;
+      }*/
     }
-    console.log(ret);
     return ret;
   },
   canWrite: function(){
