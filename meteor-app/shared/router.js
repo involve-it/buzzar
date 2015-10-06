@@ -47,18 +47,6 @@ Router.map(function () {
 
   // end create post flow.
 
-  this.route('pageMap', {
-    path: '/map',
-    template: 'pageMap',
-    waitOn: function () {
-      return [
-        bz.help.maps.googleMapsLoad()
-        //GoogleMaps.load({libraries: 'geometry,places', v: '3'})
-        //GoogleMaps.load({key: bz.config.mapsKey, libraries: 'geometry,places', v: '3'})
-        //GoogleMaps.load({key: 'AIzaSyCE5a0IeEGQLptVSSW-5swNFNaRUXKEWss', libraries: 'geometry,places', v: '3'})
-      ];
-    }
-  });
   this.route('checkin', {
     path: '/check-in',
     template: 'pageCheckIn',

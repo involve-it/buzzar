@@ -51,6 +51,7 @@ AccountsEntry.entrySignInEvents = {
         Router.go AccountsEntry.settings.dashboardRoute
     )
   'click .js-login-with-fb-btn': (e,v) ->
+    debugger
     Meteor.signInWithFacebook({}, ()->
       debugger
     );

@@ -6,7 +6,6 @@ Template.avatarThumbnail.onCreated(function(){
 });
 Template.avatarThumbnail.helpers({
   getAvatarImage: function(e, v){
-    debugger;
     var user = Meteor.users.findOne(Meteor.userId()),
         ret = '/img/content/avatars/avatar-no.png';
     if(user && user.profile && user.profile.image) {
@@ -22,7 +21,7 @@ Template.avatarThumbnail.helpers({
 Template.avatarThumbnail.events({
   'click .js-edit-image-icon': function(){
     $('.js-avatar-upload-modal').foundation('reveal', 'open');
-  },
+  }
   /*'click .js-image-upload-modal': function (event, template) {
 
    },*/

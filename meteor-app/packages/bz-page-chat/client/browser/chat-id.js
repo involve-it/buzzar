@@ -48,8 +48,6 @@ Template.bzChatId.events({
             return false;
         }
         if(messageText != '') {
-          debugger;
-
           sendMessage.call(this, messageText, this.chat, this.user._id);
           v.$('#message-input').val('');
         }//end if

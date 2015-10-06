@@ -1,3 +1,4 @@
 hash will be concatenated from:
  'searched text' + 'chosen location' = query
+ e.g.: #looking for a roommate @orinda <1mi
  each of 3 should be clickable - to find either by text or by loc or by both

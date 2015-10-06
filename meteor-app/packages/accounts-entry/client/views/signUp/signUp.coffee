@@ -172,6 +172,12 @@ AccountsEntry.entrySignUpEvents = {
         console.log err
         Session.set 'entryError', t9n("error.signupCodeIncorrect")
         return
+
+  'click .js-login-with-fb-btn': (e,v) ->
+    debugger
+    Meteor.signInWithFacebook({}, ()->
+      debugger
+    );
 }
 
 Template.entrySignUp.helpers(AccountsEntry.entrySignUpHelpers)
