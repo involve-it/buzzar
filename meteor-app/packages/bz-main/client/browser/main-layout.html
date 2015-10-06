@@ -37,7 +37,43 @@
     <!--<a href="#" data-reveal-id="firstModal" class="radius button">Modal in a modal&hellip;</a>-->
     {{> bzChatMessagePopup }}
 
+<<<<<<< HEAD
   </div>
+=======
+  <!--  {{else}}
+  {{> yield}}
+{{/if}}-->
+</template>
+
+<template name="basicLayout">
+
+    <div class="off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+        <!-- Off Canvas Menu -->
+        {{> bzMenuLeft}}
+
+        <!-- close the off-canvas menu -->
+        <a class="exit-off-canvas"></a>
+
+      </div>
+
+      <div class="bz-wrap-page">
+
+        <div class="js-button-left-off-canvas">
+          <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
+
+            <div class="bz-icon-menu"></div>
+          </a>
+        </div>
+
+        <div class="bz-main">
+          {{> yield}}
+        </div>
+
+      </div>
+    </div>
+>>>>>>> 1ef47b9657454a0a7f21a14e8a16743a03909a08
 </template>
 
 <template name="mainLayoutHome">

@@ -1,8 +1,6 @@
 <template name="bzChatsMy">
 
 
-  <div class="list">
-
 
     <!--<div class="item item-divider item-inactive">
       {{t9n 'inactive'}}
@@ -23,7 +21,7 @@
     {{else}}
       {{> noChats}}
     {{/if}}
-  </div>
+
 
 
 </template>
@@ -46,18 +44,22 @@
 
 <template name="noChats">
 
-  <div class="wrapper-message padding-left padding-right">
-    <div class="title-message">You have<br>no conversations yet</div>
-    <div class="subtitle-message">Start messaging by pressing the pencil button in the top right corner or press button
-      below.
-    </div>
+  <div class="bz-wrapper-no-message">
+    <div class="bz-flex-box">
 
-    <div class="padding-top">
-      <button class="button button-outline  button-positive goContacts">
-        go to the Contacts
-      </button>
-    </div>
+        <div class="bz-img-conversation">
+            <i class="fa fa-comments"></i>
+        </div>
+        
+        <div class="title-message">You have<br>no conversations yet</div>
+        <div class="subtitle-message">Start messaging by pressing the pencil button in the top right corner or press button
+          below.
+        </div>
 
+        <div class="bz-padding-top-x2">
+          <button class="button button-outline btn-default goContacts">go to the Contacts</button>
+        </div>
+    </div>
   </div>
 
 </template>

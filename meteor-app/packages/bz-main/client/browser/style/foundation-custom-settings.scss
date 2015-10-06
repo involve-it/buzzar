@@ -430,9 +430,11 @@ body {
         }
 
         .bz-header-button {
-          position: absolute;
+          position: relative;
           right: 0;
-          top: 18px;
+          top: 5px;
+          padding: 10px 0;
+          
         }
 
         .bz-logo {}
@@ -563,7 +565,7 @@ body {
             .bz-header-button {
               position: absolute;
               right: 0;
-              top: 18px;
+              top: 26px;
             }
             
             .bz-logo {}
