@@ -4,6 +4,11 @@
 
 Template.userSettings.onCreated(function () {
 });
+Template.userSettings.onRendered(function () {
+  if(Meteor.userId() === this.data._id) {
+    $('.js-send-message-btn').addClass('disabled');
+  }
+});
 
 Template.userSettings.helpers({
   userName: function () {
@@ -44,9 +49,11 @@ Template.userSettings.events({
     /*var qs = {
       toUser: this._id
     }*/
-    debugger;
-    bz.buz.chats.addConversationIfFirstMessage(Meteor.userId(), this._id);
-    Router.go('/chat/' + this._id)
+    //debugger;
+    if(Meteor.userId() !== this._id) {
+      var chatId = bz.buz.chats.createChatIfFirstMessage(Meteor.userId(), this._id);
+      Router.go('/chat/' + chatId);
+    }
   }
 });
 

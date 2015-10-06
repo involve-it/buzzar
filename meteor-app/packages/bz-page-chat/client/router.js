@@ -26,10 +26,10 @@ Router.map(function () {
     data: function () {
       var chatId = this.params.chatId,
         chat = bz.cols.chats.findOne(chatId),
-        user = chat && chat.users && chat.users[0];
-      if (user) {
+        user = chat && chat.users && _.without(chat.users, Meteor.userId())[0];
+      if (user && chat) {
         var ret = {
-          chatId: chatId,
+          chat: chat,
           user: Meteor.users.findOne(user),
           messages: bz.cols.messages.find({chatId: chatId})
         }

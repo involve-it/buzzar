@@ -8,11 +8,23 @@ Template.bzChatsMy.onCreated(function () {
 
 Template.bzChatsMy.helpers({
   getChats: function () {
-    var chats = bz.cols.chats.find({userId: Meteor.userId()});
-    return chats;
+    var ret = getUniqueChatsForUser(Meteor.userId());
+    return ret;
+    /*var lastChat = _.uniq(bz.cols.chats.find({userId: Meteor.userId()}, {
+      sort: {myField: 1}, fields: {myField: true}
+    }).fetch().map(function(x) {
+      return x.myField;
+    }), true);*/
+    //var lastChat = chats.sort
+    //db.user.find( {"id" : {$in : user.friends }})
+    //return chats;
   }
 });
-
+Template.bzChatItem.helpers({
+  getUserName: function(){
+    return 'username';
+  }
+})
 Template.onePostRowItem.helpers({
   getPhotoUrl: function () {
     var photo = bz.cols.posts.findOne({_id: this._id}),

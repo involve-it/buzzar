@@ -31,10 +31,10 @@ Template.bzChatId.rendered = function () {
     scrollMessages();
     var lastCount = this.data.messages.count();
     Deps.autorun(function() {
-        var newCount = that.data.messages.count();
+        /*var newCount = that.data.messages.count();
         if(newCount > lastCount) {
             scrollMessages();
-        }
+        }*/
     });
 };
 
@@ -48,7 +48,9 @@ Template.bzChatId.events({
             return false;
         }
         if(messageText != '') {
-          sendMessage.call(this, messageText, this.chatId, this.user._id);
+          debugger;
+
+          sendMessage.call(this, messageText, this.chat, this.user._id);
           v.$('#message-input').val('');
         }//end if
     }
@@ -63,7 +65,7 @@ Template.bzChatId.events({
               return false;
           }
           if(messageText != '') {
-            sendMessage.call(this, messageText, this.chatId, this.user._id);
+            sendMessage.call(this, messageText, this.chat, this.user._id);
             v.$('#message-input').val('');
           }
       }

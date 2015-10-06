@@ -14,7 +14,7 @@
 
 
       {{#each getChats}}
-        {{> chatItem }}
+        {{> bzChatItem }}
       {{/each}}
 
 
@@ -60,14 +60,17 @@
 </template>
 
 
-<template name="chatItem">
+<template name="bzChatItem">
   <div class="bz-chat-item">
     <a href="/chat/{{ _id }}">
+      <div class="row">
       Chat with:
       {{#each users }}
-        User: {{ this }} <br/>
+        User: {{ getUserName this }} <br/>
       {{/each }}
-      Last: {{ timeBegin }}
+      </div>
+      <div class="row">Last message: {{ getFormattedTs timeBegin }}</div>
+      <div class="row">Chat id: {{ _id }} </div>
     </a>
   </div>
 

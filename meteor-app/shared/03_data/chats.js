@@ -3,36 +3,50 @@
  */
 
 bz.cols.chats = new Mongo.Collection('bz.chats');
-if(Meteor.isServer){
+if (Meteor.isServer) {
   //bz.cols.chats.remove({});
 }
 
 bz.cols.chats.before.insert(function (userId, doc) {
 });
 
-//bz.cols.imagesData.remove({});
 if (Meteor.isServer) {
+
   //if(bz.config.env === 'dev'){  // todo: this is non-secure!
-    bz.cols.chats.allow({
-      insert: function () {
-        return true;
-      },
-      remove: function(){
-        return true;
-      }
-    });
+  bz.cols.chats.allow({
+    insert: function () {
+      return true;
+    },
+    remove: function () {
+      return true;
+    },
+    update: function () {
+      return true;
+    }
+  });
   //}
 }
-if(Meteor.isServer){
-  Meteor.publish('bz.chats.all', function(){
+if (Meteor.isServer) {
+  Meteor.publish('bz.chats.all', function () {
     return bz.cols.chats.find(); // todo: non-sec, testing only
   });
-  Meteor.publish('bz.chats.my', function(userId){
+  Meteor.publish('bz.chats.my', function (userId) {
     return bz.cols.chats.find({
-      userId: userId
+      users: {$in: [userId]}
     });
+    /*return bz.cols.chats.find({
+      $or: [
+
+        {
+          userId: userId
+        },
+        {
+          users: {$in: [userId]}
+        }
+      ]
+    });*/
   });
-  Meteor.publish('bz.chats.id', function(chatId){
+  Meteor.publish('bz.chats.id', function (chatId) {
     return bz.cols.chats.find(chatId);
   });
 }
@@ -40,7 +54,7 @@ if(Meteor.isServer){
 
 //messages
 bz.cols.messages = new Mongo.Collection('bz.messages');
-if(Meteor.isServer){
+if (Meteor.isServer) {
   //bz.cols.messages.remove({});
 }
 
@@ -48,20 +62,20 @@ bz.cols.messages.before.insert(function (userId, doc) {
 
 });
 if (Meteor.isServer) {
-    bz.cols.messages.allow({
-      insert: function () {
-        return true;
-      },
-      remove: function(){
-        return true;
-      }
-    });
+  bz.cols.messages.allow({
+    insert: function () {
+      return true;
+    },
+    remove: function () {
+      return true;
+    }
+  });
 }
-if(Meteor.isServer){
-  Meteor.publish('bz.messages.users', function(usersArr){
+if (Meteor.isServer) {
+  Meteor.publish('bz.messages.users', function (usersArr) {
     return bz.cols.messages.find({userId: {$in: usersArr}, toUserId: {$in: usersArr}});
   });
-  Meteor.publish('bz.messages.chatId', function(chatId){
+  Meteor.publish('bz.messages.chatId', function (chatId) {
     return bz.cols.messages.find({chatId: chatId});
   });
 }

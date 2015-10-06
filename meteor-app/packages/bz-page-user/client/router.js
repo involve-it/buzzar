@@ -34,7 +34,8 @@ Router.map(function () {
     waitOn: function () {
       //var user = Meteor.users.findOne({_id: Meteor.userId()});
       return [
-        Meteor.subscribe('users')
+        Meteor.subscribe('users'),
+        Meteor.subscribe('bz.chats.my', Meteor.userId())
       ]
     },
     data: function () {

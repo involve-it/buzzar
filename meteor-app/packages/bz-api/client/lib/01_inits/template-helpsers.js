@@ -47,3 +47,6 @@ Template.registerHelper('getDistanceToPost', function (postIn) {
   }
   return ret;
 });
+Template.registerHelper('getFormattedTs', function (ts) {
+  return moment(ts).fromNow();
+});
