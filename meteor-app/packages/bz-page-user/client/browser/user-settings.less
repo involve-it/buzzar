@@ -1,9 +1,12 @@
 
 @import "client/01_presentation/style/constants.less";
 
+
 .page-settings {
+  
+  @edit-image-holder-height: 40px;
   @border-color:           rgba(147,147,147,.5);
-  @border-color-sep:       rgba(222,222,222,1);
+
   @text-color-label:       rgba(89,99,107, .95);
   @text-color-label-span:  #88858c;
   @innerPadding:           0 15px;
@@ -33,7 +36,38 @@
       font-size: 18px;
       color: lighten(@text-color-label, 10%);
     }
-
+    
+    .user-avatar {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .edit-image-holder {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 4px 4px 0 0;
+      
+      a {
+        display: block;
+        font-size: 18px;
+        color: rgba(255,255,255, .4);
+        .border-radius(2px);
+        background-color: rgba(50,50,50, .4);
+        height:       @edit-image-holder-height;
+        line-height:  @edit-image-holder-height;
+        width:        @edit-image-holder-height;
+        -webkit-transition: all .25s; 
+        transition: all .25s;
+        
+        &:hover {
+          color: rgba(255,255,255, .95);
+          background-color: rgba(50,50,50, .75);
+        }
+      }
+    }
+    
+    
     .user-avatar,
     .user-info,
     .user-attainment,
@@ -43,6 +77,11 @@
     }
     
     .user-item {
+      
+      .bz-user-status-width {
+        /*max-width: 213px;
+        margin: 0 auto;*/
+      }
 
       .item-details {
         .display-flex-box();
@@ -56,16 +95,32 @@
           .align-self(center);
           color: @text-color-label;
           font-size: 14px;
-          padding: 0;
+          padding: 0 15px 0 0;
         }
 
         .bz-input-result {
           .align-self(center);
           background-color: rgba(63, 68, 82, .1);
-          padding: 10px 12px;
           color: @text-color-label-span;
           .border-radius(2px);
           width: 100%;
+          
+          p {
+            font-size: 14px;
+            padding: 11px 0;
+            margin: 0;
+          }
+          
+          /* Elements select, input */
+          select,
+          input {
+            border-color: transparent;
+            border-width: 0;
+            background-color: transparent;
+            margin: 0;
+            padding: 0;
+            box-shadow: none;
+          }
         }
       }
       

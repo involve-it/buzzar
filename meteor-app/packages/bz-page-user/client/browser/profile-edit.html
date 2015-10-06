@@ -5,114 +5,133 @@
                 <div class="profile-box">
 
 
-                    <div class="item item-divider">
-                        <h3 class="title">Edit Your profile</h3>
+                    <!--SIDE A-->
+                    <div class="side-a text-center small-12 medium-4 columns">
+                        <div class="item item-divider">
+                            <h3 class="title">Edit user avatar</h3>
+                        </div>
+
+                        <div class="user-avatar">
+                            <div>{{> avatarThumbnail write=true}}</div>
+                        </div>
+
+                        <div class="user-item overflow">
+                            <div class="item-details bz-user-status-width">
+                                <!--<div class="small-12 bz-input-label columns">Your status</div>-->
+                                <div class="small-12 bz-input-result columns">
+                                    <select id="bz-user-status">
+                                        <option value="online">Online</option>
+                                        <option value="offline">Offline</option>
+                                        <option value="invisible">Invisible</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="btn-edit-account">
+                            <button class="button btn-default js-done-btn">Save & Update</button>
+                        </div>
+
                     </div>
+
+                    <!--SIDE B-->
+                    <div class="side-b small-12 medium-8 large-8 columns">
+
+                        <div class="item-divider">
+                            <h3 class="title">Edit your personal settings</h3>
+                        </div>
+                        <div class="user-item overflow">
+                            <div class="item-details">
+                                <div class="small-12 medium-2 bz-input-label columns">Username</div>
+                                <div class="small-12 medium-10 large-10 bz-input-result columns">
+                                    <div class="bz-text-overflow-ellipsis"><p> {{username}} </p></div>
+                                </div>
+                            </div>
+
+                            <div class="item-details">
+                                <div class="small-12 medium-2 bz-input-label columns">First name</div>
+                                <div class="small-12 medium-10 large-10 bz-input-result columns">
+                                    <input class="bz-first-name" autocomplete="off" type="text" value="{{profile.firstName}}">
+                                </div>
+                            </div>
+
+                            <div class="item-details">
+                                <div class="small-12 medium-2 bz-input-label columns">Last name</div>
+                                <div class="small-12 medium-10 large-10 bz-input-result columns">
+                                    <input class="bz-last-name" autocomplete="off" type="text" value="{{profile.lastName}}">
+                                </div>
+                            </div>
+
+                            <div class="bz-separate"></div>
+
+                            <div class="item-details">
+                                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                                    <div class="small-12 bz-input-label columns">Phone number</div>
+                                    <div class="small-12 bz-input-result columns">
+                                        <input class="bz-phone-number" autocomplete="off" type="text">
+                                    </div>
+                                </div>
+                                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                                    <div class="small-12 bz-input-label columns">Security settings</div>
+                                    <div class="small-12 bz-input-result columns">
+                                        <select id="phone-status">
+                                            <option value="">Public</option>
+                                            <option value="">Upon request</option>
+                                            <option value="">Hide</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item-details">
+                                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                                    <div class="small-12 bz-input-label columns">Skype username</div>
+                                    <div class="small-12 bz-input-result columns">
+                                        <input class="bz-skype-account" autocomplete="off" type="text">
+                                    </div>
+                                </div>
+                                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                                    <div class="small-12 bz-input-label columns">Security settings</div>
+                                    <div class="small-12 bz-input-result columns">
+                                        <select id="bz-skype-status">
+                                            <option value="">Public</option>
+                                            <option value="">Upon request</option>
+                                            <option value="">Hide</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                        
+                        </div>
+                        
+                        <div class="clearfix"></div>
+                        
+
+                        <div class="item item-divider">
+                            <h3 class="title">Your external links</h3>
+                        </div>
+                        <div class="user-item overflow">
+                            <div class="item-details">
+                                <div class="small-12 medium-2 bz-input-label columns">Facebook Url</div>
+                                <div class="small-12 medium-10 large-10 bz-input-result columns">
+                                    <select id="fb-status">
+                                        <option value="" selected="selected">Public</option>
+                                        <option value="">Upon request</option>
+                                        <option value="">Hide</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
                     
-
-                    <div class="item-group">
-                        <div class="clearfix">
-                            <div class="item-details">
-                                <label class="item item-input">
-                                    <div class="small-12 medium-3 input-label left">
-                                        <div>{{> avatarThumbnail write=true}}</div>
-                                    </div>
-
-                                    <div class="small-12 medium-9 large-9 left">
-                                        <!--<div class="profile-details">
-                                            <div>{{username}}</div>
-                                            <div><input type="text" value="{{profile.firstName}}" placeholder="first name" readonly/></div>
-                                            <div><input type="text" value="{{profile.lastName}}" placeholder="last name" readonly/></div>
-                                        </div>-->
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-group">
-                        <div class="clearfix">
-                            <div class="item-details">
-                                <label class="item item-input">
-                                    <div class="small-12 medium-3 input-label left ">Your status</div>
-                                    <div class="small-12 medium-9 large-9 left">
-                                        <select>
-                                            <option value="200-ft">Online</option>
-                                            <option value="1-mile">Offline</option>
-                                            <option value="5-miles">Invisible</option>
-                                        </select>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-group">
-                        <div class="clearfix">
-                            <div class="item-details">
-                                <label class="item item-input">
-                                    <div class="small-12 medium-3 input-label left ">Location</div>
-                                    <div class="small-12 medium-9 large-9 left">
-                                        {{ getStatusLocation }}
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="item-group">
-                        <div class="clearfix">
-                            <h5 class="title">Contact</h5>
-                            <div class="item-details">
-                                <label class="item item-input">
-                                    <div class="small-12 medium-3 input-label left ">Phone</div>
-                                    <div class="small-12 medium-9 large-9 left">
-                                        <select>
-                                            <option value="200-ft">Public</option>
-                                            <option value="1-mile">Upon request</option>
-                                            <option value="5-miles">Hide</option>
-                                        </select>
-                                    </div>
-                                </label>
-                            </div>
-
-                            <div class="item-details">
-                                <label class="item item-input">
-                                    <div class="small-12 medium-3 input-label left ">Skype</div>
-                                    <div class="small-12 medium-9 large-9 left">
-                                        <select>
-                                            <option value="200-ft">Public</option>
-                                            <option value="1-mile">Upon request</option>
-                                            <option value="5-miles">Hide</option>
-                                        </select>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-group">
-                        <div class="clearfix">
-                            <h5 class="title">Social</h5>
-                            <div class="item-details">
-                                <label class="item item-input">
-                                    <div class="small-12 medium-3 input-label left ">Facebook profile</div>
-                                    <div class="small-12 medium-9 large-9 left">
-                                        <select>
-                                            <option value="200-ft" selected="selected">Public</option>
-                                            <option value="1-mile">Upon request</option>
-                                            <option value="5-miles">Hide</option>
-                                        </select>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                      <button class="js-done-btn">Done</button>
-
-                    </div>
+                    
+                    <!--***-->
+                    
                 </div>
               </div>
 
