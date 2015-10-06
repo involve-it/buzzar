@@ -30,7 +30,6 @@ Template.bzChatItem.helpers({
     return user.username;
   },
   getUsers: function(){
-    debugger;
     return Meteor.users.find({
       _id: {$in: _.without(this.users, Meteor.userId())}
     });

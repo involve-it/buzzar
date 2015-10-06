@@ -10,7 +10,8 @@ sendMessage = function (messageText, chat, friendUserId){
     chatId: chat._id,
     text: messageText,
     timestamp: Date.now(),
-    keyMessage: 'own-message'
+    keyMessage: 'own-message',
+    seen: false
   });
   createChatIfFirstMessage(currentUser._id, friendUserId);
   makeChatActive(chat);
@@ -123,11 +124,22 @@ Template.registerHelper("timestampToTime", function (timestamp) {
   return moment(date).fromNow();
 });
 Meteor.startup(function(){
-  bz.cols.messages.find().observeChanges({
+  /*bz.cols.messages.find().observeChanges({
     added: function(a, b){
       console.log(a);
       console.log(b);
     }
-  });
+  });*/
+  (function() {
+    var initializing = true;
+    bz.cols.messages.find().observeChanges({
+      added: function(id, doc) {
+        if (!initializing) {
+          console.log(doc);
+        }
+      }
+    });
+    initializing = false;
+  })();
 });
 

@@ -5,7 +5,6 @@ Template.bzLocationName.rendered = function(){
   setInterval(function(){
     $(document).off('open.fndtn.reveal', '[data-reveal]');
     $(document).on('open.fndtn.reveal', '[data-reveal]', function () {
-      debugger;
       $('.js-location-modal-holder').empty();
       Blaze.renderWithData(Template.bzChooseLocationModal, {}, $('.js-location-modal-holder')[0]);
       //var modal = $(this); bzChooseLocationModal
@@ -38,7 +37,6 @@ Template.bzChooseLocationModal.events({
 
 Template.bzChooseLocationModal.helpers({
   placesArray: function () {
-    debugger;
     return bz.runtime.maps.places.find().fetch().map(function (object) {
       return {id: object._id, value: object.name};
     });

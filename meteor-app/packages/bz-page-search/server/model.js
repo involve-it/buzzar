@@ -3,7 +3,6 @@
  */
 Meteor.methods({
   getYelpPlaces: function(location){
-    debugger;
     var res;
     try {
       res = Meteor.http.call('GET', 'http://api.yelp.com/v2/search/', {
@@ -20,7 +19,6 @@ Meteor.methods({
         }
       });
     } catch(ex){
-      debugger;
       console.log(ex);
       res = ex;
     }
@@ -33,7 +31,6 @@ Meteor.methods({
   //longitude and latitude: Latitude and Longitude of user’s location (optional)
   //Default location is statically set to San Francisco
   yelpQuery: function(search, isCategory, longitude, latitude) {
-    debugger;
     console.log('Yelp search for userId: ' + this.userId + '(search, isCategory, lng, lat) with vals (', search, isCategory, longitude, latitude, ')');
 
     // Query OAUTH credentials (these are set manually)
@@ -75,7 +72,6 @@ Meteor.methods({
     var oauthBinding = new OAuth1Binding(auth.consumerKey, auth.consumerSecret, fullUrl);
     oauthBinding.accessTokenSecret = auth.accessTokenSecret;
     var headers = oauthBinding._buildHeader();
-    debugger;
     // Return data results only
     return oauthBinding._call('GET', fullUrl, headers).data;
     //return oauthBinding._call('GET', 'http://api.yelp.com/v2/search', headers, parameters).data;
