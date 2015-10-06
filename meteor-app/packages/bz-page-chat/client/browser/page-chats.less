@@ -1,4 +1,52 @@
 
+@import "client/01_presentation/style/constants.less";
+
+
+
+.bz-wrapper-no-message {
+  display: block; /*If don't contacts*/
+  height: 100%;
+  text-align: center;
+  .display-flex-box();
+  .align-items(center);
+  
+  .bz-flex-box {
+    width: 100%;
+    .align-self(center);
+    
+    .bz-img-conversation {
+      i {
+        font-size: 150px;
+        margin: 50px 0;
+        color: rgba(30,188,210, .5);
+      }
+    }
+    
+    .title-message {
+      color: @h-title-color;
+      font-family: @roboto-font-family;
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 28px;
+      margin-bottom: 0.5em;
+    }
+
+    .subtitle-message {
+      color: #aaaaaa;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  
+}
+
+
+
+
+
+
+
 
 
 /**
