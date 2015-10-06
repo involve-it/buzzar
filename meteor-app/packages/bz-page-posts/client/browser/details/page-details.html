@@ -1,14 +1,8 @@
 <template name="postsPageDetails">
-  {{> bzNavBar}}
-  <div class="bz-block-light">
-    <div class="bz-container-body">
       <div class="main-content">
         {{> postsDetails }}
         {{> bzControlReviews postId = _id}}
         {{> bzControlAddReview postId = _id}}
 
       </div>
-    </div>
-  </div>
-  {{> bzFooter}}
 </template>

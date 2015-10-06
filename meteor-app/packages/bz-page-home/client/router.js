@@ -5,7 +5,8 @@
 Router.map(function () {
   this.route('home', {
     path: '/home',
-    template: 'pageHome'
+    template: 'pageHome',
+    layoutTemplate: 'mainLayoutHome'
   });
 });
 
