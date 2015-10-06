@@ -52,6 +52,7 @@ Router.map(function () {
     controller: 'requireLoginController',
     waitOn: function () {
       return [
+        Meteor.subscribe('bz.users.all'),
         Meteor.subscribe('bz.chats.my', Meteor.userId())
       ]
     },

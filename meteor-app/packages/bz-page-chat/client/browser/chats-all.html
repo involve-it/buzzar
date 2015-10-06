@@ -4,13 +4,13 @@
   <div class="list">
 
 
-    <div class="item item-divider item-inactive">
+    <!--<div class="item item-divider item-inactive">
       {{t9n 'inactive'}}
-    </div>
+    </div>-->
     {{#if getChats}}
-      <div class="item item-divider item-active">
+      <!--<div class="item item-divider item-active">
         {{t9n 'active'}}
-      </div>
+      </div>-->
 
 
       {{#each getChats}}
@@ -33,7 +33,8 @@
 
       <div class="user-inputs">
         <form>
-          <textarea class="btn--input-message" id="message-input" name="textMessage" placeholder="Send Message &crarr;" data-autoresize rows="1"></textarea>
+          <textarea class="btn--input-message" id="message-input" name="textMessage" placeholder="Send Message &crarr;"
+                    data-autoresize rows="1"></textarea>
           <!--<input id="message-input" type="text" name="textMessage" value="" placeholder="Your message" class="btn-input-message"> - -->
           <input id="send-btn" type="button" value="send" class="btn--send">
         </form>
@@ -47,7 +48,9 @@
 
   <div class="wrapper-message padding-left padding-right">
     <div class="title-message">You have<br>no conversations yet</div>
-    <div class="subtitle-message">Start messaging by pressing the pencil button in the top right corner or press button below.</div>
+    <div class="subtitle-message">Start messaging by pressing the pencil button in the top right corner or press button
+      below.
+    </div>
 
     <div class="padding-top">
       <button class="button button-outline  button-positive goContacts">
@@ -62,22 +65,28 @@
 
 <template name="bzChatItem">
   <div class="bz-chat-item">
-    <a href="/chat/{{ _id }}">
-      <div class="row">
-      Chat with:
-      {{#each users }}
-        User: {{ getUserName this }} <br/>
-      {{/each }}
-      </div>
-      <div class="row">Last message: {{ getFormattedTs timeBegin }}</div>
-      <div class="row">Chat id: {{ _id }} </div>
-    </a>
+    <div class="panel">
+      <a href="/chat/{{ _id }}">
+        <div class="row">
+
+          <!--{{#each users }}{{/each}}-->
+
+          {{#each getUsers }}
+            <img style="height:50px;" src="{{ profile.image }}"/>
+          <br/>
+            User: {{ getUserName this }} <br/>
+          {{/each }}
+        </div>
+        <div class="row">Last message: {{ getFormattedTs timeBegin }}</div>
+        <div class="row">Chat id: {{ _id }} </div>
+      </a>
+    </div>
   </div>
 
 </template>
 
 <template name="chatMessage">
-  <div class="conversations--message-wrapper">
+  <div class="conversations--message-wrapper panel">
     <div class="message {{ getMessageClass}}">
       <div class="box-message">
         {{ text }}

@@ -13,6 +13,14 @@ Template.bzControlMenuHashes.helpers({
 Template.bzInnerMenuLeft.helpers({
   getCurrentUserName: function(){
     return Meteor.user() && Meteor.user().username;
+  },
+  getUserAvatar: function(){
+    var ret = '/img/content/avatars/avatar-no.png';
+    var user = Meteor.user();
+    if(user && user.profile && user.profile.image){
+      ret = user.profile.image;
+    }
+    return ret;
   }
 })
 Template.bzInnerMenuLeft.events({

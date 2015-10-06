@@ -22,7 +22,18 @@ Template.bzChatsMy.helpers({
 });
 Template.bzChatItem.helpers({
   getUserName: function(){
-    return 'username';
+    /*var user = Meteor.users.findOne({
+      _id: this.toString()
+    });*/
+    //var user = Meteor.users.findOne(Meteor.userId());
+    var user = this;
+    return user.username;
+  },
+  getUsers: function(){
+    debugger;
+    return Meteor.users.find({
+      _id: {$in: _.without(this.users, Meteor.userId())}
+    });
   }
 })
 Template.onePostRowItem.helpers({
