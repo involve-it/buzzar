@@ -4,17 +4,23 @@
 bz.help.makeNamespace('bz.buz.chats');
 
 sendMessage = function (messageText, chat, friendUserId) {
+  var  msgTs = Date.now();
+
+  createChatIfFirstMessage(currentUser._id, friendUserId),
+  makeChatActive(chat);
+
   bz.cols.messages.insert({
     userId: currentUser._id,
     toUserId: friendUserId,
     chatId: chat._id,
     text: messageText,
-    timestamp: Date.now(),
+    timestamp: msgTs,
     keyMessage: 'own-message',
     seen: false
   });
-  createChatIfFirstMessage(currentUser._id, friendUserId);
-  makeChatActive(chat);
+
+  chat.lastMessageTs = msgTs; // assign timestamp of the last message to the chat
+
   scrollMessages();
 
 }
@@ -65,6 +71,7 @@ createChatIfFirstMessage = function (userFrom, userTo) {
       userId: userFrom,
       users: [userTo, userFrom],
       timeBegin: Date.now(),
+      lastMessageTs: Date.now(),
       activated: false // we just create record in DB, but we don't wanna show this conv-n to the other user
     });
   } else {
