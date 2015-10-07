@@ -1,88 +1,50 @@
 <template name="bzChatsMy">
-
-
-
-    <!--<div class="item item-divider item-inactive">
-      {{t9n 'inactive'}}
-    </div>-->
+    
     {{#if getChats}}
-      <!--<div class="item item-divider item-active">
-        {{t9n 'active'}}
-      </div>-->
 
-
-      {{#each getChats}}
-        {{> bzChatItem }}
-      {{/each}}
-
-
-      <!--{{> replyArea}}-->
-
+        <div class="bz-chats-toolbar"> TOOLBAR </div>
+        
+        {{#each getChats}}
+            {{> bzChatItem }}
+        {{/each}}
+        
     {{else}}
+      
       {{> noChats}}
+        
     {{/if}}
 
-
-
 </template>
-<template name="replyArea">
-  <div id="replyArea">
-    <div class="user-inputs-messages">
-
-      <div class="user-inputs">
-        <form>
-          <textarea class="btn--input-message" id="message-input" name="textMessage" placeholder="Send Message &crarr;"
-                    data-autoresize rows="1"></textarea>
-          <!--<input id="message-input" type="text" name="textMessage" value="" placeholder="Your message" class="btn-input-message"> - -->
-          <input id="send-btn" type="button" value="send" class="btn--send">
-        </form>
-      </div>
-
-    </div>
-  </div>
-</template>
-
-<template name="noChats">
-
-  <div class="bz-wrapper-no-message">
-    <div class="bz-flex-box">
-
-        <div class="bz-img-conversation">
-            <i class="fa fa-comments"></i>
-        </div>
-        
-        <div class="title-message">You have<br>no conversations yet</div>
-        <div class="subtitle-message">Start messaging by pressing the pencil button in the top right corner or press button
-          below.
-        </div>
-
-        <div class="bz-padding-top-x2">
-          <button class="button button-outline btn-default goContacts">go to the Contacts</button>
-        </div>
-    </div>
-  </div>
-
-</template>
-
 
 <template name="bzChatItem">
+
   <div class="bz-chat-item">
-    <div class="panel">
       <a href="/chat/{{ _id }}">
-        <div class="row">
+          <div class="bz-meta">
+                    
+                {{#each getUsers }}
+                  
+                    {{#if profile.image}}
+                        <div class="bz-user-avatar">
+                            <img src="{{ profile.image }}" alt="null"/>
+                        </div>
+                    {{else}}
+                        <div class="bz-user-avatar">
+                            <img src="/img/content/avatars/avatar-no.png" alt="null"/>
+                        </div>
+                    {{/if}}
 
-          <!--{{#each users }}{{/each}}-->
+                    <div class="bz-username">
+                       {{ getUserName this }}
+                    </div>
+                
+                {{/each }}
+        
+                <div class="bz-last-timestamp"> Last message: {{ getFormattedTs timeBegin }} </div>
+                <div class="">Chat id: {{ _id }} </div>
 
-          {{#each getUsers }}
-            <img style="height:50px;" src="{{ profile.image }}"/>
-          <br/>
-            User: {{ getUserName this }} <br/>
-          {{/each }}
-        </div>
-        <div class="row">Last message: {{ getFormattedTs timeBegin }}</div>
-        <div class="row">Chat id: {{ _id }} </div>
+          </div>
       </a>
-    </div>
   </div>
 
 </template>
@@ -97,5 +59,44 @@
     </div>
 
   </div>
+
+</template>
+
+<template name="replyArea">
+    <div id="replyArea">
+        <div class="user-inputs-messages">
+
+            <div class="user-inputs">
+                <form>
+          <textarea class="btn--input-message" id="message-input" name="textMessage" placeholder="Send Message &crarr;"
+                    data-autoresize rows="1"></textarea>
+                    <!--<input id="message-input" type="text" name="textMessage" value="" placeholder="Your message" class="btn-input-message"> - -->
+                    <input id="send-btn" type="button" value="send" class="btn--send">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</template>
+
+<template name="noChats">
+
+    <div class="bz-wrapper-no-message">
+        <div class="bz-flex-box">
+
+            <div class="bz-img-conversation">
+                <i class="fa fa-comments"></i>
+            </div>
+
+            <div class="title-message">You have<br>no conversations yet</div>
+            <div class="subtitle-message">Start messaging by pressing the pencil button in the top right corner or press button
+                below.
+            </div>
+
+            <div class="bz-padding-top-x2">
+                <button class="button button-outline btn-default goContacts">go to the Contacts</button>
+            </div>
+        </div>
+    </div>
 
 </template>

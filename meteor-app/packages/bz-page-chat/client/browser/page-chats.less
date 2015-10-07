@@ -1,0 +1,134 @@
+@import "client/style/constants.less";
+
+@bg-toolbar-color-1: rgba(54,60,78, .1);
+@bg-toolbar-color-2: rgba(54,60,78, .1);
+
+.transition() {
+  transition:         all .25s ease;
+  -moz-transition:    all .25s ease;
+  -webkit-transition: all .25s ease;
+}
+
+.bz-wrapper-messages {
+  .display-flex-box();
+  .flex-flow(column, nowrap);
+  
+  .bz-chats-toolbar {
+    -webkit-border-radius: 2px 2px 0 0;
+    -moz-border-radius: 2px 2px 0 0;
+    border-radius: 2px 2px 0 0;
+    height: 42px;
+    margin: -20px -20px 20px -20px;
+    background-image: -webkit-linear-gradient(-35deg, @bg-toolbar-color-1, @bg-toolbar-color-2);
+    background-image: linear-gradient(135deg, @bg-toolbar-color-1, @bg-toolbar-color-2);
+    background-color: @bg-toolbar-color-1;
+    border-bottom: 1px solid @border-color-sep;
+    
+    color: #666666;
+    line-height: 42px;
+    text-align: center;
+  }
+
+  /* if do not message */
+  .bz-wrapper-no-message {
+    display: block; /*If don't contacts*/
+    height: 100%;
+    text-align: center;
+    .display-flex-box();
+    .align-items(center);
+
+    .bz-flex-box {
+      width: 100%;
+      .align-self(center);
+
+      .bz-img-conversation {
+        i {
+          font-size: 150px;
+          margin: 50px 0;
+          color: rgba(30,188,210, .5);
+        }
+      }
+
+      .title-message {
+        color: @h-title-color;
+        font-family: @roboto-font-family;
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 28px;
+        margin-bottom: 0.5em;
+      }
+
+      .subtitle-message {
+        color: #aaaaaa;
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+  } /* END */
+
+
+  
+  .bz-chat-item {
+    border-bottom: 1px solid @border-color-sep;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    opacity: 1;
+
+    a {
+      display: block;
+      
+      &:hover {
+        .bz-user-avatar,
+        .bz-username {
+          opacity: .75;
+          .transition();
+        }
+      }
+    }
+    
+    .bz-meta {
+      position: relative;
+      min-height: 80px;
+      padding-left: 90px;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+   
+    .bz-user-avatar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      
+      img {
+        width: 80px;
+        height: 80px;
+        .border-radius(2px);
+      }
+    }
+    
+    .bz-username {
+      font-weight: 700;
+      font-size: 16px;
+      color: @text-link-green;
+      text-transform: capitalize;
+    }
+
+    .bz-last-timestamp {
+      color: @sub-title-color;
+      font-size: 12px;
+    }
+    
+    
+    
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+  
+  
+  
+  
+} 
+
