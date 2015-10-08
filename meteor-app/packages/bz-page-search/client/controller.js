@@ -150,12 +150,12 @@ function callbackNearbySearchGoogle(results, status, html_attributions, next_pag
 }
 
 createLocationFromObject = function(obj){
-  var ret = $.Deferred(), googlePlace, yelpPlace,
+  var ret, toRemove,
     locName = obj.name, coords = obj.coords;
     // save to locations history collection
 
     if (locName && Meteor.userId()) {
-      var ret = {
+      ret = {
         userId: Meteor.userId(),
         name: locName,
         coords: coords,
@@ -163,10 +163,14 @@ createLocationFromObject = function(obj){
         public: false,
         timestamp: Date.now()
       }
-      bz.cols.locations.remove({
+      toRemove = bz.cols.locations.findOne({
         name: locName,
         userId: Meteor.userId()
       });
+      if(toRemove) {
+        bz.cols.locations.remove(toRemove._id);
+      }
+
       ret._id = bz.cols.locations.insert(ret);
     }
     //ret.resolve(true);

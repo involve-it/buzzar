@@ -32,8 +32,7 @@ Template.bzChooseLocationModal.events({
   'click .js-set-location-button': function (e, v) {
     //var that = this;
     //Tracker.nonreactive(function () {
-
-    var locName = $('.js-location-name-input').val();
+    var locName = $('.js-location-name-input.tt-input').val()
     setLocationFromData(locName, v.data);
     Blaze.remove(searchModalView);
     $('#choose-locations').foundation('reveal', 'close');
@@ -43,7 +42,7 @@ Template.bzChooseLocationModal.events({
     var locName, locId;
     locName = e.target.dataset.locationname;
     if (locName) {
-      $('.js-location-name-input').val(locName);
+      $('.js-location-name-input.tt-input').val(locName);
     }
     var locId = e.target.dataset.locationid;
     if (locId) {

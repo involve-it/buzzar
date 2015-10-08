@@ -126,7 +126,6 @@ getUniqueChatsForUser = function (userId, all) {
 }
 
 showMessageModal = function (msgObj, userObj) {
-  //debugger;
   var data = {
       messageText: msgObj.text,
       chatId: msgObj.chatId,
@@ -159,9 +158,7 @@ Meteor.startup(function () {
 
           if (!initializing) {
             //console.log(doc);
-            //debugger;
             var userObj = Meteor.users.findOne(doc.userId);
-            debugger;
             bz.buz.chats.showMessageModal(doc, userObj);
           }
         }
