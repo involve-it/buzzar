@@ -23,7 +23,9 @@
     
     <ul class="off-canvas-list">
         <li><label>Main pages</label></li>
-        {{#if currentUser}}
+      <li class="{{isActiveRoute 'home'}}"><a href="{{pathFor 'home'}}">Home</a></li>
+
+      {{#if currentUser}}
           {{> checkingUserMenu}}
         {{/if}}
         
