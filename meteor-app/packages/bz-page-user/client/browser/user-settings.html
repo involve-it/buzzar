@@ -1,76 +1,86 @@
 <template name="userSettings">
 
-    <div class="page-settings">
-        <div class="profile-box">
-            <div>
-                <p class="title">{{ username }} profile details</p>
-                <div class="profile-narrow">
-                    <div class="owner-photo-wrap">
-                        {{> avatarThumbnail image=profile.image }}
+    <div class="main-content">
+        <div class="page-settings">
+            <div class="profile-box">
+
+             
+                <!--SIDE A-->
+                <div class="side-a text-center small-12 medium-4 columns">
+                    <div class="item item-divider">
+                        <h3 class="title">User profile details</h3>
                     </div>
-            
-                    <div>
-                        <div>
-                        <p>User status</p> Location: {{ getStatusLocation }}
-                        </div>
+
+                    <div class="user-avatar">
+                        <div>{{> avatarThumbnail image=profile.image }}</div>
                     </div>
+
+                    <div class="user-info">
+                        <div class="user-name capitalize"> {{ username }} </div>
+                        <div class="user-location"> San-Francisco, CA </div>
+                    </div>
+                    
+
+                    <div class="btn-edit-account">
+                        <button class="button btn-default js-send-message-btn">Send Message</button>
+                    </div>
+
                 </div>
-            
-                <div class="row">
-                    <button class="js-send-message-btn">Send Message</button>
-                </div>
-            
-                <div class="row">
-                    User name: <span class="capitalize"> {{ userName }} </span>
-                </div>
-            
-                <div class="profile-wide">
-                    <div class="buttons-info">
+
+                <!--SIDE B-->
+                <div class="side-b small-12 medium-8 large-8 columns">
+
+                    <div class="item-divider">
+                        <h3 class="title">Your personal settings</h3>
+                    </div>
+                    <div class="user-item overflow">
                         <div class="item-details">
-                            <p class="title">Contact</p>
-                            <div>
-                                <p>
-                                    <strong>Profile Url:</strong>
-                                    <a href="{{ getIdProfile}}">{{ getIdProfile}}</a>
-                                </p>
+                            <div class="small-12 medium-2 bz-input-label columns">Profile Url</div>
+                            <div class="small-12 medium-10 large-10 bz-input-result columns">
+                                <div class="bz-text-overflow-ellipsis">
+                                    <p> <a href="{{ getIdProfile}}">{{ getIdProfile}}</a> </p>
+                                </div>
                             </div>
-                    
-                            {{#if userHasPhone }}
-                                <div>
-                                    <p>
-                                        <strong>Phone</strong>
-                                        <a class="button">Request</a>
-                                    </p>
-                                </div>
-                            {{/if}}
-                    
-                            {{#if userHasSkype }}
-                                <div>
-                                    <p>
-                                        <strong>Skype</strong>
-                                        <!--Username skype-->
-                                        <a class="button">Request</a>
-                                    </p>
-                                </div>
-                            {{/if}}
                         </div>
-                    
-                        {{#if userHasFb }}
-                            <div class="item-details">
-                                <p class="title">Social</p>
-                                <div>                                            
-                                    <p>
-                                        <strong>Facebook profile: {{ getFaceBookDetails }}</strong>
-                                    </p>
-                                </div>
-                            </div>
-                        {{/if}}
+
+                        <div class="item-details">
+                            <div class="small-12 medium-2 bz-input-label columns">Phone</div>
+                            <div class="small-12 medium-10 large-10 bz-input-result columns"><p> +1 (800) 123-456 </p></div>
+                        </div>
+
+                        <div class="item-details">
+                            <div class="small-12 medium-2 bz-input-label columns">Skype</div>
+                            <div class="small-12 medium-10 large-10 bz-input-result columns"><p> Underground87 </p></div>
+                        </div>
                     </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="item item-divider">
+                        <h3 class="title">Your external links</h3>
+                    </div>
+                    <div class="user-item overflow">
+                        <div class="item-details">
+                            <div class="small-12 medium-2 bz-input-label columns">Facebook Url</div>
+                            <div class="small-12 medium-10 large-10 bz-input-result columns"><p> Upon request <!--{{ getFaceBookDetails }}--> </p></div>
+                        </div>
+                    </div>
+
                 </div>
+
+                <div class="clearfix"></div>
+                <div class="bz-separate"></div>
+                
+                <div>ТУТ МОГУТ БЫТЬ ОТЗЫВЫ или ДРУГАЯ ВАЖНАЯ ИНФОРМАЦИЯ КОТОРАЯ ВАЖНА ПРОСМАТРИВАЮЩИМ ПРОФИЛЬ</div>
+                <p>Скажем, тут могут находится другие posts пользователя</p>
+                
+                
+                
+                
+                
             </div>
         </div>
     </div>
-
 
 </template>
 
