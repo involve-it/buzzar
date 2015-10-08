@@ -186,4 +186,24 @@ Template.bzControlSearch.events({
   }
 
 });
+Template.bzSearchHashTagLabel.helpers({
+  getLookingForPhrase: function(){
+    var loc = Session.get('bz.control.search.location') || '',
+      dist = Session.get('bz.control.search.distance') || '',
+      ret = 'Looking for buzz around ';
+    if(loc.name){
+      loc = loc.name;
+    }
+    if(dist){
+      dist = ' within ' + dist;
+    }
+    ret += loc + dist;
 
+    return ret;
+  }
+});
+Template.bzSearchHashTagLabel.events({
+  'click .js-save-hash-btn': function(e, v) {
+    debugger;
+  }
+})

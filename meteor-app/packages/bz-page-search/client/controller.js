@@ -6,6 +6,15 @@ bz.help.makeNamespace('bz.buz.search');
 
 
 Meteor.startup(function () {
+  Tracker.autorun(function(){
+    if(GoogleMaps.loaded()){
+      //debugger;
+      bz.help.maps.initGeocoding();
+      bz.help.maps.initLocation();
+    }
+  })
+
+  Session.set('bz.control.search.distance', 1);
   bz.help.maps.getCurrentLocation(function (loc) {
     Session.set('bz.control.search.location', {
       coords: loc,
@@ -22,19 +31,12 @@ Meteor.startup(function () {
   bz.help.maps.initPlacesCollection();
   Template.bzControlSearch.onCreated(function () {
 
-    bz.help.maps.initLocation();
+    //bz.help.maps.initLocation();
 
     // doc.ready happened, so:
     //bz.help.maps.googleMapsLoad();
   });
-  Template.bzControlSearch.onCreated(function () {
 
-    bz.help.maps.initLocation();
-    //bz.help.maps.initPlacesCollection();
-
-    // doc.ready happened, so:
-    //bz.help.maps.googleMapsLoad();
-  });
 
   // fill google maps locations into bz.runtime.maps.places:
   Tracker.autorun(function () {
@@ -49,12 +51,6 @@ Meteor.startup(function () {
     }
   });
 });
-
-
-Meteor.startup(function () {
-
-});
-
 
 function searchPostsReactive() {
   Tracker.autorun(function () {
@@ -198,13 +194,26 @@ setLocationFromData = function(locName, data){
       bz.help.logError('Location with id ' + locId + 'was not found!');
     }
   } else {
-    // user entered his own text: this is not our place and we just have a name
-    bz.help.maps.getCurrentLocation(function (loc) {
-      res = createLocationFromObject({
-        name: locName,
-        coords: loc
-      });
-      Session.set('bz.control.search.location', res);
+    // user entered his own text: this is not our place and we just have a name OR address
+    // check if this is an address with geocoding:
+    bz.help.maps.getCoordsFromAddress(locName).done(function(coords){
+      if(coords){
+        res = createLocationFromObject({
+          name: locName,
+          coords: coords
+        });
+        Session.set('bz.control.search.location', res);
+      } else {
+        bz.help.maps.getCurrentLocation(function (loc) {
+          res = createLocationFromObject({
+            name: locName,
+            coords: loc
+          });
+          Session.set('bz.control.search.location', res);
+        });
+      }
     });
+
+
   }
 }

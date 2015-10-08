@@ -46,11 +46,38 @@ var Maps = {
   },
   googleMapsLoad: function () {      // need run after doc.ready
     if (!GoogleMaps.loaded()) {
+
       GoogleMaps.load({
         //key: bz.config.mapsKey,
         libraries: 'places'  // also accepts an array if you need more than one
       });
+
     }
+  },
+  initGeocoding: function(){
+    geocoder = new google.maps.Geocoder();
+  },
+  getCoordsFromAddress: function(address){
+    var ret = $.Deferred(), coords;
+      geocoder.geocode({
+        'address': address
+      }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if(results.length > 1){
+            bz.help.logError('more than 1 result in geocoding!');
+          }
+          coords = {
+            lat: results[0].geometry.location.J,
+            lng: results[0].geometry.location.M
+          }
+          ret.resolve(coords);
+        } else {
+          ret.resolve(undefined);
+          bz.help.logError("bz.api.maps: Geocode was not successful for the following reason: " + status);
+        }
+      });
+    return ret;
+
   }
 }
 bz.help.makeNamespace('bz.help.maps', Maps);

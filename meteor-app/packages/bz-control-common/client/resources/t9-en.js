@@ -5,7 +5,7 @@
 var en;
 
 en = {
-  searchLocationText: 'Check-in to location'
+  searchLocationText: 'Place name or address'
 };
 
 T9n.map('en', en);

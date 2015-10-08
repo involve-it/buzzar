@@ -13,7 +13,7 @@ Template.bzLocationName.rendered = function () {
     $(document).on('open.fndtn.reveal', '[data-reveal]', function () {
       $('.js-location-modal-holder').empty();
       searchModalView = Blaze.renderWithData(Template.bzChooseLocationModal, {}, $('.js-location-modal-holder')[0]);
-      Session.set('bz.search.searchModalView');
+      //Session.set('bz.search.searchModalView');
       //var modal = $(this); bzChooseLocationModal
     });
     //$(document).on('opened.fndtn.reveal', '[data-reveal]', function () {
@@ -69,6 +69,21 @@ Template.bzChooseLocationModal.helpers({
   placesArray: function () {
     var ret = [
       {
+        name: 'my-places',
+        valueKey: 'name',
+        displayKey: 'name',
+        template: 'googlePlacesItem',
+        header: '<h3 class="league-name">My Saved Places</h3>',
+        local: function () {
+          ret = bz.cols.locations.find().fetch().map(function (item) {
+            //return {id: item._id, value: item.name};
+            return item;
+          });
+
+          return ret;
+        }
+      },
+      {
         name: 'google-places',
         valueKey: 'name',
         displayKey: 'name',
@@ -90,21 +105,6 @@ Template.bzChooseLocationModal.helpers({
         header: '<h3 class="league-name">Yelp Places Nearby</h3>',
         local: function () {
           ret = bz.runtime.maps.places.find().fetch().map(function (item) {
-            return item;
-          });
-
-          return ret;
-        }
-      },
-      {
-        name: 'my-places',
-        valueKey: 'name',
-        displayKey: 'name',
-        template: 'googlePlacesItem',
-        header: '<h3 class="league-name">My Saved Places</h3>',
-        local: function () {
-          ret = bz.cols.locations.find().fetch().map(function (item) {
-            //return {id: item._id, value: item.name};
             return item;
           });
 

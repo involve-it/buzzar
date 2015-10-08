@@ -39,7 +39,12 @@
 <template name="postFoundItem">
   <h4><i class="fa fa-map-pin"></i><i>{{ name }}</i></h4>
 </template>
-
+<template name="bzSearchHashTagLabel">
+ <div class="bz-hash-tag-label">
+   {{ getLookingForPhrase }}
+   <button class="js-save-hash-btn">Save hash</button>
+ </div>
+</template>
 
 <template name="bzDistance">
     <div class="bz-distance">

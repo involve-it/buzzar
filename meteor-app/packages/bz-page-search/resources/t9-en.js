@@ -5,7 +5,7 @@
 var en;
 
 en = {
-  lookingForText: 'I am looking for'
+  lookingForText: 'Buzz I\'m Looking for'
 };
 
 T9n.map('en', en);

@@ -4,7 +4,7 @@
 
 bz.cols.locations = new Mongo.Collection('bz.locations');
 if(Meteor.isServer){
-  bz.cols.locations.remove({});
+  //bz.cols.locations.remove({});
 }
 
 bz.cols.locations.before.insert(function (userId, doc) {
