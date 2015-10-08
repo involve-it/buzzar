@@ -63,12 +63,19 @@ function searchPostsReactive() {
     var searchedText = Session.get('bz.control.search.searchedText');
     searchedText = searchedText && searchedText.trim();
     if (searchedText) {
-      var query = searchedText,
+      var query = {},
       //map = GoogleMaps.maps.map.instance, latitude, longitude,
-          activeCats = Session.get('bz.control.category-list.activeCategories');
-      if (!query && query === undefined) {
-        query = '';
+        activeCats = Session.get('bz.control.category-list.activeCategories') || [],
+        searchDistance = Session.get('bz.control.search.distance');
+      if (!searchedText && searchedText === undefined) {
+        searchedText = '';
       }
+      query = {
+        text: searchedText,
+        distance: searchDistance,
+        activeCats: activeCats
+      }
+
       Meteor.call('search', query, activeCats, {limit: 10}, function (err, results) {
         bz.cols.searchRt._collection.remove({});
         if (results && results.length > 0) {
@@ -140,4 +147,60 @@ function callbackNearbySearchGoogle(results, status, html_attributions, next_pag
   }
   //Session.set('bz.control.search.places', bz.runtime.maps.places.find().fetch());
   //return bz.runtime.maps.places;
+}
+
+createLocationFromObject = function(obj){
+  var ret = $.Deferred(), googlePlace, yelpPlace,
+    locName = obj.name, coords = obj.coords;
+    // save to locations history collection
+
+    if (locName && Meteor.userId()) {
+      var ret = {
+        userId: Meteor.userId(),
+        name: locName,
+        coords: coords,
+        placeType: 'bz',
+        public: false,
+        timestamp: Date.now()
+      }
+      bz.cols.locations.remove({
+        name: locName,
+        userId: Meteor.userId()
+      });
+      ret._id = bz.cols.locations.insert(ret);
+    }
+    //ret.resolve(true);
+  /*} else {
+    ret.resolve(false);
+  }*/
+  // 2. set sitewide current location:
+  return ret;
+}
+setLocationFromData = function(locName, data){
+  var locId, bzPlace, res;
+  // do something with the result:
+  //Session.get('bz.control.search.location')
+  //console.log(this.locationId);
+  if (data.selectedPlace) {
+    // if selected from a dropdown:
+    Session.set('bz.control.search.location', data.selectedPlace);
+  } else if (data.locationId) {
+    locId = data.locationId;
+    // if selected from most recent: search product by id in our database
+    bzPlace = bz.cols.locations.findOne(locId);
+    if (bzPlace) {
+      Session.set('bz.control.search.location', bzPlace)
+    } else {
+      bz.help.logError('Location with id ' + locId + 'was not found!');
+    }
+  } else {
+    // user entered his own text: this is not our place and we just have a name
+    bz.help.maps.getCurrentLocation(function (loc) {
+      res = createLocationFromObject({
+        name: locName,
+        coords: loc
+      });
+      Session.set('bz.control.search.location', res);
+    });
+  }
 }

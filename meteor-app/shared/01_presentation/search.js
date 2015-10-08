@@ -77,7 +77,13 @@ Meteor.startup(function () {
 if (Meteor.isServer) {
 
   Meteor.methods({
-    search: function (textToSearch, types, options) {
+    search: function (query, types, options) {
+      /*query = {
+        text: searchedText,
+        distance: searchDistance,
+        activeCats: activeCats
+      }*/
+      var textToSearch = query.text;
       options = options || {};
 
       // guard against client-side DOS: hard limit to 50

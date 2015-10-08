@@ -4,7 +4,7 @@
 
 bz.cols.chats = new Mongo.Collection('bz.chats');
 if (Meteor.isServer) {
-  bz.cols.chats.remove({});
+  //bz.cols.chats.remove({});
 }
 bz.cols.chats.getNewMessagesAmountForUser = function(userObj){
   var user = userObj || Meteor.user();

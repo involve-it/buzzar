@@ -22,12 +22,8 @@ Template.bzDistance.rendered = function () {
 
 Template.bzDistance.events({
   'change #selectDis': function (e) {
-
     var $this = $(this);
-
     console.log($this);
-
-
   },
   'click #select-selectDis li': function(e) {
     var target = $(e.target);
@@ -36,9 +32,14 @@ Template.bzDistance.events({
     }
 
     var ret = target.text();
-    
     console.log(ret);
-
+  },
+  'click #select-selectDis11 li': function(e, v){
+    var distStr = e.target.dataset.value,
+      dist = Number.parseFloat(distStr);
+    if(dist !== NaN) {
+      Session.set('bz.control.search.distance', dist);
+    }
   }
 });
 
@@ -70,7 +71,7 @@ Template.bzControlSearch.helpers({
   },
   joinedArray: function () {
     var ret = [
-      {
+      /*{
         name: 'google-places',
         valueKey: 'name',
         displayKey: 'name',
@@ -97,7 +98,7 @@ Template.bzControlSearch.helpers({
 
           return ret;
         }
-      },
+      },*/
       {
         name: 'post-found',
         valueKey: 'name',
@@ -142,7 +143,7 @@ Template.bzControlSearch.helpers({
      return ret;
      });*/
   },
-  selected: function (event, suggestion, datasetName) {
+  searchItemSelected: function (event, suggestion, datasetName) {
     var mapsPlaceId = suggestion && suggestion.id;
     //bz.runtime.newPost.location.mapsPlaceId = mapsPlaceId;
     // make it look selected:

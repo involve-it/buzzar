@@ -34,6 +34,9 @@ Package.onUse(function (api) {
   api.addFiles([
     'style/search.less',
 
+    'client/browser/location/choose-location.html',
+    'client/browser/location/choose-location.js',
+    'client/browser/location/choose-location.less',
     //'client/browser/page-search-results.html',
     //'client/browser/page-search-results.js',
     'client/browser/search-location.html',

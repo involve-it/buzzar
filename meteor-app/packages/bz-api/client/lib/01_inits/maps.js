@@ -17,17 +17,17 @@ var Maps = {
   getCurrentLocation: function (callback) {
     var args = Array.prototype.slice.apply(arguments).slice(1);
     var that = this;
-    var loc = {  //  49 Geary Street, San Francisco, CA
+    /*var loc = {  //  49 Geary Street, San Francisco, CA
       lat: 37.787923,
       lng: -122.404342
-    }
+    }*/
     //args.unshift(loc)
     //callback.apply(that, args);
     navigator.geolocation.getCurrentPosition(function (a) {
      //bz.runtime.maps.currentGeoposition = a;
      var loc = {
-     lat: a.coords.latitude,
-     lng: a.coords.longitude
+      lat: a.coords.latitude,
+      lng: a.coords.longitude
      };
      console.log(a);
      //bz.runtime.maps.loc = loc;

@@ -45,12 +45,40 @@ if (Meteor.isServer && true) {
 // click google map link, see: 37.3715461,-121.996919
   bz.cols.locations.insert({
     userId: 'mvmkh8LKukaHmu7oy',
-    placeId: '',
-    name: 'Orinda ballet'
+    name: 'Orinda ballet',
+    placeType: 'bz',
+    coords: {  //  49 Geary Street, San Francisco, CA
+      lat: 37.787923,
+      lng: -122.404342
+    },
+    public: false // private, user's place
+
   });
   bz.cols.locations.insert({
     userId: 'mvmkh8LKukaHmu7oy',
-    placeId: '',
-    name: 'Russian house #1'
+    name: 'Russian house #1',
+    placeType: 'bz',
+    coords: {  //  49 Geary Street, San Francisco, CA
+      lat: 37.787923,
+      lng: -122.404342
+    },
+    public: false // private, user's place
   });
+}
+
+// EXTERNAL:
+bz.cols.locations.insertFromGoogleObject = function(googleObj) {
+  var ret = {
+    userId: Meteor.userId(),
+    name: googleObj.name,
+    placeType: 'google',
+    coords: {
+      lat: googleObj.geometry.location.J,
+      lng: googleObj.geometry.location.M
+    },
+    public: true, // let's assume this is a public place, since it's from google
+    origObj: googleObj
+  }
+  ret._id = bz.cols.locations.insert(ret);
+  return ret;
 }

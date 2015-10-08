@@ -20,7 +20,7 @@
 
              autocomplete="on" spellcheck="off"
              data-min-length="0"
-             data-opened="opened" data-selected="selected1"
+             data-opened="opened" data-selected="searchItemSelected"
              data-template="teamList"
           />
     </div>
@@ -44,11 +44,11 @@
 <template name="bzDistance">
     <div class="bz-distance">
         <form id="dropdown-distance" class="bz-dropdown">
-            <select id="selectDis11" data-prompt="{{t9n 'distance'}}">
-                <option value="200-ft" selected>200 ft</option>
-                <option value="1-mile">1 mile</option>
-                <option value="5-miles">5 mile</option>
-                <option value="20-miles">20 mile</option>
+            <select id="selectDis11" class="js-dropdown-distance" data-prompt="{{t9n 'distance'}}">
+                <option value="0.0378788" >200 ft</option>
+                <option value="1" selected>1 mile</option>
+                <option value="5">5 mile</option>
+                <option value="20">20 mile</option>
             </select>
         </form>
     </div>

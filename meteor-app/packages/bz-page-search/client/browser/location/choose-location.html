@@ -1,0 +1,73 @@
+<template name="bzLocationName">
+  <div class="bz-location-name">
+    <a href="#" data-reveal-id="choose-locations">
+      <i class="fa fa-map-marker"></i> {{#if getCurrentLocationName}} <span>{{ getCurrentLocationName }}</span> {{else}}
+      <span>{{ getCurrentLocationName }}</span>
+    {{/if}}
+    </a>
+  </div>
+
+  <div id="choose-locations" class="reveal-modal" data-reveal aria-labelledby="modalTitle"
+       aria-hidden="true" role="dialog">
+    <!--{{> bzChooseLocationModal}}-->
+    <div class=" js-location-modal-holder"></div>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+</template>
+<template name="bzChooseLocationModal">
+  <div class="bz-choose-location-control">
+
+    <div class="header-toolbar">
+      <div class="header-toolbar-title">
+        <span>Set your location</span>
+      </div>
+
+      <div class="header-toolbar-search">
+        <div class="header-toolbar-search-field">
+          <input class="form-control typeahead js-location-name-input" name="team" type="text" style="height: 44px;"
+                 placeholder="{{ t9n 'searchLocationText'}}"
+                 data-sets="placesArray"
+
+                 autocomplete="on" spellcheck="off"
+                 data-min-length="0"
+                 data-opened="opened" data-selected="locationItemSelected"
+                 data-template="teamList"
+            />
+          <!--<input type="text" id="choose-location-search" class="input-clear js-location-name-input"/>-->
+          <button class="js-set-location-button small">Set</button>
+        </div>
+      </div>
+
+      <div class="header-toolbar-regions">
+        <div class="row">
+          <div class="small-12 medium-6 large-4 columns left">
+            <ul class="none-list">
+              <li><a href="#" data-locationname="My Current Location"> <b>Current location</b> </a></li>
+            </ul>
+            {{#if currentUser }}
+              <h5>Your most recent locations:</h5>
+              <ul class="none-list js-locations-list">
+                {{#each getUserLocations}}
+                  <li><a data-locationid="{{_id}}" data-locationname="{{name}}"> {{name }} </a></li>
+                {{/each}}
+              </ul>
+            {{ else }}
+              <div data-alert class="alert-box info">
+                <strong>Sign In</strong> Please <a href="/sign-in">sign in</a> to see your places history.
+                <a href="#" class="close">&times;</a>
+              </div>
+            {{/if}}
+          </div>
+          <div class="small-12 medium-6 large-4 columns left">
+            <h5>Popular places around you</h5>
+            <ul class="none-list js-locations-list">
+              {{#each getPopularPlacesAround }}
+                <li><a data-placeid="{{_id}}" data-placeName="{{name}}"> {{name}} </a></li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
