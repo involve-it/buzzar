@@ -9,23 +9,24 @@
   -webkit-transition: all .25s ease;
 }
 
+
+
 .bz-wrapper-messages {
   .display-flex-box();
   .flex-flow(column, nowrap);
   
   .bz-chats-toolbar {
+    .display-flex-box();
     -webkit-border-radius: 2px 2px 0 0;
     -moz-border-radius: 2px 2px 0 0;
     border-radius: 2px 2px 0 0;
-    height: 42px;
     margin: -20px -20px 20px -20px;
-    background-image: -webkit-linear-gradient(-35deg, @bg-toolbar-color-1, @bg-toolbar-color-2);
-    background-image: linear-gradient(135deg, @bg-toolbar-color-1, @bg-toolbar-color-2);
-    background-color: @bg-toolbar-color-1;
+    /*background-image: -webkit-linear-gradient(-35deg, @bg-toolbar-color-1, @bg-toolbar-color-2);
+    background-image: linear-gradient(135deg, @bg-toolbar-color-1, @bg-toolbar-color-2);*/
+    background-color: #FFFFFF;
     border-bottom: 1px solid @border-color-sep;
     
     color: #666666;
-    line-height: 42px;
     text-align: center;
   }
 
