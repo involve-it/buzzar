@@ -75,31 +75,59 @@ Meteor.startup(function () {
 
 // server-side search:
 if (Meteor.isServer) {
-
+  //TODO: review defaults
+  //TODO: move into 'server' folder, so it is not exposed
+  var defaultDistance = 5,
+      defaultLimit = 50;
   Meteor.methods({
-    search: function (query, types, options) {
+    search: function (query, options) {
       /*query = {
         text: searchedText,
         distance: searchDistance,
         activeCats: activeCats
       }*/
-      var textToSearch = query.text;
+      query = query || {};
       options = options || {};
+      var textToSearch = query.text,
+          distance = query.distance || defaultDistance;
 
       // guard against client-side DOS: hard limit to 50
       if (options.limit) {
-        options.limit = Math.min(1000, Math.abs(options.limit));
+        options.limit = Math.min(defaultLimit, Math.abs(options.limit));
       } else {
-        options.limit = 1000; // todo
+        options.limit = defaultLimit;
       }
 
       // TODO fix regexp to support multiple tokens
-      var regex = new RegExp(".*" + textToSearch + '.*');
-      if (types && Array.isArray(types) && types.length > 0) {
-        return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}, type: {$in: types}}, options).fetch();
-      } else {
-        return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}}, options).fetch();
+      var regex = new RegExp(".*" + textToSearch + '.*'),
+          location = query.location || {},
+          box = query.box || bz.bus.proximityHandler.getLatLngBox(location.lat, location.lng, distance),
+          dbQuery = {
+            'details.title': {$regex: regex, $options: 'i'}
+            },
+          ret,
+          filter = false;
+      //categories
+      if (query.activeCats && Array.isArray(query.activeCats) && query.activeCats.length > 0) {
+        dbQuery.type = {$in: query.activeCats};
       }
+      //location
+      if (box && box.lat1 && box.lat2 && box.lng1 && box.lng2){
+        filter = true;
+        dbQuery['details.locations'] = {
+          $elemMatch: {
+            'coords.lat': {$gte: box.lat1, $lte: box.lat2},
+            'coords.lng': {$gte: box.lng1, $lte: box.lng2}
+          }
+        };
+      }
+
+      ret = bz.cols.posts.find(dbQuery, options).fetch();
+      if (filter){
+        ret = bz.bus.proximityHandler.filterCircularPosts(ret, ((box.lat2 - box.lat1)/2) + box.lat1, ((box.lng2 - box.lng1)/2) + box.lng1, distance);
+      }
+
+      return ret;
     },
     // function for testing in the console Meteor runtime server-side:
     console: function(){

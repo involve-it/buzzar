@@ -2,7 +2,7 @@
  * Created by Ashot on 9/19/15.
  */
 const SEARCH_RADIUS = 4000; // 1km ~ 10 min walk
-bz.help.makeNamespace('bz.buz.search');
+bz.help.makeNamespace('bz.bus.search');
 
 
 Meteor.startup(function () {
@@ -52,37 +52,43 @@ Meteor.startup(function () {
   });
 });
 
+bz.bus.search.doSearch = function(){
+  var searchedText = Session.get('bz.control.search.searchedText');
+  searchedText = searchedText && searchedText.trim();
+  if (searchedText) {
+    var query = {},
+    //map = GoogleMaps.maps.map.instance, latitude, longitude,
+        activeCats = Session.get('bz.control.category-list.activeCategories') || [],
+        searchDistance = Session.get('bz.control.search.distance'),
+        location = Session.get('bz.control.search.location') || {};
+    if (!searchedText && searchedText === undefined) {
+      searchedText = '';
+    }
+    query = {
+      text: searchedText,
+      distance: searchDistance,
+      activeCats: activeCats,
+      location: location.coords
+    };
+
+    Meteor.call('search', query, {limit: 10}, function (err, results) {
+      bz.cols.searchRt._collection.remove({});
+      if (results && results.length > 0) {
+        for (var i = 0; i < results.length; i++) {
+          bz.cols.searchRt._collection.upsert({_id: results[i]._id}, results[i]);
+        }
+      }
+    });
+  } else {
+
+  }
+};
+
 function searchPostsReactive() {
   Tracker.autorun(function () {
     bz.cols.searchRt._collection.remove({});
     bz.cols.posts.find().count();
-    var searchedText = Session.get('bz.control.search.searchedText');
-    searchedText = searchedText && searchedText.trim();
-    if (searchedText) {
-      var query = {},
-      //map = GoogleMaps.maps.map.instance, latitude, longitude,
-        activeCats = Session.get('bz.control.category-list.activeCategories') || [],
-        searchDistance = Session.get('bz.control.search.distance');
-      if (!searchedText && searchedText === undefined) {
-        searchedText = '';
-      }
-      query = {
-        text: searchedText,
-        distance: searchDistance,
-        activeCats: activeCats
-      }
-
-      Meteor.call('search', query, activeCats, {limit: 10}, function (err, results) {
-        bz.cols.searchRt._collection.remove({});
-        if (results && results.length > 0) {
-          for (var i = 0; i < results.length; i++) {
-            bz.cols.searchRt._collection.upsert({_id: results[i]._id}, results[i]);
-          }
-        }
-      });
-    } else {
-
-    }
+    bz.bus.search.doSearch();
   });
 }
 setSearchedText = function (text) {

@@ -4,10 +4,10 @@
 //earth radius
 var R = 3961;
 //ad search radius (box, actually)
-var radius = 1;
+var defaultRadius = 1;
 bz.bus.proximityHandler = {
     reportLocation: function(userId, lat, lng){
-        var posts = bz.bus.proximityHandler.getNearbyPosts(userId, lat, lng),
+        var posts = bz.bus.proximityHandler.getNearbyPosts(lat, lng),
             nearbyPosts = bz.cols.nearbyPosts.find({nearbyUserId: userId}).fetch();
         _.each(nearbyPosts, function(post){
             if (_.find(post.details.locations, function(loc){
@@ -29,16 +29,8 @@ bz.bus.proximityHandler = {
         }
         return posts;
     },
-    getNearbyPosts: function(userId, lat, lng){
-        var dLat = (radius/R) / Math.PI * 180;
-        var dLng = (radius/R/Math.cos(lat*Math.PI / 180)) / Math.PI * 180;
-
-        var box = {
-            lng1: lng - dLng,
-            lng2: lng + dLng,
-            lat1: lat - dLat,
-            lat2: lat + dLat
-        };
+    getNearbyPosts: function(lat, lng){
+        var box = bz.bus.proximityHandler.getLatLngBox(lat, lng, defaultRadius);
 
         //this is box-shaped filter for increased performance
         var posts =  bz.cols.posts.find({
@@ -51,12 +43,15 @@ bz.bus.proximityHandler = {
         }).fetch();
 
         //this if circular filter (as opposed to box-shaped above)
-        var results = [];
-        var found;
+        return bz.bus.proximityHandler.filterCircularPosts(posts, lat, lng, defaultRadius);
+    },
+    filterCircularPosts: function(posts, lat, lng, radius){
+        var results = [],
+            found;
         _.each(posts, function(post){
             found = false;
             _.each(post.details.locations, function(loc){
-                if (bz.bus.proximityHandler.withinRadius(lat, lng, loc)) {
+                if (bz.bus.proximityHandler.withinRadius(lat, lng, radius, loc)) {
                     found = true;
                     return false;
                 }
@@ -65,8 +60,22 @@ bz.bus.proximityHandler = {
                 results.push(post);
             }
         });
-
         return results;
+    },
+    getLatLngBox: function (lat, lng, radius){
+        if (lat && lng && radius) {
+            var dLat = (radius / R) / Math.PI * 180,
+                dLng = (radius / R / Math.cos(lat * Math.PI / 180)) / Math.PI * 180;
+            return {
+                lng1: lng - dLng,
+                lng2: lng + dLng,
+                lat1: lat - dLat,
+                lat2: lat + dLat
+            };
+        } else {
+            return null;
+        }
+
     },
     distance: function(lat1, lon1, lat2, lon2) {
         var radlat1 = lat1 * Math.PI/180;
@@ -82,7 +91,7 @@ bz.bus.proximityHandler = {
          // great circle distance in miles
         return c * R;
     },
-    withinRadius: function(lat, lng, loc){
+    withinRadius: function(lat, lng, radius, loc){
         return bz.bus.proximityHandler.distance(lat, lng, loc.coords.lat, loc.coords.lng) <= radius;
     }
 };
