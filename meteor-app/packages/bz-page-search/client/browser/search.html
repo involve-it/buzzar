@@ -1,5 +1,7 @@
 <template name="bzControlSearch">
-
+  {{#if searchTagIsVisible }}
+    {{> bzSearchHashTagLabel }}
+  {{/if}}
   <div class="bz-control--search search-field">
     <div class="form-group bz-search-size">
 

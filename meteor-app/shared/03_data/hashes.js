@@ -7,3 +7,15 @@ if(Meteor.isServer) {
     return bz.cols.hashes.find();
   });
 }
+if (Meteor.isServer) {
+  //if(bz.config.env === 'dev'){  // todo: this is non-secure!
+    bz.cols.hashes.allow({
+      insert: function () {
+        return true;
+      },
+      remove: function(){
+        return true;
+      }
+    });
+  //}
+}

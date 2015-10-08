@@ -6,7 +6,8 @@ Template.bzControlMenuHashes.onCreated(function(){
 });
 Template.bzControlMenuHashes.helpers({
   getUserHashes: function(){
-    return bz.cols.hashes.find();
+    debugger;
+    return bz.cols.hashes.find({userId: Meteor.userId()});
   }
 });
 

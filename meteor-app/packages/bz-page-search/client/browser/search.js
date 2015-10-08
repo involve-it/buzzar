@@ -148,6 +148,9 @@ Template.bzControlSearch.helpers({
     //bz.runtime.newPost.location.mapsPlaceId = mapsPlaceId;
     // make it look selected:
     $('.js-location-nearby').addClass('selected');
+  },
+  searchTagIsVisible: function(e, v){
+    return Session.get('bz.control.search.searchedText') !== '' && Session.get('bz.control.search.searchedText') !== undefined;
   }
 });
 Template.bzControlSearch.events({
@@ -190,12 +193,13 @@ Template.bzSearchHashTagLabel.helpers({
   getLookingForPhrase: function(){
     var loc = Session.get('bz.control.search.location') || '',
       dist = Session.get('bz.control.search.distance') || '',
-      ret = 'Looking for buzz around ';
+      text = Session.get('bz.control.search.searchedText') || 'buzz',
+    ret = 'Looking for ' + text + ' around ';
     if(loc.name){
       loc = loc.name;
     }
     if(dist){
-      dist = ' within ' + dist;
+      dist = ' within ' + dist + ' mile';
     }
     ret += loc + dist;
 
@@ -204,6 +208,21 @@ Template.bzSearchHashTagLabel.helpers({
 });
 Template.bzSearchHashTagLabel.events({
   'click .js-save-hash-btn': function(e, v) {
+    var loc = Session.get('bz.control.search.location') || {
+          coords: {}
+        },
+      dist = Session.get('bz.control.search.distance') || '',
+      text = Session.get('bz.control.search.searchedText') || '';
     debugger;
+    bz.cols.hashes.insert({
+      userId: Meteor.userId(),
+      details: {
+        text: text,
+        distance: dist,
+        coords: loc.coords,
+        locName: loc.name
+      }
+    });
+    return false;
   }
 })
