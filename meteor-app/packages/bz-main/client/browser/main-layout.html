@@ -1,20 +1,16 @@
 <template name="mainLayout">
   <div class="off-canvas-wrap" data-offcanvas>
     <div class="inner-wrap">
-
       <!-- Off Canvas Menu -->
       {{> bzMenuLeft}}
 
       <!-- close the off-canvas menu -->
       <a class="exit-off-canvas"></a>
-
     </div>
 
     <div class="bz-wrap-page">
-
       <div class="js-button-left-off-canvas">
         <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
-
           <div class="bz-icon-menu"></div>
         </a>
       </div>
@@ -28,7 +24,9 @@
             {{> yield}}
           </div>
         </div>
+          
         {{> bzFooter}}
+          
       </div>
     </div>
   </div>
