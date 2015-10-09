@@ -41,9 +41,46 @@
       } else if (this.settings.open_method === 'reveal') {
         move_class = 'reveal';
       }
-
+      
+      if(!self.get_wrapper().hasClass('reveal')) {
+        self.get_wrapper().css('overflow','inherit');
+        $('.bz-wrap-page').css('overflow-y','inherit');
+      } else {
+        self.get_wrapper().css('overflow','hidden');
+        $('.bz-wrap-page').css('overflow-y','auto');
+      }
+      
       S(this.scope).off('.offcanvas')
-        .on('click.fndtn.offcanvas', '.left-off-canvas-toggle', function (e) {
+          .on('click.fndtn.offcanvas', '.left-off-canvas-toggle', function (e) {
+            if(self.get_wrapper().hasClass('reveal')) {
+              self.get_wrapper().css('overflow','inherit');
+              $('.bz-wrap-page').css('overflow-y','inherit');
+            } else {
+              self.get_wrapper().css('overflow','hidden');
+              $('.bz-wrap-page').css('overflow-y','auto');
+            }
+          })
+          .on('click.fndtn.offcanvas', '.exit-off-canvas', function (e) {
+            if(self.get_wrapper().hasClass('reveal')) {
+              self.get_wrapper().css('overflow','inherit');
+              $('.bz-wrap-page').css('overflow-y','inherit');
+            } else {
+              self.get_wrapper().css('overflow','hidden');
+              $('.bz-wrap-page').css('overflow-y','auto');
+            }
+          })
+          .on('click.fndtn.offcanvas', '.left-off-canvas-menu a', function (e) {
+            if(self.get_wrapper().hasClass('reveal')) {
+              self.get_wrapper().css('overflow','inherit');
+              $('.bz-wrap-page').css('overflow-y','inherit');
+            } else {
+              self.get_wrapper().css('overflow','hidden');
+              $('.bz-wrap-page').css('overflow-y','auto');
+            }
+          })
+          
+          
+          .on('click.fndtn.offcanvas', '.left-off-canvas-toggle', function (e) {
           self.click_toggle_class(e, move_class + right_postfix);
           if (self.settings.open_method !== 'overlap') {
             S('.left-submenu').removeClass(move_class + right_postfix);

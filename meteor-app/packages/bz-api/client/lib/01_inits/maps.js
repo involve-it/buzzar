@@ -17,10 +17,14 @@ var Maps = {
   getCurrentLocation: function (callback) {
     var args = Array.prototype.slice.apply(arguments).slice(1);
     var that = this;
-    var loc = {  //  49 Geary Street, San Francisco, CA
+    /*var loc = {  //  49 Geary Street, San Francisco, CA
       lat: 37.787923,
       lng: -122.404342
-    }
+    };*/
+    var loc = {
+      lat: 37.3213,
+      lng: -121.81649
+    };
     args.unshift(loc)
     callback.apply(that, args);
     return;
