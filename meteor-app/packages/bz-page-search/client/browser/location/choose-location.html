@@ -7,10 +7,25 @@
     </a>
   </div>
 
-  <div id="choose-locations" class="reveal-modal" data-reveal aria-labelledby="modalTitle"
+  <div id="choose-locations" class="reveal-modal js-global-location" data-reveal aria-labelledby="modalTitle"
        aria-hidden="true" role="dialog">
     <!--{{> bzChooseLocationModal}}-->
-    <div class=" js-location-modal-holder"></div>
+    <div class=" js-location-modal-holder-global"></div>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+</template>
+<template name="bzLocationNameNewPost">
+  <div class="bz-location-name">
+    <a href="#" data-reveal-id="choose-locations">
+      {{#if getCurrentLocationName}} <span>{{ getCurrentLocationName }}</span> {{else}}
+      <span>{{ getCurrentLocationName }}</span>
+    {{/if}}
+    </a>
+  </div>
+
+  <div id="choose-locations" class="reveal-modal js-new-post-location" data-reveal aria-labelledby="modalTitle"
+       aria-hidden="true" role="dialog">
+    <div class="js-location-modal-holder-new-post"></div>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 </template>

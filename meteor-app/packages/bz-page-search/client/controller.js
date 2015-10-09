@@ -183,20 +183,21 @@ createLocationFromObject = function(obj){
   // 2. set sitewide current location:
   return ret;
 }
-setLocationFromData = function(locName, data){
+setLocationFromData = function(locName, data, sessionName){
   var locId, bzPlace, res;
   // do something with the result:
   //Session.get('bz.control.search.location')
   //console.log(this.locationId);
+  sessionName = sessionName || 'bz.control.search.location';
   if (data.selectedPlace) {
     // if selected from a dropdown:
-    Session.set('bz.control.search.location', data.selectedPlace);
+    Session.set(sessionName, data.selectedPlace);
   } else if (data.locationId) {
     locId = data.locationId;
     // if selected from most recent: search product by id in our database
     bzPlace = bz.cols.locations.findOne(locId);
     if (bzPlace) {
-      Session.set('bz.control.search.location', bzPlace)
+      Session.set(sessionName, bzPlace)
     } else {
       bz.help.logError('Location with id ' + locId + 'was not found!');
     }
@@ -209,14 +210,14 @@ setLocationFromData = function(locName, data){
           name: locName,
           coords: coords
         });
-        Session.set('bz.control.search.location', res);
+        Session.set(sessionName, res);
       } else {
         bz.help.maps.getCurrentLocation(function (loc) {
           res = createLocationFromObject({
             name: locName,
             coords: loc
           });
-          Session.set('bz.control.search.location', res);
+          Session.set(sessionName, res);
         });
       }
     });

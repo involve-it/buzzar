@@ -50,6 +50,10 @@ Template.postsPlacesAutoform.events({
       bz.runtime.newPost.location.current = false;
     }
   },
+  'click .js-location-holder': function(e, v){
+    e.preventDefault();
+    debugger;
+  },
   'blur .js-nearby-places': function(){
 
   },
