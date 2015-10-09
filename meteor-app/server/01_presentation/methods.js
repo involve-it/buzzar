@@ -61,6 +61,5 @@ Meteor.methods({
 
 // usage on the client:
 //Meteor.call('parseHtml', function(error, res) {
-//  debugger;
 //  alert(res);
 //})

@@ -95,11 +95,13 @@ if (Meteor.isServer) {
 
       // TODO fix regexp to support multiple tokens
       var regex = new RegExp(".*" + textToSearch + '.*');
-      if (types && Array.isArray(types) && types.length > 0) {
-        return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}, type: {$in: types}}, options).fetch();
+      if (!(types && Array.isArray(types) && types.length > 0)) {
+        types = _.map(bz.cols.siteTypes.find().fetch(), function(item){ return item.id});
       } else {
-        return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}}, options).fetch();
+        //return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}}, options).fetch();
       }
+      return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}, type: {$in: types}}, options).fetch();
+
     },
     // function for testing in the console Meteor runtime server-side:
     console: function(){

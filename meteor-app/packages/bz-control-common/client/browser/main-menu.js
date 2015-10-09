@@ -6,8 +6,10 @@ Template.bzControlMenuHashes.onCreated(function(){
 });
 Template.bzControlMenuHashes.helpers({
   getUserHashes: function(){
-    debugger;
     return bz.cols.hashes.find({userId: Meteor.userId()});
+  },
+  getMenuHashName: function(){
+    return '#' + this.details.text + ' @' + this.details.locName;
   }
 });
 

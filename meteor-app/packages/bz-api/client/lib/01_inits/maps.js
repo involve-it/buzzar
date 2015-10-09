@@ -59,25 +59,28 @@ var Maps = {
   },
   getCoordsFromAddress: function(address){
     var ret = $.Deferred(), coords;
-      geocoder.geocode({
-        'address': address
-      }, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          if(results.length > 1){
-            bz.help.logError('more than 1 result in geocoding!');
+      if(geocoder) {
+        geocoder.geocode({
+          'address': address
+        }, function (results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            if (results.length > 1) {
+              bz.help.logError('more than 1 result in geocoding!');
+            }
+            coords = {
+              lat: results[0].geometry.location.J,
+              lng: results[0].geometry.location.M
+            }
+            ret.resolve(coords);
+          } else {
+            ret.resolve(undefined);
+            bz.help.logError("bz.api.maps: Geocode was not successful for the following reason: " + status);
           }
-          coords = {
-            lat: results[0].geometry.location.J,
-            lng: results[0].geometry.location.M
-          }
-          ret.resolve(coords);
-        } else {
-          ret.resolve(undefined);
-          bz.help.logError("bz.api.maps: Geocode was not successful for the following reason: " + status);
-        }
-      });
+        });
+      } else {
+        ret.reject();
+      }
     return ret;
-
   }
 }
 bz.help.makeNamespace('bz.help.maps', Maps);

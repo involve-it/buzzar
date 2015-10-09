@@ -12,7 +12,7 @@ Meteor.startup(function () {
       bz.help.maps.initGeocoding();
       bz.help.maps.initLocation();
     }
-  })
+  });
 
   Session.set('bz.control.search.distance', 1);
   bz.help.maps.getCurrentLocation(function (loc) {
@@ -71,8 +71,11 @@ function searchPostsReactive() {
         distance: searchDistance,
         activeCats: activeCats
       }
+      debugger;
 
       Meteor.call('search', query, activeCats, {limit: 10}, function (err, results) {
+        debugger;
+
         bz.cols.searchRt._collection.remove({});
         if (results && results.length > 0) {
           for (var i = 0; i < results.length; i++) {
@@ -122,7 +125,7 @@ function fillNearByPlacesFromLocationGoogle(loc, radius) {
   service.nearbySearch({
     //service.radarSearch({
     location: loc.coords,
-    radius: radius,
+    radius: radius
     //types: allTypes
   }, callbackNearbySearchGoogle);
 }
@@ -133,7 +136,7 @@ function callbackNearbySearchGoogle(results, status, html_attributions, next_pag
       return _.intersection(['locality'], item.types).length === 0;
     });
     results = res1;
-    console.log(res1.length);
+    //console.log(res1.length);
     for (var i = 0; i < results.length; i++) {
       //console.log(results[i])
       results[i].searchEngine = 'google';

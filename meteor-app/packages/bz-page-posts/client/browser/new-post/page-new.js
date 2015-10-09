@@ -41,6 +41,7 @@ Template.postsNew.events({
       } else {
         locDef.resolve();
       }
+      debugger;
       var newPost = {
 
         userId: userId,
