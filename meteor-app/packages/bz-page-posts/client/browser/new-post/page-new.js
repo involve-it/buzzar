@@ -14,6 +14,7 @@ Template.postsNew.created = function () {
 };
 Template.postsNew.events({
   'click .js-create-post': function (e, v) {
+    debugger;
     var userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
         locDef = $.Deferred(),
         rad = $('.js-radius-slider').attr('data-slider') && Number.parseInt($('.js-radius-slider').attr('data-slider'));

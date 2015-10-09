@@ -3,8 +3,9 @@
  */
 
 bz.cols.posts = new Mongo.Collection('posts');
-//bz.cols.posts.remove({});
-
+if(Meteor.isServer) {
+  bz.cols.posts.remove({});
+}
 bz.cols.posts.before.insert(function (userId, doc) {
   //var gender = Random.choice(['men', 'women']);
   //var num = _.random(0, 50);

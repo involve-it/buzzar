@@ -32,6 +32,7 @@ Template.globalSearchField.helpers({
    return bz.cols.posts.find().fetch().map(function(item){ return item.details.title; });
    },*/
   search: function (query, sync, callback) {
+    alert('easy search!!!');
     Meteor.call('search', query, {}, function (err, res) {
       if (err) {
         console.log(err);

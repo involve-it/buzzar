@@ -68,37 +68,22 @@ bz.bus.search.doSearch = function(){
       text: searchedText,
       distance: searchDistance,
       activeCats: activeCats,
-      location: location.coords
+      location: location.coords,
+      limit: 10
     };
 
-    Meteor.call('search', query, {limit: 10}, function (err, results) {
+    Meteor.call('search', query, function (err, results) {
       bz.cols.searchRt._collection.remove({});
       if (results && results.length > 0) {
         for (var i = 0; i < results.length; i++) {
           bz.cols.searchRt._collection.upsert({_id: results[i]._id}, results[i]);
         }
       }
-<<<<<<< HEAD
-      debugger;
-
-      Meteor.call('search', query, activeCats, {limit: 10}, function (err, results) {
-        debugger;
-
-        bz.cols.searchRt._collection.remove({});
-        if (results && results.length > 0) {
-          for (var i = 0; i < results.length; i++) {
-            bz.cols.searchRt._collection.upsert({_id: results[i]._id}, results[i]);
-          }
-        }
-      });
-    } else {
-=======
     });
   } else {
 
   }
 };
->>>>>>> b3c498e99930ae9099a55bbc04fe1b42286361e6
 
 function searchPostsReactive() {
   Tracker.autorun(function () {

@@ -88,8 +88,10 @@ if (Meteor.isServer) {
       }*/
       query = query || {};
       options = options || {};
+
       var textToSearch = query.text,
-          distance = query.distance || defaultDistance;
+          distance = query.distance || defaultDistance,
+          types = query.catTypes;
 
       // guard against client-side DOS: hard limit to 50
       if (options.limit) {
@@ -99,16 +101,6 @@ if (Meteor.isServer) {
       }
 
       // TODO fix regexp to support multiple tokens
-<<<<<<< HEAD
-      var regex = new RegExp(".*" + textToSearch + '.*');
-      if (!(types && Array.isArray(types) && types.length > 0)) {
-        types = _.map(bz.cols.siteTypes.find().fetch(), function(item){ return item.id});
-      } else {
-        //return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}}, options).fetch();
-      }
-      return bz.cols.posts.find({'details.title': {$regex: regex, $options: 'i'}, type: {$in: types}}, options).fetch();
-
-=======
       var regex = new RegExp(".*" + textToSearch + '.*'),
           location = query.location || {},
           box = query.box || bz.bus.proximityHandler.getLatLngBox(location.lat, location.lng, distance),
@@ -118,6 +110,10 @@ if (Meteor.isServer) {
           ret,
           filter = false;
       //categories
+
+      /*if (!(types && Array.isArray(types) && types.length > 0)) {
+        types = _.map(bz.cols.siteTypes.find().fetch(), function(item){ return item.id});
+      }*/
       if (query.activeCats && Array.isArray(query.activeCats) && query.activeCats.length > 0) {
         dbQuery.type = {$in: query.activeCats};
       }
@@ -138,7 +134,6 @@ if (Meteor.isServer) {
       }
 
       return ret;
->>>>>>> b3c498e99930ae9099a55bbc04fe1b42286361e6
     },
     // function for testing in the console Meteor runtime server-side:
     console: function(){
