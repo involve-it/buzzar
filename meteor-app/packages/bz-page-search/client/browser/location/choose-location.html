@@ -17,7 +17,9 @@
 <template name="bzLocationNameNewPost">
   <div class="bz-location-name">
     <a href="#" data-reveal-id="choose-locations-new-post">
-      {{#if getCurrentLocationName}} <span>{{ getCurrentLocationName }}</span> {{else}}
+      {{#if getCurrentLocationName}}
+        <span>{{ getCurrentLocationName }}</span>
+      {{else}}
       <span>{{ getCurrentLocationName }}</span>
     {{/if}}
     </a>

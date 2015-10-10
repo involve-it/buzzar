@@ -4,7 +4,6 @@
 Template.bzLocationName.helpers({
   getCurrentLocationName: function(){
     var ret = Session.get('bz.control.search.location');
-    debugger;
     return ret && ret.name || 'Location is not defined';
   }
 })
@@ -42,9 +41,8 @@ Template.bzLocationNameNewPost.rendered = function () {
 }
 Template.bzLocationNameNewPost.helpers({
   getCurrentLocationName: function(){
-    debugger;
     var ret = Session.get(this.sessionName);
-    return ret && ret.name || 'Location is not defined';
+    return ret && ret.name || 'Click to choose location';
   }
 });
 
@@ -76,17 +74,16 @@ Template.bzChooseLocationModal.events({
     }
   },
   'click .js-locations-list a': function (e, v) {
-debugger;
     var locName, locId;
-    locName = e.target.dataset.locationname;
+    locName = e.currentTarget.dataset.locationname;
     if (locName) {
       $('.js-location-name-input.tt-input').val(locName);
     }
-    var locId = e.target.dataset.locationid;
+    var locId = e.currentTarget.dataset.locationid;
     if (locId) {
       v.data.locationId = locId;
     }
-    var isCurrentLocation = e.target.dataset.iscurrentlocation;
+    var isCurrentLocation = e.currentTarget.dataset.iscurrentlocation;
     if(isCurrentLocation){
       v.data.isCurrentLocation = true;
     }

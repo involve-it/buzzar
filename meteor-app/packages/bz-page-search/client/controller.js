@@ -8,7 +8,6 @@ bz.help.makeNamespace('bz.bus.search');
 Meteor.startup(function () {
   Tracker.autorun(function(){
     if(GoogleMaps.loaded()){
-      //debugger;
       bz.help.maps.initGeocoding();
       bz.help.maps.initLocation();
     }
@@ -207,7 +206,7 @@ setLocationFromData = function(locName, data, sessionName){
     }
   } else if (data.isCurrentLocation){
     bz.help.maps.getCurrentLocation(function (loc) {
-      Session.set('bz.control.search.location', {
+      Session.set(sessionName, {
         coords: loc,
         placeType: 'bz',
         name: 'My Location',
