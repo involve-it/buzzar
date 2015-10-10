@@ -18,7 +18,11 @@ Meteor.startup(function () {
   bz.help.maps.getCurrentLocation(function (loc) {
     Session.set('bz.control.search.location', {
       coords: loc,
-      name: 'My Location'
+      placeType: 'bz',
+      name: 'My Location',
+      userId: Meteor.userId(),
+      public: false // private, user's place
+
     });
   });
 
@@ -201,6 +205,16 @@ setLocationFromData = function(locName, data, sessionName){
     } else {
       bz.help.logError('Location with id ' + locId + 'was not found!');
     }
+  } else if (data.isCurrentLocation){
+    bz.help.maps.getCurrentLocation(function (loc) {
+      Session.set('bz.control.search.location', {
+        coords: loc,
+        placeType: 'bz',
+        name: 'My Location',
+        userId: Meteor.userId(),
+        public: false // private, user's place
+      });
+    });
   } else {
     // user entered his own text: this is not our place and we just have a name OR address
     // check if this is an address with geocoding:

@@ -4,11 +4,12 @@
 Template.bzLocationName.helpers({
   getCurrentLocationName: function(){
     var ret = Session.get('bz.control.search.location');
+    debugger;
     return ret && ret.name || 'Location is not defined';
   }
 })
 Template.bzLocationName.rendered = function () {
-  setInterval(function () {
+  setTimeout(function () {
     $(document).off('open.fndtn.reveal', '[data-reveal].js-global-location');
     $(document).on('open.fndtn.reveal', '[data-reveal].js-global-location', function () {
       $('.js-location-modal-holder-global').empty();
@@ -25,7 +26,7 @@ Template.bzLocationNameNewPost.rendered = function () {
   this.data = this.data || {}
   this.data.sessionName = this.data.sessionName || 'bz.posts.new.location2';
   var that = this;
-  setInterval(function () {
+  setTimeout(function () {
     $(document).off('open.fndtn.reveal', '[data-reveal].js-new-post-location');
     $(document).on('open.fndtn.reveal', '[data-reveal].js-new-post-location', function () {
       $('.js-location-modal-holder-new-post').empty();
@@ -66,12 +67,16 @@ Template.bzChooseLocationModal.events({
     //Tracker.nonreactive(function () {
     var locName = $('.js-location-name-input.tt-input').val()
     setLocationFromData(locName, v.data, this.sessionName);
-    searchModalView && Blaze.remove(searchModalView);
-    searchModalView1 && Blaze.remove(searchModalView1);
-    $('#choose-locations').foundation('reveal', 'close');
+    if(this.sessionName === 'bz.posts.new.location2') {
+      searchModalView1 && Blaze.remove(searchModalView1);
+      $('#choose-locations-new-post').foundation('reveal', 'close');
+    } else {
+      searchModalView && Blaze.remove(searchModalView);
+      $('#choose-locations-global').foundation('reveal', 'close');
+    }
   },
   'click .js-locations-list a': function (e, v) {
-
+debugger;
     var locName, locId;
     locName = e.target.dataset.locationname;
     if (locName) {
@@ -80,6 +85,10 @@ Template.bzChooseLocationModal.events({
     var locId = e.target.dataset.locationid;
     if (locId) {
       v.data.locationId = locId;
+    }
+    var isCurrentLocation = e.target.dataset.iscurrentlocation;
+    if(isCurrentLocation){
+      v.data.isCurrentLocation = true;
     }
   },
   'typeahead:select .js-location-name-input': function (e, v, val) {

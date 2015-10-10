@@ -1,13 +1,13 @@
 <template name="bzLocationName">
   <div class="bz-location-name">
-    <a href="#" data-reveal-id="choose-locations">
+    <a href="#" data-reveal-id="choose-locations-global">
       <i class="fa fa-map-marker"></i> {{#if getCurrentLocationName}} <span>{{ getCurrentLocationName }}</span> {{else}}
       <span>{{ getCurrentLocationName }}</span>
     {{/if}}
     </a>
   </div>
 
-  <div id="choose-locations" class="reveal-modal js-global-location" data-reveal aria-labelledby="modalTitle"
+  <div id="choose-locations-global" class="reveal-modal js-global-location" data-reveal aria-labelledby="modalTitle"
        aria-hidden="true" role="dialog">
     <!--{{> bzChooseLocationModal}}-->
     <div class=" js-location-modal-holder-global"></div>
@@ -16,14 +16,14 @@
 </template>
 <template name="bzLocationNameNewPost">
   <div class="bz-location-name">
-    <a href="#" data-reveal-id="choose-locations">
+    <a href="#" data-reveal-id="choose-locations-new-post">
       {{#if getCurrentLocationName}} <span>{{ getCurrentLocationName }}</span> {{else}}
       <span>{{ getCurrentLocationName }}</span>
     {{/if}}
     </a>
   </div>
 
-  <div id="choose-locations" class="reveal-modal js-new-post-location" data-reveal aria-labelledby="modalTitle"
+  <div id="choose-locations-new-post" class="reveal-modal js-new-post-location" data-reveal aria-labelledby="modalTitle"
        aria-hidden="true" role="dialog">
     <div class="js-location-modal-holder-new-post"></div>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
@@ -56,8 +56,8 @@
       <div class="header-toolbar-regions">
         <div class="row">
           <div class="small-12 medium-6 large-4 columns left">
-            <ul class="none-list">
-              <li><a href="#" data-locationname="My Current Location"> <b>Current location</b> </a></li>
+            <ul class="none-list js-locations-list">
+              <li><a data-iscurrentlocation="true" data-locationname="My Location"> <b>My Current Location</b> </a></li>
             </ul>
             {{#if currentUser }}
               <h5>Your most recent locations:</h5>
