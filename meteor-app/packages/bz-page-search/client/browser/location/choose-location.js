@@ -8,11 +8,11 @@ Template.bzLocationName.helpers({
   }
 })
 Template.bzLocationName.rendered = function () {
-  setInterval(function () {
-    $(document).off('open.fndtn.reveal', '[data-reveal]');
-    $(document).on('open.fndtn.reveal', '[data-reveal]', function () {
-      $('.js-location-modal-holder').empty();
-      searchModalView = Blaze.renderWithData(Template.bzChooseLocationModal, {}, $('.js-location-modal-holder')[0]);
+  setTimeout(function () {
+    $(document).off('open.fndtn.reveal', '[data-reveal].js-global-location');
+    $(document).on('open.fndtn.reveal', '[data-reveal].js-global-location', function () {
+      $('.js-location-modal-holder-global').empty();
+      searchModalView = Blaze.renderWithData(Template.bzChooseLocationModal, {}, $('.js-location-modal-holder-global')[0]);
       //Session.set('bz.search.searchModalView');
       //var modal = $(this); bzChooseLocationModal
     });
@@ -20,7 +20,38 @@ Template.bzLocationName.rendered = function () {
     //});
   }, 1000);
 }
+
+Template.bzLocationNameNewPost.rendered = function () {
+  this.data = this.data || {}
+  this.data.sessionName = this.data.sessionName || 'bz.posts.new.location2';
+  var that = this;
+  setTimeout(function () {
+    $(document).off('open.fndtn.reveal', '[data-reveal].js-new-post-location');
+    $(document).on('open.fndtn.reveal', '[data-reveal].js-new-post-location', function () {
+      $('.js-location-modal-holder-new-post').empty();
+      searchModalView1 = Blaze.renderWithData(Template.bzChooseLocationModal, {
+        sessionName: that.data.sessionName
+      }, $('.js-location-modal-holder-new-post')[0]);
+      //Session.set('bz.search.searchModalView');
+      //var modal = $(this); bzChooseLocationModal
+    });
+    //$(document).on('opened.fndtn.reveal', '[data-reveal]', function () {
+    //});
+  }, 1000);
+}
+Template.bzLocationNameNewPost.helpers({
+  getCurrentLocationName: function(){
+    var ret = Session.get(this.sessionName);
+    return ret && ret.name || 'Click to choose location';
+  }
+});
+
+
 Template.bzChooseLocationModal.created = function () {
+
+  this.data = this.data || {}
+  this.data.sessionName = this.data.sessionName || 'bz.control.search.location';
+
   Meteor.subscribe('locations-my');
 };
 Template.bzChooseLocationModal.rendered = function () {
@@ -33,20 +64,28 @@ Template.bzChooseLocationModal.events({
     //var that = this;
     //Tracker.nonreactive(function () {
     var locName = $('.js-location-name-input.tt-input').val()
-    setLocationFromData(locName, v.data);
-    Blaze.remove(searchModalView);
-    $('#choose-locations').foundation('reveal', 'close');
+    setLocationFromData(locName, v.data, this.sessionName);
+    if(this.sessionName === 'bz.posts.new.location2') {
+      searchModalView1 && Blaze.remove(searchModalView1);
+      $('#choose-locations-new-post').foundation('reveal', 'close');
+    } else {
+      searchModalView && Blaze.remove(searchModalView);
+      $('#choose-locations-global').foundation('reveal', 'close');
+    }
   },
   'click .js-locations-list a': function (e, v) {
-
     var locName, locId;
-    locName = e.target.dataset.locationname;
+    locName = e.currentTarget.dataset.locationname;
     if (locName) {
       $('.js-location-name-input.tt-input').val(locName);
     }
-    var locId = e.target.dataset.locationid;
+    var locId = e.currentTarget.dataset.locationid;
     if (locId) {
       v.data.locationId = locId;
+    }
+    var isCurrentLocation = e.currentTarget.dataset.iscurrentlocation;
+    if(isCurrentLocation){
+      v.data.isCurrentLocation = true;
     }
   },
   'typeahead:select .js-location-name-input': function (e, v, val) {
@@ -64,7 +103,6 @@ Template.bzChooseLocationModal.events({
     $('.js-nearby-places').blur();
   }
 });
-
 Template.bzChooseLocationModal.helpers({
   placesArray: function () {
     var ret = [
@@ -115,7 +153,7 @@ Template.bzChooseLocationModal.helpers({
     return ret;
   },
   getCurrentLocationName: function () { //FromSearchControl
-    return Session.get('bz.control.search.location') && Session.get('bz.control.search.location').name;
+    return Session.get(this.sessionName) && Session.get(this.sessionName).name;
   },
   getUserLocations: function () {
     var ret;
@@ -129,15 +167,5 @@ Template.bzChooseLocationModal.helpers({
   },
   getPopularPlacesAround: function () {
 
-  }/*,
-   locationItemSelected: function (event, suggestionObj, datasetName) {
-   //var mapsPlaceId = suggestionObj && suggestionObj.id;
-   //bz.runtime.newPost.location.mapsPlaceId = mapsPlaceId;
-   // make it look selected:
-   //v.data.selectedPlace = val;
-   var data = Template.currentData(event.target);
-   data.selectedPlace = suggestionObj;
-
-   $('.js-location-nearby').addClass('selected');
-   }*/
+  }
 });

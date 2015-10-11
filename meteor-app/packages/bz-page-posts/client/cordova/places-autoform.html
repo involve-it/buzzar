@@ -8,17 +8,16 @@
                     <div class="card current-location-btn">
                         <a class="button button-clear button-calm js-current-location-a">
                             {{#if isAndroid}}
-                                <!--{{> ionIcon icon='ion-android-locate'}}-->
-                                <i class="icon ion-android-locate placeholder-icon"></i>
-                            {{else}}
-                                <i class="icon ion-navigate placeholder-icon"></i>
+                                <i class="icon placeholder-icon"></i>
+                            {{ else }}
+                                <i class="icon placeholder-icon"></i>
                             {{/if}}
                         </a>
                     </div>
                     <!--<div class="place-btn padding">-->
 
-                    <div class="card location-nearby js-location-nearby hidden">
-                        <input class="form-control typeahead capitalize js-nearby-places" name="team" type="text"
+                    <div class="card location-nearby js-location-nearby ">
+                        <input class="form-control typeahead capitalize js-nearby-places hidden" name="team" type="text"
                                placeholder="place nearby"
                                data-source="placesArray"
 
