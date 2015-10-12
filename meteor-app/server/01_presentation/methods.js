@@ -54,6 +54,10 @@ Meteor.methods({
 
     Email.send(emailOptions);
     return ret;
+  },
+  testNative: function(lat, lng){
+    //console.log('Coordinates updated: ' + lat + ', ' + lng);
+    return "Success";
   }
 });
 
