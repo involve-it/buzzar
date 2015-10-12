@@ -9,7 +9,14 @@ Template.bzControlMenuHashes.helpers({
     return bz.cols.hashes.find({userId: Meteor.userId()});
   },
   getMenuHashName: function(){
-    return '#' + this.details.text + ' @' + this.details.locName;
+    var menuLinkText = '#' + this.details.text + ' @' + this.details.locName;
+    return menuLinkText;
+  },
+  getMenuLinkText: function(){
+    //var menuLinkText = '#' + this.details.text + ' @' + ;
+    var url = '/home?locationName=' + this.details.locName + '&searchText=' + this.details.text + '';
+    return url;
+    //return encodeURIComponent(url);
   }
 });
 

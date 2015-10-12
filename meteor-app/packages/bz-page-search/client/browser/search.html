@@ -19,6 +19,7 @@
       <input class="form-control typeahead js-nearby-places" name="team" type="text"
              placeholder="{{ t9n 'lookingForText'}}"
              data-sets="joinedArray"
+             value="{{ $.Session.get 'bz.control.search.searchedText' }}"
 
              autocomplete="on" spellcheck="off"
              data-min-length="0"

@@ -17,8 +17,8 @@ Meteor.startup(function () {
   bz.help.maps.getCurrentLocation(function (loc) {
     Session.set('bz.control.search.location', {
       coords: loc,
-      placeType: 'bz',
-      name: 'My Location',
+      placeType: bz.const.posts.location.type.STATIC,
+      name: bz.const.places.CURRENT_LOCATION,
       userId: Meteor.userId(),
       public: false // private, user's place
 
@@ -165,7 +165,7 @@ createLocationFromObject = function(obj){
         userId: Meteor.userId(),
         name: locName,
         coords: coords,
-        placeType: 'bz',
+        placeType: bz.const.posts.location.type.STATIC,
         public: false,
         timestamp: Date.now()
       }
@@ -208,8 +208,8 @@ setLocationFromData = function(locName, data, sessionName){
     bz.help.maps.getCurrentLocation(function (loc) {
       Session.set(sessionName, {
         coords: loc,
-        placeType: 'bz',
-        name: 'My Location',
+        placeType: bz.const.posts.location.type.STATIC,
+        name: bz.const.places.CURRENT_LOCATION,
         userId: Meteor.userId(),
         public: false // private, user's place
       });

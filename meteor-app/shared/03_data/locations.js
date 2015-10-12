@@ -46,7 +46,7 @@ if (Meteor.isServer && false) {
   bz.cols.locations.insert({
     userId: 'mvmkh8LKukaHmu7oy',
     name: 'Orinda ballet',
-    placeType: 'bz',
+    placeType: bz.const.posts.location.type.STATIC,
     coords: {  //  49 Geary Street, San Francisco, CA
       lat: 37.787923,
       lng: -122.404342
@@ -57,7 +57,7 @@ if (Meteor.isServer && false) {
   bz.cols.locations.insert({
     userId: 'mvmkh8LKukaHmu7oy',
     name: 'Russian house #1',
-    placeType: 'bz',
+    placeType: bz.const.posts.location.type.STATIC,
     coords: {  //  49 Geary Street, San Francisco, CA
       lat: 37.787923,
       lng: -122.404342
@@ -65,13 +65,21 @@ if (Meteor.isServer && false) {
     public: false // private, user's place
   });
 }
-
+if(Meteor.isClient) {
+  bz.cols.locations.searchByLocationNamedUserId = function (locationName, userId) {
+    var ret = bz.cols.locations.findOne({
+      name: locationName,
+      userId: userId
+    });
+    return ret;
+  }
+}
 // EXTERNAL:
 bz.cols.locations.insertFromGoogleObject = function(googleObj) {
   var ret = {
     userId: Meteor.userId(),
     name: googleObj.name,
-    placeType: 'google',
+    placeType: bz.const.posts.location.type.GOOGLEPLACE,
     coords: {
       lat: googleObj.geometry.location.J,
       lng: googleObj.geometry.location.M
@@ -82,3 +90,52 @@ bz.cols.locations.insertFromGoogleObject = function(googleObj) {
   ret._id = bz.cols.locations.insert(ret);
   return ret;
 }
+
+// SCHEMA:
+var coordsSchema = new SimpleSchema({
+  lat: {
+    type: Number,
+    decimal: true,
+    optional: false
+  },
+  lng: {
+    type: Number,
+    decimal: true,
+    optional: false
+  }
+});
+var locationsSchema = new SimpleSchema({
+  userId: {
+    type: String,
+    max: 18,
+    optional: true
+    /*defaultValue: function(){
+      return Meteor.userId();
+    }*/
+  },
+  name: {
+    type: String,
+    optional: false,
+    max: 50
+  },
+  coords: {
+    type: coordsSchema,
+    optional: false
+  },
+  public: {
+    type: Boolean,
+    optional: true,
+    defaultValue: false
+  },
+  placeType: {
+    type: String,
+    max: 50,
+    defaultValue: bz.const.posts.location.type.STATIC
+  },
+  origObj: {
+    type: Object,
+    optional: true
+  }
+});
+
+bz.cols.locations.attachSchema(locationsSchema);

@@ -71,13 +71,13 @@ Template.postPhotoUpload.onCreated(function(){
 });
 Template.postPhotoUpload.helpers({
   getImageSrc: function () {
-    var ret = '/img/content/avatars/avatar-no.png';
+    var ret = 'http://localhost:3000/img/content/avatars/avatar-no.png';
     return Session.get('bz.posts.postImgSrc') || ret;
   }
 });
 Template.postPhotoUpload.events({
   'click .js-edit-avatar': function (event, template) {
-    $('.js-avatar-upload-modal').foundation('reveal', 'open');
+    //$('.js-avatar-upload-modal').foundation('reveal', 'open');
   },
   'click .js-plus-img': function(e,v){
     $('.js-avatar-upload-modal').foundation('reveal', 'open');

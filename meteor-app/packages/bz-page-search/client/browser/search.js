@@ -48,7 +48,7 @@ Meteor.startup(function () {
   bz.help.maps.getCurrentLocation(function (loc) {
     Session.set('bz.control.search.location', {
       coords: loc,
-      name: 'My Location'
+      name: bz.const.places.CURRENT_LOCATION
     });
   });
 });
@@ -213,7 +213,6 @@ Template.bzSearchHashTagLabel.events({
         },
       dist = Session.get('bz.control.search.distance') || '',
       text = Session.get('bz.control.search.searchedText') || '';
-    debugger;
     bz.cols.hashes.insert({
       userId: Meteor.userId(),
       details: {

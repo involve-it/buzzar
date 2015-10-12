@@ -50,7 +50,7 @@
         <li><label>Hashes</label></li>
     
         {{#each getUserHashes }}
-          <li><a alt="{{ details.text }}">{{ getMenuHashName }}</a></li>
+          <li><a alt="{{ details.text }}" href="{{ getMenuLinkText }}">{{ getMenuHashName }}</a></li>
         {{/each}}
     </ul>
 </template>

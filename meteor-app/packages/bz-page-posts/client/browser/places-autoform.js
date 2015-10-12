@@ -52,23 +52,27 @@ Template.postsPlacesAutoform.events({
   },
   'click .js-location-holder': function(e, v){
     e.preventDefault();
-    debugger;
   },
   'blur .js-nearby-places': function(){
 
   },
   'click .choose-place-buttons .panel': function(e,v){
     if(e.target.nodeName !== "INPUT" && e.target.className.indexOf('tt-suggestion') === -1) { // strange bug
-
+      debugger;
       var panel = $(e.currentTarget).closest('.panel');
-      
       panel.toggleClass('callout');
-      if(panel.id === 'moving-ad'){
-        $('.js-current-location-a').click();
-      } else {
-        if (panel.hasClass('callout')){
-          panel.find('input.tt-input').focus();
+      if(panel.hasClass('js-moving-location-panel')){
+        if(panel.hasClass('callout')){
+          location1.isSet = true;
+          movingLocationPanelClick();
+        } else {
+          location1.isSet = false;
         }
+      } else if(panel.hasClass('js-fixed-location-panel')){
+        location2.isSet = true;
+        staticLocationPanelClick();
+      } else {
+        location2.isSet = false;
       }
     }
   }

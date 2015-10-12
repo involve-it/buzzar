@@ -40,7 +40,7 @@ Meteor.startup(function () {
   // it points to several TAGS in db (see tags array)
   // Hash means - it's subjective, fluid and talk-based.
   // record is created: user creates a hash in UI (new hash, merges hash, etc.)
-  if (true) {
+  if (false) {
     bz.cols.hashes.remove({});
     bz.cols.hashes.insert({
       name: 'roommates who don\'t drink vodka',

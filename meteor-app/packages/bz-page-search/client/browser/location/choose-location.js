@@ -8,6 +8,7 @@ Template.bzLocationName.helpers({
   }
 })
 Template.bzLocationName.rendered = function () {
+  var that = this;
   setTimeout(function () {
     $(document).off('open.fndtn.reveal', '[data-reveal].js-global-location');
     $(document).on('open.fndtn.reveal', '[data-reveal].js-global-location', function () {
@@ -23,13 +24,14 @@ Template.bzLocationName.rendered = function () {
 
 Template.bzLocationNameNewPost.rendered = function () {
   this.data = this.data || {}
-  this.data.sessionName = this.data.sessionName || 'bz.posts.new.location2';
+  this.modalSelector = '[data-reveal].js-new-post-location';
+  this.data.sessionName = this.data.sessionName || location2.sessionName;
   var that = this;
   setTimeout(function () {
     $(document).off('open.fndtn.reveal', '[data-reveal].js-new-post-location');
     $(document).on('open.fndtn.reveal', '[data-reveal].js-new-post-location', function () {
       $('.js-location-modal-holder-new-post').empty();
-      searchModalView1 = Blaze.renderWithData(Template.bzChooseLocationModal, {
+      searchModalView2 = Blaze.renderWithData(Template.bzChooseLocationModal, {
         sessionName: that.data.sessionName
       }, $('.js-location-modal-holder-new-post')[0]);
       //Session.set('bz.search.searchModalView');
@@ -39,9 +41,13 @@ Template.bzLocationNameNewPost.rendered = function () {
     //});
   }, 1000);
 }
+// custom helper to show the modal:
+Template.bzLocationNameNewPost.showModal = function(){
+  $('[data-reveal].js-new-post-location').foundation('reveal', 'open');
+}
 Template.bzLocationNameNewPost.helpers({
   getCurrentLocationName: function(){
-    var ret = Session.get(this.sessionName);
+    var ret = Session.get(this.sessionName) && Session.get(this.sessionName).dbObject;
     return ret && ret.name || 'Click to choose location';
   }
 });
@@ -65,12 +71,12 @@ Template.bzChooseLocationModal.events({
     //Tracker.nonreactive(function () {
     var locName = $('.js-location-name-input.tt-input').val()
     setLocationFromData(locName, v.data, this.sessionName);
-    if(this.sessionName === 'bz.posts.new.location2') {
-      searchModalView1 && Blaze.remove(searchModalView1);
-      $('#choose-locations-new-post').foundation('reveal', 'close');
-    } else {
+    if(this.sessionName === 'bz.control.search.location') {
       searchModalView && Blaze.remove(searchModalView);
-      $('#choose-locations-global').foundation('reveal', 'close');
+      $('.js-global-location').foundation('reveal', 'close');
+    } else {
+      searchModalView2 && Blaze.remove(searchModalView2);
+      $('.js-new-post-location').foundation('reveal', 'close');
     }
   },
   'click .js-locations-list a': function (e, v) {
@@ -87,6 +93,8 @@ Template.bzChooseLocationModal.events({
     if(isCurrentLocation){
       v.data.isCurrentLocation = true;
     }
+    $('.js-set-location-button').click();
+    return false;
   },
   'typeahead:select .js-location-name-input': function (e, v, val) {
     var placeObj = {}, textName = val.name && val.name.trim() || '';
@@ -153,7 +161,7 @@ Template.bzChooseLocationModal.helpers({
     return ret;
   },
   getCurrentLocationName: function () { //FromSearchControl
-    return Session.get(this.sessionName) && Session.get(this.sessionName).name;
+    return Session.get(this.sessionName) &&  Session.get(this.sessionName).dbObject && Session.get(this.sessionName).dbObject.name;
   },
   getUserLocations: function () {
     var ret;
