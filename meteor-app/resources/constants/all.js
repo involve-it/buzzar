@@ -12,12 +12,12 @@ bz.const.posts.status.ARCHIVED = 2;
 
 bz.help.makeNamespace('bz.const.posts.location.type');
 bz.const.posts.location.type.STATIC = 'bz';
-bz.const.posts.location.type.GOOGLEPLACE = 1;
-bz.const.posts.location.type.MYPLACE = 2;
+bz.const.posts.location.type.GOOGLEPLACE = 'google';
+bz.const.posts.location.type.MYPLACE = 'my place';
 
 bz.help.makeNamespace('bz.const.posts.session.names');
-bz.const.posts.session.names.general = 'bz.posts.new.location1';
-bz.const.posts.session.names.location1 = 'bz.runtime.newPost.location';
-bz.const.posts.session.names.location2 = 'bz.posts.new.location2';
+bz.const.posts.locationGlobal = 'bz.runtime.newPost.location';
+bz.const.posts.location1 = 'bz.posts.new.location1';
+bz.const.posts.location2 = 'bz.posts.new.location2';
 
 bz.const.randomImageSite = 'http://lorempixel.com/400/300/';

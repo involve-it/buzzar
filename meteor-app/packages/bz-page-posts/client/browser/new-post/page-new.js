@@ -14,9 +14,11 @@ Template.postsNew.created = function () {
 };
 Template.postsNew.events({
   'click .js-create-post': function (e, v) {
-    debugger;
     var userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
         locDef = $.Deferred(),
+      loc1 = Session.get(bz.const.posts.location1),
+      loc2 = Session.get(bz.const.posts.location2),
+
         rad = $('.js-radius-slider').attr('data-slider') && Number.parseInt($('.js-radius-slider').attr('data-slider'));
 
     // gather all data and submit for post-create:
@@ -29,20 +31,18 @@ Template.postsNew.events({
         });
         imgArr.push(imgId);
       }
-      ;
       // set location:
-      if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
-        bz.help.maps.getCurrentLocation(function (loc) {
-          locationsArr.push({
-            coords: loc,
-            type: bz.const.posts.location.type.STATIC
-          });
-          locDef.resolve();
-        });
-      } else {
-        locDef.resolve();
+      //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
+      if (loc1 && location1.isSet) {
+       // bz.help.maps.getCurrentLocation(function (loc) {
+          locationsArr.push(loc1);
+          //locDef.resolve();
+        //});
       }
-      debugger;
+      if (loc2 && location2.isSet) {
+        locationsArr.push(loc2);
+        //locDef.resolve();
+      }
       var newPost = {
 
         userId: userId,
@@ -71,21 +71,21 @@ Template.postsNew.events({
         }
       }
 
-      $.when(locDef).then(function () {
+      //$.when(locDef).then(function () {
         Meteor.call('addNewPost', newPost, function (err, res) {
           if (!err && res && res !== '') {
-            cleanPostData();
+            clearPostData();
             bz.runtime.newPost.postId = res;
             Router.go('/posts/my');
           }
         });
-      });
+      //});
     }
   }
 });
 
 //HELPERS:
 
-function cleanPostData() {
+function clearPostData() {
 
 }

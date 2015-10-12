@@ -47,8 +47,8 @@ Template.bzLocationNameNewPost.showModal = function(){
 }
 Template.bzLocationNameNewPost.helpers({
   getCurrentLocationName: function(){
-    var ret = Session.get(this.sessionName) && Session.get(this.sessionName).dbObject;
-    return ret && ret.name || 'Click to choose location';
+    var ret = Session.get(this.sessionName)// && Session.get(this.sessionName).dbObject;
+    return ret && ret.name;
   }
 });
 
@@ -160,9 +160,9 @@ Template.bzChooseLocationModal.helpers({
     ];
     return ret;
   },
-  getCurrentLocationName: function () { //FromSearchControl
+  /*getCurrentLocationName: function () { //FromSearchControl
     return Session.get(this.sessionName) &&  Session.get(this.sessionName).dbObject && Session.get(this.sessionName).dbObject.name;
-  },
+  },*/
   getUserLocations: function () {
     var ret;
     if (Meteor.userId()) {

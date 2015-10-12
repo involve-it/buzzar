@@ -51,7 +51,7 @@ location1 =  {
   setLocation: function(dbObject){
     this.isSet = true;
     this.dbObject = dbObject;
-    Session.set(this.sessionName, this);
+    Session.set(this.sessionName, dbObject);
   }
 }
 location2 = {
@@ -61,6 +61,6 @@ location2 = {
   setLocation: function(dbObject){
     this.isSet = true;
     this.dbObject = dbObject;
-    Session.set(this.sessionName, this);
+    Session.set(this.sessionName, dbObject);
   }
 }

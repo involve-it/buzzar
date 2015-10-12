@@ -104,6 +104,7 @@ var coordsSchema = new SimpleSchema({
     optional: false
   }
 });
+
 var locationsSchema = new SimpleSchema({
   userId: {
     type: String,

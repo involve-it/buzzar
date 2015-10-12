@@ -58,7 +58,6 @@ Template.postsPlacesAutoform.events({
   },
   'click .choose-place-buttons .panel': function(e,v){
     if(e.target.nodeName !== "INPUT" && e.target.className.indexOf('tt-suggestion') === -1) { // strange bug
-      debugger;
       var panel = $(e.currentTarget).closest('.panel');
       panel.toggleClass('callout');
       if(panel.hasClass('js-moving-location-panel')){
