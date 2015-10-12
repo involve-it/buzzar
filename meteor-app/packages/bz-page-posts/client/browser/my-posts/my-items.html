@@ -18,7 +18,7 @@
               {{> onePostRowItem}}
             {{/each}}-->
         {{else}}
-            <div class="">NO POSTS</div>
+            {{> noPosts}}
         {{/if}}
 
     </div>
@@ -63,4 +63,24 @@
         </a>
     </div>
     
+</template>
+
+<template name="noPosts">
+
+    <div class="bz-wrapper-no-message">
+        <div class="bz-flex-box">
+
+            <div class="bz-img-conversation">
+                <i class="fa fa-envelope"></i>
+            </div>
+
+            <div class="title-message">You have no posts yet</div>
+            <div class="subtitle-message">Press button below.</div>
+
+            <div class="bz-padding-top-x2">
+                <a href="{{pathFor 'postsNew'}}" class="button alert">New Post</a>
+            </div>
+        </div>
+    </div>
+
 </template>
