@@ -95,19 +95,22 @@
       </ul>-->
       <div class="img-avatar js-edit-avatar">
         <ul class="clearing-thumbs clearing-feature" data-clearing>
-          <li class="clearing-featured-img">
+          <!--<li class="clearing-featured-img">
             <a href="http://localhost:3000/img/content/avatars/avatar-no.png" onclick="return false;">
               <img src="http://localhost:3000/img/content/avatars/avatar-no.png" style="height: 50px;">
             </a>
-          </li>
+          </li>-->
           {{#each getPostImages }}
           <li class="clearing-featured-img">
-            <a href="{{ getImageSrc }}" onclick="return false;">
-              <img src="{{ getImageSrc }}" style="height: 50px;">
+            <a onclick="return false;">
+              <img src="{{ data }}">
             </a>
+            <!--<a href="{{ getImageSrc }}" onclick="return false;">
+              <img src="{{ getImageSrc }}">
+            </a>-->
           </li>
           {{/each }}
-          <a class="js-plus-img"><img src="/img/plus-button.png" style="width: 60px; height: 60px;"/> </a>
+          <a class="js-plus-img"><img src="/img/plus-button.png" /> </a>
 
           <!--<li></li>-->
         </ul>
@@ -122,7 +125,7 @@
 
   <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
        role="dialog">
-    {{> uploadImageModal 'bz.posts.postImgSrc'}}
+    {{> uploadImageModal sessionName='bz.posts.postImgArr'}}
   </div>
 </template>
 

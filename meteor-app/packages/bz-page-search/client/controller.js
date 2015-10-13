@@ -74,9 +74,7 @@ bz.bus.search.doSearch = function(){
       location: location.coords,
       limit: 10
     };
-debugger;
     Meteor.call('search', query, function (err, results) {
-      debugger;
       bz.cols.searchRt._collection.remove({});
       if (results && results.length > 0) {
         for (var i = 0; i < results.length; i++) {
