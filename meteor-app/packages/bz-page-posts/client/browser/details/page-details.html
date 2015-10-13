@@ -1,10 +1,22 @@
 <template name="postsPageDetails">
-      <div class="main-content">
-        {{> postsDetails }}
-        {{> bzUserProfileBasic getUserObj}}
+    <div class="main-content">
+        <div class="bz-post-details">
+            {{> postsDetails }}
+            
+            <div class="bz-separate"></div>
+            
+            {{> bzUserProfileBasic getUserObj}}
 
-        {{> bzControlReviews postId = _id}}
-        {{> bzControlAddReview postId = _id}}
 
-      </div>
+            <!--Reviews-->
+            <div class="bz-post-reviews">
+                <div class="bz-post-review">
+                    {{> bzControlReviews postId = _id}}
+                </div>
+                <div class="bz-post-leave-review">
+                    {{> bzControlAddReview postId = _id}}
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

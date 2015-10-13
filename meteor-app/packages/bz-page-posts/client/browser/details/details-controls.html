@@ -1,58 +1,105 @@
 <template name="postsDetails">
+    <!--SIDE A-->
+    <div class="side-a text-center small-12 medium-6 columns">
 
-    
-               <!-- <div class="item item-divider">
-                    <h3 class="title">Basic</h3>
-                </div>
-                {{> postTypeSelect }}
-                {{> postsPlacesAutoform }}-->
+        <div class="post-item bz-post-published overflow">
+            <div class="post-details">
+                <div class="small-12 bz-post-label columns"><i class="fa fa-clock-o"></i> Published on 18th February 2015</div>
+            </div>
+        </div>
+        
+        <div class="user-avatar">
+            {{> postDetailsPhoto }}
+        </div>
 
-                {{> postDetailsPhoto }}
-                
-                
-                <div class="item item-divider">
-                    <h3 class="title">Post Details</h3>
+        <!--Additional information of the post-->
+
+        
+    </div>
+
+    <!--SIDE B-->
+    <div class="side-b small-12 medium-6 large-6 columns">
+
+        <div class="item-divider">
+            <h3 class="title">Post Details</h3>
+        </div>
+
+        <div class="post-item overflow">
+        <div class="post-details">
+            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-eye"></i> Views</div>
+            <div class="small-12 medium-8 large-8 bz-post-result columns">
+                <p> <span>all</span> 250, <span>today</span> 15 </p>
+            </div>
+        </div>
+
+        <div class="post-details">
+            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-info-circle"></i> Left</div>
+            <div class="small-12 medium-8 large-8 bz-post-result columns"><p> 10 days </p></div>
+        </div>
+
+        <div class="post-details">
+            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-list-alt"></i> Type</div>
+            <div class="small-12 medium-8 large-8 bz-post-result columns"><div class="button bz-btn-category type-category-{{categoryType}}"> Trade </div></div>
+        </div>
+
+        <div class="post-details">
+            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-money"></i> Price</div>
+            <div class="small-12 medium-8 large-8 bz-post-result columns">
+                <div class="bz-price">
+                    200 <span class="bz-prefix">$</span>
                 </div>
-                
+            </div>
+        </div>
+
+        <div class="bz-separate"></div>
+        
+            {{> saveToWishList }}
+            
+    </div>
+        
+
+    </div>
+
+    <div class="clearfix"></div>
+
                 {{> postDetailsDetailsCommon }}
                 
                 <div class="js-post-details-categorized"></div>
                 {{> postDetailsHashesControl }}
                 
-
 </template>
 
+<template name="saveToWishList">
+    <div class="bz-wish-list">
+        <div class="bz-wish-list-title"><i class="fa fa-heart-o"></i> Save to wish list</div>
+        <div class="bz-wish-list-items">
+            <div class="bz-wish-list-item"><i class="fa fa-envelope-o"></i> Email</div>
+            <div class="bz-wish-list-item"><i class="fa fa-facebook"></i> Facebook</div>
+            <div class="bz-wish-list-item"><i class="fa fa-ellipsis-h"></i> more</div>
+        </div>
+    </div>
+</template>
 
 <!--Forms for different types:-->
 <template name="postDetailsDetailsCommon">
-    <div class="item-group">
-    <div class="clearfix">
-        <div class="item-details">
-            <label class="item item-input">
-                <div class="small-12 medium-3 input-label left">Title</div>
-                <div class="small-12 medium-9 large-9 left">
-                    <input class="js-post-title" type="text" label-type="stacked" name="title" required=""
-                           data-schema-key="title" maxlength="200" value="{{ getTitle }}" disabled>
-                </div>
-            </label>
+
+    <div class="item-divider">
+        <h2 class="title space-1">{{ getTitle }}</h2>
+        
+        <div class="post-location">
+            <i class="fa fa-map-marker"></i> <span>my location</span>
         </div>
     </div>
+    
+    
+
+    <div class="post-item overflow">
+        <div class="post-details">
+            <div class="small-12 bz-post-description"><p> {{ getDescription }} </p></div>
+        </div>
     </div>
 
-    <div class="item-group">
-    <div class="clearfix">
-        <div class="item-details">
-            <label type="stacked" class="item item-input item-stacked-label">
-                <div class="small-12 medium-3 input-label left">Description</div>
-                <div class="small-12 medium-9 large-9 left">
-                   <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
-                             data-schema-key="body" value="{{ getDescription }}" disabled>
-                   </textarea>
-                </div>
-            </label>
-        </div>
-    </div>
-    </div>
+    
 </template>
 
 
@@ -133,7 +180,11 @@
 
 <template name="postDetailsPhoto">
     <div class="photos">
-        <div class="single-photo cover-img" style="background-image: url('{{ getPhotoUrl }}')"></div>
+        {{#if getPhotoUrl}}
+            <div class="single-photo cover-img" style="background-image: url('{{ getPhotoUrl }}')"></div>
+        {{else}}
+            <div class="single-photo cover-img" style="background-color: #efefef; background-image: url('../img/content/no-photo.png')"></div>
+        {{/if}}
     </div>
 
 

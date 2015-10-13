@@ -1,4 +1,6 @@
 
+
+
 Template.postDetailsHashesControl.helpers({
   getHashes: function(){
     var hash = this.details.hash;
@@ -22,16 +24,17 @@ Template.postDetailsPhoto.helpers({
     return Session.get('postDetailsImgSrc') || ret;
   },*/
   getPhotoUrl: function() {
-    var ret = '/img/content/avatars/avatar-no.png';
+    /*var ret = '/img/content/avatars/avatar-no.png';*/
     var photoId = Session.get('postDetailsImgSrc');
 
     if(photoId) {
       //ret = bz.cols.images.findOne({_id: photoId}).data;
     } else {
+      return false;
     }
-
-    return ret;
-  },
+    /*return ret;*/
+    
+  }
 });
 Template.postDetailsPhoto.onRendered(function(){
   if(this.data.details.photos) {

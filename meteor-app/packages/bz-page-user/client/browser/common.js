@@ -4,6 +4,16 @@
 
 Template.avatarThumbnail.onCreated(function(){
 });
+
+Template.bzUserProfileBasic.rendered = function() {
+
+  /*init Rate*/
+  $('.bz-rating').raty({
+    starType: 'i'
+  });
+
+};
+
 Template.avatarThumbnail.helpers({
   getAvatarImage: function(e, v){
     //debugger;

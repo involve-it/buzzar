@@ -1,32 +1,38 @@
 <template name="avatarThumbnail">
   <div class="img-avatar">
-      <a><img src="{{ getAvatarImage }}" style="height: {{ height }}px; "></a>
+      <a>
+          <img src="{{ getAvatarImage }}" style="height: {{ height }}px; width: {{ width }}px; ">
+      </a>
   </div>
-  {{#if canWrite }}
-  <div class="edit-image-holder">
-    <a class="js-edit-image-icon">
-      <i class="fa fa-pencil"></i>
-    </a>
-    <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
-         role="dialog">
-      {{> uploadImageModal 'bz.user.profileImgUploaded'}}
-    </div>
-  </div>
-  {{/if}}
+    
+    {{#if canWrite }}
+        <div class="edit-image-holder">
+            <a class="js-edit-image-icon">
+              <i class="fa fa-pencil"></i>
+            </a>
+            <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
+                 role="dialog">
+              {{> uploadImageModal 'bz.user.profileImgUploaded'}}
+            </div>
+        </div>
+    {{/if}}
 </template>
-<template name="bzUserProfileBasic">
-  <h5>User profile</h5>
-  <div>
-    <div style="float: left;">
-      {{> avatarThumbnail image=profile.image height=50 }}
-    </div>
-    <div style="float: right;">
-      <span>{{ username }}</span>
-      <span>{{ status }}</span>
 
+<template name="bzUserProfileBasic">
+ 
+  <div class="bz-user-card">
+    <div class="bz-user-badge">
+      {{> avatarThumbnail image=profile.image height=60 width=60 }}
     </div>
-    <div style="clear:both"></div>
+      
+    <div class="bz-user-date">
+      <span>{{ username }}</span>
+      <div class="bz-rating"></div>
+      <span>{{ status }}</span>
+    </div>
+
   </div>
+    
   <div class="row">
     <button class="js-send-message-btn">Send Message</button>
   </div>
