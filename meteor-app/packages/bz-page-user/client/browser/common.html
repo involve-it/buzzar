@@ -21,20 +21,24 @@
 <template name="bzUserProfileBasic">
  
   <div class="bz-user-card">
-    <div class="bz-user-badge">
-      {{> avatarThumbnail image=profile.image height=60 width=60 }}
-    </div>
+      <div class="bz-padding-10 overflow">
+        <div class="bz-user-badge">
+          {{> avatarThumbnail image=profile.image height=40 width=40 }}
+        </div>
+          
+        <div class="bz-user-date">
+          <span>{{ username }}</span>
+          <div class="bz-rating"></div>
+          <span>{{ status }}</span>
+        </div>
+        
+        <div class="bz-send-message">
+          <button class="js-send-message-btn bz-small">Send Message</button>
+        </div>
+      </div>
       
-    <div class="bz-user-date">
-      <span>{{ username }}</span>
-      <div class="bz-rating"></div>
-      <span>{{ status }}</span>
-    </div>
-
   </div>
     
-  <div class="row">
-    <button class="js-send-message-btn">Send Message</button>
-  </div>
+  
 
 </template>
