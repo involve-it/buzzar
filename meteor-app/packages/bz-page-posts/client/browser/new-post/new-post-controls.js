@@ -73,6 +73,11 @@ Template.postPhotoUpload.helpers({
   getImageSrc: function () {
     var ret = 'http://localhost:3000/img/content/avatars/avatar-no.png';
     return Session.get('bz.posts.postImgSrc') || ret;
+  },
+  getPostImages: function(){
+    var imgArr = Session.get('bz.posts.postImgArr');
+    if(!imgArr || !(imgArr.length > 0))
+    return imgArr;
   }
 });
 Template.postPhotoUpload.events({

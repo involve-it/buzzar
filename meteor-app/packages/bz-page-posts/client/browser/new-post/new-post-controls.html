@@ -96,15 +96,18 @@
       <div class="img-avatar js-edit-avatar">
         <ul class="clearing-thumbs clearing-feature" data-clearing>
           <li class="clearing-featured-img">
-            <a href="http://localhost:3000/img/content/avatars/avatar-no.png">
+            <a href="http://localhost:3000/img/content/avatars/avatar-no.png" onclick="return false;">
               <img src="http://localhost:3000/img/content/avatars/avatar-no.png" style="height: 50px;">
             </a>
-          </li><!--<li class="clearing-featured-img">
-            <a href="{{ getImageSrc }}">
+          </li>
+          {{#each getPostImages }}
+          <li class="clearing-featured-img">
+            <a href="{{ getImageSrc }}" onclick="return false;">
               <img src="{{ getImageSrc }}" style="height: 50px;">
             </a>
-          </li>-->
-          <!--<a class="js-plus-img"><img src="/img/plus-button.png" style="width: 60px; height: 60px;"/> </a>-->
+          </li>
+          {{/each }}
+          <a class="js-plus-img"><img src="/img/plus-button.png" style="width: 60px; height: 60px;"/> </a>
 
           <!--<li></li>-->
         </ul>
