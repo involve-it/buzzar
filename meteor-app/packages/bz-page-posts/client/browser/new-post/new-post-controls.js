@@ -64,15 +64,18 @@ Template.postDetailsTrade.helpers({
   }
 });
 
-Template.postPhotoUpload.onCreated(function(){
- Tracker.autorun(function(){
-   $('.js-preview').attr('src', Session.get('bz.posts.postImgSrc'));
- })
-});
 Template.postPhotoUpload.helpers({
   getImageSrc: function () {
     var ret = 'http://localhost:3000/img/content/avatars/avatar-no.png';
     return Session.get('bz.posts.postImgSrc') || ret;
+  },
+  getPostImages: function(){
+    var imgArr = Session.get('bz.posts.postImgArr');
+    if(!imgArr || !Array.isArray(imgArr)) {
+      imgArr = []
+    } else {
+    }
+    return imgArr;
   }
 });
 Template.postPhotoUpload.events({

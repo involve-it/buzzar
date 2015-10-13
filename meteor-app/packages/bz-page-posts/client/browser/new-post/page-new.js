@@ -23,13 +23,16 @@ Template.postsNew.events({
 
     // gather all data and submit for post-create:
     if (userId) {
-
-      if (bz.runtime.newPost.postImage) {
-        imgId = bz.cols.images.insert({
-          data: bz.runtime.newPost.postImage,
-          userId: userId
+      if (Session.get('bz.posts.postImgArr')) {
+      //if (bz.runtime.newPost.postImage) {
+        _.each(Session.get('bz.posts.postImgArr'), function(img){
+          img = img || {};
+          imgId = bz.cols.images.insert({
+            data: img.data,
+            userId: userId
+          });
+          imgArr.push(imgId);
         });
-        imgArr.push(imgId);
       }
       // set location:
       //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {

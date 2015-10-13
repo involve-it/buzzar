@@ -2,12 +2,19 @@
  * Created by Ashot on 9/25/15.
  */
 Template.uploadImageModal.onRendered(function () {
+  setTimeout(function () {
+    $(document).off('open.fndtn.reveal', '[data-reveal].js-avatar-upload-modal');
+    $(document).on('open.fndtn.reveal', '[data-reveal].js-avatar-upload-modal', function () {
+      Session.set('bz.posts.postImgSrc', '');
+    });
+  }, 1000);
   // this.data is session var name for holding img src
   $(document).foundation('tab', 'reflow');
 });
 Template.uploadImageModal.helpers({
   getPreviewImgSrc: function () {
-    return Session.get(this.toString());
+    var img = Session.get('bz.posts.postImgSrc') || '';
+    return Session.get(img);
   }
 })
 Template.uploadImageModal.events({
@@ -28,7 +35,7 @@ Template.uploadImageModal.events({
           console.log('error', err);
         }
         if (data) {
-          Session.set(this.data, data)
+          addImageToArrSession(this.data.sessionName, data);
         }
       });
 
@@ -53,13 +60,17 @@ Template.uploadImageModal.events({
         console.log('error', err);
       }
       if (data) {
-        Session.set(that.toString(), data)
+        //Session.set(that.sessionName, data);
+        addImageToArrSession(that.sessionName, data);
       }
     });
   },
   'click .js-use-image-url': function (e, v) {
-    if ($('.js-image-url').val()) {
-      Session.set(this.toString(), $('.js-image-url').val());
+    var imgData = $('.js-image-url').val();
+    if (imgData) {
+      //Session.set(this.sessionName, $('.js-image-url').val());
+      addImageToArrSession(this.data.sessionName, imgData);
+
     }
   },
   'click .js-use-random-image-url': function (e, v) {
@@ -67,7 +78,9 @@ Template.uploadImageModal.events({
         randomImgUrl = bz.const.randomImageSite + '?ts=' + Date.now();
 
     getDataFromImgUrl(randomImgUrl, $('.js-preview')[0], 400, 300, function (imgData) {
-      Session.set(that.toString(), imgData);
+      //Session.set(that.sessionName, imgData);
+      addImageToArrSession(that.sessionName, imgData);
+
     });
   },
   'change .js-file-upload': function (e, v) {
@@ -75,7 +88,8 @@ Template.uploadImageModal.events({
     if (input.files && input.files[0]) {
       var reader = new FileReader();
       reader.onload = function (e1) {
-        Session.set(that.toString(), e1.target.result);
+        //Session.set(that.sessionName, e1.target.result);
+        addImageToArrSession(that.sessionName, e1.target.result);
       };
       reader.readAsDataURL(input.files[0]);
     }
@@ -84,7 +98,23 @@ Template.uploadImageModal.events({
     $('.js-avatar-upload-modal').foundation('reveal', 'close');
   }
 });
+addImageToArrSession = function(sessionName, img){
+  var arr = [];
+  console.log('sessionName: ' + sessionName);
+  if(img && sessionName) {
+    Session.set('bz.posts.postImgSrc', img);
+    arr = Session.get(sessionName);
+    if (!arr || !Array.isArray(arr)) {
+      arr = [];
+    }
+    arr.push({
+      data: img
+    });
 
+    Session.set(sessionName, arr);
+  }
+  return arr;
+}
 /*
  Template.filePickerUpload.events({
  'click #upload': function () {
