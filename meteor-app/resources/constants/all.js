@@ -11,7 +11,8 @@ bz.const.posts.status.INVISIBLE = 0;
 bz.const.posts.status.ARCHIVED = 2;
 
 bz.help.makeNamespace('bz.const.posts.location.type');
-bz.const.posts.location.type.STATIC = 'bz';
+bz.const.posts.location.type.STATIC = 'bz.static';
+bz.const.posts.location.type.MOVING = 'bz.moving';
 bz.const.posts.location.type.GOOGLEPLACE = 'google';
 bz.const.posts.location.type.MYPLACE = 'my place';
 

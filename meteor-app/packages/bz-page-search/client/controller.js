@@ -204,10 +204,11 @@ setLocationFromData = function(locName, data, sessionName){
       bz.help.logError('Location with id ' + locId + 'was not found!');
     }
   } else if (data.isCurrentLocation){
+    // selected moving location type
     bz.help.maps.getCurrentLocation(function (loc) {
       Session.set(sessionName, {
         coords: loc,
-        placeType: bz.const.posts.location.type.STATIC,
+        placeType: bz.const.posts.location.type.MOVING,
         name: bz.const.places.CURRENT_LOCATION,
         userId: Meteor.userId(),
         public: false // private, user's place
@@ -233,7 +234,5 @@ setLocationFromData = function(locName, data, sessionName){
         });
       }
     });
-
-
   }
 }
