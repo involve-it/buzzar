@@ -1,4 +1,15 @@
+Template.bzPostDetails.events({
 
+});
+Template.bzPostDetails.helpers({
+  getPostCreatedDate: function(){
+    var ret = '';
+    if (this.timestamp){
+      ret = new Date(this.timestamp).toDateString();
+    }
+    return ret;
+  }
+})
 
 
 Template.postDetailsHashesControl.helpers({

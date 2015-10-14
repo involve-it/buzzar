@@ -3,7 +3,86 @@
  */
 bz.help.makeNamespace('bz.runtime.newPost.location');
 
+createNewPostFromView = function(v) {
+  var userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
+    locDef = $.Deferred(),
+    loc1 = Session.get(bz.const.posts.location1),
+    loc2 = Session.get(bz.const.posts.location2),
 
+    rad = $('.js-radius-slider').attr('data-slider') && Number.parseInt($('.js-radius-slider').attr('data-slider')),
+    otherKeyValuePairs = [], timestamp;
+
+  // gather all data and submit for post-create:
+  if (userId) {
+    if (Session.get('bz.posts.postImgArr')) {
+      //if (bz.runtime.newPost.postImage) {
+      _.each(Session.get('bz.posts.postImgArr'), function(img){
+        img = img || {};
+        imgId = bz.cols.images.insert({
+          data: img.data,
+          userId: userId
+        });
+        imgArr.push(imgId);
+      });
+    }
+    // set location:
+    //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
+    if (loc1 && location1.isSet) {
+      // bz.help.maps.getCurrentLocation(function (loc) {
+      locationsArr.push(loc1);
+      //locDef.resolve();
+      //});
+    }
+    if (loc2 && location2.isSet) {
+      locationsArr.push(loc2);
+      //locDef.resolve();
+    }
+    // set the 'other' field, that contains: all other post-specific key-value pairs of info that we want:
+    if (v.$('.js-charity-type-select').val()) {
+      otherKeyValuePairs.push({
+        key: 'whatHappened',
+        value: v.$('.js-charity-type-select').val()
+      });
+    }
+    // created timestamp:
+    timestamp = Date.now();
+    var newPost = {
+
+      userId: userId,
+      type: v.$('.js-post-type-select').val(),
+      details: {
+
+        hashes: bz.runtime.newPost.hashes,
+        //location: bz.runtime.newPost.location,
+        locations: locationsArr,
+        radius: rad,
+        url: v.$('.js-original-url').val(),
+
+        //details:
+        title: v.$('.js-post-title').val(),
+        description: v.$('.js-post-description').val(),
+        price: v.$('.js-post-price').val(),
+        photos: imgArr,
+
+        // specific:
+        other: otherKeyValuePairs
+      },
+      status: {
+        visible: bz.const.posts.status.visibility.VISIBLE
+      },
+      timestamp: timestamp
+    }
+
+    //$.when(locDef).then(function () {
+    Meteor.call('addNewPost', newPost, function (err, res) {
+      if (!err && res && res !== '') {
+        clearPostData();
+        bz.runtime.newPost.postId = res;
+        Router.go('/posts/my');
+      }
+    });
+  }
+}
 movingLocationPanelClick = function () {
   var chosenLocation = Session.get(location1.sessionName);
   if (!chosenLocation) {
@@ -41,6 +120,11 @@ staticLocationPanelClick = function () {
     //$('.js-location-holder a').click();
     Template.bzLocationNameNewPost.showModal();
   }
+}
+
+//HELPERS:
+function clearPostData() {
+
 }
 
 // location1 variable:

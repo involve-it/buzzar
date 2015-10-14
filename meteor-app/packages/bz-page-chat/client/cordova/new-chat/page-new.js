@@ -45,7 +45,7 @@ Template.postsNew.events({
            }
          },
          status: {
-           visible: bz.const.posts.visibility.VISIBLE
+           visible: bz.const.posts.status.visibility.VISIBLE
          }
        }
        Meteor.call('addNewPost', newPost, function(err, res){
