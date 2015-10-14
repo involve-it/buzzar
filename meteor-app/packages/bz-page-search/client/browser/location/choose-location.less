@@ -1,6 +1,14 @@
 
 @import "../../../../../client/style/constants.less";
 
+#choose-locations-global {
+  &.reveal-modal {
+    &.js-global-location {
+      padding: 0;
+    }
+  }
+}
+
 /* Modal window Choose locations */
 .bz-choose-location-control {
   padding: 0;
@@ -9,6 +17,12 @@
 
     .header-toolbar-title {
       padding: 1.57895em 30px 1.31579em;
+      
+      span {
+        text-transform: uppercase;
+        color: @h-title-color;
+        font-weight: 400;
+      }
     }
 
     .header-toolbar-search {
@@ -24,6 +38,24 @@
     .header-toolbar-regions {
       border-top: 1px solid rgba(180,180,180, .2);
       padding: 30px 15px;
+      
+      ul {
+        margin-left: 0;
+        
+        > * {
+          padding: 0;
+          line-height: 26px;
+          
+          a {
+            
+          }
+        }
+      }
+      
+      .title {
+        color: @h-title-color;
+        margin-bottom: 5px;
+      }
 
       a {
         color: @text-link-green;

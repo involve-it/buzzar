@@ -14,6 +14,7 @@
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 </template>
+
 <template name="bzLocationNameNewPost">
   <div class="bz-location-name">
     <a href="#" data-reveal-id="choose-locations-new-post">
@@ -31,6 +32,7 @@
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 </template>
+
 <template name="bzChooseLocationModal">
   <div class="bz-choose-location-control">
 
@@ -41,17 +43,28 @@
 
       <div class="header-toolbar-search">
         <div class="header-toolbar-search-field">
-          <input class="form-control typeahead js-location-name-input" name="team" type="text" style="height: 44px;"
-                 placeholder="{{ t9n 'searchLocationText'}}"
-                 data-sets="placesArray"
+            <form id="bzSetLocationForm">
+                <div class="bz-control--search-location search-field">
+                    <div class="form-group bz-search-size">
+                        
+                        <input class="form-control typeahead js-location-name-input" name="team" type="text" style="height: 44px;"
+                               placeholder="{{ t9n 'searchLocationText'}}"
+                               data-sets="placesArray"
 
-                 autocomplete="on" spellcheck="off"
-                 data-min-length="0"
-                 data-opened="opened" data-selected="locationItemSelected"
-                 data-template="teamList"
-            />
+                               autocomplete="on" spellcheck="off"
+                               data-min-length="0"
+                               data-opened="opened" data-selected="locationItemSelected"
+                               data-template="teamList"
+                                />
+                        
+                    </div>
+                </div>
+            
           <!--<input type="text" id="choose-location-search" class="input-clear js-location-name-input"/>-->
-          <button class="js-set-location-button small">Set</button>
+            <div class="margin-left">
+                <button class="button btn-default bz-small js-set-location-button">Set</button>
+            </div>
+            </form>
         </div>
       </div>
 
@@ -59,11 +72,11 @@
         <div class="row">
           <div class="small-12 medium-6 large-4 columns left">
             <ul class="none-list js-locations-list">
-              <li><a data-iscurrentlocation="true" data-locationname="My Location"> <b>My Current Location</b> </a></li>
+              <li><a data-iscurrentlocation="true" data-locationname="My Location"><i class="fa fa-map-marker"></i> My Current Location</a></li>
             </ul>
             {{#if currentUser }}
-              <h5>Your most recent locations:</h5>
               <ul class="none-list js-locations-list">
+                  <li><div class="title">Your most recent locations:</div></li>
                 {{#each getUserLocations}}
                   <li><a data-locationid="{{_id}}" data-locationname="{{name}}"> {{name }} </a></li>
                 {{/each}}
