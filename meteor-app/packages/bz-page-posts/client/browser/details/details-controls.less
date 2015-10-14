@@ -316,6 +316,8 @@
   }
   
   .clearing-assembled {
+    
+   
 
     .carousel {
       position: absolute;
@@ -367,7 +369,36 @@
         }
       }
     }
-    
+
+    /*overlay mode*/
+    &.clearing-blackout {
+      
+      .carousel {
+        height: auto;
+        
+        .clearing-thumbs {
+          display: block;
+          -webkit-flex: none;
+          flex:none;
+          
+          > * {
+            margin-top: 10px;
+            margin-left: 10px;
+            
+            &:first-child {
+              margin-left: 0;
+            }
+            
+            > * {
+              img {
+                height: auto !important;
+              }
+            }
+          }
+        }
+      }
+    }
+    /* END */
     
   }
 }
