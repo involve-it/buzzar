@@ -185,7 +185,7 @@ createLocationFromObject = function(obj){
   // 2. set sitewide current location:
   return ret;
 }
-setLocationFromData = function(locName, data, sessionName){
+setLocationToSessionFromData = function(locName, data, sessionName){
   var locId, bzPlace, res;
   // do something with the result:
   //Session.get('bz.control.search.location')
@@ -208,7 +208,7 @@ setLocationFromData = function(locName, data, sessionName){
     bz.help.maps.getCurrentLocation(function (loc) {
       Session.set(sessionName, {
         coords: loc,
-        placeType: bz.const.locations.type.MOVING,
+        placeType: bz.const.locations.type.DYNAMIC,
         name: bz.const.places.CURRENT_LOCATION,
         userId: Meteor.userId(),
         public: false // private, user's place

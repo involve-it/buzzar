@@ -19,7 +19,7 @@ bz.const.posts.status.presence.AWAY = 'away';
 
 bz.help.makeNamespace('bz.const.locations.type');
 bz.const.locations.type.STATIC = 'bz.static';
-bz.const.locations.type.MOVING = 'bz.moving';
+bz.const.locations.type.DYNAMIC = 'bz.dynamic';
 bz.const.locations.type.GOOGLEPLACE = 'google';
 bz.const.locations.type.MYPLACE = 'my place';
 

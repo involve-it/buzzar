@@ -1,168 +1,183 @@
 <template name="bzPostDetails">
-    <!--SIDE A-->
-    <div class="side-a text-center small-12 medium-6 columns">
+  <!--SIDE A-->
+  <div class="side-a text-center small-12 medium-6 columns">
 
-        <div class="post-item bz-post-published overflow">
-            <div class="post-details">
-                <div class="small-12 bz-post-label columns"><i class="fa fa-clock-o"></i> Published on <i>{{ getPostCreatedDate }}</i></div>
-            </div>
-        </div>
-        
-        <div class="user-avatar">
-            {{> postDetailsPhoto }}
-        </div>
-
-        <!--Additional information of the post-->
-
-        
+    <div class="post-item bz-post-published overflow">
+      <div class="post-details">
+        <div class="small-12 bz-post-label columns"><i class="fa fa-clock-o"></i> Published on
+          <i>{{ getPostCreatedDate }}</i></div>
+      </div>
     </div>
 
-    <!--SIDE B-->
-    <div class="side-b small-12 medium-6 large-6 columns">
-
-        <div class="item-divider">
-            <h3 class="title">Post Details</h3>
-        </div>
-
-        <div class="post-item overflow">
-        <div class="post-details">
-            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-eye"></i> Views</div>
-            <div class="small-12 medium-8 large-8 bz-post-result columns">
-                <p> <span>all</span> 250, <span>today</span> 15 </p>
-            </div>
-        </div>
-
-        <div class="post-details">
-            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-info-circle"></i> Left</div>
-            <div class="small-12 medium-8 large-8 bz-post-result columns"><p> 10 days </p></div>
-        </div>
-
-        <div class="post-details">
-            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-list-alt"></i> Type</div>
-            <div class="small-12 medium-8 large-8 bz-post-result columns"><div class="button bz-btn-category type-category-{{categoryType}}"> Trade </div></div>
-        </div>
-
-        <div class="post-details">
-            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-money"></i> Price</div>
-            <div class="small-12 medium-8 large-8 bz-post-result columns">
-                <div class="bz-price">
-                    200 <span class="bz-prefix">$</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="bz-separate"></div>
-        
-            {{> saveToWishList }}
-            
-    </div>
-        
-
+    <div class="user-avatar">
+      {{> postDetailsPhoto }}
     </div>
 
-    <div class="clearfix"></div>
+    <!--Additional information of the post-->
 
-                {{> postDetailsDetailsCommon }}
-                
-                <div class="js-post-details-categorized"></div>
-                {{> postDetailsHashesControl }}
-                
+
+  </div>
+
+  <!--SIDE B-->
+  <div class="side-b small-12 medium-6 large-6 columns">
+
+    <div class="item-divider">
+      <h3 class="title">Post Details</h3>
+    </div>
+
+    <div class="post-item overflow">
+      <div class="post-details">
+        <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-eye"></i> Views</div>
+        <div class="small-12 medium-8 large-8 bz-post-result columns">
+          <p><span>all</span> 250, <span>today</span> 15 </p>
+        </div>
+      </div>
+
+      <div class="post-details">
+        <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-info-circle"></i> Left</div>
+        <div class="small-12 medium-8 large-8 bz-post-result columns"><p> 10 days </p></div>
+      </div>
+
+      <div class="post-details">
+        <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-list-alt"></i> Type</div>
+        <div class="small-12 medium-8 large-8 bz-post-result columns">
+          <div class="button bz-btn-category type-category-{{categoryType}}"> Trade</div>
+        </div>
+      </div>
+
+      {{#if details.price }}
+        <div class="post-details">
+          <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-money"></i> Price</div>
+          <div class="small-12 medium-8 large-8 bz-post-result columns">
+            <div class="bz-price">
+              200 <span class="bz-prefix">$</span>
+            </div>
+          </div>
+        </div>
+      {{/if}}
+
+      <div class="bz-separate"></div>
+
+      {{> saveToWishList }}
+
+    </div>
+
+
+  </div>
+
+  <div class="clearfix"></div>
+
+  {{> postDetailsDetailsCommon }}
+
+  <div class="js-post-details-categorized"></div>
+  {{> postDetailsHashesControl }}
+
 </template>
 
 <template name="saveToWishList">
-    <div class="bz-wish-list">
-        <div class="bz-wish-list-title"><i class="fa fa-heart-o"></i> Save to wish list</div>
-        <div class="bz-wish-list-items">
-            <div class="bz-wish-list-item"><i class="fa fa-envelope-o"></i> Email</div>
-            <div class="bz-wish-list-item"><i class="fa fa-facebook"></i> Facebook</div>
-            <div class="bz-wish-list-item"><i class="fa fa-ellipsis-h"></i> more</div>
-        </div>
+  <div class="bz-wish-list">
+    <div class="bz-wish-list-title"><i class="fa fa-heart-o"></i> Save to wish list</div>
+    <div class="bz-wish-list-items">
+      <div class="bz-wish-list-item"><i class="fa fa-envelope-o"></i> Email</div>
+      <div class="bz-wish-list-item"><i class="fa fa-facebook"></i> Facebook</div>
+      <div class="bz-wish-list-item"><i class="fa fa-ellipsis-h"></i> more</div>
     </div>
+  </div>
 </template>
 
 <!--Forms for different types:-->
 <template name="postDetailsDetailsCommon">
 
-    <div class="item-divider">
-        <h2 class="title space-1">{{ getTitle }}</h2>
-        
-        <div class="post-location">
-            <i class="fa fa-map-marker"></i> <span>my location</span>
-        </div>
-    </div>
-    
-    
+  <div class="item-divider">
+    <h2 class="title space-1">{{ getTitle }}</h2>
 
-    <div class="post-item overflow">
-        <div class="post-details">
-            <div class="small-12 bz-post-description"><p> {{ getDescription }} </p></div>
-        </div>
-    </div>
+    {{#each getMyLocations }}
+      <div class="post-location">
+        <i class="fa fa-map-marker"></i>
+          <span>
+            {{ name }}
+            {{#if $eq placeType 'bz.dynamic' }}
+              (DYNAMIC)
+            {{else }}
+              (STATIC)
+            {{/if}}
+        </span>
+        <a class="js-show-location-on-map">(view map)</a>
+      </div>
+    {{/each}}
+  </div>
 
-    
+
+  <div class="post-item overflow">
+    <div class="post-details">
+      <div class="small-12 bz-post-description"><p> {{ getDescription }} </p></div>
+    </div>
+  </div>
+
+
 </template>
 
 
 <template name="postDetailsDetailsHelp">
-    <label class="item item-input item-select">
-        <div class="input-label">
-            What happened?
-        </div>
-        <select class="js-charity-type-select" disabled>
-            <option value="roommates">Lost my pet</option>
-            <option value="rent">Need money for food</option>
-            <option value="buy">Emergency situation</option>
-            <option value="buy">Other</option>
-        </select>
-    </label>
+  <label class="item item-input item-select">
+    <div class="input-label">
+      What happened?
+    </div>
+    <select class="js-charity-type-select" disabled>
+      <option value="roommates">Lost my pet</option>
+      <option value="rent">Need money for food</option>
+      <option value="buy">Emergency situation</option>
+      <option value="buy">Other</option>
+    </select>
+  </label>
 </template>
 <template name="postDetailsDetailsConnect">
-    <label class="item item-input item-select">
-        <div class="input-label">
-            I am looking for:
-        </div>
-        <select class="js-charity-type-select" disabled>
-            <option value="artists">artists and other creative people</option>
-            <option value="friends">friends</option>
-            <option value="professionals">professionals</option>
-            <option value="other">Other</option>
-        </select>
-    </label>
+  <label class="item item-input item-select">
+    <div class="input-label">
+      I am looking for:
+    </div>
+    <select class="js-charity-type-select" disabled>
+      <option value="artists">artists and other creative people</option>
+      <option value="friends">friends</option>
+      <option value="professionals">professionals</option>
+      <option value="other">Other</option>
+    </select>
+  </label>
 </template>
 <template name="postDetailsDetailsTrade">
-    <label type="stacked" class="item item-input item-stacked-label">
-        <span class="input-label">Price</span>
-        <input class="js-post-price" type="number" value="{{ getPrice }}" label-type="stacked" disabled/>
+  <label type="stacked" class="item item-input item-stacked-label">
+    <span class="input-label">Price</span>
+    <input class="js-post-price" type="number" value="{{ getPrice }}" label-type="stacked" disabled/>
 
-    </label>
+  </label>
 </template>
 <template name="postDetailsDetailsJobs">
-    <label class="item item-input">
-        <span class="input-label">Position</span>
-        <input class="js-job-title" type="text" label-type="stacked" name="title" maxlength="200" disabled>
-    </label>
+  <label class="item item-input">
+    <span class="input-label">Position</span>
+    <input class="js-job-title" type="text" label-type="stacked" name="title" maxlength="200" disabled>
+  </label>
 </template>
 <template name="postDetailsDetailsHousing">
-    <label class="item item-input item-select">
-        <div class="input-label">
-            Looking for
-        </div>
-        <select class="js-housing-type-select" disabled>
-            <option value="roommates">Roommates</option>
-            <option value="rent">Renting</option>
-            <option value="rentOut">Renting out</option>
-            <option value="buy">Buying a house</option>
-            <option value="sell">Selling a house</option>
-        </select>
-    </label>
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Looking for
+    </div>
+    <select class="js-housing-type-select" disabled>
+      <option value="roommates">Roommates</option>
+      <option value="rent">Renting</option>
+      <option value="rentOut">Renting out</option>
+      <option value="buy">Buying a house</option>
+      <option value="sell">Selling a house</option>
+    </select>
+  </label>
 </template>
 
 <template name="postDetailsHashesControl">
-    {{#if getHashes}}
-        
+  {{#if getHashes}}
+
     <label type="stacked" class="item item-input item-stacked-label padding-right">
-        <span class="input-label">Hashes</span>
-        <button class="button button-block button-stable js-hashes-holder">{{ getHashes }}</button>
+      <span class="input-label">Hashes</span>
+      <button class="button button-block button-stable js-hashes-holder">{{ getHashes }}</button>
     </label>
     <!--input with bottons know-how:-->
     <!--<label class="item item-input item-stacked-label">
@@ -174,30 +189,39 @@
             </a>
         </div>
     </label>-->
-        
-        {{/if}}
+
+  {{/if}}
 </template>
 
 <template name="postDetailsPhoto">
-    <div class="photos">
-        {{#if getPhotoUrl}}
-            <div class="single-photo cover-img" style="background-image: url('{{ getPhotoUrl }}')"></div>
-        {{else}}
-            <div class="single-photo cover-img" style="background-color: #efefef; background-image: url('../img/content/no-photo.png')"></div>
-        {{/if}}
-    </div>
+  <div class="photos">
+    <!--{{#if getPhotoUrl}}-->
+      <div class="single-photo cover-img" style="background-image: url('{{ getMainPhoto }}')"></div>
+    <!--{{else}}-->
+      <!--<div class="single-photo cover-img"-->
+           <!--style="background-color: #efefef; background-image: url('{{ getMainImage }}')"></div>-->
+    <!--{{/if}}-->
+    {{#if moreThanOnePhotos }}
+    <ul class="clearing-thumbs" data-clearing>
+    {{#each getPhotos }}
+    <li><a href="data:{{ data }}">
+      <img src="{{ data }}" style="height: 80px;"/>
+    </a></li>
+    {{/each}}
+    </ul>
+      {{/if}}
+  </div>
 
 
-<!--  <ul class="clearing-thumbs" data-clearing>
+  <!--  <ul class="clearing-thumbs" data-clearing>
     <li><a href="/img/content/avatars/avatar-no.png"><img src="{{ getPhotoUrl }}"></a></li>
     <li><a href="/img/content/avatars/avatar-no.png"><img src="{{ getPhotoUrl }}"></a></li>
     <li><a href="/img/content/avatars/avatar-no.png"><img src="{{ getPhotoUrl }}"></a></li>
   </ul>-->
-    
-    
-    
-    <!-- 09.23.15 old markup-->
-    <!--<div class="post-photo-upload">
+
+
+  <!-- 09.23.15 old markup-->
+  <!--<div class="post-photo-upload">
         &lt;!&ndash;<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>&ndash;&gt;
         <div class="owner-photo-wrap">
             <div class="img-avatar" data-action="edit-avatar">
@@ -211,6 +235,10 @@
         <br/>
         <a class="js-get-picture-lib button">get pic lib</a>&ndash;&gt;
     </div>-->
-    <!-- END 09.23.15 old markup-->
-    
+  <!-- END 09.23.15 old markup-->
+
+</template>
+
+<template name="bzPostLocationMapModal">
+
 </template>

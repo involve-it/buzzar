@@ -70,7 +70,7 @@ Template.bzChooseLocationModal.events({
     //var that = this;
     //Tracker.nonreactive(function () {
     var locName = $('.js-location-name-input.tt-input').val()
-    setLocationFromData(locName, v.data, this.sessionName);
+    setLocationToSessionFromData(locName, v.data, this.sessionName);
     if(this.sessionName === 'bz.control.search.location') {
       searchModalView && Blaze.remove(searchModalView);
       $('.js-global-location').foundation('reveal', 'close');
