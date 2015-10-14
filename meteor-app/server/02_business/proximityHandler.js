@@ -6,14 +6,39 @@ var R = 3961;
 //ad search radius (box, actually)
 var defaultRadius = 1,
     nearbyRadius = 0.5;
+
+Meteor.onConnection(function(connection){
+    console.log('Connected: ' + connection.id);
+    var connectionId = connection.id;
+    connection.onClose(function(){
+        console.log('Disconnected: ' + connectionId);
+        var user = Meteor.users.findOne({'lastSessionId': connectionId});
+        if (user){
+            console.log('Found userId: ' + user._id);
+            bz.bus.proximityHandler.processUserDisconnect(user._id);
+        }
+    });
+});
+
 bz.bus.proximityHandler = {
-    reportLocation: function(userId, lat, lng){
+    reportLocation: function(report){
+        console.log('Location reported for userId: ' + report.userId + ', sessionId: ' + report.sessionId + ', lat: ' + report.lat + ', lng: ' + report.lng);
         var posts = bz.cols.posts.find({
-            userId: userId
-        });
-        var filtered = bz.bus.proximityHandler.filterCircularPosts(posts, lat, lng, nearbyRadius);
-        var ids = _.pluck(filtered, '_id');
-        bz.cols.posts.update({'_id': {$in: ids}}, {$set: {status: 'online'}});
+            userId: report.userId
+        }).fetch();
+        //var filtered = bz.bus.proximityHandler.filterCircularPosts(posts, lat, lng, nearbyRadius);
+        //var ids = _.pluck(filtered, '_id');
+        //bz.cols.posts.update({'_id': {$in: ids}}, {$set: {presence: bz.const.posts.status.presence.NEAR}});
+        bz.bus.proximityHandler.processLocationReport(posts, report.lat, report.lng);
+
+        var user = Meteor.users.findOne({'_id': report.userId});
+        if (user){
+            Meteor.users.update({'_id': report.userId},{
+                $set: {
+                    lastSessionId: report.sessionId
+                }
+            });
+        }
     },
     //following function is not being used
     /*reportLocation: function(userId, lat, lng){
@@ -39,6 +64,57 @@ bz.bus.proximityHandler = {
         }
         return posts;
     },*/
+    processUserDisconnect: function(userId){
+        var posts = bz.cols.posts.find({
+            userId: userId
+        }).fetch(),
+            updated;
+        _.each(posts, function(post){
+            if (post && post.details && post.details.locations && Array.isArray(post.details.locations)){
+                updated = false;
+                _.each(post.details.locations, function(loc) {
+                    if (loc.placeType === bz.const.locations.type.DYNAMIC){
+                        //?
+                    } else {
+                        console.log('Changing status to Away for ad: ' + post.title);
+                        post.presence = bz.const.posts.status.presence.AWAY;
+                        updated = true;
+                    }
+                });
+                if (updated){
+                    bz.cols.posts.update({'_id': post._id}, post);
+                }
+            }
+        });
+    },
+    processLocationReport: function(posts, lat, lng){
+        var updated;
+        _.each(posts, function(post){
+            if (post && post.details && post.details.locations && Array.isArray(post.details.locations)){
+                updated = false;
+                _.each(post.details.locations, function(loc){
+                    if (loc.placeType === bz.const.locations.type.DYNAMIC){
+                        console.log('Updating moving coordinates for ad: ' + post.title);
+                        loc.coords = {
+                            lat: lat,
+                            lng: lng,
+                            timestamp: new Date()
+                        };
+                        updated = true;
+                    } else {
+                        if (bz.bus.proximityHandler.withinRadius(lat, lng, nearbyRadius, loc)) {
+                            console.log('Changing status to Near for ad: ' + post.title);
+                            post.presence = bz.const.posts.status.presence.NEAR;
+                            updated = true;
+                        }
+                    }
+                });
+                if (updated){
+                    bz.cols.posts.update({'_id': post._id}, post);
+                }
+            }
+        });
+    },
     getNearbyPosts: function(lat, lng){
         var box = bz.bus.proximityHandler.getLatLngBox(lat, lng, defaultRadius);
 
