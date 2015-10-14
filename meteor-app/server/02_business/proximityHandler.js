@@ -4,9 +4,19 @@
 //earth radius
 var R = 3961;
 //ad search radius (box, actually)
-var defaultRadius = 1;
+var defaultRadius = 1,
+    nearbyRadius = 0.5;
 bz.bus.proximityHandler = {
     reportLocation: function(userId, lat, lng){
+        var posts = bz.cols.posts.find({
+            userId: userId
+        });
+        var filtered = bz.bus.proximityHandler.filterCircularPosts(posts, lat, lng, nearbyRadius);
+        var ids = _.pluck(filtered, '_id');
+        bz.cols.posts.update({'_id': {$in: ids}}, {$set: {status: 'online'}});
+    },
+    //following function is not being used
+    /*reportLocation: function(userId, lat, lng){
         var posts = bz.bus.proximityHandler.getNearbyPosts(lat, lng),
             nearbyPosts = bz.cols.nearbyPosts.find({nearbyUserId: userId}).fetch();
         _.each(nearbyPosts, function(post){
@@ -28,7 +38,7 @@ bz.bus.proximityHandler = {
             });
         }
         return posts;
-    },
+    },*/
     getNearbyPosts: function(lat, lng){
         var box = bz.bus.proximityHandler.getLatLngBox(lat, lng, defaultRadius);
 
@@ -50,14 +60,16 @@ bz.bus.proximityHandler = {
             found;
         _.each(posts, function(post){
             found = false;
-            _.each(post.details.locations, function(loc){
-                if (bz.bus.proximityHandler.withinRadius(lat, lng, radius, loc)) {
-                    found = true;
-                    return false;
+            if (post && post.details && post.details.locations) {
+                _.each(post.details.locations, function (loc) {
+                    if (bz.bus.proximityHandler.withinRadius(lat, lng, radius, loc)) {
+                        found = true;
+                        return false;
+                    }
+                });
+                if (found) {
+                    results.push(post);
                 }
-            });
-            if (found){
-                results.push(post);
             }
         });
         return results;
