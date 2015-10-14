@@ -4,17 +4,24 @@
 bz.help.makeNamespace('bz.const.places');
 bz.const.places.CURRENT_LOCATION = 'My Location';
 //bz.const.places.CURRENT_LOCATION_DB = 'CURRENT';
+bz.help.makeNamespace('bz.const.user.status');
+bz.const.user.status.ONLINE = 'online'; //- мы "видим"/пеленгуем юзера
+bz.const.user.status.OFFLINE = 'offline'; // - нет
 
-bz.help.makeNamespace('bz.const.posts.status');
-bz.const.posts.status.VISIBLE = 1;
-bz.const.posts.status.INVISIBLE = 0;
-bz.const.posts.status.ARCHIVED = 2;
+bz.help.makeNamespace('bz.const.posts.status.visibility');
+bz.const.posts.status.visibility.VISIBLE = 'visible';
+bz.const.posts.status.visibility.INVISIBLE = 'invisible';
 
-bz.help.makeNamespace('bz.const.posts.location.type');
-bz.const.posts.location.type.STATIC = 'bz.static';
-bz.const.posts.location.type.MOVING = 'bz.moving';
-bz.const.posts.location.type.GOOGLEPLACE = 'google';
-bz.const.posts.location.type.MYPLACE = 'my place';
+// bz.const.posts.status.visibility.ARCHIVED = 2; // tbd
+bz.help.makeNamespace('bz.const.posts.status.presence');
+bz.const.posts.status.presence.NEAR = 'close';
+bz.const.posts.status.presence.AWAY = 'away';
+
+bz.help.makeNamespace('bz.const.locations.type');
+bz.const.locations.type.STATIC = 'bz.static';
+bz.const.locations.type.MOVING = 'bz.moving';
+bz.const.locations.type.GOOGLEPLACE = 'google';
+bz.const.locations.type.MYPLACE = 'my place';
 
 bz.help.makeNamespace('bz.const.posts.session.names');
 bz.const.posts.locationGlobal = 'bz.runtime.newPost.location';

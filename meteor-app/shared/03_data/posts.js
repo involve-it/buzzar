@@ -142,7 +142,7 @@ if (Meteor.isServer && false) {
       coords: {lat: 37.3715461, lng: -121.996919 }
     },
     status: {
-      visible: bz.const.posts.status.VISIBLE
+      visible: bz.const.posts.visibility.VISIBLE
     }
   });
   // post: https://www.linkedin.com/profile/view?id=100149100

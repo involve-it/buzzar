@@ -46,7 +46,7 @@ if (Meteor.isServer && false) {
   bz.cols.locations.insert({
     userId: 'mvmkh8LKukaHmu7oy',
     name: 'Orinda ballet',
-    placeType: bz.const.posts.location.type.STATIC,
+    placeType: bz.const.locations.type.STATIC,
     coords: {  //  49 Geary Street, San Francisco, CA
       lat: 37.787923,
       lng: -122.404342
@@ -57,7 +57,7 @@ if (Meteor.isServer && false) {
   bz.cols.locations.insert({
     userId: 'mvmkh8LKukaHmu7oy',
     name: 'Russian house #1',
-    placeType: bz.const.posts.location.type.STATIC,
+    placeType: bz.const.locations.type.STATIC,
     coords: {  //  49 Geary Street, San Francisco, CA
       lat: 37.787923,
       lng: -122.404342
@@ -79,7 +79,7 @@ bz.cols.locations.insertFromGoogleObject = function(googleObj) {
   var ret = {
     userId: Meteor.userId(),
     name: googleObj.name,
-    placeType: bz.const.posts.location.type.GOOGLEPLACE,
+    placeType: bz.const.locations.type.GOOGLEPLACE,
     coords: {
       lat: googleObj.geometry.location.J,
       lng: googleObj.geometry.location.M
@@ -131,7 +131,7 @@ var locationsSchema = new SimpleSchema({
   placeType: {
     type: String,
     max: 50,
-    defaultValue: bz.const.posts.location.type.STATIC
+    defaultValue: bz.const.locations.type.STATIC
   },
   origObj: {
     type: Object,

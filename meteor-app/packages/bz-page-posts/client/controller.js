@@ -27,7 +27,7 @@ movingLocationPanelClick = function () {
       })
       /*locationsArr.push({
        coords: loc,
-       type: bz.const.posts.location.type.STATIC
+       type: bz.const.locations.type.STATIC
        });
        locDef.resolve();*/
     });

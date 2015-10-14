@@ -70,8 +70,9 @@ Template.postsNew.events({
           }
         },
         status: {
-          visible: bz.const.posts.status.VISIBLE
-        }
+          visible: bz.const.posts.visibility.VISIBLE
+        },
+
       }
 
       //$.when(locDef).then(function () {
