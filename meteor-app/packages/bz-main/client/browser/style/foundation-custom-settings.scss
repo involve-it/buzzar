@@ -329,7 +329,10 @@ body {
       
       /* Photos - details controls */
       .photos {
-        height: 250px;
+
+        .single-photo {
+          height: 250px;
+        }
       }
 
 
@@ -537,9 +540,12 @@ body {
     .bz-wrap-page {
 
       /* Photos - details controls */
-      .photos {
-        height: 350px;
-      }
+      /*.photos {
+        
+        .single-photo {
+          height: 300px;
+        }
+      }*/
       
       
           /* search */

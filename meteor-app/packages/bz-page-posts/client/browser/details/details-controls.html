@@ -4,8 +4,7 @@
 
     <div class="post-item bz-post-published overflow">
       <div class="post-details">
-        <div class="small-12 bz-post-label columns"><i class="fa fa-clock-o"></i> Published on
-          <i>{{ getPostCreatedDate }}</i></div>
+        <div class="small-12 bz-post-label columns"><i class="fa fa-clock-o"></i> Published on <i>{{ getPostCreatedDate }}</i></div>
       </div>
     </div>
 
@@ -201,15 +200,18 @@
       <!--<div class="single-photo cover-img"-->
            <!--style="background-color: #efefef; background-image: url('{{ getMainImage }}')"></div>-->
     <!--{{/if}}-->
+        
     {{#if moreThanOnePhotos }}
-    <ul class="clearing-thumbs" data-clearing>
-    {{#each getPhotos }}
-    <li><a href="data:{{ data }}">
-      <img src="{{ data }}" style="height: 80px;"/>
-    </a></li>
-    {{/each}}
-    </ul>
-      {{/if}}
+        <ul class="clearing-thumbs" data-clearing>
+            {{#each getPhotos }}
+                <li>
+                    <a href="data:{{ data }}">
+                      <img src="{{ data }}" style="height: 60px;"/>
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
   </div>
 
 
