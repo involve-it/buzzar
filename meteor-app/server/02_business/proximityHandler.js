@@ -94,16 +94,18 @@ bz.bus.proximityHandler = {
                 updated = false;
                 _.each(post.details.locations, function(loc){
                     if (loc.placeType === bz.const.locations.type.DYNAMIC){
-                        console.log('Updating moving coordinates for ad: ' + post.title);
-                        loc.coords = {
-                            lat: lat,
-                            lng: lng,
-                            timestamp: new Date()
-                        };
-                        updated = true;
+                        if (loc.coords.lat !== lat || loc.coords.lng != lng) {
+                            console.log('Updating moving coordinates for ad: ' + post.details.title);
+                            loc.coords = {
+                                lat: lat,
+                                lng: lng,
+                                timestamp: new Date()
+                            };
+                            updated = true;
+                        }
                     } else {
                         if (bz.bus.proximityHandler.withinRadius(lat, lng, nearbyRadius, loc)) {
-                            console.log('Changing status to Near for ad: ' + post.title);
+                            console.log('Changing status to Near for ad: ' + post.details.title);
                             post.presence = bz.const.posts.status.presence.NEAR;
                             updated = true;
                         }

@@ -35,7 +35,7 @@ Package.onUse(function (api) {
     'client/lib/01_inits/fb.js',
     'client/lib/01_inits/maps.js',
     'client/lib/01_inits/t9.js',
-    'client/lib/01_inits/template-helpsers.js',
+    'client/lib/01_inits/template-helpers.js',
     'client/lib/rates/jquery.raty.js',
     'client/lib/animate/animate.css',
 
