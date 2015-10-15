@@ -5,7 +5,9 @@
 @text-link-green:     rgba(32, 171, 173, 0.95);
 @roboto-font-family:  "Roboto", sans-serif;
 
-
+@text-color:             rgb(63, 68, 82);
+@text-color-label:       rgba(89,99,107, .95);
+@text-color-label-span:  #88858c;
 
 @border-color-sep:       rgba(222,222,222,1);
 
@@ -17,6 +19,9 @@
 
 @bg-header-color-2: #87D0BF;
 @bg-header-color-1: #51B9C8;
+
+@bg-color-fff: rgba(255,255,255, 1);
+@bg-color-eee: rgba(238,238,238, 1);
 
 @bg-menu-color-1: rgb(63, 68, 82);
 
@@ -77,6 +82,16 @@
   &.type-category-connect   {background-color: rgba(30,188,210, 1);}
   &.type-category-housing   {background-color: rgba(241,186,56, 1);}
   &.type-category-events    {background-color: rgba(0,150,136, 1);}
+}
+
+.type-category-color() {
+  /*Category type*/
+  &.type-category-trade     {color: rgba(81,185,200, 1);}
+  &.type-category-jobs      {color: rgba(121,121,121, 1);}
+  &.type-category-help      {color: rgba(121,206,33, 1);}
+  &.type-category-connect   {color: rgba(30,188,210, 1);}
+  &.type-category-housing   {color: rgba(241,186,56, 1);}
+  &.type-category-events    {color: rgba(0,150,136, 1);}
 }
 
 /* END MIXIN */
