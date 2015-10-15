@@ -49,8 +49,6 @@ Template.onePostRowItem.helpers({
   },
   getAvatarImg: function () {
     var ret ='';
-
-    console.log(Meteor.users.findOne(this.userId));
     
     if(this.userId && Meteor.users.findOne(this.userId) && Meteor.users.findOne(this.userId).profile.image) {
       return ret = Meteor.users.findOne(this.userId).profile.image;
