@@ -21,13 +21,15 @@ var Maps = {
       lat: 37.787923,
       lng: -122.404342
     };*/
-    var loc = {
+
+    /*var loc = {
       lat: 37.3213,
       lng: -121.81649
     };
     args.unshift(loc)
     callback.apply(that, args);
-    return;
+    return;*/
+    debugger
     navigator.geolocation.getCurrentPosition(function (a) {
      //bz.runtime.maps.currentGeoposition = a;
      var loc = {
@@ -71,17 +73,7 @@ var Maps = {
             if (results.length > 1) {
               bz.help.logError('more than 1 result in geocoding!');
             }
-            if(Number.parseFloat(results[0].geometry.location.J)){ // stupid ..
-              coords = {
-                lat: results[0].geometry.location.J,
-                lng: results[0].geometry.location.M
-              }
-            } else if (typeof results[0].geometry.location.lat === 'function' && Number.parseFloat(results[0].geometry.location.lat())) { // .. google
-              coords = {
-                lat: results[0].geometry.location.lat(),
-                lng: results[0].geometry.location.lng()
-              }
-            }
+            googleCoordsToNormalCoords(results[0].geometry.location);
 
             ret.resolve(coords);
           } else {
@@ -95,4 +87,23 @@ var Maps = {
     return ret;
   }
 }
+
+googleCoordsToNormalCoords = function (googleCoords){
+  var coords;
+  if(Number.parseFloat(googleCoords.J)){ // stupid ..
+    coords = {
+      lat: googleCoords.J,
+      lng: googleCoords.M
+    }
+  } else if (typeof googleCoords.lat === 'function' && Number.parseFloat(googleCoords.lat())) { // .. google
+    coords = {
+      lat: googleCoords.lat(),
+      lng: googleCoords.lng()
+    }
+  }
+  return coords;
+}
+
 bz.help.makeNamespace('bz.help.maps', Maps);
+bz.help.maps.googleCoordsToNormalCoords = googleCoordsToNormalCoords;
+

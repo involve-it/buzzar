@@ -32,6 +32,7 @@
         </div>
       </div>
 
+      {{#if details.duration }}
       <div class="post-details">
         <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-info-circle"></i> Left</div>
         <div class="small-12 medium-8 large-8 bz-post-result columns"><p> 10 days </p></div>
@@ -43,6 +44,7 @@
           <div class="button bz-btn-category type-category-{{categoryType}}"> Trade</div>
         </div>
       </div>
+      {{/if }}
 
       {{#if details.price }}
         <div class="post-details">
@@ -75,7 +77,7 @@
 
 <template name="saveToWishList">
   <div class="bz-wish-list">
-    <div class="bz-wish-list-title"><i class="fa fa-heart-o"></i> Save to wish list</div>
+    <div class="bz-wish-list-title"><i class="fa fa-heart-o"></i> Save to favorites</div>
     <div class="bz-wish-list-items">
       <div class="bz-wish-list-item"><i class="fa fa-envelope-o"></i> Email</div>
       <div class="bz-wish-list-item"><i class="fa fa-facebook"></i> Facebook</div>
