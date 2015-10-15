@@ -8,13 +8,13 @@ var defaultRadius = 1,
     nearbyRadius = 0.5;
 
 Meteor.onConnection(function(connection){
-    console.log('Connected: ' + connection.id);
+    //console.log('Connected: ' + connection.id);
     var connectionId = connection.id;
     connection.onClose(function(){
-        console.log('Disconnected: ' + connectionId);
+        //console.log('Disconnected: ' + connectionId);
         var user = Meteor.users.findOne({'lastSessionId': connectionId});
         if (user){
-            console.log('Found userId: ' + user._id);
+            //console.log('Found userId: ' + user._id);
             bz.bus.proximityHandler.processUserDisconnect(user._id);
         }
     });
@@ -22,7 +22,7 @@ Meteor.onConnection(function(connection){
 
 bz.bus.proximityHandler = {
     reportLocation: function(report){
-        console.log('Location reported for userId: ' + report.userId + ', sessionId: ' + report.sessionId + ', lat: ' + report.lat + ', lng: ' + report.lng);
+        //console.log('Location reported for userId: ' + report.userId + ', sessionId: ' + report.sessionId + ', lat: ' + report.lat + ', lng: ' + report.lng);
         var posts = bz.cols.posts.find({
             userId: report.userId
         }).fetch();
@@ -76,7 +76,7 @@ bz.bus.proximityHandler = {
                     if (loc.placeType === bz.const.locations.type.DYNAMIC){
                         //?
                     } else {
-                        console.log('Changing status to Away for ad: ' + post.title);
+                        //console.log('Changing status to Away for ad: ' + post.details.title);
                         post.presence = bz.const.posts.status.presence.AWAY;
                         updated = true;
                     }
@@ -95,7 +95,7 @@ bz.bus.proximityHandler = {
                 _.each(post.details.locations, function(loc){
                     if (loc.placeType === bz.const.locations.type.DYNAMIC){
                         if (loc.coords.lat !== lat || loc.coords.lng != lng) {
-                            console.log('Updating moving coordinates for ad: ' + post.details.title);
+                            //console.log('Updating moving coordinates for ad: ' + post.details.title);
                             loc.coords = {
                                 lat: lat,
                                 lng: lng,
@@ -105,7 +105,7 @@ bz.bus.proximityHandler = {
                         }
                     } else {
                         if (bz.bus.proximityHandler.withinRadius(lat, lng, nearbyRadius, loc)) {
-                            console.log('Changing status to Near for ad: ' + post.details.title);
+                            //console.log('Changing status to Near for ad: ' + post.details.title);
                             post.presence = bz.const.posts.status.presence.NEAR;
                             updated = true;
                         }
