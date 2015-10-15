@@ -3,7 +3,7 @@
  */
 bz.help.makeNamespace('bz.runtime.newPost.location');
 
-createNewPostFromView = function(v) {
+createNewPostFromView = function (v) {
   var userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
     locDef = $.Deferred(),
     loc1 = Session.get(bz.const.posts.location1),
@@ -16,7 +16,7 @@ createNewPostFromView = function(v) {
   if (userId) {
     if (Session.get('bz.posts.postImgArr')) {
       //if (bz.runtime.newPost.postImage) {
-      _.each(Session.get('bz.posts.postImgArr'), function(img){
+      _.each(Session.get('bz.posts.postImgArr'), function (img) {
         img = img || {};
         imgId = bz.cols.images.insert({
           data: img.data,
@@ -90,18 +90,18 @@ movingLocationPanelClick = function () {
     //$('.js-location-holder a').click();
     bz.help.maps.getCurrentLocation(function (loc) {
       /*var chosenLocation = Session.get('bz.posts.new.location1');
-      var name = 'current';
-      var existLoc = bz.cols.locations.findOne({name: name, userId: Meteor.userId()});
-      if (existLoc) {
-        bz.cols.locations.remove(existLoc._id);
-      }
-      bz.cols.locations.insert({
-        userId: Meteor.userId(),
-        name: 'current',
-        coords: loc
-      });*/
+       var name = 'current';
+       var existLoc = bz.cols.locations.findOne({name: name, userId: Meteor.userId()});
+       if (existLoc) {
+       bz.cols.locations.remove(existLoc._id);
+       }
+       bz.cols.locations.insert({
+       userId: Meteor.userId(),
+       name: 'current',
+       coords: loc
+       });*/
 
-      Meteor.call('setUserCurrentLocation', Meteor.userId(), loc, function(err, resLocation){
+      Meteor.call('setUserCurrentLocation', Meteor.userId(), loc, function (err, resLocation) {
         location1.setLocation(resLocation);
       })
       /*locationsArr.push({
@@ -121,6 +121,35 @@ staticLocationPanelClick = function () {
     Template.bzLocationNameNewPost.showModal();
   }
 }
+userSeenAll;
+// this function calculates browser-specific hits
+runHitTracking = function (post, browserInfo) {
+  var userSeenTotal, userSeenToday, seenTotalPost, seenTodayPost;
+  if (!userSeenTotal) {
+    seenTotalPost = post.stats && post.stats.seenTotal || 0;
+    bz.cols.posts.update(post._id, {$set: {'stats.seenTotal': ++seenTotalPost }});
+    //setCookie('bz.posts.seenTotal.postId.' + post._id, true);
+    Cookie.set('bz.posts.seenTotal.postId.' + post._id, true);
+    userSeenTotal = undefined;
+  } else {
+    // user seen this already, do nothing!
+  }
+  // set total unique today:
+  userSeenToday = Cookie.get('bz.posts.seenToday.postId.' + post._id);
+  if (!userSeenToday) {
+    seenTodayPost = post.stats && post.stats.seenToday || 0;
+    bz.cols.posts.update(post._id, {$set: {'stats.seenToday': ++seenTodayPost }});
+    Cookie.set('bz.posts.seenToday.postId.' + post._id, true, { days: 1 });
+    userSeenToday = undefined;
+  } else {
+    // user seen this already, do nothing!
+  }
+  // set total loads (non-unique):
+  if(!userSeenAll) { // need to run only on-time on full load
+    userSeenAll = !userSeenAll && post.stats && post.stats.seenAll || 0;
+    bz.cols.posts.update(post._id, {$set: {'stats.seenAll': ++userSeenAll}});
+  }
+}
 
 //HELPERS:
 function clearPostData() {
@@ -128,11 +157,11 @@ function clearPostData() {
 }
 
 // location1 variable:
-location1 =  {
+location1 = {
   isSet: false,
   sessionName: 'bz.posts.new.location1',
   dbObject: undefined,
-  setLocation: function(dbObject){
+  setLocation: function (dbObject) {
     this.isSet = true;
     this.dbObject = dbObject;
     Session.set(this.sessionName, dbObject);
@@ -142,7 +171,7 @@ location2 = {
   isSet: false,
   sessionName: 'bz.posts.new.location2',
   dbObject: undefined,
-  setLocation: function(dbObject){
+  setLocation: function (dbObject) {
     this.isSet = true;
     this.dbObject = dbObject;
     Session.set(this.sessionName, dbObject);

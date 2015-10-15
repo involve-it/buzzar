@@ -16,10 +16,16 @@ Router.map(function () {
     path: '/post/:_id',
     template: 'postsPageDetails',
     data: function () {
-      var ret = bz.cols.posts.findOne({_id: this.params._id});
+      var ret;
+      ret = bz.cols.posts.findOne({_id: this.params._id});
       return ret;
     },
     //controller: 'requireLoginController',
+    onAfterAction: function () {
+      var post = this.data();
+      post && runHitTracking(post);
+      console.log('onAfterAction' + this.data());
+    },
     onBeforeAction: function () {
       if (!this.data()) {
         Router.go('/page-not-found');
