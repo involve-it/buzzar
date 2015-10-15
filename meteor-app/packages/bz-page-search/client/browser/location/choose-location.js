@@ -78,6 +78,7 @@ Template.bzChooseLocationModal.events({
       searchModalView2 && Blaze.remove(searchModalView2);
       $('.js-new-post-location').foundation('reveal', 'close');
     }
+    return false;
   },
   'click .js-locations-list a': function (e, v) {
     var locName, locId;

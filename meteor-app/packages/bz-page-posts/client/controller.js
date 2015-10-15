@@ -125,6 +125,7 @@ userSeenAll;
 // this function calculates browser-specific hits
 runHitTracking = function (post, browserInfo) {
   var userSeenTotal, userSeenToday, seenTotalPost, seenTodayPost;
+  userSeenTotal = Cookie.get('bz.posts.seenTotal.postId.' + post._id)
   if (!userSeenTotal) {
     seenTotalPost = post.stats && post.stats.seenTotal || 0;
     bz.cols.posts.update(post._id, {$set: {'stats.seenTotal': ++seenTotalPost }});

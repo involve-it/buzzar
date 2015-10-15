@@ -71,10 +71,18 @@ var Maps = {
             if (results.length > 1) {
               bz.help.logError('more than 1 result in geocoding!');
             }
-            coords = {
-              lat: results[0].geometry.location.J,
-              lng: results[0].geometry.location.M
+            if(Number.parseFloat(results[0].geometry.location.J)){ // stupid ..
+              coords = {
+                lat: results[0].geometry.location.J,
+                lng: results[0].geometry.location.M
+              }
+            } else if (typeof results[0].geometry.location.lat === 'function' && Number.parseFloat(results[0].geometry.location.lat())) { // .. google
+              coords = {
+                lat: results[0].geometry.location.lat(),
+                lng: results[0].geometry.location.lng()
+              }
             }
+
             ret.resolve(coords);
           } else {
             ret.resolve(undefined);
