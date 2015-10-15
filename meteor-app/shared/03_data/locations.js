@@ -80,10 +80,7 @@ bz.cols.locations.insertFromGoogleObject = function(googleObj) {
     userId: Meteor.userId(),
     name: googleObj.name,
     placeType: bz.const.locations.type.GOOGLEPLACE,
-    coords: {
-      lat: googleObj.geometry.location.J,
-      lng: googleObj.geometry.location.M
-    },
+    coords: bz.help.maps.googleCoordsToNormalCoords(googleObj.geometry.location),
     public: true, // let's assume this is a public place, since it's from google
     origObj: googleObj
   }
