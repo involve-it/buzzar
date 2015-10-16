@@ -8,6 +8,7 @@
             <div class="item item-divider item-active">
                 {{t9n 'active'}}
             </div>
+            
             {{#each activePosts}}
                 {{> onePostRowItem}}
             {{/each}}
@@ -31,21 +32,61 @@
 
 <template name="onePostRowItem">
     
-    <div class="item">
+    
+    
+    <div class="bz-item bz-item-fixed">
+        <div class="bz-item-mask">
+            <a href="/post/{{_id}}">
+                <div class="bz-item-photo">
+                    {{#if getPhotoUrl.data}}
+                        <img src="{{getPhotoUrl.data}}">
+                    {{else}}
+                        <img src="/img/content/no-photo.png">
+                    {{/if}}
+                </div>
+                
+                <div class="bz-item-content">
+                    <div class="bz-item-content-context">
+                        <div class="bz-item-type type-category-{{categoryType}}">{{ categoryType }}</div>
+                    </div>
+                    <h4 class="bz-item-title">{{details.title}}</h4>
+                    <p class="bz-item-text">{{details.description}}</p>
+                </div>
+                <div class="bz-item-footer">
+                    <div class="bz-item-views">{{t9n 'views'}} 250 <span class="today">(15 today)</span></div>
+                </div>
+            </a>
+        </div>
+        <div class="bz-tem-additional-tags">
+            {{#if details.price}}
+                <div class="price"> {{details.price}} <span class="bz-prefix">$</span></div>
+            {{/if}}
+        </div>
+        <div class="bz-item-owner">
+            <div class="bz-avatar" style="background: url({{ getAvatarImg }}); background-size: cover;"></div>
+            <div class="bz-item-user-info">
+                <div class="bz-username"><a href="/user/{{ userId }}">{{ getUserName }}</a></div>
+                <div class="bz-rating"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!--Old segment code-->
+    <!--<div class="item">
         <a href="/post/{{_id}}">
         <div class="photo">
             <div class="photo-wrapper">
                 {{#if getPhotoUrl.data}}
                     <img src="{{getPhotoUrl.data}}">
                  {{else}}
-                    <img src="/img/content/avatars/avatar-no.png">
+                    <img src="/img/content/no-photo.png">
                 {{/if}}
             </div>
         </div>
 
         <div class="description">
             
-            <h3 class="title">{{details.title}}</h3> <!-- Define max characters-->
+            <h3 class="title">{{details.title}}</h3>
 
             {{#if details.price}}
                 <div class="price"> {{details.price}} <span class="bz-prefix">$</span></div>
@@ -61,7 +102,7 @@
             </div>
         </div>
         </a>
-    </div>
+    </div>-->
     
 </template>
 

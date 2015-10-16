@@ -7,6 +7,13 @@ Template.myItems.onCreated(function () {
 });
 
 
+Template.onePostRowItem.rendered = function() {
+  /*init Rate*/
+  $('.bz-rating').raty({
+    starType: 'i'
+  });
+};
+
 Template.myItems.helpers({
   posts: function () {
     //debugger;
@@ -36,7 +43,25 @@ Template.onePostRowItem.helpers({
     return image;
 
   },
-  getPrice: function () {
+  getPrice: function () {},
+  categoryType: function() {
+    return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
+  },
+  getAvatarImg: function () {
+    var ret ='';
+    
+    if(this.userId && Meteor.users.findOne(this.userId) && Meteor.users.findOne(this.userId).profile.image) {
+      return ret = Meteor.users.findOne(this.userId).profile.image;
+    } else {
+      return '/img/content/avatars/avatar-no.png';
+    }
+  },
+  getUserName: function() {
+    var ret = '';
+    if(this.userId && Meteor.users.findOne(this.userId)) {
+      ret = Meteor.users.findOne(this.userId).username.toCapitalCase();
+    }
+    return ret;
   }
 });
 

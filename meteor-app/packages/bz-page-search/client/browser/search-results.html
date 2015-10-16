@@ -1,5 +1,15 @@
 <template name="searchResults">
-  {{#each getSearchedResults}}
-      {{> onePostRowItem}}
-  {{/each}}
+    {{#if getSearchedResults}}
+        
+        <h2 class="title">Search result</h2>
+
+        <div class="bz-search-results clearfix">
+            <div class="bz-search-items">
+                {{#each getSearchedResults}}
+                    {{> onePostRowItem}}
+                {{/each}}
+            </div>
+        </div>
+        
+    {{/if}}
 </template>

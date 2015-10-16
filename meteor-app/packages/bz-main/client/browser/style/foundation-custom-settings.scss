@@ -305,9 +305,47 @@ body {
 *
 */
 
-  @media (max-width: 540px) {
-    
+  /* 
+  * search result media ... 
+  */
+
+  /*@media screen and  (max-width: 2190px) {
+    .bz-search-items {
+      max-width: 1720px;
+    }
+  }*/
+
+  
+  /*@media screen and  (max-width: 1760px) {
+    .bz-search-items {
+      max-width: 1290px;
+    }
+  }*/
+
+  /* 3 items in row */
+  @media screen and  (max-width: 1540px) {
+    .bz-search-items {
+      max-width: 1250px;
+    }
   }
+  /* 2 items in row */
+  @media screen and  (max-width: 1330px) {
+    .bz-search-items {
+      max-width: 860px;
+    }
+  }
+  /* 1 item in row */
+  @media screen and  (max-width: 900px) {
+    .bz-search-items {
+      max-width: 430px;
+    }
+  }
+  
+
+  
+ 
+  
+
 
 
 
