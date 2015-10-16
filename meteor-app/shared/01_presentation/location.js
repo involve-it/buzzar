@@ -10,7 +10,8 @@ if(Meteor.isServer) {
         //bz.cols.locations.remove(existLoc._id);
         bz.cols.locations.update(existLoc._id, {
           $set: {
-            coords: coords
+            coords: coords,
+            placeType: bz.const.locations.type.DYNAMIC
           }
         });
         id = existLoc._id;
@@ -18,7 +19,8 @@ if(Meteor.isServer) {
         id = bz.cols.locations.insert({
           userId: userId,
           name: name,
-          coords: coords
+          coords: coords,
+          placeType: bz.const.locations.type.DYNAMIC
         });
       }
 

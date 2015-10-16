@@ -29,7 +29,6 @@ var Maps = {
     args.unshift(loc)
     callback.apply(that, args);
     return;*/
-    debugger
     navigator.geolocation.getCurrentPosition(function (a) {
      //bz.runtime.maps.currentGeoposition = a;
      var loc = {

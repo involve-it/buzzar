@@ -190,6 +190,12 @@ createLocationFromObject = function(obj){
   return ret;
 }
 setLocationToSessionFromData = function(locName, data, sessionName){
+  var placeType;
+  if(sessionName === bz.const.posts.location2) {
+    placeType = bz.const.locations.type.STATIC;
+  } else if (sessionName === bz.const.posts.location1) {
+    placeType = bz.const.locations.type.DYNAMIC;
+  }
   var locId, bzPlace, res;
   // do something with the result:
   //Session.get('bz.control.search.location')
@@ -212,7 +218,7 @@ setLocationToSessionFromData = function(locName, data, sessionName){
     bz.help.maps.getCurrentLocation(function (loc) {
       Session.set(sessionName, {
         coords: loc,
-        placeType: bz.const.locations.type.DYNAMIC,
+        placeType: placeType,
         name: bz.const.places.CURRENT_LOCATION,
         userId: Meteor.userId(),
         public: false // private, user's place
