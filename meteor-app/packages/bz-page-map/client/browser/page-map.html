@@ -11,7 +11,10 @@
           <!--Code here-->
 
           <!--Load google map control-->
+        <!-- height - temp -->
+        <div style="height:600px;">
           {{> googleMapControl }}
+        </div>
 
           <!--Panel (search result)-->
           {{> panelSearchResult}}
@@ -43,7 +46,6 @@
 
 -->
 <template name="panelSearchResult">
-  asdf
   {{#if activeTemplate}}
     {{> Template.dynamic template=activeTemplate}}
     {{> Template.dynamic template=activeTemplate data=getData}}

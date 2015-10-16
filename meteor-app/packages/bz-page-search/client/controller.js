@@ -55,7 +55,7 @@ Meteor.startup(function () {
   });
 });
 
-bz.bus.search.doSearch = function(){
+bz.bus.search.doSearch = function(callback){
   var searchedText = Session.get('bz.control.search.searchedText');
   searchedText = searchedText && searchedText.trim();
   if (searchedText) {
@@ -80,6 +80,10 @@ bz.bus.search.doSearch = function(){
         for (var i = 0; i < results.length; i++) {
           bz.cols.searchRt._collection.upsert({_id: results[i]._id}, results[i]);
         }
+      }
+
+      if (callback && typeof callback === 'function'){
+        callback(err, results);
       }
     });
   } else {
