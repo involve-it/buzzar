@@ -4,3 +4,9 @@
 Template.bzChatMessagePopup.onRendered(function(){
   //js-message-text
 });
+Template.bzChatMessagePopup.events({
+  'click .js-go-to-msg-link': function(){
+    debugger;
+    // need to close the modal with the message:
+  }
+});

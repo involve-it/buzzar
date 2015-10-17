@@ -33,7 +33,7 @@ accounts-google
 accounts-twitter
 mikael:accounts-merge
 service-configuration
-biasport:facebook-sdk
+#biasport:facebook-sdk
 raix:handlebar-helpers
 dburles:google-maps
 arutune:bz-page-home

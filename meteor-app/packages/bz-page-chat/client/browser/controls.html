@@ -2,7 +2,7 @@
   <div id="bzChatMessageModal" class="reveal-modal js-chat-message-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
     <h4>New incoming message.</h4>
 
-    <p><a href="/chat/{{chatId}}">{{ messageText }}</a></p>
+    <p><a href="/chat/{{chatId}}" class="js-go-to-msg-link">{{ messageText }}</a></p>
     {{#if user }}
     <p>From:</p>
     {{> bzUserProfileBasic user}}

@@ -71,6 +71,9 @@ Template.replyArea.events({
 });
 
 
+Template.chatMessage.onRendered(function(){
+  bz.cols.messages.update(this.data._id, {$set: {seen: true}});
+});
 Template.chatMessage.helpers({
   getMessageClass: function () {
     var className = '';

@@ -70,6 +70,9 @@ if (Meteor.isServer) {
     insert: function () {
       return true;
     },
+    update: function () {
+      return true;
+    },
     remove: function () {
       return true;
     }
@@ -81,5 +84,10 @@ if (Meteor.isServer) {
   });
   Meteor.publish('bz.messages.chatId', function (chatId) {
     return bz.cols.messages.find({chatId: chatId});
+  });
+
+  // current user's unseen messages:
+  Meteor.publish('bz.messages.unseenToMe', function (userId) {
+    return bz.cols.messages.find({toUserId: userId, seen: false});
   });
 }

@@ -124,7 +124,7 @@ getUniqueChatsForUser = function (userId, all) {
 
   return chats;
 }
-
+messageModals = {}
 showMessageModal = function (msgObj, userObj) {
   var data = {
       messageText: msgObj.text,
@@ -132,13 +132,17 @@ showMessageModal = function (msgObj, userObj) {
       user: userObj
     },
     parentNode = $('.js-message-popup-placeholder')[0];
-  Blaze.renderWithData(Template.bzChatMessagePopup, data, parentNode);
+  messageModals[msgObj._id] = Blaze.renderWithData(Template.bzChatMessagePopup, data, parentNode);
   $('.js-chat-message-modal').foundation('reveal', 'open');
   setTimeout(function () {
-    $('.js-chat-message-modal').foundation('reveal', 'close');
-  }, 5000);
+    hideMessageModal(msgObj._id);
+  }, 50000);
 }
-
+hideMessageModal = function(msgId){
+  $('.js-chat-message-modal').foundation('reveal', 'close');
+  var view = messageModals[msgId];
+  Blaze.remove(view);
+}
 Template.registerHelper("timestampToTime", function (timestamp) {
   var date = new Date(timestamp);
   return moment(date).fromNow();
@@ -150,22 +154,6 @@ Meteor.startup(function () {
    console.log(b);
    }
    });*/
-  (function () {
-    var initializing = true;
-    bz.cols.messages.find().observeChanges({
-      added: function (id, doc) {
-        if (Meteor.userId() === doc.toUserId) {
-
-          if (!initializing) {
-            //console.log(doc);
-            var userObj = Meteor.users.findOne(doc.userId);
-            bz.buz.chats.showMessageModal(doc, userObj);
-          }
-        }
-      }
-    });
-    initializing = false;
-  })();
 });
 
 // EXPOSE EXTERNAL API:
