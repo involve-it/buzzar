@@ -76,7 +76,6 @@ Template.uploadImageModal.events({
   'click .js-use-random-image-url': function (e, v) {
     var that = this, imgData,
         randomImgUrl = bz.const.randomImageSite + '?ts=' + Date.now();
-
     getDataFromImgUrl(randomImgUrl, $('.js-preview')[0], 400, 300, function (imgData) {
       //Session.set(that.sessionName, imgData);
       addImageToArrSession(that.sessionName, imgData);
@@ -89,6 +88,7 @@ Template.uploadImageModal.events({
       var reader = new FileReader();
       reader.onload = function (e1) {
         //Session.set(that.sessionName, e1.target.result);
+
         addImageToArrSession(that.sessionName, e1.target.result);
       };
       reader.readAsDataURL(input.files[0]);
@@ -98,23 +98,7 @@ Template.uploadImageModal.events({
     $('.js-avatar-upload-modal').foundation('reveal', 'close');
   }
 });
-addImageToArrSession = function(sessionName, img){
-  var arr = [];
-  console.log('sessionName: ' + sessionName);
-  if(img && sessionName) {
-    Session.set('bz.posts.postImgSrc', img);
-    arr = Session.get(sessionName);
-    if (!arr || !Array.isArray(arr)) {
-      arr = [];
-    }
-    arr.push({
-      data: img
-    });
 
-    Session.set(sessionName, arr);
-  }
-  return arr;
-}
 /*
  Template.filePickerUpload.events({
  'click #upload': function () {

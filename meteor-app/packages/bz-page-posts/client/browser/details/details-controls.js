@@ -18,7 +18,6 @@ Template.postDetailsHashesControl.helpers({
 });
 Template.postDetailsDetailsCommon.events({
   'click .js-show-location-on-map': function(e, v){
-    debugger;
     // show modal with map here:
 
   }
@@ -37,11 +36,7 @@ Template.postDetailsDetailsCommon.helpers({
 //$('.backdrop.visible.active .popup .popup-title').text().toLowerCase()
 
 Template.postDetailsPhoto.onCreated(function () {
-  var photos = this.data.details.photos, ret = [];
-  _.each(photos, function(id){
-    ret.push(bz.cols.images.findOne(id));
-  });
-  this.data._photos = ret;
+
 });
 Template.postDetailsPhoto.onRendered(function () {
   if (this.data.details.photos) {
@@ -68,26 +63,30 @@ Template.postDetailsPhoto.helpers({
 
   },
   getPhotos: function(){
-    var ret = this._photos;
+    var ret = getPostPhotoObjectsByIds(this.details.photos);
     return ret;
   },
   getMainPhoto: function(){
-    var ret = '../img/content/no-photo.png', main;
-    if (this._photos) {
-      main = _.filter(this._photos, function(item){
+    var ret = {
+        data: '../img/content/no-photo.png'
+      },
+      main, photos = getPostPhotoObjectsByIds(this.details.photos);
+    if (photos) {
+      main = _.filter(photos, function(item){
         return item.isMain === true;
       });
       if (main && main.length > 0){
         ret = main[0];
       } else {
-        ret = this._photos[0];
+        ret = photos[0];
       }
     }
     return ret.data;
   },
   moreThanOnePhotos: function(){
-    var ret = false;
-    if (!this._photos || this._photos.length < 2){
+    var ret = false,
+      photos = getPostPhotoObjectsByIds(this.details.photos);
+    if (!photos || photos.length < 2){
       ret = false;
     } else {
       ret = true;
@@ -109,4 +108,4 @@ function setPostDetailsTemplate(name, v) {
 Meteor.startup(function () {
 });
 
-Template.bzAroundYouItem.helpers({})
+Template.bzAroundYouItem.helpers({});

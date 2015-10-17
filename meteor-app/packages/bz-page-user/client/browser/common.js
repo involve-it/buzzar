@@ -16,8 +16,7 @@ Template.bzUserProfileBasic.rendered = function() {
 
 Template.avatarThumbnail.helpers({
   getAvatarImage: function(e, v){
-    //debugger;
-    var ret = this.image;
+    var ret = this.image && this.image.data;
     if (ret){
 
     } else {
@@ -47,7 +46,6 @@ Template.bzUserProfileBasic.events({
     /*var qs = {
      toUser: this._id
      }*/
-    debugger;
     if(Meteor.userId() !== this._id) {
       var chatId = bz.buz.chats.createChatIfFirstMessage(Meteor.userId(), this._id);
       Router.go('/chat/' + chatId);

@@ -26,3 +26,13 @@ setSearchLocationFromQs = function(qs){
     }
   }
 }
+getUserImageFromRecord = function(userId) {
+
+
+  var ret;
+  if (userId && Meteor.users.findOne(userId)) {
+    ret = Meteor.users.findOne(userId).profile.image;
+    ret = ret && ret.data;
+  }
+  return ret;
+}

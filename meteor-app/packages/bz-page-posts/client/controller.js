@@ -178,3 +178,11 @@ location2 = {
     Session.set(this.sessionName, dbObject);
   }
 }
+
+getPostPhotoObjectsByIds = function(photoIds){
+  var photos = photoIds, ret = [];
+  _.each(photos, function(id){
+    ret.push(bz.cols.images.findOne(id));
+  });
+  return ret;
+}

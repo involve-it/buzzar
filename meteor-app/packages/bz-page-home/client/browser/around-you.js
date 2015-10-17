@@ -34,8 +34,7 @@ Template.aroundYou.helpers({
 Template.bzAroundYouItem.helpers({
 
   categoryType: function() {
-    /*debugger;
-
+    /*
     var postsId = bz.cols.posts.find({_id: this._id}).fetch()[0].type;
     
     if(postsId) {
@@ -44,11 +43,7 @@ Template.bzAroundYouItem.helpers({
     return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
   },
   getAvatarImg: function () {
-    var ret ='';
-    if(this.userId && Meteor.users.findOne(this.userId)) {
-      ret = Meteor.users.findOne(this.userId).profile.image;
-    }
-    return ret;
+    return getUserImageFromRecord(this.userId);
   },
   getRank: function() {},
   getTimeStamp: function(){

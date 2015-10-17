@@ -22,3 +22,20 @@ getDataFromImgUrl = function(url, img$, w, h, cb){
 
   return ret;
 }
+addImageToArrSession = function(sessionName, img){
+  var arr = [];
+  console.log('sessionName: ' + sessionName);
+  if(img && sessionName) {
+    Session.set('bz.posts.postImgSrc', img);
+    arr = Session.get(sessionName);
+    if (!arr || !Array.isArray(arr)) {
+      arr = [];
+    }
+    arr.push({
+      data: img
+    });
+
+    Session.set(sessionName, arr);
+  }
+  return arr;
+}
