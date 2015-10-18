@@ -65,6 +65,7 @@ bz.bus.proximityHandler = {
         return posts;
     },*/
     processUserDisconnect: function(userId){
+        //console.log('Disconnected');
         var posts = bz.cols.posts.find({
             userId: userId
         }).fetch(),

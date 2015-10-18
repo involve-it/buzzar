@@ -40,9 +40,26 @@ var module = {
   },
   reposition: function(){
     var bounds = new google.maps.LatLngBounds();
-    for (var i in module.markers) {
-      bounds.extend(module.markers[i].position);
+    //for (var i in module.markers) {
+    //  bounds.extend(module.markers[i].position);
+    //}
+    var location = Session.get('bz.control.search.location').coords,
+        radius = Session.get('bz.control.search.distance') || bz.const.locations.defaultDistance;
+
+    if (location) {
+      var dLat = (radius / R) / Math.PI * 180,
+          dLng = (radius / R / Math.cos(location.lat * Math.PI / 180)) / Math.PI * 180;
+      var box = {
+        lng1: location.lng - dLng,
+        lng2: location.lng + dLng,
+        lat1: location.lat - dLat,
+        lat2: location.lat + dLat
+      };
+
+      bounds.extend({lat: box.lat1, lng: box.lng1});
+      bounds.extend({lat: box.lat2, lng: box.lng2});
     }
+
     module.map.fitBounds(bounds);
   },
   createMarkersFromCollection: function(collection){
