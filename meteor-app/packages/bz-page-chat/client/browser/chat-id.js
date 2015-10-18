@@ -74,17 +74,20 @@ Template.bzChatId.helpers({
   getMessages: function (a, b) {
     var messages = this.messages
     return messages;
-  },
-    getFriendUserName: function() {
-        var friendUserName = this.user.username,
-            partEmail;
-        if(friendUserName) {
-            return friendUserName;
-        } else {
-            partEmail = this.user.emails[0].address;
-            return partEmail.split('@')[0];
-        }
-
-    }
+  }    
 });
 
+
+
+Template.bzMessageToolbar.helpers({
+  getFriendUserName: function() {
+    var friendUserName = this.user.username,
+        partEmail;
+    if(friendUserName) {
+      return friendUserName;
+    } else {
+      partEmail = this.user.emails[0].address;
+      return partEmail.split('@')[0];
+    }
+  }
+});

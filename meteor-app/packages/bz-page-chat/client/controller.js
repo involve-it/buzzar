@@ -25,7 +25,7 @@ sendMessage = function (messageText, chat, friendUserId) {
 
 }
 scrollMessages = function () {
-  var elem = document.getElementsByClassName("messages-container");
+  var elem = document.getElementsByClassName("bz-messages-container");
   elem[0].scrollTop = elem[0].scrollHeight;
   //$('.messages-container').animate({"scrollTop": $('.messages-container')[0].scrollHeight}, "100");
   //this.$messages[0].scrollTop = this.$messages[0].scrollHeight;
