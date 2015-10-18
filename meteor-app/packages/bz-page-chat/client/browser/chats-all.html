@@ -1,50 +1,50 @@
 <template name="bzChatsMy">
-    
-    {{#if getChats}}
 
-        {{> bzChatsToolbar}}
-        
-        {{#each getChats}}
-            {{> bzChatItem }}
-        {{/each}}
-        
-    {{else}}
-      
-      {{> noChats}}
-        
-    {{/if}}
+  {{#if getChats}}
+
+    {{> bzChatsToolbar}}
+
+    {{#each getChats}}
+      {{> bzChatItem }}
+    {{/each}}
+
+  {{else}}
+
+    {{> noChats}}
+
+  {{/if}}
 
 </template>
 
 <template name="bzChatItem">
 
   <div class="bz-chat-item">
-      <a href="/chat/{{ _id }}">
-          <div class="bz-meta">
-                    
-                {{#each getUsers }}
-                  
-                    {{#if profile.image}}
-                        <div class="bz-user-avatar">
-                            <img src="{{ profile.image }}" alt="null"/>
-                        </div>
-                    {{else}}
-                        <div class="bz-user-avatar">
-                            <img src="/img/content/avatars/avatar-no.png" alt="null"/>
-                        </div>
-                    {{/if}}
+    <a href="/chat/{{ _id }}">
+      <div class="bz-meta">
 
-                    <div class="bz-username">
-                       {{ getUserName this }}
-                    </div>
-                
-                {{/each }}
-        
-                <div class="bz-last-timestamp"> Last message: {{ getFormattedTs timeBegin }} </div>
-                <div class="">Chat id: {{ _id }} </div>
+        {{#each getUsers }}
 
+          {{#if profile.image.data}}
+            <div class="bz-user-avatar">
+              <img src="{{ profile.image.data }}" alt="null"/>
+            </div>
+          {{else}}
+            <div class="bz-user-avatar">
+              <img src="/img/content/avatars/avatar-no.png" alt="null"/>
+            </div>
+          {{/if}}
+
+          <div class="bz-username">
+            {{ getUserName this }}
           </div>
-      </a>
+
+        {{/each }}
+
+        <div class="bz-last-timestamp"> Last message: {{ getFormattedTs timeBegin }} </div>
+        <div class="">Chat id: {{ _id }} </div>
+
+      </div>
+    </a>
   </div>
 
 </template>
@@ -63,56 +63,57 @@
 </template>
 
 <template name="replyArea">
-    <div id="replyArea">
-        <div class="user-inputs-messages">
+  <div id="replyArea">
+    <div class="user-inputs-messages">
 
-            <div class="user-inputs">
-                <form>
+      <div class="user-inputs">
+        <form>
           <textarea class="btn--input-message" id="message-input" name="textMessage" placeholder="Send Message &crarr;"
                     data-autoresize rows="1"></textarea>
-                    <!--<input id="message-input" type="text" name="textMessage" value="" placeholder="Your message" class="btn-input-message"> - -->
-                    <input id="send-btn" type="button" value="send" class="btn--send">
-                </form>
-            </div>
+          <!--<input id="message-input" type="text" name="textMessage" value="" placeholder="Your message" class="btn-input-message"> - -->
+          <input id="send-btn" type="button" value="send" class="btn--send">
+        </form>
+      </div>
 
-        </div>
     </div>
+  </div>
 </template>
 
 <template name="noChats">
 
-    <div class="bz-wrapper-no-message">
-        <div class="bz-flex-box">
+  <div class="bz-wrapper-no-message">
+    <div class="bz-flex-box">
 
-            <div class="bz-img-conversation">
-                <i class="fa fa-comments"></i>
-            </div>
+      <div class="bz-img-conversation">
+        <i class="fa fa-comments"></i>
+      </div>
 
-            <div class="title-message">You have<br>no conversations yet</div>
-            <div class="subtitle-message">Start messaging by pressing the pencil button in the top right corner or press button
-                below.
-            </div>
+      <div class="title-message">You have<br>no conversations yet</div>
+      <div class="subtitle-message">Start messaging by pressing the pencil button in the top right corner or press
+        button
+        below.
+      </div>
 
-            <div class="bz-padding-top-x2">
-                <button class="button button-outline btn-default goContacts">go to the Contacts</button>
-            </div>
-        </div>
+      <div class="bz-padding-top-x2">
+        <button class="button button-outline btn-default goContacts">go to the Contacts</button>
+      </div>
     </div>
+  </div>
 
 </template>
 
 <template name="bzChatsToolbar">
-    
-    <div class="bz-chats-toolbar">
-        <div class="bz-search-header">
-            <label class="bz-item-input-wrapper">
-                <i class="fa fa-search placeholder-icon"></i>
-                <input type="search" placeholder="Search for messages or username" class="bz-input-search">
-            </label>
-        </div>
-        
-        <div style="height: 62px; line-height: 62px; padding: 0 15px;">Filter</div>
-        
+
+  <div class="bz-chats-toolbar">
+    <div class="bz-search-header">
+      <label class="bz-item-input-wrapper">
+        <i class="fa fa-search placeholder-icon"></i>
+        <input type="search" placeholder="Search for messages or username" class="bz-input-search">
+      </label>
     </div>
-    
+
+    <div style="height: 62px; line-height: 62px; padding: 0 15px;">Filter</div>
+
+  </div>
+
 </template>

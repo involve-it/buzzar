@@ -20,6 +20,8 @@ Template.bzChatsMy.helpers({
     //return chats;
   }
 });
+Template.bzChatItem.onRendered(function(){
+});
 Template.bzChatItem.helpers({
   getUserName: function(){
     /*var user = Meteor.users.findOne({

@@ -125,23 +125,26 @@ getUniqueChatsForUser = function (userId, all) {
   return chats;
 }
 messageModals = {}
-showMessageModal = function (msgObj, userObj) {
+showMessageModal = function (msgObj, userObj, id) {
   var data = {
       messageText: msgObj.text,
       chatId: msgObj.chatId,
       user: userObj
     },
     parentNode = $('.js-message-popup-placeholder')[0];
-  messageModals[msgObj._id] = Blaze.renderWithData(Template.bzChatMessagePopup, data, parentNode);
+  messageModals[id] = Blaze.renderWithData(Template.bzChatMessagePopup, data, parentNode);
   $('.js-chat-message-modal').foundation('reveal', 'open');
   setTimeout(function () {
-    hideMessageModal(msgObj._id);
-  }, 50000);
+    a = id;
+    hideMessageModal(id);
+  }, 5000);
 }
 hideMessageModal = function(msgId){
   $('.js-chat-message-modal').foundation('reveal', 'close');
-  var view = messageModals[msgId];
-  Blaze.remove(view);
+  if(msgId) {
+    var view = messageModals[msgId];
+    view && Blaze.remove(view);
+  }
 }
 Template.registerHelper("timestampToTime", function (timestamp) {
   var date = new Date(timestamp);
