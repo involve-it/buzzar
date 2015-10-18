@@ -116,6 +116,8 @@ if (Meteor.isServer) {
       }*/
       if (query.activeCats && Array.isArray(query.activeCats) && query.activeCats.length > 0) {
         dbQuery.type = {$in: query.activeCats};
+      } else {
+        dbQuery.type = {$in: _.map(bz.cols.siteTypes.find().fetch(), function(item){ return item.name})}
       }
       //location
       if (box && box.lat1 && box.lat2 && box.lng1 && box.lng2){
