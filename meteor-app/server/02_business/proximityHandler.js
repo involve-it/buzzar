@@ -72,18 +72,7 @@ bz.bus.proximityHandler = {
         _.each(posts, function(post){
             if (post && post.details && post.details.locations && Array.isArray(post.details.locations)){
                 updated = false;
-                _.each(post.details.locations, function(loc) {
-                    if (loc.placeType === bz.const.locations.type.DYNAMIC){
-                        //?
-                    } else {
-                        //console.log('Changing status to Away for ad: ' + post.details.title);
-                        post.presence = bz.const.posts.status.presence.AWAY;
-                        updated = true;
-                    }
-                });
-                if (updated){
-                    bz.cols.posts.update({'_id': post._id}, post);
-                }
+                bz.cols.posts.update({'_id': post._id}, {$set:{presenses: []}});
             }
         });
     },
@@ -92,6 +81,7 @@ bz.bus.proximityHandler = {
         _.each(posts, function(post){
             if (post && post.details && post.details.locations && Array.isArray(post.details.locations)){
                 updated = false;
+                var presenses = {};
                 _.each(post.details.locations, function(loc){
                     if (loc.placeType === bz.const.locations.type.DYNAMIC){
                         if (loc.coords.lat !== lat || loc.coords.lng != lng) {
@@ -103,16 +93,17 @@ bz.bus.proximityHandler = {
                             };
                             updated = true;
                         }
+                        presenses[loc._id] = bz.const.posts.status.presence.NEAR;
                     } else {
                         if (bz.bus.proximityHandler.withinRadius(lat, lng, nearbyRadius, loc)) {
                             //console.log('Changing status to Near for ad: ' + post.details.title);
-                            post.presence = bz.const.posts.status.presence.NEAR;
                             updated = true;
+                            presenses[loc._id] = bz.const.posts.status.presence.NEAR;
                         }
                     }
                 });
                 if (updated){
-                    bz.cols.posts.update({'_id': post._id}, post);
+                    bz.cols.posts.update({'_id': post._id}, {$set: {presenses: presenses}});
                 }
             }
         });
