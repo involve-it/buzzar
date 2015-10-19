@@ -1,7 +1,4 @@
 <template name="bzControlSearch">
-  {{#if searchTagIsVisible }}
-    {{> bzSearchHashTagLabel }}
-  {{/if}}
   <div class="bz-control--search search-field">
     <div class="form-group bz-search-size">
 
@@ -31,21 +28,31 @@
       {{> bzDistance }}
       
       <button class="button bz-btn-search js-search-btn"></button>
+
+      {{#if searchTagIsVisible }}
+          {{> bzSearchHashTagLabel }}
+      {{/if}}
       
   </div>
 
 
 </template>
+
 <template name="googlePlacesItem">
   <h4><i class="fa fa-map-marker"></i><i>{{ name }}</i></h4>
 </template>
+
 <template name="postFoundItem">
   <h4><i class="fa fa-map-pin"></i><i>{{ name }}</i></h4>
 </template>
+
 <template name="bzSearchHashTagLabel">
  <div class="bz-hash-tag-label">
-   {{ getLookingForPhrase }}
-   <button class="js-save-hash-btn">Save hash</button>
+     <div class="bz-hash-tag-label-wrapper">
+         <div class="bz-hash-icon">#</div>
+         <div class="bz-hash-tag-label-text">{{ getLookingForPhrase }}</div>
+       <div class="bz-hash-tag-label-button"><button class="button bz-small btn-default js-save-hash-btn">Save hash</button></div>
+     </div>
  </div>
 </template>
 

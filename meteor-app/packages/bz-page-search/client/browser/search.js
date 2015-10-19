@@ -189,12 +189,26 @@ Template.bzControlSearch.events({
   }
 
 });
+
+Template.bzSearchHashTagLabel.rendered = function() {
+  var el = $('.bz-hash-tag-label');
+  
+  if(el) {
+    var elHeight = $('.bz-hash-tag-label').height(),
+        elHeigtZero = $('.bz-hash-tag-label').height(0);
+    
+    setTimeout(function() {
+      el.height(elHeight);
+    } ,250);
+  }
+};
+
 Template.bzSearchHashTagLabel.helpers({
   getLookingForPhrase: function(){
     var loc = Session.get('bz.control.search.location') || '',
       dist = Session.get('bz.control.search.distance') || '',
       text = Session.get('bz.control.search.searchedText') || 'buzz',
-    ret = 'Looking for ' + text + ' around ';
+    ret = 'Looking for '  + text + ' around ';
     if(loc.name){
       loc = loc.name;
     }
