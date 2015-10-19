@@ -76,6 +76,7 @@ Router.map ->
       if not AccountsEntry.settings.homeRoute
         @next()
       else
+        Meteor.call('logOut', Meteor.userId());
         Meteor.logout () ->
           Router.go AccountsEntry.settings.homeRoute
 

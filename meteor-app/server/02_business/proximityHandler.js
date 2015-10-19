@@ -35,7 +35,8 @@ bz.bus.proximityHandler = {
         if (user){
             Meteor.users.update({'_id': report.userId},{
                 $set: {
-                    lastSessionId: report.sessionId
+                    lastSessionId: report.sessionId,
+                    online: true
                 }
             });
         }
@@ -66,6 +67,12 @@ bz.bus.proximityHandler = {
     },*/
     processUserDisconnect: function(userId){
         //console.log('Disconnected');
+        Meteor.users.update({'_id': userId}, {
+            $set: {
+                online: false
+            }
+        });
+
         var posts = bz.cols.posts.find({
             userId: userId
         }).fetch(),

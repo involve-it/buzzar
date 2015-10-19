@@ -36,7 +36,10 @@ Meteor.methods({
     return bz.bus.proximityHandler.reportLocation(report);
   },
   logOut: function(userId){
-    return bz.bus.proximityHandler.processUserDisconnect(userId);
+    if (userId) {
+      console.log('Logout');
+      return bz.bus.proximityHandler.processUserDisconnect(userId);
+    }
   },
   registerPushToken: function(deviceId, token){
     bz.bus.pushHandler.registerToken(deviceId, token);
@@ -48,7 +51,7 @@ Meteor.methods({
       to: 'arutune@gmail.com',
       subject: 'from Fantasia: subscribeMe',
       text: 'New message: " ' + msg + '", please contact this user: ' +  userId
-    }
+    };
     var ret = bz.cols.contactUsMsgs.insert({
       text: msg,
       options: emailOptions,
