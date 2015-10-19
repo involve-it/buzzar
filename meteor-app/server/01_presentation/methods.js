@@ -35,6 +35,9 @@ Meteor.methods({
   reportLocation: function(report){
     return bz.bus.proximityHandler.reportLocation(report);
   },
+  logOut: function(userId){
+    return bz.bus.proximityHandler.processUserDisconnect(userId);
+  },
   registerPushToken: function(deviceId, token){
     bz.bus.pushHandler.registerToken(deviceId, token);
   },

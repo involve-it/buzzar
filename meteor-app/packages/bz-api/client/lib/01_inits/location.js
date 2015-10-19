@@ -30,6 +30,11 @@ var Location = {
                 }
             });
         }
+    },
+    logOut: function(){
+        if (Meteor.userId()){
+            Meteor.call('logOut', Meteor.userId());
+        }
     }
 };
 

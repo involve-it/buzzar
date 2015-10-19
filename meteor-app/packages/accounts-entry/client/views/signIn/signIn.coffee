@@ -42,6 +42,10 @@ AccountsEntry.entrySignInEvents = {
     Meteor.loginWithPassword(Session.get('email'), Session.get('password'), (error)->
       Session.set('password', undefined)
       Session.set 'talkingToServer', false
+
+      if !error
+        bz.help.location.processCurrentLocation
+
       if error
         T9NHelper.accountsError error
       else if Session.get('fromWhere')

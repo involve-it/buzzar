@@ -17,11 +17,14 @@ bz.help.makeNamespace('bz.const.posts.status.presence');
 bz.const.posts.status.presence.NEAR = 'close';
 bz.const.posts.status.presence.AWAY = 'away';
 
+
+
 bz.help.makeNamespace('bz.const.locations.type');
 bz.const.locations.type.STATIC = 'bz.static';
 bz.const.locations.type.DYNAMIC = 'bz.dynamic';
 bz.const.locations.type.GOOGLEPLACE = 'google';
 bz.const.locations.type.MYPLACE = 'my place';
+bz.const.locations.defaultDistance = 2;
 
 bz.help.makeNamespace('bz.const.posts.session.names');
 bz.const.posts.locationGlobal = 'bz.runtime.newPost.location';
