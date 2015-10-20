@@ -40,7 +40,7 @@ Package.onUse(function (api) {
     'client/browser/style/foundation/js/foundation/foundation.abide.js'
 
   ], 'web.browser');
-  
+
   api.addFiles([
       'client/controller.js',
     'client/browser/style/foundation/foundation-select.css',
