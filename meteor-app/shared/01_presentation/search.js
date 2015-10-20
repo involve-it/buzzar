@@ -135,7 +135,37 @@ if (Meteor.isServer) {
         ret = bz.bus.proximityHandler.filterCircularPosts(ret, ((box.lat2 - box.lat1)/2) + box.lat1, ((box.lng2 - box.lng1)/2) + box.lng1, distance);
       }
 
-      return ret;
+
+      var activePosts, locations, loc;
+      if (options.activeOnly && options.activeOnly === true){
+        activePosts = [];
+        _.each(ret, function(post){
+          if (post && post.details
+              && post.details.locations && Array.isArray(post.details.locations) && post.details.locations.length > 0
+              && post.presenses && Array.isArray(post.presenses) && post.presenses.length > 0){
+            locations = [];
+            _.each(post.presenses, function(presense, i){
+              if (presense === bz.const.posts.status.presence.NEAR){
+                loc = _.find(post.details.locations, function(loc){
+                  return loc._id === i;
+                });
+                if (loc){
+                  locations.push(loc);
+                }
+              }
+            });
+            if (locations.length > 0){
+              //TODO: confirm correct logic here
+              post.details.locations = locations;
+              activePosts.push(post);
+            }
+          }
+        });
+      } else {
+        activePosts = ret;
+      }
+
+      return activePosts;
     },
     // function for testing in the console Meteor runtime server-side:
     console: function(){
