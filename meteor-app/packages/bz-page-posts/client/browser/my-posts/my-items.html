@@ -19,19 +19,24 @@
 
             <!--SIDE B-->
             <div class="side-b small-12 medium-9 large-9 columns">
-
                 <div class="bz-posts-items-owner-post-menu">
+
+                    <div class="bz-select-all-posts">
+                        <input id="bz-select-all-posts-check" type="checkbox">
+                    </div>
+                    
                     <ul class="bz-nav bz-horizontal bz-nav-side-b">
                         <li class="active"><a id="active" href="#">{{t9n 'active'}} posts ({{ bzCountActivePosts }})</a></li>
                         <li><a id="inactive" href="#">{{t9n 'inactive'}} posts ({{ bzCountInactivePosts }})</a></li>
                     </ul>
                 </div>
+
+                
+                    {{#each activePosts}}
+                        {{> onePostRowItemOwner}}
+                    {{/each}}
                 
                 
-                {{#each activePosts}}
-                    {{> onePostRowItemOwner}}
-                {{/each}}
-            
             </div>
             
             <div class="clearfix"></div>
@@ -99,8 +104,11 @@
 </template>
 
 <template name="onePostRowItemOwner">
-          
+
        <div class="item">
+           <div class="bz-btn-check">
+               <input class="bz-select-posts-checked" type="checkbox">
+           </div>
             <a href="/post/{{_id}}">
             <div class="photo">
                 <div class="photo-wrapper">
