@@ -8,6 +8,62 @@
   -webkit-transition: all .25s ease-in-out;
 }
 
+.bz-toolbar {
+  position: relative;
+  -webkit-border-radius: 2px 2px 0 0;
+  -moz-border-radius: 2px 2px 0 0;
+  border-radius: 2px 2px 0 0;
+  margin: -20px -20px 20px -20px;
+  background-color: rgba(255,255,255, .9);
+  border-bottom: 1px solid @border-color-sep;
+}
+
+.bz-nav {
+  margin-bottom: 0;
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+  border: 1px solid @border-color-sep;
+  .border-radius(2px);
+
+  > * {
+    padding: 10px 15px;
+    font-size: 14px;
+    line-height: 1.4;
+    
+    &.active {
+      background-color: rgba(0,0,0, .1);
+    }
+  }
+  
+  &.bz-horizontal {
+    .display-flex-box();
+    margin-bottom: 20px;
+    
+    > * {
+      padding: 5px 15px;
+      font-size: 14px;
+      line-height: 1.4;
+      border-right: 1px solid @border-color-sep;
+      .border-radius(2px);
+      
+      
+      &:first-child {
+        
+        -webkit-border-radius: 2px 0 0 2px;
+        -moz-border-radius: 2px 0 0 2px;
+        border-radius: 2px 0 0 2px;
+      }
+
+      &:last-child {
+        -webkit-border-radius: 0 2px 2px 0;
+        -moz-border-radius: 0 2px 2px 0;
+        border-radius: 0 2px 2px 0;
+        border-right: none;
+      }
+    }
+  }
+}
 
 .btn {
   cursor: pointer;
