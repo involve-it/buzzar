@@ -13,6 +13,14 @@ Meteor.methods({
   },
   addNewPost: function(postObject) {
     if(postObject){
+      if (!postObject.presences && postObject.details && postObject.details.locations && Array.isArray(postObject.details.locations) && postObject.details.locations.length > 0){
+        postObject.presences = {};
+        var id;
+        _.each(postObject.details.locations, function(loc){
+          id = loc._id || bz.const.locations.type.DYNAMIC;
+          postObject.presences[id] = bz.const.posts.status.presence.NEAR;
+        });
+      }
       return bz.cols.posts.insert(postObject);
       //return 'EPzoQSGnGCSsPaQjm'
     }
@@ -37,7 +45,6 @@ Meteor.methods({
   },
   logOut: function(userId){
     if (userId) {
-      console.log('Logout');
       return bz.bus.proximityHandler.processUserDisconnect(userId);
     }
   },
