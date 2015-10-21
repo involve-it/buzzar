@@ -1,9 +1,5 @@
 <template name="avatarThumbnail">
-  <div class="img-avatar">
-      <a>
-          <img src="{{ getAvatarImage }}" style="height: {{ height }}px; width: {{ width }}px; ">
-      </a>
-  </div>
+    <div class="bz-avatar" style="background-image: url({{ getAvatarImage }})"></div>
     
     {{#if canWrite }}
         <div class="edit-image-holder">
@@ -23,18 +19,21 @@
   <div class="bz-user-card">
       <div class="bz-padding-10 overflow">
         <div class="bz-user-badge">
-          {{> avatarThumbnail image=profile.image height=40 width=40 }}
+            {{> avatarThumbnail image=profile.image }}
         </div>
           
         <div class="bz-user-date">
-          <span>{{ username }}</span>
-          <div class="">
+          <div class="bz-user-date-status">
+              {{> bzAvatarUserStatus}}
+              <div class="bz-user-date-username">{{ username }}</div>
+          </div>
+          <!--<div class="">
             {{#if isOnline }}
               [[Online]]
             {{else }}
               [[offline]]
             {{/if}}
-          </div>
+          </div>-->
           <!--<div class="bz-rating"></div>-->
         </div>
         
@@ -51,19 +50,21 @@
 
 <!--used on the around you, home:-->
 <template name="bzUserProfileAroundYou">
-  <a href="/user/{{ userId }}"><div class="bz-avatar" style="background-image: url({{ _getAvatarImage }});"></div></a>
-  <!--<div class="bz-rating">{{ getPostRating }}</div>-->
-  <div class="item-details">
-    <div class="small-12 medium-2 bz-input-label columns">Status</div>
-    <div class="small-12 medium-10 large-10 bz-input-result columns">
-      <p>
-        {{#if _isOnline }}
-          [[Online]]
-        {{else }}
-          [[offline]]
-        {{/if}}
-      </p>
-    </div>
+  <div class="bz-status-wrapper">
+    <a href="/user/{{ userId }}">
+      <div class="bz-avatar" style="background-image: url({{ _getAvatarImage }});"></div>
+    </a>
+    {{> bzAvatarUserStatus}}
   </div>
+  <!--<div class="bz-rating">{{ getPostRating }}</div>-->
   <div class="bz-username"><a href="/user/{{ userId }}">{{ getNameFormatted }}</a></div>
+</template>
+
+
+<template name="bzAvatarUserStatus">
+    <div class="bz-avatar-user-status">
+        <div class="bz-avatar-user-status-wrapper {{#if _isOnline}} bz-online {{else }} bz-offline {{/if}}">
+            {{#if _isOnline}} <i class="fa fa-check"></i> {{else}} <i class="fa fa-clock-o"></i> {{/if}}
+        </div>
+    </div>
 </template>

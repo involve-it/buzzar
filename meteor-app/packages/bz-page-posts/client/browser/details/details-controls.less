@@ -58,9 +58,12 @@
     .bz-user-badge {
       float: left;
       margin-right: 15px;
-      
-      img {
-        .border-radius(2px);
+      width: 40px;
+      height: 40px;
+
+      .bz-avatar {
+        width: auto;
+        height: 100%;
       }
     }
     
@@ -70,6 +73,16 @@
       padding-top: 0;
       text-transform: capitalize;
       color: @text-color-label;
+      
+      .bz-user-date-status {
+        .display-flex-box();
+        .bz-avatar-user-status {
+          position: relative;
+          margin-right: 3px;
+          background-color: transparent;
+        }
+        .bz-user-date-username {}
+      }
       
       .bz-rating {
         i {

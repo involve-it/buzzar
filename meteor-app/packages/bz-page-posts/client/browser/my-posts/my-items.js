@@ -58,9 +58,9 @@ Template.onePostRowItem.helpers({
   },
   getAvatarImg: function () {
     var ret ='';
-    
     if(this.userId && Meteor.users.findOne(this.userId) && Meteor.users.findOne(this.userId).profile.image) {
-      return ret = Meteor.users.findOne(this.userId).profile.image;
+      return ret = Meteor.users.findOne(this.userId).profile.image.data;
+      
     } else {
       return '/img/content/avatars/avatar-no.png';
     }

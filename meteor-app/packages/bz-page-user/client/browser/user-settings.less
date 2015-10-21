@@ -68,7 +68,7 @@
     }
     
     
-    .user-avatar,
+    /*.user-avatar,*/
     .user-info,
     .user-attainment,
     .btn-edit-account,
@@ -133,12 +133,32 @@
     .side-a {
       border-right: 1px solid @border-color-sep;
       
+      .bz-status-wrapper {
+        display: inline-block;
+        .bz-avatar-user-status {
+          bottom: -3px;
+          right: -3px;
+          width: 24px;
+          height: 24px;
+          .bz-avatar-user-status-wrapper {
+            height: 17px;
+            width: 17px;
+            i {
+              line-height: 17px;
+              font-size: 12px;
+            }
+          }
+        }
+      }
+      
       .user-avatar {
-        
-        img {
-          height: 160px;
+        /*width: auto;*/
+        width: 160px;
+        height: 160px;
+
+        .bz-avatar {
           width: auto;
-          .border-radius(2px);
+          height: 100%;
         }
       }
       

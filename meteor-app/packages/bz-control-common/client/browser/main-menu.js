@@ -27,7 +27,7 @@ Template.bzInnerMenuLeft.helpers({
   getUserAvatar: function(){
     var ret = '/img/content/avatars/avatar-no.png';
     var user = Meteor.user();
-    if(user){
+    if(user && user._getAvatarImage()){
       ret = user._getAvatarImage();
     }
     return ret;

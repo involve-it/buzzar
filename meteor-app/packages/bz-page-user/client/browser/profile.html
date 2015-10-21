@@ -10,9 +10,12 @@
             <h3 class="title">User profile details</h3>
           </div>
 
-          <div class="user-avatar">
-            <div>{{> avatarThumbnail image=profile.image}}</div>
-          </div>
+            <div class="bz-status-wrapper">
+                <div class="user-avatar">
+                    {{> avatarThumbnail image=profile.image}}
+                </div>
+                {{> bzAvatarUserStatus}}
+            </div>
 
           <div class="user-info">
             <div class="user-name capitalize"> {{ username }} </div>
@@ -62,9 +65,9 @@
               <div class="small-12 medium-10 large-10 bz-input-result columns">
                 <p>
                   {{#if _isOnline }}
-                    [[Online]]
+                    Online
                   {{else }}
-                    [[offline]]
+                    offline
                   {{/if}}
                 </p>
               </div>
