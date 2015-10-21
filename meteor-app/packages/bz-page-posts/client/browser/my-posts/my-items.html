@@ -3,7 +3,7 @@
 
   <div class="list">
 
-    {{#if posts}}
+    {{#if hasPosts}}
 
       <!--<div class="side-a small-12 medium-3 columns">
 
@@ -26,16 +26,24 @@
           </div>-->
 
           <ul class="bz-nav bz-horizontal bz-nav-side-b">
-            <li class="active"><a id="active" href="#">{{t9n 'active'}} posts ({{ bzCountActivePosts }})</a></li>
-            <li><a id="inactive" href="#">{{t9n 'inactive'}} posts ({{ bzCountInactivePosts }})</a></li>
+            <li class="active"><a id="active" href="#">All</a></li>
+            <li><a id="livePosts" href="#">Live <!--({{ getCountLivePosts }})--></a></li>
+            <li><a id="activePosts" href="#">Active <!--({{ getCountActivePosts }})--></a></li>
           </ul>
         </div>
 
-
+      <h5>all</h5>
+        {{#each allPosts}}
+          {{> onePostRowItemOwner}}
+        {{/each}}
+        <h5>live</h5>
+        {{#each livePosts}}
+          {{> onePostRowItemOwner}}
+        {{/each}}
+        <h5>active</h5>
         {{#each activePosts}}
           {{> onePostRowItemOwner}}
         {{/each}}
-
 
       <!--</div>-->
 
@@ -111,9 +119,9 @@
   <div class="item">
 
     <div class="bz-switch-activity-post">
-      <div class="switch-wrapper">
+      <div class="switch-wrapper js-switch-wrapper">
           <div class="switch bz-small">
-              <input id="switch-activity-{{_id}}" type="checkbox" checked>
+              <input id="switch-activity-{{_id}}" type="checkbox" {{ getVisibilityVal }} class="js-switch-activity-input">
               <label for="switch-activity-{{_id}}"></label>
           </div>
       </div>
