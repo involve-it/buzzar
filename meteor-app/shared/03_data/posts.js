@@ -2,14 +2,16 @@
  * Created by ashot on 8/21/15.
  */
 
+var Post = {
+    isLive: function () {
+      return this.presenses && Object.keys(this.presenses).length > 0;
+    }
+};
+
 bz.cols.posts = new Mongo.Collection('posts', {
   transform: function(post){
-    if (post) {
-      post.isLive = function () {
-        return this.presenses && Object.keys(this.presenses).length > 0;
-      };
-    }
-    return post;
+    var instance = Object.create(Post);
+    return _.extend(instance, post);
   }
 });
 
