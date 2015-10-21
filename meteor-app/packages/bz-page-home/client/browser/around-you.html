@@ -24,8 +24,11 @@
         <div class="bz-photo bz-overlay-hover">
           <a href="/post/{{_id}}">
             <img width="400" height="300" class="bz-overlay-scale" src="{{ getImgSrc }}" alt=""/>
-            <!--<a class="bz-position-cover" href="#"></a>-->
-            <!--<div class="bz-distance"><i class="fa fa-location-arrow"></i> 30 km</div>-->
+            <div class="bz-post-info">
+                <!--<div class="bz-distance"><i class="fa fa-location-arrow"></i> 30 km</div>-->
+                {{> bzPostsPostPresence this}}
+                <!--<a class="bz-position-cover" href="#"></a>-->
+            </div>
           </a>
         </div>
 
@@ -39,13 +42,15 @@
             </div>
         </div>
         <div class="bz-item-footer">
-          <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
+            {{#if details.price}}
+                <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
+            {{/if}}
           <div class="bz-category">
             <div class="button bz-btn-category type-category-{{categoryType}}">
               {{categoryType}}
             </div>
           </div>
-          {{> bzPostsPostPresence this}}
+          
 
         </div>
       </div>

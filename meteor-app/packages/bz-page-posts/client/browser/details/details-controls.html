@@ -32,6 +32,15 @@
         </div>
       </div>
 
+    {{#if _hasLivePresence }}
+        <div class="post-details">
+            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-street-view"></i> Status</div>
+            <div class="small-12 medium-8 large-8 bz-post-result columns">
+                <p> {{> bzPostsPostPresence this}} </p>
+            </div>
+        </div>
+    {{/if}}
+
       {{#if details.duration }}
       <div class="post-details">
         <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-info-circle"></i> Left</div>
@@ -112,7 +121,8 @@
   <div class="post-item overflow">
     <div class="post-details">
       <div class="small-12 bz-post-description"><p> {{ getDescription }} </p></div>
-      {{> bzPostsPostPresence this}}
+      
+        
 
     </div>
   </div>

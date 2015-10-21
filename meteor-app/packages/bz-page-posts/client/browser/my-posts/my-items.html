@@ -5,7 +5,7 @@
 
     {{#if posts}}
 
-      <div class="side-a small-12 medium-3 columns">
+      <!--<div class="side-a small-12 medium-3 columns">
 
         <div class="bz-posts-items-owner-menu">
           <ul class="bz-nav bz-nav-side-a">
@@ -15,15 +15,15 @@
         </div>
 
 
-      </div>
+      </div>-->
 
       <!--SIDE B-->
-      <div class="side-b small-12 medium-9 large-9 columns">
+      <!--<div class="side-b small-12 medium-9 large-9 columns">-->
         <div class="bz-posts-items-owner-post-menu">
 
-          <div class="bz-select-all-posts">
+          <!--<div class="bz-select-all-posts">
             <input id="bz-select-all-posts-check" type="checkbox">
-          </div>
+          </div>-->
 
           <ul class="bz-nav bz-horizontal bz-nav-side-b">
             <li class="active"><a id="active" href="#">{{t9n 'active'}} posts ({{ bzCountActivePosts }})</a></li>
@@ -37,7 +37,7 @@
         {{/each}}
 
 
-      </div>
+      <!--</div>-->
 
       <div class="clearfix"></div>
 
@@ -78,12 +78,14 @@
           <h4 class="bz-item-title">{{details.title}}</h4>
 
           <p class="bz-item-text">{{details.description}}</p>
-          {{> bzPostsPostPresence this}}
+          
 
         </div>
         <div class="bz-item-footer">
           <div class="bz-item-views">{{t9n 'views'}}  {{ stats.seenTotal }} <span class="today">({{ stats.seenToday }}
-            today)</span></div>
+            today)</span>
+          </div>
+            {{> bzPostsPostPresence this}}
         </div>
 
       </a>
@@ -107,10 +109,17 @@
 <template name="onePostRowItemOwner">
 
   <div class="item">
-    <div class="bz-btn-check">
-      <input class="bz-select-posts-checked" type="checkbox">
+
+    <div class="bz-switch-activity-post">
+      <div class="switch-wrapper">
+          <div class="switch bz-small">
+              <input id="switch-activity-{{_id}}" type="checkbox" checked>
+              <label for="switch-activity-{{_id}}"></label>
+          </div>
+      </div>
     </div>
-    <a href="/post/{{_id}}">
+      
+    <a href="/post/{{_id}}" class=" {{#if _hasLivePresence }} bz-post-live {{else}} bz-post-away {{/if}} ">
       <div class="photo">
         <div class="photo-wrapper">
           {{#if getPhotoUrl.data}}
@@ -120,11 +129,11 @@
           {{/if}}
         </div>
       </div>
-
+    
       <div class="description">
-
+    
         <h3 class="title">{{details.title}}</h3>
-
+    
         {{#if details.price}}
           <div class="price"> {{details.price}} <span class="bz-prefix">$</span></div>
         {{/if}}
@@ -132,18 +141,18 @@
         {{#if details.duration }}
           <div class="bz-progress">{{t9n 'left'}}: 15 days</div>
         {{/if }}
-
-        <div class="bz-services" style="display: none">
-          <ul>
-            <li class="vip">VIP</li>
-            <li class="up">UP</li>
-            <li>...</li>
-          </ul>
-        </div>
-        {{> bzPostsPostPresence this}}
-
+    
       </div>
     </a>
+
+    <div class="bz-services">
+          <div class="bz-services-wrapper">
+              
+              {{> bzPostsPostPresence this}}
+              
+          </div>
+    </div>
+      
   </div>
 
 </template>

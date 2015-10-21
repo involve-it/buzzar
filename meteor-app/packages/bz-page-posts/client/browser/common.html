@@ -1,9 +1,15 @@
 <template name="bzPostsPostPresence">
-  <p>
-    {{#if _hasLivePresence }}
-      <a title="address: {{ _hasLivePresence.name }}, lat: {{ _hasLivePresence.coords.lat }}, lng: {{ _hasLivePresence.coords.lng }}">[[Live]]</a>
-    {{else }}
-      [[Away]]
-    {{/if}}
-  </p>
+    <div class="bz-post-presence">
+        {{#if _hasLivePresence }}
+          <a title="address: {{ _hasLivePresence.name }}, lat: {{ _hasLivePresence.coords.lat }}, lng: {{ _hasLivePresence.coords.lng }}">
+              <div class="bz-i-wrapper">
+                  live
+              </div>
+          </a>
+        {{else }}
+            <div class="bz-i-wrapper">
+                away
+            </div>
+        {{/if}}
+    </div>
 </template>
