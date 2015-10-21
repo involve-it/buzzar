@@ -56,8 +56,8 @@ var module = {
         lat2: location.lat + dLat
       };
 
-      bounds.extend({lat: box.lat1, lng: box.lng1});
-      bounds.extend({lat: box.lat2, lng: box.lng2});
+      bounds.extend(new google.maps.LatLng(box.lat1, box.lng1));
+      bounds.extend(new google.maps.LatLng(box.lat2, box.lng2));
     }
 
     module.map.fitBounds(bounds);
