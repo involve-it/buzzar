@@ -43,12 +43,12 @@ var module = {
     //for (var i in module.markers) {
     //  bounds.extend(module.markers[i].position);
     //}
-    var location = Session.get('bz.control.search.location').coords,
+    var location = Session.get('bz.control.search.location') && Session.get('bz.control.search.location').coords,
         radius = Session.get('bz.control.search.distance') || bz.const.locations.defaultDistance;
 
     if (location) {
-      var dLat = (radius / R) / Math.PI * 180,
-          dLng = (radius / R / Math.cos(location.lat * Math.PI / 180)) / Math.PI * 180;
+      var dLat = (radius / bz.const.locations.earthRadius) / Math.PI * 180,
+          dLng = (radius / bz.const.locations.earthRadius / Math.cos(location.lat * Math.PI / 180)) / Math.PI * 180;
       var box = {
         lng1: location.lng - dLng,
         lng2: location.lng + dLng,

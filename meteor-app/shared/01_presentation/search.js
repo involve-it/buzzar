@@ -142,12 +142,12 @@ if (Meteor.isServer) {
         _.each(ret, function(post){
           if (post && post.details
               && post.details.locations && Array.isArray(post.details.locations) && post.details.locations.length > 0
-              && post.presenses && Array.isArray(post.presenses) && post.presenses.length > 0){
+              && post.presenses && Object.keys(post.presenses).length > 0){
             locations = [];
             _.each(post.presenses, function(presense, i){
               if (presense === bz.const.posts.status.presence.NEAR){
                 loc = _.find(post.details.locations, function(loc){
-                  return loc._id === i;
+                  return (i && loc._id === i) || (!i && !loc._id);
                 });
                 if (loc){
                   locations.push(loc);

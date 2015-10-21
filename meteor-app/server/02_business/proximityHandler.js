@@ -1,8 +1,7 @@
 /**
  * Created by syurdor on 8/26/2015.
  */
-//earth radius
-var R = 3961;
+
 //ad search radius (box, actually)
 var defaultRadius = 1,
     nearbyRadius = 0.5;
@@ -80,7 +79,7 @@ bz.bus.proximityHandler = {
         _.each(posts, function(post){
             if (post && post.details && post.details.locations && Array.isArray(post.details.locations)){
                 updated = false;
-                bz.cols.posts.update({'_id': post._id}, {$set:{presenses: []}});
+                bz.cols.posts.update({'_id': post._id}, {$set:{presenses: {}}});
             }
         });
     },
@@ -110,7 +109,7 @@ bz.bus.proximityHandler = {
                         }
                     }
                 });
-                if (updated){
+                if (updated || Object.keys(presenses).length !== Object.keys(post.presenses).length){
                     bz.cols.posts.update({'_id': post._id}, {$set: {presenses: presenses}});
                 }
             }
@@ -153,8 +152,8 @@ bz.bus.proximityHandler = {
     },
     getLatLngBox: function (lat, lng, radius){
         if (lat && lng && radius) {
-            var dLat = (radius / R) / Math.PI * 180,
-                dLng = (radius / R / Math.cos(lat * Math.PI / 180)) / Math.PI * 180;
+            var dLat = (radius / bz.const.locations.earthRadius) / Math.PI * 180,
+                dLng = (radius / bz.const.locations.earthRadius / Math.cos(lat * Math.PI / 180)) / Math.PI * 180;
             return {
                 lng1: lng - dLng,
                 lng2: lng + dLng,
@@ -178,7 +177,7 @@ bz.bus.proximityHandler = {
         var a  = Math.pow(Math.sin(dlat/2),2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.pow(Math.sin(dlon/2),2);
         var c  = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a)); // great circle distance in radians
          // great circle distance in miles
-        return c * R;
+        return c * bz.const.locations.earthRadius;
     },
     withinRadius: function(lat, lng, radius, loc){
         return bz.bus.proximityHandler.distance(lat, lng, loc.coords.lat, loc.coords.lng) <= radius;

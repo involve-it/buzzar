@@ -10,6 +10,10 @@ bz.cols.posts.before.insert(function (userId, doc) {
   //doc.avatarUrl = 'https://randomuser.me/api/portraits/thumb/' + gender + '/' + num + '.jpg';
 });
 
+bz.cols.posts.isLive = function(post){
+  return post && post.presenses && Object.keys(post.presenses).length > 0;
+};
+
 /*bz.cols.posts.attachSchema(new SimpleSchema({
   name: {
     type: Object

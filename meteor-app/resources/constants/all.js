@@ -25,6 +25,7 @@ bz.const.locations.type.DYNAMIC = 'bz.dynamic';
 bz.const.locations.type.GOOGLEPLACE = 'google';
 bz.const.locations.type.MYPLACE = 'my place';
 bz.const.locations.defaultDistance = 2;
+bz.const.locations.earthRadius = 3961;
 
 bz.help.makeNamespace('bz.const.posts.session.names');
 bz.const.posts.locationGlobal = 'bz.runtime.newPost.location';
