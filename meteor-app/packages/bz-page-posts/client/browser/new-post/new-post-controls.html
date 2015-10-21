@@ -1,55 +1,65 @@
 <template name="postsNewForm">
 
-  <div class="item item-divider ">
-    <h3 class="title">Basic</h3>
-  </div>
 
   <div class="item-group">
+    <div class="item item-divider ">
+      <h3 class="title">Basic</h3>
+    </div>
+    <div class="row">
+      {{> postsNewUrl }}
+    </div>
+    <div class="row">
+      {{> postDetailsCommon }}
+    </div>
+
+    <div class="row">
+      {{> postTypeSelect }}
+    </div>
+    <div class="row">
+      <div class="js-post-details-categorized row"></div>
+    </div>
+    <div class="item item-divider ">
+      <h3 class="title">Location</h3>
+    </div>
+
     {{> postsPlacesAutoform }}
-    {{> postsNewUrl }}
-    {{> postTypeSelect }}
-    
+
   </div>
 
-  <div class="item item-divider">
-    <h3 class="title">Post Details</h3>
-  </div>
 
   <div class="item-group">
+    <div class="item item-divider">
+      <h3 class="title">Photos</h3>
+    </div>
     <!--<div class="clearfix">-->
     <div class="row">
       {{> postPhotoUpload }}
     </div>
 
     <div class="row">
-      {{> postDetailsCommon }}
-    </div>
-
-    <div class="js-post-details-categorized row"></div>
-    <div class="row">
       <!--{{> postHashesControl }}-->
     </div>
-    <div class="row">
+    <!--<div class="row">
       {{> postProfileInfo }}
-    </div>
+    </div>-->
   </div>
 
 </template>
 
 <template name="postTypeSelect">
   <div class="clearfix">
-      <div class="item-details">
+    <div class="item-details">
       <label class="item item-input item-select">
-      <div class="small-12 medium-3 input-label left">Select type</div>
-      <div class="small-12 medium-9 large-9 left">
-        <select class="js-post-type-select">
-          {{#each getSiteTypes }}
-            <option value="{{ name }}">{{ fullName }}</option>
-          {{/each}}
-        </select>
-      </div>
-    </label>
-    </div>    
+        <div class="small-12 medium-3 input-label left">Select type</div>
+        <div class="small-12 medium-9 large-9 left">
+          <select class="js-post-type-select">
+            {{#each getSiteTypes }}
+              <option value="{{ name }}">{{ fullName }}</option>
+            {{/each}}
+          </select>
+        </div>
+      </label>
+    </div>
   </div>
 </template>
 
@@ -68,17 +78,18 @@
     </div>
   </div>
 
-    <div class="clearfix">
-        <div class="item-details">
-            <label type="stacked" class="item item-input item-stacked-label">
-                <div class="small-12 medium-3 input-label left">Description</div>
-                <div class="small-12 medium-9 large-9 left">
+  <div class="clearfix">
+    <div class="item-details">
+      <label type="stacked" class="item item-input item-stacked-label">
+        <div class="small-12 medium-3 input-label left">Description</div>
+        <div class="small-12 medium-9 large-9 left">
                         <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
                                   data-schema-key="body" value="{{ getDescription }}"></textarea>
-                </div>
-            </label>
         </div>
+      </label>
     </div>
+  </div>
+
 </template>
 
 <template name="postPhotoUpload">
@@ -101,16 +112,16 @@
             </a>
           </li>-->
           {{#each getPostImages }}
-          <li class="clearing-featured-img">
-            <a onclick="return false;">
-              <img src="{{ data }}">
-            </a>
-            <!--<a href="{{ getImageSrc }}" onclick="return false;">
+            <li class="clearing-featured-img">
+              <a onclick="return false;">
+                <img src="{{ data }}">
+              </a>
+              <!--<a href="{{ getImageSrc }}" onclick="return false;">
               <img src="{{ getImageSrc }}">
             </a>-->
-          </li>
+            </li>
           {{/each }}
-          <a class="js-plus-img"><img src="/img/plus-button.png" /> </a>
+          <a class="js-plus-img"><img src="/img/plus-button.png"/> </a>
 
           <!--<li></li>-->
         </ul>
@@ -238,15 +249,15 @@
 </template>
 
 <template name="postProfileInfo">
-    <div class="clearfix">
-        <div class="item-details">
-                <div class="medium-3 input-label left">Incognito mode</div>
-                <div class="medium-5 large-7 left input-clear">
-                    <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Yes</label>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">No</label>
-                </div>
-        </div>
+  <div class="clearfix">
+    <div class="item-details">
+      <div class="medium-3 input-label left">Incognito mode</div>
+      <div class="medium-5 large-7 left input-clear">
+        <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Yes</label>
+        <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">No</label>
+      </div>
     </div>
+  </div>
 </template>
 
 
