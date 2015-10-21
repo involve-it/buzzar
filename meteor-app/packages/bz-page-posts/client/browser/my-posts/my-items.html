@@ -1,163 +1,169 @@
 <template name="myItems">
 
 
-    <div class="list">
+  <div class="list">
 
-        {{#if posts}}
+    {{#if posts}}
 
-            <div class="side-a small-12 medium-3 columns">
-                                
-                <div class="bz-posts-items-owner-menu">
-                    <ul class="bz-nav bz-nav-side-a">
-                        <li class="active"><a href="#">Your posts</a></li>
-                        <li><a href="#">Posts Requirements</a></li>
-                    </ul>
-                </div>
-                
-    
-            </div>
+      <div class="side-a small-12 medium-3 columns">
 
-            <!--SIDE B-->
-            <div class="side-b small-12 medium-9 large-9 columns">
-                <div class="bz-posts-items-owner-post-menu">
+        <div class="bz-posts-items-owner-menu">
+          <ul class="bz-nav bz-nav-side-a">
+            <li class="active"><a href="#">Your posts</a></li>
+            <li><a href="#">Posts Requirements</a></li>
+          </ul>
+        </div>
 
-                    <div class="bz-select-all-posts">
-                        <input id="bz-select-all-posts-check" type="checkbox">
-                    </div>
-                    
-                    <ul class="bz-nav bz-horizontal bz-nav-side-b">
-                        <li class="active"><a id="active" href="#">{{t9n 'active'}} posts ({{ bzCountActivePosts }})</a></li>
-                        <li><a id="inactive" href="#">{{t9n 'inactive'}} posts ({{ bzCountInactivePosts }})</a></li>
-                    </ul>
-                </div>
 
-                
-                    {{#each activePosts}}
-                        {{> onePostRowItemOwner}}
-                    {{/each}}
-                
-                
-            </div>
-            
-            <div class="clearfix"></div>
-            
-            
-            
-            
-          <!--<div class="item item-divider item-active">
+      </div>
+
+      <!--SIDE B-->
+      <div class="side-b small-12 medium-9 large-9 columns">
+        <div class="bz-posts-items-owner-post-menu">
+
+          <div class="bz-select-all-posts">
+            <input id="bz-select-all-posts-check" type="checkbox">
+          </div>
+
+          <ul class="bz-nav bz-horizontal bz-nav-side-b">
+            <li class="active"><a id="active" href="#">{{t9n 'active'}} posts ({{ bzCountActivePosts }})</a></li>
+            <li><a id="inactive" href="#">{{t9n 'inactive'}} posts ({{ bzCountInactivePosts }})</a></li>
+          </ul>
+        </div>
+
+
+        {{#each activePosts}}
+          {{> onePostRowItemOwner}}
+        {{/each}}
+
+
+      </div>
+
+      <div class="clearfix"></div>
+
+
+      <!--<div class="item item-divider item-active">
                 {{t9n 'inactive'}}
             </div>
             {{#each inactivePosts}}
-              {{> onePostRowItem}}
-            {{/each}}-->
-        {{else}}
-            {{> noPosts}}
-        {{/if}}
+        {{> onePostRowItem}}
+      {{/each}}-->
+    {{else}}
+      {{> noPosts}}
+    {{/if}}
 
-    </div>
-    
-    
+  </div>
+
+
 </template>
 
 
-
-
 <template name="onePostRowItem">
-   
-    <div class="bz-item bz-item-fixed">
-        <div class="bz-item-mask">
-            <a href="/post/{{_id}}">
-                <div class="bz-item-photo">
-                    {{#if getPhotoUrl.data}}
-                        <img src="{{getPhotoUrl.data}}">
-                    {{else}}
-                        <img src="/img/content/no-photo.png">
-                    {{/if}}
-                </div>
-                
-                <div class="bz-item-content">
-                    <div class="bz-item-content-context">
-                        <div class="bz-item-type type-category-{{categoryType}}">{{ categoryType }}</div>
-                    </div>
-                    <h4 class="bz-item-title">{{details.title}}</h4>
-                    <p class="bz-item-text">{{details.description}}</p>
-                </div>
-                <div class="bz-item-footer">
-                    <div class="bz-item-views">{{t9n 'views'}} 250 <span class="today">(15 today)</span></div>
-                </div>
-            </a>
+
+  <div class="bz-item bz-item-fixed">
+    <div class="bz-item-mask">
+      <a href="/post/{{_id}}">
+        <div class="bz-item-photo">
+          {{#if getPhotoUrl.data}}
+            <img src="{{getPhotoUrl.data}}">
+          {{else}}
+            <img src="/img/content/no-photo.png">
+          {{/if}}
         </div>
-        <div class="bz-tem-additional-tags">
-            {{#if details.price}}
-                <div class="price"> {{details.price}} <span class="bz-prefix">$</span></div>
-            {{/if}}
+
+        <div class="bz-item-content">
+          <div class="bz-item-content-context">
+            <div class="bz-item-type type-category-{{categoryType}}">{{ categoryType }}</div>
+          </div>
+          <h4 class="bz-item-title">{{details.title}}</h4>
+
+          <p class="bz-item-text">{{details.description}}</p>
+          {{> bzPostsPostPresence this}}
+
         </div>
-        <div class="bz-item-owner">
-            <div class="bz-avatar" style="background: url({{ getAvatarImg }}); background-size: cover;"></div>
-            <div class="bz-item-user-info">
-                <div class="bz-username"><a href="/user/{{ userId }}">{{ getUserName }}</a></div>
-                <!--<div class="bz-rating"></div>-->
-            </div>
+        <div class="bz-item-footer">
+          <div class="bz-item-views">{{t9n 'views'}}  {{ stats.seenTotal }} <span class="today">({{ stats.seenToday }}
+            today)</span></div>
         </div>
+
+      </a>
     </div>
-    
+    <div class="bz-tem-additional-tags">
+      {{#if details.price}}
+        <div class="price"> {{details.price}} <span class="bz-prefix">$</span></div>
+      {{/if}}
+    </div>
+    <div class="bz-item-owner">
+      <div class="bz-avatar" style="background: url({{ getAvatarImg }}); background-size: cover;"></div>
+      <div class="bz-item-user-info">
+        <div class="bz-username"><a href="/user/{{ userId }}">{{ getUserName }}</a></div>
+        <!--<div class="bz-rating"></div>-->
+      </div>
+    </div>
+  </div>
+
 </template>
 
 <template name="onePostRowItemOwner">
 
-       <div class="item">
-           <div class="bz-btn-check">
-               <input class="bz-select-posts-checked" type="checkbox">
-           </div>
-            <a href="/post/{{_id}}">
-            <div class="photo">
-                <div class="photo-wrapper">
-                    {{#if getPhotoUrl.data}}
-                        <img src="{{getPhotoUrl.data}}">
-                     {{else}}
-                        <img src="/img/content/no-photo.png">
-                    {{/if}}
-                </div>
-            </div>
-    
-            <div class="description">
-                
-                <h3 class="title">{{details.title}}</h3>
-    
-                {{#if details.price}}
-                    <div class="price"> {{details.price}} <span class="bz-prefix">$</span></div>
-                {{/if}}
-                <div class="bz-count-view">{{t9n 'views'}}: 250,  today <span class="today">15</span></div>
-                <div class="bz-progress">{{t9n 'left'}}: 15 days</div>
-                <div class="bz-services" style="display: none">
-                    <ul>
-                        <li class="vip">VIP</li>
-                        <li class="up">UP</li>
-                        <li>...</li>
-                    </ul>
-                </div>
-            </div>
-            </a>
+  <div class="item">
+    <div class="bz-btn-check">
+      <input class="bz-select-posts-checked" type="checkbox">
+    </div>
+    <a href="/post/{{_id}}">
+      <div class="photo">
+        <div class="photo-wrapper">
+          {{#if getPhotoUrl.data}}
+            <img src="{{getPhotoUrl.data}}">
+          {{else}}
+            <img src="/img/content/no-photo.png">
+          {{/if}}
         </div>
+      </div>
+
+      <div class="description">
+
+        <h3 class="title">{{details.title}}</h3>
+
+        {{#if details.price}}
+          <div class="price"> {{details.price}} <span class="bz-prefix">$</span></div>
+        {{/if}}
+        <div class="bz-count-view">{{t9n 'views'}}: {{ stats.seenTotal }}, today <span class="today"> {{ stats.seenToday }}</span></div>
+        {{#if details.duration }}
+          <div class="bz-progress">{{t9n 'left'}}: 15 days</div>
+        {{/if }}
+
+        <div class="bz-services" style="display: none">
+          <ul>
+            <li class="vip">VIP</li>
+            <li class="up">UP</li>
+            <li>...</li>
+          </ul>
+        </div>
+        {{> bzPostsPostPresence this}}
+
+      </div>
+    </a>
+  </div>
 
 </template>
 
 <template name="noPosts">
 
-    <div class="bz-wrapper-no-message">
-        <div class="bz-flex-box">
+  <div class="bz-wrapper-no-message">
+    <div class="bz-flex-box">
 
-            <div class="bz-img-conversation">
-                <i class="fa fa-envelope"></i>
-            </div>
+      <div class="bz-img-conversation">
+        <i class="fa fa-envelope"></i>
+      </div>
 
-            <div class="title-message">You have no posts yet</div>
-            <div class="subtitle-message">Press button below.</div>
+      <div class="title-message">You have no posts yet</div>
+      <div class="subtitle-message">Press button below.</div>
 
-            <div class="bz-padding-top-x2">
-                <a href="{{pathFor 'postsNew'}}" class="button alert">New Post</a>
-            </div>
-        </div>
+      <div class="bz-padding-top-x2">
+        <a href="{{pathFor 'postsNew'}}" class="button alert">New Post</a>
+      </div>
     </div>
+  </div>
 
 </template>

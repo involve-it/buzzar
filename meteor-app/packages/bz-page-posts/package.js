@@ -25,6 +25,8 @@ Package.onUse(function (api) {
     'client/page-my.less'
   ], 'client');
   api.addFiles([
+    'client/browser/common.html',
+
     'client/browser/details/details-controls.html',
     'client/browser/details/details-controls.less',
     'client/browser/details/details-controls.js',

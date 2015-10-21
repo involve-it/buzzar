@@ -32,7 +32,9 @@ Template.aroundYou.helpers({
 });
 
 Template.bzAroundYouItem.helpers({
-
+  getPostOwner: function(){
+    return Meteor.users.findOne(this.userId);
+  },
   categoryType: function() {
     /*
     var postsId = bz.cols.posts.find({_id: this._id}).fetch()[0].type;

@@ -1,0 +1,9 @@
+<template name="bzPostsPostPresence">
+  <p>
+    {{#if _hasOnlinePresence }}
+      <a title="address: {{ _hasOnlinePresence }}">[[Live]]</a>
+    {{else }}
+      [[Away]]
+    {{/if}}
+  </p>
+</template>

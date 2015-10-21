@@ -17,7 +17,7 @@
   <div class="small-12 medium-6 large-4 columns left">
     <div class="bz-item">
       <div class="bz-side-a">
-        {{> bzUserProfileAroundYou currentUser}}
+        {{> bzUserProfileAroundYou getPostOwner}}
       </div>
       <div class="bz-side-b">
         <div class="arrow"></div>
@@ -45,6 +45,8 @@
               {{categoryType}}
             </div>
           </div>
+          {{> bzPostsPostPresence this}}
+
         </div>
       </div>
     </div>
