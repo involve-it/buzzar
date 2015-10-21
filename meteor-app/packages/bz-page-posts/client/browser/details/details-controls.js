@@ -45,6 +45,11 @@ Template.postDetailsPhoto.onRendered(function () {
   $(document).foundation();
   $(document).foundation('clearing', 'reflow');
 });
+Template.postDetailsPhoto.events({
+  'click .js-main-photo-large': function(e, v){
+    v.$('.js-clearing-thumbs li:first-child a').click();
+  }
+})
 Template.postDetailsPhoto.helpers({
   /*getImageSrc: function () {
    var ret = '/img/content/avatars/avatar-no.png';
@@ -77,7 +82,7 @@ Template.postDetailsPhoto.helpers({
       });
       if (main && main.length > 0){
         ret = main[0];
-      } else {
+      } else if(photos && photos[0]) {
         ret = photos[0];
       }
     }

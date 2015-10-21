@@ -15,28 +15,37 @@ Template.onePostRowItem.rendered = function() {
 };
 
 Template.myItems.helpers({
-  posts: function () {
-    //debugger;
+  hasPosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId()}).fetch();
     return posts.length !== 0;
   },
+  allPosts: function () {
+    var posts = bz.cols.posts.find({userId: Meteor.userId()});
+    console.log('all' + posts.count());
+
+    return posts;
+  },
   activePosts: function () {
-    //debugger;
-    var posts = bz.cols.posts.find({userId: Meteor.userId()}).fetch();
+    var posts = bz.cols.posts.find({userId: Meteor.userId(), 'status.visible': 'visible'});
+    console.log('active' + posts.count());
     return posts;
   },
-  inactivePosts: function () {
+  livePosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId()}).fetch();
-    
-    return posts;
+    var ret = _.filter(posts, function(item){
+      var ret = !!item._hasLivePresence();
+      return ret;
+    });
+    console.log('live' + ret.length);
+    return ret;
   },
-  bzCountActivePosts: function() {
-    var postsCount = bz.cols.posts.find({userId: Meteor.userId()}).count();
-    return postsCount || '0';
+  getCountActivePosts: function() {
+    //var postsCount = bz.cols.posts.find({userId: Meteor.userId()}).count();
+    //return postsCount || '0';
   },
-  bzCountInactivePosts: function() {
-    var postsCount;
-    return postsCount || '0';
+  getCountLivePosts: function() {
+    //var postsCount;
+    //return postsCount || '0';
   }
 });
 
@@ -81,10 +90,28 @@ Template.onePostRowItem.helpers({
 * Template for owner posts
 */
 
+Template.onePostRowItemOwner.events({
+  'click .js-switch-wrapper': function(e, v){
+  },
+  'click .js-switch-activity-input': function(e,v){
+    if(v.data) {
+      v.data.status = v.data.status || {}
+
+      if (e.target.checked === false) {
+        v.data.status.visible = null;
+      } else {
+        v.data.status.visible = 'visible';
+      }
+      setTimeout(function(){
+        bz.cols.posts.update(v.data._id, {$set: {'status.visible': v.data.status.visible}})
+      }, 10);
+    }
+  }
+})
 Template.onePostRowItemOwner.helpers({
   getPhotoUrl: function () {
     var photo = bz.cols.posts.findOne({_id: this._id}),
-        photoId = photo.details.photos && photo.details.photos[0] || undefined;
+        photoId = photo && photo.details.photos && photo.details.photos[0] || undefined;
 
     if (photoId) {
       var image = bz.cols.images.findOne({_id: photoId});
@@ -110,6 +137,15 @@ Template.onePostRowItemOwner.helpers({
     var ret = '';
     if(this.userId && Meteor.users.findOne(this.userId)) {
       ret = Meteor.users.findOne(this.userId).username.toCapitalCase();
+    }
+    return ret;
+  },
+  getVisibilityVal: function(e,v,c){
+    var ret;
+    if(this.status.visible === 'visible'){
+      ret = 'checked'
+    } else {
+      ret = '';
     }
     return ret;
   }

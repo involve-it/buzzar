@@ -209,14 +209,14 @@
 <template name="postDetailsPhoto">
   <div class="photos">
     <!--{{#if getPhotoUrl}}-->
-      <div class="single-photo cover-img" style="background-image: url('{{ getMainPhoto }}')"></div>
+      <div class="single-photo cover-img js-main-photo-large" style="background-image: url('{{ getMainPhoto }}')"></div>
     <!--{{else}}-->
       <!--<div class="single-photo cover-img"-->
            <!--style="background-color: #efefef; background-image: url('{{ getMainImage }}')"></div>-->
     <!--{{/if}}-->
         
     {{#if moreThanOnePhotos }}
-        <ul class="clearing-thumbs" data-clearing>
+        <ul class="clearing-thumbs js-clearing-thumbs" data-clearing>
             {{#each getPhotos }}
                 <li>
                     <a href="data:{{ data }}">
