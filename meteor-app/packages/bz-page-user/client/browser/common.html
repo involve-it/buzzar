@@ -28,8 +28,14 @@
           
         <div class="bz-user-date">
           <span>{{ username }}</span>
-          <div class="bz-rating"></div>
-          <span>{{ status }}</span>
+          <div class="">
+            {{#if isOnline }}
+              [[Online]]
+            {{else }}
+              [[offline]]
+            {{/if}}
+          </div>
+          <!--<div class="bz-rating"></div>-->
         </div>
         
         <div class="bz-send-message">
@@ -41,4 +47,23 @@
     
   
 
+</template>
+
+<!--used on the around you, home:-->
+<template name="bzUserProfileAroundYou">
+  <a href="/user/{{ userId }}"><div class="bz-avatar" style="background-image: url({{ _getAvatarImage }});"></div></a>
+  <!--<div class="bz-rating">{{ getPostRating }}</div>-->
+  <div class="item-details">
+    <div class="small-12 medium-2 bz-input-label columns">Status</div>
+    <div class="small-12 medium-10 large-10 bz-input-result columns">
+      <p>
+        {{#if _isOnline }}
+          [[Online]]
+        {{else }}
+          [[offline]]
+        {{/if}}
+      </p>
+    </div>
+  </div>
+  <div class="bz-username"><a href="/user/{{ userId }}">{{ getNameFormatted }}</a></div>
 </template>

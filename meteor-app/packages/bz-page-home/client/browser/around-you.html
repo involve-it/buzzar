@@ -17,9 +17,7 @@
   <div class="small-12 medium-6 large-4 columns left">
     <div class="bz-item">
       <div class="bz-side-a">
-        <a href="/user/{{ userId }}"><div class="bz-avatar" style="background-image: url({{ getAvatarImg }});"></div></a>
-        <div class="bz-rating">{{ getPostRating }}</div>
-        <div class="bz-username"><a href="/user/{{ userId }}">{{ getUserName }}</a></div>
+        {{> bzUserProfileAroundYou currentUser}}
       </div>
       <div class="bz-side-b">
         <div class="arrow"></div>

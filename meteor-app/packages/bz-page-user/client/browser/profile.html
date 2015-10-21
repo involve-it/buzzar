@@ -1,84 +1,96 @@
 <template name="profileSettings">
 
-      <div class="main-content">
-        <div class="page-settings">
-          <div class="profile-box">
-              
-            <!--SIDE A-->
-            <div class="side-a text-center small-12 medium-4 columns">
-                <div class="item item-divider">
-                    <h3 class="title">User profile details</h3>
-                </div>
-                
-                <div class="user-avatar">
-                    <div>{{> avatarThumbnail image=profile.image}}</div>
-                </div>
-                
-                <div class="user-info">
-                    <div class="user-name capitalize"> {{ username }} </div>
-                    <div class="user-location"> San-Francisco, CA </div>
-                </div>
-                
-                <div class="user-attainment">
-                    <div class="count-posts">86<span>posts</span></div>
-                    <div class="count-comments">1,1k<span>comments</span></div>
-                    <div class="count-smth">666<span>something</span></div>
-                </div>
+  <div class="main-content">
+    <div class="page-settings">
+      <div class="profile-box">
 
-
-
-                <div class="btn-edit-account">
-                    <a class="button btn-default" href="{{pathFor 'settings.edit'}}">Edit your profile</a>
-                </div>
-                
-            </div>
-            
-            <!--SIDE B-->
-            <div class="side-b small-12 medium-8 large-8 columns">
-                
-                <div class="item-divider">
-                    <h3 class="title">Your personal settings</h3>
-                </div>
-                <div class="user-item overflow">
-                    <div class="item-details">
-                        <div class="small-12 medium-2 bz-input-label columns">Profile Url</div>
-                        <div class="small-12 medium-10 large-10 bz-input-result columns">
-                            <div class="bz-text-overflow-ellipsis">
-                                <p> <a href="{{ getIdProfile}}">{{ getIdProfile}}</a> </p>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="item-details">
-                        <div class="small-12 medium-2 bz-input-label columns">Phone</div>
-                        <div class="small-12 medium-10 large-10 bz-input-result columns"><p> Upon request </p></div>
-                    </div>
-    
-                    <div class="item-details">
-                        <div class="small-12 medium-2 bz-input-label columns">Skype</div>
-                        <div class="small-12 medium-10 large-10 bz-input-result columns"><p> Hidden </p></div>
-                    </div>
-                </div>
-
-                <div class="clearfix"></div>
-
-                <div class="item item-divider">
-                    <h3 class="title">Your external links</h3>
-                </div>
-                <div class="user-item overflow">
-                    <div class="item-details">
-                        <div class="small-12 medium-2 bz-input-label columns">Facebook Url</div>
-                        <div class="small-12 medium-10 large-10 bz-input-result columns"><p> -------<!--{{ getFaceBookDetails }}--> </p></div>
-                    </div>
-                </div>
-                
-            </div>
-
-            <div class="clearfix"></div>
-
+        <!--SIDE A-->
+        <div class="side-a text-center small-12 medium-4 columns">
+          <div class="item item-divider">
+            <h3 class="title">User profile details</h3>
           </div>
+
+          <div class="user-avatar">
+            <div>{{> avatarThumbnail image=profile.image}}</div>
+          </div>
+
+          <div class="user-info">
+            <div class="user-name capitalize"> {{ username }} </div>
+            <div class="user-location"> San-Francisco, CA</div>
+          </div>
+
+          <div class="user-attainment">
+            <div class="count-posts">86<span>posts</span></div>
+            <div class="count-comments">1,1k<span>comments</span></div>
+            <div class="count-smth">666<span>something</span></div>
+          </div>
+
+
+          <div class="btn-edit-account">
+            <a class="button btn-default" href="{{pathFor 'settings.edit'}}">Edit your profile</a>
+          </div>
+
         </div>
 
+        <!--SIDE B-->
+        <div class="side-b small-12 medium-8 large-8 columns">
+
+          <div class="item-divider">
+            <h3 class="title">Your personal settings</h3>
+          </div>
+          <div class="user-item overflow">
+            <div class="item-details">
+              <div class="small-12 medium-2 bz-input-label columns">Profile Url</div>
+              <div class="small-12 medium-10 large-10 bz-input-result columns">
+                <div class="bz-text-overflow-ellipsis">
+                  <p><a href="{{ getIdProfile}}">{{ getIdProfile}}</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="item-details">
+              <div class="small-12 medium-2 bz-input-label columns">Phone</div>
+              <div class="small-12 medium-10 large-10 bz-input-result columns"><p> Upon request </p></div>
+            </div>
+
+            <div class="item-details">
+              <div class="small-12 medium-2 bz-input-label columns">Skype</div>
+              <div class="small-12 medium-10 large-10 bz-input-result columns"><p> Hidden </p></div>
+            </div>
+            <div class="item-details">
+              <div class="small-12 medium-2 bz-input-label columns">Status</div>
+              <div class="small-12 medium-10 large-10 bz-input-result columns">
+                <p>
+                  {{#if _isOnline }}
+                    [[Online]]
+                  {{else }}
+                    [[offline]]
+                  {{/if}}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div class="item item-divider">
+            <h3 class="title">Your external links</h3>
+          </div>
+          <div class="user-item overflow">
+            <div class="item-details">
+              <div class="small-12 medium-2 bz-input-label columns">Facebook Url</div>
+              <div class="small-12 medium-10 large-10 bz-input-result columns"><p> -------
+                <!--{{ getFaceBookDetails }}--> </p></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="clearfix"></div>
+
       </div>
+    </div>
+
+  </div>
 
 </template>

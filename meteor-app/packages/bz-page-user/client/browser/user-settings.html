@@ -1,86 +1,96 @@
 <template name="userSettings">
 
-    <div class="main-content">
-        <div class="page-settings">
-            <div class="profile-box">
+  <div class="main-content">
+    <div class="page-settings">
+      <div class="profile-box">
 
-             
-                <!--SIDE A-->
-                <div class="side-a text-center small-12 medium-4 columns">
-                    <div class="item item-divider">
-                        <h3 class="title">User profile details</h3>
-                    </div>
 
-                    <div class="user-avatar">
-                        <div>{{> avatarThumbnail image=profile.image }}</div>
-                    </div>
+        <!--SIDE A-->
+        <div class="side-a text-center small-12 medium-4 columns">
+          <div class="item item-divider">
+            <h3 class="title">User profile details</h3>
+          </div>
 
-                    <div class="user-info">
-                        <div class="user-name capitalize"> {{ username }} </div>
-                        <div class="user-location"> San-Francisco, CA </div>
-                    </div>
-                    
+          <div class="user-avatar">
+            <div>{{> avatarThumbnail image=profile.image }}</div>
+          </div>
 
-                    <div class="btn-edit-account">
-                        <button class="button btn-default js-send-message-btn">Send Message</button>
-                    </div>
+          <div class="user-info">
+            <div class="user-name capitalize"> {{ username }} </div>
+            <div class="user-location"> San-Francisco, CA</div>
+          </div>
 
-                </div>
 
-                <!--SIDE B-->
-                <div class="side-b small-12 medium-8 large-8 columns">
+          <div class="btn-edit-account">
+            <button class="button btn-default js-send-message-btn">Send Message</button>
+          </div>
 
-                    <div class="item-divider">
-                        <h3 class="title">Your personal settings</h3>
-                    </div>
-                    <div class="user-item overflow">
-                        <div class="item-details">
-                            <div class="small-12 medium-2 bz-input-label columns">Profile Url</div>
-                            <div class="small-12 medium-10 large-10 bz-input-result columns">
-                                <div class="bz-text-overflow-ellipsis">
-                                    <p> <a href="{{ getIdProfile}}">{{ getIdProfile}}</a> </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item-details">
-                            <div class="small-12 medium-2 bz-input-label columns">Phone</div>
-                            <div class="small-12 medium-10 large-10 bz-input-result columns"><p> +1 (800) 123-456 </p></div>
-                        </div>
-
-                        <div class="item-details">
-                            <div class="small-12 medium-2 bz-input-label columns">Skype</div>
-                            <div class="small-12 medium-10 large-10 bz-input-result columns"><p> Underground87 </p></div>
-                        </div>
-                    </div>
-
-                    <div class="clearfix"></div>
-
-                    <div class="item item-divider">
-                        <h3 class="title">Your external links</h3>
-                    </div>
-                    <div class="user-item overflow">
-                        <div class="item-details">
-                            <div class="small-12 medium-2 bz-input-label columns">Facebook Url</div>
-                            <div class="small-12 medium-10 large-10 bz-input-result columns"><p> Upon request <!--{{ getFaceBookDetails }}--> </p></div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="clearfix"></div>
-                <div class="bz-separate"></div>
-                
-                <div>ТУТ МОГУТ БЫТЬ ОТЗЫВЫ или ДРУГАЯ ВАЖНАЯ ИНФОРМАЦИЯ КОТОРАЯ ВАЖНА ПРОСМАТРИВАЮЩИМ ПРОФИЛЬ</div>
-                <p>Скажем, тут могут находится другие posts пользователя</p>
-                
-                
-                
-                
-                
-            </div>
         </div>
+
+        <!--SIDE B-->
+        <div class="side-b small-12 medium-8 large-8 columns">
+
+          <div class="item-divider">
+            <h3 class="title">Your personal settings</h3>
+          </div>
+          <div class="user-item overflow">
+            <div class="item-details">
+              <div class="small-12 medium-2 bz-input-label columns">Profile Url</div>
+              <div class="small-12 medium-10 large-10 bz-input-result columns">
+                <div class="bz-text-overflow-ellipsis">
+                  <p><a href="{{ getIdProfile}}">{{ getIdProfile}}</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="item-details">
+              <div class="small-12 medium-2 bz-input-label columns">Phone</div>
+              <div class="small-12 medium-10 large-10 bz-input-result columns"><p> +1 (800) 123-456 </p></div>
+            </div>
+
+            <div class="item-details">
+              <div class="small-12 medium-2 bz-input-label columns">Skype</div>
+              <div class="small-12 medium-10 large-10 bz-input-result columns"><p> Underground87 </p></div>
+            </div>
+            <div class="item-details">
+              <div class="small-12 medium-2 bz-input-label columns">Status</div>
+              <div class="small-12 medium-10 large-10 bz-input-result columns">
+                <p>
+                  {{#if _isOnline }}
+                    [[Online]]
+                  {{else }}
+                    [[offline]]
+                  {{/if}}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div class="item item-divider">
+            <h3 class="title">Your external links</h3>
+          </div>
+          <div class="user-item overflow">
+            <div class="item-details">
+              <div class="small-12 medium-2 bz-input-label columns">Facebook Url</div>
+              <div class="small-12 medium-10 large-10 bz-input-result columns"><p> Upon request
+                <!--{{ getFaceBookDetails }}--> </p></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="bz-separate"></div>
+
+        <div>ТУТ МОГУТ БЫТЬ ОТЗЫВЫ или ДРУГАЯ ВАЖНАЯ ИНФОРМАЦИЯ КОТОРАЯ ВАЖНА ПРОСМАТРИВАЮЩИМ ПРОФИЛЬ</div>
+        <p>Скажем, тут могут находится другие posts пользователя</p>
+
+
+      </div>
     </div>
+  </div>
 
 </template>
 

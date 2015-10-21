@@ -13,10 +13,13 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.3');
 
-  api.use(['iron:router', 'iron:layout', 'aldeed:simple-schema'], ['client', 'server']);
+  api.use(['iron:router', 'iron:layout', 'aldeed:simple-schema', 'dburles:collection-helpers'], ['client', 'server']);
   api.use(['templating', 'aldeed:autoform'], 'client');
   api.use('less', 'client');
   api.use('arutune:bz-main');
+  api.addFiles([
+    'collections/users.shared.js'
+  ], ['client', 'server']);
 
   api.addFiles([
     'client/router.js',

@@ -42,19 +42,9 @@ Template.bzAroundYouItem.helpers({
     }*/
     return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
   },
-  getAvatarImg: function () {
-    return getUserImageFromRecord(this.userId);
-  },
   getRank: function() {},
   getTimeStamp: function(){
     return Date.now();
-  },
-  getUserName: function() {
-    var ret = '';
-    if(this.userId && Meteor.users.findOne(this.userId)) {
-      ret = Meteor.users.findOne(this.userId).username.toCapitalCase();
-    }
-    return ret;
   },
   getImgSrc: function(){
     var ret, phId = this.details.photos && this.details.photos[0];
