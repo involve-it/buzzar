@@ -2,17 +2,24 @@
  * Created by ashot on 8/21/15.
  */
 
-bz.cols.posts = new Mongo.Collection('posts');
+var Post = {
+    isLive: function () {
+      return this.presenses && Object.keys(this.presenses).length > 0;
+    }
+};
+
+bz.cols.posts = new Mongo.Collection('posts', {
+  transform: function(post){
+    var instance = Object.create(Post);
+    return _.extend(instance, post);
+  }
+});
 
 bz.cols.posts.before.insert(function (userId, doc) {
   //var gender = Random.choice(['men', 'women']);
   //var num = _.random(0, 50);
   //doc.avatarUrl = 'https://randomuser.me/api/portraits/thumb/' + gender + '/' + num + '.jpg';
 });
-
-bz.cols.posts.isLive = function(post){
-  return post && post.presenses && Object.keys(post.presenses).length > 0;
-};
 
 /*bz.cols.posts.attachSchema(new SimpleSchema({
   name: {
