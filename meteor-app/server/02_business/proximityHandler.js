@@ -79,16 +79,16 @@ bz.bus.proximityHandler = {
         _.each(posts, function(post){
             if (post && post.details && post.details.locations && Array.isArray(post.details.locations)){
                 updated = false;
-                bz.cols.posts.update({'_id': post._id}, {$set:{presenses: {}}});
+                bz.cols.posts.update({'_id': post._id}, {$set:{presences: {}}});
             }
         });
     },
     processLocationReport: function(posts, lat, lng){
-        var updated;
+        var updated, presences;
         _.each(posts, function(post){
             if (post && post.details && post.details.locations && Array.isArray(post.details.locations)){
                 updated = false;
-                var presenses = {};
+                presences = {};
                 _.each(post.details.locations, function(loc){
                     if (loc.placeType === bz.const.locations.type.DYNAMIC){
                         if (loc.coords.lat !== lat || loc.coords.lng != lng) {
@@ -100,17 +100,17 @@ bz.bus.proximityHandler = {
                             };
                             updated = true;
                         }
-                        presenses[loc._id] = bz.const.posts.status.presence.NEAR;
+                        presences[bz.const.locations.type.DYNAMIC] = bz.const.posts.status.presence.NEAR;
                     } else {
                         if (bz.bus.proximityHandler.withinRadius(lat, lng, nearbyRadius, loc)) {
                             //console.log('Changing status to Near for ad: ' + post.details.title);
                             updated = true;
-                            presenses[loc._id] = bz.const.posts.status.presence.NEAR;
+                            presences[loc._id] = bz.const.posts.status.presence.NEAR;
                         }
                     }
                 });
-                if (updated || Object.keys(presenses).length !== Object.keys(post.presenses).length){
-                    bz.cols.posts.update({'_id': post._id}, {$set: {presenses: presenses}});
+                if (updated || !post.presences || Object.keys(presences).length !== Object.keys(post.presences).length){
+                    bz.cols.posts.update({'_id': post._id}, {$set: {presences: presences, 'details.locations': post.details.locations}});
                 }
             }
         });

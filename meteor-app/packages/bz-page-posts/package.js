@@ -13,11 +13,13 @@ Package.describe({
 Package.onUse(function (api) {
   api.versionsFrom('1.1.0.3');
 
-  api.use('iron:router', ['client', 'server']);
-  api.use('iron:layout', ['client', 'server']);
+  api.use(['iron:router', 'iron:layout', 'mongo'], ['client', 'server']);
   api.use('templating', 'client');
   api.use('less', 'client');
   api.use('arutune:bz-main');
+  api.use(['dburles:collection-helpers'], ['client', 'server']);
+
+  api.addFiles(['collections/posts.shared.js'], ['client', 'server']);
 
   api.addFiles([
     'client/router.js',
@@ -55,9 +57,7 @@ Package.onUse(function (api) {
 
     'client/browser/places-autoform.less',
     'client/browser/places-autoform.html',
-    'client/browser/places-autoform.js',
-
-
+    'client/browser/places-autoform.js'
   ], 'web.browser');
   api.addFiles([
       'server/model.js'

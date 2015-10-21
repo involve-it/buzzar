@@ -147,7 +147,7 @@ if (Meteor.isServer) {
             _.each(post.presenses, function(presense, i){
               if (presense === bz.const.posts.status.presence.NEAR){
                 loc = _.find(post.details.locations, function(loc){
-                  return (i && loc._id === i) || (!i && !loc._id);
+                  return (i !== bz.const.locations.type.DYNAMIC && loc._id === i) || (i === bz.const.locations.type.DYNAMIC && !loc._id);
                 });
                 if (loc){
                   locations.push(loc);
