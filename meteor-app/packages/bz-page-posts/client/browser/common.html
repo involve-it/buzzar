@@ -1,7 +1,7 @@
 <template name="bzPostsPostPresence">
   <p>
     {{#if _hasLivePresence }}
-      <a title="address: {{ _hasLivePresence }}">[[Live]]</a>
+      <a title="address: {{ _hasLivePresence.name }}, lat: {{ _hasLivePresence.coords.lat }}, lng: {{ _hasLivePresence.coords.lng }}">[[Live]]</a>
     {{else }}
       [[Away]]
     {{/if}}
