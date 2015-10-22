@@ -222,11 +222,13 @@
 
     .bz-i-wrapper {
       .border-radius(2px);
-      border: 0;
+      border: 1px solid rgba(53,203,75, .8);
+      color: rgba(53,203,75, 1);
+      background-color: transparent;
       font-size: 12px;
       padding: 0 8px;
-      background-color: rgba(53,203,75, .95);
-      color: rgba(255,255,255, .75);
+      /*background-color: rgba(53,203,75, .95);*/
+      /*color: rgba(255,255,255, .75);*/
 
       i {}
     }
@@ -237,7 +239,7 @@
     .border-radius(2px);
     padding: 0 8px;
     border: 1px solid @border-color-sep;
-    color: @text-color-label-span;
+    color: darken(@border-color-sep, 30%);
 
     i {}
   }

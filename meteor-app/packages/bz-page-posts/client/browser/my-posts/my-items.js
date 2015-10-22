@@ -14,6 +14,14 @@ Template.onePostRowItem.rendered = function() {
   });
 };
 
+
+
+Template.myItems.onRendered(function () {
+  $(document).foundation();
+});
+ 
+
+
 Template.myItems.helpers({
   hasPosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId()}).fetch();

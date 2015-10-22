@@ -19,31 +19,45 @@
 
       <!--SIDE B-->
       <!--<div class="side-b small-12 medium-9 large-9 columns">-->
-        <div class="bz-posts-items-owner-post-menu">
-
-          <!--<div class="bz-select-all-posts">
-            <input id="bz-select-all-posts-check" type="checkbox">
-          </div>-->
-
-          <ul class="bz-nav bz-horizontal bz-nav-side-b">
-            <li class="active"><a id="active" href="#">All</a></li>
-            <li><a id="livePosts" href="#">Live <!--({{ getCountLivePosts }})--></a></li>
-            <li><a id="activePosts" href="#">Active <!--({{ getCountActivePosts }})--></a></li>
-          </ul>
+    
+       
+        <div>
+            <div class="bz-posts-items-owner-post-menu">
+                <ul class="tabs bz-nav bz-horizontal bz-nav-side-b" data-tab="">
+                    <li class="tab-title active"><a id="active" href="#allPosts" aria-selected="true" tabindex="0">All</a></li>
+                    <li class="tab-title"><a id="livePosts" href="#livePosts" aria-selected="false" tabindex="0">Live <!--({{ getCountLivePosts }})--></a></li>
+                    <li class="tab-title"><a id="activePosts" href="#activePosts" aria-selected="false" tabindex="0">Active <!--({{ getCountActivePosts }})--></a></li>
+                </ul>
+            </div>
+                        
+            <div class="tabs-content">
+                <div class="content active" id="allPosts" aria-hidden="false">
+                    {{#each allPosts}}
+                        {{> onePostRowItemOwner}}
+                    {{/each}}
+                </div>
+                <div class="content" id="livePosts" aria-hidden="true">
+                    {{#each livePosts}}
+                        {{> onePostRowItemOwner}}
+                    {{/each}}
+                </div>
+                <div class="content" id="activePosts" aria-hidden="true">
+                    {{#each activePosts}}
+                        {{> onePostRowItemOwner}}
+                    {{/each}}
+                </div>
+                
+            </div>
         </div>
-
-      <h5>all</h5>
-        {{#each allPosts}}
-          {{> onePostRowItemOwner}}
-        {{/each}}
-        <h5>live</h5>
-        {{#each livePosts}}
-          {{> onePostRowItemOwner}}
-        {{/each}}
-        <h5>active</h5>
-        {{#each activePosts}}
-          {{> onePostRowItemOwner}}
-        {{/each}}
+    
+    
+        
+    
+    
+    
+    
+    
+    
 
       <!--</div>-->
 
@@ -81,7 +95,10 @@
 
         <div class="bz-item-content">
           <div class="bz-item-content-context">
-            <div class="bz-item-type type-category-{{categoryType}}">{{ categoryType }}</div>
+              <div class="bz-item-content-context-wrapper">
+                  <div class="bz-item-type type-category-{{categoryType}}">{{ categoryType }}</div>
+                  {{> bzPostsPostPresence this}}
+              </div>
           </div>
           <h4 class="bz-item-title">{{details.title}}</h4>
 
@@ -93,7 +110,6 @@
           <div class="bz-item-views">{{t9n 'views'}}  {{ stats.seenTotal }} <span class="today">({{ stats.seenToday }}
             today)</span>
           </div>
-            {{> bzPostsPostPresence this}}
         </div>
 
       </a>

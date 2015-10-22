@@ -36,6 +36,7 @@ Package.onUse(function (api) {
     'client/browser/style/foundation/js/foundation/foundation.clearing.js',
     'client/browser/style/foundation/js/foundation/foundation.tooltip.js',
 	  'client/browser/style/foundation/js/foundation/foundation.dropdown.js',
+    'client/browser/style/foundation/js/foundation/foundation.tab.js',
     'client/browser/style/foundation/js/foundation/foundation.offcanvas.js',
     'client/browser/style/foundation/js/foundation/foundation.abide.js'
 
