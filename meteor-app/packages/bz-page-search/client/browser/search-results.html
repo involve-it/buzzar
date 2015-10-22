@@ -1,15 +1,15 @@
 <template name="searchResults">
     {{#if getSearchedResults}}
+        <div class="js-container-search-results bz-container-body">    
+            <h2 class="title">Search result</h2>
         
-        <h2 class="title">Search result</h2>
-
-        <div class="bz-search-results clearfix">
-            <div class="bz-search-items">
-                {{#each getSearchedResults}}
-                    {{> onePostRowItem}}
-                {{/each}}
+            <div class="bz-search-results clearfix">
+                <div class="bz-search-items">
+                    {{#each getSearchedResults}}
+                        {{> onePostRowItem}}
+                    {{/each}}
+                </div>
             </div>
         </div>
-        
     {{/if}}
 </template>

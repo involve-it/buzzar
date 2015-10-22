@@ -27,42 +27,44 @@
   </div>
 
     <!-- search result on the home page -->
-  <div class="bz-container-body container-background">
-   
-    <div class="js-container-search-results">
-        {{> searchResults }}
-    </div>
-      
-    {{> aroundYou}}
-      
-    <section id="blabla">
-      <a name="original-post-details" class="button button-small disabled hidden js-search-posts-link"
-         data-ion-modal="searchPostsModal">Check >></a>
-
-      <div style="padding-top: 50px;">
-
-        <div class="js-about-us hidden">
-          {{> aboutUs }}
-        </div>
-
-        <!--<button class="button button-calm capitalize js-read-more">
-            <span>read more</span>
-            <span class="hidden">show less</span>
-        </button>-->
-          
-        <!--{{> bzControlHoneycomb }}-->
-          
-        <!--<a class="button button-calm capitalize" href="/">
-            <span>search page >></span>
-        </a>-->
-        <a class="button button-calm capitalize" href="/about-us">read more</a>
-
-      </div>
-
-
+  <div class="container-background">
+    
+    {{> searchResults }}
+    
+    <section id="bz-around-you" class="bz-container-body">
+        {{> aroundYou}}
     </section>
-  </div>
+      
+    <section id="bz-bottom-a" class="bz-container-body bz-gray-background">
+        
+        <div class="bz-about-us">
+            <h2 class="title">About us</h2>
+            
+            <div class="text-overlay-bottom">
+                <p class="bz-padding-top-x1 text-center">
+                    Think of us as of "Google For People": the way Google lets you search through urls in Web, we let you search among real people around you. Like Google has it's ranking system to order url relevancy, we have our sophisticated Karma algorithm, phone# verification and other means to rank real posts' credibility.
+                </p>
+            </div>
+            
+            <div class="js-about-us hidden">
+                {{> aboutUs }}
+            </div>
 
+            <div class="text-center bz-padding-top-x1">
+                <a class="button btn-default" href="/about-us">read more</a>
+            </div>
+            
+            
+        </div>
+        
+    </section>
+
+    <!--<section class="bz-container-body">
+         {{> bzControlHoneycomb }}
+    </section>-->
+      
+  </div>
+    
 </template>
 
 
