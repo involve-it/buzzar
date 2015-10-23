@@ -18,7 +18,7 @@ Package.onUse(function (api) {
   api.use('less', 'client');
   //api.use('ssing128:yelp-meteor', 'client');
   api.use('arutune:bz-main');
-  api.use(['arutune:bz-control-common'], 'client');
+  api.use(['dburles:collection-helpers', 'arutune:bz-control-common'], 'client');
 
   api.addFiles([
     //'server/yelp.js',

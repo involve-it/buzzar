@@ -24,7 +24,8 @@ Package.onUse(function (api) {
   api.addFiles([
     'shared/lib/01_inits/01_init.js',
     'shared/lib/01_inits/02_helpers.js',
-    'shared/lib/01_inits/03_extends.js'
+    'shared/lib/01_inits/03_extends.js',
+    'shared/lib/02_business/posts.js'
   ]);
   api.addFiles([
     'server/lib/config.js'

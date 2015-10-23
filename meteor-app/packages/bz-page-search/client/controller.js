@@ -28,6 +28,10 @@ Meteor.startup(function () {
   if (!bz.cols.searchRt && !bz.help.collectionExists('bz.cols.searchRt')) {
     var placesCol = new Meteor.Collection("bz.cols.searchRt"); // client-side only.
     bz.help.makeNamespace('bz.cols.searchRt', placesCol);
+    bz.cols.searchRt.helpers({
+          _hasLivePresence: bz.help.posts.hasLivePresence
+        }
+    );
   }
   searchPostsReactive();
 
@@ -74,6 +78,7 @@ bz.bus.search.doSearch = function(callback){
       location: location.coords,
       limit: 10
     };
+
     Meteor.call('search', query, function (err, results) {
       bz.cols.searchRt._collection.remove({});
       if (results && results.length > 0) {
