@@ -201,6 +201,9 @@ Template.bzSearchHashTagLabel.rendered = function() {
       el.height(elHeight);
     } ,250);
   }
+
+  
+  
 };
 
 Template.bzSearchHashTagLabel.helpers({
@@ -218,6 +221,27 @@ Template.bzSearchHashTagLabel.helpers({
     ret += loc + dist;
 
     return ret;
+  },
+  isHashTagLabel: function() {
+    
+    var userTypeHash = Session.get('bz.control.search.searchedText');
+    var isHashTag = bz.cols.hashes.find({userId: Meteor.userId()}).fetch().map(function(obj) {
+      return {value: obj.details.text}
+    });
+    
+    for(var i = 0; i < isHashTag.length; i++) {
+      if(userTypeHash == isHashTag[i].value) {
+        var result = isHashTag[i].value; 
+        return result;
+      }
+    }
+    
+    /*_.each(isHashTag, function(obj) {
+      if(userTypeHash == obj.value) {
+        return console.log(obj.value);
+      }
+    });*/
+            
   }
 });
 Template.bzSearchHashTagLabel.events({
@@ -225,8 +249,9 @@ Template.bzSearchHashTagLabel.events({
     var loc = Session.get('bz.control.search.location') || {
           coords: {}
         },
-      dist = Session.get('bz.control.search.distance') || '',
-      text = Session.get('bz.control.search.searchedText') || '';
+        dist = Session.get('bz.control.search.distance') || '',
+        text = Session.get('bz.control.search.searchedText') || '';
+    
     bz.cols.hashes.insert({
       userId: Meteor.userId(),
       details: {
@@ -236,6 +261,9 @@ Template.bzSearchHashTagLabel.events({
         locName: loc.name
       }
     });
+    
+    
+    
     return false;
   }
-})
+});

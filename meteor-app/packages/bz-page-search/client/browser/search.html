@@ -47,6 +47,7 @@
 </template>
 
 <template name="bzSearchHashTagLabel">
+    {{#unless isHashTagLabel}}
  <div class="bz-hash-tag-label">
      <div class="bz-hash-tag-label-wrapper">
          <div class="bz-hash-icon">#</div>
@@ -54,6 +55,7 @@
        <div class="bz-hash-tag-label-button"><button class="button bz-small btn-default js-save-hash-btn">Save hash</button></div>
      </div>
  </div>
+    {{/unless}}
 </template>
 
 <template name="bzDistance">

@@ -2,7 +2,7 @@
  * Created by Ashot on 9/21/15.
  */
 loggedInUserLazyLoad = function () {
-  /*var userId = Meteor.userId();
+  var userId = Meteor.userId();
   Meteor.subscribe('bz.messages.unseenToMe', userId);
 
   (function () {
@@ -20,8 +20,9 @@ loggedInUserLazyLoad = function () {
       }
     });
     initializing = false;
-  })();*/
-}
+  })();
+};
+
 Meteor.startup(function(){
   var userId = Meteor.userId();
   if(userId){

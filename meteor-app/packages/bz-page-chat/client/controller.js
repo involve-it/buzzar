@@ -132,13 +132,16 @@ showMessageModal = function (msgObj, userObj, id) {
       user: userObj
     },
     parentNode = $('.js-message-popup-placeholder')[0];
-  messageModals[id] = Blaze.renderWithData(Template.bzChatMessagePopup, data, parentNode);
+    messageModals[id] = Blaze.renderWithData(Template.bzChatMessagePopup, data, parentNode);
+  
   $('.js-chat-message-modal').foundation('reveal', 'open');
+  
   setTimeout(function () {
     a = id;
     hideMessageModal(id);
-  }, 5000);
-}
+  }, 50000);
+};
+
 hideMessageModal = function(msgId){
   $('.js-chat-message-modal').foundation('reveal', 'close');
   if(msgId) {
