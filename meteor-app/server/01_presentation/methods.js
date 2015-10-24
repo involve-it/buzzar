@@ -14,17 +14,27 @@ Meteor.methods({
   parseUrl: function(url) {
     return bz.bus.parseUrl(url);
   },
-  addNewPost: function(postObject) {
+  addNewPost: function(postObject, currentLocation, connectionId) {
     if(postObject){
-      if (!postObject.presences && postObject.details && postObject.details.locations && Array.isArray(postObject.details.locations) && postObject.details.locations.length > 0){
+      /*if (!postObject.presences && postObject.details && postObject.details.locations && Array.isArray(postObject.details.locations) && postObject.details.locations.length > 0){
         postObject.presences = {};
         var id;
         _.each(postObject.details.locations, function(loc){
           id = loc._id || bz.const.locations.type.DYNAMIC;
           postObject.presences[id] = bz.const.posts.status.presence.NEAR;
         });
+      }*/
+      console.log('Location: ' + currentLocation.lat + ', ' + currentLocation.lng + '. Connection: ' + connectionId);
+      var post = bz.cols.posts.insert(postObject);
+      if (currentLocation){
+        bz.bus.proximityHandler.reportLocation({
+          lat: currentLocation.lat,
+          lng: currentLocation.lng,
+          userId: postObject.userId,
+          sessionId: connectionId
+        });
       }
-      return bz.cols.posts.insert(postObject);
+      return post;
       //return 'EPzoQSGnGCSsPaQjm'
     }
   },

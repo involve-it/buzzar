@@ -71,10 +71,23 @@ createNewPostFromView = function (v) {
         visible: bz.const.posts.status.visibility.VISIBLE
       },
       timestamp: timestamp
+    };
+
+    var currentLoc = Session.get('currentLocation');
+    if (currentLoc){
+      currentLoc = {
+        lat: currentLoc.latitude,
+        lng: currentLoc.longitude
+      };
+    } else {
+      currentLoc = Session.get('bz.control.search.location');
+      if (currentLoc){
+        currentLoc = currentLoc.coords;
+      }
     }
 
     //$.when(locDef).then(function () {
-    Meteor.call('addNewPost', newPost, function (err, res) {
+    Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
       if (!err && res && res !== '') {
         clearPostData();
         bz.runtime.newPost.postId = res;
@@ -82,7 +95,7 @@ createNewPostFromView = function (v) {
       }
     });
   }
-}
+};
 movingLocationPanelClick = function () {
   var chosenLocation = Session.get(location1.sessionName);
   if (!chosenLocation) {
@@ -103,7 +116,7 @@ movingLocationPanelClick = function () {
 
       Meteor.call('setUserCurrentLocation', Meteor.userId(), loc, function (err, resLocation) {
         location1.setLocation(resLocation);
-      })
+      });
       /*locationsArr.push({
        coords: loc,
        type: bz.const.locations.type.STATIC
@@ -112,7 +125,7 @@ movingLocationPanelClick = function () {
     });
     //Template.bzLocationNameNewPost.showModal();
   }
-}
+};
 staticLocationPanelClick = function () {
   var chosenLocation = Session.get(location2.sessionName);
   if (!chosenLocation) {
@@ -120,7 +133,7 @@ staticLocationPanelClick = function () {
     //$('.js-location-holder a').click();
     Template.bzLocationNameNewPost.showModal();
   }
-}
+};
 userSeenAll;
 // this function calculates browser-specific hits
 runHitTracking = function (post, browserInfo) {
@@ -150,7 +163,7 @@ runHitTracking = function (post, browserInfo) {
     userSeenAll = !userSeenAll && post.stats && post.stats.seenAll || 0;
     bz.cols.posts.update(post._id, {$set: {'stats.seenAll': ++userSeenAll}});
   }
-}
+};
 
 //HELPERS:
 function clearPostData() {
@@ -167,7 +180,7 @@ location1 = {
     this.dbObject = dbObject;
     Session.set(this.sessionName, dbObject);
   }
-}
+};
 location2 = {
   isSet: false,
   sessionName: 'bz.posts.new.location2',
@@ -177,7 +190,7 @@ location2 = {
     this.dbObject = dbObject;
     Session.set(this.sessionName, dbObject);
   }
-}
+};
 
 getPostPhotoObjectsByIds = function(photoIds){
   var photos = photoIds, ret = [];
@@ -185,4 +198,4 @@ getPostPhotoObjectsByIds = function(photoIds){
     ret.push(bz.cols.images.findOne(id));
   });
   return ret;
-}
+};
