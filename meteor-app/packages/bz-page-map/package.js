@@ -24,7 +24,11 @@ Package.onUse(function(api) {
     'client/router.js',
     'client/controller.js'
   ], 'client');
-
+  api.addFiles([
+    'client/browser/google-map.less',
+    'client/browser/google-map.html',
+    'client/browser/google-map.js'
+  ], 'web.browser');
   api.addFiles([
       'client/browser/page-map.less',
       'client/browser/page-map.html',

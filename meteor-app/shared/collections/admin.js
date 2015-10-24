@@ -3,5 +3,5 @@
  */
 bz.cols.contactUsMsgs = new Mongo.Collection('bz.contactUsMsgs');
 if(Meteor.isServer)  {
-  bz.cols.contactUsMsgs.remove({});
+  //bz.cols.contactUsMsgs.remove({});
 }

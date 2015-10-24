@@ -4,11 +4,6 @@
 
 Router.map(function () {
   // moved to package bz-page-home
-  /*this.route('home', {
-    path: '/home',
-    template: 'pageHome',
-    controller: 'requireLoginController' //temp
-  });*/
 
   this.route('root', {
     path: '/',
@@ -29,36 +24,6 @@ Router.map(function () {
     }
   });
 
-  /*this.route('contacts.show', {
-    path: '/contacts/:_id',
-    controller: 'requireLoginController',
-    waitOn: function () {
-      return []
-    },
-    data: function () {
-      return Meteor.users.findOne({_id: this.params._id});
-    }
-  });*/
-
-  /*this.route('chats', {
-    template: 'conversations',
-    controller: 'requireLoginController'
-  });*/
-
-  // end create post flow.
-
-  this.route('checkin', {
-    path: '/check-in',
-    template: 'pageCheckIn',
-    layoutTemplate: 'basicLayout',
-    waitOn: function () {
-      return [
-        //GoogleMaps.load({libraries: 'geometry,places', v: '3'})
-        //GoogleMaps.load({key: bz.config.mapsKey, libraries: 'geometry,places', v: '3'})
-        //GoogleMaps.load({key: 'AIzaSyCE5a0IeEGQLptVSSW-5swNFNaRUXKEWss', libraries: 'geometry,places', v: '3'})
-      ];
-    }
-  });
 
   // COMMON:
   this.route('pageNotFound', {
