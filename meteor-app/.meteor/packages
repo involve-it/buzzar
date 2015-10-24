@@ -18,9 +18,6 @@ zimme:active-route
 anti:fake
 matb33:collection-hooks
 aldeed:collection2
-aldeed:autoform
-useraccounts:ionic
-matteodem:easy-search
 aldeed:simple-schema
 forwarder:autoform-wizard
 sergeyt:typeahead
@@ -29,22 +26,18 @@ mrt:cheerio
 mdg:camera
 
 accounts-facebook
-accounts-google
-accounts-twitter
-mikael:accounts-merge
 service-configuration
 #biasport:facebook-sdk
 raix:handlebar-helpers
 dburles:google-maps
 arutune:bz-page-home
-tarang:ssl
 fortawesome:fontawesome
 raix:push@2.6.12
 arutune:bz-page-posts
 arutune:bz-page-user
 arutune:bz-page-landing
 arutune:bz-page-chat
-momentjs:moment
 arutune:bz-page-map
 mrt:cookies
 dburles:collection-helpers
+momentjs:moment

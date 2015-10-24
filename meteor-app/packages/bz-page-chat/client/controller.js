@@ -151,6 +151,7 @@ hideMessageModal = function(msgId){
 }
 Template.registerHelper("timestampToTime", function (timestamp) {
   var date = new Date(timestamp);
+  //return '';
   return moment(date).fromNow();
 });
 Meteor.startup(function () {

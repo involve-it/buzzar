@@ -20,6 +20,8 @@ Package.onUse(function (api) {
   api.use('fourseven:scss');
   api.use('arutune:bz-api');
 
+  //api.use([ 'cordova:com.ionic.keyboard', 'cordova:org.apache.cordova.device' ], 'web.cordova');// @Slava: do we need this?
+
   api.use([
     'meteoric:ionic',
     'meteoric:ionic-sass',
