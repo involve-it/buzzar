@@ -43,11 +43,11 @@ Package.onUse(function (api) {
   ], 'web.browser');
 
   api.addFiles([
-      'client/controller.js',
+    'client/controller.js',
     'client/browser/style/foundation/foundation-select.css',
     'client/browser/style/foundation-main.scss',
     'client/browser/style/foundation-custom-settings.scss',
-    /*'web/browser/style/foundation/scss/foundation/components/_buttons.scss',*/
+
     'client/browser/style/_buttons.scss',
     'client/browser/main-layout.html',
     'client/browser/main-layout.js',

@@ -6,36 +6,38 @@
 </template>
 
 <template name="bzInnerMenuLeft">
-    <div class="user-area" role="user-expand-menu">
-        <div class="user-area-box clearfix">
-            <a href="/profile" class="user-area-avatar">
-                <div class="bz-avatar" style="background-image: url({{ getUserAvatar }})"></div> 
-            </a>
-            <div class="user-area-side">
-                <a href="/profile" class="user-area-user-name"> {{ getCurrentUserName }} </a>
-                <button class="button transparent btn-drop" role="expand-menu-trigger"><i class="fa fa-chevron-down"></i></button>
-            </div>
-        </div>
-        <div class="user-area-menu clearfix">
-            <ul class="off-canvas-list" role="expand-menu-dropdown">
-                {{> bzSignOutListMenu}}
-            </ul>
-        </div>
+  <div class="user-area" role="user-expand-menu">
+    <div class="user-area-box clearfix">
+      <a href="/profile" class="user-area-avatar">
+        <div class="bz-avatar" style="background-image: url({{ getUserAvatar }})"></div>
+      </a>
+
+      <div class="user-area-side">
+        <a href="/profile" class="user-area-user-name"> {{ getCurrentUserName }} </a>
+        <button class="button transparent btn-drop" role="expand-menu-trigger"><i class="fa fa-chevron-down"></i>
+        </button>
+      </div>
     </div>
-    
-    <ul class="off-canvas-list">
-        <li><label>Main pages</label></li>
-      <li class="{{isActiveRoute 'home'}}"><a href="{{pathFor 'home'}}">Home</a></li>
+    <div class="user-area-menu clearfix">
+      <ul class="off-canvas-list" role="expand-menu-dropdown">
+        {{> bzSignOutListMenu}}
+      </ul>
+    </div>
+  </div>
 
-      {{#if currentUser}}
-          {{> checkingUserMenu}}
-        {{/if}}
-        
-        <li class="{{isActiveRoute 'bz.map'}}"><a href="{{pathFor 'bz.map'}}">Map</a></li>
-    </ul>
+  <ul class="off-canvas-list">
+    <li><label>Main pages</label></li>
+    <li class="{{isActiveRoute 'home'}}"><a href="{{pathFor 'home'}}">Home</a></li>
 
+    {{#if currentUser}}
+      {{> checkingUserMenu}}
+    {{/if}}
+
+    <li class="{{isActiveRoute 'bz.map'}}"><a href="{{pathFor 'bz.map'}}">Map</a></li>
+  </ul>
+  {{#if currentUser}}
     {{> bzControlMenuHashes }}
-    
+  {{/if}}
 </template>
 
 <template name="checkingUserMenu">
@@ -48,27 +50,27 @@
 <!--END MENU-->
 
 <template name="bzControlMenuHashes">
-    <ul class="off-canvas-list only-menu-left">
-        <li><label>Hashes</label></li>
-    
-        {{#each getUserHashes }}
-          <li><a alt="{{ details.text }}" href="{{ getMenuLinkText }}">{{ getMenuHashName }}</a></li>
-        {{/each}}
-    </ul>
+  <ul class="off-canvas-list only-menu-left">
+    <li><label>Hashes</label></li>
+
+    {{#each getUserHashes }}
+      <li><a alt="{{ details.text }}" href="{{ getMenuLinkText }}">{{ getMenuHashName }}</a></li>
+    {{/each}}
+  </ul>
 </template>
 
 <template name="bzSignOutListMenu">
-    {{#if currentUser }}
-        <li class="log-out">
-            <a class="item item-icon-left" href="/sign-out">
-                <i class="fa fa-sign-out"></i><span>Sign out</span>
-            </a>
-        </li>
-    {{else}}
-        <li class="log-out">
-            <a class="item item-icon-left" href="/sign-in">
-                <i class="fa fa-sign-in"></i><span>Sign in</span>
-            </a>
-        </li>
-    {{/if}}
+  {{#if currentUser }}
+    <li class="log-out">
+      <a class="item item-icon-left" href="/sign-out">
+        <i class="fa fa-sign-out"></i><span>Sign out</span>
+      </a>
+    </li>
+  {{else}}
+    <li class="log-out">
+      <a class="item item-icon-left" href="/sign-in">
+        <i class="fa fa-sign-in"></i><span>Sign in</span>
+      </a>
+    </li>
+  {{/if}}
 </template>

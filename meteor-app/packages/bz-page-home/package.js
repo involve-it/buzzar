@@ -23,7 +23,7 @@ Package.onUse(function (api) {
   
   api.use('arutune:bz-main');
   api.use('arutune:bz-page-search');
-  api.use('arutune:bz-control-honeycomb');
+  //api.use('arutune:bz-control-honeycomb');
 
   api.addFiles([
     'client/router.js',

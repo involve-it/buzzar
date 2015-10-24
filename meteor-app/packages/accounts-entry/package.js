@@ -77,7 +77,7 @@ Package.onUse(function(api) {
     'client/views/accountButtons/accountButtons.coffee',
     'client/views/verificationPending/verificationPending.coffee',
     'client/t9n/english.coffee',
-    'client/t9n/french.coffee',
+    /*'client/t9n/french.coffee',
     'client/t9n/german.coffee',
     'client/t9n/italian.coffee',
     'client/t9n/polish.coffee',
@@ -87,7 +87,7 @@ Package.onUse(function(api) {
     'client/t9n/slovene.coffee',
     'client/t9n/russian.coffee',
     'client/t9n/arabic.coffee',
-    'client/t9n/hebrew.coffee',
+    'client/t9n/hebrew.coffee',*/
 
   ], 'client');
 
