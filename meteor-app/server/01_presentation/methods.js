@@ -24,7 +24,6 @@ Meteor.methods({
           postObject.presences[id] = bz.const.posts.status.presence.NEAR;
         });
       }*/
-      console.log('Location: ' + currentLocation.lat + ', ' + currentLocation.lng + '. Connection: ' + connectionId);
       var post = bz.cols.posts.insert(postObject);
       if (currentLocation){
         bz.bus.proximityHandler.reportLocation({
