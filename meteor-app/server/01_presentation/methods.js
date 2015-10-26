@@ -132,7 +132,8 @@ Meteor.methods({
       location = query.location || {},
       box = query.box || bz.bus.proximityHandler.getLatLngBox(location.lat, location.lng, distance),
       dbQuery = {
-        'details.title': {$regex: regex, $options: 'i'}
+        'details.title': {$regex: regex, $options: 'i'},
+        'status.visible': bz.const.posts.status.visibility.VISIBLE
       },
       ret,
       filter = false;
