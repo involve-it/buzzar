@@ -221,13 +221,23 @@ setLocationToSessionFromData = function(locName, data, sessionName){
   } else if (data.isCurrentLocation){
     // selected moving location type
     bz.help.maps.getCurrentLocation(function (loc) {
-      Session.set(sessionName, {
-        coords: loc,
-        placeType: placeType,
-        name: bz.const.places.CURRENT_LOCATION,
-        userId: Meteor.userId(),
-        public: false // private, user's place
-      });
+      if (placeType === bz.const.locations.type.DYNAMIC) {
+        Session.set(sessionName, {
+          coords: loc,
+          placeType: placeType,
+          name: bz.const.places.CURRENT_LOCATION,
+          userId: Meteor.userId(),
+          public: false // private, user's place
+        });
+      } else {
+        bz.help.maps.getAddressFromCoords(loc).done(function(address){
+          var locObj = createLocationFromObject({
+            name: address,
+            coords: loc
+          });
+          Session.set(sessionName, locObj);
+        });
+      }
     });
   } else {
     // user entered his own text: this is not our place and we just have a name OR address
