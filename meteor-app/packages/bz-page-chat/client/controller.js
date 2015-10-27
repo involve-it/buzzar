@@ -157,7 +157,7 @@ showbzAlerMessage = function(msgObj, userObj, id) {
   /*var parentNode = $('.message-loader')[0];
   bzAlerMessage[id] = Blaze.renderWithData(Template.sAlertCustom, data, parentNode);*/
   
-  sAlert.success(data, {timeout: 500000});
+  sAlert.success(data, {timeout: 5000});
 };
 
 
