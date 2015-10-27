@@ -5,7 +5,7 @@ loggedInUserLazyLoad = function () {
   var userId = Meteor.userId();
   Meteor.subscribe('bz.messages.unseenToMe', userId);
 
-  /*(function () {
+  (function () {
     var initializing = true;
     bz.cols.messages.find({toUserId: userId, seen: false}).observeChanges({
       added: function (id, doc) {
@@ -20,7 +20,7 @@ loggedInUserLazyLoad = function () {
       }
     });
     initializing = false;
-  })();*/
+  })();
 };
 
 Meteor.startup(function(){

@@ -102,6 +102,12 @@
   &:hover, &:focus {
     background-color: lighten(@background-bar-fantasia, 5%);
   }
+  
+  &.btn-gray {
+    color: @text-color;
+    background: rgba(227,227,227, 1);
+    border: 1px solid @border-color-sep;
+  }
 }
 
 .btn-clear {
@@ -131,6 +137,7 @@
   }
 }
 
+
 .btn-drop {
   outline: none;
   background-color: transparent;
@@ -159,6 +166,51 @@
     margin: 0;
   }
 }
+
+
+/*
+* Custom file input
+*/
+
+.bz-custom-file-input {
+  color: transparent;
+
+
+  &::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+
+  &:before {
+    color: @text-color;
+    content: 'Select some files';
+    display: inline-block;
+    background: #e3e3e3;
+    border: 1px solid @border-color-sep;
+    border-radius: 2px;
+    padding: 16px 15px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 12pt;
+  }
+
+  &:hover {
+    &:before {
+
+    }
+  }
+
+  &:active {
+    &:before {
+      background: #f9f9f9;
+    }
+  }
+}
+
+
+/* END */
 
 
 /*Button size*/

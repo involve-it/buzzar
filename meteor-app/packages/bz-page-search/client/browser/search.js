@@ -225,6 +225,7 @@ Template.bzSearchHashTagLabel.helpers({
   isHashTagLabel: function() {
     
     var userTypeHash = Session.get('bz.control.search.searchedText');
+    
     var isHashTag = bz.cols.hashes.find({userId: Meteor.userId()}).fetch().map(function(obj) {
       return {value: obj.details.text}
     });

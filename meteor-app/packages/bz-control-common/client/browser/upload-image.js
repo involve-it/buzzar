@@ -11,12 +11,20 @@ Template.uploadImageModal.onRendered(function () {
   // this.data is session var name for holding img src
   $(document).foundation('tab', 'reflow');
 });
+
 Template.uploadImageModal.helpers({
   getPreviewImgSrc: function () {
     var img = Session.get('bz.posts.postImgSrc') || '';
     return Session.get(img);
+  },
+  countFile: function() {
+    
+    if(Session.get('bz.posts.postImgArr') !== undefined) {
+      return true;
+    }
   }
-})
+});
+
 Template.uploadImageModal.events({
   'click .tabs a': function(e, v){
     e.preventDefault();

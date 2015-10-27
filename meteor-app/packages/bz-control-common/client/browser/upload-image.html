@@ -1,34 +1,48 @@
 <template name="uploadImageModal">
-  <h2 id="modalTitle">Choose image.</h2>
+  <h2 id="modalTitle" class="title">Choose image</h2>
   <!--<ul class="tabs" data-tab data-options="deep_linking: false; scroll_to_content: false">-->
-  <ul class="tabs" data-tab>
-    <li class="tab-title active"><a href="#panel11">Upload Photo</a></li>
-    <li class="tab-title"><a href="#panel21">Take Photo</a></li>
-    <li class="tab-title"><a href="#panel31">Image from Url</a></li>
-    <li class="tab-title"><a href="#panel41">Random Image</a></li>
-  </ul>
+
+    <div class="bz-toolbar bz-upload-image-toolbar">
+        <div class="bz-upload-image-toolbar-wrapper">
+            <ul class="tabs bz-nav bz-horizontal" data-tab>
+                <li class="tab-title active"><a href="#panel11">Upload Photo</a></li>
+                <li class="tab-title"><a href="#panel21">Take Photo</a></li>
+                <li class="tab-title"><a href="#panel31">Image from Url</a></li>
+                <li class="tab-title"><a href="#panel41">Random Image</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    
   <div class="tabs-content">
     <div class="content active" id="panel11">
-      <p>
-        <input type="file" accept="image/*" class="js-file-upload">
-        <!--<button class="button js-photo-library">Choose file</button>-->
-      </p>
+      {{#if countFile}}
+        <p>
+            <input type="file" accept="image/*" class="js-file-upload">
+            <!--<button class="button js-photo-library">Choose file</button>-->
+        </p>
+          {{else}}
+            {{> noUploadImagePhoto}}
+        {{/if}}
     </div>
     <div class="content" id="panel21">
-      <p>
-        <button class="button js-take-photo">Take Photo</button>
-      </p>
+      <div class="bz-upload-photo-wrapper">
+        <div class="bz-upload-photo-wrapper-image"><i class="fa fa-camera"></i></div>
+        <div class="bz-button-box"><button class="button btn-default btn-gray js-take-photo">Take Photo</button></div>
+      </div>
     </div>
     <div class="content" id="panel31">
-      <p>
-        <input type="text" placeholder="image url" class="js-image-url">
-        <button class="button js-use-image-url">Check Image</button>
-      </p>
+        <div class="bz-upload-photo-wrapper">
+            <div class="bz-upload-photo-wrapper-check">
+                <div class="bz-input-flex"><input type="text" placeholder="image url" class="js-image-url"></div>
+                <div class="margin-left"><button class="button btn-default bz-small js-use-image-url">Check Image</button></div>
+            </div>
+        </div>
     </div>
     <div class="content" id="panel41">
-      <p>
-        <button class="button js-use-random-image-url">Random Image Url</button>
-      </p>
+        <div class="bz-upload-photo-wrapper">
+            <div class="bz-button-box"><button class="button btn-default btn-gray js-use-random-image-url">Random Image Url</button></div>
+        </div>
     </div>
   </div>
 
@@ -38,12 +52,32 @@
     Photo Library is not available.
     <a href="#" class="close">&times;</a>
   </div>
-  <img class="js-preview" src="{{ getPreviewImgSrc }}"/>
+  
+ 
+  <div class="bz-js-preview-wrapper">
+      
+      <img class="js-preview" src="{{ getPreviewImgSrc }}"/>
+
+  </div>
+
+    
   <hr/>
-  <button class="js-ok-btn">Done</button>
+    
+  <button class="js-ok-btn btn-default bz-small">Done</button>
 </template>
 
 
 <template name="filePickerUpload">
   <button id="upload">Upload New Profile Image with Filepicker</button>
+</template>
+
+<template name="noUploadImagePhoto">
+    <div class="no-upload-image">
+        <div class="no-upload-image-wrapper">
+            <div class="no-img"><i class="fa fa-picture-o"></i></div>
+            <div class="bz-files-button">
+                <input type="file" accept="image/*" class="bz-custom-file-input js-file-upload">
+            </div>
+        </div>
+    </div>
 </template>
