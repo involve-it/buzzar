@@ -123,8 +123,9 @@ getUniqueChatsForUser = function (userId, all) {
   }
 
   return chats;
-}
-messageModals = {}
+};
+
+messageModals = {};
 showMessageModal = function (msgObj, userObj, id) {
   var data = {
       messageText: msgObj.text,
@@ -134,13 +135,31 @@ showMessageModal = function (msgObj, userObj, id) {
     parentNode = $('.js-message-popup-placeholder')[0];
     messageModals[id] = Blaze.renderWithData(Template.bzChatMessagePopup, data, parentNode);
   
-  $('.js-chat-message-modal').foundation('reveal', 'open');
+  /*$('.js-chat-message-modal').foundation('reveal', 'open');*/
   
-  setTimeout(function () {
+  /*setTimeout(function () {
     a = id;
     hideMessageModal(id);
-  }, 50000);
+  }, 50000);*/
 };
+
+bzAlerMessage = {};
+showbzAlerMessage = function(msgObj, userObj, id) {
+  var text = msgObj.text,
+      cutMessage = text.slice(0, 70) + '...';
+
+  var data = {
+    messageText: cutMessage,
+    chatId: msgObj.chatId,
+    user: userObj
+  };
+  
+  /*var parentNode = $('.message-loader')[0];
+  bzAlerMessage[id] = Blaze.renderWithData(Template.sAlertCustom, data, parentNode);*/
+  
+  sAlert.success(data, {timeout: 500000});
+};
+
 
 hideMessageModal = function(msgId){
   $('.js-chat-message-modal').foundation('reveal', 'close');
@@ -148,7 +167,8 @@ hideMessageModal = function(msgId){
     var view = messageModals[msgId];
     view && Blaze.remove(view);
   }
-}
+};
+
 Template.registerHelper("timestampToTime", function (timestamp) {
   var date = new Date(timestamp);
   //return '';
@@ -166,3 +186,5 @@ Meteor.startup(function () {
 // EXPOSE EXTERNAL API:
 bz.buz.chats.createChatIfFirstMessage = createChatIfFirstMessage;
 bz.buz.chats.showMessageModal = showMessageModal;
+
+bz.buz.chats.showbzAlerMessage = showbzAlerMessage;

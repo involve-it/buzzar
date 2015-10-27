@@ -238,14 +238,7 @@ Template.bzSearchHashTagLabel.helpers({
         var result = isHashTag[i].value; 
         return result;
       }
-    }
-    
-    /*_.each(isHashTag, function(obj) {
-      if(userTypeHash == obj.value) {
-        return console.log(obj.value);
-      }
-    });*/
-            
+    }            
   }
 });
 Template.bzSearchHashTagLabel.events({
