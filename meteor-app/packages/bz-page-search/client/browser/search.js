@@ -107,12 +107,15 @@ Template.bzControlSearch.helpers({
         header: '<h3 class="league-name">Posts found</h3>',
         local: function () {
           //console.log(Session.get('bz.control.category-list.activeCategories'));
-          var searchSelector, catList = Session.get('bz.control.category-list.activeCategories');
-          if (!catList || catList.length === 0) {
-            searchSelector = {}
-          } else {
-            searchSelector = {type: {$in: catList}}
+          var searchSelector = {
+                'status.visible': bz.const.posts.status.visibility.VISIBLE
+              },
+              catList = Session.get('bz.control.category-list.activeCategories');
+
+          if (catList && catList.length > 0) {
+            searchSelector.type = {$in: catList};
           }
+
           Session.set('bz.control.search-selector', searchSelector);
           var ret = _.unique(bz.cols.posts.find(searchSelector).fetch().map(function (item) {
             item.name = item.details.title;

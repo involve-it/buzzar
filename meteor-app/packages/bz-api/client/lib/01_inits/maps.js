@@ -84,8 +84,28 @@ var Maps = {
         ret.reject();
       }
     return ret;
+  },
+  getAddressFromCoords: function(coords){
+    var ret = $.Deferred(), address;
+    if (geocoder){
+      var latLng = {lat: parseFloat(coords.lat), lng: parseFloat(coords.lng)};
+      geocoder.geocode({
+        'location': latLng
+      }, function(results, status){
+        if (status == google.maps.GeocoderStatus.OK && results[1]) {
+          address = results[1].formatted_address;
+          ret.resolve(address);
+        } else {
+          ret.resolve(undefined);
+          bz.help.logError("bz.api.maps: ReverseGeocode was not successful for the following reason: " + status);
+        }
+      });
+    } else {
+      ret.reject();
+    }
+    return ret;
   }
-}
+};
 
 googleCoordsToNormalCoords = function (googleCoords){
   var coords;

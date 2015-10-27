@@ -24,7 +24,6 @@ Meteor.methods({
           postObject.presences[id] = bz.const.posts.status.presence.NEAR;
         });
       }*/
-      console.log('Location: ' + currentLocation.lat + ', ' + currentLocation.lng + '. Connection: ' + connectionId);
       var post = bz.cols.posts.insert(postObject);
       if (currentLocation){
         bz.bus.proximityHandler.reportLocation({
@@ -133,7 +132,8 @@ Meteor.methods({
       location = query.location || {},
       box = query.box || bz.bus.proximityHandler.getLatLngBox(location.lat, location.lng, distance),
       dbQuery = {
-        'details.title': {$regex: regex, $options: 'i'}
+        'details.title': {$regex: regex, $options: 'i'},
+        'status.visible': bz.const.posts.status.visibility.VISIBLE
       },
       ret,
       filter = false;
