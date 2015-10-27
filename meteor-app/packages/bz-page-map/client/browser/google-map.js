@@ -154,7 +154,8 @@ Template.googleMapControl.onCreated(function () {
 
     //instead of doing this - call bz.runtime.googleMap.load(collection) to show markers on the map.
     module.map = map.instance;
-    var posts = bz.cols.posts.find().fetch();
+    var searchSelector = Session.get('bz.control.search-selector');
+    var posts = bz.cols.posts.find(searchSelector).fetch();
 
     var col = [];
     _.each(posts, function(post){
