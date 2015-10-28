@@ -16,7 +16,7 @@
       {{> postTypeSelect }}
     </div>
     <div class="row">
-      <div class="js-post-details-categorized row"></div>
+        <div class="js-post-details-categorized"></div>
     </div>
     <div class="item item-divider ">
       <h3 class="title">Location</h3>
@@ -144,31 +144,43 @@
 <template name="postDetailsHelp">
   <div class="clearfix padding-top">
     <label class="item item-input item-select">
-      <div class="medium-3 input-label left">Describe</div>
-      <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-        <li>
-          <div class="panel radius">Lost my pet</div>
-        </li>
-        <li>
-          <div class="panel radius">Need money for food</div>
-        </li>
-        <li>
-          <div class="panel radius">Emergency situation</div>
-        </li>
-        <li>
-          <div class="panel radius">Other</div>
-        </li>
-      </ul>
-      <div class="medium-5 large-7 left hidden">
-        <select class="js-charity-type-select">
-          <option value="roommates">Lost my pet</option>
-          <option value="rent">Need money for food</option>
-          <option value="buy">Emergency situation</option>
-          <option value="buy">Other:</option>
-        </select>
-      </div>
+        <div class="small-12 medium-3 input-label left">Describe</div>
+        <div class="small-12 medium-9 large-9 left">
+
+            <div class="bz-describe-wrapper">
+                <div class="panel radius">Lost my pet</div>
+                <div class="panel radius">Need money for food</div>
+                <div class="panel radius">Emergency situation</div>
+                <div class="panel radius">Other</div>
+            </div>
+
+            <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4 hidden">
+                <li class="panel radius">
+                    <div>Lost my pet</div>
+                </li>
+                <li class="panel radius">
+                    <div>Need money for food</div>
+                </li>
+                <li class="panel radius">
+                    <div>Emergency situation</div>
+                </li>
+                <li class="panel radius">
+                    <div>Other</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="medium-5 large-7 left hidden">
+            <select class="js-charity-type-select">
+                <option value="roommates">Lost my pet</option>
+                <option value="rent">Need money for food</option>
+                <option value="buy">Emergency situation</option>
+                <option value="buy">Other:</option>
+            </select>
+        </div>
     </label>
   </div>
+
 </template>
 
 <template name="postDetailsConnect">

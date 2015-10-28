@@ -1,3 +1,5 @@
+@import "client/style/constants.less";
+
 @image-width: 85px;
 @image-height: 100px;
 
@@ -60,5 +62,38 @@
 
     .phone-label {}
 
+  }
+}
+
+.bz-describe-wrapper {
+  .display-flex-box();
+  .align-items(stretch);
+  .justify-content(space-between);
+
+  > div {
+    .flex(1, 0);
+    margin: 0 10px 20px 0;
+    text-align: center;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.clearing-thumbs {
+  &[data-clearing] {
+    li {
+      margin-bottom: 10px;
+
+      a {
+
+        img {
+          height: 128px;
+          width: auto;
+          .border-radius(2px);
+        }
+      }
+    } 
   }
 }

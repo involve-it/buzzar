@@ -372,8 +372,6 @@ body {
           height: 250px;
         }
       }
-
-
           /* search */
           .bz-search {
             width: 100%;
@@ -516,7 +514,21 @@ body {
         }
       }
     }
-    
+
+    /* flex-deraction */
+    .bz-describe-wrapper,
+    .bz-location-position {
+      -webkit-flex-direction: column;
+      flex-direction: column;
+    }
+
+    .bz-location-position {
+      > div {
+        &:first-child {
+          margin-right: 0 !important;
+        }
+      }
+    }
     
   }
 

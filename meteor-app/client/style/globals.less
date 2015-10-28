@@ -97,9 +97,24 @@ h2.title {
   background-color: #FFFFFF;
 }
 
+/*
+* Background style
+*/
+
 .bz-gray-background {
   background-color: rgba(250,250,250, 1);
 }
+
+.bz-style-soft-background {
+  background-image: linear-gradient(#8b9da9, #c5bcaa);
+  box-shadow: inset 0 0 100px hsla(0, 0%, 0%, .3);
+
+  background-image: -webkit-linear-gradient(-35deg, @bg-header-color-1, @bg-header-color-2);
+  background-image: linear-gradient(135deg, @bg-header-color-1, @bg-header-color-2);
+  background-color: @bg-header-color-1;
+}
+
+/* END */
 
 .bz-separate {
   background-color: @border-color-sep;

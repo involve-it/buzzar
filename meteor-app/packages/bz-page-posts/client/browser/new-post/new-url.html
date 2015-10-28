@@ -1,29 +1,31 @@
 <template name="postsNewUrl">
-    <div>
-
         <!--<span>*note: try this url as a sample:-->
         <!--<i>http://www.youcaring.com/ashley-reed-376889</i></span>-->
-        <div class="clearfix">
+    <div class="clearfix">
+        <div class="item-details">
             <label class="item item-input item-stacked-label">
                 <!--<span class="input-label">Original Url (optional)</span>-->
                 <div class="item1 item-input-inset">
                     <div class="small-12 medium-3 input-label left">Import from Web (optional)</div>
-                    <div class="small-9 medium-7 large-7 left">
-                        <input name="url" placeholder="Original Post Url" class="original-url error js-original-url" type="text">
+                    <div class="small-12 medium-9 large-9 left">
+                        <div class="bz-flex-style">
+                            <div><input name="url" placeholder="Original Post Url"
+                                        class="original-url error js-original-url" type="text"></div>
                         <!--<small class="error hidden">Value is required</small>-->
-                    </div>
-                    <!--<a name="original-post-details" class="button button-small disabled js-post-details-link" href="/posts/new/original-details" >-->
-                    <div class="small-2 medium-2 left">
-                        <a name="original-post-details" class="button small disabled js-post-details-link" data-ion-modal="parsedPostDetailsModal" >
-                            Check >>
-                        </a>
+                            <div>
+                                <a name="original-post-details"
+                                   class="button small disabled margin-left js-post-details-link"
+                                   data-ion-modal="parsedPostDetailsModal">
+                                    Check >>
+                                </a>
+                            </div>
                     </div>
                 </div>
+                    <!--<a name="original-post-details" class="button button-small disabled js-post-details-link" href="/posts/new/original-details" >-->
+                </div>
             </label>
-            
-            <input type="button" value="scan" class="js-scan-url hidden"/>
-            
         </div>
+        <input type="button" value="scan" class="js-scan-url hidden"/>
     </div>
 </template>
 <template name="parsedPostDetailsModal">

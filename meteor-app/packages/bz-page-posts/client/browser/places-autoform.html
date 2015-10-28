@@ -1,77 +1,89 @@
 <template name="postsPlacesAutoform">
-  <div class="view--places-autoform">
+    <div class="row">
+        <div class="view--places-autoform">
     <!--{{> bzControlAddNewLocation }}-->
     <div class="clearfix">
+        <div class="item-details">
       <label class="item item-input item-stacked-label">
 
-        <div class="row choose-place-buttons">
+          <div class="choose-place-buttons">
           <!--<a class="js-plus-img"><img src="/img/plus-button.png" style="width: 60px; height: 60px;"/> </a>-->
 
 
-          <div class="small-12 medium-6 large-6 columns">
-            <div class="panel padding js-moving-location-panel">
-              <h5><strong class="uppercase">Dynamic </strong></h5>
+              <div class="small-12 medium-3 input-label left"></div>
+              <div class="small-12 medium-9 large-9 left">
+                  <div class="bz-location-position">
+                      <div class="bz-style-soft-background bz-dynamic bz-panel-overlay panel padding js-moving-location-panel">
+                          <i class="fa fa-map-signs"></i>
 
-              <p>Moving with you ad</p>
+                          <div class="title uppercase">Dynamic</div>
 
-              <p class="hidden">Use my current location live (online when your app is running/you are logged in to the
-                website).</p>
+                          <p>Moving with you ad</p>
 
-              <div class="current-location-btn">
-                <a class="button small button-calm js-current-location-a" style="display: none;">
-                  <i class="fa fa-location-arrow placeholder-icon"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="small-12 medium-6 large-6 columns">
-            <div class="panel padding js-fixed-location-panel" id="moving-ad">
-              <h5><strong class="uppercase">Static</strong></h5>
-              <p>Pinned to static location.</p>
-              <p class="hidden">Pinned Location (online when you are within a Radius from the board address)</p>
-              <span class="js-location-holder">
-                {{> bzLocationNameNewPost sessionName='bz.posts.new.location2'}}
-              </span>
-              <!--<p class="note">* If empty - Ad will be bound to your current location.</p>-->
+                          <!--<p class="hidden">Use my current location live (online when your app is running/you are logged in to the
+						  website).</p>-->
 
-              <div class="location-nearby js-location-nearby hidden">
-                <input class="form-control typeahead capitalize js-nearby-places" name="team" type="text" id="place1"
-                       placeholder="address, zip or place nearby"
-                       data-source="placesArray"
-
-                       autocomplete="on" spellcheck="off"
-                       data-opened="opened" data-selected="selected"
-                       data-min-length="0"
-                       data-autocompleted="autocompleted"
-                  />
-              </div>
-            </div>
-          </div>
-          <!--
-
-                    <div class="small-12 medium-4 large-4 columns hidden">
-                      <div class="panel padding hidden">
-                        <h5><strong class="uppercase">bulletin boards ad 2</strong></h5>
-
-                        <p>Pinned Location (online when you are within a Radius from the board address)</p>
-
-                        &lt;!&ndash;<p class="note">* If empty - Ad will be bound to your current location.</p>&ndash;&gt;
-
-                        <div class="location-nearby js-location-nearby">
-                          <input class="form-control typeahead capitalize js-nearby-places" name="team" type="text"
-                                 placeholder="address, zip or place nearby"
-                                 data-source="placesArray"
-
-                                 autocomplete="on" spellcheck="off"
-                                 data-opened="opened" data-selected="selected"
-                                 data-min-length="0"
-                                 data-autocompleted="autocompleted"
-                            />
-                        </div>
+                          <!--<div class="current-location-btn">
+							  <a class="button small button-calm js-current-location-a" style="display: none;">
+								  <i class="fa fa-location-arrow placeholder-icon"></i>
+							  </a>
+						  </div>-->
                       </div>
-                    </div>
 
-          -->
+                      <div class="bz-style-soft-background bz-static bz-panel-overlay panel padding js-fixed-location-panel"
+                           id="moving-ad">
+                          <i class="fa fa-thumb-tack"></i>
+
+                          <div class="title uppercase">Static</div>
+                          <p>Pinned to static location</p>
+                          <!--<p class="hidden">Pinned Location (online when you are within a Radius from the board address)</p>-->
+                    
+                  <span class="js-location-holder">
+                      {{> bzLocationNameNewPost sessionName='bz.posts.new.location2'}}
+                  </span>
+                          <!--<p class="note">* If empty - Ad will be bound to your current location.</p>-->
+
+                          <!--<div class="location-nearby js-location-nearby hidden">
+							<input class="form-control typeahead capitalize js-nearby-places" name="team" type="text" id="place1"
+								   placeholder="address, zip or place nearby"
+								   data-source="placesArray"
+			
+								   autocomplete="on" spellcheck="off"
+								   data-opened="opened" data-selected="selected"
+								   data-min-length="0"
+								   data-autocompleted="autocompleted"
+							  />
+						  </div>-->
+                      </div>
+                  </div>
+            </div>
+
+
+              <!--
+	
+						<div class="small-12 medium-4 large-4 columns hidden">
+						  <div class="panel padding hidden">
+							<h5><strong class="uppercase">bulletin boards ad 2</strong></h5>
+	
+							<p>Pinned Location (online when you are within a Radius from the board address)</p>
+	
+							&lt;!&ndash;<p class="note">* If empty - Ad will be bound to your current location.</p>&ndash;&gt;
+	
+							<div class="location-nearby js-location-nearby">
+							  <input class="form-control typeahead capitalize js-nearby-places" name="team" type="text"
+									 placeholder="address, zip or place nearby"
+									 data-source="placesArray"
+	
+									 autocomplete="on" spellcheck="off"
+									 data-opened="opened" data-selected="selected"
+									 data-min-length="0"
+									 data-autocompleted="autocompleted"
+								/>
+							</div>
+						  </div>
+						</div>
+	
+			  -->
 
           <!--<ul class="small-block-grid-3">
           <li>
@@ -165,7 +177,8 @@
           </div>
         </div>-->
       </label>
+        </div>
     </div>
   </div>
-
+    </div>
 </template>
