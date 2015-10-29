@@ -22,6 +22,9 @@ Template.bzControlMenuHashes.helpers({
 });
 
 Template.bzControlMenuHashesMainMenu.helpers({
+  isHashesUserId: function () {
+    return bz.cols.hashes.find({userId: Meteor.userId()}).fetch();
+  },
   getUserHashes: function () {
     return bz.cols.hashes.find({userId: Meteor.userId()});
   },

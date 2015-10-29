@@ -63,6 +63,7 @@
 
 <template name="bzControlMenuHashesMainMenu">
     {{#if currentUser }}
+        {{#if isHashesUserId}}
         <li class="only-main-menu dropdown-hashes-menu-main-menu">
             <button data-dropdown="drop" aria-controls="drop" aria-expanded="false" class="button dropdown">Hashes
             </button>
@@ -72,6 +73,7 @@
                 {{/each}}
             </ul>
         </li>
+        {{/if}}
     {{/if}}
 </template>
 
