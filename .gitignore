@@ -11,3 +11,6 @@
 
 # ignore these folders:
 
+meteor-app/settings.json
+meteor-app/settings-development.json
+meteor-app/settings-production.json

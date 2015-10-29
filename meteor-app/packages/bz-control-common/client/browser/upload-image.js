@@ -2,7 +2,7 @@
  * Created by Ashot on 9/25/15.
  */
 Template.uploadImageModal.onRendered(function () {
-  setTimeout(function () {
+    setTimeout(function () {
     $(document).off('open.fndtn.reveal', '[data-reveal].js-avatar-upload-modal');
     $(document).on('open.fndtn.reveal', '[data-reveal].js-avatar-upload-modal', function () {
       Session.set('bz.posts.postImgSrc', '');
@@ -14,8 +14,8 @@ Template.uploadImageModal.onRendered(function () {
 
 Template.uploadImageModal.helpers({
   getPreviewImgSrc: function () {
-    var img = Session.get('bz.posts.postImgSrc') || '';
-    return Session.get(img);
+    var imgSrc = Session.get('bz.posts.postImgSrc') || '';
+    return Session.get(imgSrc);
   },
   countFile: function() {
     

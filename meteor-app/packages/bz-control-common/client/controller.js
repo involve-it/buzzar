@@ -2,6 +2,9 @@
  * Created by Ashot on 9/25/15.
  */
 // HELPERS:
+saveImageAndGetUrlFromData = function(data){
+
+}
 getDataFromImgUrl = function(url, img$, w, h, cb){
   var img, canvas, ctx, ret;
   //var img = $('#asdf')[0];                   '

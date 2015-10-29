@@ -31,7 +31,7 @@
                                 {{else}}
                                     <p class="entry-signin-cta">{{t9n "ifYouAlreadyHaveAnAccount"}} <a href="{{pathFor 'entrySignIn'}}">{{t9n "signin"}}</a>.</p>
                                 {{/if}}
-                                <!--{{> entryError}}-->
+                                {{> entryError}}
                                 {{#if passwordLoginService}}
                                   <form class="entry-form {{signupClass}}" id='signUp' data-abide>
                                     {{#if showUsername}}

@@ -3,6 +3,7 @@
  */
 
 Accounts.validateNewUser(function(user) {
+  return true;
   if (user.username && user.username.lastIndexOf('djan') === user.username.length - 4)
     return true;
   throw new Meteor.Error(403, "Registration is private now. Please come back later.");

@@ -2,7 +2,7 @@
  * Created by Ashot on 9/18/15.
  */
 Router.map(function () {
-  this.route('aboutUs', {
+  this.route('bz.aboutUs', {
     path: '/about-us',
     template: 'pageAboutUs'
   });
