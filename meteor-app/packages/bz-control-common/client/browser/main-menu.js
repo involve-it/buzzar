@@ -4,6 +4,7 @@
 Template.bzControlMenuHashes.onCreated(function(){
   Meteor.subscribe('bz.hashes.all');
 });
+
 Template.bzControlMenuHashes.helpers({
   getUserHashes: function(){
     return bz.cols.hashes.find({userId: Meteor.userId()});
@@ -19,6 +20,23 @@ Template.bzControlMenuHashes.helpers({
     //return encodeURIComponent(url);
   }
 });
+
+Template.bzControlMenuHashesMainMenu.helpers({
+  getUserHashes: function () {
+    return bz.cols.hashes.find({userId: Meteor.userId()});
+  },
+  getMenuHashName: function () {
+    var menuLinkText = '#' + this.details.text + ' @' + this.details.locName;
+    return menuLinkText;
+  },
+  getMenuLinkText: function () {
+    //var menuLinkText = '#' + this.details.text + ' @' + ;
+    var url = '/home?locationName=' + this.details.locName + '&searchText=' + this.details.text + '';
+    return url;
+    //return encodeURIComponent(url);
+  }
+});
+
 
 Template.bzInnerMenuLeft.helpers({
   getCurrentUserName: function(){

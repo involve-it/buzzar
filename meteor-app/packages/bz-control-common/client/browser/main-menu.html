@@ -45,6 +45,7 @@
   <li class="{{isActiveRoute 'postsMy'}}"><a href="{{pathFor 'postsMy'}}">My posts</a></li>
   <li class="{{isActiveRoute 'myProfile'}}"><a href="{{pathFor 'myProfile'}}">My profile</a></li>
   <li class="{{isActiveRoute 'chats.my'}}"><a href="/chats/my">Messages</a></li>
+    {{> bzControlMenuHashesMainMenu }}
   <!--<li class="{{isActiveRoute 'chats.my'}}"><a href="{{pathFor 'chats.my'}}">Messages</a></li>-->
 </template>
 
@@ -58,6 +59,20 @@
       <li><a alt="{{ details.text }}" href="{{ getMenuLinkText }}">{{ getMenuHashName }}</a></li>
     {{/each}}
   </ul>
+</template>
+
+<template name="bzControlMenuHashesMainMenu">
+    {{#if currentUser }}
+        <li class="only-main-menu dropdown-hashes-menu-main-menu">
+            <button data-dropdown="drop" aria-controls="drop" aria-expanded="false" class="button dropdown">Hashes
+            </button>
+            <ul id="drop" data-dropdown-content class="f-dropdown" role="menu" aria-hidden="false" tabindex="-1">
+                {{#each getUserHashes }}
+                    <li><a alt="{{ details.text }}" href="{{ getMenuLinkText }}">{{ getMenuHashName }}</a></li>
+                {{/each}}
+            </ul>
+        </li>
+    {{/if}}
 </template>
 
 <template name="bzSignOutListMenu">

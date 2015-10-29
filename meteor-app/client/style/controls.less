@@ -167,6 +167,60 @@
   }
 }
 
+/*
+* Hashes dropdown menu
+*/
+
+.dropdown-hashes-menu-main-menu {
+  button.dropdown {
+    margin: 0;
+    background-color: transparent;
+    padding: 0.66667rem 1.9rem 0.66667rem 0.66667rem;
+    font-family: @roboto-font-family;
+    &:after {
+      right: 0.66667rem;
+      opacity: .9;
+    }
+  }
+
+  .f-dropdown {
+    .border-radius(2px);
+    min-width: 250px;
+    border: none;
+    z-index: 999;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.05);
+    /*max-height: 450px;
+    overflow-y: auto;*/
+
+    &.f-open-dropdown {
+      -webkit-animation: fade-scale-02 0.2s ease-in-out;
+      animation: fade-scale-02 0.2s ease-in-out;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+
+      li {
+        width: 100%;
+        text-align: left;
+
+        a {
+          color: @text-link-green !important;
+          opacity: 1 !important;
+          padding: 12px 20px;
+        }
+      }
+
+      &:before,
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+
+/* END */
+
+
+
 
 /*
 * Custom file input

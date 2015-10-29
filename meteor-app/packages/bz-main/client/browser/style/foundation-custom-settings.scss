@@ -354,9 +354,11 @@ body {
 
     /* General menu from 0px to 640px */
 
-    .bz-header-menu {
+    .bz-header-menu,
+    .only-main-menu {
       display: none;
     }
+
     /* END menu*/
 
     .bz-container-body {
@@ -543,9 +545,11 @@ body {
       display: none;
     }
 
-    .bz-header-menu {
+    .bz-header-menu,
+    .only-main-menu {
       display: block;
     }
+
     .user-area,
     .only-menu-left {
       display: none;
@@ -573,7 +577,8 @@ body {
       display: block;
     }
 
-    .bz-header-menu {
+    .bz-header-menu,
+    .only-main-menu {
       display: none;
     }
 
