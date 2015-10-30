@@ -23,6 +23,7 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'client/router.js',
+    'client/model.js',
     'client/controller.js',
     'client/page-my.less'
   ], 'client');
@@ -32,7 +33,7 @@ Package.onUse(function (api) {
     'client/browser/details/details-controls.html',
     'client/browser/details/details-controls.less',
     'client/browser/details/details-controls.js',
-      
+
     'client/browser/details/page-details.html',
     'client/browser/details/page-details.js',
     //'client/browser/my-posts/my-items.less',
@@ -60,7 +61,7 @@ Package.onUse(function (api) {
     'client/browser/places-autoform.js'
   ], 'web.browser');
   api.addFiles([
-      'server/model.js'
+    'server/model.js'
   ], 'server');
 });
 

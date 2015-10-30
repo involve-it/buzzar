@@ -10,7 +10,7 @@ Template.postsNew.created = function () {
    console.log('failed');
    }
    });*/
-
+  clearPostData();
 };
 Template.postsNew.events({
   'click .js-create-post': function (e, v) {

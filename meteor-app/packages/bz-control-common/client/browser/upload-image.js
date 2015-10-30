@@ -1,8 +1,10 @@
 /**
  * Created by Ashot on 9/25/15.
  */
+const SESSION_NAME = 'bz.common.uploadImageSrc';
+
 Template.uploadImageModal.onRendered(function () {
-    setTimeout(function () {
+  setTimeout(function () {
     $(document).off('open.fndtn.reveal', '[data-reveal].js-avatar-upload-modal');
     $(document).on('open.fndtn.reveal', '[data-reveal].js-avatar-upload-modal', function () {
       Session.set('bz.posts.postImgSrc', '');
@@ -10,18 +12,20 @@ Template.uploadImageModal.onRendered(function () {
   }, 1000);
   // this.data is session var name for holding img src
   $(document).foundation('tab', 'reflow');
+  Session.set(SESSION_NAME, '');
 });
 
 Template.uploadImageModal.helpers({
   getPreviewImgSrc: function () {
-    var imgSrc = Session.get('bz.posts.postImgSrc') || '';
-    return Session.get(imgSrc);
+    var imgSrc = Session.get(SESSION_NAME) || '';
+
+    return imgSrc;
   },
   countFile: function() {
-    
-    if(Session.get('bz.posts.postImgArr') !== undefined) {
+
+    /*if(Session.get('bz.posts.postImgArr') !== undefined) {
       return true;
-    }
+    }*/
   }
 });
 
@@ -43,7 +47,7 @@ Template.uploadImageModal.events({
           console.log('error', err);
         }
         if (data) {
-          addImageToArrSession(this.data.sessionName, data);
+          addImageToArrSession(data);
         }
       });
 
@@ -69,7 +73,7 @@ Template.uploadImageModal.events({
       }
       if (data) {
         //Session.set(that.sessionName, data);
-        addImageToArrSession(that.sessionName, data);
+        addImageToArrSession(data);
       }
     });
   },
@@ -77,33 +81,37 @@ Template.uploadImageModal.events({
     var imgData = $('.js-image-url').val();
     if (imgData) {
       //Session.set(this.sessionName, $('.js-image-url').val());
-      addImageToArrSession(this.data.sessionName, imgData);
+      addImageToArrSession(imgData);
 
     }
   },
   'click .js-use-random-image-url': function (e, v) {
     var that = this, imgData,
         randomImgUrl = bz.const.randomImageSite + '?ts=' + Date.now();
-    getDataFromImgUrl(randomImgUrl, $('.js-preview')[0], 400, 300, function (imgData) {
-      //Session.set(that.sessionName, imgData);
-      addImageToArrSession(that.sessionName, imgData);
+    addImageToArrSession(randomImgUrl);
+    /*getDataFromImgUrl(randomImgUrl, $('.js-preview')[0], 400, 300, function (imgData) {
+     //Session.set(that.sessionName, imgData);
+     addImageToArrSession(that.sessionName, imgData);
 
-    });
+     });*/
   },
   'change .js-file-upload': function (e, v) {
     var input = e.target, that = this;
     if (input.files && input.files[0]) {
       var reader = new FileReader();
       reader.onload = function (e1) {
-        //Session.set(that.sessionName, e1.target.result);
-
-        addImageToArrSession(that.sessionName, e1.target.result);
+        addImageToArrSession(e1.target.result);
       };
       reader.readAsDataURL(input.files[0]);
     }
   },
   'click .js-ok-btn': function () {
     $('.js-avatar-upload-modal').foundation('reveal', 'close');
+    if(this.sessionName)  {
+      doneCloseChooseImageDialog(this.sessionName, Session.get(SESSION_NAME));
+    }
+    //Modules.client.uploadToAmazonS3( { event: event, template: template } );
+
   }
 });
 
@@ -140,3 +148,32 @@ Template.uploadImageModal.events({
  );
  }
  })*/
+
+
+//HELPERS:
+function addImageToArrSession(img){
+  var sessionName = SESSION_NAME;
+  Session.set(sessionName, img);
+
+  //var arr = [];
+  /*console.log('sessionName: ' + sessionName);
+   if(img && sessionName) {
+   imagesArrayGlobal.push({
+   sessionName: sessionName,
+   imgUrl: img
+   });
+   }
+   Session.set('bz.posts.postImgSrc', img);*/
+  /*
+   arr = Session.get(sessionName);
+   if (!arr || !Array.isArray(arr)) {
+   arr = [];
+   }
+   arr.push({
+   data: img
+   });
+
+   Session.set(sessionName, arr);
+   }
+   return arr;*/
+}

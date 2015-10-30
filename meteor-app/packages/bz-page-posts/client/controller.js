@@ -166,8 +166,8 @@ runHitTracking = function (post, browserInfo) {
 };
 
 //HELPERS:
-function clearPostData() {
-
+clearPostData = function() {
+  resetImagesArraySession();
 }
 
 // location1 variable:
@@ -199,3 +199,6 @@ getPostPhotoObjectsByIds = function(photoIds){
   });
   return ret;
 };
+resetImagesArraySession = function(){
+  Session.set('bz.posts.postImgArr', []);
+}

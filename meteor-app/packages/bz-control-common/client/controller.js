@@ -25,20 +25,29 @@ getDataFromImgUrl = function(url, img$, w, h, cb){
 
   return ret;
 }
-addImageToArrSession = function(sessionName, img){
-  var arr = [];
-  console.log('sessionName: ' + sessionName);
-  if(img && sessionName) {
-    Session.set('bz.posts.postImgSrc', img);
-    arr = Session.get(sessionName);
-    if (!arr || !Array.isArray(arr)) {
-      arr = [];
-    }
-    arr.push({
-      data: img
-    });
 
-    Session.set(sessionName, arr);
+
+doneCloseChooseImageDialog = function(sessionName, imgSrc){
+  var sessionVal = Session.get(sessionName), newSessionVal;
+  if(sessionVal && Array.isArray(sessionVal)){
+    newSessionVal = sessionVal;
+    /*_.each(sessionVal, function(image, i){
+      var arr, img = image.imgUrl, sessionName = image.sessionName;
+      //arr = Session.get(sessionName);
+      if (!arr || !Array.isArray(arr)) {
+        arr = [];
+      }
+      arr.push({
+        data: img
+      });
+    });*/
+    newSessionVal.push({
+      data: imgSrc
+    });
+  } else {
+    newSessionVal = imgSrc;
   }
-  return arr;
+
+  Session.set(sessionName, newSessionVal);
+
 }
