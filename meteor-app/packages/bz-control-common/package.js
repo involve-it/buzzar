@@ -10,7 +10,7 @@ Package.describe({
   documentation: 'README.md'
 });
 
-Package.onUse(function(api) {
+Package.onUse(function (api) {
   api.versionsFrom('1.1.0.3');
   api.use('iron:router', ['client', 'server']);
   api.use('iron:layout', ['client', 'server']);
@@ -19,14 +19,16 @@ Package.onUse(function(api) {
 
   api.addFiles('bz-control-common.js');
   api.addFiles([
-      'client/router.js',
-      'client/model.js',
-      'client/controller.js',
-
+    'client/router.js',
+    'client/model.js',
+    'client/controller.js',
     'client/resources/t9-en.js'
-
   ], 'client');
 
+  //api.addFiles([
+  //    'controller.server.js'
+  //  ], ['server']
+  //);
   api.addFiles([
 
     'client/browser/category-list-buttons.html',
@@ -34,23 +36,23 @@ Package.onUse(function(api) {
     'client/browser/category-list-buttons.less',
 
 
-      'client/browser/main-menu.html',
-      'client/browser/main-menu.js',
-      'client/browser/main-menu.less',
+    'client/browser/main-menu.html',
+    'client/browser/main-menu.js',
+    'client/browser/main-menu.less',
 
-      'client/browser/reviews.html',
-      'client/browser/reviews.js',
-      'client/browser/reviews.less',
+    'client/browser/reviews.html',
+    'client/browser/reviews.js',
+    'client/browser/reviews.less',
 
 
-      'client/browser/upload-image.html',
-      'client/browser/upload-image.js',
-      'client/browser/upload-image.less',
+    'client/browser/upload-image.html',
+    'client/browser/upload-image.js',
+    'client/browser/upload-image.less',
 
   ], 'web.browser');
 });
 
-Package.onTest(function(api) {
+Package.onTest(function (api) {
   api.use('tinytest');
   api.use('arutune:bz-control-common');
   api.addFiles('bz-control-common-tests.js');

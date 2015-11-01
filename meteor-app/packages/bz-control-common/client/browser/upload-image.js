@@ -103,6 +103,23 @@ Template.uploadImageModal.events({
         addImageToArrSession(e1.target.result);
       };
       reader.readAsDataURL(input.files[0]);
+      var uploader = new Slingshot.Upload("myFileUploads");
+
+      var error = uploader.validate(input.files[0]);
+      if (error) {
+        console.error(error);
+      }
+      uploader.send(input.files[0], function (error1, downloadUrl) {
+        if (error1) {
+          // Log service detailed response.
+          console.error('Error uploading', uploader.xhr.response);
+          alert (error1);
+        }
+        else {
+          Meteor.users.update(Meteor.userId(), {$push: {"profile.files": downloadUrl}});
+        }
+      });
+
     }
   },
   'click .js-ok-btn': function () {

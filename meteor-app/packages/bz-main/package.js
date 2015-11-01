@@ -17,10 +17,14 @@ Package.onUse(function (api) {
   api.use('iron:layout', ['client', 'server']);
   api.use(['templating', 'less'], 'client');
   //api.use('juliancwirko:zf5', ['web.browser']);
-  api.use('fourseven:scss');
-  api.use('arutune:bz-api');
+  api.use(['fourseven:scss', 'edgee:slingshot']);
+  api.use(['arutune:bz-api', 'arutune:bz-control-common']);
 
   //api.use([ 'cordova:com.ionic.keyboard', 'cordova:org.apache.cordova.device' ], 'web.cordova');// @Slava: do we need this?
+  api.addFiles([
+      'controller.server.js'
+    ], ['server']
+  );
 
   api.use([
     'meteoric:ionic',
