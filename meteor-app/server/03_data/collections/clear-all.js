@@ -3,7 +3,7 @@
  */
 Meteor.startup(function(){
 
-  bz.cols.posts.remove({});
+  /*  bz.cols.posts.remove({});
   Meteor.users.remove({});
-  bz.cols.messages.remove({});
-})
+   bz.cols.messages.remove({});*/
+});
