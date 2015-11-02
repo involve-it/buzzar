@@ -1,0 +1,3 @@
+https://themeteorchef.com/recipes/uploading-files-to-amazon-s3/#tmc-getting-started
+https://atmospherejs.com/edgee/slingshot
+https://console.aws.amazon.com/s3/home?region=us-west-1#&bucket=buzzar&prefix=v0.4/public/images/
