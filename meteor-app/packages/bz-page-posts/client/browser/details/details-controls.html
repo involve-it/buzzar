@@ -215,18 +215,27 @@
            <!--style="background-color: #efefef; background-image: url('{{ getMainImage }}')"></div>-->
     <!--{{/if}}-->
 
-        <!--moreThanOnePhotos-->
-        {{#if true }}
-        <ul class="clearing-thumbs js-clearing-thumbs" data-clearing>
-            {{#each getPhotos }}
-                <li>
-                    <a href="{{ data }}">
-                      <img src="{{ data }}" style="height: 60px;"/>
-                    </a>
-                </li>
-            {{/each}}
-        </ul>
-    {{/if}}
+        {{#if moreThanOnePhotos }}
+            <ul class="clearing-thumbs js-clearing-thumbs" data-clearing>
+                {{#each getPhotos }}
+                    <li>
+                        <a href="{{ data }}">
+                            <img src="{{ data }}" style="height: 60px;"/>
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <ul class="clearing-thumbs js-clearing-thumbs" data-clearing>
+                {{#each getPhotos }}
+                    <li style="display: none">
+                        <a href="{{ data }}">
+                            <img src="{{ data }}" style="height: 60px;"/>
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        {{/if}}
   </div>
 
 
