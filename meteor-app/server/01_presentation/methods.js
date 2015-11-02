@@ -116,13 +116,13 @@ Meteor.methods({
     query = query || {};
     options = options || {};
 
-    var textToSearch = query.text,
+    var textToSearch = query.text || '',
       distance = query.distance || defaultDistance,
       types = query.catTypes;
 
     // guard against client-side DOS: hard limit to 50
-    if (options.limit) {
-      options.limit = Math.min(defaultLimit, Math.abs(options.limit));
+    if (query.limit) {
+      options.limit = Math.min(defaultLimit, Math.abs(query.limit));
     } else {
       options.limit = defaultLimit;
     }
