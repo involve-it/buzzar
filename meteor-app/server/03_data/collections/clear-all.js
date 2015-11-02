@@ -4,4 +4,6 @@
 Meteor.startup(function(){
 
   //bz.cols.posts.remove({});
+  //Meteor.users.remove({});
+  //bz.cols.messages.remove({});
 })

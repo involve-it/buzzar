@@ -14,6 +14,17 @@ Template.postsNew.created = function () {
 };
 Template.postsNew.events({
   'click .js-create-post': function (e, v) {
-    createNewPostFromView(v);
+    var res = true;
+    if (!v.$('.js-post-title').val()) {
+      alert('Title can not be empty');
+      res = false;
+    }
+    if (!Session.get(bz.const.posts.location1) && !Session.get(bz.const.posts.location2)) {
+      alert('Please select at least one location');
+      res = false;
+    }
+    if(res){
+      createNewPostFromView(v);
+    }
   }
 });

@@ -4,8 +4,8 @@
 Meteor.startup(function () {
   Tracker.autorun(function () {
     var img = Session.get('bz.user.profileImgUploaded');
-    if (img && img !== '' && Array.isArray(img)) {
-      Meteor.users.update(Meteor.userId(), { $set: {'profile.image': img[0] }});
+    if (img && img !== '') {
+      Meteor.users.update(Meteor.userId(), { $set: {'profile.image': img }});
     }
   });
 });

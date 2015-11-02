@@ -2,10 +2,11 @@
  * Created by arutu_000 on 10/31/2015.
  */
 try {
-  Slingshot.createDirective("myFileUploads", Slingshot.S3Storage, {
-    bucket: "bz-photos",
-
-    maxSize: 10 * 1024 * 1024, // 10 MB (use null for unlimited)
+  Slingshot.createDirective("bzImagesDirective", Slingshot.S3Storage, {
+    bucket: "buzzar",
+    //LocationConstraint: 'us-west-1',
+    region: 'us-west-1',
+    maxSize: 5 * 1024 * 1024, // 10 MB (use null for unlimited)
     acl: "public-read",
     allowedFileTypes: ["image/png", "image/jpeg", "image/gif"],
     authorize: function () {
@@ -14,7 +15,6 @@ try {
         var message = "Please login before posting files";
         throw new Meteor.Error("Login Required", message);
       }
-
       return true;
     },
     AWSAccessKeyId: 'AKIAJRKMTZEEIOLOAJ5Q',
@@ -22,9 +22,9 @@ try {
     key: function (file) {
       //Store file into a directory by the user's username.
       var user = Meteor.users.findOne(this.userId);
-      return  'public/' + file.name;
+      return  bz.config.version + '/public/images/' + file.name;
     }
   });
 } catch(e){
-
+  console.error('Slingshot.createDirective error', e);
 }

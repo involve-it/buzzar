@@ -7,7 +7,8 @@ bz.help.makeNamespace({
     env: 'dev',
     //env: 'prod',
     isCordova: Meteor.isCordova,
-    mapsKey: ''
+    mapsKey: '',
+    version: 'v0.4'
   }
 })
 

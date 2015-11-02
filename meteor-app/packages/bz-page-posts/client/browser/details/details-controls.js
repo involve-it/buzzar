@@ -19,7 +19,9 @@ Template.postDetailsHashesControl.helpers({
 Template.postDetailsDetailsCommon.events({
   'click .js-show-location-on-map': function(e, v){
     // show modal with map here:
-
+    var coords = this.coords.lat + ', ' + this.coords.lng;
+    prompt('coords: ', coords);
+    console.log('coords: ' + coords);
   }
 })
 Template.postDetailsDetailsCommon.helpers({
