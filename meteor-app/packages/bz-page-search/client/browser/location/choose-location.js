@@ -147,7 +147,7 @@ Template.bzChooseLocationModal.helpers({
           return ret;
         }
       },
-      {
+      /*{
         name: 'yelp-places',
         valueKey: 'name',
         displayKey: 'name',
@@ -160,7 +160,7 @@ Template.bzChooseLocationModal.helpers({
 
           return ret;
         }
-      }
+      }*/
     ];
     return ret;
   },
