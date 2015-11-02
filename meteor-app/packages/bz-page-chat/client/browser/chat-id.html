@@ -35,11 +35,13 @@
         <div class="bz-user-owner-toolbar-wrapper">
             <div class="bz-user-wrap-inner">
                 <div class="bz-user-avatar">
-                    <img src="/img/content/avatars/avatar-no.png" style="height:50px; width:50px;">
+                    <a href="/user/{{user._id}}">
+                        <img src="/img/content/avatars/avatar-no.png" style="height:50px; width:50px;">
+                    </a>
                 </div>
                 <div class="bz-user-info">
                     <div class="bz-username">
-                        <a href="/profile/#">{{getFriendUserName}}</a>
+                        <a href="/user/{{user._id}}">{{getFriendUserName}}</a>
                     </div>
                     <div class="bz-user-status"><span>online or offline</span></div>
                 </div>
