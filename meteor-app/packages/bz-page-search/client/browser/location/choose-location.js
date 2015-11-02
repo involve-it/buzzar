@@ -66,6 +66,9 @@ Template.bzChooseLocationModal.rendered = function () {
 Template.bzChooseLocationModal.destroyed = function () {
 }
 Template.bzChooseLocationModal.events({
+  'click .close-modal': function () {
+    $('#choose-locations-global').foundation('reveal', 'close');
+  },
   'click .js-set-location-button': function (e, v) {
     //var that = this;
     //Tracker.nonreactive(function () {

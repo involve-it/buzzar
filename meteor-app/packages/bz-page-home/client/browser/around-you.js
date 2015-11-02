@@ -36,12 +36,6 @@ Template.bzAroundYouItem.helpers({
     return Meteor.users.findOne(this.userId);
   },
   categoryType: function() {
-    /*
-    var postsId = bz.cols.posts.find({_id: this._id}).fetch()[0].type;
-    
-    if(postsId) {
-      var ret = bz.cols.siteTypes.find({_id: postsId}).fetch()[0].name;
-    }*/
     return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
   },
   getRank: function() {},
@@ -55,5 +49,17 @@ Template.bzAroundYouItem.helpers({
       ret = ret && ret.data;
     }
     return ret;
+  }
+});
+
+Template.bzUserProfileAroundYou.helpers({
+  getNameFormatted: function () {
+    /*return Meteor.users.find({
+     _id: {$in: _.without(this.users, Meteor.userId())}
+     });*/
+  },
+  isOnline1: function () {
+    debugger;
+    return true;
   }
 });

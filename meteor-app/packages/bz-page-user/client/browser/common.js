@@ -2,8 +2,7 @@
  * Created by Ashot on 9/26/15.
  */
 
-Template.avatarThumbnail.onCreated(function () {
-});
+
 
 Template.bzUserProfileBasic.rendered = function () {
 
@@ -32,7 +31,8 @@ Template.avatarThumbnail.helpers({
   canWrite: function () {
     return this.write;
   }
-})
+});
+
 Template.avatarThumbnail.events({
   'click .js-edit-image-icon': function () {
     $('.js-avatar-upload-modal').foundation('reveal', 'open');
@@ -57,16 +57,4 @@ Template.bzUserProfileBasic.onRendered(function () {
     $('.js-send-message-btn').addClass('disabled');
   }
 });
-Template.bzUserProfileAroundYou.helpers({
-  getNameFormatted: function () {
-    var ret = '';
-    if (this.userId && Meteor.users.findOne(this.userId)) {
-      ret = Meteor.users.findOne(this.userId).username.toCapitalCase();
-    }
-    return ret;
-  },
-  isOnline1: function(){
-    debugger;
-    return true;
-  }
-});
+

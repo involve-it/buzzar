@@ -445,12 +445,27 @@ nav.left-off-canvas-menu {
   .user-area-box {
     padding: 12px 0;
     margin: 0 12px;
-    
+
     .user-area-avatar {
+      position: relative;
       float: left;
       width: 45px;
       height: 45px;
       margin: 7px 9px 0 0;
+
+      .bz-avatar-user-status {
+        width: 11px;
+        height: 11px;
+        background-color: transparent;
+        bottom: -3px;
+        right: -3px;
+        .bz-avatar-user-status-wrapper {
+          height: 7px;
+          width: 7px;
+          top: 2px;
+          left: 2px;
+        }
+      }
       
       .bz-avatar {
         height: 100%;

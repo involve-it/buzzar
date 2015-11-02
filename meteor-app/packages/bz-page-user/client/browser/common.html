@@ -19,13 +19,17 @@
   <div class="bz-user-card">
       <div class="bz-padding-10 overflow">
         <div class="bz-user-badge">
-            {{> avatarThumbnail image=profile.image }}
+            <a href="/user/{{_id}}">
+                {{> avatarThumbnail image=profile.image }}
+            </a>
+            {{> bzAvatarUserStatus}}
         </div>
           
         <div class="bz-user-date">
           <div class="bz-user-date-status">
-              {{> bzAvatarUserStatus}}
-              <div class="bz-user-date-username">{{ username }}</div>
+              <a href="/user/{{_id}}">
+                  <div class="bz-user-date-username">{{ username }}</div>
+              </a>
           </div>
           <!--<div class="">
             {{#if isOnline }}
@@ -48,23 +52,3 @@
 
 </template>
 
-<!--used on the around you, home:-->
-<template name="bzUserProfileAroundYou">
-  <div class="bz-status-wrapper">
-    <a href="/user/{{ userId }}">
-      <div class="bz-avatar" style="background-image: url({{ _getAvatarImage }});"></div>
-    </a>
-    {{> bzAvatarUserStatus}}
-  </div>
-  <!--<div class="bz-rating">{{ getPostRating }}</div>-->
-  <div class="bz-username"><a href="/user/{{ userId }}">{{ getNameFormatted }}</a></div>
-</template>
-
-
-<template name="bzAvatarUserStatus">
-    <div class="bz-avatar-user-status">
-        <div class="bz-avatar-user-status-wrapper {{#if _isOnline}} bz-online {{else }} bz-offline {{/if}}">
-            <!--{{#if _isOnline}} <i class="fa fa-check"></i> {{else}} <i class="fa fa-clock-o"></i> {{/if}}-->
-        </div>
-    </div>
-</template>
