@@ -28,9 +28,26 @@ var helperFunctions = {
       if (!loc){
         loc = this.details.locations[0];
       }
-      var distance = bz.help.location.getDistance(currentLocation.latitude, currentLocation.longitude, loc.coords.lat, loc.coords.lng);
-      console.log(distance);
-      return distance;
+      return bz.help.location.getDistance(currentLocation.latitude, currentLocation.longitude, loc.coords.lat, loc.coords.lng);
+    } else {
+      return '';
+    }
+  },
+  getDistanceQualifier: function(){
+    var distance = this._getDistanceToCurrentLocation();
+    if (distance){
+      if (distance <= .0378788){
+        return '200 ft'
+      } else if (distance <= 1 && distance > .0378788){
+        return '1 mile'
+      } else if (distance <= 5 && distance > 1){
+        return '5 miles';
+      } else if (distance <= 20 && distance > 5){
+        return '20 miles'
+      } else {
+        return 'Everywhere';
+      }
+
     } else {
       return '';
     }

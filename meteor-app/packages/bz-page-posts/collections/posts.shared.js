@@ -7,6 +7,7 @@ var postsColl = bz.cols.posts;
 
 postsColl.helpers({
   _hasLivePresence: bz.help.posts.hasLivePresence,
-  _getDistanceToCurrentLocation: bz.help.posts.getDistanceToCurrentLocation
+  _getDistanceToCurrentLocation: bz.help.posts.getDistanceToCurrentLocation,
+  _getDistanceQualifier: bz.help.posts.getDistanceQualifier
 });
 
