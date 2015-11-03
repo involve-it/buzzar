@@ -3,7 +3,7 @@
  */
 
 var helperFunctions = {
-  distance: function(lat1, lon1, lat2, lon2) {
+  getDistance: function(lat1, lon1, lat2, lon2) {
     var radlat1 = lat1 * Math.PI/180;
     var radlon1 = lon1 * Math.PI/180;
     var radlat2 = lat2 * Math.PI/180;

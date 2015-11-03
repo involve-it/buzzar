@@ -21,14 +21,14 @@ var helperFunctions = {
     }
     return loc;
   },
-  distance: function(){
+  getDistanceToCurrentLocation: function(){
     var currentLocation = Session.get('currentLocation');
     if (currentLocation && this.details && this.details.locations && Array.isArray(this.details.locations) && this.details.locations.length > 0){
       var loc = _.find(this.details.locations, function(l){ return l.placeType === bz.const.locations.type.DYNAMIC});
       if (!loc){
         loc = this.details.locations[0];
       }
-      var distance = bz.help.location.distance(currentLocation.latitude, currentLocation.longitude, loc.coords.lat, loc.coords.lng);
+      var distance = bz.help.location.getDistance(currentLocation.latitude, currentLocation.longitude, loc.coords.lat, loc.coords.lng);
       console.log(distance);
       return distance;
     } else {
