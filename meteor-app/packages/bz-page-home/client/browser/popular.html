@@ -1,0 +1,123 @@
+<template name="bzHomePopular">
+  <div class="bz-around-you">
+
+    <div class="bz-items">
+      <div class="row">
+        <h2 class="title">Most Popular</h2>
+        {{#each aroundItem}}
+          {{> bzHomePopularItem}}
+        {{/each}}
+      </div>
+    </div>
+
+  </div>
+</template>
+<template name="bzHomePopularItem">
+  <div class="small-4 medium-3 large-3 columns left">
+    <div class="bz-item">
+      <div class="bz-side-b">
+        <div class="arrow"></div>
+        <div class="bz-photo bz-overlay-hover">
+          <a href="/post/{{_id}}">
+            <img width="400" height="300" class="bz-overlay-scale" src="{{ getImgSrc }}" alt=""/>
+            <div class="bz-post-info">
+              <!--<div class="bz-distance"><i class="fa fa-location-arrow"></i> 30 km</div>-->
+              {{> bzPostsPostPresence this}}
+              <!--<a class="bz-position-cover" href="#"></a>-->
+            </div>
+          </a>
+        </div>
+
+        <div class="bz-content">
+          <h4 class="bz-title">{{details.title}}</h4>
+          <p class="post-item-text">
+            {{details.description}}
+          </p>
+          <div class="bz-text-align-right">
+            <a class="bz-read-more" href="/post/{{_id}}">Read more</a>
+          </div>
+        </div>
+        <div class="bz-item-footer">
+          <!--{{#if details.price}}
+                <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
+            {{/if}}-->
+          <div class="bz-category">
+            <div class="button bz-btn-category type-category-{{categoryType}}">
+              {{categoryType}}
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<!--
+
+<template name="bzHomePopularItem">
+  <div class="small-12 medium-6 large-4 columns left">
+    <div class="bz-item">
+      <div class="bz-side-a">
+        {{> bzUserProfileAroundYou getPostOwner}}
+      </div>
+      <div class="bz-side-b">
+        <div class="arrow"></div>
+        <div class="bz-photo bz-overlay-hover">
+          <a href="/post/{{_id}}">
+            <img width="400" height="300" class="bz-overlay-scale" src="{{ getImgSrc }}" alt=""/>
+            <div class="bz-post-info">
+                &lt;!&ndash;<div class="bz-distance"><i class="fa fa-location-arrow"></i> 30 km</div>&ndash;&gt;
+                {{> bzPostsPostPresence this}}
+                &lt;!&ndash;<a class="bz-position-cover" href="#"></a>&ndash;&gt;
+            </div>
+          </a>
+        </div>
+
+        <div class="bz-content">
+            <h4 class="bz-title">{{details.title}}</h4>
+            <p class="post-item-text">
+                {{details.description}}
+            </p>
+            <div class="bz-text-align-right">
+                <a class="bz-read-more" href="/post/{{_id}}">Read more</a>
+            </div>
+        </div>
+        <div class="bz-item-footer">
+            &lt;!&ndash;{{#if details.price}}
+                <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
+            {{/if}}&ndash;&gt;
+          <div class="bz-category">
+            <div class="button bz-btn-category type-category-{{categoryType}}">
+              {{categoryType}}
+            </div>
+          </div>
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+&lt;!&ndash;used on the around you, home:&ndash;&gt;
+<template name="bzUserProfileAroundYou">
+    <div class="bz-status-wrapper">
+        <a href="/user/{{ _id }}">
+            <div class="bz-avatar" style="background-image: url({{ _getAvatarImage }});"></div>
+        </a>
+        {{> bzAvatarUserStatus}}
+    </div>
+
+    &lt;!&ndash;<div class="bz-rating">{{ getPostRating }}</div>&ndash;&gt;
+    <div class="bz-username"><a href="/user/{{ _id }}">{{username}}</a></div>
+</template>
+
+
+<template name="bzAvatarUserStatus">
+    <div class="bz-avatar-user-status">
+        <div class="bz-avatar-user-status-wrapper {{#if _isOnline}} bz-online {{else }} bz-offline {{/if}}">
+            &lt;!&ndash;{{#if _isOnline}} <i class="fa fa-check"></i> {{else}} <i class="fa fa-clock-o"></i> {{/if}}&ndash;&gt;
+        </div>
+    </div>
+</template> -->

@@ -4,7 +4,7 @@
     <div class="bz-header">
 
       {{> bzNavBar}}
-
+      <h2 style="position: relative; top: -20px;float: right; right: 34px;">Instant post, bound to location</h2>
       <div class="bz-search">
         <div class="box-search">
           <div class="bz-category-buttons">
@@ -29,10 +29,10 @@
   <div class="container-background">
     
     {{> searchResults }}
-    
-    <section id="bz-around-you" class="bz-container-body">
+
+<!--    <section id="bz-around-you" class="bz-container-body">
         {{> aroundYou}}
-    </section>
+    </section>-->
       
     <section id="bz-bottom-a" class="bz-container-body bz-gray-background">
         
@@ -46,18 +46,16 @@
               <p>
                 <b>What is Buzzar?</b>
               </p>
-
+              <p><u>Buzzar</u> is a next step in community advertisement, powered by technology and social capabilities, that gives
+                another dimension to a post - namely <i>web url, location, time and availability</i> bound together.
+              </p>
               <p>
-                Buzzar is a community, built on humanistic principles of compassion, awareness, consciousness and freedom of
+                <u>Buzzar</u> is a community, built on humanistic principles of compassion, awareness, consciousness and freedom of
                 choice.
               </p>
 
               <p>
-                Buzzar is a tool that aims to help people get a better deal.
-              </p>
-
-              <p>Buzzar is a next step in community advertisement, powered by technology and social capabilities, that gives
-                another dimension to a post - namely <i>web url, location, time and availability</i> bound together.
+                <u>Buzzar</u> is a tool that aims to help people get a better deal.
               </p>
 
               <p>
@@ -78,7 +76,9 @@
         </div>
         
     </section>
-      
+    <section id="bz-around-you" class="bz-container-body">
+      {{> bzHomePopular}}
+    </section>
   </div>
     
 </template>

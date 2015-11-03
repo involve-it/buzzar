@@ -34,12 +34,15 @@ Package.onUse(function (api) {
     'client/browser/around-you.html',
     'client/browser/around-you.js',
     'client/browser/around-you.less',
+    'client/browser/popular.html',
+    'client/browser/popular.js',
     'client/browser/page-home.html',
     'client/browser/page-home.js',
     'client/browser/page-home.less',
   ], 'web.browser');
   
   api.addFiles([
+
     'client/cordova/around-you.html',
     'client/cordova/around-you.js',
     'client/cordova/around-you.less',
