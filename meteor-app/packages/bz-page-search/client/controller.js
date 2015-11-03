@@ -17,7 +17,7 @@ Meteor.startup(function () {
   bz.help.maps.getCurrentLocation(function (loc) {
     Session.set('currentLocation', {
       latitude: loc.lat,
-      longitude: loc.lng,
+      longitude: loc.lng
     });
     Session.set('bz.control.search.location', {
       coords: loc,
