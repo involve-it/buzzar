@@ -4,7 +4,7 @@
 Template.bzHomePopular.helpers({
   aroundItem: function() {
     var searchSelector = '';
-    var ret = bz.cols.posts.find({}, {limit:30});
+    var ret = bz.cols.posts.find({'status.visible': bz.const.posts.status.visibility.VISIBLE}, {limit:30});
 
     return ret;
   }
