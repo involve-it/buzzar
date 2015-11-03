@@ -1,29 +1,39 @@
 <template name="bzHomePopular">
-  <div class="bz-around-you">
+    <div class="bz-most-popular">
 
     <div class="bz-items">
       <div class="row">
         <h2 class="title">Most Popular</h2>
-        {{#each aroundItem}}
-          {{> bzHomePopularItem}}
-        {{/each}}
+
+          <div class="">
+              {{#each aroundItem}}
+                  {{> bzHomePopularItem}}
+              {{/each}}
+          </div>
       </div>
     </div>
 
   </div>
 </template>
 <template name="bzHomePopularItem">
-  <div class="small-4 medium-3 large-3 columns left">
+    <div class="small-12 medium-4 large-3 columns left">
     <div class="bz-item">
       <div class="bz-side-b">
-        <div class="arrow"></div>
         <div class="bz-photo bz-overlay-hover">
           <a href="/post/{{_id}}">
-            <img width="400" height="300" class="bz-overlay-scale" src="{{ getImgSrc }}" alt=""/>
-            <div class="bz-post-info">
+              {{#if getImgSrc}}
+                  <div class="bz-background-image-cover bz-overlay-scale"
+                       style="background-image: url('{{ getImgSrc }}')"></div>
+              {{else}}
+                  <div class="bz-background-image-cover bz-overlay-scale"
+                       style="background-image: url('/img/content/no-photo.png')"></div>
+              {{/if}}
+              <div class="bz-post-info">
               <!--<div class="bz-distance"><i class="fa fa-location-arrow"></i> 30 km</div>-->
-              {{> bzPostsPostPresence this}}
-              {{> bzPostsPostDistance this}}
+                  <div class="bz-flex">
+                      {{> bzPostsPostPresence this}}
+                      {{> bzPostsPostDistance this}}
+                  </div>
 
               <!--<a class="bz-position-cover" href="#"></a>-->
             </div>

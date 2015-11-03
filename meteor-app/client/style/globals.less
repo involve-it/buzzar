@@ -114,6 +114,7 @@ h2.title {
   background-color: @bg-header-color-1;
 }
 
+
 /* END */
 
 .bz-separate {
@@ -354,6 +355,177 @@ h2.title {
 
 
 /* END */
+
+/*
+* CSS FLEX STYLE (global)
+*/
+
+.bz-flex {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.bz-flex-inline {
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+
+/*
+ * Fixes initial flex-shrink value in IE10
+ */
+.bz-flex > *,
+.bz-flex-inline > * {
+  -ms-flex-negative: 1;
+}
+
+/* Alignment
+ ========================================================================== */
+/*
+ * Vertical alignment
+ * Default value is `stretch`
+ */
+.bz-flex-top {
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+
+.bz-flex-middle {
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.bz-flex-bottom {
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+}
+
+/*
+ * Horizontal alignment
+ * Default value is `flex-start`
+ */
+.bz-flex-center {
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.bz-flex-right {
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+
+.bz-flex-space-between {
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.bz-flex-space-around {
+  -ms-flex-pack: distribute;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+
+/* Direction
+ ========================================================================== */
+.bz-flex-row-reverse {
+  -ms-flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+.bz-flex-column {
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+.bz-flex-column-reverse {
+  -ms-flex-direction: column-reverse;
+  -webkit-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+}
+
+/* Wrap
+ ========================================================================== */
+.bz-flex-nowrap {
+  -ms-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+.bz-flex-wrap {
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.bz-flex-wrap-reverse {
+  -ms-flex-wrap: wrap-reverse;
+  -webkit-flex-wrap: wrap-reverse;
+  flex-wrap: wrap-reverse;
+}
+
+/*
+ * Horizontal alignment
+ * Default value is `stretch`
+ */
+.bz-flex-wrap-top {
+  -ms-flex-line-pack: start;
+  -webkit-align-content: flex-start;
+  align-content: flex-start;
+}
+
+.bz-flex-wrap-middle {
+  -ms-flex-line-pack: center;
+  -webkit-align-content: center;
+  align-content: center;
+}
+
+.bz-flex-wrap-bottom {
+  -ms-flex-line-pack: end;
+  -webkit-align-content: flex-end;
+  align-content: flex-end;
+}
+
+.bz-flex-wrap-space-between {
+  -ms-flex-line-pack: justify;
+  -webkit-align-content: space-between;
+  align-content: space-between;
+}
+
+.bz-flex-wrap-space-around {
+  -ms-flex-line-pack: distribute;
+  -webkit-align-content: space-around;
+  align-content: space-around;
+}
+
+/* Item ordering
+ ========================================================================== */
+/*
+ * Default is 0
+ */
+.bz-flex-order-first {
+  -ms-flex-order: -1;
+  -webkit-order: -1;
+  order: -1;
+}
+
+.bz-flex-order-last {
+  -ms-flex-order: 99;
+  -webkit-order: 99;
+  order: 99;
+}
+
+/* END */
+
+
 
 /*
  * Scale by 0.2
