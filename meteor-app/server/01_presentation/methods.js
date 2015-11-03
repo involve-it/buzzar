@@ -130,7 +130,7 @@ Meteor.methods({
     // TODO fix regexp to support multiple tokens
     var regex = new RegExp(".*" + textToSearch + '.*'),
       location = query.location || {},
-      box = query.box || bz.bus.proximityHandler.getLatLngBox(location.lat, location.lng, distance),
+      box = distance === -1 ? null : (query.box || bz.bus.proximityHandler.getLatLngBox(location.lat, location.lng, distance)),
       dbQuery = {
         'details.title': {$regex: regex, $options: 'i'},
         'status.visible': bz.const.posts.status.visibility.VISIBLE
