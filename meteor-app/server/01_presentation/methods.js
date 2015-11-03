@@ -77,7 +77,7 @@ Meteor.methods({
       userId: userId //optional
     });
 
-    Email.send(emailOptions);
+    var res = Email.send(emailOptions);
     return ret;
   },
   setUserCurrentLocation: function (userId, coords) {
