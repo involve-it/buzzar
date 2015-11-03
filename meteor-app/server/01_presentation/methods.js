@@ -68,8 +68,8 @@ Meteor.methods({
     var emailOptions = {
       from: 'info@buzzar.io',
       to: 'arutune@gmail.com',
-      subject: 'from Fantasia: subscribeMe',
-      text: 'New message: " ' + msg + '", please contact this user: ' +  userId
+      subject: 'from Buzzar.org: feedback from Contact Us page',
+      text: 'Message: " ' + msg + '", please contact this user: ' +  userId
     };
     var ret = bz.cols.contactUsMsgs.insert({
       text: msg,
