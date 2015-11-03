@@ -15,6 +15,10 @@ Meteor.startup(function () {
 
   Session.set('bz.control.search.distance', 1);
   bz.help.maps.getCurrentLocation(function (loc) {
+    Session.set('currentLocation', {
+      latitude: loc.lat,
+      longitude: loc.lng,
+    });
     Session.set('bz.control.search.location', {
       coords: loc,
       placeType: bz.const.locations.type.STATIC,
