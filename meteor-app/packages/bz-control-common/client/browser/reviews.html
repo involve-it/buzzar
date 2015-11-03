@@ -13,17 +13,27 @@
     
     <div class="bz-review-avatar">
         <!--{{ profileImage }}-->
-        <a href="#" class="bz-user-avatar">
+        <!--<a href="#" class="bz-user-avatar">
             <img src="/img/content/avatars/avatar-no.png" width="60" height="60" alt="avatar">
-        </a>
+        </a>-->
+
+        <div class="bz-user-avatar">
+            {{#if user.profile.image.data}}
+                <a href="/user/{{ user._id }}">
+                    <div class="bz-avatar" style="background-image: url({{ user.profile.image.data }})"></div>
+                </a>
+            {{else}}
+                <div class="bz-avatar" style="background-image: url('/img/content/avatars/avatar-no.png')"></div>
+            {{/if}}
+        </div>
+
     </div>
       
     <div class="bz-review-post-body">
         <div class="bz-review-post-body-header">
             <div class="bz-review-post-inline">
                 <span class="bz-author bz-publisher-anchor-color">
-                    <a href="#">USER NAME or FIRST NAME</a>
-                    <!--<a href="#">{{ userName }}</a>-->
+                    <a href="/user/{{ user._id }}">{{user.username}}</a>
                 </span>
             </div>
             
