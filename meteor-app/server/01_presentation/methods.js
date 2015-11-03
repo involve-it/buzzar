@@ -116,13 +116,13 @@ Meteor.methods({
     query = query || {};
     options = options || {};
 
-    var textToSearch = query.text,
+    var textToSearch = query.text || '',
       distance = query.distance || defaultDistance,
       types = query.catTypes;
 
     // guard against client-side DOS: hard limit to 50
-    if (options.limit) {
-      options.limit = Math.min(defaultLimit, Math.abs(options.limit));
+    if (query.limit) {
+      options.limit = Math.min(defaultLimit, Math.abs(query.limit));
     } else {
       options.limit = defaultLimit;
     }
@@ -130,7 +130,7 @@ Meteor.methods({
     // TODO fix regexp to support multiple tokens
     var regex = new RegExp(".*" + textToSearch + '.*'),
       location = query.location || {},
-      box = query.box || bz.bus.proximityHandler.getLatLngBox(location.lat, location.lng, distance),
+      box = distance === -1 ? null : (query.box || bz.bus.proximityHandler.getLatLngBox(location.lat, location.lng, distance)),
       dbQuery = {
         'details.title': {$regex: regex, $options: 'i'},
         'status.visible': bz.const.posts.status.visibility.VISIBLE

@@ -72,7 +72,7 @@ var Maps = {
             if (results.length > 1) {
               bz.help.logError('more than 1 result in geocoding!');
             }
-            googleCoordsToNormalCoords(results[0].geometry.location);
+            coords = googleCoordsToNormalCoords(results[0].geometry.location);
 
             ret.resolve(coords);
           } else {

@@ -18,6 +18,9 @@ Router.map(function () {
     data: function () {
       var ret;
       ret = bz.cols.posts.findOne({_id: this.params._id});
+      if (ret) {
+        Meteor.subscribe('users-one', ret.userId)
+      }
       return ret;
     },
     //controller: 'requireLoginController',

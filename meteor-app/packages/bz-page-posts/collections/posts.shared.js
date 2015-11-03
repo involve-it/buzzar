@@ -6,6 +6,7 @@ bz.cols.posts = new Mongo.Collection('posts');
 var postsColl = bz.cols.posts;
 
 postsColl.helpers({
-  _hasLivePresence: bz.help.posts.hasLivePresence
+  _hasLivePresence: bz.help.posts.hasLivePresence,
+  _distance: bz.help.posts.distance
 });
 

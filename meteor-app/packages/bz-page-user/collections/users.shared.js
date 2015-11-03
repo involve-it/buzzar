@@ -8,13 +8,14 @@
 
 var usersCol = Meteor.users;
 usersCol.helpers({
-  _isOnline: function () {
+  //removed as it is not a necessity
+  /*_isOnline: function () {
     var ret;
     if(this.online){
       ret = this.online;
     }
     return ret;
-  },
+  },*/
   _getAvatarImage: function (userId) {
     var ret;
     if (this.profile && this.profile.image) {
