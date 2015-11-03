@@ -28,7 +28,18 @@ var helperFunctions = {
       if (!loc){
         loc = this.details.locations[0];
       }
-      return bz.help.location.getDistance(currentLocation.latitude, currentLocation.longitude, loc.coords.lat, loc.coords.lng);
+      var distance =  bz.help.location.getDistance(currentLocation.latitude, currentLocation.longitude, loc.coords.lat, loc.coords.lng);
+
+      var ret;
+      if (distance <= .3){
+        ret = (distance * 5280).toFixed(0) + ' ft';
+      } else if (distance <= 10){
+        ret = distance.toFixed(1) + ' mi';
+      } else {
+        ret = distance.toFixed(0) + ' mi';
+      }
+
+      return ret;
     } else {
       return '';
     }
@@ -38,11 +49,11 @@ var helperFunctions = {
     if (distance){
       if (distance <= .0378788){
         return '200 ft'
-      } else if (distance <= 1 && distance > .0378788){
+      } else if (distance <= 1){
         return '1 mile'
-      } else if (distance <= 5 && distance > 1){
+      } else if (distance <= 5){
         return '5 miles';
-      } else if (distance <= 20 && distance > 5){
+      } else if (distance <= 20){
         return '20 miles'
       } else {
         return 'Everywhere';
