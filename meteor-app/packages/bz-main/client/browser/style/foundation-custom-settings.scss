@@ -234,10 +234,32 @@ body {
     background-color: $bg-header-color-1;
 
     .bz-header {
+      position: relative;
       background: url(/../../../../../img/content/bg/bz-header-bg.png) repeat;
     }
   }
 
+  .bz-header-top {
+    position: absolute;
+    bottom: 50%;
+    left: 0;
+    right: 0;
+    -moz-transform: translateY(-20px);
+    -o-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+
+    .bz-header-title {
+      text-align: center;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      font-weight: 300;
+      font-size: 33px;
+      margin: 0;
+      padding: 0 20px;
+    }
+  }
 
   .bz-footer {
     background-color:     $bg-input-search-field;
@@ -378,6 +400,13 @@ body {
     }
     
     .bz-wrap-page {
+
+      .bz-header-top {
+        padding-bottom: 35px;
+        .bz-header-title {
+          font-size: 23px;
+        }
+      }
       
       /* Photos - details controls */
       .photos {
@@ -389,7 +418,7 @@ body {
           /* search */
           .bz-search {
             width: 100%;
-            padding: 50px 30px;
+            padding: 100px 20px 50px 20px;
 
             .box-search {
               
@@ -461,7 +490,9 @@ body {
 
                   li {
                     margin-bottom:15px;
-                    width: 30%;
+                    width: auto;
+                    font-size: 13px;
+                    padding: 0 5px;
                   }
                 }
               }
@@ -620,7 +651,24 @@ body {
             width: 600px;
             padding: 120px 0;
 
-            .box-search {}
+            .box-search {
+
+              .bz-category-buttons {
+                position: relative;
+                top: 0;
+
+                ul {
+                  margin: 0;
+
+                  li {
+                    margin-bottom: 15px;
+                    width: 12%;
+                    font-size: 14px;
+                    padding: 0 10px;
+                  }
+                }
+              }
+            }
           }
           /* END search */
 
