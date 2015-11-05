@@ -36,6 +36,7 @@ Package.onUse(function (api) {
     'client/browser/around-you.less',
     'client/browser/popular.html',
     'client/browser/popular.js',
+    'client/browser/popular.less',
     'client/browser/page-home.html',
     'client/browser/page-home.js',
     'client/browser/page-home.less',

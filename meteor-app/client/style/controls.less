@@ -415,7 +415,7 @@ nav.left-off-canvas-menu {
       }
       
       &:hover {
-        background-color: rgba(0,0,0, .2);
+        background-color: rgba(0, 0, 0, .15);
         color: @white-color-text;
         
         i {
@@ -427,6 +427,17 @@ nav.left-off-canvas-menu {
     label {
       background-color: rgba(0,0,0, .1);
       border-top: none;
+    }
+
+    &.active {
+      a {
+        background-color: rgba(0, 0, 0, .2);
+        color: @white-color-text;
+
+        i {
+          color: #51B9C8;
+        }
+      }
     }
   }
   

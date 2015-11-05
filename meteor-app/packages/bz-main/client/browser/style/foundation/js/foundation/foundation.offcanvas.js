@@ -41,14 +41,14 @@
       } else if (this.settings.open_method === 'reveal') {
         move_class = 'reveal';
       }
-      
-      if(!self.get_wrapper().hasClass('reveal')) {
+
+      /*if(!self.get_wrapper().hasClass('reveal')) {
         self.get_wrapper().css('overflow','inherit');
         $('.bz-wrap-page').css('overflow-y','inherit');
       } else {
         self.get_wrapper().css('overflow','hidden');
         $('.bz-wrap-page').css('overflow-y','auto');
-      }
+       }*/
       
       S(this.scope).off('.offcanvas')
           .on('click.fndtn.offcanvas', '.left-off-canvas-toggle', function (e) {
