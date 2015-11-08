@@ -48,7 +48,7 @@ Schema.UserProfile = new SimpleSchema({
     regEx: SimpleSchema.RegEx.Url,
     optional: true
   },
-  feeling: {
+  /*feeling: {
     type: String,
     optional: true,
     autoform: {
@@ -57,7 +57,7 @@ Schema.UserProfile = new SimpleSchema({
         rows: 2
       }
     }
-  }
+  }*/
 });
 
 Schema.User = new SimpleSchema({
@@ -84,7 +84,7 @@ Schema.User = new SimpleSchema({
     optional: true,
     blackbox: false
   },
-  profilePic: {
+  /*profilePic: {
     type: String,
     label: 'Your photo',
     autoform: {
@@ -94,7 +94,7 @@ Schema.User = new SimpleSchema({
         label: 'Choose file'
       }
     }
-  }
+  }*/
 });
 
 Meteor.users.attachSchema(Schema.User);
