@@ -18,7 +18,7 @@ Package.onUse(function(api) {
     'accounts-base',
     'underscore',
     'templating',
-    'handlebars',
+    //'handlebars',
     'session',
     'check',
     'less',
@@ -68,10 +68,10 @@ Package.onUse(function(api) {
   api.addFiles([
     'shared/router.js',
 
-    'shared/i18n/i18n_ar.js',
+    'shared/i18n/i18n_en.js',
+    /*'shared/i18n/i18n_ar.js',
     'shared/i18n/i18n_de.js',
     'shared/i18n/i18n_el.js',
-    'shared/i18n/i18n_en.js',
     'shared/i18n/i18n_es.js',
     'shared/i18n/i18n_fr.js',
     'shared/i18n/i18n_it.js',
@@ -79,7 +79,7 @@ Package.onUse(function(api) {
     'shared/i18n/i18n_pt.js',
     'shared/i18n/i18n_ru.js',
     'shared/i18n/i18n_sl.js',
-    'shared/i18n/i18n_sv.js'
+    'shared/i18n/i18n_sv.js'*/
   ], ['client', 'server']);
 
 });
@@ -87,7 +87,7 @@ Package.onUse(function(api) {
 Package.onTest(function (api) {
   api.use(['tinytest',
            'underscore',
-           'handlebars',
+           //'handlebars',
            'test-helpers',
            'templating',
            'mongo-livedata']);

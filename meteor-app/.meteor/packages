@@ -40,7 +40,6 @@ arutune:bz-page-user
 arutune:bz-page-chat
 iron:router
 arutune:bz-page-map
-handlebars
 blaze-html-templates
-selaias-local:accounts-entry
 dburles:google-maps
+selaias-local:accounts-entry

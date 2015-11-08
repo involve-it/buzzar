@@ -15,7 +15,7 @@ Package.onUse(function (api) {
 
   api.use('iron:router', ['client', 'server']);
   api.use('iron:layout', ['client', 'server']);
-  api.use(['templating', 'less'], 'client');
+  api.use(['templating', 'less', 'sergeyt:typeahead'], 'client'); // todo: replace typeahead with required file
   //api.use('juliancwirko:zf5', ['web.browser']);
   api.use(['fourseven:scss@3.2.0', 'edgee:slingshot']); // todo : remove 2.0.0, when package bug is fixed.
   api.use(['arutune:bz-api', 'arutune:bz-control-common']);
