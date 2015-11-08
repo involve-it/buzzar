@@ -4,46 +4,43 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
-accounts-password
-iron:router
+meteor-base             # Packages every Meteor app needs to have
+mobile-experience       # Packages for a great mobile UX
+mongo                   # The database Meteor supports right now
+session                 # Client-side reactive dictionary for your app
+jquery                  # Helpful client-side library
+tracker                 # Meteor's client-side reactive programming library
 
-less
-softwarerero:accounts-t9n
-joshowens:accounts-entry
+standard-minifiers      # JS/CSS minifiers run for production mode
+es5-shim                # ECMAScript 5 compatibility for older browsers.
+ecmascript              # Enable ECMAScript2015+ syntax in app code
 
-
-
-zimme:active-route
-anti:fake
-matb33:collection-hooks
+arutune:bz-page-landing
+dburles:collection-helpers
 aldeed:collection2
 aldeed:simple-schema
-forwarder:autoform-wizard
-sergeyt:typeahead
-mquandalle:ismobile
-mrt:cheerio
-mdg:camera
-
-accounts-facebook
-service-configuration
-#biasport:facebook-sdk
-raix:handlebar-helpers
-dburles:google-maps
-arutune:bz-page-home
 fortawesome:fontawesome
-raix:push@2.6.12
-arutune:bz-page-posts
-arutune:bz-page-user
-arutune:bz-page-landing
-arutune:bz-page-chat
-arutune:bz-page-map
-mrt:cookies
-dburles:collection-helpers
-momentjs:moment
-
-
 juliancwirko:s-alert
 juliancwirko:s-alert-scale
-edgee:slingshot
-email
+momentjs:moment
+mquandalle:ismobile
+mrt:cookies
+raix:handlebar-helpers
+raix:push
+service-configuration
+softwarerero:accounts-t9n
+zimme:active-route
+arutune:bz-main
+arutune:bz-page-home
+less
+matb33:collection-hooks
+arutune:bz-api
+arutune:bz-page-posts
+arutune:bz-page-user
+arutune:bz-page-chat
+iron:router
+arutune:bz-page-map
+handlebars
+blaze-html-templates
+selaias-local:accounts-entry
+dburles:google-maps
