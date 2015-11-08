@@ -17,7 +17,7 @@ Package.onUse(function (api) {
   api.use('iron:layout', ['client', 'server']);
   api.use(['templating', 'less'], 'client');
   //api.use('juliancwirko:zf5', ['web.browser']);
-  api.use(['fourseven:scss', 'edgee:slingshot']);
+  api.use(['fourseven:scss@3.2.0', 'edgee:slingshot']); // todo : remove 2.0.0, when package bug is fixed.
   api.use(['arutune:bz-api', 'arutune:bz-control-common']);
 
   //api.use([ 'cordova:com.ionic.keyboard', 'cordova:org.apache.cordova.device' ], 'web.cordova');// @Slava: do we need this?
@@ -53,12 +53,13 @@ Package.onUse(function (api) {
     'client/browser/style/foundation/foundation-select.css',
     'client/browser/style/foundation-main.scss',
     'client/browser/style/foundation-custom-settings.scss',
-
     'client/browser/style/_buttons.scss',
+
     'client/browser/main-layout.html',
     'client/browser/main-layout.js',
     'client/browser/main-layout.less'
   ], 'web.browser');
+
   api.addFiles([
     'client/cordova/main-layout.html',
     'client/cordova/main-layout.js',
