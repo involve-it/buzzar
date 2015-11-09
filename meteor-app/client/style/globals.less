@@ -260,11 +260,13 @@ h2.title {
 */
 
 .custom-alert-class {
+  &.s-alert-box {
+    background-image: linear-gradient(rgba(252,248,251,.95), rgba(252,246,253, .95));
+  }
 }
 
 .s-alert-box {
   /*background-color: rgba(253,253,253, .98);*/
-  background-image: linear-gradient(rgba(252,248,251,.95), rgba(252,246,253, .95));
   box-shadow: inset 0 0 50px rgba(220,220,220,.1);
   width: 350px;
   max-width: 350px;
@@ -287,6 +289,26 @@ h2.title {
         background-color: lighten(@h-title-color, 10%);
       }
     }
+  }
+}
+
+.s-alert-box {
+  opacity: .95;
+  
+  .bz-msg-reason {
+    h5 {
+      padding-left: 10px;
+      color: rgba(255,255,255, .75);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+    }
+  }
+  .bz-msg-text {
+    font-size: 18px;
+    line-height: 75px;
+    font-weight: 700;
+    text-align: center;
   }
 }
 

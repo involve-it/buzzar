@@ -1,3 +1,5 @@
+@textColor: rgba(255, 255, 255, 0.85);
+
 .entry-logo {
   width: 300px;
   margin: auto;
@@ -143,6 +145,7 @@ background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/r
   padding-left: 36px;
 background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAhCAYAAACr8emlAAAEbUlEQVR42s2W7U9bVRzHz18ynmlLWygtD4XBGCjZlrlp2GYIbOIWNdGZYNT5wvjCzC1k2Yy+NbrAEBhOGME5Z5wbCmwuc8iDwBIEXZCn8tj23tvbBzhff7fKdlvupe7dffF50fT7+51Pzz3nd8uCReXcyLBg0W4eLC6HUWFBNwkW7YZRYXJhGZfdZTAqJLiLkySMCpMLSrlcsAtGhcn5pTyQXwqjwgJ5JQYXdO3kJAk9PA43xu15+MmcjatpFozYXNgur8XfjkJ8TbW3TPZo/VxO4f+uZQFnMZdcO6FGdBZjkcS+y8hCU5oZzZZs9L59CjO9vVj48Azi84lYOHocnge/4d7pM7jscuNSugUdqWY8sudDoLUkBZ1aJjmLuLQZ+o/r6Vloy3Zi4MIn8AwOISSK4JxHWTx7DvH5RCiCm/WRYBDL4+MYbWxCR9kz6KKd9eYW6dYyKdfNJSWgYvTjTxEOBB43VRMVjMsnYqH2uGavSCiEiZbL8OeX6NYyyaEIuqEmMr+g2fCJoPupWKh9WbffhiRBKqnQrWViTiEnoCbU+KVuw5mPGhCfT8Sj6pd0+0V+HYieeb1aJmYXcAIxVD6H9bl5zYZD587DY8vDvNWFaasTkxYHxolRc06UMWKCPivfKZklyt45dkKz1/rqGgLVddiyvgom2vO55pfle7E+ObWl6erEH2hJzkDzjjRcSzFhwkU3/vkjWKFzprBUVY2/ispwM9USzbQkpWP6ds/WR0tnXDp6Ylu5qKBgy+OCja67FiXPQvy8EWFBjGk+29ePpeERCCO/w9/eAbnhAuT3PoB86n3IpxsgNbfBd/8BvOMPMX3rNtbD4Se7RhdDuNoNgZ6S7roqmGB1cQLx+LOcmDLloI126dqBKgT9/hjJ4MoKvq/Yg3YaE91JGbiZbMIt4tvkTHxFNd0075bu/hL7SEnu57feQWuGFWOZdvhoDa211TAhy6kpOJhmRWdhCQ3nvug4UC8Uol0L/9iDCD3u8NhDBK7fgPBFI4TPLkLq7EZoaASRyT8RvnMXwUut2FDVr0ciWBwcRlflPvSnWBIL+i25XNktNRMZNnxz8BD8M7Nbzo54735M1k+zSqjYB2F/1b9U7qe5Vhqb6ezaentlGT0n6zFAZ9VnyUW8wybMb3Zwv5kCKvor9oJvbGjevAUaM/H5RMzV1OmOmb7aOqzQUVomtGqZ36QIOqBmqv2KbkPlXRyfT8TckRrdfstDw/DQO9mTU6BZy3yZOdxH9moinsVtBePziZg9XLPtm0Q4cBjCCy9q1pJgNidJqBFfr8eGKOoLxuUTMXtIW3CD/jgEzp4nEYduLfNl2DmBLdC2i6+eRPBKJ0381cdNvYqgVn4bVlSCyg8P3fgBYv278NFf+kS1zJtm4950G7bHDuHYK5AvNkF87U0kzsfi23MQcms7hDfq4bXmPVUtCVo5ScKoMG9qFvemWmFU2FpKFidgVNhassXggklmTpIwKiRo4qtJZhgVtrpDETTBqPwDnIQ1Og5LEzwAAAAASUVORK5CYII=) no-repeat 0 -4px;
 }
+
 .email-option {
   text-align: center;
   font-size: 16px;
@@ -229,3 +232,64 @@ background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAhCAYAAACr8e
     border-radius: 50%;
   }
 }
+
+/*SIGN UP page*/
+.create-account-option {
+
+  h3 {
+    text-align: center;
+    color: @textColor;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 15px 0;
+  }
+
+  .entry-signin-cta {
+    color: @textColor;
+    text-align: center;
+
+    a {
+      color: @textColor;
+      font-weight: bold;
+    }
+  }
+
+  .entry-agreement {
+    margin-top: 15px;
+    color: @textColor;
+  }
+
+  a {
+    color: @textColor;
+    font-weight: bold;
+  }
+}
+
+/*FORGOT PASSWORD page*/
+.forgot-account-password {
+
+  h3 {
+    text-align: center;
+    color: @textColor;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 15px 0;
+  }
+
+  button.submit {
+    margin-top: 15px;
+    font-size: 16px;
+    padding: 10px 12px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
