@@ -27,15 +27,12 @@ Package.onUse(function(api) {
   api.addFiles([
     'client/browser/google-map.less',
     'client/browser/google-map.html',
-    'client/browser/google-map.js'
+    'client/browser/google-map.js',
+
+    'client/browser/page-map.less',
+    'client/browser/page-map.html',
+    'client/browser/page-map.js',
   ], 'web.browser');
-  api.addFiles([
-      'client/browser/page-map.less',
-      'client/browser/page-map.html',
-      'client/browser/page-map.js',
-    ],
-    'web.browser'
-  );
 });
 
 Package.onTest(function(api) {

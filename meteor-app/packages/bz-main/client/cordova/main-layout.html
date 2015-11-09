@@ -23,3 +23,29 @@
     {{> yield}}
   {{/if}}
 </template>
+<template name="mainLayoutHome">
+  <!--{{#if currentUser}}-->
+    {{#ionBody}}
+      asdf
+      {{> yield}}
+      <!--{{#ionSideMenuContainer }}
+
+        {{> ionMenus}}
+
+        {{#ionSideMenuContent}}
+          &lt;!&ndash;<div id="drag-left"></div>&ndash;&gt;
+          <div id="drag-right"></div>
+
+          {{> ionNavBar class="bar-fantasia"}}
+
+          {{#ionNavView}}
+            {{> yield}}
+          {{/ionNavView}}
+
+        {{/ionSideMenuContent}}
+      {{/ionSideMenuContainer}}-->
+    {{/ionBody}}
+  <!--{{else}}-->
+    <!--{{> yield}}-->
+  <!--{{/if}}-->
+</template>

@@ -40,7 +40,8 @@ Meteor.startup(function () {
   searchPostsReactive();
 
   bz.help.maps.initPlacesCollection();
-  Template.bzControlSearch.onCreated(function () {
+  Template.bzControlSearch && Template.bzControlSearch.onCreated(function () {
+    debugger;
 
     //bz.help.maps.initLocation();
 

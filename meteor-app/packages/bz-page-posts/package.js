@@ -17,8 +17,10 @@ Package.onUse(function (api) {
   api.use('templating', 'client');
   api.use('less', 'client');
   api.use('arutune:bz-main');
+  api.addFiles([
+    'server/model.js'
+  ], 'server');
   api.use(['dburles:collection-helpers'], ['client', 'server']);
-
   api.addFiles(['collections/posts.shared.js'], ['client', 'server']);
 
   api.addFiles([
@@ -60,9 +62,7 @@ Package.onUse(function (api) {
     'client/browser/places-autoform.html',
     'client/browser/places-autoform.js'
   ], 'web.browser');
-  api.addFiles([
-    'server/model.js'
-  ], 'server');
+
 });
 
 Package.onTest(function (api) {

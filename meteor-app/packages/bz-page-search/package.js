@@ -49,7 +49,8 @@ Package.onUse(function (api) {
     'client/browser/search.js',
 
   ], 'web.browser');
-
+  api.addFiles([
+  ], 'web.cordova');
 });
 
 Package.onTest(function (api) {

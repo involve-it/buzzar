@@ -25,15 +25,11 @@ Package.onUse(function (api) {
     ], 'client');
 
     api.addFiles([
-        //'lib/angular.js',
         'client/browser/app.js',
-        'user.ng.html',
-
         'client/browser/honeycomb.less',
         'client/browser/honeycomb.html',
         'client/browser/honeycomb.js',
-        //'client/browser/index.ng.html',
-    ], 'client');
+    ], 'web.browser');
 });
 
 Package.onTest(function (api) {
