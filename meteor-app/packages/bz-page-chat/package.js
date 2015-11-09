@@ -35,7 +35,9 @@ Package.onUse(function (api) {
     'client/browser/page-chats.less',
     'client/browser/page-chats.html',
     'client/browser/page-chats.js'
-  ], 'client');
+  ], 'web.browser');
+  api.addFiles([
+  ], 'web.cordova');
 });
 
 Package.onTest(function (api) {

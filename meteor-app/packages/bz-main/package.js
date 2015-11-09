@@ -19,13 +19,6 @@ Package.onUse(function (api) {
   //api.use('juliancwirko:zf5', ['web.browser']);
   api.use(['fourseven:scss@3.2.0', 'edgee:slingshot']); // todo : remove 2.0.0, when package bug is fixed.
   api.use(['arutune:bz-api', 'arutune:bz-control-common']);
-
-  //api.use([ 'cordova:com.ionic.keyboard', 'cordova:org.apache.cordova.device' ], 'web.cordova');// @Slava: do we need this?
-  api.addFiles([
-      'controller.server.js'
-    ], ['server']
-  );
-
   api.use([
     'meteoric:ionic',
     'meteoric:ionic-sass',
@@ -34,8 +27,19 @@ Package.onUse(function (api) {
     'fortawesome:fontawesome'
   ], 'web.cordova');
 
+  //api.use([ 'cordova:com.ionic.keyboard', 'cordova:org.apache.cordova.device' ], 'web.cordova');// @Slava: do we need this?
   api.addFiles([
+      'controller.server.js'
+    ], ['server']
+  );
 
+  api.addFiles([
+    'client/controller.js',
+    'client/router.js',
+    'client/app-loading.html'
+  ], 'client');
+
+  api.addFiles([
     'client/browser/style/foundation/js/vendor/modernizr.js',
     'client/browser/style/foundation/js/foundation.js',
     'client/browser/style/foundation/js/foundation-select.js',
@@ -45,11 +49,9 @@ Package.onUse(function (api) {
     'client/browser/style/foundation/js/foundation/foundation.tab.js',
     'client/browser/style/foundation/js/foundation/foundation.offcanvas.js',
     'client/browser/style/foundation/js/foundation/foundation.abide.js'
-
   ], 'web.browser');
 
   api.addFiles([
-    'client/controller.js',
     'client/browser/style/foundation/foundation-select.css',
     'client/browser/style/foundation-main.scss',
     'client/browser/style/foundation-custom-settings.scss',
@@ -63,17 +65,10 @@ Package.onUse(function (api) {
   api.addFiles([
     'client/cordova/main-layout.html',
     'client/cordova/main-layout.js',
-      //'client/cordova/main-layout.less',
-    'client/cordova/style/app-ionic.less',
     'client/cordova/main-layout.less',
+    'client/cordova/style/app-ionic.less',
     'client/cordova/style/app.scss'
   ], 'web.cordova');
-
-  api.addFiles([
-    'client/router.js',
-    'client/app-loading.html',
-
-  ], 'web');
 
 });
 

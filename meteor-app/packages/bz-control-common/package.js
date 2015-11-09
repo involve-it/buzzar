@@ -30,11 +30,9 @@ Package.onUse(function (api) {
   //  ], ['server']
   //);
   api.addFiles([
-
     'client/browser/category-list-buttons.html',
     'client/browser/category-list-buttons.js',
     'client/browser/category-list-buttons.less',
-
 
     'client/browser/main-menu.html',
     'client/browser/main-menu.js',
@@ -44,12 +42,16 @@ Package.onUse(function (api) {
     'client/browser/reviews.js',
     'client/browser/reviews.less',
 
-
     'client/browser/upload-image.html',
     'client/browser/upload-image.js',
     'client/browser/upload-image.less',
 
   ], 'web.browser');
+  api.addFiles([
+    'client/browser/category-list-buttons.html',
+    'client/browser/category-list-buttons.js',
+    'client/browser/category-list-buttons.less'
+  ], 'web.cordova');
 });
 
 Package.onTest(function (api) {

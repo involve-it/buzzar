@@ -23,3 +23,28 @@
     {{> yield}}
   {{/if}}
 </template>
+<template name="mainLayoutHome">
+  <!--{{#if currentUser}}-->
+    {{#ionBody}}
+      <!-- Вместо rendered, можно использовать side="left" -->
+      {{#ionSideMenuContainer }}
+
+        {{> ionMenus}}
+
+        {{#ionSideMenuContent}}
+          <!--<div id="drag-left"></div>-->
+          <div id="drag-right"></div>
+
+          {{> ionNavBar class="bar-fantasia"}}
+
+          {{#ionNavView}}
+            {{> yield}}
+          {{/ionNavView}}
+
+        {{/ionSideMenuContent}}
+      {{/ionSideMenuContainer}}
+    {{/ionBody}}
+  <!--{{else}}-->
+    <!--{{> yield}}-->
+  <!--{{/if}}-->
+</template>
