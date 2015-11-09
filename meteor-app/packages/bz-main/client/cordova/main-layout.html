@@ -26,13 +26,14 @@
 <template name="mainLayoutHome">
   <!--{{#if currentUser}}-->
     {{#ionBody}}
-      <!-- Вместо rendered, можно использовать side="left" -->
-      {{#ionSideMenuContainer }}
+      asdf
+      {{> yield}}
+      <!--{{#ionSideMenuContainer }}
 
         {{> ionMenus}}
 
         {{#ionSideMenuContent}}
-          <!--<div id="drag-left"></div>-->
+          &lt;!&ndash;<div id="drag-left"></div>&ndash;&gt;
           <div id="drag-right"></div>
 
           {{> ionNavBar class="bar-fantasia"}}
@@ -42,7 +43,7 @@
           {{/ionNavView}}
 
         {{/ionSideMenuContent}}
-      {{/ionSideMenuContainer}}
+      {{/ionSideMenuContainer}}-->
     {{/ionBody}}
   <!--{{else}}-->
     <!--{{> yield}}-->

@@ -28,6 +28,14 @@ Package.onUse(function(api) {
     'client/browser/page-contact-us.js',
 
   ], 'web.browser');
+  api.addFiles([
+    'client/cordova/about-us.html',
+    'client/cordova/page-not-found.html',
+    'client/cordova/page-about-us.html',
+    'client/cordova/page-contact-us.html',
+    'client/cordova/page-contact-us.js',
+
+  ], 'web.cordova');
 });
 
 Package.onTest(function(api) {
