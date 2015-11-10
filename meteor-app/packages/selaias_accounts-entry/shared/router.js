@@ -2,6 +2,7 @@ var exclusions;
 
 Router.route("entrySignIn", {
   path: "/sign-in",
+  layoutTemplate: 'basicLayout',
   name: 'entrySignIn',
   template: 'entrySignIn',
   onBeforeAction: function() {
@@ -34,6 +35,7 @@ Router.route("entrySignIn", {
 });
 Router.route("entrySignUp", {
   path: "/sign-up",
+  layoutTemplate: 'basicLayout',
   name: 'entrySignUp',
   template: 'entrySignUp',
   onBeforeAction: function() {
@@ -63,6 +65,7 @@ Router.route("entrySignUp", {
 });
 Router.route("entryForgotPassword", {
   path: "/forgot-password",
+  layoutTemplate: 'basicLayout',
   name: 'entryForgotPassword',
   template: 'entryForgotPassword',
   onBeforeAction: function() {
@@ -72,6 +75,7 @@ Router.route("entryForgotPassword", {
 });
 Router.route('entrySignOut', {
   path: '/sign-out',
+  layoutTemplate: 'basicLayout',
   name: 'entrySignOut',
   template: 'entrySignOut',
   onBeforeAction: function() {
@@ -85,6 +89,7 @@ Router.route('entrySignOut', {
 });
 Router.route('entryResetPassword', {
   path: 'reset-password/:resetToken',
+  layoutTemplate: 'basicLayout',
   name: 'entryResetPassword',
   template: 'entryResetPassword',
   onBeforeAction: function() {
@@ -96,6 +101,7 @@ Router.route('entryResetPassword', {
 
 Router.route('entryEmailVerificationPending', {
   path: '/verification-pending',
+  layoutTemplate: 'basicLayout',
   name: 'entryEmailVerificationPending',
   template: 'entryEmailVerificationPending',
   onBeforeAction: function() {

@@ -18,6 +18,7 @@ Template.entryForgotPassword.events({
     }
     Accounts.forgotPassword({email: Session.get('email')}, function(error) {
       if (error) {
+        sAlert.error('<div class="bz-msg-text">' + error.reason + '</div>', {effect: 'scale', html: true});
          Alerts.add(error.reason, 'danger');
       } else {
         Router.go(AccountsEntry.settings.homeRoute);
@@ -26,3 +27,18 @@ Template.entryForgotPassword.events({
     });
   }
 });
+
+Template.entryForgotPassword.rendered = function() {
+  $(document).foundation({
+    abide: {
+      live_validate: true,
+      validate_on_blur: true,
+      focus_on_invalid: true,
+      error_labels: true,
+      timeout: 1000,
+      patterns: {
+        email: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+      }
+    }
+  });
+};
