@@ -1,11 +1,37 @@
 /**
  * Created by root on 9/15/15.
  */
+function getLatLngBox (lat, lng, radius){
+  if (lat && lng && radius) {
+    var dLat = (radius / bz.const.locations.earthRadius) / Math.PI * 180,
+        dLng = (radius / bz.const.locations.earthRadius / Math.cos(lat * Math.PI / 180)) / Math.PI * 180;
+    return {
+      lng1: lng - dLng,
+      lng2: lng + dLng,
+      lat1: lat - dLat,
+      lat2: lat + dLat
+    };
+  } else {
+    return null;
+  }
+};
+
 Template.aroundYou.helpers({
   aroundItem: function() {
-    var searchSelector = Session.get('bz.control.search-selector');
-    var ret = bz.cols.posts.find(searchSelector, {limit:3}).fetch();
-
+    var loc = Session.get('bz.control.search.location');
+    if (loc && loc.coords){
+      var box = getLatLngBox(loc.coords.lat, loc.coords.lng, 5);
+      if (box){
+        var ret = bz.cols.posts.find({
+          'details.locations':{
+            $elemMatch: {
+              'coords.lat': {$gte: box.lat1, $lte: box.lat2},
+              'coords.lng': {$gte: box.lng1, $lte: box.lng2}
+            }
+          }
+        }, {limit:3}).fetch();
+      }
+    }
     return ret;
   }
 });

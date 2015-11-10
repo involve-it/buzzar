@@ -41,7 +41,7 @@ Meteor.startup(function () {
 
   bz.help.maps.initPlacesCollection();
   Template.bzControlSearch && Template.bzControlSearch.onCreated(function () {
-    debugger;
+    //debugger;
 
     //bz.help.maps.initLocation();
 
