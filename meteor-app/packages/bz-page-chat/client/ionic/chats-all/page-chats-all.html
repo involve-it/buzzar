@@ -1,0 +1,21 @@
+<template name="myItems">
+
+
+    <div class="list">
+
+        <div class="item item-divider item-active">
+            {{t9n 'active'}}
+        </div>
+
+        {{#each posts}}
+            {{> onePostRowItem}}
+        {{/each}}
+        <div class="item item-divider item-inactive">
+            {{t9n 'inactive'}}
+        </div>
+
+    </div>
+    
+    
+</template>
+

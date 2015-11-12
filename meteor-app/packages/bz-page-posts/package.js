@@ -61,7 +61,7 @@ Package.onUse(function (api) {
     'client/browser/places-autoform.less',
     'client/browser/places-autoform.html',
     'client/browser/places-autoform.js'
-  ], 'web.browser');
+  ], global.bzSettings.webBrowserArray);
 
 });
 

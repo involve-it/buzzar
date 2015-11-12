@@ -15,6 +15,7 @@ Package.onUse(function (api) {
   api.use('iron:router', ['client', 'server']);
   api.use('iron:layout', ['client', 'server']);
   api.use(['templating', 'less'], 'client');
+  //api.use(['arutune:bz-main']);
   //api.use(['natestrauser:filepicker-plus'], 'client');
 
   api.addFiles('bz-control-common.js');
@@ -45,13 +46,14 @@ Package.onUse(function (api) {
     'client/browser/upload-image.html',
     'client/browser/upload-image.js',
     'client/browser/upload-image.less',
+    'client/browser/users.html',
 
-  ], 'web.browser');
+  ], global.bzSettings.webBrowserArray);
   api.addFiles([
-    'client/browser/category-list-buttons.html',
-    'client/browser/category-list-buttons.js',
-    'client/browser/category-list-buttons.less'
-  ], 'web.cordova');
+    'client/ionic/category-list-buttons.html',
+    'client/ionic/category-list-buttons.js',
+    'client/ionic/category-list-buttons.less'
+  ], global.bzSettings.webCordovaArray);
 });
 
 Package.onTest(function (api) {

@@ -32,7 +32,7 @@ Package.onUse(function(api) {
     'client/browser/page-map.less',
     'client/browser/page-map.html',
     'client/browser/page-map.js',
-  ], 'web.browser');
+  ], global.bzSettings.webBrowserArray);
 });
 
 Package.onTest(function(api) {

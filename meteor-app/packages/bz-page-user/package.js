@@ -41,7 +41,7 @@ Package.onUse(function(api) {
     'client/browser/profile-edit.less',
     'client/browser/profile-edit.html',
     'client/browser/profile-edit.js',
-  ], 'web.browser');
+  ], global.bzSettings.webBrowserArray);
 });
 
 Package.onTest(function(api) {

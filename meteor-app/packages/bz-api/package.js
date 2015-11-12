@@ -1,3 +1,6 @@
+// sets global, to have an can-be-used-in-all-packages globals for browser/cordova packages compilation:
+setPackagesCompilationGlobals();
+
 Package.describe({
   name: 'arutune:bz-api',
   version: '0.0.1',
@@ -9,7 +12,7 @@ Package.describe({
   // To avoid submitting documentation, set this field to null.
   documentation: 'README.md'
 });
-var glob = {};
+
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
@@ -57,3 +60,21 @@ Package.onTest(function (api) {
   api.use('arutune:bz-api');
   api.addFiles('bz-main-tests.js', ['client']);
 });
+
+// HELPERS:
+function setPackagesCompilationGlobals (mob){
+  if (mob) {
+    // mobile developer:
+    global.bzSettings = {
+      webBrowserArray: [],
+      webCordovaArray : ['web.browser', 'web.cordova']
+    }
+  } else {
+    // browser developer:
+    global.bzSettings = {
+      webBrowserArray: ['web.browser'],
+      //webBrowserArray: ['web.browser', 'web.cordova'],
+      webCordovaArray : ['web.cordova']
+    }
+  }
+}

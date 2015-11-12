@@ -48,9 +48,9 @@ Package.onUse(function (api) {
     'client/browser/search.html',
     'client/browser/search.js',
 
-  ], 'web.browser');
+  ], global.bzSettings.webBrowserArray);
   api.addFiles([
-  ], 'web.cordova');
+  ], global.bzSettings.webCordovaArray);
 });
 
 Package.onTest(function (api) {

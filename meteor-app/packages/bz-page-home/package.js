@@ -20,10 +20,7 @@ Package.onUse(function (api) {
 
   
   api.use('sacha:spin');
-  
-  api.use('arutune:bz-main');
-  api.use('arutune:bz-page-search');
-  //api.use('arutune:bz-control-honeycomb');
+  api.use(['arutune:bz-main', 'arutune:bz-page-search', 'arutune:bz-page-chat']);
 
   api.addFiles([
     'client/router.js',
@@ -40,16 +37,16 @@ Package.onUse(function (api) {
     'client/browser/page-home.html',
     'client/browser/page-home.js',
     'client/browser/page-home.less',
-  ], 'web.browser');
-  
+  ], global.bzSettings.webBrowserArray);
+
   api.addFiles([
 
-    'client/cordova/around-you.html',
-    'client/cordova/around-you.js',
-    'client/cordova/around-you.less',
-    'client/cordova/page-home.html',
-    'client/cordova/page-home.js'
-  ], 'web.cordova');
+    'client/ionic/around-you.html',
+    'client/ionic/around-you.js',
+    'client/ionic/around-you.less',
+    'client/ionic/page-home.html',
+    'client/ionic/page-home.js'
+  ], global.bzSettings.webCordovaArray);
 });
 
 Package.onTest(function (api) {

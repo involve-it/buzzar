@@ -27,15 +27,15 @@ Package.onUse(function(api) {
     'client/browser/page-contact-us.html',
     'client/browser/page-contact-us.js',
 
-  ], 'web.browser');
+  ], global.bzSettings.webBrowserArray);
   api.addFiles([
-    'client/cordova/about-us.html',
-    'client/cordova/page-not-found.html',
-    'client/cordova/page-about-us.html',
-    'client/cordova/page-contact-us.html',
-    'client/cordova/page-contact-us.js',
+    'client/ionic/about-us.html',
+    'client/ionic/page-not-found.html',
+    'client/ionic/page-about-us.html',
+    'client/ionic/page-contact-us.html',
+    'client/ionic/page-contact-us.js',
 
-  ], 'web.cordova');
+  ], global.bzSettings.webCordovaArray);
 });
 
 Package.onTest(function(api) {

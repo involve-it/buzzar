@@ -24,6 +24,7 @@ Package.onUse(function (api) {
     'client/controller.js',
     'client/page-chats.less'
   ], 'client');
+
   api.addFiles([
     'client/browser/chat-id.less',
     'client/browser/chat-id.html',
@@ -35,11 +36,11 @@ Package.onUse(function (api) {
     'client/browser/page-chats.less',
     'client/browser/page-chats.html',
     'client/browser/page-chats.js'
-  ], 'web.browser');
-  api.addFiles([
-  ], 'web.cordova');
-});
+  ], global.bzSettings.webBrowserArray);
 
+  api.addFiles([
+  ], global.bzSettings.webCordovaArray);
+});
 Package.onTest(function (api) {
   api.use('tinytest');
   api.use('bz-page-chat');

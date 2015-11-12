@@ -29,7 +29,7 @@ Package.onUse(function (api) {
         'client/browser/honeycomb.less',
         'client/browser/honeycomb.html',
         'client/browser/honeycomb.js',
-    ], 'web.browser');
+    ], global.bzSettings.webBrowserArray);
 });
 
 Package.onTest(function (api) {

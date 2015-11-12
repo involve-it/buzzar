@@ -25,7 +25,7 @@ Package.onUse(function (api) {
     'meteoric:ionicons-sass',
     'meteoric:autoform-ionic',
     'fortawesome:fontawesome'
-  ], 'web.cordova');
+  ], global.bzSettings.webCordovaArray);
 
   //api.use([ 'cordova:com.ionic.keyboard', 'cordova:org.apache.cordova.device' ], 'web.cordova');// @Slava: do we need this?
   api.addFiles([
@@ -49,8 +49,7 @@ Package.onUse(function (api) {
     'client/browser/style/foundation/js/foundation/foundation.tab.js',
     'client/browser/style/foundation/js/foundation/foundation.offcanvas.js',
     'client/browser/style/foundation/js/foundation/foundation.abide.js'
-  ], 'web.browser');
-
+  ], global.bzSettings.webBrowserArray);
   api.addFiles([
     'client/browser/style/foundation/foundation-select.css',
     'client/browser/style/foundation-main.scss',
@@ -60,16 +59,15 @@ Package.onUse(function (api) {
     'client/browser/main-layout.html',
     'client/browser/main-layout.js',
     'client/browser/main-layout.less'
-  ], 'web.browser');
+  ], global.bzSettings.webBrowserArray);
 
   api.addFiles([
-    'client/cordova/main-layout.html',
-    'client/cordova/main-layout.js',
-    'client/cordova/main-layout.less',
-    'client/cordova/style/app-ionic.less',
-    'client/cordova/style/app.scss'
-  ], 'web.cordova');
-
+    'client/ionic/main-layout.html',
+    'client/ionic/main-layout.js',
+    'client/ionic/main-layout.less',
+    'client/ionic/style/app-ionic.less',
+    'client/ionic/style/app.scss'
+  ], global.bzSettings.webCordovaArray);
 });
 
 Package.onTest(function (api) {
