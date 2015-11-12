@@ -1,5 +1,5 @@
 // sets global, to have an can-be-used-in-all-packages globals for browser/cordova packages compilation:
-setPackagesCompilationGlobals();
+setPackagesCompilationGlobals(true);
 
 Package.describe({
   name: 'arutune:bz-api',
@@ -72,9 +72,9 @@ function setPackagesCompilationGlobals (mob){
   } else {
     // browser developer:
     global.bzSettings = {
-      webBrowserArray: ['web.browser'],
-      //webBrowserArray: ['web.browser', 'web.cordova'],
-      webCordovaArray : ['web.cordova']
+      webBrowserArray: ['web.browser', 'web.cordova'],
+      webCordovaArray: [],
+      //webCordovaArray : ['web.cordova']
     }
   }
 }

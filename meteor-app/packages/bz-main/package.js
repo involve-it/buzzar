@@ -26,7 +26,6 @@ Package.onUse(function (api) {
     'meteoric:autoform-ionic',
     'fortawesome:fontawesome'
   ], global.bzSettings.webCordovaArray);
-
   //api.use([ 'cordova:com.ionic.keyboard', 'cordova:org.apache.cordova.device' ], 'web.cordova');// @Slava: do we need this?
   api.addFiles([
       'controller.server.js'
@@ -38,7 +37,6 @@ Package.onUse(function (api) {
     'client/router.js',
     'client/app-loading.html'
   ], 'client');
-
   api.addFiles([
     'client/browser/style/foundation/js/vendor/modernizr.js',
     'client/browser/style/foundation/js/foundation.js',
