@@ -33,6 +33,7 @@ Package.onUse(function (api) {
   );
 
   api.addFiles([
+    'client/main.less',
     'client/controller.js',
     'client/router.js',
     'client/app-loading.html'

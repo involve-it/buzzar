@@ -35,6 +35,8 @@ Package.onUse(function (api) {
     'server/lib/config.js'
   ], 'server');
   api.addFiles([
+    'client/lib/vendor/toast.js',
+
     'client/lib/01_inits/accounts.js',
     'client/lib/01_inits/location.js',
     'client/lib/01_inits/fb.js',

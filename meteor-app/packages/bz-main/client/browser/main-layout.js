@@ -2,6 +2,8 @@
  * Created by douson on 06.07.15.
  */
 bz.help.maps.initLocation();
+Template.mainLayout.created = function () {
+}
 Template.mainLayout.rendered = function () {
    
   $(document).foundation({
@@ -11,7 +13,8 @@ Template.mainLayout.rendered = function () {
       close_on_click : true
     }
   });
-  
+  layoutRenderedLazyLoad();
+
 };
 Template.mainLayoutHome.rendered = function () {
 
@@ -22,6 +25,7 @@ Template.mainLayoutHome.rendered = function () {
       close_on_click : true
     }
   });
+  layoutRenderedLazyLoad();
 
 };
 
