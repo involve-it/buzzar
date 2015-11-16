@@ -6,7 +6,7 @@ var ru;
 
 ru = {
   //Global
-  CONTENT_READ_MORE_TITLE: 'Подробнее...',
+  CONTENT_READ_MORE_TITLE: 'Подробнее',
   CONTACT_US:'Свяжитесь с нами',
   CONTACT_SEND_MESSAGE: 'Отправить сообщение',
 
@@ -20,7 +20,7 @@ ru = {
   MENU_MY_POSTS: 'Мои посты',
   MENU_MY_PROFILE: 'Мой профайл',
   MENU_MY_MESSAGES: 'Мои сообщения',
-  MENU_BUTTON_NEW_POST: 'Новый пост',
+  MENU_BUTTON_NEW_POST: 'Создать пост',
   MENU_SIGN_IN: 'Вход',
   MENU_SIGN_OUT: 'Выход',
   MENU_SIGN_UP: 'Регистрация',
@@ -34,14 +34,14 @@ ru = {
   left:                'Осталось',
   
   //home:
-  headliner:           'Мгновенное объявление, основанное на положении.',//wtf??
-  SEARCH_DISTANCE_TITLE: 'Дистанция',
+  headliner:           'Срочные объявления, привязанные к месту',
+  SEARCH_DISTANCE_TITLE: 'Расстояние',
   SEARCH_DISTANCE_MILE: '1 миля',
   SEARCH_DISTANCE_MILES_5: '5 миль',
   SEARCH_DISTANCE_MILES_20: '20 миль',
   SEARCH_DISTANCE_FT_200: '200 футов',
   SEARCH_DISTANCE_EVERYWHERE: 'Везде',
-  MOST_POPULAR_TITLE: 'Самые популярные',
+  MOST_POPULAR_TITLE: 'Популярные',
   ABOUT_US_TITLE: 'О нас',
 
   //Location
