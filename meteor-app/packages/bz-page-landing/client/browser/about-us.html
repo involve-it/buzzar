@@ -1,3 +1,4 @@
+
 <template name="aboutUs">
   <div class="main-content">
     <h3 class="title">
@@ -69,46 +70,49 @@
     </ul>
   </div>
   <div class="text-center bz-padding-top-x1">
-    <a class="button btn-default" href="/contacts">Contact Us</a>
+    <a class="button btn-default" href="/contacts">{{ t9n 'CONTACT_US' }}</a>
   </div>
 </template>
+
+
 <template name="bzAboutUsShort">
-  <div class="bz-about-us">
-    <h2 class="title">About us</h2>
+    <section id="bz-bottom-a" class="bz-container-body bz-gray-background">
+        <div class="bz-about-us">
+            <h2 class="title">{{ t9n 'ABOUT_US_TITLE' }}</h2>
+            <div class="text-overlay-bottom">
+                <!--<p class="bz-padding-top-x1 text-center">
+                    Think of us as of "Google For People": the way Google lets you search through urls in Web, we let you search among real people around you. Like Google has it's ranking system to order url relevancy, we have our sophisticated Karma algorithm, phone# verification and other means to rank real posts' credibility.
+                </p>-->
+                <p>
+                    <b>What is Buzzar?</b>
+                </p>
+                <p><u>Buzzar</u> is a next step in community advertisement, powered by technology and social capabilities, that gives
+                    another dimension to a post - namely <i>web url, location, time and availability</i> bound together.
+                </p>
+                <p>
+                    <u>Buzzar</u> is a community, built on humanistic principles of compassion, awareness, consciousness and freedom of
+                    choice.
+                </p>
 
-    <div class="text-overlay-bottom">
-      <!--<p class="bz-padding-top-x1 text-center">
-          Think of us as of "Google For People": the way Google lets you search through urls in Web, we let you search among real people around you. Like Google has it's ranking system to order url relevancy, we have our sophisticated Karma algorithm, phone# verification and other means to rank real posts' credibility.
-      </p>-->
-      <p>
-        <b>What is Buzzar?</b>
-      </p>
-      <p><u>Buzzar</u> is a next step in community advertisement, powered by technology and social capabilities, that gives
-        another dimension to a post - namely <i>web url, location, time and availability</i> bound together.
-      </p>
-      <p>
-        <u>Buzzar</u> is a community, built on humanistic principles of compassion, awareness, consciousness and freedom of
-        choice.
-      </p>
+                <p>
+                    <u>Buzzar</u> is a tool that aims to help people get a better deal.
+                </p>
 
-      <p>
-        <u>Buzzar</u> is a tool that aims to help people get a better deal.
-      </p>
+                <p>
+                    <b>The Problem</b>
+                </p>
+            </div>
 
-      <p>
-        <b>The Problem</b>
-      </p>
+            <div class="js-about-us hidden">
+                {{> aboutUs }}
+            </div>
 
-    </div>
-
-    <div class="js-about-us hidden">
-      {{> aboutUs }}
-    </div>
-
-    <div class="text-center bz-padding-top-x1">
-        <a class="button btn-default" href="{{pathFor 'bz.aboutUs'}}">read more</a>
-    </div>
-
-
-  </div>
+            <div class="text-center bz-padding-top-x1">
+                <a class="button btn-default" href="{{pathFor 'bz.aboutUs'}}">{{ t9n 'CONTENT_READ_MORE_TITLE' }}</a>
+            </div>
+            
+        </div>
+    </section>
 </template>
+
+

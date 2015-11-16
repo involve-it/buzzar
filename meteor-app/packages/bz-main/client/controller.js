@@ -48,7 +48,7 @@ layoutRenderedLazyLoad = function () {
     // does user see the site for the first time?
     if (!bz.runtime.help.hasSeenTour) {
       bz.runtime.help.hasSeenTour = true;
-      createToolTipsForHomePage();
+      //createToolTipsForHomePage();
     }
 
     /*'https://raw.githubusercontent.com/ytiurin/html5tooltipsjs/master/html5tooltips.js',
@@ -66,7 +66,8 @@ layoutRenderedLazyLoad = function () {
      }
      });*/
   }, 10);
-}
+};
+
 createToolTipsForHomePage = function () {
   setTimeout(function () {
     toast('//s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/shepherd-theme-arrows.css');

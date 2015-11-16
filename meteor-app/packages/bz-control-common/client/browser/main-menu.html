@@ -21,6 +21,7 @@
         </button>
       </div>
     </div>
+      
     <div class="user-area-menu clearfix">
       <ul class="off-canvas-list" role="expand-menu-dropdown">
         {{> bzSignOutListMenu}}
@@ -29,15 +30,15 @@
   </div>
 
   <ul class="off-canvas-list">
-    <li><label>Main pages</label></li>
-    <li class="{{isActiveRoute 'home'}}"><a href="{{pathFor 'home'}}">Home</a></li>
+    <li><label>{{ t9n 'MENU_MAIN_PAGES_TITLE' }}</label></li>
+    <li class="{{isActiveRoute 'home'}}"><a href="{{pathFor 'home'}}">{{ t9n 'MENU_HOME_PAGE' }}</a></li>
 
     {{#if currentUser}}
       {{> checkingUserMenu}}
     {{/if}}
 
-    <li class="{{isActiveRoute 'bz.map'}}"><a href="{{pathFor 'bz.map'}}">Map</a></li>
-    <li class="{{isActiveRoute 'bz.aboutUs'}}"><a href="{{pathFor 'bz.aboutUs'}}">About Us</a></li>
+    <li class="{{isActiveRoute 'bz.map'}}"><a href="{{pathFor 'bz.map'}}">{{ t9n 'MENU_MAP' }}</a></li>
+    <li class="{{isActiveRoute 'bz.aboutUs'}}"><a href="{{pathFor 'bz.aboutUs'}}">{{ t9n 'MENU_ABOUT_US' }}</a></li>
   </ul>
   {{#if currentUser}}
     {{> bzControlMenuHashes }}
@@ -45,9 +46,9 @@
 </template>
 
 <template name="checkingUserMenu">
-  <li class="{{isActiveRoute 'postsMy'}}"><a href="{{pathFor 'postsMy'}}">My posts</a></li>
-  <li class="{{isActiveRoute 'myProfile'}}"><a href="{{pathFor 'myProfile'}}">My profile</a></li>
-  <li class="{{isActiveRoute 'chats.my'}}"><a href="/chats/my">Messages</a></li>
+  <li class="{{isActiveRoute 'postsMy'}}"><a href="{{pathFor 'postsMy'}}">{{ t9n 'MENU_MY_POSTS' }}</a></li>
+  <li class="{{isActiveRoute 'myProfile'}}"><a href="{{pathFor 'myProfile'}}">{{ t9n 'MENU_MY_PROFILE' }}</a></li>
+  <li class="{{isActiveRoute 'chats.my'}}"><a href="/chats/my">{{ t9n 'MENU_MY_MESSAGES' }}</a></li>
   {{> bzControlMenuHashesMainMenu }}
   <!--<li class="{{isActiveRoute 'chats.my'}}"><a href="{{pathFor 'chats.my'}}">Messages</a></li>-->
 </template>
@@ -56,7 +57,7 @@
 
 <template name="bzControlMenuHashes">
   <ul class="off-canvas-list only-menu-left">
-    <li><label>Hashes</label></li>
+    <li><label>{{ t9n 'MENU_HASHES_TITLE' }}</label></li>
 
     {{#each getUserHashes }}
       <li><a alt="{{ details.text }}" href="{{ getMenuLinkText }}">{{ getMenuHashName }}</a></li>
@@ -84,13 +85,13 @@
   {{#if currentUser }}
     <li class="log-out">
       <a class="item item-icon-left" href="/sign-out">
-        <i class="fa fa-sign-out"></i><span>Sign out</span>
+        <i class="fa fa-sign-out"></i><span>{{ t9n 'MENU_SIGN_OUT' }}</span>
       </a>
     </li>
   {{else}}
     <li class="log-out">
       <a class="item item-icon-left" href="/sign-in">
-        <i class="fa fa-sign-in"></i><span>Sign in</span>
+        <i class="fa fa-sign-in"></i><span>{{ t9n 'MENU_SIGN_IN' }}</span>
       </a>
     </li>
   {{/if}}
