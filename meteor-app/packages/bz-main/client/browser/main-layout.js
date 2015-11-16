@@ -30,6 +30,9 @@ Template.mainLayoutHome.rendered = function () {
 };
 
 
+Template.bzFooter.rendered = function() {
+
+};
 
 
 

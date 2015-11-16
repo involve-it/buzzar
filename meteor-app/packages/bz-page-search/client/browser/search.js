@@ -17,7 +17,7 @@
 
 Template.bzDistance.rendered = function () {
   //$("#selectDis").trigger("change", true);
-  $('select').foundationSelect();
+  $('#selectDis11').foundationSelect();
 };
 
 Template.bzDistance.events({

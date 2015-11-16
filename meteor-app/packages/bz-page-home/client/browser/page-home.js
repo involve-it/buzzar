@@ -21,10 +21,8 @@ Template.pageHome.events({
 
 
 Template.pageHome.rendered = function () {
-  
-  $('select').foundationSelect();
+  //$('select').foundationSelect();
   $(document).foundation();
-
 };
 
 
