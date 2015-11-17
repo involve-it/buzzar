@@ -21,9 +21,10 @@ Package.onUse(function (api) {
   
   api.use('sacha:spin');
   api.use(['arutune:bz-main', 'arutune:bz-page-search', 'arutune:bz-page-chat']);
-
   api.addFiles([
-    'client/router.js',
+    'client/router.js']);
+  api.addFiles([
+    //'client/router.js',
     'client/controller.js'
   ], 'web');
   

@@ -7,6 +7,7 @@ Router.map(function () {
     path: '/home',
     template: 'pageHome',
     layoutTemplate: 'mainLayoutHome',
+    fastRender: true,
     onBeforeAction: function () {
       var qs = this.params.query;
 
