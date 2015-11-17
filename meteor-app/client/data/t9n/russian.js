@@ -14,6 +14,7 @@ ru = {
   MENU_HOME_PAGE: 'Главная',
   MENU_ABOUT_US: 'О нас',
   MENU_CONTACTS: 'Контакты',
+  MENU_OR_SPLIT: 'или',
   MENU_MAP: 'Карта',
   MENU_MAIN_PAGES_TITLE: 'Основные страницы',
   MENU_HASHES_TITLE: 'Хэштеги',

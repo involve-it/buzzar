@@ -14,6 +14,7 @@ en = {
   MENU_HOME_PAGE: 'Home',
   MENU_ABOUT_US: 'About us',
   MENU_CONTACTS: 'Contacts',
+  MENU_OR_SPLIT: 'or',
   MENU_MAP: 'Map',
   MENU_MAIN_PAGES_TITLE: 'Main pages',
   MENU_HASHES_TITLE: 'Hashes',

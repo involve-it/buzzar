@@ -7,26 +7,43 @@
 
 <template name="bzInnerMenuLeft">
   <div class="user-area" role="user-expand-menu">
-    <div class="user-area-box clearfix">
       {{#if currentUser}}
-        <a href="/profile" class="user-area-avatar">
-          <div class="bz-avatar" style="background-image: url({{ getUserAvatar }})"></div>
-          {{> bzAvatarUserStatus}}
-        </a>
-      {{/if}}
-
-      <div class="user-area-side">
-        <a href="/profile" class="user-area-user-name"> {{ getCurrentUserName }} </a>
-        <button class="button transparent btn-drop" role="expand-menu-trigger"><i class="fa fa-chevron-down"></i>
-        </button>
-      </div>
-    </div>
+          <div class="user-area-box clearfix">
+              <a href="/profile" class="user-area-avatar">
+                  <div class="bz-avatar" style="background-image: url({{ getUserAvatar }})"></div>
+                  {{> bzAvatarUserStatus}}
+              </a>
+        
+              <div class="user-area-side">
+                <a href="/profile" class="user-area-user-name"> {{ getCurrentUserName }} </a>
+                <button class="button transparent btn-drop" role="expand-menu-trigger"><i class="fa fa-chevron-down"></i>
+                </button>
+              </div>
+        </div>
       
-    <div class="user-area-menu clearfix">
-      <ul class="off-canvas-list" role="expand-menu-dropdown">
-        {{> bzSignOutListMenu}}
-      </ul>
-    </div>
+        <div class="user-area-menu clearfix">
+          <ul class="off-canvas-list" role="expand-menu-dropdown">
+            {{> bzSignOutListMenu}}
+          </ul>
+        </div>
+          
+      {{else}}
+    
+          <div class="clearfix">
+              <div class="bz-logo-sign-in text-center">
+                  <div class="bz-logo">BUZZAR</div>
+                  
+                  <a class="" href="/sign-in">
+                      <span>{{ t9n 'MENU_SIGN_IN' }}</span>
+                  </a>
+                    <span class="bz-or-split">{{ t9n 'MENU_OR_SPLIT' }}</span>
+                  <a class="" href="/sign-up">
+                      <span>{{ t9n 'MENU_SIGN_UP' }}</span>
+                  </a>
+              </div>
+          </div>
+          
+      {{/if}}
   </div>
 
   <ul class="off-canvas-list">
