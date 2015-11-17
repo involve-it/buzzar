@@ -51,7 +51,7 @@
        }*/
       
       S(this.scope).off('.offcanvas')
-          .on('click.fndtn.offcanvas', '.left-off-canvas-toggle', function (e) {
+          /*.on('click.fndtn.offcanvas', '.left-off-canvas-toggle', function (e) {
             if(self.get_wrapper().hasClass('reveal')) {
               self.get_wrapper().css('overflow','inherit');
               $('.bz-wrap-page').css('overflow-y','inherit');
@@ -77,7 +77,7 @@
               self.get_wrapper().css('overflow','hidden');
               $('.bz-wrap-page').css('overflow-y','auto');
             }
-          })
+          })*/
           
           
           .on('click.fndtn.offcanvas', '.left-off-canvas-toggle', function (e) {

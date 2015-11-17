@@ -8,8 +8,8 @@ Template.mainLayout.rendered = function () {
    
   $(document).foundation({
     offcanvas : {
-      //move overlap_single or overlap, reveal
-      open_method: 'reveal',
+      //move, overlap_single or overlap, reveal
+      open_method: 'move',
       close_on_click : true
     }
   });
@@ -20,8 +20,8 @@ Template.mainLayoutHome.rendered = function () {
 
   $(document).foundation({
     offcanvas : {
-      //move overlap_single or overlap, reveal
-      open_method: 'reveal',
+      //move, overlap_single or overlap, reveal
+      open_method: 'move',
       close_on_click : true
     }
   });
