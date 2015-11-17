@@ -1,15 +1,3 @@
-<template name="bzChatMessagePopup">
-  <div id="bzChatMessageModal" class="reveal-modal js-chat-message-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
-    <h4>New incoming message.</h4>
-
-    <p><a href="/chat/{{chatId}}" class="js-go-to-msg-link" data-id="{{ _id }}">{{ messageText }}</a></p>
-    {{#if user }}
-    <p>From:</p>
-    {{> bzUserProfileBasic user}}
-    {{/if}}
-    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-  </div>
-</template>
 
 <template name="sAlertCustom">
     <div class="custom-alert-class s-alert-box s-alert-{{condition}} s-alert-{{position}} s-alert-effect-scale s-alert-show" id="{{_id}}" style="{{boxPosition}}">
@@ -39,3 +27,20 @@
         <span class="s-alert-close"></span>
     </div>
 </template>
+
+
+<!--TODO delete old show popup message-->
+
+<template name="bzChatMessagePopup">
+    <div id="bzChatMessageModal" class="reveal-modal js-chat-message-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
+        <h4>New incoming message.</h4>
+
+        <p><a href="/chat/{{chatId}}" class="js-go-to-msg-link" data-id="{{ _id }}">{{ messageText }}</a></p>
+        {{#if user }}
+            <p>From:</p>
+            {{> bzUserProfileBasic user}}
+        {{/if}}
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+</template>
+

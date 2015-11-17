@@ -36,13 +36,14 @@
                   <a class="" href="/sign-in">
                       <span>{{ t9n 'MENU_SIGN_IN' }}</span>
                   </a>
-                    <span class="bz-or-split">{{ t9n 'MENU_OR_SPLIT' }}</span>
+                  
+                  <span class="bz-or-split">{{ t9n 'MENU_OR_SPLIT' }}</span>
+                  
                   <a class="" href="/sign-up">
                       <span>{{ t9n 'MENU_SIGN_UP' }}</span>
                   </a>
               </div>
           </div>
-          
       {{/if}}
   </div>
 
@@ -67,7 +68,6 @@
   <li class="{{isActiveRoute 'myProfile'}}"><a href="{{pathFor 'myProfile'}}">{{ t9n 'MENU_MY_PROFILE' }}</a></li>
   <li class="{{isActiveRoute 'chats.my'}}"><a href="/chats/my">{{ t9n 'MENU_MY_MESSAGES' }}</a></li>
   {{> bzControlMenuHashesMainMenu }}
-  <!--<li class="{{isActiveRoute 'chats.my'}}"><a href="{{pathFor 'chats.my'}}">Messages</a></li>-->
 </template>
 
 <!--END MENU-->

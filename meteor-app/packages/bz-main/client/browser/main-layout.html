@@ -1,122 +1,71 @@
+
 <template name="mainLayout">
-  <div class="off-canvas-wrap" data-offcanvas>
-    <div class="inner-wrap">
-      <!-- Off Canvas Menu -->
-      {{> bzMenuLeft}}
-
-        <div class="bz-wrap-page bz-overflow-y-auto">
-            <div class="js-button-left-off-canvas">
-                <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
-                    <div class="bz-icon-menu"></div>
-                </a>
-            </div>
-
-            <div class="bz-main">
-
-                {{> bzNavBar}}
-
-                <div class="bz-block-light">
-                    <div class="bz-container-body">
-                        {{> yield}}
-                    </div>
+    <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
+            <!-- Off Canvas Menu -->
+            {{> bzMenuLeft}}
+        
+            <div class="bz-wrap-page bz-overflow-y-auto">
+                <div class="js-button-left-off-canvas">
+                    <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
+                        <div class="bz-icon-menu"></div>
+                    </a>
                 </div>
 
-                {{> bzFooter}}
-
+                <div class="bz-main">
+                    {{> bzNavBar}}
+        
+                    <div class="bz-block-light">
+                        <div class="bz-container-body">
+                            {{> yield}}
+                        </div>
+                    </div>
+        
+                    {{> bzFooter}}
+                </div>
             </div>
+        
+            <!-- close the off-canvas menu -->
+            <a class="exit-off-canvas"></a>
         </div>
-
-      <!-- close the off-canvas menu -->
-      <a class="exit-off-canvas"></a>
     </div>
 
-    
-  </div>
-
-  <div class="js-message-popup-placeholder">
-    <!--<a href="#" data-reveal-id="firstModal" class="radius button">Modal in a modal&hellip;</a>-->
-    {{> bzChatMessagePopup }}
-
-  </div>
+    <div class="js-message-popup-placeholder">
+        {{> bzChatMessagePopup }}
+    </div>
 
     <div class="message-loader">{{> sAlert template='sAlertCustom'}}</div>
-    
 </template>
 
-<!--
-<template name="basicLayout">
-
-    <div class="off-canvas-wrap" data-offcanvas>
-      <div class="inner-wrap">
-
-        &lt;!&ndash; Off Canvas Menu &ndash;&gt;
-        {{> bzMenuLeft}}
-
-        &lt;!&ndash; close the off-canvas menu &ndash;&gt;
-        <a class="exit-off-canvas"></a>
-
-      </div>
-
-      <div class="bz-wrap-page">
-
-        <div class="js-button-left-off-canvas">
-          <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
-
-            <div class="bz-icon-menu"></div>
-          </a>
-        </div>
-
-        <div class="bz-main">
-          {{> yield}}
-        </div>
-
-      </div>
-    </div>
-</template>
--->
 
 <template name="mainLayoutHome">
-
-  <div class="off-canvas-wrap" data-offcanvas>
-    <div class="inner-wrap">
-
-      <!-- Off Canvas Menu -->
-      {{> bzMenuLeft}}
-
-        <div class="bz-wrap-page bz-overflow-y-auto">
-
-            <div class="js-button-left-off-canvas">
-                <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
-
-                    <div class="bz-icon-menu"></div>
-                </a>
+    <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
+        
+            <!-- Off Canvas Menu -->
+            {{> bzMenuLeft}}
+        
+            <div class="bz-wrap-page bz-overflow-y-auto">
+                <div class="js-button-left-off-canvas">
+                    <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
+                        <div class="bz-icon-menu"></div>
+                    </a>
+                </div>
+        
+                <div class="bz-main">
+                    {{> yield}}
+                    {{> bzFooter}}
+                </div>
             </div>
-
-            <div class="bz-main">
-
-                <!--{{> bzNavBar}}
-
-        <div class="bz-block-light">
-          <div class="bz-container-body">-->
-                {{> yield}}
-                <!--</div>
-			  </div>-->
-                {{> bzFooter}}
-            </div>
+        
+          <!-- close the off-canvas menu -->
+          <a class="exit-off-canvas"></a>
         </div>
-
-      <!-- close the off-canvas menu -->
-      <a class="exit-off-canvas"></a>
-
     </div>
-
     
-  </div>
-  <div class="js-message-popup-placeholder">
-    <!--<a href="#" data-reveal-id="firstModal" class="radius button">Modal in a modal&hellip;</a>-->
-    <!--{{> bzChatMessagePopup }}-->
-
-  </div>
+    <div class="js-message-popup-placeholder">
+        {{> bzChatMessagePopup }}
+    </div>
 
   <div class="message-loader">{{> sAlert template='sAlertCustom'}}</div>
     
@@ -151,15 +100,17 @@
     </div>
 </template>
 
-<template name="basicLayout0000">
+
+<!--template with reveal style menu-->
+<!--<template name="basicLayout">
 
     <div class="off-canvas-wrap" data-offcanvas>
       <div class="inner-wrap">
 
-        <!-- Off Canvas Menu -->
+        &lt;!&ndash; Off Canvas Menu &ndash;&gt;
         {{> bzMenuLeft}}
 
-        <!-- close the off-canvas menu -->
+        &lt;!&ndash; close the off-canvas menu &ndash;&gt;
         <a class="exit-off-canvas"></a>
 
       </div>
@@ -177,20 +128,7 @@
             </div>
       </div>
     </div>
-</template>
-
-
-
-
-
-
-
-
-
-
-
-
-
+</template>-->
 
 
 <template name="bzNavBar">

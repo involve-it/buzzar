@@ -21,8 +21,7 @@ Package.onUse(function (api) {
   api.use('arutune:bz-main');
   api.addFiles([
     'client/router.js',
-    'client/controller.js',
-    'client/page-chats.less'
+    'client/controller.js'
   ], 'client');
 
   api.addFiles([
