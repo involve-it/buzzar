@@ -48,7 +48,7 @@ layoutRenderedLazyLoad = function () {
     // does user see the site for the first time?
     if (!bz.runtime.help.hasSeenTour) {
       bz.runtime.help.hasSeenTour = true;
-      //createToolTipsForHomePage();
+      createToolTipsForHomePage();
     }
 
     /*'https://raw.githubusercontent.com/ytiurin/html5tooltipsjs/master/html5tooltips.js',
@@ -85,28 +85,48 @@ createToolTipsForHomePage = function () {
       }],
       function () {
 
-        var tour;
+        var shepherd;
 
-        tour = new Shepherd.Tour({
+        shepherd = new Shepherd.Tour({
           defaults: {
-            classes: 'shepherd-theme-arrows',
-            scrollTo: true
+            classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
+            showCancelLink: true
           }
         });
-        tour.addStep('example-step', {
-          title: 'Example Shepherd',
-          text: 'This step is attached to the bottom of the <code>.example-css-selector</code> element.',
-          attachTo: '.bz-small bottom',
-          //classes: 'button bz-small',
+        shepherd.addStep('welcome', {
+          text: ['Введите имя поста, который вы желаете найти'],
+          title: 'Ваш поисковый запрос',
+          attachTo: '.search bottom',
+          classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
           buttons: [
             {
+              text: 'Exit',
+              classes: 'shepherd-button-secondary',
+              action: shepherd.cancel
+            }, {
               text: 'Next',
-              action: tour.next
+              action: shepherd.next,
+              classes: 'shepherd-button-example-primary'
+            }
+          ]
+        });
+        shepherd.addStep('about', {
+          title: 'Информация о ...',
+          text: 'Все, что можно узнать о нас тут )))',
+          attachTo: '.bz-about-us bottom',
+          buttons: [
+            {
+              text: 'Back',
+              classes: 'shepherd-button-secondary',
+              action: shepherd.back
+            }, {
+              text: 'Done',
+              action: shepherd.next
             }
           ]
         });
 
-        tour.start();
+        shepherd.start();
       }
     );
   }, 2000);

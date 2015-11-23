@@ -243,10 +243,22 @@ h2.title {
 
 
 
+/*.off-canvas-wrap .inner-wrap > * {
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+  opacity: 0.3;
+  pointer-events: none; 
+}*/
 
+body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
+  opacity: 1;
+  pointer-events: auto; 
+}
 
-
-
+.off-canvas-wrap .inner-wrap > * .shepherd-target.shepherd-enabled {
+  opacity: 1;
+  pointer-events: auto; 
+}
 
 
 
