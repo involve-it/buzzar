@@ -7,7 +7,38 @@ Template.bzPostDetails.helpers({
     }
     return ret;
   }
-})
+});
+
+
+
+Template.saveToWishList.events({
+  'click .js-like-btn': function(e) {
+   var el = $(e.target);
+   
+  }
+});
+
+Template.saveToWishList.helpers({
+  isLiked: function() {
+    var userId = Meteor.userId();
+    /* if user logged & yet not clicked into liked */
+    if(userId) {
+      return '';
+    } else {
+      return 'disabled';
+    }
+  }
+});
+
+
+Template.postRatingInfo.rendered = function() {
+  /*init Rate*/
+  $('.rating').raty({
+    starType: 'i'
+  });
+};
+
+Template.postRatingInfo.helpers();
 
 
 Template.postDetailsHashesControl.helpers({

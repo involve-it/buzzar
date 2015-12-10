@@ -52,7 +52,33 @@ en = {
   LOCATION_SET_YOUR_LOCATION: 'Set your location',
   LOCATION_YOUR_MOST_RECENT_LOCATIONS: 'Your most recent locations: ',
   LOCATION_BUTTON_SET_LOCATION: 'Set',
-  LOCATION_MY_CURRENT_LOCATION: 'My current location'
+  LOCATION_MY_CURRENT_LOCATION: 'My current location',
+
+  //New post
+  NEW_POST_IMPORT_FROM_WEB: 'Import from Web',
+  NEW_POST_IMPORT_FROM_WEB_OPTIONAL: 'optional',
+  NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER: 'Original Post Url',
+  NEW_POST_ADD_PHOTO_BTN: '+ Add Photo',
+  NEW_POST_CHARACTERS_LEFT: 'character(s) left',
+  NEW_POST_CREATE_NEW_POST: 'Create new Ad',
+  NEW_POST_MAIN_INFORMATION: 'Basic information',
+  NEW_POST_MAIN_INFORMATION_MUTED: 'Информация из этой секции будет использоваться при поиске вашего объявления. Пожалуйста, указывайте точные сведения, чтобы найти подходящий вариант.',
+  NEW_POST_POST_LOCATION: 'Location',
+  NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователям Buzzar найдут объявления в подходящем для них месте.',
+  NEW_POST_GALLERY_PHOTOS: 'Photos',
+  NEW_POST_GALLERY_PHOTOS_MUTED: 'Добавьте фотографии для объявления. Вы всегда можете вернуться к сохраненному объявлению и добавить новые фотографии.',
+  NEW_POST_TITLE: 'Title',
+  NEW_POST_TITLE_PLACEHOLDER: 'The title should be clear and descriptive.',
+  NEW_POST_TITLE_TOOLTIP: '666',
+  NEW_POST_DESCRIPTION: 'Description',
+  NEW_POST_DESCRIPTION_PLACEHOLDER: 'Tell us a little about your Ad.',
+  NEW_POST_DESCRIBE_LOST_MY_PET_TOOLTIP: 'english pet',
+  NEW_POST_SELECT_TYPE: 'Type Ad',
+  NEW_POST_DESCRIBE: 'Describe',
+  NEW_POST_DESCRIBE_LOST_MY_PET: 'Lost my pet',
+  NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD: 'Need money for food',
+  NEW_POST_DESCRIBE_EMERGENCY_SITUATION: 'Emergency situation',
+  NEW_POST_DESCRIBE_OTHER: 'Other'
 };
 
 T9n.map('en', en);

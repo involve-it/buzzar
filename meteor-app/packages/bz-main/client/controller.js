@@ -48,7 +48,10 @@ layoutRenderedLazyLoad = function () {
     // does user see the site for the first time?
     if (!bz.runtime.help.hasSeenTour) {
       bz.runtime.help.hasSeenTour = true;
-      createToolTipsForHomePage();
+      //createToolTipsForHomePage();
+
+      window.cr = createDropTips;
+      createDropTips();
     }
 
     /*'https://raw.githubusercontent.com/ytiurin/html5tooltipsjs/master/html5tooltips.js',
@@ -66,6 +69,68 @@ layoutRenderedLazyLoad = function () {
      }
      });*/
   }, 10);
+};
+
+createDropTips = function() {
+
+  setTimeout(function() {
+        
+    toast(
+        ['http://github.hubspot.com/drop/dist/css/drop-theme-arrows-bounce-dark.css'],
+        ['https://s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/tether.js', function () {
+          return window.Tether;
+        }],
+        ['http://github.hubspot.com/drop/dist/js/drop.js', function () {
+          return window.Drop;
+        }],
+        function() {
+          
+          var _Drop, DropTooltip;
+          
+          _Drop = Drop.createContext({
+            classPrefix: 'drop'
+          });
+
+          
+
+          DropTooltip = function() {
+            return $('.bz-tool-tip').each(function() {
+              var $example, $target, content, drop, openOn, theme, isMobile, pos;
+              
+              isMobile = $(window).width() < 890;
+              pos = 'left middle';
+              if(isMobile) pos = 'top center';
+              
+              $example = $(this);
+              theme = $example.data('theme');
+              openOn = $example.data('open-on') || 'click';
+              if($example.data('top-center')) pos = $example.data('top-center');
+              $target = $example.find('.drop-target');
+              $target.addClass(theme);
+              content = $example.find('.drop-content').html();
+              return drop = new _Drop({
+                target: $target[0],
+                classes: theme,
+                position: pos,
+                constrainToWindow: false,
+                constrainToScrollParent: false,
+                openOn: openOn,
+                content: content,
+                remove: false
+              });
+            });
+
+          };
+          
+          return DropTooltip();
+          
+        }
+
+    );
+  }, 1000);
+  
+  
+  
 };
 
 createToolTipsForHomePage = function () {
@@ -86,7 +151,7 @@ createToolTipsForHomePage = function () {
       function () {
 
         var shepherd;
-
+        
         shepherd = new Shepherd.Tour({
           defaults: {
             classes: 'shepherd-element shepherd-open shepherd-theme-arrows',

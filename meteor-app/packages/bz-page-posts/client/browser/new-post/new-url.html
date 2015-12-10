@@ -6,11 +6,15 @@
             <label class="item item-input item-stacked-label">
                 <!--<span class="input-label">Original Url (optional)</span>-->
                 <div class="item1 item-input-inset">
-                    <div class="small-12 medium-3 input-label left">Import from Web (optional)</div>
+                    <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_IMPORT_FROM_WEB' }} ({{ t9n 'NEW_POST_IMPORT_FROM_WEB_OPTIONAL' }})</div>
                     <div class="small-12 medium-9 large-9 left">
                         <div class="bz-flex-style">
-                            <div><input name="url" placeholder="Original Post Url"
-                                        class="original-url error js-original-url" type="text"></div>
+                            <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
+                                <input name="url" placeholder="{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER' }}"
+                                        class="drop-target original-url error js-original-url" type="text">
+                                <div class="drop-content">fjdhfjksdhfjshfsdkjf</div>
+                            </div>
+                            
                         <!--<small class="error hidden">Value is required</small>-->
                             <div>
                                 <a name="original-post-details"
@@ -27,6 +31,9 @@
         </div>
         <input type="button" value="scan" class="js-scan-url hidden"/>
     </div>
+    
+    
+    
 </template>
 <template name="parsedPostDetailsModal">
     <!--{{#ionModal title="Url Post Details"}}

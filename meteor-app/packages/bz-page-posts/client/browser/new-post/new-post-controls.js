@@ -48,6 +48,13 @@ Template.postDetailsHelp.events({
     $(e.target).closest('.panel').toggleClass('callout');
   }
 });
+
+Template.postDetailsHelp.helpers({
+  ToolTip: function(t) {
+    return T9n.get('NEW_POST_DESCRIBE_LOST_MY_PET_TOOLTIP');
+  }
+});
+
 Template.postDetailsCommon.helpers({
   getTitle: function () {
     return Session.get('post-title') || '';
