@@ -195,4 +195,46 @@ createToolTipsForHomePage = function () {
       }
     );
   }, 2000);
-}
+};
+
+
+Meteor.startup(function () {
+  //var lang = T9n.getLanguage();
+  
+  if( Meteor.users.findOne(Meteor.userId()).profile.settings.language == undefined || Meteor.users.findOne(Meteor.userId()).profile.settings.language == null) {
+    var lang = T9n.defaultLanguage || '';
+    Meteor.call('uiSetUserLanguage', lang, function(error, result) {
+      if (error) return console.log(error.reason);
+    });
+  }
+  
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

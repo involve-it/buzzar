@@ -78,7 +78,15 @@ en = {
   NEW_POST_DESCRIBE_LOST_MY_PET: 'Lost my pet',
   NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD: 'Need money for food',
   NEW_POST_DESCRIBE_EMERGENCY_SITUATION: 'Emergency situation',
-  NEW_POST_DESCRIBE_OTHER: 'Other'
+  NEW_POST_DESCRIBE_OTHER: 'Other',
+  NEW_POST_PRICE: 'Цена'
+  
+  
+  
+  
+  
+  
+  
 };
 
 T9n.map('en', en);

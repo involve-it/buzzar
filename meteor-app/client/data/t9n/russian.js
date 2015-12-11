@@ -75,7 +75,8 @@ ru = {
   NEW_POST_DESCRIBE_LOST_MY_PET_TOOLTIP: 'русский питомец',
   NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD: 'Нужны деньги на еду',
   NEW_POST_DESCRIBE_EMERGENCY_SITUATION: 'Чрезвычайная ситуация',
-  NEW_POST_DESCRIBE_OTHER: 'Другое'
+  NEW_POST_DESCRIBE_OTHER: 'Другое',
+  NEW_POST_PRICE: 'Цена'
   
   
 };
