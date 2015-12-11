@@ -76,7 +76,7 @@ createDropTips = function() {
   setTimeout(function() {
         
     toast(
-        ['http://github.hubspot.com/drop/dist/css/drop-theme-arrows-bounce-dark.css'],
+        //['/client/style/drop-theme-arrows-bounce.css'],
         ['https://s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/tether.js', function () {
           return window.Tether;
         }],
@@ -200,8 +200,9 @@ createToolTipsForHomePage = function () {
 
 Meteor.startup(function () {
   //var lang = T9n.getLanguage();
+  var language = Meteor.users.findOne({_id: Meteor.userId()}).profile.settings.language;
   
-  if( Meteor.users.findOne(Meteor.userId()).profile.settings.language == undefined || Meteor.users.findOne(Meteor.userId()).profile.settings.language == null) {
+  if( language == undefined || language == null) {
     var lang = T9n.defaultLanguage || '';
     Meteor.call('uiSetUserLanguage', lang, function(error, result) {
       if (error) return console.log(error.reason);

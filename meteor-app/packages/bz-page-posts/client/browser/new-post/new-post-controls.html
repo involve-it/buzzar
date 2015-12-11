@@ -81,14 +81,13 @@
       <label class="item item-input">
         <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_TITLE' }}</div>
         <div class="small-12 medium-9 large-9 left">
-            <div class="bz-tool-tip" data-theme="drop-theme-arrows-bounce-dark">
+            <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
                 <div class="bz-count-characters text-right"><span>70</span> {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
                 <input class="js-post-title drop-target" type="text" label-type="stacked" name="title" required=""
                     data-schema-key="title" maxlength="70" value="{{ getTitle }}" placeholder="{{ t9n 'NEW_POST_TITLE_PLACEHOLDER' }}">
                 <div class="drop-content">
                     <div class="drop-content-inner">
-                        <h3 class="title">{{ t9n 'NEW_POST_TITLE_TOOLTIP' }}</h3>
-                        <p>Drop.js is a fast and capable dropdown library built on <a href="/tether/docs/welcome" target="_blank" style="color: inherit">Tether</a>.</p>
+                        <p>{{ t9n 'NEW_POST_TITLE_TOOLTIP_TEXT' }}</p>
                     </div>
                 </div>
             </div>
@@ -102,9 +101,16 @@
       <label type="stacked" class="item item-input item-stacked-label">
         <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_DESCRIPTION' }}</div>
         <div class="small-12 medium-9 large-9 left">
-            <div class="bz-count-characters text-right"><span>1000</span>  {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
-            <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
-                data-schema-key="body" maxlength="1000" value="{{ getDescription }}" placeholder="{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER' }}"></textarea>
+            <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
+                <div class="bz-count-characters text-right"><span>1000</span>  {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
+                <textarea class="drop-target js-post-description" rows="3" label-type="stacked" name="body" required=""
+                    data-schema-key="body" maxlength="1000" value="{{ getDescription }}" placeholder="{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER' }}"></textarea>
+                <div class="drop-content">
+                    <div class="drop-content-inner">
+                        <p>{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER_TOOLTIP_TEXT' }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
       </label>
     </div>
@@ -176,32 +182,24 @@
             <div class="bz-describe-wrapper bz-style-overlay-depend">
                 <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
                     <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_LOST_MY_PET' }}</div>
-                    <div class="drop-content">{{ ToolTip }}</div>
+                    <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_LOST_MY_PET_TOOLTIP_TEXT' }}</div>
                 </div>
                 <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
                     <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD' }}</div>
-                    <div class="drop-content">fjdhfjksdhfjshfsdkjf</div>
+                    <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD_TOOLTIP_TEXT' }}</div>
                 </div>
                 <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
                     <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_EMERGENCY_SITUATION' }}</div>
-                    <div class="drop-content">fjdhfjksdhfjshfsdkjf</div>
+                    <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_EMERGENCY_SITUATION_TOOLTIP_TEXT' }}</div>
                 </div>
                 <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
                     <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_OTHER' }}</div>
-                    <div class="drop-content">fjdhfjksdhfjshfsdkjf</div>
+                    <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_OTHER_TOOLTIP_TEXT' }}</div>
                 </div>
             </div>
             
         </div>
-
-        <div class="medium-5 large-7 left hidden">
-            <select class="js-charity-type-select">
-                <option value="roommates">Lost my pet</option>
-                <option value="rent">Need money for food</option>
-                <option value="buy">Emergency situation</option>
-                <option value="buy">Other:</option>
-            </select>
-        </div>
+        
     </label>
   </div>
 
@@ -210,13 +208,14 @@
 <template name="postDetailsConnect">
   <div class="clearfix padding-top">
     <label class="item item-input item-select">
-      <div class="medium-3 input-label left">I am looking for:</div>
+      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR' }}</div>
       <div class="medium-5 large-7 left">
         <select class="js-charity-type-select">
-          <option value="artists">artists and other creative people</option>
-          <option value="friends">friends</option>
-          <option value="professionals">professionals</option>
-          <option value="other">Other:</option>
+          <option value="artists">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR_ARTISTS' }}</option>
+          <option value="friends">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR_FRIENDSHIP' }}</option>
+          <option value="sport">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR_SPORT_ACTIVITIES' }}</option>
+          <option value="professionals">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR_PROFESSIONALS' }}</option>
+          <option value="other">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR_OTHER' }}</option>
         </select>
       </div>
     </label>
@@ -237,7 +236,7 @@
 <template name="postDetailsJobs">
   <div class="clearfix padding-top">
     <label class="item item-input">
-      <div class="medium-3 input-label left">Position</div>
+      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_POSITION' }}</div>
       <div class="medium-5 large-7 left">
         <input class="js-job-title" type="text" label-type="stacked" name="title" maxlength="200">
       </div>
@@ -248,14 +247,14 @@
 <template name="postDetailsHousing">
   <div class="clearfix padding-top">
     <label class="item item-input item-select">
-      <div class="medium-3 input-label left">Looking for</div>
+      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
       <div class="medium-5 large-7 left">
         <select class="js-housing-type-select">
-          <option value="roommates">Roommates</option>
-          <option value="rent">Renting</option>
-          <option value="rentOut">Renting out</option>
-          <option value="buy">Buying a house</option>
-          <option value="sell">Selling a house</option>
+          <option value="roommates">{{ t9n 'NEW_POST_ROOMMATES' }}</option>
+          <option value="rent">{{ t9n 'NEW_POST_RENTING' }}</option>
+          <option value="rentOut">{{ t9n 'NEW_POST_RENTING_OUT' }}</option>
+          <option value="buy">{{ t9n 'NEW_POST_BUYING_A_HOUSE' }}</option>
+          <option value="sell">{{ t9n 'NEW_POST_SELLING_A_HOUSE' }}</option>
         </select>
       </div>
     </label>
@@ -265,7 +264,7 @@
 <template name="postHashesControl">
   <div class="clearfix">
     <label type="stacked" class="item item-input item-stacked-label padding-right">
-      <div class="medium-3 input-label left">Hashes</div>
+      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_HASHES' }}</div>
       <div class="medium-5 large-7 left">
         <button class="button button-block button-stable js-hashes-holder"
                 data-action="showPrompt">{{ getHashes }}</button>
@@ -277,10 +276,10 @@
 <template name="postProfileInfo">
   <div class="clearfix">
     <div class="item-details">
-      <div class="medium-3 input-label left">Incognito mode</div>
+      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_INCOGNITO_MODE' }}</div>
       <div class="medium-5 large-7 left input-clear">
-        <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Yes</label>
-        <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">No</label>
+        <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">{{ t9n 'YES' }}</label>
+        <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">{{ t9n 'NO' }}</label>
       </div>
     </div>
   </div>
