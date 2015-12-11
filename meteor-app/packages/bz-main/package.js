@@ -54,6 +54,9 @@ Package.onUse(function (api) {
     'client/browser/style/foundation-main.scss',
     'client/browser/style/foundation-custom-settings.scss',
     'client/browser/style/_buttons.scss',
+    
+    //Drop style  
+    'client/browser/style/drop-theme-arrows-bounce.less',
 
     'client/browser/main-layout.html',
     'client/browser/main-layout.js',

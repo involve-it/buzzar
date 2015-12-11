@@ -12,16 +12,16 @@
                             <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
                                 <input name="url" placeholder="{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER' }}"
                                         class="drop-target original-url error js-original-url" type="text">
-                                <div class="drop-content">fjdhfjksdhfjshfsdkjf</div>
+                                <div class="drop-content">
+                                    <p>{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER_TOOLTIP_TEXT' }}</p>
+                                </div>
                             </div>
                             
                         <!--<small class="error hidden">Value is required</small>-->
                             <div>
                                 <a name="original-post-details"
                                    class="button small disabled margin-left js-post-details-link"
-                                   data-ion-modal="parsedPostDetailsModal">
-                                    Check >>
-                                </a>
+                                   data-ion-modal="parsedPostDetailsModal"><i class="fa fa-check-circle-o"></i> {{ t9n 'BUTTON_CHECK' }}</a>
                             </div>
                     </div>
                 </div>

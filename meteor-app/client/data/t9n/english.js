@@ -9,6 +9,11 @@ en = {
   CONTENT_READ_MORE_TITLE: 'Read more...',
   CONTACT_US:'Contact us',
   CONTACT_SEND_MESSAGE: 'Send message',
+  YES: 'Да',
+  NO: 'Нет',
+  
+  //Buttons
+  BUTTON_CHECK: 'Check',
   
   //Menu
   MENU_HOME_PAGE: 'Home',
@@ -58,6 +63,7 @@ en = {
   NEW_POST_IMPORT_FROM_WEB: 'Import from Web',
   NEW_POST_IMPORT_FROM_WEB_OPTIONAL: 'optional',
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER: 'Original Post Url',
+  NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER_TOOLTIP_TEXT: 'Добавьте адрес вашего объявления с другого ресурса, чтобы не заполнять информацию снова. Мы это сделаем за вас.',
   NEW_POST_ADD_PHOTO_BTN: '+ Add Photo',
   NEW_POST_CHARACTERS_LEFT: 'character(s) left',
   NEW_POST_CREATE_NEW_POST: 'Create new Ad',
@@ -69,18 +75,36 @@ en = {
   NEW_POST_GALLERY_PHOTOS_MUTED: 'Добавьте фотографии для объявления. Вы всегда можете вернуться к сохраненному объявлению и добавить новые фотографии.',
   NEW_POST_TITLE: 'Title',
   NEW_POST_TITLE_PLACEHOLDER: 'The title should be clear and descriptive.',
-  NEW_POST_TITLE_TOOLTIP: '666',
+  NEW_POST_TITLE_TOOLTIP_TEXT: 'Встречают по одежке. Уделите названию должное внимание, чтобы привлечь клиента.',
   NEW_POST_DESCRIPTION: 'Description',
   NEW_POST_DESCRIPTION_PLACEHOLDER: 'Tell us a little about your Ad.',
-  NEW_POST_DESCRIBE_LOST_MY_PET_TOOLTIP: 'english pet',
+  NEW_POST_DESCRIPTION_PLACEHOLDER_TOOLTIP_TEXT: 'Описание создает представление о вашем объявлении. Опишите, что вы считаете самым главным.',
   NEW_POST_SELECT_TYPE: 'Type Ad',
   NEW_POST_DESCRIBE: 'Describe',
   NEW_POST_DESCRIBE_LOST_MY_PET: 'Lost my pet',
+  NEW_POST_DESCRIBE_LOST_MY_PET_TOOLTIP_TEXT: 'Если вдруг вы потеряли домашнего любимца, выберите это значение.',
   NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD: 'Need money for food',
+  NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD_TOOLTIP_TEXT: 'Нет денег на продукты? Выберите этот пункт, чтобы обратиться за помощью к добрым людям.',
   NEW_POST_DESCRIBE_EMERGENCY_SITUATION: 'Emergency situation',
+  NEW_POST_DESCRIBE_EMERGENCY_SITUATION_TOOLTIP_TEXT: 'Мы сожалеем, что это случилось. Опишите свою проблемы и выберите этот пункт, чтобы отметить это объявление как важное.',
   NEW_POST_DESCRIBE_OTHER: 'Other',
-  NEW_POST_PRICE: 'Цена'
-  
+  NEW_POST_DESCRIBE_OTHER_TOOLTIP_TEXT: 'Не нашли подходящий для вас тип объявления? Тогда этот пункт для вас.',
+  NEW_POST_PRICE: 'Цена',
+  NEW_POST_I_AM_LOOKING_FOR: 'I am looking for',
+  NEW_POST_I_AM_LOOKING_FOR_ARTISTS: 'Artists and other creative people',
+  NEW_POST_I_AM_LOOKING_FOR_FRIENDSHIP: 'Friendship',
+  NEW_POST_I_AM_LOOKING_FOR_SPORT_ACTIVITIES: 'Sport activities',
+  NEW_POST_I_AM_LOOKING_FOR_PROFESSIONALS: 'Professionals',
+  NEW_POST_I_AM_LOOKING_FOR_OTHER: 'Other',
+  NEW_POST_POSITION: 'Position',
+  NEW_POST_LOOKING_FOR: 'Looking for',
+  NEW_POST_ROOMMATES: 'Roommates',
+  NEW_POST_RENTING: 'Renting',
+  NEW_POST_RENTING_OUT: 'Renting out',
+  NEW_POST_BUYING_A_HOUSE: 'Buying a house',
+  NEW_POST_SELLING_A_HOUSE: 'Selling a house',
+  NEW_POST_INCOGNITO_MODE: 'Incognito mode',
+  NEW_POST_HASHES: 'Hashes'
   
   
   

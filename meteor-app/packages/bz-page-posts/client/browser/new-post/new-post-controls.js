@@ -49,11 +49,7 @@ Template.postDetailsHelp.events({
   }
 });
 
-Template.postDetailsHelp.helpers({
-  ToolTip: function(t) {
-    return T9n.get('NEW_POST_DESCRIBE_LOST_MY_PET_TOOLTIP');
-  }
-});
+Template.postDetailsHelp.helpers({});
 
 Template.postDetailsCommon.helpers({
   getTitle: function () {
