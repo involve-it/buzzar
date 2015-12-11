@@ -45,11 +45,15 @@ Template.changeLanguage.rendered = function() {
   */
    
   var lang;
-  lang = Meteor.users.findOne(Meteor.userId()).profile.settings.language;
-  
-  if(lang) {
-    T9n.setLanguage(lang);
-    $('.dropdown-choose-lang').val(lang);
+  if(!Meteor.users.findOne(Meteor.userId()).profile.settings || !Meteor.users.findOne(Meteor.userId()).profile.settings.language) {
+    lang = T9n.defaultLanguage;
+  } else {
+    lang = Meteor.users.findOne(Meteor.userId()).profile.settings.language;
+
+    if (lang) {
+      T9n.setLanguage(lang);
+      $('.dropdown-choose-lang').val(lang);
+    }
   }
 };
 
@@ -58,7 +62,7 @@ Template.changeLanguage.events({
   'change .dropdown-choose-lang': function(e, v){
     var lang = e.target.value;
     
-    if(Meteor.users.findOne(Meteor.userId()).profile.settings.language !== lang) {
+    if(!Meteor.user().profile.settings || Meteor.user().profile.settings.language !== lang) {
       T9n.setLanguage(lang);
       $('.dropdown-choose-lang').val(lang);
     
