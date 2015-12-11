@@ -49,6 +49,9 @@ layoutRenderedLazyLoad = function () {
     if (!bz.runtime.help.hasSeenTour) {
       bz.runtime.help.hasSeenTour = true;
       //createToolTipsForHomePage();
+
+      window.cr = createDropTips;
+      createDropTips();
     }
 
     /*'https://raw.githubusercontent.com/ytiurin/html5tooltipsjs/master/html5tooltips.js',
@@ -68,6 +71,68 @@ layoutRenderedLazyLoad = function () {
   }, 10);
 };
 
+createDropTips = function() {
+
+  setTimeout(function() {
+        
+    toast(
+        ['http://github.hubspot.com/drop/dist/css/drop-theme-arrows-bounce-dark.css'],
+        ['https://s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/tether.js', function () {
+          return window.Tether;
+        }],
+        ['http://github.hubspot.com/drop/dist/js/drop.js', function () {
+          return window.Drop;
+        }],
+        function() {
+          
+          var _Drop, DropTooltip;
+          
+          _Drop = Drop.createContext({
+            classPrefix: 'drop'
+          });
+
+          
+
+          DropTooltip = function() {
+            return $('.bz-tool-tip').each(function() {
+              var $example, $target, content, drop, openOn, theme, isMobile, pos;
+              
+              isMobile = $(window).width() < 890;
+              pos = 'left middle';
+              if(isMobile) pos = 'top center';
+              
+              $example = $(this);
+              theme = $example.data('theme');
+              openOn = $example.data('open-on') || 'click';
+              if($example.data('top-center')) pos = $example.data('top-center');
+              $target = $example.find('.drop-target');
+              $target.addClass(theme);
+              content = $example.find('.drop-content').html();
+              return drop = new _Drop({
+                target: $target[0],
+                classes: theme,
+                position: pos,
+                constrainToWindow: false,
+                constrainToScrollParent: false,
+                openOn: openOn,
+                content: content,
+                remove: false
+              });
+            });
+
+          };
+          
+          return DropTooltip();
+          
+        }
+
+    );
+  }, 1000);
+  
+  
+  
+};
+
 createToolTipsForHomePage = function () {
   setTimeout(function () {
     toast('//s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/shepherd-theme-arrows.css');
@@ -85,29 +150,91 @@ createToolTipsForHomePage = function () {
       }],
       function () {
 
-        var tour;
-
-        tour = new Shepherd.Tour({
+        var shepherd;
+        
+        shepherd = new Shepherd.Tour({
           defaults: {
-            classes: 'shepherd-theme-arrows',
-            scrollTo: true
+            classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
+            showCancelLink: true
           }
         });
-        tour.addStep('example-step', {
-          title: 'Example Shepherd',
-          text: 'This step is attached to the bottom of the <code>.example-css-selector</code> element.',
-          attachTo: '.bz-small bottom',
-          //classes: 'button bz-small',
+        shepherd.addStep('welcome', {
+          text: ['Введите имя поста, который вы желаете найти'],
+          title: 'Ваш поисковый запрос',
+          attachTo: '.search bottom',
+          classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
           buttons: [
             {
+              text: 'Exit',
+              classes: 'shepherd-button-secondary',
+              action: shepherd.cancel
+            }, {
               text: 'Next',
-              action: tour.next
+              action: shepherd.next,
+              classes: 'shepherd-button-example-primary'
+            }
+          ]
+        });
+        shepherd.addStep('about', {
+          title: 'Информация о ...',
+          text: 'Все, что можно узнать о нас тут )))',
+          attachTo: '.bz-about-us bottom',
+          buttons: [
+            {
+              text: 'Back',
+              classes: 'shepherd-button-secondary',
+              action: shepherd.back
+            }, {
+              text: 'Done',
+              action: shepherd.next
             }
           ]
         });
 
-        tour.start();
+        shepherd.start();
       }
     );
   }, 2000);
-}
+};
+
+
+Meteor.startup(function () {
+  //var lang = T9n.getLanguage();
+  
+  if( Meteor.users.findOne(Meteor.userId()).profile.settings.language == undefined || Meteor.users.findOne(Meteor.userId()).profile.settings.language == null) {
+    var lang = T9n.defaultLanguage || '';
+    Meteor.call('uiSetUserLanguage', lang, function(error, result) {
+      if (error) return console.log(error.reason);
+    });
+  }
+  
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,4 +8,8 @@
 *Необходимо определить язык устройства и подставить значение для локализации
 */
 
-T9n.setLanguage("ru");
+//T9n.setLanguage("ru");
+
+Template.registerHelper('changeLanguage', function() {
+  
+});

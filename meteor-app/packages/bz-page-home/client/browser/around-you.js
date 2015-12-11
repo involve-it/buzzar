@@ -78,13 +78,5 @@ Template.bzAroundYouItem.helpers({
 });
 
 Template.bzUserProfileAroundYou.helpers({
-  getNameFormatted: function () {
-    /*return Meteor.users.find({
-     _id: {$in: _.without(this.users, Meteor.userId())}
-     });*/
-  },
-  isOnline1: function () {
-    debugger;
-    return true;
-  }
+  getNameFormatted: function () {}
 });

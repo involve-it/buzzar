@@ -7,7 +7,19 @@ Template.profileSettings.onCreated(function() {
     
 });
 
+
+
 Template.profileSettings.helpers({
+  setLanguage: function() {
+    
+    var curLang = Meteor.users.findOne({_id: Meteor.userId()});
+    
+    return [
+      {code: 'en', name: 'English'},
+      {code: 'ru', name: 'Русский'}  
+    ]
+    
+  },
     username: function () {
         // username of logged in user
         var user = Meteor.users.findOne({_id: Meteor.userId()});

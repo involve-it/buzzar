@@ -216,6 +216,12 @@
         margin-right: 15px;
         margin-bottom: 15px;
         .border-radius(2px);
+        
+        &.disabled {
+          cursor: default;
+          background-color: @disabled-bg;
+          color: @disabled-text;
+        }
       }
       
       .bz-wish-list-items {

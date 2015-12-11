@@ -325,9 +325,32 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   border-top: 1px solid #fff;
   
+  .bz-muted-text {
+    color: rgba(112, 125, 135, .85);
+  }
+  
+  .bz-count-characters {
+    color: @sub-title-color;
+    span {
+      font-weight: 700;
+    }
+  }
+  
+  h1 {
+    font-size: 30px;
+    color: rgb(100,100,100);
+  }
+  
+  h2 {
+    font-size: 20px;
+    color: rgba(112, 125, 135, 1);
+  }
+  
+  h3 {
+    color: rgba(112, 125, 135, 1);
+  }
+    
   .title {
-    color: rgba(100,100,100, .95);
-    text-transform: uppercase;
     
     &.border-bottom {
       border-bottom: 1px solid rgba(100,100,100, .95);
@@ -340,6 +363,13 @@
     padding-top: 20px;
     padding-bottom: 35px;
     border-bottom: 1px solid #ddd;
+    
+    .item {
+      
+      &.item-divider {
+        margin-bottom: 25px;
+      }
+    }
     
     &:last-child {
       border-bottom: none;
@@ -370,13 +400,3 @@
   }
   
 }
-
-
-
-
-
-
-
-
-
-

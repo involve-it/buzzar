@@ -49,7 +49,36 @@ ru = {
   LOCATION_SET_YOUR_LOCATION: 'Настройка метоположения',
   LOCATION_YOUR_MOST_RECENT_LOCATIONS: 'Ваши последние места: ',
   LOCATION_BUTTON_SET_LOCATION: 'Установить',
-  LOCATION_MY_CURRENT_LOCATION: 'Определить текущее местоположение'
+  LOCATION_MY_CURRENT_LOCATION: 'Определить текущее местоположение',
+  
+  //New post
+  NEW_POST_IMPORT_FROM_WEB: 'Взять из интернета',
+  NEW_POST_IMPORT_FROM_WEB_OPTIONAL: 'необязательно',
+  NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER: 'Url адрес объявления в интернете',
+  NEW_POST_ADD_PHOTO_BTN: '+ Добавить Фото',
+  NEW_POST_CHARACTERS_LEFT: 'символов осталось',
+  NEW_POST_CREATE_NEW_POST: 'Создать новое объявление',
+  NEW_POST_MAIN_INFORMATION: 'Основная информация',
+  NEW_POST_MAIN_INFORMATION_MUTED: 'Информация из этой секции будет использоваться при поиске вашего объявления. Пожалуйста, указывайте точные сведения, чтобы найти подходящий вариант.',
+  NEW_POST_POST_LOCATION: 'Местоположение',
+  NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователям Buzzar найдут объявления в подходящем для них месте.',
+  NEW_POST_GALLERY_PHOTOS: 'Фотографии',
+  NEW_POST_GALLERY_PHOTOS_MUTED: 'Добавьте фотографии для объявления. Вы всегда можете вернуться к сохраненному объявлению и добавить новые фотографии.',
+  NEW_POST_TITLE: 'Название объявления',
+  NEW_POST_TITLE_PLACEHOLDER: 'Название должно быть конкретным.',
+  NEW_POST_TITLE_TOOLTIP: '5555',
+  NEW_POST_DESCRIPTION: 'Описание',
+  NEW_POST_DESCRIPTION_PLACEHOLDER: 'Расскажите немного о вашем объявлении.',
+  NEW_POST_SELECT_TYPE: 'Тип объявления',
+  NEW_POST_DESCRIBE: 'Характер объявления',
+  NEW_POST_DESCRIBE_LOST_MY_PET: 'Потерялся питомец',
+  NEW_POST_DESCRIBE_LOST_MY_PET_TOOLTIP: 'русский питомец',
+  NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD: 'Нужны деньги на еду',
+  NEW_POST_DESCRIBE_EMERGENCY_SITUATION: 'Чрезвычайная ситуация',
+  NEW_POST_DESCRIBE_OTHER: 'Другое',
+  NEW_POST_PRICE: 'Цена'
+  
+  
 };
 
 T9n.map('ru', ru);

@@ -86,7 +86,9 @@
 
 <template name="saveToWishList">
   <div class="bz-wish-list">
-    <div class="bz-wish-list-title"><i class="fa fa-heart-o"></i> Save to favorites</div>
+    <div class="bz-wish-list-title js-like-btn {{isLiked}}">
+        <i class="fa fa-heart-o"></i> Like
+    </div>
     <div class="bz-wish-list-items">
       <div class="bz-wish-list-item"><i class="fa fa-envelope-o"></i> Email</div>
       <div class="bz-wish-list-item"><i class="fa fa-facebook"></i> Facebook</div>
@@ -100,7 +102,8 @@
 
   <div class="item-divider">
     <h2 class="title space-1">{{ getTitle }}</h2>
-
+    {{> postRatingInfo}}
+      
     {{#each getMyLocations }}
       <div class="post-location">
         <i class="fa fa-map-marker"></i>
@@ -117,19 +120,31 @@
     {{/each}}
   </div>
 
-
   <div class="post-item overflow">
     <div class="post-details">
       <div class="small-12 bz-post-description"><p> {{ getDescription }} </p></div>
-      
-        
-
-    </div>
+     </div>
   </div>
-
 
 </template>
 
+<template name="postRatingInfo">
+    <div class="bz-rating-info bz-flex bz-flex-middle">
+        <div class="bz-rating-wrapper bz-flex bz-flex-middle">
+            <div class="bz-rating-box">
+                <div class="rating"></div>
+            </div>
+            
+            <div class="bz-rating-count">12 reviews</div>
+        </div>
+        
+        <div class="bz-rating-details">
+            <a href="#" class="bz-rating-details-link js-rating-details">
+                <span>+ Details</span>
+            </a>
+        </div>
+    </div>
+</template>
 
 <template name="postDetailsDetailsHelp">
   <label class="item item-input item-select">
@@ -237,32 +252,6 @@
             </ul>
         {{/if}}
   </div>
-
-
-  <!--  <ul class="clearing-thumbs" data-clearing>
-    <li><a href="/img/content/avatars/avatar-no.png"><img src="{{ getPhotoUrl }}"></a></li>
-    <li><a href="/img/content/avatars/avatar-no.png"><img src="{{ getPhotoUrl }}"></a></li>
-    <li><a href="/img/content/avatars/avatar-no.png"><img src="{{ getPhotoUrl }}"></a></li>
-  </ul>-->
-
-
-  <!-- 09.23.15 old markup-->
-  <!--<div class="post-photo-upload">
-        &lt;!&ndash;<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>&ndash;&gt;
-        <div class="owner-photo-wrap">
-            <div class="img-avatar" data-action="edit-avatar">
-                <i class="icon ion-camera"></i>
-
-                <img src="{{ getPhotoUrl }}" >
-
-            </div>
-        </div>
-        &lt;!&ndash;<a class="js-get-picture button">get pic</a>
-        <br/>
-        <a class="js-get-picture-lib button">get pic lib</a>&ndash;&gt;
-    </div>-->
-  <!-- END 09.23.15 old markup-->
-
 </template>
 
 <template name="bzPostLocationMapModal">

@@ -352,7 +352,52 @@
 }
 
 
+/* Rating info */
+.bz-rating-info {
+  margin-bottom: 10px;
+  
+  .bz-rating-wrapper {
+    
+    .bz-rating-box {
+      
+      .rating {
+        i {
+          font-size: 22px;
+          color: @text-link-green;
+        }
+      }
+    }
+    
+    .bz-rating-count {
+      margin-left: 10px;
+      font-size: 14px;
+      color: @text-color;
+    }
+  }
+  
+  .bz-rating-details {
+    margin-left: 10px;
+    
+    .bz-rating-details-link {
+      display: inline-block;
+      border: 1px solid @border-color-sep;
+      .menu-transition();
+      .border-radius(2px);
+      font-size: 12px;
+      line-height: 24px;
+      color: darken(@border-color-sep, 30%);
+      padding: 0 6px;
+      
+      &:hover {
+        border: 1px solid @text-color-label-span;
+        color: darken(@text-color-label-span, 30%);
+      }
+    }
+  }
+}
 
+
+/* END rating info */
 
 /* reveal menu style */
 
@@ -386,7 +431,7 @@
 
 .bz-wrap-page {
   position: relative;
-  z-index: 999;
+  /*z-index: 999;*/
   height: 100%;
   background: #FFFFFF;
 }

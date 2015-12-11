@@ -27,11 +27,45 @@ Template.mainLayoutHome.rendered = function () {
   layoutRenderedLazyLoad();
 };
 
-Template.bzFooter.rendered = function() {};
 
-Template.bzFooter.events({
-  'change .js-language-picker': function(e, v){
-    T9n.setLanguage(e.target.value);
+
+
+Template.changeLanguage.rendered = function() {
+  /*
+  var lang = window.navigator.userLanguage || window.navigator.language;
+  //temporarily getting just first two letters of language (i.e. for en-US we'll take 'en' only).
+  if (lang){
+    if (lang.length > 2) {
+      lang = lang.substr(0, 2);
+    }
+  } else {
+    // English is default
+    lang = "en";
+  }
+  */
+   
+  var lang;
+  lang = Meteor.users.findOne(Meteor.userId()).profile.settings.language;
+  
+  if(lang) {
+    T9n.setLanguage(lang);
+    $('.dropdown-choose-lang').val(lang);
+  }
+};
+
+
+Template.changeLanguage.events({
+  'change .dropdown-choose-lang': function(e, v){
+    var lang = e.target.value;
+    
+    if(Meteor.users.findOne(Meteor.userId()).profile.settings.language !== lang) {
+      T9n.setLanguage(lang);
+      $('.dropdown-choose-lang').val(lang);
+    
+      Meteor.call('uiSetUserLanguage', lang, function(error, result) {
+        if (error) return console.log(error.reason);
+      });
+    }
   }
 });
 

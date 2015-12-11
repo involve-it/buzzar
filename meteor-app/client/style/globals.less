@@ -21,6 +21,37 @@ button[disabled],
   background-color: #b9b9b9;
 }
 
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="email"],
+input[type="url"],
+input[type="number"],
+input[type="tel"],
+textarea, 
+select {
+  .border-radius(2px);
+}
+
+input[type="text"]:focus, 
+input[type="password"]:focus, 
+input[type="date"]:focus, 
+input[type="datetime"]:focus, 
+input[type="datetime-local"]:focus, 
+input[type="month"]:focus, 
+input[type="week"]:focus, 
+input[type="email"]:focus, 
+input[type="number"]:focus, 
+input[type="search"]:focus, 
+input[type="tel"]:focus, 
+input[type="time"]:focus, 
+input[type="url"]:focus,
+input[type="color"]:focus, 
+textarea:focus {
+  border-color: rgba(135, 208, 191, .9);
+  outline: 1px solid rgba(135, 208, 191, 0.9);
+}
+
 // text:
 .uppercase {
   text-transform: uppercase;
@@ -89,7 +120,7 @@ button[disabled],
 
 h2.title {
   padding: 0 15px;
-  margin: 0 0 30px 0;
+  /*margin: 0 0 30px 0;*/
   text-align: center;
   font-weight: 300;
   color: @h-title-color;
@@ -98,6 +129,29 @@ h2.title {
 .container-background {
   background-color: #FFFFFF;
 }
+
+
+/*
+* Drop tooltip (bz)
+*/
+
+.bz-tool-tip {
+  .drop-content {
+    display: none;
+  }
+}
+
+.drop {
+  .drop-content {
+    max-width: 200px;
+    word-wrap: break-word;
+    font-size: 14px;
+  }
+}
+
+/* END */
+
+
 
 /*
 * Background style
@@ -243,10 +297,22 @@ h2.title {
 
 
 
+/*.off-canvas-wrap .inner-wrap > * {
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+  opacity: 0.3;
+  pointer-events: none; 
+}*/
 
+body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
+  opacity: 1;
+  pointer-events: auto; 
+}
 
-
-
+.off-canvas-wrap .inner-wrap > * .shepherd-target.shepherd-enabled {
+  opacity: 1;
+  pointer-events: auto; 
+}
 
 
 

@@ -7,6 +7,24 @@ var defaultDistance = 5,
 Meteor.methods({
   getCurrentLocation : function(a, b, c) {
   },
+  uiSetUserLanguage: function(lang) {
+    
+    
+    var user;
+
+    user = Meteor.userId();
+  
+    Meteor.users.update({'_id': user}, {
+      $set: {
+        profile: {
+          settings: {
+            'language': lang
+          }
+        }
+      }
+    });
+    
+  },
   parseHtml: function(html) {
     var ret = bz.bus.parseHtml(html);
     return ret;
