@@ -6,11 +6,12 @@ var en;
 
 en = {
   //Global
+  APP_NAME: 'Buzzar',
   CONTENT_READ_MORE_TITLE: 'Read more...',
   CONTACT_US:'Contact us',
   CONTACT_SEND_MESSAGE: 'Send message',
-  YES: 'Да',
-  NO: 'Нет',
+  YES: 'Yes',
+  NO: 'No',
   
   //Buttons
   BUTTON_CHECK: 'Check',
@@ -67,12 +68,13 @@ en = {
   NEW_POST_ADD_PHOTO_BTN: '+ Add Photo',
   NEW_POST_CHARACTERS_LEFT: 'character(s) left',
   NEW_POST_CREATE_NEW_POST: 'Create new Ad',
-  NEW_POST_MAIN_INFORMATION: 'Basic information',
+  NEW_POST_MAIN_INFORMATION: 'What',
   NEW_POST_MAIN_INFORMATION_MUTED: 'Информация из этой секции будет использоваться при поиске вашего объявления. Пожалуйста, указывайте точные сведения, чтобы найти подходящий вариант.',
-  NEW_POST_POST_LOCATION: 'Location',
+  NEW_POST_POST_LOCATION: 'Where',
+  NEW_POST_POST_WHEN: 'When',
   NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователям Buzzar найдут объявления в подходящем для них месте.',
   NEW_POST_GALLERY_PHOTOS: 'Photos',
-  NEW_POST_GALLERY_PHOTOS_MUTED: 'Добавьте фотографии для объявления. Вы всегда можете вернуться к сохраненному объявлению и добавить новые фотографии.',
+  NEW_POST_GALLERY_PHOTOS_MUTED: 'Please add photos for the post.',
   NEW_POST_TITLE: 'Title',
   NEW_POST_TITLE_PLACEHOLDER: 'The title should be clear and descriptive.',
   NEW_POST_TITLE_TOOLTIP_TEXT: 'Встречают по одежке. Уделите названию должное внимание, чтобы привлечь клиента.',

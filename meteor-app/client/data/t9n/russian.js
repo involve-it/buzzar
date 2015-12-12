@@ -6,6 +6,7 @@ var ru;
 
 ru = {
   //Global
+  APP_NAME: 'Маячки',
   CONTENT_READ_MORE_TITLE: 'Подробнее',
   CONTACT_US:'Свяжитесь с нами',
   CONTACT_SEND_MESSAGE: 'Отправить сообщение',
@@ -40,7 +41,8 @@ ru = {
   left:                'Осталось',
   
   //home:
-  headliner:           'Мгновенные объявления, привязанные к месту',
+  //headliner:           'Мгновенные объявления, привязанные к месту',
+  headliner:           'Виртуальные сообщения, привязанные к месту',
   SEARCH_DISTANCE_TITLE: 'Расстояние',
   SEARCH_DISTANCE_MILE: '1 миля',
   SEARCH_DISTANCE_MILES_5: '5 миль',
@@ -64,9 +66,10 @@ ru = {
   NEW_POST_ADD_PHOTO_BTN: '+ Добавить Фото',
   NEW_POST_CHARACTERS_LEFT: 'символов осталось',
   NEW_POST_CREATE_NEW_POST: 'Создать новое объявление',
-  NEW_POST_MAIN_INFORMATION: 'Основная информация',
+  NEW_POST_MAIN_INFORMATION: 'Что',
   NEW_POST_MAIN_INFORMATION_MUTED: 'Информация из этой секции будет использоваться при поиске вашего объявления. Пожалуйста, указывайте точные сведения, чтобы найти подходящий вариант.',
-  NEW_POST_POST_LOCATION: 'Местоположение',
+  NEW_POST_POST_LOCATION: 'Где',
+  NEW_POST_POST_WHEN: 'Когда',
   NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователям Buzzar найдут объявления в подходящем для них месте.',
   NEW_POST_GALLERY_PHOTOS: 'Фотографии',
   NEW_POST_GALLERY_PHOTOS_MUTED: 'Добавьте фотографии для объявления. Вы всегда можете вернуться к сохраненному объявлению и добавить новые фотографии.',

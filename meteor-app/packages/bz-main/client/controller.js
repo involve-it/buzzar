@@ -74,7 +74,7 @@ layoutRenderedLazyLoad = function () {
 createDropTips = function() {
 
   setTimeout(function() {
-        
+
     toast(
         //['/client/style/drop-theme-arrows-bounce.css'],
         ['https://s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/tether.js', function () {
@@ -84,23 +84,23 @@ createDropTips = function() {
           return window.Drop;
         }],
         function() {
-          
+
           var _Drop, DropTooltip;
-          
+
           _Drop = Drop.createContext({
             classPrefix: 'drop'
           });
 
-          
+
 
           DropTooltip = function() {
             return $('.bz-tool-tip').each(function() {
               var $example, $target, content, drop, openOn, theme, isMobile, pos;
-              
+
               isMobile = $(window).width() < 890;
               pos = 'left middle';
               if(isMobile) pos = 'top center';
-              
+
               $example = $(this);
               theme = $example.data('theme');
               openOn = $example.data('open-on') || 'click';
@@ -121,16 +121,16 @@ createDropTips = function() {
             });
 
           };
-          
+
           return DropTooltip();
-          
+
         }
 
     );
   }, 1000);
-  
-  
-  
+
+
+
 };
 
 createToolTipsForHomePage = function () {
@@ -151,7 +151,7 @@ createToolTipsForHomePage = function () {
       function () {
 
         var shepherd;
-        
+
         shepherd = new Shepherd.Tour({
           defaults: {
             classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
@@ -200,18 +200,28 @@ createToolTipsForHomePage = function () {
 
 Meteor.startup(function () {
   //var lang = T9n.getLanguage();
-  var language = Meteor.users.findOne({_id: Meteor.userId()}).profile.settings.language;
-  
+  /*var language = Meteor.users.findOne({_id: Meteor.userId()}).profile.settings.language;
+
   if( language == undefined || language == null) {
     var lang = T9n.defaultLanguage || '';
     Meteor.call('uiSetUserLanguage', lang, function(error, result) {
-      if (error) return console.log(error.reason);
+      if (error) {
+        console.log(error.reason);
+      }
     });
-  }
-  
+  }*/
+  setLanguage();
 });
 
-
+setLanguage = function () {
+  //var lang = T9n.getLanguage();
+  var language = Meteor.user() && Meteor.user().profile.settings && Meteor.user().profile.settings.language || T9n.defaultLanguage || '';
+  Meteor.call('uiSetUserLanguage', language, function (error, result) {
+    if (error) {
+      console.log(error.reason);
+    }
+  });
+}
 
 
 

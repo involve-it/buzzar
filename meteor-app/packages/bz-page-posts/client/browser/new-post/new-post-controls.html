@@ -1,49 +1,66 @@
 <template name="postsNewForm">
 
-    <h1 class="title uppercase">{{t9n 'NEW_POST_CREATE_NEW_POST'}}</h1>
-    
-    <div class="item-group">
-        <div class="item item-divider ">
-          <h3 class="title">{{t9n 'NEW_POST_MAIN_INFORMATION'}}</h3>
-          <p class="bz-muted-text">{{t9n 'NEW_POST_MAIN_INFORMATION_MUTED'}}</p>  
-        </div>
-        
-        <div class="row">
-          {{> postsNewUrl }}
-        </div>
-        
-        <div class="row">
-          {{> postDetailsCommon }}
-        </div>
-    
-        <div class="row">
-          {{> postTypeSelect }}
-        </div>
-        
-        <div class="row">
-            <div class="js-post-details-categorized"></div>
-        </div>
-    
+  <h1 class="title uppercase">{{t9n 'NEW_POST_CREATE_NEW_POST'}}</h1>
+
+  <div class="item-group">
+    <div class="item item-divider ">
+      <h3 class="title">{{t9n 'NEW_POST_MAIN_INFORMATION'}}</h3>
+
+      <p class="bz-muted-text">{{t9n 'NEW_POST_MAIN_INFORMATION_MUTED'}}</p>
     </div>
 
-    <div class="item-group">
-        <div class="item item-divider">
-            <h3 class="title">{{ t9n 'NEW_POST_POST_LOCATION' }}</h3>
-            <p class="bz-muted-text">{{t9n 'NEW_POST_LOCATION_MUTED'}}</p>
-        </div>
-
-        {{> postsPlacesAutoform }}
+    <div class="row">
+      {{> postsNewUrl }}
     </div>
-    
+
+    <div class="row">
+      {{> postDetailsCommon }}
+    </div>
+
+    <div class="row">
+      {{> postTypeSelect }}
+    </div>
+
+    <div class="row">
+      <div class="js-post-details-categorized"></div>
+    </div>
+
+    <div class="item item-divider">
+      <!--<h3 class="title ">{{ t9n 'NEW_POST_GALLERY_PHOTOS' }}</h3>-->
+      <p class="bz-muted-text">{{t9n 'NEW_POST_GALLERY_PHOTOS_MUTED'}}</p>
+    </div>
+    <div class="row">
+      {{> postPhotoUpload }}
+    </div>
+    <div class="row">
+      {{> postHashesControl }}
+    </div>
+  </div>
 
   <div class="item-group">
     <div class="item item-divider">
-      <h3 class="title ">{{ t9n 'NEW_POST_GALLERY_PHOTOS' }}</h3>
+      <h3 class="title">{{ t9n 'NEW_POST_POST_LOCATION' }}</h3>
+
+      <p class="bz-muted-text">{{t9n 'NEW_POST_LOCATION_MUTED'}}</p>
+    </div>
+
+    {{> postsPlacesAutoform }}
+  </div>
+
+
+  <div class="item-group">
+    <div class="item item-divider">
+      <h3 class="title ">{{ t9n 'NEW_POST_POST_WHEN' }}</h3>
+
       <p class="bz-muted-text">{{t9n 'NEW_POST_GALLERY_PHOTOS_MUTED'}}</p>
     </div>
     <!--<div class="clearfix">-->
     <div class="row">
-      {{> postPhotoUpload }}
+      Pick:
+      <li>a. Post Valid Specific Time (for MEMO, POST-events)</li>
+      <li>b. Post Valid Time Range (for POST) </li>
+      <li>c. Expiration Time (POST)</li>
+      <li>c. Post Repeating Time (for MEMO, POST-ad)</li>
     </div>
 
     <div class="row">
@@ -55,7 +72,24 @@
   </div>
 
 </template>
-
+<template name="bzPostTypes">
+  <div class="clearfix">
+    <div class="item-details">
+      <label class="item item-input item-select">
+        <div class="small-12 medium-3 input-label left">Type of the Post</div>
+        <div class="small-12 medium-9 large-9 left">
+          <select class="js-post-type-select">
+              <option value="">AD (stick to Bulletin Board)</option>
+              <option value="">MEMO (stick to Wall)</option>
+              <option value="">SIGN (dig into the Ground)</option>
+              <option value="">MESSAGE or CARD (put to Post Box)</option>
+              <option value="">...</option>
+          </select>
+        </div>
+      </label>
+    </div>
+  </div>
+</template>
 <template name="postTypeSelect">
   <div class="clearfix">
     <div class="item-details">
@@ -81,16 +115,18 @@
       <label class="item item-input">
         <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_TITLE' }}</div>
         <div class="small-12 medium-9 large-9 left">
-            <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
-                <div class="bz-count-characters text-right"><span>70</span> {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
-                <input class="js-post-title drop-target" type="text" label-type="stacked" name="title" required=""
-                    data-schema-key="title" maxlength="70" value="{{ getTitle }}" placeholder="{{ t9n 'NEW_POST_TITLE_PLACEHOLDER' }}">
-                <div class="drop-content">
-                    <div class="drop-content-inner">
-                        <p>{{ t9n 'NEW_POST_TITLE_TOOLTIP_TEXT' }}</p>
-                    </div>
-                </div>
+          <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
+            <div class="bz-count-characters text-right"><span>70</span> {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
+            <input class="js-post-title drop-target" type="text" label-type="stacked" name="title" required=""
+                   data-schema-key="title" maxlength="70" value="{{ getTitle }}"
+                   placeholder="{{ t9n 'NEW_POST_TITLE_PLACEHOLDER' }}">
+
+            <div class="drop-content">
+              <div class="drop-content-inner">
+                <p>{{ t9n 'NEW_POST_TITLE_TOOLTIP_TEXT' }}</p>
+              </div>
             </div>
+          </div>
         </div>
       </label>
     </div>
@@ -101,16 +137,18 @@
       <label type="stacked" class="item item-input item-stacked-label">
         <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_DESCRIPTION' }}</div>
         <div class="small-12 medium-9 large-9 left">
-            <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
-                <div class="bz-count-characters text-right"><span>1000</span>  {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
+          <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
+            <div class="bz-count-characters text-right"><span>1000</span>  {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
                 <textarea class="drop-target js-post-description" rows="3" label-type="stacked" name="body" required=""
-                    data-schema-key="body" maxlength="1000" value="{{ getDescription }}" placeholder="{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER' }}"></textarea>
-                <div class="drop-content">
-                    <div class="drop-content-inner">
-                        <p>{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER_TOOLTIP_TEXT' }}</p>
-                    </div>
-                </div>
+                          data-schema-key="body" maxlength="1000" value="{{ getDescription }}"
+                          placeholder="{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER' }}"></textarea>
+
+            <div class="drop-content">
+              <div class="drop-content-inner">
+                <p>{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER_TOOLTIP_TEXT' }}</p>
+              </div>
             </div>
+          </div>
         </div>
       </label>
     </div>
@@ -148,11 +186,12 @@
             </li>
           {{/each }}
           <a class="js-plus-img">
-              <!--<img src="/img/plus-button.png"/>-->
-              <div class="bz-post-add-photos">
-                  <i class="fa fa-picture-o"></i>
-                  <p class="text-center">{{ t9n 'NEW_POST_ADD_PHOTO_BTN' }}</p>
-              </div>
+            <!--<img src="/img/plus-button.png"/>-->
+            <div class="bz-post-add-photos">
+              <i class="fa fa-picture-o"></i>
+
+              <p class="text-center">{{ t9n 'NEW_POST_ADD_PHOTO_BTN' }}</p>
+            </div>
           </a>
 
           <!--<li></li>-->
@@ -176,30 +215,34 @@
 <template name="postDetailsHelp">
   <div class="clearfix padding-top">
     <label class="item item-input item-select">
-        <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_DESCRIBE' }}</div>
-        <div class="small-12 medium-9 large-9 left">
+      <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_DESCRIBE' }}</div>
+      <div class="small-12 medium-9 large-9 left">
 
-            <div class="bz-describe-wrapper bz-style-overlay-depend">
-                <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
-                    <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_LOST_MY_PET' }}</div>
-                    <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_LOST_MY_PET_TOOLTIP_TEXT' }}</div>
-                </div>
-                <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
-                    <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD' }}</div>
-                    <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD_TOOLTIP_TEXT' }}</div>
-                </div>
-                <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
-                    <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_EMERGENCY_SITUATION' }}</div>
-                    <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_EMERGENCY_SITUATION_TOOLTIP_TEXT' }}</div>
-                </div>
-                <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
-                    <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_OTHER' }}</div>
-                    <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_OTHER_TOOLTIP_TEXT' }}</div>
-                </div>
-            </div>
-            
+        <div class="bz-describe-wrapper bz-style-overlay-depend">
+          <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover"
+               data-theme="drop-theme-arrows-bounce-dark">
+            <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_LOST_MY_PET' }}</div>
+            <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_LOST_MY_PET_TOOLTIP_TEXT' }}</div>
+          </div>
+          <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover"
+               data-theme="drop-theme-arrows-bounce-dark">
+            <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD' }}</div>
+            <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD_TOOLTIP_TEXT' }}</div>
+          </div>
+          <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover"
+               data-theme="drop-theme-arrows-bounce-dark">
+            <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_EMERGENCY_SITUATION' }}</div>
+            <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_EMERGENCY_SITUATION_TOOLTIP_TEXT' }}</div>
+          </div>
+          <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover"
+               data-theme="drop-theme-arrows-bounce-dark">
+            <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_OTHER' }}</div>
+            <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_OTHER_TOOLTIP_TEXT' }}</div>
+          </div>
         </div>
-        
+
+      </div>
+
     </label>
   </div>
 
