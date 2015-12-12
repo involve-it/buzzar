@@ -27,7 +27,7 @@ ru = {
   MENU_MY_POSTS: 'Мои посты',
   MENU_MY_PROFILE: 'Мой профайл',
   MENU_MY_MESSAGES: 'Мои сообщения',
-  MENU_BUTTON_NEW_POST: 'Создать пост',
+  MENU_BUTTON_NEW_POST: 'Новый Маячок',
   MENU_SIGN_IN: 'Вход',
   MENU_SIGN_OUT: 'Выход',
   MENU_SIGN_UP: 'Регистрация',
@@ -42,7 +42,7 @@ ru = {
   
   //home:
   //headliner:           'Мгновенные объявления, привязанные к месту',
-  headliner:           'Виртуальные сообщения, привязанные к месту',
+  headliner:           'Виртуальные данные, привязанные к месту',
   SEARCH_DISTANCE_TITLE: 'Расстояние',
   SEARCH_DISTANCE_MILE: '1 миля',
   SEARCH_DISTANCE_MILES_5: '5 миль',
