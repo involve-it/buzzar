@@ -16,6 +16,19 @@
     }
   }
 })();
+bz.help.safeCode(function() {
+  if(!Array.prototype.first){
+    Array.prototype.first = function(){
+      return this[0];
+    }
+  }
+  if(!HTMLCollection.prototype.first) {
+    HTMLCollection.prototype.first = function () {
+      return this[0];
+    }
+  }
+});
+
 bz.help.safeCode(function(){
   if (Number.prototype.toRadians === undefined) {
     Number.prototype.toRadians = function() { return this * Math.PI / 180; };

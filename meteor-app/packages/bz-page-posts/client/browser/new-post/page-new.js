@@ -1,7 +1,10 @@
 var data = bz.help.makeNamespace('bz.runtime.newPost');
+Template.postsNew.rendered = function () {
+  trackNewPostTypeChange('js-new-post-placeholder');
+}
 Template.postsNew.created = function () {
   this.data ? _.extend(this.data, data) : _.extend({}, data);
-
+  //$('.js-new-post-placeholder').append();
   //temp
   /*Meteor.call('parseUrl', 'https://en.wikipedia.org/wiki/NASA', function(error, response){
    if (response.success) {

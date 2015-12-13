@@ -1,4 +1,8 @@
-<template name="postsNewForm">
+<!--generic form:-->
+<template name="bzPostsNewFormGeneric">
+    {{> bzPostTypes }}
+</template>
+<template name="bzPostsNewFormAd">
 
   <h1 class="title uppercase">{{t9n 'NEW_POST_CREATE_NEW_POST'}}</h1>
 
@@ -69,19 +73,91 @@
   </div>
 
 </template>
+<template name="bzPostsNewFormAlert">
+
+  <h1 class="title uppercase">Create New Alert</h1>
+
+  <div class="item-group">
+    <div class="item item-divider ">
+      <h3 class="title">{{t9n 'NEW_POST_MAIN_INFORMATION'}}</h3>
+
+      <p class="bz-muted-text">{{t9n 'NEW_POST_MAIN_INFORMATION_MUTED'}}</p>
+    </div>
+
+    <div class="row">
+      {{> postsNewUrl }}
+    </div>
+
+    <div class="row">
+      {{> postDetailsCommon }}
+    </div>
+
+    <div class="row">
+      {{> postTypeSelect }}
+    </div>
+
+    <div class="row">
+      <div class="js-post-details-categorized"></div>
+    </div>
+
+    <div class="item item-divider">
+      <!--<h3 class="title ">{{ t9n 'NEW_POST_GALLERY_PHOTOS' }}</h3>-->
+      <p class="bz-muted-text">{{t9n 'NEW_POST_GALLERY_PHOTOS_MUTED'}}</p>
+    </div>
+    <div class="row">
+      {{> postPhotoUpload }}
+    </div>
+    <div class="row">
+      {{> postHashesControl }}
+    </div>
+  </div>
+
+  <div class="item-group">
+    <div class="item item-divider">
+      <h3 class="title">{{ t9n 'NEW_POST_POST_LOCATION' }}</h3>
+
+      <p class="bz-muted-text">{{t9n 'NEW_POST_LOCATION_MUTED'}}</p>
+    </div>
+
+    {{> postsPlacesAutoform }}
+  </div>
+
+
+  <div class="item-group">
+    <div class="item item-divider">
+      <h3 class="title ">{{ t9n 'NEW_POST_POST_WHEN' }}</h3>
+    </div>
+    <div class="row">
+      Pick:
+      <li>a. Post Valid Specific Time (for MEMO, POST-events)</li>
+      <li>b. Post Valid Time Range (for POST) </li>
+      <li>c. Expiration Time (POST)</li>
+      <li>c. Post Repeating Time (for MEMO, POST-ad)</li>
+    </div>
+
+    <div class="row">
+      <!--{{> postHashesControl }}-->
+    </div>
+    <!--<div class="row">
+      {{> postProfileInfo }}
+    </div>-->
+  </div>
+
+</template>
+
 <template name="bzPostTypes">
   <div class="clearfix">
     <div class="item-details">
       <label class="item item-input item-select">
         <div class="small-12 medium-3 input-label left">Type of the Post</div>
         <div class="small-12 medium-9 large-9 left">
-          <select class="js-post-type-select">
-              <option value="">AD (stick to Bulletin Board)</option>
-              <option value="">MEMO / ALERT (stick to Wall)</option>
-              <option value="">SIGN (dig into the Ground)</option>
-              <option value="">MESSAGE or CARD (put to Post Box)</option>
-              <option value="">...</option>
-          </select>
+          <ul class="js-post-type-select">
+              <li value="ad"><a href="/posts/new?type=ad">AD (stick to Bulletin Board)</a></li>
+              <li value="memo"><a href="/posts/new?type=memo">MEMO / ALERT (stick to Wall)</a></li>
+              <li value="sign"><a href="/posts/new?type=sign">SIGN (dig into the Ground)</a></li>
+              <li value="message"><a href="/posts/new?type=message">MESSAGE or CARD (put to Post Box)</a></li>
+              <li value="">...</li>
+          </ul>
         </div>
       </label>
     </div>
@@ -93,7 +169,7 @@
       <label class="item item-input item-select">
         <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_SELECT_TYPE' }}</div>
         <div class="small-12 medium-9 large-9 left">
-          <select class="js-post-type-select">
+          <select class="js-ad-type-select">
             {{#each getSiteTypes }}
               <option value="{{ name }}">{{ fullName }}</option>
             {{/each}}

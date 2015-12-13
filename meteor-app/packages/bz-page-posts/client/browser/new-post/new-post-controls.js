@@ -1,4 +1,13 @@
-Template.postsNewForm.events({});
+
+
+//Template.postsNewForm.events({});
+
+Template.bzPostTypes.events({
+  /*'change .js-post-type-select': function(e, v){
+    var type = e.target.value;
+    setNewPostType(type);
+  }*/
+})
 Template.postTypeSelect.helpers({
   getSiteTypes: function () {
     return bz.cols.siteTypes.find();
@@ -11,7 +20,7 @@ Template.postTypeSelect.events({
   }
 });
 Template.postTypeSelect.rendered = function () {
-  var name = this.$('.js-post-type-select').val().toCapitalCase();
+  var name = this.$('.js-ad-type-select').val().toCapitalCase();
   setPostDetailsTemplate(name, this);
 }
 

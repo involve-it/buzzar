@@ -51,6 +51,14 @@ Router.map(function () {
       return [
         bz.help.maps.googleMapsLoad()
       ]
+    },
+    onBeforeAction: function () {
+      if(this.params.query.type && this.params.query.type !== 'undefined') {
+        newPostType.set(this.params.query.type);
+      } else {
+        newPostType.set(undefined);
+      }
+      this.next();
     }
     /*data: function () {
      return Meteor.users.findOne({_id: this.params._id});

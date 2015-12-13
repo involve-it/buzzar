@@ -20,7 +20,6 @@ Template.bzChatMessagePopup.onDestroyed(function(){
 
 Template.bzChatMessagePopup.events({
   'click .js-go-to-msg-link': function(){
-    debugger;
     hideMessageModal()
     // need to close the modal with the message:
   }

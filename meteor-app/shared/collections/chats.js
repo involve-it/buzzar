@@ -8,7 +8,6 @@ if (Meteor.isServer) {
 }
 bz.cols.chats.getNewMessagesAmountForUser = function(userObj){
   var user = userObj || Meteor.user();
-  debugger;
 }
 
 bz.cols.chats.before.insert(function (userId, doc) {
