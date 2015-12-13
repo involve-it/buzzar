@@ -41,27 +41,28 @@ Router.signIn = function(isReturnBack){
 
   }
   if(isReturnBack) {
-    Session.set('fromWhere', window.document.location.href);
-    //Session.set('fromWhere', 'http://dev.buzzar.io/post/jYYDxpvEXgtq93uDr');
-
+    Session.set('fromWhere', this.current().url);
   }
   Router.go(sR);
 };
 /***********************
  * requireLoginController
  ************************/
+/*
 bz.router.requireLoginController = RouteController.extend({
 
   onBeforeAction: function () {
+    debugger;
     if (!Meteor.user()) {
       if (Meteor.loggingIn()) {
         this.render(this.loadingTemplate);
       } else {
-        Router.go('entrySignUp');
+        Router.signIn(true);
+        //Router.go('entrySignUp');
         //Router.go('entrySignIn');
       }
     } else {
       this.next();
     }
   }
-});
+});*/

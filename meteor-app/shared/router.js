@@ -42,7 +42,8 @@ requireLoginController = RouteController.extend({
       if (Meteor.loggingIn()) {
         this.render(this.loadingTemplate);
       } else {
-        Router.go('entrySignUp');
+        Router.signIn(true);
+        //Router.go('entrySignUp');
         //Router.go('entrySignIn');
       }
     } else {

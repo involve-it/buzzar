@@ -45,14 +45,16 @@ Template.changeLanguage.rendered = function() {
   */
    
   var lang;
-  if(!Meteor.users.findOne(Meteor.userId()).profile.settings || !Meteor.users.findOne(Meteor.userId()).profile.settings.language) {
-    lang = T9n.defaultLanguage;
-  } else {
-    lang = Meteor.users.findOne(Meteor.userId()).profile.settings.language;
+  if(Meteor.user() && Meteor.user().profile) {
+    if (!Meteor.user().profile.settings || !Meteor.users.findOne(Meteor.userId()).profile.settings.language) {
+      lang = T9n.defaultLanguage;
+    } else {
+      lang = Meteor.users.findOne(Meteor.userId()).profile.settings.language;
 
-    if (lang) {
-      T9n.setLanguage(lang);
-      $('.dropdown-choose-lang').val(lang);
+      if (lang) {
+        T9n.setLanguage(lang);
+        $('.dropdown-choose-lang').val(lang);
+      }
     }
   }
 };

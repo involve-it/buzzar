@@ -117,7 +117,7 @@ _.each(Router.routes, function(route) {
 });
 
 Router.onStop(function() {
-  if (!_.contains(exclusions, (Router.current().route) !== null ? Router.current().path : undefined)) {
-    Session.set('fromWhere', Router.current().path);
+  if (!_.contains(exclusions, (Router.current().route) !== null ? Router.current().url : undefined)) {
+    Session.set('fromWhere', Router.current().url);
   }
 });
