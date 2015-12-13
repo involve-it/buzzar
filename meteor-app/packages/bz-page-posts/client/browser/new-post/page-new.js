@@ -15,6 +15,11 @@ Template.postsNew.created = function () {
    });*/
   clearPostData();
 };
+Template.postsNew.helpers({
+  isNotGenericForm: function(){
+    return newPostType.get() !== undefined;
+  }
+});
 Template.postsNew.events({
   'click .js-create-post': function (e, v) {
     var res = true;

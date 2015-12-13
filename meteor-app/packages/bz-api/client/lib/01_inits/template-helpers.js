@@ -52,3 +52,6 @@ Template.registerHelper('getFormattedTs', function (ts) {
   return moment(ts).fromNow();
   //return '';
 });
+Template.registerHelper('isRussianLanguage', function(){
+  return T9n.language === 'ru';
+})

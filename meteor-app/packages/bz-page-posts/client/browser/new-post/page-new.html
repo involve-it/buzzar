@@ -2,8 +2,10 @@
     <div class="main-content">
         <!--{{> postsNewForm }}-->
         <div class="js-new-post-placeholder"></div>
+        {{#if isNotGenericForm }}
         <div class="padding">
             <button type="submit" class="button btn-default js-create-post">Установить Маячок</button>
         </div>
+        {{/if}}
     </div>
 </template>
