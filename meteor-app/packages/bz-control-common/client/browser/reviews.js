@@ -40,7 +40,9 @@ Template.bzControlAddReview.events({
       /*var loginFunc = accountsClientOrServer.onLogin(function(){
 
       });*/
-      Router.signIn(true);
+      if(confirm('please login to leave comments')){
+        Router.signIn(true);
+      }
     } else {
       if(text.trim() && postId){
         bz.cols.reviews.insert({
