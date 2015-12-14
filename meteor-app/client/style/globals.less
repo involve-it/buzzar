@@ -21,6 +21,15 @@ button[disabled],
   background-color: #b9b9b9;
 }
 
+.split {
+  &.button {
+    padding-right: 4rem;
+    span {
+      width: 2.5rem;
+    }
+  }
+}
+
 input[type="text"],
 input[type="password"],
 input[type="search"],
@@ -33,7 +42,7 @@ select {
   .border-radius(2px);
 }
 
-input[type="text"]:focus, 
+input[type="text"]:focus,
 input[type="password"]:focus, 
 input[type="date"]:focus, 
 input[type="datetime"]:focus, 
@@ -50,6 +59,11 @@ input[type="color"]:focus,
 textarea:focus {
   border-color: rgba(135, 208, 191, .9);
   outline: 1px solid rgba(135, 208, 191, 0.9);
+}
+
+input.js-nearby-places:focus {
+    border-color: transparent;
+    outline: none;
 }
 
 // text:
@@ -104,6 +118,8 @@ textarea:focus {
 }
 
 .margin-left {margin-left: 20px;}
+
+.margin-top-20px {margin-top: 20px}
 
 .margin-right {margin-right: 20px;}
 

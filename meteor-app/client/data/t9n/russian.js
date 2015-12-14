@@ -27,7 +27,7 @@ ru = {
   MENU_MY_POSTS: 'Мои посты',
   MENU_MY_PROFILE: 'Мой профайл',
   MENU_MY_MESSAGES: 'Мои сообщения',
-  MENU_BUTTON_NEW_POST: 'Новый Маячок',
+  MENU_BUTTON_NEW_POST: 'Создать',
   MENU_SIGN_IN: 'Вход',
   MENU_SIGN_OUT: 'Выход',
   MENU_SIGN_UP: 'Регистрация',
@@ -104,7 +104,48 @@ ru = {
   NEW_POST_BUYING_A_HOUSE: 'Купить дом',
   NEW_POST_SELLING_A_HOUSE: 'Продать дома',
   NEW_POST_INCOGNITO_MODE: 'Режим инкогнито',
-  NEW_POST_HASHES: 'Хэштеги'
+  NEW_POST_HASHES: 'Хэштеги',
+
+  //New Memo
+  NEW_MEMO_CREATE_NEW_MEMO: 'Создать новое напоминание',
+
+  //Profile
+  PROFILE_USER_DETAILS :'Профиль пользователе',
+  PROFILE_PERSONAL_SETTINGS :'Личные настройки',
+  PROFILE_EDIT_PROFILE: 'Редактировать',
+  PROFILE_ADDITIONAL_LINKS: 'Внешние ссылки',
+  PROFILE_FACEBOOK_URL: 'Facebook',
+  PROFILE_USER_LANGUAGE: 'Язык',
+  PROFILE_USER_PHONE: 'Телефон',
+  PROFILE_USER_SKYPE: 'Skype',
+  PROFILE_USER_STATUS: 'Статус',
+  PROFILE_PROFILE_URL: 'URL профиля',
+
+  //Profile - edit
+  PROFILE_EDIT_USER_AVATAR: 'Настройки аватара',
+  PROFILE_EDIT_PERSONAL_SETTINGS: 'Редактирование личных настроек',
+  PROFILE_SAVE_AND_UPDATE: 'Сохранить',
+  PROFILE_USERNAME: 'Имя пользователя',
+  PROFILE_USER_FIRST_NAME: 'Имя',
+  PROFILE_USER_LAST_NAME: 'Фамилия',
+  PROFILE_USER_PHONE_NUMBER: 'Номер телефона',
+  PROFILE_USER_SKYPE_LOGIN : 'Логин Skype',
+  PROFILE_USER_SECURITY_SETTINGS : 'Настройки безопасности'
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   

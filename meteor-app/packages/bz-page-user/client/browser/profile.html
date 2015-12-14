@@ -7,7 +7,7 @@
         <!--SIDE A-->
         <div class="side-a text-center small-12 medium-4 columns">
           <div class="item item-divider">
-            <h3 class="title uppercase">User profile details</h3>
+            <h3 class="title uppercase">{{ t9n 'PROFILE_USER_DETAILS' }}</h3>
           </div>
 
             <div class="bz-status-wrapper">
@@ -30,7 +30,7 @@
 
 
           <div class="btn-edit-account">
-            <a class="button btn-default" href="{{pathFor 'settings.edit'}}">Edit your profile</a>
+            <a class="button btn-default" href="{{pathFor 'settings.edit'}}">{{ t9n 'PROFILE_EDIT_PROFILE' }}</a>
           </div>
 
         </div>
@@ -39,11 +39,11 @@
         <div class="side-b small-12 medium-8 large-8 columns">
 
           <div class="item-divider">
-            <h3 class="title uppercase">Your personal settings</h3>
+            <h3 class="title uppercase">{{ t9n 'PROFILE_PERSONAL_SETTINGS' }}</h3>
           </div>
           <div class="user-item overflow">
             <div class="item-details">
-              <div class="small-12 medium-3 bz-input-label columns">Profile Url</div>
+              <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_PROFILE_URL' }}</div>
               <div class="small-12 medium-9 large-10 bz-input-result columns">
                 <div class="bz-text-overflow-ellipsis">
                   <p><a href="{{ getIdProfile}}">{{ getIdProfile}}</a></p>
@@ -52,16 +52,16 @@
             </div>
 
             <div class="item-details">
-              <div class="small-12 medium-3 bz-input-label columns">Phone</div>
+              <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_PHONE' }}</div>
               <div class="small-12 medium-9 large-10 bz-input-result columns"><p> Upon request </p></div>
             </div>
 
             <div class="item-details">
-              <div class="small-12 medium-3 bz-input-label columns">Skype</div>
+              <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_SKYPE' }}</div>
               <div class="small-12 medium-9 large-10 bz-input-result columns"><p> Hidden </p></div>
             </div>
             <div class="item-details">
-              <div class="small-12 medium-3 bz-input-label columns">Status</div>
+              <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_STATUS' }}</div>
               <div class="small-12 medium-9 large-10 bz-input-result columns">
                 <p>
                   {{#if _isOnline }}
@@ -76,7 +76,7 @@
               <div class="bz-separate"></div>
               
               <div class="item-details">
-                  <div class="small-12 medium-3 bz-input-label columns">Language</div>
+                  <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_LANGUAGE' }}</div>
                   <div class="small-12 medium-9 large-10 bz-input-result columns">
 
                       {{> changeLanguage}}
@@ -94,11 +94,11 @@
           <div class="clearfix"></div>
 
           <div class="item item-divider">
-            <h3 class="title uppercase">Your external links</h3>
+            <h3 class="title uppercase">{{ t9n 'PROFILE_ADDITIONAL_LINKS' }}</h3>
           </div>
           <div class="user-item overflow">
             <div class="item-details">
-              <div class="small-12 medium-2 bz-input-label columns">Facebook Url</div>
+              <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_FACEBOOK_URL' }}</div>
               <div class="small-12 medium-10 large-10 bz-input-result columns"><p> -------
                 <!--{{ getFaceBookDetails }}--> </p></div>
             </div>

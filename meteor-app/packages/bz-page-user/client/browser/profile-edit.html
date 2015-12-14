@@ -8,16 +8,18 @@
                     <!--SIDE A-->
                     <div class="side-a text-center small-12 medium-4 columns">
                         <div class="item item-divider">
-                            <h3 class="title uppercase">Edit user avatar</h3>
+                            <h3 class="title uppercase">{{ t9n 'PROFILE_EDIT_USER_AVATAR' }}</h3>
                         </div>
 
                         <div class="user-avatar">
                             {{> avatarThumbnail write=true image=profile.image}}
                         </div>
 
+                        <div class="bz-separate"></div>
+
                         <div class="user-item overflow">
                             <div class="item-details bz-user-status-width">
-                                <!--<div class="small-12 bz-input-label columns">Your status</div>-->
+                                <div class="bz-input-label">{{ t9n 'PROFILE_USER_STATUS' }}</div>
                                 <div class="small-12 bz-input-result columns">
                                     <select id="bz-user-status">
                                         <option value="online">Online</option>
@@ -29,7 +31,7 @@
                         </div>
 
                         <div class="btn-edit-account">
-                            <button class="button btn-default js-done-btn">Save & Update</button>
+                            <button class="button btn-default js-done-btn">{{ t9n 'PROFILE_SAVE_AND_UPDATE' }}</button>
                         </div>
 
                     </div>
@@ -38,26 +40,26 @@
                     <div class="side-b small-12 medium-8 large-8 columns">
 
                         <div class="item-divider">
-                            <h3 class="title uppercase">Edit your personal settings</h3>
+                            <h3 class="title uppercase">{{ t9n 'PROFILE_EDIT_PERSONAL_SETTINGS' }}</h3>
                         </div>
                         <div class="user-item overflow">
                             <div class="item-details">
-                                <div class="small-12 medium-2 bz-input-label columns">Username</div>
-                                <div class="small-12 medium-10 large-10 bz-input-result columns">
+                                <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USERNAME' }}</div>
+                                <div class="small-12 medium-9 large-10 bz-input-result columns">
                                     <div class="bz-text-overflow-ellipsis"><p> {{username}} </p></div>
                                 </div>
                             </div>
 
                             <div class="item-details">
-                                <div class="small-12 medium-2 bz-input-label columns">First name</div>
-                                <div class="small-12 medium-10 large-10 bz-input-result columns">
+                                <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_FIRST_NAME' }}</div>
+                                <div class="small-12 medium-9 large-10 bz-input-result columns">
                                     <input class="bz-first-name" autocomplete="off" type="text" value="{{profile.firstName}}">
                                 </div>
                             </div>
 
                             <div class="item-details">
-                                <div class="small-12 medium-2 bz-input-label columns">Last name</div>
-                                <div class="small-12 medium-10 large-10 bz-input-result columns">
+                                <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_LAST_NAME' }}</div>
+                                <div class="small-12 medium-9 large-10 bz-input-result columns">
                                     <input class="bz-last-name" autocomplete="off" type="text" value="{{profile.lastName}}">
                                 </div>
                             </div>
@@ -66,13 +68,13 @@
 
                             <div class="item-details">
                                 <div class="small-12 medium-6 large-6 bz-input-label columns">
-                                    <div class="small-12 bz-input-label columns">Phone number</div>
+                                    <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_PHONE_NUMBER' }}</div>
                                     <div class="small-12 bz-input-result columns">
                                         <input class="bz-phone-number" autocomplete="off" type="text">
                                     </div>
                                 </div>
                                 <div class="small-12 medium-6 large-6 bz-input-label columns">
-                                    <div class="small-12 bz-input-label columns">Security settings</div>
+                                    <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_SECURITY_SETTINGS' }}</div>
                                     <div class="small-12 bz-input-result columns">
                                         <select id="phone-status">
                                             <option value="">Public</option>
@@ -85,13 +87,13 @@
 
                             <div class="item-details">
                                 <div class="small-12 medium-6 large-6 bz-input-label columns">
-                                    <div class="small-12 bz-input-label columns">Skype username</div>
+                                    <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_SKYPE_LOGIN' }}</div>
                                     <div class="small-12 bz-input-result columns">
                                         <input class="bz-skype-account" autocomplete="off" type="text">
                                     </div>
                                 </div>
                                 <div class="small-12 medium-6 large-6 bz-input-label columns">
-                                    <div class="small-12 bz-input-label columns">Security settings</div>
+                                    <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_SECURITY_SETTINGS' }}</div>
                                     <div class="small-12 bz-input-result columns">
                                         <select id="bz-skype-status">
                                             <option value="">Public</option>
@@ -110,11 +112,11 @@
                         
 
                         <div class="item item-divider">
-                            <h3 class="title uppercase">Your external links</h3>
+                            <h3 class="title uppercase">{{ t9n 'PROFILE_ADDITIONAL_LINKS' }}</h3>
                         </div>
                         <div class="user-item overflow">
                             <div class="item-details">
-                                <div class="small-12 medium-2 bz-input-label columns">Facebook Url</div>
+                                <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_FACEBOOK_URL' }}</div>
                                 <div class="small-12 medium-10 large-10 bz-input-result columns">
                                     <select id="fb-status">
                                         <option value="" selected="selected">Public</option>

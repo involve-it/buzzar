@@ -27,7 +27,7 @@ en = {
   MENU_MY_POSTS: 'My posts',
   MENU_MY_PROFILE: 'My profile',
   MENU_MY_MESSAGES: 'Messages',
-  MENU_BUTTON_NEW_POST: 'New post',
+  MENU_BUTTON_NEW_POST: 'Create',
   MENU_SIGN_IN: 'Sign in',
   MENU_SIGN_OUT: 'Sign out',
   MENU_SIGN_UP: 'Sign up',
@@ -106,7 +106,45 @@ en = {
   NEW_POST_BUYING_A_HOUSE: 'Buying a house',
   NEW_POST_SELLING_A_HOUSE: 'Selling a house',
   NEW_POST_INCOGNITO_MODE: 'Incognito mode',
-  NEW_POST_HASHES: 'Hashes'
+  NEW_POST_HASHES: 'Hashes',
+  
+  //New Memo
+  NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',
+  
+  //Profile
+  PROFILE_USER_DETAILS :'User profile details',
+  PROFILE_PERSONAL_SETTINGS :'Your personal settings',
+  PROFILE_EDIT_PROFILE: 'Edit your profile',
+  PROFILE_ADDITIONAL_LINKS: 'Your external link',
+  PROFILE_FACEBOOK_URL: 'Facebook',
+  PROFILE_USER_LANGUAGE: 'Language',
+  PROFILE_USER_PHONE: 'Phone',
+  PROFILE_USER_SKYPE: 'Skype',
+  PROFILE_USER_STATUS: 'Status',
+  PROFILE_PROFILE_URL: 'Profile URL',
+
+  //Profile - edit
+  PROFILE_EDIT_USER_AVATAR: 'Edit user avatar',
+  PROFILE_EDIT_PERSONAL_SETTINGS: 'Edit your personal settings',
+  PROFILE_SAVE_AND_UPDATE: 'Save',
+  PROFILE_USERNAME: 'Username',
+  PROFILE_USER_FIRST_NAME: 'First name',
+  PROFILE_USER_LAST_NAME: 'Last name',
+  PROFILE_USER_PHONE_NUMBER: 'Phone number',
+  PROFILE_USER_SKYPE_LOGIN: 'Skype username',
+  PROFILE_USER_SECURITY_SETTINGS: 'Security settings'
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
