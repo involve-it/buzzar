@@ -5,16 +5,17 @@
 
 <template name="bzPostsNewFormAd">
     <div class="main-content">
-        <h1 class="title uppercase">{{t9n 'NEW_POST_CREATE_NEW_POST'}}</h1>
+      <h1 class="title uppercase">{{t9n 'NEW_POST_CREATE_NEW_POST'}}</h1>
+      <div class="row">
+        {{> postsNewUrl }}
+      </div>
+    </div>
+    <div class="main-content margin-top-20px">
         <div class="item-group">
             <div class="item item-divider ">
               <h3 class="title">{{t9n 'NEW_POST_MAIN_INFORMATION'}}</h3>
             
               <p class="bz-muted-text">{{t9n 'NEW_POST_MAIN_INFORMATION_MUTED'}}</p>
-            </div>
-            
-            <div class="row">
-              {{> postsNewUrl }}
             </div>
             
             <div class="row">
@@ -81,11 +82,14 @@
 
 <!--Rendering MEMO template-->
 <template name="bzPostsNewFormMemo">
-    <div class="main-content">
-        <h1 class="title uppercase">{{t9n 'NEW_MEMO_CREATE_NEW_MEMO'}}</h1>
+  <div class="main-content">
+    <h1 class="title uppercase">{{t9n 'NEW_MEMO_CREATE_NEW_MEMO'}}</h1>
+    <div class="row">
+      {{> postsNewUrl }}
+    </div>
+  </div>
+    <div class="main-content margin-top-20px">
         <div class="item-group">
-
-
             <h4>Что нужно для напоминания???</h4>
             <p>Название напоминания</p>
             <p></p>
@@ -104,7 +108,7 @@
     </div>
 </template>
 
-<template name="bzPostsNewFormAlert">
+<!--<template name="bzPostsNewFormAlert">
 
   <h1 class="title uppercase">Create New Alert</h1>
 
@@ -132,7 +136,7 @@
     </div>
 
     <div class="item item-divider">
-      <!--<h3 class="title ">{{ t9n 'NEW_POST_GALLERY_PHOTOS' }}</h3>-->
+      &lt;!&ndash;<h3 class="title ">{{ t9n 'NEW_POST_GALLERY_PHOTOS' }}</h3>&ndash;&gt;
       <p class="bz-muted-text">{{t9n 'NEW_POST_GALLERY_PHOTOS_MUTED'}}</p>
     </div>
     <div class="row">
@@ -167,14 +171,14 @@
     </div>
 
     <div class="row">
-      <!--{{> postHashesControl }}-->
+      &lt;!&ndash;{{> postHashesControl }}&ndash;&gt;
     </div>
-    <!--<div class="row">
+    &lt;!&ndash;<div class="row">
       {{> postProfileInfo }}
-    </div>-->
+    </div>&ndash;&gt;
   </div>
 
-</template>
+</template>-->
 
 <template name="bzPostTypes">
     <div class="main-content clearfix">
