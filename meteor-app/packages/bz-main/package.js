@@ -57,6 +57,12 @@ Package.onUse(function (api) {
     
     //Drop style  
     'client/browser/style/drop-theme-arrows-bounce.less',
+      
+    //Date picker
+    //'client/browser/style/foundation/js/locales-datapicker/foundation-datepicker.en-GB.js',
+    //'client/browser/style/foundation/js/locales-datapicker/foundation-datepicker.ru.js',
+    'client/browser/style/foundation/js/foundation-datepicker.js', 
+    'client/browser/style/foundation-datepicker.css', 
 
     'client/browser/main-layout.html',
     'client/browser/main-layout.js',

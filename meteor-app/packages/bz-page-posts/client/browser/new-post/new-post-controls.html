@@ -13,7 +13,7 @@
     <div class="main-content margin-top-20px">
         <div class="item-group">
             <div class="item item-divider ">
-              <h3 class="title">{{t9n 'NEW_POST_MAIN_INFORMATION'}}</h3>
+              <h3 class="title">{{t9n 'NEW_POST_WHAT'}}</h3>
             
               <p class="bz-muted-text">{{t9n 'NEW_POST_MAIN_INFORMATION_MUTED'}}</p>
             </div>
@@ -48,7 +48,7 @@
     <div class="main-content margin-top-20px"> 
         <div class="item-group">
             <div class="item item-divider">
-                <h3 class="title">{{ t9n 'NEW_POST_POST_LOCATION' }}</h3>
+                <h3 class="title">{{ t9n 'NEW_POST_WHERE' }}</h3>
                 <p class="bz-muted-text">{{t9n 'NEW_POST_LOCATION_MUTED'}}</p>
             </div>
         
@@ -59,7 +59,7 @@
     <div class="main-content margin-top-20px">
         <div class="item-group">
             <div class="item item-divider">
-              <h3 class="title ">{{ t9n 'NEW_POST_POST_WHEN' }}</h3>
+              <h3 class="title ">{{ t9n 'NEW_POST_WHEN' }}</h3>
             </div>
             
             <div class="row">
@@ -84,28 +84,183 @@
 <template name="bzPostsNewFormMemo">
     <div class="main-content">
         <h1 class="title uppercase">{{t9n 'NEW_MEMO_CREATE_NEW_MEMO'}}</h1>
-        <div class="item-group">
+    </div>
+    
+    <div class="main-content margin-top-20px">
+        <!--item-group-->
+        <div class="">
+            <div class="item item-divider ">
+                <h3 class="title">{{t9n 'NEW_POST_WHAT'}}</h3>
+                <p class="bz-muted-text">???????????????????????????</p>
+            </div>
 
+            <!--name-->
+            <div class="item-details clearfix">
+                <label class="item item-input">
+                    <div class="small-12 medium-3 input-label left">Название</div>
+                    <div class="small-12 medium-9 large-9 left">
+                        <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
+                            <div class="bz-count-characters text-right"><span>70</span> {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
+                            <input class="js-post-title drop-target" type="text" label-type="stacked" name="title" required="" data-schema-key="title" maxlength="70" value="{{ getTitle }}" placeholder="{{ t9n 'NEW_POST_TITLE_PLACEHOLDER' }}">
 
-            <h4>Что нужно для напоминания???</h4>
-            <p>Название напоминания</p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
+                            <div class="drop-content">
+                                <div class="drop-content-inner">
+                                    <p>{{ t9n 'NEW_POST_TITLE_TOOLTIP_TEXT' }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+            </div>
             
+            <!--description-->
+            <div class="item-details clearfix">
+                <label type="stacked" class="item item-input item-stacked-label">
+                    <div class="small-12 medium-3 input-label left">Описание</div>
+                    <div class="small-12 medium-9 large-9 left">
+                        <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
+                            <div class="bz-count-characters text-right"><span>1000</span>  {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
+                <textarea class="drop-target js-post-description" rows="3" label-type="stacked" name="body" required=""
+                          data-schema-key="body" maxlength="1000" value="{{ getDescription }}"
+                          placeholder="{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER' }}"></textarea>
+
+                            <div class="drop-content">
+                                <div class="drop-content-inner">
+                                    <p>{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER_TOOLTIP_TEXT' }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+            </div>
+
+            <!--<li>Назначит картинку для ассоциаций в списке</li>-->
+         
+        </div>
+    </div>
+
+    <div class="main-content margin-top-20px">
+        <div class="item item-divider">
+            <h3 class="title">{{ t9n 'NEW_POST_WHERE' }}</h3>
+            <p class="bz-muted-text">???????????????????????????</p>
+        </div>
+
+        <div class="item-details clearfix">
             
-            
+
+            <!--location-->
+            <div class="item-details clearfix">
+
+                <!--remind me at a location-->
+                <div class="item-details clearfix">
+                    <label type="stacked" class="item item-input item-stacked-label">
+                        <div class="small-12 medium-3 input-label left">Напоминать на местности</div>
+                        <div class="small-12 medium-9 large-9 left">
+                            <div class="switch">
+                                <input id="remindMeAtLocation" type="checkbox">
+                                <label for="remindMeAtLocation"></label>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                
+                <div>
+                    <span>Место установки еще не определено!</span> &nbsp;                       
+                    <a href="#" class="button bz-small btn-default" data-reveal-id="choose-locations-reminder">
+                        <i class="fa fa-map-marker"></i>  <span>My Location</span>
+                    </a>
+                </div>
+            </div>
             
             
             
         </div>
     </div>
+
+
+    <div class="main-content margin-top-20px">
+            <div class="item item-divider">
+                <h3 class="title ">{{ t9n 'NEW_POST_WHEN' }}</h3>
+                <p class="bz-muted-text">???????????????????????????</p>
+            </div>
+
+            <div class="item-details clearfix">
+
+                <!--remind me-->
+                <div class="item-details clearfix">
+                    <label type="stacked" class="item item-input item-stacked-label">
+                        <div class="small-12 medium-3 input-label left">Напоминать мне</div>
+                        <div class="small-12 medium-9 large-9 left">
+                            <div class="switch">
+                                <input id="remindMeOnADay" type="checkbox">
+                                <label for="remindMeOnADay"></label>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                
+                <!--date-->
+                <div class="item-details clearfix">
+                    <label type="stacked" class="item item-input item-stacked-label">
+                        <div class="small-12 medium-3 input-label left">Дата</div>
+                        <div class="small-12 medium-9 large-9 left">
+                            <div class="small-12 medium-6 large-6 bz-input-label left">
+                                <div class="small-12 bz-input-label columns">Дата начало</div>
+                                <div class="small-12 bz-input-result columns">
+                                    <input type="text" class="span2" value="" id="dateStart">
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </label>
+                </div>
+
+                <!--repeat-->
+                <div class="item-details clearfix">
+                    <label type="stacked" class="item item-input item-stacked-label">
+                        <div class="small-12 medium-3 input-label left">Повторять</div>
+                        <div class="small-12 medium-9 large-9 left">
+                            <div class="switch">
+                                <input id="repeatReminde" type="checkbox">
+                                <label for="repeatReminde"></label>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="item-details clearfix">
+                    <label type="stacked" class="item item-input item-stacked-label">
+                        <div class="small-12 medium-3 input-label left">Если да, период?</div>
+                        <div class="small-12 medium-9 large-9 left">
+                            
+
+                            <div class="small-12 medium-6 large-6 bz-input-label left">
+                                    <div class="small-12 bz-input-label columns">Сколько повторять</div>
+                                    <div class="small-12 bz-input-result columns">
+                                        <select name="repeat" id="selectRepeat">
+                                            <option value="everyDay">Каждый день</option>
+                                            <option value="everyWeek">Каждую неделю</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            <div class="small-12 medium-6 large-6 bz-input-label left">
+                                    <div class="small-12 bz-input-label columns">End</div>
+                                    <div class="small-12 bz-input-result columns">
+                                        <input type="text" class="span2" value="" id="dateEnd">
+                                    </div>
+                            </div>
+                            
+                        </div>
+                    </label>
+                </div>
+                
+            </div>
+    </div>
+    
+    
 </template>
 
-<template name="bzPostsNewFormAlert">
+<!--<template name="bzPostsNewFormAlert">
 
   <h1 class="title uppercase">Create New Alert</h1>
 
@@ -170,9 +325,9 @@
     <div class="row">
       &lt;!&ndash;{{> postHashesControl }}&ndash;&gt;
     </div>
-    <!--<div class="row">
+    &lt;!&ndash;<div class="row">
       {{> postProfileInfo }}
-    </div>-->
+    </div>&ndash;&gt;
   </div>
 
 </template>-->
@@ -180,9 +335,16 @@
 <template name="bzPostTypes">
     <div class="main-content clearfix">
         <div class="item-details">
-          <label class="item item-input item-select">
-            <div class="small-12 medium-3 input-label left">Type of the Post</div>
-            <div class="small-12 medium-9 large-9 left">
+
+            <div class="">
+                <h1 class="title uppercase text-center">Выберите подходящий моячок</h1>
+                <h3 class="bz-muted-text text-center">???????????????????????????</h3>
+            </div>
+            
+            
+          
+            
+            <div class="">
               <ul class="js-post-type-select">
                 {{#if isRussianLanguage}}
                   <li value="ad"><a href="/posts/new?type=ad" alt="Объявление">Объявление</a></li>
@@ -204,7 +366,7 @@
                 {{/if}}
               </ul>
             </div>
-          </label>
+
         </div>
   </div>
 </template>
