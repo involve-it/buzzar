@@ -1,42 +1,45 @@
 <template name="postsNewUrl">
-        <!--<span>*note: try this url as a sample:-->
-        <!--<i>http://www.youcaring.com/ashley-reed-376889</i></span>-->
-    <div class="clearfix">
-        <div class="item-details">
-            <label class="item item-input item-stacked-label">
-                <!--<span class="input-label">Original Url (optional)</span>-->
-                <div class="item1 item-input-inset">
-                    <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_IMPORT_FROM_WEB' }} ({{ t9n 'NEW_POST_IMPORT_FROM_WEB_OPTIONAL' }})</div>
-                    <div class="small-12 medium-9 large-9 left">
-                        <div class="bz-flex-style">
-                            <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
-                                <input name="url" placeholder="{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER' }}"
-                                        class="drop-target original-url error js-original-url" type="text">
-                                <div class="drop-content">
-                                    <p>{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER_TOOLTIP_TEXT' }}</p>
-                                </div>
-                            </div>
-                            
-                        <!--<small class="error hidden">Value is required</small>-->
-                            <div>
-                                <a name="original-post-details"
-                                   class="button small disabled margin-left js-post-details-link"
-                                   data-ion-modal="parsedPostDetailsModal"><i class="fa fa-check-circle-o"></i> {{ t9n 'BUTTON_CHECK' }}</a>
-                            </div>
-                    </div>
+  <!--<span>*note: try this url as a sample:-->
+  <!--<i>http://www.youcaring.com/ashley-reed-376889</i></span>-->
+  <div class="clearfix">
+    <div class="item-details">
+      <label class="item item-input item-stacked-label">
+        <!--<span class="input-label">Original Url (optional)</span>-->
+        <div class="item1 item-input-inset">
+          <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_IMPORT_FROM_WEB' }}
+            ({{ t9n 'NEW_POST_IMPORT_FROM_WEB_OPTIONAL' }})
+          </div>
+          <div class="small-12 medium-9 large-9 left">
+            <div class="bz-flex-style">
+              <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
+                <input name="url" placeholder="{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER' }}"
+                       class="drop-target original-url error js-original-url" type="text">
+
+                <div class="drop-content">
+                  <p>{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER_TOOLTIP_TEXT' }}</p>
                 </div>
-                    <!--<a name="original-post-details" class="button button-small disabled js-post-details-link" href="/posts/new/original-details" >-->
-                </div>
-            </label>
+              </div>
+
+              <!--<small class="error hidden">Value is required</small>-->
+              <div>
+                <a name="original-post-details"
+                   class="button small disabled margin-left js-post-details-link"
+                   data-ion-modal="parsedPostDetailsModal"><i class="fa fa-check-circle-o"></i> {{ t9n 'BUTTON_CHECK' }}
+                </a>
+              </div>
+            </div>
+          </div>
+          <!--<a name="original-post-details" class="button button-small disabled js-post-details-link" href="/posts/new/original-details" >-->
         </div>
-        <input type="button" value="scan" class="js-scan-url hidden"/>
+      </label>
     </div>
-    
-    
-    
+    <input type="button" value="scan" class="js-scan-url hidden"/>
+  </div>
+
+
 </template>
 <template name="parsedPostDetailsModal">
-    <!--{{#ionModal title="Url Post Details"}}
+  <!--{{#ionModal title="Url Post Details"}}
         <div class="padding">
             Title: <span>{{ getTitle }}</span>
         </div>
