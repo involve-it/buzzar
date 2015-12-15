@@ -191,16 +191,21 @@
             <div class="small-12 medium-9 large-9 left">
               <ul class="js-post-type-select">
                 {{#if isRussianLanguage}}
-                  <li value="ad"><a href="/posts/new?type=ad">Объявление (stick to Bulletin Board)</a></li>
-                  <li value="memo"><a href="/posts/new?type=memo">Напоминалка (stick to Wall)</a></li>
-                  <li value="sign"><a href="/posts/new?type=sign">Знак (dig into the Ground)</a></li>
-                  <li value="message"><a href="/posts/new?type=message">Сообщение (put to Post Box)</a></li>
-                  <li value="">...</li>
+                  <li value="ad"><a href="/posts/new?type=ad" alt="Объявление">Объявление</a></li>
+                  <li value="memo"><a href="/posts/new?type=memo" alt="Сигнал - сообщение, срабатывающее при подходе/уходе(?) к месту, можно использовать как средство запоминания-карточка-учить слово, текст и т.д.">
+                    Напоминалка
+                  </a></li>
+
+                  <!--<li value="ad"><a href="/posts/new?type=ad">Объявление (stick to Bulletin Board)</a></li>
+                  <li value="memo"><a href="/posts/new?type=memo">Напоминалка (Сигнал - сообщение, срабатывающее при подходе/уходе(?) к месту)</a></li>
+                  <li value="memo"><a href="/posts/new?type=memo">Запоминалка (карточка-учить слово, текст и т.д.)</a></li>
+                  <li value="sign"><a href="/posts/new?type=sign">Знак (Информация, связанная с данным местоположением)</a></li>
+                  <li value="message"><a href="/posts/new?type=message">Визитка (Страничка из социальных сетей)</a></li>-->
                 {{ else }}
-                  <li value="ad"><a href="/posts/new?type=ad">AD (stick to Bulletin Board)</a></li>
-                  <li value="memo"><a href="/posts/new?type=memo">MEMO / ALERT (stick to Wall)</a></li>
-                  <li value="sign"><a href="/posts/new?type=sign">SIGN (dig into the Ground)</a></li>
-                  <li value="message"><a href="/posts/new?type=message">MESSAGE or CARD (put to Post Box)</a></li>
+                  <li value="ad"><a href="/posts/new?type=ad" alt="(stick to Bulletin Board)">AD </a></li>
+                  <li value="memo"><a href="/posts/new?type=memo" alt="(stick to Wall)">MEMO</a></li>
+                  <!--<li value="sign"><a href="/posts/new?type=sign">SIGN (dig into the Ground)</a></li>
+                  <li value="message"><a href="/posts/new?type=message">MESSAGE or CARD (put to Post Box)</a></li>-->
                   <li value="">...</li>
                 {{/if}}
               </ul>
