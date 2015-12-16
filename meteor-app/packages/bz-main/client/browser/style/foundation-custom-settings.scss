@@ -394,6 +394,30 @@ body {
 
     /* END menu*/
 
+    .main-content {
+      .bz-muted-text {
+        &.subtitle {
+          margin-top: -5px !important;
+        }
+      }
+      
+      .bz-media-q {
+        h1 {
+          font-size: 25px;
+        }
+        h3 {
+          font-size: 22px;
+        }
+      }
+    }
+        
+    .bz-box {
+
+      ul {
+        flex-direction: column;
+      }
+    }
+    
     .bz-container-body {
       /*padding: 0 20px;*/
     }
@@ -629,7 +653,8 @@ body {
       display: block;
     }
     /* END menu*/
-
+    
+    
     .bz-container-body {
       /*padding: 0 20px;*/
     }
