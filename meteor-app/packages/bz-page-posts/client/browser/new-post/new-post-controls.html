@@ -333,39 +333,55 @@
 </template>-->
 
 <template name="bzPostTypes">
-    <div class="main-content clearfix">
+    <div class="main-content clearfix bz-create-posts-bg">
         <div class="item-details">
 
-            <div class="">
-                <h1 class="title uppercase text-center">Выберите подходящий моячок</h1>
-                <h3 class="bz-muted-text text-center">???????????????????????????</h3>
+            <div class="text-center">
+                <h1 class="title uppercase">Выберите подходящий маячок</h1>
+                <h3 class="bz-muted-text subtitle">каждый имеет свои особенности</h3>
             </div>
             
             
-          
+            <div class="bz-content-block text-center bz-padding-top-x2">
+                <!--2 of 4-->
+                <div class="bz-box">
+                    <ul class="bz-flex bz-flex-space-between js-post-type-select bz-grid-block">
+                        {{#if isRussianLanguage}}
+                            <li class="bz-item bz-flex-grow-1" value="ad">
+                                <a class="bz-item-wrapper bz-box-inset" href="/posts/new?type=ad" alt="Объявление">
+                                    <div>
+                                        <img src="/img/content/advertising-220.png" width="110" height="110" alt="advertise"/>
+                                        <h3 class="bz-depend green">Объявление</h3>
+                                        <p>Поможем продать заволявшиеся вещи, решить проблему или найти питомца.</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="bz-item bz-flex-grow-1" value="memo">
+                                <a class="bz-item-wrapper bz-box-inset" href="/posts/new?type=memo" alt="Сигнал - сообщение, срабатывающее при подходе/уходе(?) к месту, можно использовать как средство запоминания-карточка-учить слово, текст и т.д.">
+                                    <div>
+                                        <img src="/img/content/megaphone-220.png" width="110" height="110" alt="megaphone"/>
+                                        <h3 class="bz-depend orange">Напоминалка</h3>
+                                        <p>Используйте, чтобы не забыть о важных делах в определенном месте на карте.</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <!--<li class="bz-item" value="ad"><a href="/posts/new?type=ad">Объявление (stick to Bulletin Board)</a></li>
+                            <li class="bz-item" value="memo"><a href="/posts/new?type=memo">Напоминалка (Сигнал - сообщение, срабатывающее при подходе/уходе(?) к месту)</a></li>
+                            <li class="bz-item" value="memo"><a href="/posts/new?type=memo">Запоминалка (карточка-учить слово, текст и т.д.)</a></li>
+                            <li class="bz-item" value="sign"><a href="/posts/new?type=sign">Знак (Информация, связанная с данным местоположением)</a></li>
+                            <li class="bz-item" value="message"><a href="/posts/new?type=message">Визитка (Страничка из социальных сетей)</a></li>-->
+                        {{ else }}
+                            <li class="bz-item" value="ad"><a href="/posts/new?type=ad" alt="(stick to Bulletin Board)">AD </a></li>
+                            <li class="bz-item" value="memo"><a href="/posts/new?type=memo" alt="(stick to Wall)">MEMO</a></li>
+                            <!--<li class="bz-item" value="sign"><a href="/posts/new?type=sign">SIGN (dig into the Ground)</a></li>
+							<li class="bz-item" value="message"><a href="/posts/new?type=message">MESSAGE or CARD (put to Post Box)</a></li>-->
+                            <li class="bz-item" value="">...</li>
+                        {{/if}}
+                    </ul>
+                </div>
+            </div>
             
-            <div class="">
-              <ul class="js-post-type-select">
-                {{#if isRussianLanguage}}
-                  <li value="ad"><a href="/posts/new?type=ad" alt="Объявление">Объявление</a></li>
-                  <li value="memo"><a href="/posts/new?type=memo" alt="Сигнал - сообщение, срабатывающее при подходе/уходе(?) к месту, можно использовать как средство запоминания-карточка-учить слово, текст и т.д.">
-                    Напоминалка
-                  </a></li>
 
-                  <!--<li value="ad"><a href="/posts/new?type=ad">Объявление (stick to Bulletin Board)</a></li>
-                  <li value="memo"><a href="/posts/new?type=memo">Напоминалка (Сигнал - сообщение, срабатывающее при подходе/уходе(?) к месту)</a></li>
-                  <li value="memo"><a href="/posts/new?type=memo">Запоминалка (карточка-учить слово, текст и т.д.)</a></li>
-                  <li value="sign"><a href="/posts/new?type=sign">Знак (Информация, связанная с данным местоположением)</a></li>
-                  <li value="message"><a href="/posts/new?type=message">Визитка (Страничка из социальных сетей)</a></li>-->
-                {{ else }}
-                  <li value="ad"><a href="/posts/new?type=ad" alt="(stick to Bulletin Board)">AD </a></li>
-                  <li value="memo"><a href="/posts/new?type=memo" alt="(stick to Wall)">MEMO</a></li>
-                  <!--<li value="sign"><a href="/posts/new?type=sign">SIGN (dig into the Ground)</a></li>
-                  <li value="message"><a href="/posts/new?type=message">MESSAGE or CARD (put to Post Box)</a></li>-->
-                  <li value="">...</li>
-                {{/if}}
-              </ul>
-            </div>
 
         </div>
   </div>
