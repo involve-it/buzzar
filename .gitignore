@@ -14,3 +14,6 @@ meteor-app/.idea/
 meteor-app/settings.json
 meteor-app/settings-development.json
 meteor-app/settings-production.json
+
+docs/.*
+docs/~$.*
