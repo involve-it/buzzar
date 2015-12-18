@@ -338,6 +338,39 @@
 }
 
 
+.js-btn-additional-param {
+  
+  a {
+    color: @text-link-green;
+    font-size: 16px;
+    border-bottom: 1px dotted;
+    text-decoration: none;
+  }
+}
+
+.bz-btn-additional-param-open {
+  overflow: hidden;
+  
+  .bz-param-children {
+    margin-bottom: -9999px;
+    margin-top: -999px;
+    transition: margin-bottom 0s .240s ease,margin-top .240s ease;
+  }
+  
+  
+  &.bz-container-open {
+
+    .bz-param-children {
+      margin-bottom: 0;
+      transition: margin-top .240s ease;
+    }
+  }
+  
+  
+
+}
+
+
 
 
 

@@ -15,3 +15,5 @@ bz.ui.initFoundationValidation = function() {
   });
   
 };
+
+bz.ui.initDrop = function() {};

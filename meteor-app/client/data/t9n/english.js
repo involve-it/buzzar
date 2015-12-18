@@ -110,6 +110,10 @@ en = {
   
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',
+  NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',
+  NEW_MEMO_DESCRIPTION_PLACEHOLDER_TOOLTIP_TEXT: 'Точное описание поможет сориентироваться в списке созданных напоминаний.',
+  NEW_MEMO_WHAT_MUTED: 'Информация из этой секции содержит сведения, которые будут испольоваться для отображения и поиска вашего напоминания. Пожалуйста, указывайте точные сведения, для корректного поиска.',
+  NEW_MEMO_WHERE_MUTED: 'С помощью настроек определите, в каком месте ваше напоминание станет активным.',
   
   //Profile
   PROFILE_USER_DETAILS :'User profile details',
