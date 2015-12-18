@@ -16,4 +16,14 @@ bz.ui.initFoundationValidation = function() {
   
 };
 
-bz.ui.initDrop = function() {};
+bz.ui.initFoundationOffCanvas = function() {
+  
+  $(document).foundation({
+    offcanvas : {
+      //move, overlap_single or overlap, reveal
+      open_method: 'move',
+      close_on_click : true
+    }
+  });
+  
+};

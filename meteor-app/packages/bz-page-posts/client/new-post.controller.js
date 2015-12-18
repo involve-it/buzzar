@@ -22,7 +22,7 @@ renderNewPostFormByType = function (type, $el) {
   }
 
   bz.ui.initFoundationValidation();
-  bz.ui.initDrop();
+  bz.ui.initFoundationOffCanvas();
   
 };
 

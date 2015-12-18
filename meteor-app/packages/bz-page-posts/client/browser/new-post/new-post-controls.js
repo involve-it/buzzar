@@ -143,11 +143,13 @@ Template.bzPostsNewFormMemo.rendered = function() {
 
 Template.bzPostsNewFormMemo.events({
   'click .js-btn-additional-param': function(e, v) {
+    
     var target = v.$('.bz-btn-additional-param-open'),
         children = v.$('.bz-param-children'),
         childHeight = target.height();
     
     if(!target.hasClass('bz-container-open')) {
+      $(e.target).addClass('active');
       target.addClass('bz-container-open');
       children.css({'marginTop': 0});
 
@@ -155,6 +157,7 @@ Template.bzPostsNewFormMemo.events({
       $('html, body').animate({scrollTop:target_top}, 'fast');
       
     } else {
+      $(e.target).removeClass('active');
       target.removeClass('bz-container-open');
       children.css({'marginTop': -childHeight});
       
