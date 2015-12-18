@@ -132,10 +132,10 @@ en = {
   PROFILE_USER_LAST_NAME: 'Last name',
   PROFILE_USER_PHONE_NUMBER: 'Phone number',
   PROFILE_USER_SKYPE_LOGIN: 'Skype username',
-  PROFILE_USER_SECURITY_SETTINGS: 'Security settings'
+  PROFILE_USER_SECURITY_SETTINGS: 'Security settings',
   
-  
-  
+  //Error
+  ERROR_INVALID_FIELD: 'This field is required'
   
   
   

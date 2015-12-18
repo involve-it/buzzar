@@ -64,6 +64,10 @@ Package.onUse(function (api) {
     'client/browser/style/foundation/js/foundation-datepicker.js', 
     'client/browser/style/foundation-datepicker.css', 
 
+    //Inits foundationValidation
+    'client/inits.js',
+    'client/browser/controller.js',
+      
     'client/browser/main-layout.html',
     'client/browser/main-layout.js',
     'client/browser/main-layout.less'

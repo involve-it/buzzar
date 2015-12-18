@@ -65,7 +65,7 @@ ru = {
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER_TOOLTIP_TEXT: 'Добавьте адрес вашего объявления с другого ресурса, чтобы не заполнять информацию снова. Мы это сделаем за вас.',
   NEW_POST_ADD_PHOTO_BTN: '+ Добавить Фото',
   NEW_POST_CHARACTERS_LEFT: 'символов осталось',
-  NEW_POST_CREATE_NEW_POST: 'Создать новое объявление',
+  NEW_POST_CREATE_NEW_POST: 'Новое объявление',
   NEW_POST_WHAT: 'Что',
   NEW_POST_MAIN_INFORMATION_MUTED: 'Информация из этой секции будет использоваться при поиске вашего объявления. Пожалуйста, указывайте точные сведения, чтобы найти подходящий вариант.',
   NEW_POST_WHERE: 'Где',
@@ -107,7 +107,7 @@ ru = {
   NEW_POST_HASHES: 'Хэштеги',
 
   //New Memo
-  NEW_MEMO_CREATE_NEW_MEMO: 'Создать новое напоминание',
+  NEW_MEMO_CREATE_NEW_MEMO: 'Новое напоминание',
 
   //Profile
   PROFILE_USER_DETAILS :'Профиль пользователе',
@@ -130,7 +130,10 @@ ru = {
   PROFILE_USER_LAST_NAME: 'Фамилия',
   PROFILE_USER_PHONE_NUMBER: 'Номер телефона',
   PROFILE_USER_SKYPE_LOGIN : 'Логин Skype',
-  PROFILE_USER_SECURITY_SETTINGS : 'Настройки безопасности'
+  PROFILE_USER_SECURITY_SETTINGS : 'Настройки безопасности',
+
+  //Error
+  ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения'
   
   
   

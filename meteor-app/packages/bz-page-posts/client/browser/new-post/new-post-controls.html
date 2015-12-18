@@ -5,11 +5,16 @@
 
 <template name="bzPostsNewFormAd">
     <div class="main-content">
-      <h1 class="title uppercase">{{t9n 'NEW_POST_CREATE_NEW_POST'}}</h1>
-      <div class="row">
-        {{> postsNewUrl }}
-      </div>
+        <div class="bz-media-q">
+            <h1 class="title uppercase">{{t9n 'NEW_POST_CREATE_NEW_POST'}}</h1>
+        </div>
+        <div class="item-group">
+            <div class="row">
+                {{> postsNewUrl }}
+            </div>
+        </div>
     </div>
+    
     <div class="main-content margin-top-20px">
         <div class="item-group">
             <div class="item item-divider ">
@@ -82,41 +87,44 @@
 
 <!--Rendering MEMO template-->
 <template name="bzPostsNewFormMemo">
+<div data-abide>
     <div class="main-content">
-        <h1 class="title uppercase">{{t9n 'NEW_MEMO_CREATE_NEW_MEMO'}}</h1>
+        <div class="bz-media-q">
+            <h1 class="title uppercase">{{t9n 'NEW_MEMO_CREATE_NEW_MEMO'}}</h1>
+        </div>
     </div>
     
     <div class="main-content margin-top-20px">
         <!--item-group-->
-        <div class="">
+        <div class="item-group">
             <div class="item item-divider ">
                 <h3 class="title">{{t9n 'NEW_POST_WHAT'}}</h3>
                 <p class="bz-muted-text">???????????????????????????</p>
             </div>
 
             <!--name-->
-            <div class="item-details clearfix">
-                <label class="item item-input">
-                    <div class="small-12 medium-3 input-label left">Название</div>
+            <div class="item-details clearfix" >
+                <div class="item item-input bz-tool-tip" data-open-on="hover" data-top-center="top center" data-theme="drop-theme-arrows-bounce-dark">
+                    <div class="small-12 medium-3 input-label left"><span class="middle-label">Название <i class="bz-icon bz-hint drop-target"></i></span></div>
                     <div class="small-12 medium-9 large-9 left">
-                        <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
-                            <div class="bz-count-characters text-right"><span>70</span> {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
-                            <input class="js-post-title drop-target" type="text" label-type="stacked" name="title" required="" data-schema-key="title" maxlength="70" value="{{ getTitle }}" placeholder="{{ t9n 'NEW_POST_TITLE_PLACEHOLDER' }}">
-
-                            <div class="drop-content">
-                                <div class="drop-content-inner">
-                                    <p>{{ t9n 'NEW_POST_TITLE_TOOLTIP_TEXT' }}</p>
-                                </div>
+                        <div class="bz-count-characters text-right"><span>70</span> {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
+                        <input class="js-post-title" type="text" label-type="stacked" name="title" required data-schema-key="title" maxlength="70" value="{{ getTitle }}" placeholder="{{ t9n 'NEW_POST_TITLE_PLACEHOLDER' }}">
+                        <!--Error-->
+                        <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
+                        <!--Drop tips-->
+                        <div class="drop-content">
+                            <div class="drop-content-inner">
+                                <p>{{ t9n 'NEW_POST_TITLE_TOOLTIP_TEXT' }}</p>
                             </div>
                         </div>
                     </div>
-                </label>
+                </div>
             </div>
             
             <!--description-->
             <div class="item-details clearfix">
-                <label type="stacked" class="item item-input item-stacked-label">
-                    <div class="small-12 medium-3 input-label left">Описание</div>
+                <div type="stacked" class="item item-input item-stacked-label">
+                    <div class="small-12 medium-3 input-label left"><span class="middle-label">Описание</span></div>
                     <div class="small-12 medium-9 large-9 left">
                         <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
                             <div class="bz-count-characters text-right"><span>1000</span>  {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
@@ -131,7 +139,7 @@
                             </div>
                         </div>
                     </div>
-                </label>
+                </div>
             </div>
 
             <!--<li>Назначит картинку для ассоциаций в списке</li>-->
@@ -153,7 +161,7 @@
 
                 <!--remind me at a location-->
                 <div class="item-details clearfix">
-                    <label type="stacked" class="item item-input item-stacked-label">
+                    <div type="stacked" class="item item-input item-stacked-label">
                         <div class="small-12 medium-3 input-label left">Напоминать на местности</div>
                         <div class="small-12 medium-9 large-9 left">
                             <div class="switch">
@@ -161,7 +169,7 @@
                                 <label for="remindMeAtLocation"></label>
                             </div>
                         </div>
-                    </label>
+                    </div>
                 </div>
                 
                 <div>
@@ -188,7 +196,7 @@
 
                 <!--remind me-->
                 <div class="item-details clearfix">
-                    <label type="stacked" class="item item-input item-stacked-label">
+                    <div type="stacked" class="item item-input item-stacked-label">
                         <div class="small-12 medium-3 input-label left">Напоминать мне</div>
                         <div class="small-12 medium-9 large-9 left">
                             <div class="switch">
@@ -196,12 +204,12 @@
                                 <label for="remindMeOnADay"></label>
                             </div>
                         </div>
-                    </label>
+                    </div>
                 </div>
                 
                 <!--date-->
                 <div class="item-details clearfix">
-                    <label type="stacked" class="item item-input item-stacked-label">
+                    <div type="stacked" class="item item-input item-stacked-label">
                         <div class="small-12 medium-3 input-label left">Дата</div>
                         <div class="small-12 medium-9 large-9 left">
                             <div class="small-12 medium-6 large-6 bz-input-label left">
@@ -212,12 +220,12 @@
                             </div>
                             
                         </div>
-                    </label>
+                    </div>
                 </div>
 
                 <!--repeat-->
                 <div class="item-details clearfix">
-                    <label type="stacked" class="item item-input item-stacked-label">
+                    <div type="stacked" class="item item-input item-stacked-label">
                         <div class="small-12 medium-3 input-label left">Повторять</div>
                         <div class="small-12 medium-9 large-9 left">
                             <div class="switch">
@@ -225,11 +233,11 @@
                                 <label for="repeatReminde"></label>
                             </div>
                         </div>
-                    </label>
+                    </div>
                 </div>
 
                 <div class="item-details clearfix">
-                    <label type="stacked" class="item item-input item-stacked-label">
+                    <div type="stacked" class="item item-input item-stacked-label">
                         <div class="small-12 medium-3 input-label left">Если да, период?</div>
                         <div class="small-12 medium-9 large-9 left">
                             
@@ -251,13 +259,13 @@
                             </div>
                             
                         </div>
-                    </label>
+                    </div>
                 </div>
                 
             </div>
     </div>
     
-    
+</div>   
 </template>
 
 <!--<template name="bzPostsNewFormAlert">
@@ -390,8 +398,8 @@
 <template name="postTypeSelect">
   <div class="clearfix">
     <div class="item-details">
-      <label class="item item-input item-select">
-        <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_SELECT_TYPE' }}</div>
+      <div class="item item-input item-select">
+        <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_SELECT_TYPE' }} </div>
         <div class="small-12 medium-9 large-9 left">
           <select class="js-ad-type-select">
             {{#each getSiteTypes }}
@@ -399,58 +407,56 @@
             {{/each}}
           </select>
         </div>
-      </label>
+      </div>
     </div>
   </div>
 </template>
 
 <!--Forms for different types:-->
 <template name="postDetailsCommon">
-  <div class="clearfix">
-    <div class="item-details">
-
-      <label class="item item-input">
-        <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_TITLE' }}</div>
-        <div class="small-12 medium-9 large-9 left">
-          <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
-            <div class="bz-count-characters text-right"><span>70</span> {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
-            <input class="js-post-title drop-target" type="text" label-type="stacked" name="title" required=""
-                   data-schema-key="title" maxlength="70" value="{{ getTitle }}"
-                   placeholder="{{ t9n 'NEW_POST_TITLE_PLACEHOLDER' }}">
-
-            <div class="drop-content">
-              <div class="drop-content-inner">
-                <p>{{ t9n 'NEW_POST_TITLE_TOOLTIP_TEXT' }}</p>
-              </div>
+<div data-abide>    
+    <div class="clearfix">
+        <div class="item-details">
+            <div class="item item-input bz-tool-tip" data-open-on="click" data-top-center="top center" data-theme="drop-theme-arrows-bounce-dark">
+                <div class="small-12 medium-3 input-label left"><span class="middle-label">{{ t9n 'NEW_POST_TITLE' }} <i class="bz-icon bz-hint drop-target"></i></span></div>
+                <div class="small-12 medium-9 large-9 left">
+                    <div class="bz-count-characters text-right"><span>70</span> {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
+                    <input class="js-post-title" type="text" label-type="stacked" name="title" required data-schema-key="title" maxlength="70" value="{{ getTitle }}" placeholder="{{ t9n 'NEW_POST_TITLE_PLACEHOLDER' }}">
+                    <!--Error-->
+                    <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
+                    <!--Drop tips-->
+                    <div class="drop-content">
+                      <div class="drop-content-inner">
+                        <span class="bz-drop-close"><i class="fa fa-times-circle"></i></span>
+                        <p>{{ t9n 'NEW_POST_TITLE_TOOLTIP_TEXT' }}</p>
+                      </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </label>
     </div>
-  </div>
 
   <div class="clearfix">
     <div class="item-details">
-      <label type="stacked" class="item item-input item-stacked-label">
-        <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_DESCRIPTION' }}</div>
+      <div type="stacked" class="item item-input item-stacked-label bz-tool-tip" data-open-on="click" data-top-center="top center" data-theme="drop-theme-arrows-bounce-dark">
+        <div class="small-12 medium-3 input-label left"><span class="middle-label">{{ t9n 'NEW_POST_DESCRIPTION' }} <i class="bz-icon bz-hint drop-target"></i></span></div>
         <div class="small-12 medium-9 large-9 left">
-          <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
             <div class="bz-count-characters text-right"><span>1000</span>  {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
-                <textarea class="drop-target js-post-description" rows="3" label-type="stacked" name="body" required=""
-                          data-schema-key="body" maxlength="1000" value="{{ getDescription }}"
-                          placeholder="{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER' }}"></textarea>
+                <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required data-schema-key="body" maxlength="1000" value="{{ getDescription }}" placeholder="{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER' }}"></textarea>
+                <!--Error-->
+                <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
 
             <div class="drop-content">
               <div class="drop-content-inner">
-                <p>{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER_TOOLTIP_TEXT' }}</p>
+                  <span class="bz-drop-close"><i class="fa fa-times-circle"></i></span>
+                  <p>{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER_TOOLTIP_TEXT' }}</p>
               </div>
             </div>
-          </div>
         </div>
-      </label>
+      </div>
     </div>
   </div>
-
+</div>
 </template>
 
 <template name="postPhotoUpload">
@@ -510,7 +516,7 @@
 
 <template name="postDetailsHelp">
   <div class="clearfix padding-top">
-    <label class="item item-input item-select">
+    <div class="item item-input item-select">
       <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_DESCRIBE' }}</div>
       <div class="small-12 medium-9 large-9 left">
 
@@ -539,7 +545,7 @@
 
       </div>
 
-    </label>
+    </div>
   </div>
 
 </template>

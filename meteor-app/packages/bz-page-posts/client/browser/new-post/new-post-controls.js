@@ -58,7 +58,17 @@ Template.postDetailsHelp.events({
   }
 });
 
-Template.postDetailsHelp.helpers({});
+/*Template.postDetailsCommon.rendered = function() {
+  $(document).foundation({
+    abide: {
+      live_validate: true,
+      validate_on_blur: true,
+      focus_on_invalid: true,
+      error_labels: true,
+      timeout: 100
+    }
+  });
+};*/
 
 Template.postDetailsCommon.helpers({
   getTitle: function () {
