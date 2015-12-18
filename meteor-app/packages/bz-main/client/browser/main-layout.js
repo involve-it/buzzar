@@ -3,14 +3,20 @@
  */
 bz.help.maps.initLocation();
 
-Template.mainLayout.created = function () {};
+Template.mainLayout.created = function () {}
 
 Template.mainLayout.rendered = function () {
+
+  bz.ui.initFoundationOffCanvas();
   layoutRenderedLazyLoad();
+  
 };
 
 Template.mainLayoutHome.rendered = function () {
+
+  bz.ui.initFoundationOffCanvas();
   layoutRenderedLazyLoad();
+  
 };
 
 
