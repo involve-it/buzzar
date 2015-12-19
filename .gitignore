@@ -7,6 +7,8 @@
 
 #IDE files:
 .idea/workspace.xml
+.idea/deployment.xml
+.idea/misc.xml
 meteor-app/.idea/
 
 # ignore these folders:
