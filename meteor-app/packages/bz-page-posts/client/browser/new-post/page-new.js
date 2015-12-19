@@ -23,6 +23,12 @@ Template.postsNew.helpers({
 Template.postsNew.events({
   'click .js-create-post': function (e, v) {
     var res = true;
+
+    if(v.$('[data-invalid]')) {
+      $('[data-abide]').submit();
+      res = false;
+    }
+        
     if (!v.$('.js-post-title').val()) {
       alert('Title can not be empty');
       res = false;
@@ -31,6 +37,7 @@ Template.postsNew.events({
       alert('Please select at least one location');
       res = false;
     }
+    
     if(res){
       createNewPostFromView(v);
     }

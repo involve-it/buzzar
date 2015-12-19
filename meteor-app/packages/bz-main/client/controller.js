@@ -50,7 +50,7 @@ layoutRenderedLazyLoad = function () {
       bz.runtime.help.hasSeenTour = true;
       //createToolTipsForHomePage();
 
-      window.cr = createDropTips;
+      //window.cr = createDropTips;
       createDropTips();
     }
 
@@ -77,6 +77,7 @@ createDropTips = function() {
 
     toast(
         //['/client/style/drop-theme-arrows-bounce.css'],
+        //['http://github.hubspot.com/drop/docs/welcome/examples/social-sharing/css/drop-example-theme-social-sharing.css'],
         ['https://s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/tether.js', function () {
           return window.Tether;
         }],
@@ -91,11 +92,11 @@ createDropTips = function() {
             classPrefix: 'drop'
           });
 
-
-
-          DropTooltip = function() {
+          bz.ui.runtime.drop = [];
+          
+              DropTooltip = function() {
             return $('.bz-tool-tip').each(function() {
-              var $example, $target, content, drop, openOn, theme, isMobile, pos;
+              var $example, $target, content, drop, openOn, theme, isMobile, pos, bzClose;
 
               isMobile = $(window).width() < 890;
               pos = 'left middle';
@@ -108,7 +109,11 @@ createDropTips = function() {
               $target = $example.find('.drop-target');
               $target.addClass(theme);
               content = $example.find('.drop-content').html();
-              return drop = new _Drop({
+              //bzClose = $('.bz-drop-close');
+              bzClose = $example.find('.bz-drop-close');
+
+
+              drop = new _Drop({
                 target: $target[0],
                 classes: theme,
                 position: pos,
@@ -118,16 +123,26 @@ createDropTips = function() {
                 content: content,
                 remove: false
               });
+              
+              $(drop.drop).find('.bz-drop-close').click(function(){
+                var d2 = drop;
+                d2.close();
+              });
+              
+              bz.ui.runtime.drop.push(drop);
+              
+              return drop;
+              
             });
-
+                        
           };
-
+          
           return DropTooltip();
 
         }
 
     );
-  }, 1000);
+  }, 100);
 
 
 

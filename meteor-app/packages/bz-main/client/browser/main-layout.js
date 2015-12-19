@@ -6,32 +6,21 @@ bz.help.maps.initLocation();
 Template.mainLayout.created = function () {}
 
 Template.mainLayout.rendered = function () {
-  $(document).foundation({
-    offcanvas : {
-      //move, overlap_single or overlap, reveal
-      open_method: 'move',
-      close_on_click : true
-    }
-  });
+
+  bz.ui.initFoundationOffCanvas();
   layoutRenderedLazyLoad();
+  
 };
 
 Template.mainLayoutHome.rendered = function () {
-  $(document).foundation({
-    offcanvas : {
-      //move, overlap_single or overlap, reveal
-      open_method: 'move',
-      close_on_click : true
-    }
-  });
+
+  bz.ui.initFoundationOffCanvas();
   layoutRenderedLazyLoad();
+  
 };
 
 
-
-
-Template.changeLanguage.rendered = function() {
-  /*
+function detectLanguage(){
   var lang = window.navigator.userLanguage || window.navigator.language;
   //temporarily getting just first two letters of language (i.e. for en-US we'll take 'en' only).
   if (lang){
@@ -39,23 +28,34 @@ Template.changeLanguage.rendered = function() {
       lang = lang.substr(0, 2);
     }
   } else {
-    // English is default
-    lang = "en";
+    lang = T9n.defaultLanguage;
   }
-  */
-   
+  return lang;
+}
+
+function setLanguage(){
+  var lang = detectLanguage();
+  Meteor.call('uiSetUserLanguage', lang, function(error, result) {
+    //if (error) return console.log(error.reason);
+  });
+  return lang;
+}
+
+Template.changeLanguage.rendered = function() {
   var lang;
   if(Meteor.user() && Meteor.user().profile) {
-    if (!Meteor.user().profile.settings || !Meteor.users.findOne(Meteor.userId()).profile.settings.language) {
-      lang = T9n.defaultLanguage;
+    if (!Meteor.user().profile.settings || !Meteor.user().profile.settings.language) {
+      lang = setLanguage();
+          //T9n.defaultLanguage;
     } else {
-      lang = Meteor.users.findOne(Meteor.userId()).profile.settings.language;
+      lang = Meteor.user().profile.settings.language;
 
-      if (lang) {
-        T9n.setLanguage(lang);
-        $('.dropdown-choose-lang').val(lang);
+      if (!lang){
+        lang = setLanguage();
       }
     }
+    T9n.setLanguage(lang);
+    $('.dropdown-choose-lang').val(lang);
   }
 };
 
@@ -67,9 +67,8 @@ Template.changeLanguage.events({
     if(!Meteor.user().profile.settings || Meteor.user().profile.settings.language !== lang) {
       T9n.setLanguage(lang);
       $('.dropdown-choose-lang').val(lang);
-    
       Meteor.call('uiSetUserLanguage', lang, function(error, result) {
-        if (error) return console.log(error.reason);
+        //if (error) return console.log(error.reason);
       });
     }
   }

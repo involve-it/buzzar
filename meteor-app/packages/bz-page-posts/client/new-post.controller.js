@@ -7,7 +7,8 @@ newPostType = new ReactiveVar();
 // handle post type:
 setNewPostType = function (type) {
   newPostType.set(type);
-}
+};
+
 
 
 renderNewPostFormByType = function (type, $el) {
@@ -19,7 +20,10 @@ renderNewPostFormByType = function (type, $el) {
     var tempName = 'bzPostsNewFormGeneric';
     Blaze.renderWithData(Template[tempName], {}, $el)
   }
-}
+
+  bz.ui.initFoundationValidation();
+  
+};
 
 // render form according to type on type changed:
 trackNewPostTypeChange = function (selector) {
@@ -32,4 +36,4 @@ trackNewPostTypeChange = function (selector) {
       renderNewPostFormByType(newPostType, elem);
     }
   })
-}
+};

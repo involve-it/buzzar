@@ -22,11 +22,28 @@
         font-family: inherit;
         background-color: rgba(235, 235, 235, 0.98);
         color: rgb(63, 68, 82);
-        padding: 1em;
+        padding: 1.2em;
         line-height: 1.5em;
   
         p {
           font-size: 14px;
+          margin-bottom: 0;
+        }
+        
+        .bz-drop-close {
+          cursor: pointer;
+          position: absolute;
+          font-size: 20px;
+          top: 3px;
+          right: 5px;
+          
+          i {
+            color: darken(rgba(235, 235, 235, 0.98), 15%);
+            
+            &:hover {
+              color: darken(rgba(235, 235, 235, 0.98), 30%);
+            }
+          }
         }
       }
     }
@@ -40,7 +57,9 @@
       height: 0;
       border-color: transparent;
       border-width: 12px;
-      border-style: solid; }
+      border-style: solid;
+      cursor: pointer;
+    }
     
   .drop-element.drop-theme-arrows-bounce-dark.drop-element-attached-bottom.drop-element-attached-center .drop-content {
     margin-bottom: 12px;
@@ -51,6 +70,7 @@
       left: 50%;
       margin-left: -12px;
       border-top-color: rgba(235, 235, 235, 0.98);
+      border-bottom: 0;
     }
     
   .drop-element.drop-theme-arrows-bounce-dark.drop-element-attached-top.drop-element-attached-center .drop-content {

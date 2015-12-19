@@ -3,20 +3,19 @@
   <!--<i>http://www.youcaring.com/ashley-reed-376889</i></span>-->
   <div class="clearfix">
     <div class="item-details">
-      <label class="item item-input item-stacked-label">
+      <div class="item item-input item-stacked-label bz-tool-tip" data-open-on="click" data-top-center="top center" data-theme="drop-theme-arrows-bounce-dark">
         <!--<span class="input-label">Original Url (optional)</span>-->
         <div class="item1 item-input-inset">
           <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_IMPORT_FROM_WEB' }}
-            ({{ t9n 'NEW_POST_IMPORT_FROM_WEB_OPTIONAL' }})
+            <span>({{ t9n 'NEW_POST_IMPORT_FROM_WEB_OPTIONAL' }})</span>  <i class="bz-icon bz-hint drop-target"></i>
           </div>
           <div class="small-12 medium-9 large-9 left">
             <div class="bz-flex-style">
-              <div class="bz-tool-tip" data-open-on="hover" data-theme="drop-theme-arrows-bounce-dark">
-                <input name="url" placeholder="{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER' }}"
-                       class="drop-target original-url error js-original-url" type="text">
-
+              <div>
+                <input name="url" placeholder="{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER' }}" class="original-url error js-original-url" type="text">
                 <div class="drop-content">
-                  <p>{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER_TOOLTIP_TEXT' }}</p>
+                    <span class="bz-drop-close"><i class="fa fa-times-circle"></i></span>
+                    <p>{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER_TOOLTIP_TEXT' }}</p>
                 </div>
               </div>
 
@@ -31,7 +30,7 @@
           </div>
           <!--<a name="original-post-details" class="button button-small disabled js-post-details-link" href="/posts/new/original-details" >-->
         </div>
-      </label>
+      </div>
     </div>
     <input type="button" value="scan" class="js-scan-url hidden"/>
   </div>

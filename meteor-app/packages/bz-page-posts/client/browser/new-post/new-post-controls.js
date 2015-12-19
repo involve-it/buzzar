@@ -58,7 +58,6 @@ Template.postDetailsHelp.events({
   }
 });
 
-Template.postDetailsHelp.helpers({});
 
 Template.postDetailsCommon.helpers({
   getTitle: function () {
@@ -142,6 +141,34 @@ Template.bzPostsNewFormMemo.rendered = function() {
   
 };
 
+Template.bzPostsNewFormMemo.events({
+  'click .js-btn-additional-param': function(e, v) {
+    
+    var target = v.$('.bz-btn-additional-param-open'),
+        children = v.$('.bz-param-children'),
+        childHeight = target.height();
+    
+    if(!target.hasClass('bz-container-open')) {
+      $(e.target).addClass('active');
+      target.addClass('bz-container-open');
+      children.css({'marginTop': 0});
+
+      var target_top= target.offset().top;
+      $('html, body').animate({scrollTop:target_top}, 'fast');
+      
+    } else {
+      $(e.target).removeClass('active');
+      target.removeClass('bz-container-open');
+      children.css({'marginTop': -childHeight});
+      
+      
+    }
+    
+    
+    //bz-param-children margin-top = height bz-btn-additional-param-open
+    
+  }
+});
 
 function setPostDetailsTemplate(name, v) {
   $('.js-post-details-categorized').empty();
