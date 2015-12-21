@@ -50,9 +50,18 @@ Package.onUse(function (api) {
 
   ], global.bzSettings.webBrowserArray);
   api.addFiles([
+    'client/ionic/side-menu/vendor/classie.js',
+    'client/ionic/side-menu/vendor/snap.svg-min.js',
+
+    'client/ionic/side-menu/toggleMenuRight.html',
+    'client/ionic/side-menu/toggleMenuLeft.html',
+    'client/ionic/side-menu/menu.html',
+    'client/ionic/side-menu/menu.js',
+    'client/ionic/side-menu/menu.less',
+
     'client/ionic/category-list-buttons.html',
     'client/ionic/category-list-buttons.js',
-    'client/ionic/category-list-buttons.less'
+    'client/ionic/category-list-buttons.less',
   ], global.bzSettings.webCordovaArray);
 });
 

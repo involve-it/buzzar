@@ -1,5 +1,5 @@
 // sets global, to have an can-be-used-in-all-packages globals for browser/cordova packages compilation:
-setPackagesCompilationGlobals();
+setPackagesCompilationGlobals(true);
 
 Package.describe({
   name: 'arutune:bz-api',

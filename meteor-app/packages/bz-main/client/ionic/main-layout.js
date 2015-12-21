@@ -3,6 +3,7 @@
  */
 
 bz.help.maps.initLocation();
+/*
 Template.ionSideMenuContent.rendered = function () {
 
   var template = this;
@@ -13,16 +14,17 @@ Template.ionSideMenuContent.rendered = function () {
 
 Template.ionBody.rendered = function () {
 
-  /*side menu settings*/
+  /!*side menu settings*!/
   if (Meteor.user()) {
 
-    IonSideMenu.snapper.settings({
-      /*disable: 'right',*/
-      /*touchToDrag: false,*/
-      /*hyperextensible: false,*/
+   /!* IonSideMenu.snapper.settings({
+      /!*disable: 'right',*!/
+      /!*touchToDrag: false,*!/
+      /!*hyperextensible: false,*!/
       element: document.getElementById('drag-content'),
       dragger: document.getElementById('drag-right')
-    });
+    });*!/
 
   }
 };
+*/

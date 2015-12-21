@@ -20,11 +20,13 @@ Package.onUse(function (api) {
   api.use(['fourseven:scss@3.2.0', 'edgee:slingshot']); // todo : remove 2.0.0, when package bug is fixed.
   api.use(['arutune:bz-api', 'arutune:bz-control-common']);
   api.use([
-    'meteoric:ionic',
+   /* 'meteoric:ionic',
     'meteoric:ionic-sass',
     'meteoric:ionicons-sass',
     'meteoric:autoform-ionic',
-    'fortawesome:fontawesome'
+    'fortawesome:fontawesome'*/
+    'angular',
+    'driftyco:ionic'
   ], global.bzSettings.webCordovaArray);
   //api.use([ 'cordova:com.ionic.keyboard', 'cordova:org.apache.cordova.device' ], 'web.cordova');// @Slava: do we need this?
   api.addFiles([

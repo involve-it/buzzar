@@ -27,7 +27,7 @@ Package.onUse(function (api) {
     //'client/router.js',
     'client/controller.js'
   ], 'web');
-  
+
   api.addFiles([
     'client/browser/around-you.html',
     'client/browser/around-you.js',

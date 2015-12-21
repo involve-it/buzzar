@@ -1,13 +1,48 @@
 <template name="mainLayout">
+  asdf
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>
+      qwer
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <!--
+    The views will be rendered in the <ion-nav-view> directive below
+    Templates are in the /templates folder (but you could also
+    have templates inline in this html file if you'd like).
+  -->
+  <ion-nav-view>
+    kpokpko
+  </ion-nav-view>
+
+</template>
+<template name="mainLayoutHome">
+  asdf
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>
+      qwer
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <!--
+    The views will be rendered in the <ion-nav-view> directive below
+    Templates are in the /templates folder (but you could also
+    have templates inline in this html file if you'd like).
+  -->
+  <ion-nav-view>
+    kpokpko
+  </ion-nav-view>
+</template>
+
+<!--
+<template name="mainLayout">
   {{#if currentUser}}
     {{#ionBody}}
-      <!-- Вместо rendered, можно использовать side="left" -->
+      &lt;!&ndash; Вместо rendered, можно использовать side="left" &ndash;&gt;
       {{#ionSideMenuContainer }}
 
         {{> ionMenus}}
 
         {{#ionSideMenuContent}}
-          <!--<div id="drag-left"></div>-->
+          &lt;!&ndash;<div id="drag-left"></div>&ndash;&gt;
           <div id="drag-right"></div>
 
           {{> ionNavBar class="bar-fantasia"}}
@@ -24,10 +59,10 @@
   {{/if}}
 </template>
 <template name="mainLayoutHome">
-  <!--{{#if currentUser}}-->
+  &lt;!&ndash;{{#if currentUser}}&ndash;&gt;
     {{#ionBody}}
       {{> yield}}
-      <!--{{#ionSideMenuContainer }}
+      &lt;!&ndash;{{#ionSideMenuContainer }}
 
         {{> ionMenus}}
 
@@ -42,9 +77,9 @@
           {{/ionNavView}}
 
         {{/ionSideMenuContent}}
-      {{/ionSideMenuContainer}}-->
+      {{/ionSideMenuContainer}}&ndash;&gt;
     {{/ionBody}}
-  <!--{{else}}-->
-    <!--{{> yield}}-->
-  <!--{{/if}}-->
-</template>
+  &lt;!&ndash;{{else}}&ndash;&gt;
+    &lt;!&ndash;{{> yield}}&ndash;&gt;
+  &lt;!&ndash;{{/if}}&ndash;&gt;
+</template>-->

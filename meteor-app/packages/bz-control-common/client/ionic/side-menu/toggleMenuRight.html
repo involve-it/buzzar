@@ -1,0 +1,76 @@
+<template name="toggleMenuRight">
+    {{#ionSideMenu side="right"}}
+        {{#ionView}}
+            <div class="bar bar-header bar-fantasia-dark">
+                <h1 class="title">BUZZAR profile</h1>
+            </div>
+
+            {{#ionContent class="bg-side-menu not-has-subheader"}}
+                <div class="userProfile">
+                    {{> slideMenuUserProfile}}
+                </div>
+                
+                {{#ionList class="navUserMenu"}}
+
+                    <div data-ion-menu-close class="{{isActiveRoute 'home'}}">
+                        {{#ionItem path='home' iconLeft=true }}
+                            <p>Home</p>
+                            {{> ionIcon icon="ios-home-outline" }}
+                        {{/ionItem}}
+                    </div>
+
+                    <div data-ion-menu-close class="{{isActiveRoute 'postsMy'}}">
+                        {{#ionItem path='postsMy' iconLeft=true }}
+                            <p>My posts</p>
+                            <span class="count-item {{#unless postsCount}} zero {{/unless}}">{{#if postsCount}}{{postsCount}}{{else}}0{{/if}}</span>
+                            {{> ionIcon icon="ios-email-outline" }}
+                        {{/ionItem}}
+                    </div>
+
+                    <div data-ion-menu-close class="{{isActiveRoute 'pageMap'}}">
+                        {{#ionItem path='pageMap' iconLeft=true }}
+                            <p>Map</p>
+                            {{> ionIcon icon="ios-map" }}
+                        {{/ionItem}}
+                    </div>
+
+                    <div data-ion-menu-close class="{{isActiveRoute 'chats'}}">
+                        {{#ionItem path='chats' iconLeft=true }}
+                            <p>Chats</p>
+                            {{> ionIcon icon="ios-chatboxes-outline" }}
+                        {{/ionItem}}
+                    </div>
+
+                    <div data-ion-menu-close class="{{isActiveRoute 'help'}}">
+                        {{#ionItem iconLeft=true }}
+                            <p>Help & feedback</p>
+                            {{> ionIcon icon="ios-help-outline" }}
+                        {{/ionItem}}
+                    </div>
+                   
+                    <div class="{{isActiveRoute 'postsNew'}}"  data-ion-menu-close>
+                        <a class="item item-icon-left" href="/posts/new">
+                            {{> ionIcon icon="ios-plus-empty" }}
+                            <p>New Post</p>
+                        </a>
+                    </div>
+                    
+                    <div class="{{isActiveRoute 'myProfile'}}"  data-ion-menu-close>
+                        <a class="item item-icon-left" href="/settings">
+                            {{> ionIcon icon="ios-cog-outline" }}
+                            <p>Settings</p>
+                        </a>
+                    </div>
+
+                    <div data-ion-menu-close>
+                        <a class="item item-icon-left" href="/sign-out">
+                            {{> ionIcon icon="log-out" }}
+                            <p>Log out</p>
+                        </a>
+                    </div>
+
+                {{/ionList}}
+            {{/ionContent}}
+        {{/ionView}}
+    {{/ionSideMenu}}
+</template>
