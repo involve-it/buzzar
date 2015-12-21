@@ -61,6 +61,7 @@ en = {
   LOCATION_MY_CURRENT_LOCATION: 'My current location',
 
   //New post
+  NEW_POST_NEWTYPE_BEACON_TITLE: 'Choose the appropriate beacon',
   NEW_POST_IMPORT_FROM_WEB: 'Import from Web',
   NEW_POST_IMPORT_FROM_WEB_OPTIONAL: 'optional',
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER: 'Original Post Url',

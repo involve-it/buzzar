@@ -339,6 +339,7 @@
 
 
 .js-btn-additional-param {
+  padding: 10px 0 0 0;
   
   a {
     color: @text-link-green;
@@ -350,6 +351,7 @@
 
 .bz-btn-additional-param-open {
   overflow: hidden;
+  display: none; /*Hide show*/
   
   .bz-param-children {
     margin-bottom: -9999px;
@@ -359,7 +361,8 @@
   
   
   &.bz-container-open {
-
+    padding-top: 30px;
+    
     .bz-param-children {
       margin-bottom: 0;
       transition: margin-top .240s ease;

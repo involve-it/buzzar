@@ -59,6 +59,7 @@ ru = {
   LOCATION_MY_CURRENT_LOCATION: 'Определить текущее местоположение',
   
   //New post
+  NEW_POST_NEWTYPE_BEACON_TITLE: 'Выберите подходящий маячок',
   NEW_POST_IMPORT_FROM_WEB: 'Взять из интернета',
   NEW_POST_IMPORT_FROM_WEB_OPTIONAL: 'необязательно',
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER: 'Url адрес объявления в интернете',
