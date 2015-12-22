@@ -21,25 +21,35 @@ Template.postsNew.helpers({
   }
 });
 Template.postsNew.events({
-  'click .js-create-post': function (e, v) {
-    var res = true;
+  'submit .js-create-post': function (e, v) {
 
-    if(v.$('[data-invalid]')) {
-      $('[data-abide]').submit();
-      res = false;
-    }
-        
-    if (!v.$('.js-post-title').val()) {
-      alert('Title can not be empty');
-      res = false;
-    }
-    if (!Session.get(bz.const.posts.location1) && !Session.get(bz.const.posts.location2)) {
-      alert('Please select at least one location');
-      res = false;
-    }
+    var res = true;
     
+        
+
+
+    if(validatePostsNewPage(v)){
+      res = res && true;
+    }
     if(res){
       createNewPostFromView(v);
     }
   }
 });
+
+
+// HELPERS:
+function validatePostsNewPage (v){
+  // 1. add abide event listeners:
+  // 2. submit abide forms to trigger validation:
+  /*if (!v.$('.js-post-title').val()) {
+   alert('Title can not be empty');
+   res = false;
+   }*/
+
+  if (!Session.get(bz.const.posts.location1) && !Session.get(bz.const.posts.location2)) {
+    alert('Please select at least one location');
+    res = false;
+  }
+  // 3. remove event listeners:
+}

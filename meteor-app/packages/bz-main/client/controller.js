@@ -117,7 +117,7 @@ createDropTips = function() {
                 target: $target[0],
                 classes: theme,
                 position: pos,
-                constrainToWindow: false,
+                constrainToWindow: true,
                 constrainToScrollParent: false,
                 openOn: openOn,
                 content: content,
