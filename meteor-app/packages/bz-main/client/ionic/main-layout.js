@@ -28,3 +28,43 @@ Template.ionBody.rendered = function () {
   }
 };
 */
+
+angular
+    .module('Whatsapp', [
+      'angular-meteor',
+      'ionic'
+    ]);
+
+if (Meteor.isCordova) {
+  angular.element(document).on('deviceready', onReady);
+}
+else {
+  angular.element(document).ready(onReady);
+}
+
+function onReady() {
+  angular.bootstrap(document, ['Whatsapp']);
+}
+
+angular
+    .module('Whatsapp')
+    .config(config);
+
+function config($stateProvider, $urlRouterProvider) {
+  $stateProvider
+      .state('tab', {
+        url: '/tab',
+        abstract: true,
+        templateUrl: 'client/templates/tabs.html'
+      })
+      .state('tab.chats', {
+        url: '/chats',
+        views: {
+          'tab-chats': {
+            templateUrl: 'client/templates/chats.html'
+          }
+        }
+      });
+
+  $urlRouterProvider.otherwise('tab/chats');
+}

@@ -1,5 +1,4 @@
 <template name="mainLayout">
-  asdf
   <ion-nav-bar class="bar-stable">
     <ion-nav-back-button>
       qwer
@@ -15,11 +14,11 @@
   </ion-nav-view>
 
 </template>
+
 <template name="mainLayoutHome">
-  asdf
   <ion-nav-bar class="bar-stable">
     <ion-nav-back-button>
-      qwer
+      qwer5
     </ion-nav-back-button>
   </ion-nav-bar>
   <!--
@@ -28,8 +27,39 @@
     have templates inline in this html file if you'd like).
   -->
   <ion-nav-view>
-    kpokpko
+    kpokpko5
   </ion-nav-view>
+
+    <ion-tabs class="tabs-stable tabs-icon-top tabs-color-positive" ng-cloak>
+
+        <ion-tab title="Favorites" icon-on="ion-ios-star" icon-off="ion-ios-star-outline" href="#/tab/favorites">
+            <ion-nav-view name="tab-favorites">11111</ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Recents" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline" href="#/tab/recents">
+            <ion-nav-view name="tab-recents">22222</ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Contacts" icon-on="ion-ios-person" icon-off="ion-ios-person-outline" href="#/tab/contacts">
+            <ion-nav-view name="tab-contacts">33333</ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Chats" icon-on="ion-ios-chatbubble" icon-off="ion-ios-chatbubble-outline" href="#/tab/chats">
+            <ion-nav-view name="tab-chats">444444</ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Settings" icon-on="ion-ios-cog" icon-off="ion-ios-cog-outline" href="#/tab/settings">
+            <ion-nav-view name="tab-settings">555555</ion-nav-view>
+        </ion-tab>
+
+    </ion-tabs>
+
+    <ion-view view-title="Chats">
+        <ion-content>
+
+        </ion-content>
+    </ion-view>
+    
 </template>
 
 <!--
