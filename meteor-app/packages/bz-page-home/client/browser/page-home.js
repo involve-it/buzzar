@@ -13,6 +13,12 @@ Template.pageHome.events({
       $('.js-search-text-modal').val($('.js-search-text').val())
       $('.js-search-text-modal').focus();
     }
+  },
+  'mouseover .js-pause-header-video': function(e,v){
+    homeVideo && homeVideo.pause();
+  },
+  'mouseout .js-pause-header-video': function(e,v){
+    homeVideo && homeVideo.play();
   }
 });
 
@@ -32,18 +38,29 @@ Template.bzMeteorLogo.helpers({
     return Spacebars.SafeString(ret);
   }
 });
-
+homeVideo;
 Template.pageHome.rendered = function () {
   var view = this,
-      video = view.$('#bz-bg-video');
-  
+      video = view.$('.js-header-bg-video');
+  homeVideo = video[0];
+  getScreenSize();
+  if( getScreenSize() === 'lg' ) {
+      if( video.get(0) && video.get(0).canPlayType ) {
+        video.get(0).playbackRate = 0.5; /* 0.5 is half speed (slower) */
+        video.get(0).play();
+        video.addClass("video-playing");
+        view.$(".bz-slide-show-list").addClass("hide");
+      }
+  } else if( getScreenSize() === 'md' ) {
+    console.log('запустить только slide');
+  }
   function getScreenSize() {
     var res;
     if(matchMedia) {
       var lg = window.matchMedia("(min-width: 1024px)").matches,
-          md = window.matchMedia("(min-width: 640px) and (max-width: 1024px)").matches,
-          sm = window.matchMedia("(max-width: 640px)").matches;
-      
+        md = window.matchMedia("(min-width: 640px) and (max-width: 1024px)").matches,
+        sm = window.matchMedia("(max-width: 640px)").matches;
+
       if(lg) {
         res = 'lg';
       } else if (md) {
@@ -52,25 +69,8 @@ Template.pageHome.rendered = function () {
         res = 'sm';
       }
     }
-    
+
     return res;
   }
-
-  getScreenSize();
-  
-  if( getScreenSize() === 'lg' ) {
-      if( video.get(0) && video.get(0).canPlayType ) {
-        video.get(0).playbackRate = 0.5; /* 0.5 is half speed (slower) */
-        video.get(0).play();
-        video.addClass("video-playing");
-        view.$(".bz-slide-show-list").addClass("hide");
-      }
-    
-  } else if( getScreenSize() === 'md' ) {
-    console.log('запустить только slide');
-  }
-   
-  
   function initSlideshowOrVideo() {}
-  
 };
