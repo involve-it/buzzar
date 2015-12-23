@@ -73,6 +73,7 @@ en = {
   NEW_POST_MAIN_INFORMATION_MUTED: 'Информация из этой секции будет использоваться при поиске вашего объявления. Пожалуйста, указывайте точные сведения, чтобы найти подходящий вариант.',
   NEW_POST_WHERE: 'Where',
   NEW_POST_WHEN: 'When',
+  NEW_POST_DURATION: 'Duration',
   NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователям Buzzar найдут объявления в подходящем для них месте.',
   NEW_POST_GALLERY_PHOTOS: 'Photos',
   NEW_POST_GALLERY_PHOTOS_MUTED: 'Please add photos for the post.',

@@ -11,6 +11,16 @@
   overflow: hidden;
 }
 
+.disabled {
+  pointer-events:none;
+  color: @disabled;
+  
+  a {
+    pointer-events:none;
+    color: @disabled;
+  }
+}
+
 .btn-disabled,
 button.disabled,
 button[disabled],
@@ -18,7 +28,7 @@ button[disabled],
 .button[disabled] {
   pointer-events:none;
   color: @disabled;
-  background-color: #b9b9b9;
+  background-color: #e9e9e9;
 }
 
 .split {
