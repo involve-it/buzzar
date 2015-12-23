@@ -72,14 +72,21 @@ Template.bzChooseLocationModal.events({
   'click .js-set-location-button': function (e, v) {
     //var that = this;
     //Tracker.nonreactive(function () {
-    var locName = $('.js-location-name-input.tt-input').val()
-    setLocationToSessionFromData(locName, v.data, this.sessionName);
-    if(this.sessionName === 'bz.control.search.location') {
-      searchModalView && Blaze.remove(searchModalView);
-      $('.js-global-location').foundation('reveal', 'close');
+    // todo: submit view for validation.
+    // validateAbideView(v);
+
+    var locName = $('.js-location-name-input.tt-input').val() || $('.js-location-name-input').val();
+    if(!locName){
+
     } else {
-      searchModalView2 && Blaze.remove(searchModalView2);
-      $('.js-new-post-location').foundation('reveal', 'close');
+      setLocationToSessionFromData(locName, v.data, this.sessionName);
+      if (this.sessionName === 'bz.control.search.location') {
+        searchModalView && Blaze.remove(searchModalView);
+        $('.js-global-location').foundation('reveal', 'close');
+      } else {
+        searchModalView2 && Blaze.remove(searchModalView2);
+        $('.js-new-post-location').foundation('reveal', 'close');
+      }
     }
     return false;
   },
@@ -87,7 +94,7 @@ Template.bzChooseLocationModal.events({
     var locName, locId;
     locName = e.currentTarget.dataset.locationname;
     if (locName) {
-      $('.js-location-name-input.tt-input').val(locName);
+      $('.js-location-name-input').val(locName);
     }
     var locId = e.currentTarget.dataset.locationid;
     if (locId) {

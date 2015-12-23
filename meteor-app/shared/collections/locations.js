@@ -114,7 +114,7 @@ var locationsSchema = new SimpleSchema({
   name: {
     type: String,
     optional: false,
-    max: 50
+    max: 500
   },
   coords: {
     type: coordsSchema,

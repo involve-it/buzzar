@@ -160,7 +160,7 @@ Template.bzControlSearch.events({
   'blur .js-nearby-places': function () {
   },
   'click .js-search-btn': function (e, v) {
-    var text = $('.js-nearby-places.tt-input').val();
+    var text = $('.js-nearby-places').val();
     if (text) {
       Session.set('bz.control.search.searchedText', text);
     }

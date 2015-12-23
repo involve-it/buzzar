@@ -25,7 +25,7 @@ Template.bzMeteorLogo.helpers({
   getLocalAppName: function(){
     var appName = T9n.get('APP_NAME'), ret;
     if(T9n.getLanguage() === 'en'){
-      ret = appName + '<span>ound</span>';
+      ret = appName;// + '<span>ound</span>';
     } else {
       ret = appName;
     }
