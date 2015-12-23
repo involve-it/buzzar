@@ -63,7 +63,6 @@ layoutRenderedLazyLoad = function () {
     //alert('start lazyload');
     //cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js
     /*include('App.Nasa', [['Rover', 'https://s3-us-west-1.amazonaws.com/buzzar/v0.5/public/js/toastr.async.js'], ['css', '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css']], function(Rover){
-     debugger;
      return {
      rover   : Rover
      }
@@ -91,8 +90,6 @@ createDropTips = function () {
         _Drop = Drop.createContext({
           classPrefix: 'drop'
         });
-
-        bz.ui.runtime.drop = [];
 
         DropTooltip = function () {
           return $('.bz-tool-tip').each(function () {
@@ -128,8 +125,6 @@ createDropTips = function () {
               var d2 = drop;
               d2.close();
             });
-
-            bz.ui.runtime.drop.push(drop);
 
             return drop;
 

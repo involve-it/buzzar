@@ -38,6 +38,7 @@ Package.onUse(function (api) {
     'client/lib/vendor/toast.js',
 
     'client/lib/01_inits/accounts.js',
+    'client/lib/01_inits/bz-ui.js',
     'client/lib/01_inits/location.js',
     'client/lib/01_inits/fb.js',
     'client/lib/01_inits/maps.js',

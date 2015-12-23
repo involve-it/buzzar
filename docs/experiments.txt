@@ -1,0 +1,8 @@
+fireflies:
+http://www.youtube.com/watch?v=HnBhUjMPOwI
+background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url(http://cc.be/images/uploads/85/delijn_firefly_sh060_still_v001_0025.jpg);
+    //http://www.sabangdisciples.org/wp-content/uploads/2013/03/fireflies-forest-tree-plant-nature.jpg
+    //http://steamboatfriday.files.wordpress.com/2012/12/tamarfrank.jpg // good
+}
