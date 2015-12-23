@@ -48,6 +48,10 @@ Schema.UserProfile = new SimpleSchema({
     regEx: SimpleSchema.RegEx.Url,
     optional: true
   },
+  image: {
+    type: Object,
+    blackbox: true
+  }
   /*feeling: {
     type: String,
     optional: true,

@@ -29,7 +29,7 @@ Template.aroundYou.helpers({
               'coords.lng': {$gte: box.lng1, $lte: box.lng2}
             }
           }
-        }, {limit:3}).fetch();
+        }, {limit:9}).fetch();
       }
     }
     return ret;
@@ -73,6 +73,7 @@ Template.bzAroundYouItem.helpers({
       ret = bz.cols.images.findOne(phId);
       ret = ret && ret.data;
     }
+    ret = ret || '/img/content/no-photo-400x300.png';
     return ret;
   },
   disableOwnPost: function(){
