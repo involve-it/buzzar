@@ -6,7 +6,7 @@ var ru;
 
 ru = {
   //Global
-  APP_NAME: 'Маячки',
+  APP_NAME: 'Светлячки',
   CONTENT_READ_MORE_TITLE: 'Подробнее',
   CONTACT_US:'Свяжитесь с нами',
   CONTACT_SEND_MESSAGE: 'Отправить сообщение',
@@ -106,6 +106,7 @@ ru = {
   NEW_POST_SELLING_A_HOUSE: 'Продать дома',
   NEW_POST_INCOGNITO_MODE: 'Режим инкогнито',
   NEW_POST_HASHES: 'Хэштеги',
+  NEW_POST_CREATE_BTN: 'Установить Светлячок',
 
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Новое напоминание',

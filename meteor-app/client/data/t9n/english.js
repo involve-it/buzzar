@@ -6,7 +6,7 @@ var en;
 
 en = {
   //Global
-  APP_NAME: 'Buzzar',
+  APP_NAME: 'FireFlies',
   CONTENT_READ_MORE_TITLE: 'Read more...',
   CONTACT_US:'Contact us',
   CONTACT_SEND_MESSAGE: 'Send message',
@@ -108,7 +108,7 @@ en = {
   NEW_POST_SELLING_A_HOUSE: 'Selling a house',
   NEW_POST_INCOGNITO_MODE: 'Incognito mode',
   NEW_POST_HASHES: 'Hashes',
-  
+  NEW_POST_CREATE_BTN: 'Create FireFly',
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',
