@@ -17,9 +17,12 @@ Template.bzControlReviews.helpers({
 });
 Template.bzControlReviewItem.helpers({
   getTime: function(){
-    //debugger;
     var d = new Date(this.dateTime);
     return d.toLocaleString();
+  },
+  getProfileImage: function(){
+    var user = Meteor.users.findOne(this.userId);
+    return user && user._getAvatarImage();
   }
 });
 Template.bzControlAddReview.onCreated(function(){
@@ -30,7 +33,6 @@ Template.bzControlAddReview.onRendered(function(){
 });
 Template.bzControlAddReview.events({
   'click .js-post-btn': function(e, v){
-    //debugger;
     var text = $('.js-post-text-input').val(),
         userId = Meteor.userId(),
         postId = this.postId,
