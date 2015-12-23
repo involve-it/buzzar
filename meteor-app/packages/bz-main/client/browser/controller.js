@@ -27,3 +27,27 @@ bz.ui.initFoundationOffCanvas = function() {
   });
   
 };
+
+bz.ui.alert = function(message, obj) {
+  
+  message = message || 'Сообщение не передано';
+  obj = obj || { type: 'info' };
+  
+  if( obj.type == 'info' ) {
+    return sAlert.info(message, {effect: 'no effects'});
+  }
+
+  if( obj.type == 'warning' ) {
+    return sAlert.warning(message, {effect: 'no effects'});
+  }
+  
+  if( obj.type == 'error' ) {
+    return sAlert.error(message, {effect: 'no effects', timeout: 5000000});
+  }
+
+  if( obj.type == 'success' ) {
+    return sAlert.success(message, {effect: 'no effects', timeout: 5000000});
+  }
+   
+  
+};

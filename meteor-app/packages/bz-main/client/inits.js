@@ -6,6 +6,7 @@ bz.help.makeNamespace('bz.ui');
 bz.help.makeNamespace('bz.ui.runtime');
 
 
+
 bz.ui.initFoundationValidation = function() {
   console.error('This is abstract function');
 };

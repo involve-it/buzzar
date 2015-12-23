@@ -1,7 +1,8 @@
 var data = bz.help.makeNamespace('bz.runtime.newPost');
 Template.postsNew.rendered = function () {
   trackNewPostTypeChange('js-new-post-placeholder');
-}
+};
+
 Template.postsNew.created = function () {
   this.data ? _.extend(this.data, data) : _.extend({}, data);
   //$('.js-new-post-placeholder').append();
@@ -21,16 +22,14 @@ Template.postsNew.helpers({
   }
 });
 Template.postsNew.events({
-  'submit .js-create-post': function (e, v) {
-
-    var res = true;
+  'click .js-create-post': function (e, v) {
     
-        
-
+    var res = true;
 
     if(validatePostsNewPage(v)){
       res = res && true;
     }
+    
     if(res){
       createNewPostFromView(v);
     }
@@ -40,7 +39,21 @@ Template.postsNew.events({
 
 // HELPERS:
 function validatePostsNewPage (v){
+  
   // 1. add abide event listeners:
+  
+  //var form = $('[data-abide]');
+  var form = v.$('#myform');
+  form.submit();
+  
+        form.on('invalid.fndtn.abide', function () {
+          var invalid_fields = $(this).find('[data-invalid]');
+          console.log(invalid_fields);
+          return res = false;
+        });
+
+  
+  
   // 2. submit abide forms to trigger validation:
   /*if (!v.$('.js-post-title').val()) {
    alert('Title can not be empty');
@@ -51,5 +64,7 @@ function validatePostsNewPage (v){
     alert('Please select at least one location');
     res = false;
   }
+
+  
   // 3. remove event listeners:
 }

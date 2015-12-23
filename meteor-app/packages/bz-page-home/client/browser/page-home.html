@@ -1,29 +1,71 @@
 <template name="pageHome">
-  <div class="bz-container nav-bg-transparent">
-    <div class="bz-header">
 
-      {{> bzNavBar}}
-        <div class="bz-header-top">
-            <h1 class="bz-header-title">{{ t9n 'headliner' }} </h1>
+
+    <div class="bz-slideshow">
+        <div class="bz-slideshow-background">
+            <div class="bz-slideshow-items">
+                <ul class="bz-slide-show-list none-list">
+                    <li class="bz-slideshow-item bz-slideshow-item-active">
+                        <img src="https://i.ytimg.com/vi/AUXzW7k3eeo/maxresdefault.jpg" alt="firebug"/>
+                    </li>
+                </ul>
+            </div>
+            <video preload="auto" loop="loop" id="bz-bg-video" poster="https://i.ytimg.com/vi/AUXzW7k3eeo/maxresdefault.jpg" class="video-playing">
+                <source src="/firebugs.mp4" type="video/mp4"/>
+            </video>
         </div>
 
-        <div class="bz-search">
-        <div class="box-search">
-          <div class="bz-category-buttons">
-            {{> categoryListButtons}}
-          </div>
-          <form class="search" id="bz-search" role="search" method="post" action="#">
-            <i class="icon ion-search placeholder-icon"></i>
+        <div class="bz-slideshow-content">
+            <div class="bz-header nav-bg-transparent bz-container-v bz-container-h">
+                {{> bzNavBar}}
+                <div class="bz-header-top">
+                    <h1 class="bz-header-title">{{ t9n 'headliner' }} </h1>
+                </div>
 
-            {{> bzControlSearch }}
+                <div class="bz-search">
+                    <div class="box-search">
+                        <div class="bz-category-buttons">
+                            {{> categoryListButtons}}
+                        </div>
+                        <form class="search" id="bz-search" role="search" method="post" action="#">
+                            <i class="icon ion-search placeholder-icon"></i>
 
-          </form>
-            
+                            {{> bzControlSearch }}
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
+        
     </div>
-  </div>
+    
+    
+  <!--need delete-->
+  <!--  <div class="bz-container nav-bg-transparent">
+        <div class="bz-header">
+            {{> bzNavBar}}
+            <div class="bz-header-top">
+                <h1 class="bz-header-title">{{ t9n 'headliner' }} </h1>
+            </div>
+    
+            <div class="bz-search">
+                <div class="box-search">
+                  <div class="bz-category-buttons">
+                    {{> categoryListButtons}}
+                  </div>
+                  <form class="search" id="bz-search" role="search" method="post" action="#">
+                    <i class="icon ion-search placeholder-icon"></i>
+        
+                    {{> bzControlSearch }}
+        
+                  </form>
+                    
+                </div>
+          </div>
+        </div>
+    </div>-->
 
     <!-- search result on the home page -->
   <div class="container-background">
