@@ -36,7 +36,11 @@ Template.changeLanguage.rendered = function () {
    T9n. SetUserLanguage(lang);*/
 
   GetUiLanguage().then((lang)=> {
-    $('.dropdown-choose-lang').val(lang);
+    //Ashot: review - select language drop down was not updating on jQuery call.
+    //_.defer seems to fix it, although not sure if it's the right approach.
+    _.defer(function(){
+      $('.dropdown-choose-lang').val(lang);
+    });
   });
 };
 
