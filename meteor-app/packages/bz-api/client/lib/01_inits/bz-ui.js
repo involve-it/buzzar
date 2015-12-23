@@ -32,14 +32,14 @@ bz.ui.alert = function(message, obj) {
   }
 
   if( obj.type == 'error' ) {
-    return sAlert.error(message, {effect: 'no effects', timeout: 5000000});
+    return sAlert.error(message, {effect: 'no effects'});
   }
 
   if( obj.type == 'success' ) {
-    return sAlert.success(message, {effect: 'no effects', timeout: 5000000});
+    return sAlert.success(message, {effect: 'no effects'});
   }
 };
 
 bz.ui.error = function(message, obj) {
   bz.ui.alert(message, {type: 'error'});
-}
+};
