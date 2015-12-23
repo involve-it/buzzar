@@ -21,7 +21,7 @@ Template.postsNew.helpers({
   }
 });
 Template.postsNew.events({
-  'submit .js-create-post': function (e, v) {
+  'submit form': function (e, v) {
 
     var res = true;
     
