@@ -16,11 +16,16 @@ usersCol.helpers({
     }
     return ret;
   },*/
-  _getAvatarImage: function (userId) {
+  _getAvatarImage: function () {
     var ret;
     if (this.profile && this.profile.image) {
       ret = this.profile.image.data;
     }
+    return ret;
+  },
+  _getLanguage: function() {
+    var ret;
+    ret = this.profile && this.profile.language;
     return ret;
   }
 });

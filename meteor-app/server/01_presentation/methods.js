@@ -7,23 +7,27 @@ var defaultDistance = 5,
 Meteor.methods({
   getCurrentLocation : function(a, b, c) {
   },
-  uiSetUserLanguage: function(lang) {
-    
-    
-    var user;
+  'bz.user.setLanguage' : function(lang) {
+    var ret, user;
 
     user = Meteor.userId();
-  
-    Meteor.users.update({'_id': user}, {
+    ret = Meteor.users.update({'_id': user}, {
       $set: {
         profile: {
-          settings: {
-            'language': lang
-          }
+          'language': lang
         }
       }
     });
-    
+    return ret;
+  },
+  'bz.user.getLanguage' : function(detectedLang){
+    var ret;
+    ret = Meteor.user() && Meteor.user()._getLanguage() || undefined;
+    if(!ret && detectedLang){
+      a = Meteor.call('bz.user.setLanguage', detectedLang);
+      ret = detectedLang;
+    }
+    return ret;
   },
   parseHtml: function(html) {
     var ret = bz.bus.parseHtml(html);

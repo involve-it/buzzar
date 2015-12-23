@@ -13,8 +13,7 @@ Package.describe({
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use('iron:router', ['client', 'server']);
-  api.use('iron:layout', ['client', 'server']);
+  api.use(['iron:router', 'iron:layout', 'ecmascript'], ['client', 'server']);
   api.use(['templating', 'less', 'sergeyt:typeahead'], 'client'); // todo: replace typeahead with required file
   //api.use('juliancwirko:zf5', ['web.browser']);
   api.use(['fourseven:scss@3.2.0', 'edgee:slingshot']); // todo : remove 2.0.0, when package bug is fixed.
@@ -37,6 +36,7 @@ Package.onUse(function (api) {
   api.addFiles([
     'client/main.less',
     'client/controller.js',
+    'client/language.js',
     'client/router.js',
     'client/app-loading.html'
   ], 'client');
