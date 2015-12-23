@@ -60,6 +60,7 @@ Template.pageHome.rendered = function () {
   
   if( getScreenSize() === 'lg' ) {
       if( video.get(0) && video.get(0).canPlayType ) {
+        video.get(0).playbackRate = 0.5; /* 0.5 is half speed (slower) */
         video.get(0).play();
         video.addClass("video-playing");
         view.$(".bz-slide-show-list").addClass("hide");
