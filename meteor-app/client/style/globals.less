@@ -11,6 +11,16 @@
   overflow: hidden;
 }
 
+.disabled {
+  pointer-events:none;
+  color: @disabled;
+  
+  a {
+    pointer-events:none;
+    color: @disabled;
+  }
+}
+
 .btn-disabled,
 button.disabled,
 button[disabled],

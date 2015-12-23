@@ -142,7 +142,7 @@ Template.bzPostsNewFormMemo.rendered = function() {
 };
 
 Template.bzPostsNewFormMemo.events({
-  'click .js-btn-additional-param': function(e, v) {
+  'click .btn-additional-param': function(e, v) {
     
     var target = v.$('.bz-btn-additional-param-open'),
         children = v.$('.bz-param-children'),

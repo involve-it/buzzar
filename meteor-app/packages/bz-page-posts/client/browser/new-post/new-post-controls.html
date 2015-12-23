@@ -44,9 +44,9 @@
               {{> postPhotoUpload }}
             </div>
             
-            <div class="row">
+            <!--<div class="row">
               {{> postHashesControl }}
-            </div>
+            </div>-->
         </div>
     </div>
     
@@ -65,16 +65,27 @@
         <div class="item-group">
             <div class="item item-divider">
               <h3 class="title ">{{ t9n 'NEW_POST_WHEN' }}</h3>
+              <p class="bz-muted-text">Необходимо добавить описание этой секции ?????!!!!!</p>  
             </div>
-            
-            <div class="row">
-              Pick:
-              <li>a. Post Valid Specific Time (for MEMO, POST-events)</li>
-              <li>b. Post Valid Time Range (for POST) </li>
-              <li>c. Expiration Time (POST)</li>
-              <li>c. Post Repeating Time (for MEMO, POST-ad)</li>
+
+            <div class="item-details clearfix">
+                <div class="item-details clearfix">
+                    <div type="stacked" class="item item-input item-stacked-label">
+                        <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_DURATION' }}</div>
+                        <div class="small-12 medium-9 large-9 left">
+                            <div>
+                                <select name="repeat" id="selectPick">
+                                    <option value="validSpecific">Post Valid Specific Time</option>  <!--(for MEMO, POST-events)-->
+                                    <option value="validTimeRange">Post Valid Time Range</option> <!--(for POST)-->
+                                    <option value="expirationTime">Expiration Time</option> <!--(POST)-->
+                                    <option value="postRepeatingTime">Post Repeating Time</option> <!--(for MEMO, POST-ad)-->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        
+                    
             <div class="row">
               <!--{{> postHashesControl }}-->
             </div>
@@ -102,7 +113,7 @@
             <!--name-->
             <div class="item-details clearfix" >
                 <div class="item item-input bz-tool-tip" data-open-on="click" data-top-center="top center" data-theme="drop-theme-arrows-bounce-dark">
-                    <div class="small-12 medium-3 input-label left"><span class="middle-label">Название <i class="bz-icon bz-hint drop-target"></i></span></div>
+                    <div class="small-12 medium-3 input-label left"><span class="middle-label"><span class="field-required">*</span> Название <i class="bz-icon bz-hint drop-target"></i></span></div>
                     <div class="small-12 medium-9 large-9 left">
                         <div class="bz-count-characters text-right"><span>70</span> {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
                         <input class="js-post-title" type="text" label-type="stacked" name="title" required data-schema-key="title" maxlength="70" value="{{ getTitle }}" placeholder="{{ t9n 'NEW_POST_TITLE_PLACEHOLDER' }}">
@@ -122,7 +133,7 @@
             <!--description-->
             <div class="item-details clearfix">
                 <div type="stacked" class="item item-input item-stacked-label bz-tool-tip" data-top-center="top center" data-open-on="click" data-theme="drop-theme-arrows-bounce-dark">
-                    <div class="small-12 medium-3 input-label left"><span class="middle-label">Описание <i class="bz-icon bz-hint drop-target"></i></span></div>
+                    <div class="small-12 medium-3 input-label left"><span class="middle-label"><span class="field-required">*</span> Описание <i class="bz-icon bz-hint drop-target"></i></span></div>
                     <div class="small-12 medium-9 large-9 left">
                         <div class="bz-count-characters text-right"><span>1000</span>  {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
             <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
@@ -155,19 +166,6 @@
         <div class="item-details clearfix">
             <!--location-->
             <div class="item-details clearfix">
-                <!--remind me at a location-->
-                <div class="item-details clearfix">
-                    <div type="stacked" class="item item-input item-stacked-label">
-                        <div class="small-12 medium-3 input-label left">Напоминать на местности</div>
-                        <div class="small-12 medium-9 large-9 left">
-                            <div class="switch">
-                                <input id="remindMeAtLocation" type="checkbox">
-                                <label for="remindMeAtLocation"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
                 <div>
                     <span>Место установки еще не определено!</span> &nbsp;                       
                     <a href="#" class="button bz-small btn-default" data-reveal-id="choose-locations-reminder">
@@ -192,7 +190,7 @@
             <!--remind me-->
             <div class="item-details clearfix">
                 <div type="stacked" class="item item-input item-stacked-label">
-                    <div class="small-12 medium-3 input-label left">Продолжительность</div>
+                    <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_DURATION' }}</div>
                     <div class="small-12 medium-9 large-9 left">
                         <div>
                             <select name="repeat" id="selectRepeat">
@@ -208,7 +206,7 @@
                 </div>
             </div>
 
-            <div class="js-btn-additional-param text-left"><a href="#">Дополнительные параметры</a></div>
+            <div class="btn-additional-param text-left disabled"><a class="" href="#">Дополнительные параметры</a></div>
 
 
             <div class="bz-btn-additional-param-open">
@@ -452,7 +450,7 @@
     <div class="clearfix">
         <div class="item-details">
             <div class="item item-input bz-tool-tip" data-open-on="click" data-top-center="top center" data-theme="drop-theme-arrows-bounce-dark">
-                <div class="small-12 medium-3 input-label left"><span class="middle-label">{{ t9n 'NEW_POST_TITLE' }} <i class="bz-icon bz-hint drop-target"></i></span></div>
+                <div class="small-12 medium-3 input-label left"><span class="middle-label"><span class="field-required">*</span> {{ t9n 'NEW_POST_TITLE' }} <i class="bz-icon bz-hint drop-target"></i></span></div>
                 <div class="small-12 medium-9 large-9 left">
                     <div class="bz-count-characters text-right"><span>70</span> {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
                     <input class="js-post-title" type="text" label-type="stacked" name="title" required data-schema-key="title" maxlength="70" value="{{ getTitle }}" placeholder="{{ t9n 'NEW_POST_TITLE_PLACEHOLDER' }}">
@@ -473,7 +471,7 @@
   <div class="clearfix">
     <div class="item-details">
       <div type="stacked" class="item item-input item-stacked-label bz-tool-tip" data-open-on="click" data-top-center="top center" data-theme="drop-theme-arrows-bounce-dark">
-        <div class="small-12 medium-3 input-label left"><span class="middle-label">{{ t9n 'NEW_POST_DESCRIPTION' }} <i class="bz-icon bz-hint drop-target"></i></span></div>
+        <div class="small-12 medium-3 input-label left"><span class="middle-label"><span class="field-required">*</span> {{ t9n 'NEW_POST_DESCRIPTION' }} <i class="bz-icon bz-hint drop-target"></i></span></div>
         <div class="small-12 medium-9 large-9 left">
             <div class="bz-count-characters text-right"><span>1000</span>  {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
                 <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required data-schema-key="body" maxlength="1000" value="{{ getDescription }}" placeholder="{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER' }}"></textarea>
