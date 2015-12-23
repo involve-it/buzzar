@@ -358,8 +358,12 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
 */
 
 .custom-alert-class {
-  &.s-alert-box {
-    background-image: linear-gradient(rgba(252,248,251,.95), rgba(252,246,253, .95));
+  &.s-alert-error {
+    background-image: linear-gradient(rgba(255,136,136,.95), rgba(255,130,130, .95));
+  }
+  
+  &.s-alert-success {
+    background-image: linear-gradient(rgba(70,214,130, .95), rgba(70,200,130, .95));
   }
 }
 
@@ -386,6 +390,16 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
       &:after {
         background-color: lighten(@h-title-color, 10%);
       }
+    }
+  }
+  
+  &.ui-alert {
+    
+    width: auto;
+    height: auto;
+    max-width: 300px;
+    .s-alert-box-inner {
+      padding: 20px 25px;
     }
   }
 }
