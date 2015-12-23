@@ -16,8 +16,8 @@ bz.ui.initFoundationValidation = function() {
   
 };
 
-bz.ui.initFoundationOffCanvas = function() {
-  
+InitFoundationOffCanvas = function() {
+
   $(document).foundation({
     offcanvas : {
       //move, overlap_single or overlap, reveal

@@ -9,7 +9,6 @@ Package.describe({
   // To avoid submitting documentation, set this field to null.
   documentation: 'README.md'
 });
-
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
