@@ -369,7 +369,7 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
 
 .custom-alert-class {
   &.s-alert-error {
-    background-image: linear-gradient(rgba(255,136,136,.95), rgba(255,130,130, .95));
+    background-image: linear-gradient(rgba(240,65,36,.95), rgba(247,84,57, .95));
   }
   
   &.s-alert-success {
@@ -391,14 +391,14 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
     
     &:before,
     &:after {
-      background-color: @h-title-color;
+      background-color: rgb(255,255,255);
     }
 
     &:hover {
       
       &:before,
       &:after {
-        background-color: lighten(@h-title-color, 10%);
+        background-color: darken(rgb(255,255,255), 30%);
       }
     }
   }
@@ -435,6 +435,12 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
 }
 
 .bz-alert-message {
+  
+  .bz-alert-list {
+    font-size: 15px;
+    margin: 0 0 0 10px;
+    padding: 0;
+  }
   
   .bz-alert-message-wrapper {
     position: relative;

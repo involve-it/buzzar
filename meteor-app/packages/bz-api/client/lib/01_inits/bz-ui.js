@@ -20,8 +20,24 @@ bz.ui.initFoundationValidation = function() {
 };
 
 bz.ui.alert = function(message, obj) {
-  message = message || 'Сообщение не передано';
   obj = obj || { type: 'info' };
+    
+  message = message.split(';');
+  
+  if( message.length > 1 && Array.isArray(message) ) {
+    
+    sAlert.config({html:true});
+    var li = '';
+    message.map(function (el) {
+      li += '<li>' + el + '</li>';
+    });
+    message = li;
+    
+  } else {
+    sAlert.config({html:false});
+    message = message.join();
+  }
+    
 
   if( obj.type == 'info' ) {
     return sAlert.info(message, {effect: 'no effects'});
@@ -43,3 +59,4 @@ bz.ui.alert = function(message, obj) {
 bz.ui.error = function(message, obj) {
   bz.ui.alert(message, {type: 'error'});
 };
+

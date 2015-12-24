@@ -24,3 +24,11 @@ Template.bzChatMessagePopup.events({
     // need to close the modal with the message:
   }
 });
+
+/* Passing param. from sAlert to sAlertCustom the template */
+Template.sAlertCustom.helpers({
+  isHtml: function () {
+    var data = Template.currentData();
+    return data && data.html;
+  }
+});
