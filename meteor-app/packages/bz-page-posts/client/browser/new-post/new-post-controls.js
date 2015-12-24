@@ -14,7 +14,7 @@ Template.postTypeSelect.helpers({
   }
 });
 Template.postTypeSelect.events({
-  'change .js-post-type-select': function (e, v) {
+  'change .js-ad-type-select': function (e, v) {
     var name = e.target.value.toCapitalCase();
     setPostDetailsTemplate(name, v);
   }
