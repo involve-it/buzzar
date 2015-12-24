@@ -11,7 +11,7 @@ Template.bzAroundYouItem.rendered = function() {
 };
 
 Template.aroundYou.helpers({
-  aroundItem: function() {
+  getAroundItems: function() {
     var searchSelector = Session.get('bz.control.search-selector');
     var ret = bz.cols.posts.find(searchSelector, {limit:3}).fetch();
 

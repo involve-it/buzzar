@@ -6,8 +6,8 @@ bz.help.makeNamespace('bz.bus.search');
 
 
 Meteor.startup(function () {
-  Tracker.autorun(function(){
-    if(GoogleMaps.loaded()){
+  Tracker.autorun(function () {
+    if (GoogleMaps.loaded()) {
       bz.help.maps.initGeocoding();
       bz.help.maps.initLocation();
     }
@@ -33,8 +33,8 @@ Meteor.startup(function () {
     var placesCol = new Meteor.Collection("bz.cols.searchRt"); // client-side only.
     bz.help.makeNamespace('bz.cols.searchRt', placesCol);
     bz.cols.searchRt.helpers({
-          _hasLivePresence: bz.help.posts.hasLivePresence
-        }
+        _hasLivePresence: bz.help.posts.hasLivePresence
+      }
     );
   }
   searchPostsReactive();
@@ -64,15 +64,45 @@ Meteor.startup(function () {
   });
 });
 
-bz.bus.search.doSearch = function(callback){
+bz.bus.search.doSearchClient = (params, options)=> {
+  var loc = params.loc, activeCats = params.activeCats, radius = params.radius;
+
+  var ret, arrTypes, box = getLatLngBox(loc.coords.lat, loc.coords.lng, radius),
+    dbQuery = {};
+
+  if (box) {
+    dbQuery['details.locations'] = {
+      $elemMatch: {
+        'coords.lat': {$gte: box.lat1, $lte: box.lat2},
+        'coords.lng': {$gte: box.lng1, $lte: box.lng2}
+      }
+    }
+  }
+
+  if (activeCats && Array.isArray(activeCats) && activeCats.length > 0) {
+    dbQuery['type'] = {$in: activeCats};
+  } else {
+    arrTypes = _.map(bz.cols.siteTypes.find().fetch(), function (item) {
+      return item.name;
+    });
+    arrTypes.push(undefined);
+    dbQuery['type'] = {$in: arrTypes}
+  }
+  _.extend(dbQuery, params.query);
+  //ret = bz.cols.posts.find(dbQuery, options).sort( { name: 1 } ).fetch();
+  ret = bz.cols.posts.find(dbQuery, options).fetch();
+
+  return ret;
+}
+bz.bus.search.doSearchServer = function (callback) {
   var searchedText = Session.get('bz.control.search.searchedText');
   searchedText = searchedText && searchedText.trim();
   if (searchedText) {
     var query = {},
     //map = GoogleMaps.maps.map.instance, latitude, longitude,
-        activeCats = Session.get('bz.control.category-list.activeCategories') || [],
-        searchDistance = Session.get('bz.control.search.distance'),
-        location = Session.get('bz.control.search.location') || {};
+      activeCats = Session.get('bz.control.category-list.activeCategories') || [],
+      searchDistance = Session.get('bz.control.search.distance'),
+      location = Session.get('bz.control.search.location') || {};
     if (!searchedText && searchedText === undefined) {
       searchedText = '';
     }
@@ -92,7 +122,7 @@ bz.bus.search.doSearch = function(callback){
         }
       }
 
-      if (callback && typeof callback === 'function'){
+      if (callback && typeof callback === 'function') {
         callback(err, results);
       }
     });
@@ -101,11 +131,25 @@ bz.bus.search.doSearch = function(callback){
   }
 };
 
+function getLatLngBox(lat, lng, radius) {
+  if (lat && lng && radius) {
+    var dLat = (radius / bz.const.locations.earthRadius) / Math.PI * 180,
+      dLng = (radius / bz.const.locations.earthRadius / Math.cos(lat * Math.PI / 180)) / Math.PI * 180;
+    return {
+      lng1: lng - dLng,
+      lng2: lng + dLng,
+      lat1: lat - dLat,
+      lat2: lat + dLat
+    };
+  } else {
+    return null;
+  }
+};
 function searchPostsReactive() {
   Tracker.autorun(function () {
     bz.cols.searchRt._collection.remove({});
     bz.cols.posts.find().count();
-    bz.bus.search.doSearch();
+    bz.bus.search.doSearchServer();
   });
 }
 setSearchedText = function (text) {
@@ -168,40 +212,40 @@ function callbackNearbySearchGoogle(results, status, html_attributions, next_pag
   //return bz.runtime.maps.places;
 }
 
-createLocationFromObject = function(obj){
+createLocationFromObject = function (obj) {
   var ret, toRemove,
     locName = obj.name, coords = obj.coords;
-    // save to locations history collection
+  // save to locations history collection
 
-    if (locName && Meteor.userId()) {
-      ret = {
-        userId: Meteor.userId(),
-        name: locName,
-        coords: coords,
-        placeType: bz.const.locations.type.STATIC,
-        public: false,
-        timestamp: Date.now()
-      }
-      toRemove = bz.cols.locations.findOne({
-        name: locName,
-        userId: Meteor.userId()
-      });
-      if(toRemove) {
-        bz.cols.locations.remove(toRemove._id);
-      }
-
-      ret._id = bz.cols.locations.insert(ret);
+  if (locName && Meteor.userId()) {
+    ret = {
+      userId: Meteor.userId(),
+      name: locName,
+      coords: coords,
+      placeType: bz.const.locations.type.STATIC,
+      public: false,
+      timestamp: Date.now()
     }
-    //ret.resolve(true);
+    toRemove = bz.cols.locations.findOne({
+      name: locName,
+      userId: Meteor.userId()
+    });
+    if (toRemove) {
+      bz.cols.locations.remove(toRemove._id);
+    }
+
+    ret._id = bz.cols.locations.insert(ret);
+  }
+  //ret.resolve(true);
   /*} else {
-    ret.resolve(false);
-  }*/
+   ret.resolve(false);
+   }*/
   // 2. set sitewide current location:
   return ret;
 }
-setLocationToSessionFromData = function(locName, data, sessionName){
+setLocationToSessionFromData = function (locName, data, sessionName) {
   var placeType;
-  if(sessionName === bz.const.posts.location2) {
+  if (sessionName === bz.const.posts.location2) {
     placeType = bz.const.locations.type.STATIC;
   } else if (sessionName === bz.const.posts.location1) {
     placeType = bz.const.locations.type.DYNAMIC;
@@ -223,7 +267,7 @@ setLocationToSessionFromData = function(locName, data, sessionName){
     } else {
       bz.help.logError('Location with id ' + locId + 'was not found!');
     }
-  } else if (data.isCurrentLocation){
+  } else if (data.isCurrentLocation) {
     // selected moving location type
     bz.help.maps.getCurrentLocation(function (loc) {
       if (placeType === bz.const.locations.type.DYNAMIC) {
@@ -235,7 +279,7 @@ setLocationToSessionFromData = function(locName, data, sessionName){
           public: false // private, user's place
         });
       } else {
-        bz.help.maps.getAddressFromCoords(loc).done(function(address){
+        bz.help.maps.getAddressFromCoords(loc).done(function (address) {
           var locObj = createLocationFromObject({
             name: address,
             coords: loc
@@ -247,8 +291,8 @@ setLocationToSessionFromData = function(locName, data, sessionName){
   } else {
     // user entered his own text: this is not our place and we just have a name OR address
     // check if this is an address with geocoding:
-    bz.help.maps.getCoordsFromAddress(locName).done(function(coords){
-      if(coords){
+    bz.help.maps.getCoordsFromAddress(locName).done(function (coords) {
+      if (coords) {
         res = createLocationFromObject({
           name: locName,
           coords: coords

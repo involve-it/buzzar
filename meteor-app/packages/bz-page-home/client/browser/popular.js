@@ -2,12 +2,28 @@
  * Created by root on 9/15/15.
  */
 Template.bzHomePopular.helpers({
-  aroundItem: function() {
-    var searchSelector = '';
+  getPopularItems: function() {
+    /*var searchSelector = '';
     var ret = bz.cols.posts.find({'status.visible': bz.const.posts.status.visibility.VISIBLE}, {limit:30});
+    return ret;*/
+    var ret, loc = Session.get('bz.control.search.location'),
+      activeCats = Session.get('bz.control.category-list.activeCategories') || [];
+
+    // add all-posts reactivity:
+    bz.cols.posts.find({});
+    if (loc && loc.coords) {
+      ret = bz.bus.search.doSearchClient({
+        loc: loc,
+        activeCats: activeCats,
+        //radius: bz.const.search.AROUND_YOU_RADIUS,
+        query: {'status.visible': bz.const.posts.status.visibility.VISIBLE}
+      }, {
+        limit: bz.const.search.POPULAR_LIMIT,
+        sort: {'stats.seenAll': -1}
+      });
+    }
     return ret;
   }
-  
 });
 
 

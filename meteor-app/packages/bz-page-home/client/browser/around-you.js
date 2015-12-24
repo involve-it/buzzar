@@ -17,21 +17,23 @@ function getLatLngBox (lat, lng, radius){
 };
 
 Template.aroundYou.helpers({
-  aroundItem: function() {
-    var loc = Session.get('bz.control.search.location');
-    if (loc && loc.coords){
-      var box = getLatLngBox(loc.coords.lat, loc.coords.lng, 5);
-      if (box){
-        var ret = bz.cols.posts.find({
-          'details.locations':{
-            $elemMatch: {
-              'coords.lat': {$gte: box.lat1, $lte: box.lat2},
-              'coords.lng': {$gte: box.lng1, $lte: box.lng2}
-            }
-          }
-        }, {limit:9}).fetch();
-      }
+  getAroundItems: function() {
+    var ret, loc = Session.get('bz.control.search.location'),
+      activeCats = Session.get('bz.control.category-list.activeCategories') || [];
+
+    // add all-posts reactivity:
+    bz.cols.posts.find({});
+    if (loc && loc.coords) {
+      ret = bz.bus.search.doSearchClient({
+        loc: loc,
+        activeCats: activeCats,
+        radius: bz.const.search.AROUND_YOU_RADIUS
+      }, {
+        limit: bz.const.search.AROUND_YOU_LIMIT,
+        sort: {'stats.seenAll': -1}
+      });
     }
+
     return ret;
   }
 });

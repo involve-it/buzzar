@@ -35,3 +35,11 @@ bz.const.posts.location1 = 'bz.posts.new.location1';
 bz.const.posts.location2 = 'bz.posts.new.location2';
 
 bz.const.randomImageSite = 'http://lorempixel.com/600/500/';
+
+// SEARCH:
+
+bz.help.makeNamespace('bz.const.search');
+bz.const.search.AROUND_YOU_RADIUS = 5;
+bz.const.search.AROUND_YOU_LIMIT = 9;
+//bz.const.search.POPULAR_RADIUS = 12;
+bz.const.search.POPULAR_LIMIT = 30;
