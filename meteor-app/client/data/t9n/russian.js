@@ -52,6 +52,8 @@ ru = {
   MOST_POPULAR_TITLE: 'Популярные',
   ABOUT_US_TITLE: 'О нас',
 
+  AROUND_YOU_TITLE: 'Срочное рядом',
+
   //Location
   LOCATION_SET_YOUR_LOCATION: 'Настройка метоположения',
   LOCATION_YOUR_MOST_RECENT_LOCATIONS: 'Ваши последние места: ',

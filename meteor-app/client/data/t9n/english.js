@@ -53,7 +53,9 @@ en = {
   SEARCH_DISTANCE_EVERYWHERE: 'Everywhere',
   MOST_POPULAR_TITLE: 'Most Popular',
   ABOUT_US_TITLE: 'About us',
-  
+
+  AROUND_YOU_TITLE: 'Buzz Around you',
+
   //Location
   LOCATION_SET_YOUR_LOCATION: 'Set your location',
   LOCATION_YOUR_MOST_RECENT_LOCATIONS: 'Your most recent locations: ',
