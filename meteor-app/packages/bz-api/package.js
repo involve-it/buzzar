@@ -16,8 +16,7 @@ Package.describe({
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use('iron:router', ['client', 'server']);
-  api.use('iron:layout', ['client', 'server']);
+  api.use(['iron:router', 'iron:layout', 'selaias-local:accounts-entry'], ['client', 'server']);
   api.use('service-configuration', ['server']);
   //api.use('iron:layout', ['client', 'server']);
   api.use(['underscore', 'session']);
@@ -32,7 +31,8 @@ Package.onUse(function (api) {
     'shared/lib/02_business/location.js'
   ]);
   api.addFiles([
-    'server/lib/config.js'
+    'server/lib/config.js',
+    'server/lib/accounts.js'
   ], 'server');
   api.addFiles([
     'client/lib/vendor/toast.js',

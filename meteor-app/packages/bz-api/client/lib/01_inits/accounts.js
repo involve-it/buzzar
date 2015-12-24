@@ -12,7 +12,7 @@ Meteor.startup(function () {
     profileRoute: 'profile/',
     //passwordSignupFields: 'EMAIL_ONLY',
     passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL',
-    showSignupCode: false,
+    showSignupCode: true,
     showOtherLoginServices: false,      // Set to false to hide oauth login buttons on the signin/signup pages. Useful if you are using something like accounts-meld or want to oauth for api access
     fluidLayout: false,               // Set to true to use bootstrap3 container-fluid and row-fluid classes.
     useContainer: true,               // Set to false to use an unstyled "accounts-entry-container" class instead of a bootstrap3 "container" or "container-fluid" class.
