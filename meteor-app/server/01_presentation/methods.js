@@ -12,11 +12,7 @@ Meteor.methods({
 
     user = Meteor.userId();
     ret = Meteor.users.update({'_id': user}, {
-      $set: {
-        profile: {
-          'language': lang
-        }
-      }
+      $set: { 'profile.language': lang }
     });
     return ret;
   },

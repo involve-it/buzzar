@@ -49,5 +49,23 @@ Template.bzHomePopularItem.helpers({
       ret = ret && ret.data;
     }
     return ret;
+  },
+  disableOwnPost: function(){
+    if(Meteor.userId() === this.userId ) {
+      return 'disabled';
+    }
+    return '';
   }
 });
+
+Template.bzHomePopularItem.events({
+  'click .js-send-message-btn': function (e, v) {
+    if(!Meteor.userId()){
+      Router.go('/sign-in');
+    }
+    if (Meteor.userId() !== this.userId && this.userId) {
+      var chatId = bz.buz.chats.createChatIfFirstMessage(Meteor.userId(), this.userId);
+      Router.go('/chat/' + chatId);
+    }
+  }
+})

@@ -12,7 +12,7 @@ Package.describe({
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use(['iron:router', 'iron:layout', 'mongo', 'reactive-var', 'tracker'], ['client', 'server']);
+  api.use(['iron:router', 'iron:layout', 'mongo', 'reactive-var', 'tracker', 'ecmascript'], ['client', 'server']);
   api.use('templating', 'client');
   api.use('less', 'client');
   api.use('arutune:bz-main');

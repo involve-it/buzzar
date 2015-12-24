@@ -18,9 +18,9 @@
         </a>-->
 
         <div class="bz-user-avatar">
-            {{#if user.profile.image.data}}
+            {{#if getProfileImage }}
                 <a href="/user/{{ user._id }}">
-                    <div class="bz-avatar" style="background-image: url({{ user.profile.image.data }})"></div>
+                    <div class="bz-avatar" style="background-image: url({{ getProfileImage }})"></div>
                 </a>
             {{else}}
                 <div class="bz-avatar" style="background-image: url('/img/content/avatars/avatar-no.png')"></div>

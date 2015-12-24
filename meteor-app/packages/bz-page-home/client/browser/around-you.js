@@ -29,7 +29,7 @@ Template.aroundYou.helpers({
               'coords.lng': {$gte: box.lng1, $lte: box.lng2}
             }
           }
-        }, {limit:3}).fetch();
+        }, {limit:9}).fetch();
       }
     }
     return ret;
@@ -73,10 +73,27 @@ Template.bzAroundYouItem.helpers({
       ret = bz.cols.images.findOne(phId);
       ret = ret && ret.data;
     }
+    ret = ret || '/img/content/no-photo-400x300.png';
     return ret;
+  },
+  disableOwnPost: function(){
+    if(Meteor.userId() === this.userId ) {
+      return 'disabled';
+    }
+    return '';
   }
 });
-
+Template.bzAroundYouItem.events({
+  'click .js-send-message-btn': function (e, v) {
+    if(!Meteor.userId()){
+      Router.go('/sign-in');
+    }
+    if (Meteor.userId() !== this.userId && this.userId) {
+      var chatId = bz.buz.chats.createChatIfFirstMessage(Meteor.userId(), this.userId);
+      Router.go('/chat/' + chatId);
+    }
+  }
+})
 Template.bzUserProfileAroundYou.helpers({
   getNameFormatted: function () {}
 });

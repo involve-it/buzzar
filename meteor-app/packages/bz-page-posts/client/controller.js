@@ -49,7 +49,8 @@ createNewPostFromView = function (v) {
     var newPost = {
 
       userId: userId,
-      type: v.$('.js-post-type-select').val(),
+      type: determinePostTypeFromView(v),
+      //type: v.$('.js-post-type-select').val(),
       details: {
 
         hashes: bz.runtime.newPost.hashes,
@@ -134,7 +135,7 @@ staticLocationPanelClick = function () {
     Template.bzLocationNameNewPost.showModal();
   }
 };
-userSeenAll;
+//userSeenAll;
 // this function calculates browser-specific hits
 runHitTracking = function (post, browserInfo) {
   var userSeenTotal, userSeenToday, seenTotalPost, seenTodayPost;
@@ -201,4 +202,16 @@ getPostPhotoObjectsByIds = function(photoIds){
 };
 resetImagesArraySession = function(){
   Session.set('bz.posts.postImgArr', []);
+}
+
+function determinePostTypeFromView (v){
+  //newPostType
+  //v.$('.js-post-type-select').val()
+  var ret;
+  if(newPostType.get() === bz.const.posts.type.ad) {
+    ret = v.$('.js-ad-type-select').val();
+  } else if (newPostType.get() === bz.const.posts.type.memo) {
+    ret = v.$('.js-memo-type-select').val();
+  }
+  return ret;
 }

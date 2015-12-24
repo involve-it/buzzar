@@ -16,7 +16,9 @@ bz.const.posts.status.visibility.INVISIBLE = 'invisible';
 bz.help.makeNamespace('bz.const.posts.status.presence');
 bz.const.posts.status.presence.NEAR = 'close';
 bz.const.posts.status.presence.AWAY = 'away';
-
+bz.help.makeNamespace('bz.const.posts.type');
+bz.const.posts.type.ad = 'ad';
+bz.const.posts.type.memo = 'memo';
 
 
 bz.help.makeNamespace('bz.const.locations.type');
