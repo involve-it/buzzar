@@ -19,25 +19,41 @@ bz.ui.initFoundationValidation = function() {
   });
 };
 
+
+
+
+
 bz.ui.alert = function(message, obj) {
   obj = obj || { type: 'info' };
+
     
-  message = message.split(';');
+  if( message.indexOf(';') !== -1 ) {
+    
+    message = message.split(';');
+    
+    if( message.length > 1 && Array.isArray(message) ) {
+      checkTextErrorMessage();
+    }
+  } else if( Array.isArray(message) ) {
+      checkTextErrorMessage();
+  } else {
+      sAlert.config({html:false});
+  }
   
-  if( message.length > 1 && Array.isArray(message) ) {
-    
+  function checkTextErrorMessage() {
     sAlert.config({html:true});
+    
     var li = '';
     message.map(function (el) {
       li += '<li>' + el + '</li>';
     });
     message = li;
     
-  } else {
-    sAlert.config({html:false});
-    message = message.join();
+    return message;
   }
-    
+
+  //message = message.join();
+ 
 
   if( obj.type == 'info' ) {
     return sAlert.info(message, {effect: 'no effects'});

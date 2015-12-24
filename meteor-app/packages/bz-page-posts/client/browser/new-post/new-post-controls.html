@@ -65,7 +65,7 @@
         <div class="item-group">
             <div class="item item-divider">
               <h3 class="title ">{{ t9n 'NEW_POST_WHEN' }}</h3>
-              <p class="bz-muted-text">Необходимо добавить описание этой секции ?????!!!!!</p>  
+              <p class="bz-muted-text">{{ t9n 'NEW_POST_DURATION_MUTED' }}</p>  
             </div>
 
             <div class="item-details clearfix">
@@ -75,10 +75,16 @@
                         <div class="small-12 medium-9 large-9 left">
                             <div>
                                 <select name="repeat" id="selectPick">
-                                    <option value="validSpecific">Post Valid Specific Time</option>  <!--(for MEMO, POST-events)-->
-                                    <option value="validTimeRange">Post Valid Time Range</option> <!--(for POST)-->
-                                    <option value="expirationTime">Expiration Time</option> <!--(POST)-->
-                                    <option value="postRepeatingTime">Post Repeating Time</option> <!--(for MEMO, POST-ad)-->
+                                    <option value="oneDay">Один день</option>
+                                    <option value="twoDay">Два дня</option>
+                                    <option value="week">Неделю</option>
+                                    <option value="twoWeek">Две недели</option>
+                                    <option value="month">Один месяц</option>
+                                    <option value="year">Один год</option>
+                                    <!--<option value="validSpecific">Post Valid Specific Time</option>
+                                    <option value="validTimeRange">Post Valid Time Range</option>
+                                    <option value="expirationTime">Expiration Time</option>
+                                    <option value="postRepeatingTime">Post Repeating Time</option>-->
                                 </select>
                             </div>
                         </div>
