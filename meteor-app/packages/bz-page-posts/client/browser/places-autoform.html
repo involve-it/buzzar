@@ -13,48 +13,25 @@
               <div class="small-12 medium-3 input-label left"><span class="field-required">*</span> Местонахождение объявления</div>
               <div class="small-12 medium-9 large-9 left">
                   <div class="bz-location-position">
-                      <div class="bz-style-soft-background bz-dynamic bz-panel-overlay panel padding js-moving-location-panel">
-                          <i class="fa fa-map-signs"></i>
-
-                          <div class="title uppercase">Dynamic</div>
-
-                          <p>Moving with you ad</p>
-
-                          <!--<p class="hidden">Use my current location live (online when your app is running/you are logged in to the
-						  website).</p>-->
-
-                          <!--<div class="current-location-btn">
-							  <a class="button small button-calm js-current-location-a" style="display: none;">
-								  <i class="fa fa-location-arrow placeholder-icon"></i>
-							  </a>
-						  </div>-->
-                      </div>
-
-                      <div class="bz-style-soft-background bz-static bz-panel-overlay panel padding js-fixed-location-panel"
-                           id="moving-ad">
-                          <i class="fa fa-thumb-tack"></i>
-
+                        <!--1-->
+                        <div class="bz-style-soft-background bz-dynamic bz-panel-overlay panel padding js-moving-location-panel">
+                            <div class="bz-triangle-help"></div>
+                            <i class="fa fa-map-signs"></i>
+                            <div class="title uppercase">Dynamic</div>
+                            <p>Moving with you ad</p>
+                        </div>
+                      
+                        <!--2-->
+                        <div class="bz-style-soft-background bz-static bz-panel-overlay panel padding js-fixed-location-panel" id="moving-ad">
+                            <div class="bz-triangle-help"></div>
+                            <i class="fa fa-thumb-tack"></i>
                           <div class="title uppercase">Static</div>
                           <p>Pinned to static location</p>
-                          <!--<p class="hidden">Pinned Location (online when you are within a Radius from the board address)</p>-->
-                    
-                  <span class="js-location-holder">
-                      {{> bzLocationNameNewPost sessionName='bz.posts.new.location2'}}
-                  </span>
-                          <!--<p class="note">* If empty - Ad will be bound to your current location.</p>-->
-
-                          <!--<div class="location-nearby js-location-nearby hidden">
-							<input class="form-control typeahead capitalize js-nearby-places" name="team" type="text" id="place1"
-								   placeholder="address, zip or place nearby"
-								   data-source="placesArray"
-			
-								   autocomplete="on" spellcheck="off"
-								   data-opened="opened" data-selected="selected"
-								   data-min-length="0"
-								   data-autocompleted="autocompleted"
-							  />
-						  </div>-->
-                      </div>
+                          <span class="js-location-holder">
+                              {{> bzLocationNameNewPost sessionName='bz.posts.new.location2'}}
+                          </span>
+                        </div>
+                      
                   </div>
             </div>
 

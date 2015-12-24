@@ -748,7 +748,41 @@ nav.left-off-canvas-menu {
   font-weight: 700;
 }
 
+.bz-triangle-help {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border: 30px solid transparent;
+  border-top: 30px solid rgba(89, 99, 107, 0.95);
+  border-right: 30px solid rgba(89, 99, 107, 0.95);
+  cursor: pointer;
+  z-index: 12;
 
+  &:hover {
+    &:before {
+      color: lighten(rgba(135, 208, 191, 0.95), 30%);
+    }
+  }
+
+  &:active {
+    &:before {
+      color: darken(rgba(135, 208, 191, 0.95), 5%);
+    }
+  }
+  
+  &:before {
+    position: absolute;
+    content: "\f059";
+    color: rgba(135, 208, 191, 1);
+    .menu-transition();
+    font-family: 'FontAwesome';
+    font-size: 25px;
+    top: -30px;
+    right: -23px;
+  }
+}
 
 
 

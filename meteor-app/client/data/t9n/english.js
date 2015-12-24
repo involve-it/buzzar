@@ -74,6 +74,7 @@ en = {
   NEW_POST_WHERE: 'Where',
   NEW_POST_WHEN: 'When',
   NEW_POST_DURATION: 'Duration',
+  NEW_POST_DURATION_MUTED: 'Установите время, в течении которого ваше объявление будет активным.',
   NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователям Buzzar найдут объявления в подходящем для них месте.',
   NEW_POST_GALLERY_PHOTOS: 'Photos',
   NEW_POST_GALLERY_PHOTOS_MUTED: 'Please add photos for the post.',
