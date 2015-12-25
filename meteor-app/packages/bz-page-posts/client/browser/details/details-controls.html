@@ -21,7 +21,7 @@
   <div class="side-b small-12 medium-6 large-6 columns">
 
     <div class="item-divider">
-      <h3 class="title">Post Details</h3>
+        <p></p><!--<h3 class="title">Post Details</h3>-->
     </div>
 
     <div class="post-item overflow">
@@ -46,14 +46,24 @@
         <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-info-circle"></i> Left</div>
         <div class="small-12 medium-8 large-8 bz-post-result columns"><p> 10 days </p></div>
       </div>
-
-      <div class="post-details">
-        <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-list-alt"></i> Type</div>
-        <div class="small-12 medium-8 large-8 bz-post-result columns">
-          <div class="button bz-btn-category type-category-{{categoryType}}"> Trade</div>
-        </div>
-      </div>
       {{/if }}
+
+        {{#if categoryType}}
+          <div class="post-details">
+            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-list-alt"></i> Type</div>
+            <div class="small-12 medium-8 large-8 bz-post-result columns">
+                <div class="button bz-btn-category type-category-{{categoryType}}">{{categoryType}}</div>
+            </div>
+          </div>
+        {{/if}}
+
+        <div class="post-details">
+            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-location-arrow"></i> Дистанция</div>
+            <div class="small-12 medium-8 large-8 bz-post-result columns">
+                <p>{{ _getDistanceToCurrentLocation }}</p>
+            </div>
+        </div>
+      
 
       {{#if details.price }}
         <div class="post-details">

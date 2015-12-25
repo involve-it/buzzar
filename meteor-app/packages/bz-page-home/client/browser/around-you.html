@@ -24,10 +24,9 @@
         <div class="bz-photo bz-overlay-hover" style="max-height: 200px; min-height: 145px;">
           <a href="/post/{{_id}}">
             <img width="400" height="300" class="bz-overlay-scale" src="{{ getImgSrc }}" alt=""/>
-            <div class="bz-post-info">
-                <!--<div class="bz-distance"><i class="fa fa-location-arrow"></i> 30 km</div>-->
+            <div class="bz-post-info bz-flex">
                 {{> bzPostsPostPresence this}}
-                <!--<a class="bz-position-cover" href="#"></a>-->
+                {{> bzPostsPostDistance this}}
             </div>
           </a>
         </div>

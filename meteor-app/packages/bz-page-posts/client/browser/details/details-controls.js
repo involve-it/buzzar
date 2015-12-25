@@ -1,4 +1,5 @@
 Template.bzPostDetails.events({});
+
 Template.bzPostDetails.helpers({
   getPostCreatedDate: function () {
     var ret = '';
@@ -6,6 +7,9 @@ Template.bzPostDetails.helpers({
       ret = new Date(this.timestamp).toDateString();
     }
     return ret;
+  },
+  categoryType: function() {
+    return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
   }
 });
 

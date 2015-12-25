@@ -32,19 +32,28 @@
                         
             <div class="tabs-content">
                 <div class="content active" id="allPosts" aria-hidden="false">
-                    {{#each allPosts}}
-                        {{> onePostRowItemOwner}}
-                    {{/each}}
+                    <div class="tabs-content-wrapper">
+                        {{#each allPosts}}
+                            {{> onePostRowItemOwner}}
+                        {{/each}}
+                    </div>
+                    {{> bzPaginationPosts }}
                 </div>
                 <div class="content" id="livePosts" aria-hidden="true">
-                    {{#each livePosts}}
-                        {{> onePostRowItemOwner}}
-                    {{/each}}
+                    <div class="tabs-content-wrapper">
+                        {{#each livePosts}}
+                            {{> onePostRowItemOwner}}
+                        {{/each}}
+                    </div>
+                    {{> bzPaginationPosts }}
                 </div>
                 <div class="content" id="activePosts" aria-hidden="true">
-                    {{#each activePosts}}
-                        {{> onePostRowItemOwner}}
-                    {{/each}}
+                    <div class="tabs-content-wrapper">
+                        {{#each activePosts}}
+                            {{> onePostRowItemOwner}}
+                        {{/each}}
+                    </div>
+                    {{> bzPaginationPosts }}
                 </div>
                 
             </div>
@@ -145,39 +154,64 @@
       </div>
     </div>
       
-    <a href="/post/{{_id}}" class=" {{#if _hasLivePresence }} bz-post-live {{else}} bz-post-away {{/if}} ">
-      <div class="photo">
-        <div class="photo-wrapper">
-          {{#if getPhotoUrl.data}}
-            <img src="{{getPhotoUrl.data}}">
-          {{else}}
-            <img src="/img/content/no-photo.png">
-          {{/if}}
-        </div>
-      </div>
+    <!--<a href="/post/{{_id}}" class=" {{#if _hasLivePresence }} bz-post-live {{else}} bz-post-away {{/if}} ">-->
+        <div class="bz-post-wrapper {{#if _hasLivePresence }} bz-post-live {{else}} bz-post-away {{/if}} ">
+            <div class="photo">
+                <div class="photo-wrapper">
+                    {{#if getPhotoUrl.data}}
+                        <img src="{{getPhotoUrl.data}}">
+                    {{else}}
+                        <img src="/img/content/no-photo.png">
+                    {{/if}}
+                </div>
+            </div>
     
-      <div class="description">
-    
-        <h3 class="title">{{details.title}}</h3>
-    
-        {{#if details.price}}
-          <div class="price"> {{details.price}} <span class="bz-prefix">$</span></div>
-        {{/if}}
-        <div class="bz-count-view">{{t9n 'views'}}: {{ stats.seenTotal }}, today <span class="today"> {{ stats.seenToday }}</span></div>
-        {{#if details.duration }}
-          <div class="bz-progress">{{t9n 'left'}}: 15 days</div>
-        {{/if }}
-    
-      </div>
-    </a>
+            <div class="description bz-flex">
+                
+                <div class="bz-post-header">
+                    <a href="/post/{{_id}}"><span>{{details.title}}</span></a>    
+                </div>
+                
+                <div class="bz-post-content"></div>
+                
+                <div class="bz-post-footer bz-flex">
 
-    <div class="bz-services">
-          <div class="bz-services-wrapper">
-              
-              {{> bzPostsPostPresence this}}
-              
-          </div>
-    </div>
+                    <div class="bz-count-view">
+                        {{t9n 'views'}}: {{ stats.seenTotal }}, today <span class="today"> {{ stats.seenToday }}</span>
+                    </div>
+
+                    <div class="bz-services">
+                        <div class="bz-services-wrapper">
+                            {{> bzPostsPostPresence this}}
+                        </div>
+                    </div>
+
+                    <!--{{#if details.duration }}-->
+                    <div class="bz-progress">
+                        <div class="bz-progress-wrapper"> <a href="/account/pay_service?service=3&amp;item_id=585552899&amp;vas_from=profile_items_active_link" class="bar b-green" title="До истечения срока размещения осталось 30 дней"> <span class="bar-green" style="width: 30px;"></span> </a> </div> <div class="action-links clearfix">
+                            {{t9n 'left'}} 15 days
+                        </div>
+                    </div>
+                    <!--{{/if }}-->
+
+                    <div class="bz-post-footer-actions">
+                        <a class="bz-post-action-link" href="#" title="Trash"><i class="fa fa-trash-o"></i></a>
+                        <a class="bz-post-action-link" href="#" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+                        <a class="bz-post-action-link" href="#" title="Share"><i class="fa fa-share-square-o"></i></a>
+                    </div>
+                    
+                </div>
+                
+                
+                
+            
+                {{#if details.price}}
+                    <div class="price"> {{details.price}} <span class="bz-prefix">$</span></div>
+                {{/if}}
+                
+            </div>
+      </div>
+    <!--</a>-->
       
   </div>
 

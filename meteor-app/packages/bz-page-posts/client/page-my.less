@@ -113,9 +113,11 @@
     .display-flex-box();
     .align-items(flex-start);
     margin-bottom: 15px;
+    border-bottom: 1px solid @border-color-sep;
     
     &:last-child {
       margin-bottom: 0;
+      border-bottom:none;
     }
     
     &.item-active {
@@ -181,9 +183,9 @@
       }
     }
     
-    a {
+    .bz-post-wrapper {
       .border-radius(2px);
-      border: 1px solid @border-color-sep;
+      padding: 16px 0;
       background-color: #FFFFFF;
       text-decoration: none;
       width: 100%;
@@ -218,19 +220,62 @@
       }
   
       .description {
+        -ms-flex-direction: column;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+
+        -ms-flex-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        
         width: 100%;
         padding-left: 16px;
         color: @color-text-description;
-  
-          .title {
+        
+        .bz-post-header {
+          
+          a {
             font-family: "Roboto", sans-serif;
             font-size: 18px;
-            color: @text-color-label;
+            color: @text-link-green;
             white-space: normal;
             font-weight: 400;
             padding: 5px 0 0 0;
-  
           }
+        }
+        
+        .bz-post-content {}
+        
+        .bz-post-footer {
+
+          .bz-count-view,
+          .bz-progress {
+            font-size: 13px;
+          }
+
+          .bz-count-view {
+            white-space: normal;
+            padding-top: 0;
+
+            .today {
+            }
+          }
+
+          .bz-progress {}
+          
+          .bz-post-footer-actions {
+           
+            
+            .bz-post-action-link {
+              display: inline-block;
+              border: @border-color-sep;
+              padding: 6px;
+              .border-radius(2px);
+            }
+          }
+        }
+  
+          
   
         .price {
           font-size: 18px;
@@ -242,22 +287,7 @@
           }
         }
 
-        .bz-count-view,
-        .bz-progress {
-          font-size: 13px;
-        }
-  
-        .bz-count-view {
-          white-space: normal;
-          padding-top: 0;
-  
-          .today {
-          }
-        }
-  
-        .bz-progress {
-          
-        }
+        
   
         
       
@@ -270,9 +300,7 @@
   }
 
     .bz-services {
-      position: absolute;
-      right: 10px;
-      bottom: 10px;
+      
       
       .bz-services-wrapper {
         .display-flex-box();
