@@ -7,7 +7,7 @@ Template.myItems.onCreated(function () {
 });
 
 
-Template.onePostRowItem.rendered = function() {
+Template.onePostRowItemSearch.rendered = function() {
   /*init Rate*/
   $('.bz-rating').raty({
     starType: 'i'
@@ -57,7 +57,7 @@ Template.myItems.helpers({
   }
 });
 
-Template.onePostRowItem.helpers({
+Template.onePostRowItemSearch.helpers({
   getPhotoUrl: function () {
     var photo = bz.cols.posts.findOne({_id: this._id}),
       photoId = photo.details.photos && photo.details.photos[0] || undefined;
@@ -115,7 +115,8 @@ Template.onePostRowItemOwner.events({
       }, 10);
     }
   }
-})
+});
+
 Template.onePostRowItemOwner.helpers({
   getPhotoUrl: function () {
     var photo = bz.cols.posts.findOne({_id: this._id}),

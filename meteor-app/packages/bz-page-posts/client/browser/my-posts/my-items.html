@@ -89,8 +89,8 @@
 </template>
 
 
-<!--
-<template name="onePostRowItem">
+
+<template name="onePostRowItemSearch">
 
   <div class="bz-item bz-item-fixed">
     <div class="bz-item-mask">
@@ -117,9 +117,18 @@
 
         </div>
         <div class="bz-item-footer">
-          <div class="bz-item-views">{{t9n 'views'}}  {{ stats.seenTotal }} <span class="today">({{ stats.seenToday }}
-            today)</span>
-          </div>
+          {{#if stats}}
+              <div class="bz-item-views">
+                  <i class="fa fa-eye"></i>
+                  {{#if stats.seenAll}}
+                      <span class="all-views">{{ t9n 'SEEN_ALL' }}:</span><span class="bz-count-view-content">{{ stats.seenAll }}</span>
+                  {{/if}}
+
+                  {{#if stats.seenToday}}
+                      <span class="today-views">{{ t9n 'SEEN_TODAY' }}:</span><span class="bz-count-view-content">{{ stats.seenToday }}</span>
+                  {{/if}}
+              </div>
+          {{/if}}
         </div>
 
       </a>
@@ -133,13 +142,13 @@
       <div class="bz-avatar" style="background-image: url({{ getAvatarImg }})"></div>
       <div class="bz-item-user-info">
         <div class="bz-username"><a href="/user/{{ userId }}">{{ getUserName }}</a></div>
-        &lt;!&ndash;<div class="bz-rating"></div>&ndash;&gt;
+        <div class="bz-rating"></div>
       </div>
     </div>
   </div>
 
 </template>
--->
+
 
 <template name="onePostRowItemOwner">
 
