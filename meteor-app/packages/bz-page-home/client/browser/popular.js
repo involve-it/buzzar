@@ -88,5 +88,8 @@ Template.bzHomePopularItem.events({
       var chatId = bz.buz.chats.createChatIfFirstMessage(Meteor.userId(), this.userId);
       Router.go('/chat/' + chatId);
     }
+  },
+  'click .js-category-type-btn': (e, v)=> {
+    debugger;
   }
 })
