@@ -17,12 +17,14 @@
         </div>
 
         <div class="bz-slideshow-content">
-            <div class="bz-header nav-bg-transparent bz-container-v bz-container-h">
+            <div class="bz-header nav-bg-transparent bz-container-v bz-container-h js-bz-header">
                 {{> bzNavBar}}
                 <div class="bz-header-top">
                     <h1 class="bz-header-title">{{ t9n 'headliner' }} </h1>
                 </div>
-
+              <div class="" style="position: absolute; right: 0;    top: 60px;">
+                {{> bzChangeLanguage}}
+              </div>
                 <div class="bz-search">
                     <div class="box-search js-pause-header-video">
                         <div class="bz-category-buttons">

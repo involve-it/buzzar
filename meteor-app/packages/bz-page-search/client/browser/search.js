@@ -18,6 +18,7 @@
 Template.bzDistance.rendered = function () {
   //$("#selectDis").trigger("change", true);
   $('#selectDis11').foundationSelect();
+  $(document).foundation('reflow');
 };
 
 Template.bzDistance.events({
