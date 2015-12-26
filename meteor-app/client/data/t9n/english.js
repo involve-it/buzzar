@@ -116,6 +116,8 @@ en = {
   NEW_POST_INCOGNITO_MODE: 'Incognito mode',
   NEW_POST_HASHES: 'Hashes',
   NEW_POST_CREATE_BTN: 'Create FireFly',
+  NEW_POST_SET_LOCATION_BTN: 'Set Location',
+
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',

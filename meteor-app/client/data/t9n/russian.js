@@ -115,7 +115,7 @@ ru = {
   NEW_POST_INCOGNITO_MODE: 'Режим инкогнито',
   NEW_POST_HASHES: 'Хэштеги',
   NEW_POST_CREATE_BTN: 'Установить Светлячок',
-
+  NEW_POST_SET_LOCATION_BTN: 'Выберите Местоположение',
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Новое напоминание',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',
