@@ -32,7 +32,7 @@ Template.bzChangeLanguage.rendered = function () {
    T9n. SetUserLanguage(lang);*/
 
   GetUiLanguage().then((lang)=> {
-    $('.js-language-picker').val(lang);
+    $('.js-language-picker').val(lang || 'en');
 
     //Ashot: review - select language drop down was not updating on jQuery call.
     //_.defer seems to fix it, although not sure if it's the right approach.

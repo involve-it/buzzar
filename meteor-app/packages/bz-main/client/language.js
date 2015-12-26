@@ -44,6 +44,7 @@ GetUiLanguage = ()=> {
       resolve(sessLang);
     } else {
       GetUserLanguage().then((lang) => {
+        lang = lang || T9n.defaultLanguage;
         resolve(lang);
       });
     }
