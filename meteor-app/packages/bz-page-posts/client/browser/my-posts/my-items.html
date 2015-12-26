@@ -144,15 +144,6 @@
 <template name="onePostRowItemOwner">
 
   <div class="item">
-
-    <div class="bz-switch-activity-post">
-      <div class="switch-wrapper js-switch-wrapper">
-          <div class="switch bz-small">
-              <input id="switch-activity-{{_id}}" type="checkbox" {{ getVisibilityVal }} class="js-switch-activity-input">
-              <label for="switch-activity-{{_id}}"></label>
-          </div>
-      </div>
-    </div>
       
     <!--<a href="/post/{{_id}}" class=" {{#if _hasLivePresence }} bz-post-live {{else}} bz-post-away {{/if}} ">-->
         <div class="bz-post-wrapper {{#if _hasLivePresence }} bz-post-live {{else}} bz-post-away {{/if}} ">
@@ -168,17 +159,43 @@
     
             <div class="description bz-flex">
                 
-                <div class="bz-post-header">
-                    <a href="/post/{{_id}}"><span>{{details.title}}</span></a>    
+                <div class="bz-post-header bz-flex bz-flex-space-between">
+                    <a href="/post/{{_id}}"><span>{{details.title}}</span></a>
+
+                    <div class="bz-switch-activity-post">
+                        <div class="switch-wrapper js-switch-wrapper">
+                            <div class="switch bz-small">
+                                <input id="switch-activity-{{_id}}" type="checkbox" {{ getVisibilityVal }} class="js-switch-activity-input">
+                                <label for="switch-activity-{{_id}}"></label>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
                 
-                <div class="bz-post-content"></div>
-                
-                <div class="bz-post-footer bz-flex">
+                <div class="bz-post-content">
 
-                    <div class="bz-count-view">
-                        {{t9n 'views'}}: {{ stats.seenTotal }}, today <span class="today"> {{ stats.seenToday }}</span>
-                    </div>
+                    <p class="bz-item-text">{{details.description}}</p>
+
+                    {{#if details.price}}
+                        <div class="price"> {{details.price}} <span class="bz-prefix">$</span></div>
+                    {{/if}}
+                    
+                </div>
+                
+                <div class="bz-post-footer ">
+                    {{#if stats}}
+                        <div class="bz-count-view">
+                            <i class="fa fa-eye"></i> 
+                            {{#if stats.seenAll}}
+                                <span class="all-views">{{ t9n 'SEEN_ALL' }}:</span><span class="bz-count-view-content">{{ stats.seenAll }}</span>
+                            {{/if}}
+                            
+                            {{#if stats.seenToday}}
+                                <span class="today-views">{{ t9n 'SEEN_TODAY' }}:</span><span class="bz-count-view-content">{{ stats.seenToday }}</span>
+                            {{/if}}
+                        </div>
+                    {{/if}}    
 
                     <div class="bz-services">
                         <div class="bz-services-wrapper">
@@ -187,27 +204,26 @@
                     </div>
 
                     <!--{{#if details.duration }}-->
-                    <div class="bz-progress">
-                        <div class="bz-progress-wrapper"> <a href="/account/pay_service?service=3&amp;item_id=585552899&amp;vas_from=profile_items_active_link" class="bar b-green" title="До истечения срока размещения осталось 30 дней"> <span class="bar-green" style="width: 30px;"></span> </a> </div> <div class="action-links clearfix">
-                            {{t9n 'left'}} 15 days
+                    <div class="bz-progress">                        
+                        <div class="bz-progress-wrapper">
+                            <div class="progress small-12 radius {{secondary}} {{alert}} {{success}}">
+                                <span class="meter" style="width: 60%"></span>
+                            </div>
+                            <span class="bz-progress-left">{{t9n 'left'}} 15 days</span>
                         </div>
                     </div>
                     <!--{{/if }}-->
 
                     <div class="bz-post-footer-actions">
-                        <a class="bz-post-action-link" href="#" title="Trash"><i class="fa fa-trash-o"></i></a>
-                        <a class="bz-post-action-link" href="#" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
-                        <a class="bz-post-action-link" href="#" title="Share"><i class="fa fa-share-square-o"></i></a>
+                        <div class="">
+                            <a class="bz-post-action-link" href="#" title="Share"><span><i class="fa fa-share-square-o"></i></span></a>
+                            <a class="bz-post-action-link" href="#" title="Edit"><span><i class="fa fa-pencil-square-o"></i></span></a>
+                            <a class="bz-post-action-link" href="#" title="Trash"><span><i class="fa fa-trash-o"></i></span></a>
+                        </div>
                     </div>
                     
                 </div>
                 
-                
-                
-            
-                {{#if details.price}}
-                    <div class="price"> {{details.price}} <span class="bz-prefix">$</span></div>
-                {{/if}}
                 
             </div>
       </div>
