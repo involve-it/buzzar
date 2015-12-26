@@ -14,7 +14,7 @@
               data-autocompleted="autocompleted"
            />-->
       <input class="form-control typeahead js-nearby-places" name="team" type="text"
-             placeholder="{{ t9n 'lookingForText'}}"
+             placeholder="{{ t9n 'LOOKING_FOR_TEXT'}}"
              data-sets="joinedArray"
              value="{{ $.Session.get 'bz.control.search.searchedText' }}"
 
@@ -22,17 +22,17 @@
              data-min-length="0"
              data-opened="opened" data-selected="searchItemSelected"
              data-template="teamList"
-          />
+      />
     </div>
-      
-      {{> bzDistance }}
-      
-      <button class="button bz-btn-search js-search-btn"></button>
 
-      {{#if searchTagIsVisible }}
-          {{> bzSearchHashTagLabel }}
-      {{/if}}
-      
+    {{> bzDistance }}
+
+    <button class="button bz-btn-search js-search-btn"></button>
+
+    {{#if searchTagIsVisible }}
+      {{> bzSearchHashTagLabel }}
+    {{/if}}
+
   </div>
 
 
@@ -47,27 +47,29 @@
 </template>
 
 <template name="bzSearchHashTagLabel">
-    {{#unless isHashTagLabel}}
- <div class="bz-hash-tag-label">
-     <div class="bz-hash-tag-label-wrapper">
-         <div class="bz-hash-icon">#</div>
-         <div class="bz-hash-tag-label-text">{{ getLookingForPhrase }}</div>
-       <div class="bz-hash-tag-label-button"><button class="button bz-small btn-default js-save-hash-btn">Save hash</button></div>
-     </div>
- </div>
-    {{/unless}}
+  {{#unless isHashTagLabel}}
+    <div class="bz-hash-tag-label">
+      <div class="bz-hash-tag-label-wrapper">
+        <div class="bz-hash-icon">#</div>
+        <div class="bz-hash-tag-label-text">{{ getLookingForPhrase }}</div>
+        <div class="bz-hash-tag-label-button">
+          <button class="button bz-small btn-default js-save-hash-btn">Save hash</button>
+        </div>
+      </div>
+    </div>
+  {{/unless}}
 </template>
 
 <template name="bzDistance">
-    <div class="bz-distance">
-        <form id="dropdown-distance" class="bz-dropdown">
-            <select id="selectDis11" class="js-dropdown-distance" data-prompt="{{t9n 'SEARCH_DISTANCE_TITLE'}}">
-                <option value="0.0378788" >200 ft</option>
-                <option value="1" selected>1 mile</option>
-                <option value="5">5 mile</option>
-                <option value="20">20 mile</option>
-                <option value="-1">Everywhere</option>
-            </select>
-        </form>
-    </div>
+  <div class="bz-distance">
+    <form id="dropdown-distance" class="bz-dropdown">
+      <select id="selectDis11" class="js-dropdown-distance" data-prompt="{{t9n 'SEARCH_DISTANCE_TITLE'}}">
+        <option value="0.0378788">200 ft</option>
+        <option value="1" selected>1 mile</option>
+        <option value="5">5 mile</option>
+        <option value="20">20 mile</option>
+        <option value="-1">Everywhere</option>
+      </select>
+    </form>
+  </div>
 </template>

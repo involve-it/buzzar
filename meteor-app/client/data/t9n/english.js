@@ -57,6 +57,7 @@ en = {
   ABOUT_US_TITLE: 'About us',
 
   AROUND_YOU_TITLE: 'Buzz Around you',
+  LOOKING_FOR_TEXT: 'Your WHAT or WHERE or WHEN you\'re looking for',
 
   //Location
   LOCATION_SET_YOUR_LOCATION: 'Set your location',

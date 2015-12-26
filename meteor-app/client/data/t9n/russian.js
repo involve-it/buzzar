@@ -55,6 +55,7 @@ ru = {
   ABOUT_US_TITLE: 'О нас',
 
   AROUND_YOU_TITLE: 'Срочное рядом',
+  LOOKING_FOR_TEXT: 'Искать ЧТО, ГДЕ, КОГДА',
 
   //Location
   LOCATION_SET_YOUR_LOCATION: 'Настройка метоположения',
