@@ -1,103 +1,106 @@
-
 <template name="mainLayout">
-    <div class="off-canvas-wrap" data-offcanvas>
-        <div class="inner-wrap">
-            <!-- Off Canvas Menu -->
-            {{> bzMenuLeft}}
-        
-            <div class="bz-wrap-page bz-overflow-y-auto">
-                <div class="js-button-left-off-canvas">
-                    <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
-                        <div class="bz-icon-menu"></div>
-                    </a>
-                </div>
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+      <!-- Off Canvas Menu -->
+      {{> bzMenuLeft}}
 
-                <div class="bz-main">
-                    {{> bzNavBar}}
-        
-                    <div class="bz-block-light">
-                        <div class="bz-container-body">
-                            {{> yield}}
-                        </div>
-                    </div>
-        
-                    {{> bzFooter}}
-                </div>
-            </div>
-        
-            <!-- close the off-canvas menu -->
-            <a class="exit-off-canvas"></a>
+      <div class="bz-wrap-page bz-overflow-y-auto">
+        <div class="js-button-left-off-canvas">
+          <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
+
+            <div class="bz-icon-menu"></div>
+          </a>
         </div>
-    </div>
 
-    <div class="js-message-popup-placeholder">
-        {{> bzChatMessagePopup }}
-    </div>
+        <div class="bz-main">
+          {{> bzNavBar}}
+          <div class="row">
+            {{> bzChangeLanguage}}
+          </div>
+          <div class="bz-block-light">
+            <div class="bz-container-body">
+              {{> yield}}
+            </div>
+          </div>
 
-    <div class="message-loader">{{> sAlert template='sAlertCustom'}}</div>
+          {{> bzFooter}}
+        </div>
+      </div>
+
+      <!-- close the off-canvas menu -->
+      <a class="exit-off-canvas"></a>
+    </div>
+  </div>
+
+  <div class="js-message-popup-placeholder">
+    {{> bzChatMessagePopup }}
+  </div>
+
+  <div class="message-loader">{{> sAlert template='sAlertCustom'}}</div>
 </template>
 
 
 <template name="mainLayoutHome">
-    <div class="off-canvas-wrap" data-offcanvas>
-        <div class="inner-wrap">
-        
-            <!-- Off Canvas Menu -->
-            {{> bzMenuLeft}}
-        
-            <div class="bz-wrap-page bz-overflow-y-auto">
-                <div class="js-button-left-off-canvas">
-                    <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
-                        <div class="bz-icon-menu"></div>
-                    </a>
-                </div>
-        
-                <div class="bz-main">
-                    {{> yield}}
-                    {{> bzFooter}}
-                </div>
-            </div>
-        
-          <!-- close the off-canvas menu -->
-          <a class="exit-off-canvas"></a>
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+
+      <!-- Off Canvas Menu -->
+      {{> bzMenuLeft}}
+
+      <div class="bz-wrap-page bz-overflow-y-auto">
+        <div class="js-button-left-off-canvas">
+          <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
+
+            <div class="bz-icon-menu"></div>
+          </a>
         </div>
+
+        <div class="bz-main">
+          {{> yield}}
+          {{> bzFooter}}
+        </div>
+      </div>
+
+      <!-- close the off-canvas menu -->
+      <a class="exit-off-canvas"></a>
     </div>
-    
-    <div class="js-message-popup-placeholder">
-        {{> bzChatMessagePopup }}
-    </div>
+  </div>
+
+  <div class="js-message-popup-placeholder">
+    {{> bzChatMessagePopup }}
+  </div>
 
   <div class="message-loader">{{> sAlert template='sAlertCustom'}}</div>
-    
+
 </template>
 
 <!--layout for non-auth pages-->
 <template name="basicLayout">
 
-    <div class="off-canvas-wrap" data-offcanvas>
-        <div class="inner-wrap">
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
 
-            <!-- Off Canvas Menu -->
-            {{> bzMenuLeft}}
+      <!-- Off Canvas Menu -->
+      {{> bzMenuLeft}}
 
-            <div class="bz-wrap-page bz-overflow-y-auto">
-                <div class="js-button-left-off-canvas">
-                    <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
+      <div class="bz-wrap-page bz-overflow-y-auto">
+        <div class="js-button-left-off-canvas">
+          <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
 
-                        <div class="bz-icon-menu"></div>
-                    </a>
-                </div>
-
-                <div class="bz-main">
-                    {{> yield}}
-                </div>
-            </div>
-
-            <!-- close the off-canvas menu -->
-            <a class="exit-off-canvas"></a>
-
+            <div class="bz-icon-menu"></div>
+          </a>
         </div>
+
+        <div class="bz-main">
+          {{> yield}}
+        </div>
+      </div>
+
+      <!-- close the off-canvas menu -->
+      <a class="exit-off-canvas"></a>
+
     </div>
+  </div>
 </template>
 
 
@@ -136,9 +139,9 @@
     <div class="">
       <nav id="bz-navbar" class="js-pause-header-video">
         <div class="bz-logo">
-            {{> bzMeteorLogo }}
-            
-            {{> bzLocationName}}
+          {{> bzMeteorLogo }}
+
+          {{> bzLocationName}}
         </div>
 
         <div class="bz-header-menu">
@@ -147,14 +150,15 @@
         <div class="bz-header-button">
           <!--<a href="{{ pathFor 'postsNew'}}" class="button bz-small alert">{{ t9n 'MENU_BUTTON_NEW_POST' }}</a>-->
 
-        <a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert">{{ t9n 'MENU_BUTTON_NEW_POST' }} <span data-dropdown="drop"></span></a><br>
-        <ul id="drop" class="f-dropdown" data-dropdown-content>
+          <a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert">{{ t9n 'MENU_BUTTON_NEW_POST' }} <span
+            data-dropdown="drop"></span></a><br>
+          <ul id="drop" class="f-dropdown" data-dropdown-content>
             <li><a href="/posts/new?type=ad">Объявление</a></li>
             <li><a href="/posts/new?type=memo">Напоминание</a></li>
             <li><a style="    background: #E8E8E8;">Информация</a></li>
             <li><a style="    background: #E8E8E8;">Визитка</a></li>
-        </ul>
-            
+          </ul>
+
         </div>
 
         <!--<div class="bz-auth">
@@ -196,24 +200,24 @@
           </div>
         </div>
       </div>
-        
-     <div class="row">
-         <div class="bz-language-picker text-center bz-padding-top-x2 js-language-picker">
-             {{> changeLanguage}}
-         </div>
-     </div>   
-        
+
+      <div class="row">
+        {{> bzChangeLanguage}}
+      </div>
+
     </div>
   </footer>
 </template>
 
 
-<template name="changeLanguage">
+<template name="bzChangeLanguage">
+  <div class="bz-language-picker text-center bz-padding-top-x2">
     <form id="dropdown-choose-lang">
-        <!--id="bz-choose-lang"-->
-        <select class="dropdown-choose-lang">
-            <option value="en">English</option>
-            <option value="ru" selected>Русский</option>
-        </select>
+      <!--id="bz-choose-lang"-->
+      <select class="dropdown-choose-lang js-language-picker">
+        <option value="en">English</option>
+        <option value="ru" selected>Русский</option>
+      </select>
     </form>
+  </div>
 </template>
