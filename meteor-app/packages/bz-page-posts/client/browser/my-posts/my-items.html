@@ -174,11 +174,13 @@
                 </div>
                 
                 <div class="bz-post-content">
-
-                    <p class="bz-item-text">{{details.description}}</p>
-
+                    
+                    {{#if getDescription}}
+                        <p class="bz-item-text">{{details.description}}</p>
+                    {{/if}}
+                    
                     {{#if details.price}}
-                        <div class="price"> {{details.price}} <span class="bz-prefix">$</span></div>
+                        <div class="price"> {{details.price}} <i class="fa fa-usd"></i><!--<span class="bz-prefix">$</span>--></div>
                     {{/if}}
                     
                 </div>
@@ -206,10 +208,10 @@
                     <!--{{#if details.duration }}-->
                     <div class="bz-progress">                        
                         <div class="bz-progress-wrapper">
-                            <div class="progress small-12 radius {{secondary}} {{alert}} {{success}}">
+                            <span class="bz-progress-left">{{t9n 'left'}} 15 days</span>
+                            <div class="progress small-12 radius [secondary alert success]">
                                 <span class="meter" style="width: 60%"></span>
                             </div>
-                            <span class="bz-progress-left">{{t9n 'left'}} 15 days</span>
                         </div>
                     </div>
                     <!--{{/if }}-->

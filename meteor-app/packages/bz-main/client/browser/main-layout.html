@@ -162,7 +162,9 @@
         </div>
       </div>
       <div class="row">
-        {{> bzChangeLanguage}}
+        <div class="bz-language-picker-wrapper">
+            {{> bzChangeLanguage}}
+        </div>
       </div>
     </div>
   </footer>
@@ -170,9 +172,8 @@
 
 
 <template name="bzChangeLanguage">
-  <div class="bz-language-picker text-center bz-padding-top-x2">
+  <div class="bz-language-picker">
     <form id="dropdown-choose-lang">
-      <!--id="bz-choose-lang"-->
       <select class="dropdown-choose-lang js-language-picker">
         <option value="en">English</option>
         <option value="ru" selected>Русский</option>

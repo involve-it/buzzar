@@ -132,6 +132,11 @@ Template.onePostRowItemOwner.helpers({
   categoryType: function() {
     return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
   },
+  getDescription: function() {
+    var self = this;
+    var d = self.details.description;
+
+  },
   getAvatarImg: function () {
     var ret ='';
 
