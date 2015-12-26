@@ -56,9 +56,6 @@ Template.bzHomePopularItem.helpers({
   getPostOwner: function(){
     return Meteor.users.findOne(this.userId);
   },
-  categoryType: function() {
-    return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
-  },
   getRank: function() {},
   getTimeStamp: function(){
     return Date.now();
@@ -88,8 +85,5 @@ Template.bzHomePopularItem.events({
       var chatId = bz.buz.chats.createChatIfFirstMessage(Meteor.userId(), this.userId);
       Router.go('/chat/' + chatId);
     }
-  },
-  'click .js-category-type-btn': (e, v)=> {
-    debugger;
   }
 })

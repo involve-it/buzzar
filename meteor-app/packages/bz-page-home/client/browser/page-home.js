@@ -74,3 +74,20 @@ Template.pageHome.rendered = function () {
   }
   function initSlideshowOrVideo() {}
 };
+
+
+Template.bzAdCategoryButton.helpers({
+  categoryType: function() {
+    return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
+  }
+});
+
+Template.bzAdCategoryButton.events({
+  'click .js-category-type-btn': (e, v)=> {
+    var catName = e.target.innerText;
+    if(catName) {
+      bz.ui.putCategoriesToSession(catName);
+      bz.ui.alert(`You filtered results by the "${catName.toCapitalCase()}" category, take Category Filter off in the top search section`);
+    }
+  }
+});

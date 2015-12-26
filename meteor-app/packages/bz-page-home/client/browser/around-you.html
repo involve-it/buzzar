@@ -44,11 +44,12 @@
             <!--{{#if details.price}}
                 <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
             {{/if}}-->
-          <div class="bz-category">
+          <!--<div class="bz-category">
             <div class="button bz-btn-category type-category-{{categoryType}}">
-              {{categoryType}}
+              {{categoryType }}
             </div>
-          </div>
+          </div>-->
+          {{> bzAdCategoryButton _id=_id}}
           <div class="">
             <a class="js-send-message-btn {{ disableOwnPost }}">Send Message</a>
           </div>

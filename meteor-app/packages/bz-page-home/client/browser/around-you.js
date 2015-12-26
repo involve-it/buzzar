@@ -62,9 +62,6 @@ Template.bzAroundYouItem.helpers({
   getPostOwner: function(){
     return Meteor.users.findOne(this.userId);
   },
-  categoryType: function() {
-    return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
-  },
   getRank: function() {},
   getTimeStamp: function(){
     return Date.now();

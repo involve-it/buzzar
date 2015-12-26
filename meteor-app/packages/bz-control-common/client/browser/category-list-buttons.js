@@ -15,7 +15,7 @@ Template.categoryListButtons.helpers({
 
 Template.categoryListButtons.events({
   'click .item-category': function (e, v) {
-    var cats = Session.get('bz.control.category-list.activeCategories') || [],
+/*    var cats = Session.get('bz.control.category-list.activeCategories') || [],
         ind = cats.indexOf(this.name);
     if (ind !== -1) {
       cats.splice(ind, 1);
@@ -23,7 +23,8 @@ Template.categoryListButtons.events({
       //cats.push(this.id);
       cats.push(this.name);
     }
-    Session.set('bz.control.category-list.activeCategories', cats);
+    Session.set('bz.control.category-list.activeCategories', cats);*/
+    bz.ui.putCategoriesToSession(this.name, true);
     //Session.set('activeTemplate', 'singleSearchTemplate');
     Session.set('activeTemplate', null);
   }
