@@ -14,9 +14,6 @@
 
         <div class="bz-main">
           {{> bzNavBar}}
-          <div class="row">
-            {{> bzChangeLanguage}}
-          </div>
           <div class="bz-block-light">
             <div class="bz-container-body">
               {{> yield}}
@@ -103,37 +100,6 @@
   </div>
 </template>
 
-
-<!--template with reveal style menu-->
-<!--<template name="basicLayout">
-
-    <div class="off-canvas-wrap" data-offcanvas>
-      <div class="inner-wrap">
-
-        &lt;!&ndash; Off Canvas Menu &ndash;&gt;
-        {{> bzMenuLeft}}
-
-        &lt;!&ndash; close the off-canvas menu &ndash;&gt;
-        <a class="exit-off-canvas"></a>
-
-      </div>
-
-      <div class="bz-wrap-page">
-            <div class="js-button-left-off-canvas">
-              <a class="left-off-canvas-toggle bz-icon" href="#"><span></span>
-        
-                <div class="bz-icon-menu"></div>
-              </a>
-            </div>
-        
-            <div class="bz-main" style="height: 100%">
-              {{> yield}}
-            </div>
-      </div>
-    </div>
-</template>-->
-
-
 <template name="bzNavBar">
   <div class="bz-nav-bg-default">
     <div class="">
@@ -158,12 +124,7 @@
             <li><a style="    background: #E8E8E8;">Информация</a></li>
             <li><a style="    background: #E8E8E8;">Визитка</a></li>
           </ul>
-
         </div>
-
-        <!--<div class="bz-auth">
-          {{> checkInBtn }}
-        </div>-->
 
       </nav>
       <!-- navEND -->
@@ -200,11 +161,6 @@
           </div>
         </div>
       </div>
-
-      <div class="row">
-        {{> bzChangeLanguage}}
-      </div>
-
     </div>
   </footer>
 </template>

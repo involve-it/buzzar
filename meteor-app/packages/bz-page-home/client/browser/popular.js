@@ -22,6 +22,11 @@ Template.bzHomePopular.helpers({
         sort: {'stats.seenAll': -1}
       });
     }
+    if(ret) {
+      ret.sort(function (a, b) {
+        return a._getDistanceToCurrentLocation(true) - b._getDistanceToCurrentLocation(true);
+      });
+    }
     return ret;
   }
 });

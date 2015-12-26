@@ -21,28 +21,32 @@ var helperFunctions = {
     }
     return loc;
   },
-  getDistanceToCurrentLocation: function(){
-    var currentLocation = Session.get('currentLocation');
+  getDistanceToCurrentLocation: function(retNumberFormat){
+    var currentLocation = Session.get('currentLocation'), ret, loc, distance, num;
     if (currentLocation && this.details && this.details.locations && Array.isArray(this.details.locations) && this.details.locations.length > 0){
-      var loc = _.find(this.details.locations, function(l){ return l.placeType === bz.const.locations.type.DYNAMIC});
+      loc = _.find(this.details.locations, function(l){ return l.placeType === bz.const.locations.type.DYNAMIC});
       if (!loc){
         loc = this.details.locations[0];
       }
-      var distance =  bz.help.location.getDistance(currentLocation.latitude, currentLocation.longitude, loc.coords.lat, loc.coords.lng);
+      distance =  bz.help.location.getDistance(currentLocation.latitude, currentLocation.longitude, loc.coords.lat, loc.coords.lng);
 
-      var ret;
-      if (distance <= .3){
-        ret = (distance * 5280).toFixed(0) + ' ft';
-      } else if (distance <= 10){
-        ret = distance.toFixed(1) + ' mi';
+      if(!retNumberFormat) {
+        if (distance <= .3) {
+          ret = (distance * 5280).toFixed(0) + ' ft';
+        } else if (distance <= 10) {
+          ret = distance.toFixed(1) + ' mi';
+        } else {
+          ret = distance.toFixed(0) + ' mi';
+        }
       } else {
-        ret = distance.toFixed(0) + ' mi';
+        num = distance.toFixed(3);
+        ret = !Number.isNaN(num) ? Number.parseFloat(num): NaN;
       }
 
-      return ret;
     } else {
-      return '';
+      ret = retNumberFormat ? Number.MAX_VALUE : '';
     }
+    return ret;
   },
   getDistanceQualifier: function(){
     var distance = this._getDistanceToCurrentLocation();
