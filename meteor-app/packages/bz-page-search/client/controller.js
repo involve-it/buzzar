@@ -22,7 +22,7 @@ Meteor.startup(function () {
     Session.set('bz.control.search.location', {
       coords: loc,
       placeType: bz.const.locations.type.STATIC,
-      name: bz.const.places.CURRENT_LOCATION,
+      name: T9n.get('MY_LOCATION_TEXT'),
       userId: Meteor.userId(),
       public: false // private, user's place
 
@@ -274,7 +274,7 @@ setLocationToSessionFromData = function (locName, data, sessionName) {
         Session.set(sessionName, {
           coords: loc,
           placeType: placeType,
-          name: bz.const.places.CURRENT_LOCATION,
+          name: T9n.get('MY_LOCATION_TEXT'),
           userId: Meteor.userId(),
           public: false // private, user's place
         });

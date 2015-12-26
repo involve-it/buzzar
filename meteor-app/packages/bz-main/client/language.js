@@ -31,9 +31,9 @@ _SaveUserLanguage = function(language){
           //if (error) return console.log(error.reason);
         });
       }
-    } else {
-      Cookie.set('bz.user.language', language);
-    }
+    } //else {
+    Cookie.set('bz.user.language', language);
+    //}
   }
 }
 

@@ -62,7 +62,8 @@ ru = {
   LOCATION_YOUR_MOST_RECENT_LOCATIONS: 'Ваши последние места: ',
   LOCATION_BUTTON_SET_LOCATION: 'Установить',
   LOCATION_MY_CURRENT_LOCATION: 'Определить текущее местоположение',
-  
+  MY_LOCATION_TEXT: 'Мое Положение',
+
   //New post
   NEW_POST_NEWTYPE_BEACON_TITLE: 'Выберите подходящий маячок',
   NEW_POST_IMPORT_FROM_WEB: 'Взять из интернета',

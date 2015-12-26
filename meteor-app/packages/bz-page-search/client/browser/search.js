@@ -49,7 +49,7 @@ Meteor.startup(function () {
   bz.help.maps.getCurrentLocation(function (loc) {
     Session.set('bz.control.search.location', {
       coords: loc,
-      name: bz.const.places.CURRENT_LOCATION
+      name: T9n.get('MY_LOCATION_TEXT')
     });
   });
 });

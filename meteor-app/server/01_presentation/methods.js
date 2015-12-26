@@ -99,7 +99,7 @@ Meteor.methods({
     return ret;
   },
   setUserCurrentLocation: function (userId, coords) {
-    var name = bz.const.places.CURRENT_LOCATION, id;
+    var name = T9n.get('MY_LOCATION_TEXT'), id;
     var existLoc = bz.cols.locations.findOne({name: name, userId: userId});
     if (existLoc) {
       //bz.cols.locations.remove(existLoc._id);
