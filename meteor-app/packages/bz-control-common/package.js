@@ -12,8 +12,7 @@ Package.describe({
 
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
-  api.use('iron:router', ['client', 'server']);
-  api.use('iron:layout', ['client', 'server']);
+  api.use(['iron:router', 'iron:layout', 'ecmascript'], ['client', 'server']);
   api.use(['templating', 'less'], 'client');
   //api.use(['arutune:bz-main']);
   //api.use(['natestrauser:filepicker-plus'], 'client');
