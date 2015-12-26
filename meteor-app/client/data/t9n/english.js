@@ -37,7 +37,9 @@ en = {
   status: 'Status',
   active: 'Active',
   inactive: 'Inactive',
-  views: 'Views',
+  SEEN_TODAY: 'Today',
+  SEEN_ALL: 'All',
+  SEEN_TOTAL: 'Total',
   left: 'Left',
   
   //sitewise:

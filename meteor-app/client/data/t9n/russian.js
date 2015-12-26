@@ -37,7 +37,9 @@ ru = {
   status:              'Статус',
   active:              'Активные',
   inactive:            'Завершенные',
-  views:               'Просмотров',
+  SEEN_TODAY: 'Сегодня',
+  SEEN_ALL: 'Всего',
+  SEEN_TOTAL: 'Итого',
   left:                'Осталось',
   
   //home:
