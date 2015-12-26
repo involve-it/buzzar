@@ -64,7 +64,7 @@ en = {
   LOCATION_YOUR_MOST_RECENT_LOCATIONS: 'Your most recent locations: ',
   LOCATION_BUTTON_SET_LOCATION: 'Set',
   LOCATION_MY_CURRENT_LOCATION: 'My current location',
-
+  MY_LOCATION_TEXT: 'My Location',
   //New post
   NEW_POST_NEWTYPE_BEACON_TITLE: 'Choose the appropriate beacon',
   NEW_POST_IMPORT_FROM_WEB: 'Import from Web',

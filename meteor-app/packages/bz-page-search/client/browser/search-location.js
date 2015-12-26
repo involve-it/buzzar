@@ -2,15 +2,6 @@
  * Created by Ashot on 9/8/15.
  */
 
-/*Meteor.startup(function () {
-  bz.help.maps.getCurrentLocation(function (loc) {
-    Session.set('bz.control.search.location', {
-      coords: loc,
-      name: 'My Location'
-    });
-  });
-});*/
-
 Template.bzControlSearchLocation.created = function () {
   /*bz.help.maps.initLocation();
   bz.help.maps.initPlaces();

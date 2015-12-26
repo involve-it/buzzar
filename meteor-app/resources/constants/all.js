@@ -2,7 +2,7 @@
  * Created by ashot on 8/21/15.
  */
 bz.help.makeNamespace('bz.const.places');
-bz.const.places.CURRENT_LOCATION = 'My Location';
+//bz.const.places.CURRENT_LOCATION = 'My Location';
 //bz.const.places.CURRENT_LOCATION_DB = 'CURRENT';
 bz.help.makeNamespace('bz.const.user.status');
 bz.const.user.status.ONLINE = 'online'; //- мы "видим"/пеленгуем юзера
