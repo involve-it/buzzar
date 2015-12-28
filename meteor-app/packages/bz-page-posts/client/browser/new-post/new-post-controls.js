@@ -10,7 +10,8 @@ Template.bzPostTypes.events({
 })
 Template.postTypeSelect.helpers({
   getSiteTypes: function () {
-    return bz.cols.siteTypes.find();
+    return GetPostAdTypes();
+    //return bz.cols.siteTypes.find();
   }
 });
 Template.postTypeSelect.events({
