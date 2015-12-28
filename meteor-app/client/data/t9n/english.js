@@ -117,14 +117,14 @@ en = {
   NEW_POST_HASHES: 'Hashes',
   NEW_POST_CREATE_BTN: 'Create FireFly',
   NEW_POST_SET_LOCATION_BTN: 'Set Location',
-
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',
   NEW_MEMO_DESCRIPTION_PLACEHOLDER_TOOLTIP_TEXT: 'Точное описание поможет сориентироваться в списке созданных напоминаний.',
   NEW_MEMO_WHAT_MUTED: 'Информация из этой секции содержит сведения, которые будут испольоваться для отображения и поиска вашего напоминания. Пожалуйста, указывайте точные сведения, для корректного поиска.',
   NEW_MEMO_WHERE_MUTED: 'С помощью настроек определите, в каком месте ваше напоминание станет активным.',
-  
+  NEW_MEMO_CHOOSE_TIME_LIMIT: 'Choose due date for the memo',
+
   //Profile
   PROFILE_USER_DETAILS :'User profile details',
   PROFILE_PERSONAL_SETTINGS :'Your personal settings',
