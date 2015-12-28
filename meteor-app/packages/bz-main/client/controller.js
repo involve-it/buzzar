@@ -51,7 +51,7 @@ layoutRenderedLazyLoad = function () {
       //createToolTipsForHomePage();
 
       //window.cr = createDropTips;
-      createDropTips();
+      //createDropTips();
     }
 
     /*'https://raw.githubusercontent.com/ytiurin/html5tooltipsjs/master/html5tooltips.js',
@@ -70,7 +70,8 @@ layoutRenderedLazyLoad = function () {
   }, 10);
 };
 
-createDropTips = function () {
+/* move bz.ui */
+/*createDropTips = function () {
 
   setTimeout(function () {
 
@@ -139,7 +140,7 @@ createDropTips = function () {
   }, 100);
 
 
-};
+};*/
 
 createToolTipsForHomePage = function () {
   setTimeout(function () {
