@@ -134,9 +134,18 @@ Template.onePostRowItemOwner.helpers({
     return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
   },
   getDescription: function() {
-    var self = this;
-    var d = self.details.description;
+    
+    var self = this,
+        textDescription = self.details.description,
+        limit = 250;
+        /*limit = variable.hash.limitCharacter;*/
+    
+    if(textDescription) {
+      var tx = textDescription.slice(0, limit);
+      tx += '...';
+    }
 
+    return tx;
   },
   getAvatarImg: function () {
     var ret ='';
@@ -164,6 +173,9 @@ Template.onePostRowItemOwner.helpers({
     return ret;
   }
 });
+
+
+Template.onePostRowItemOwner.rendered = function() {};
 
 
 

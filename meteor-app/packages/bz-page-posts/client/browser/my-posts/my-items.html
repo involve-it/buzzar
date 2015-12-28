@@ -180,13 +180,12 @@
                 </div>
                 
                 <div class="bz-post-content">
-                    
-                    {{#if getDescription}}
-                        <p class="bz-item-text">{{details.description}}</p>
+                    {{#if getDescription }}
+                        <p class="bz-item-text">{{getDescription}} <!--{{details.description}}--></p>
                     {{/if}}
                     
                     {{#if details.price}}
-                        <div class="price"> {{details.price}} <i class="fa fa-usd"></i><!--<span class="bz-prefix">$</span>--></div>
+                        <div class="price"> {{details.price}} <span class="bz-prefix"><i class="fa fa-usd"></i></span></div>
                     {{/if}}
                     
                 </div>
