@@ -29,8 +29,8 @@ renderNewPostFormByType = function (type, $el) {
 // render form according to type on type changed:
 trackNewPostTypeChange = function (selector) {
   Tracker.autorun(function () {
-    var elem = document.getElementsByClassName(selector).first();
-    if (elem) {
+    var elem = document.getElementsByClassName(selector);
+    if (elem && elem.length > 0 && (elem = elem[0])) {
       while (elem.hasChildNodes()) {
         elem.removeChild(elem.lastChild);
       }
