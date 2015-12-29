@@ -1,4 +1,6 @@
 <!--MENU-->
+<!-- Deleting DOM element dropdown-hashes-menu-main-menu main-menu.js 24 -->
+
 <template name="bzMenuLeft">
   <nav class="left-off-canvas-menu">
     {{> bzInnerMenuLeft}}
@@ -24,7 +26,7 @@
         <div class="user-area-menu clearfix">
           <ul class="off-canvas-list" role="expand-menu-dropdown">
             {{> bzSignOutListMenu}}
-          </ul>
+          </ul>            
         </div>
           
       {{else}}
@@ -67,7 +69,7 @@
   <li class="{{isActiveRoute 'postsMy'}}"><a href="{{pathFor 'postsMy'}}">{{ t9n 'MENU_MY_POSTS' }}</a></li>
   <li class="{{isActiveRoute 'myProfile'}}"><a href="{{pathFor 'myProfile'}}">{{ t9n 'MENU_MY_PROFILE' }}</a></li>
   <li class="{{isActiveRoute 'chats.my'}}"><a href="/chats/my">{{ t9n 'MENU_MY_MESSAGES' }}</a></li>
-  <!--{{> bzControlMenuHashesMainMenu }}-->
+ {{> bzControlMenuHashesMainMenu }}
 </template>
 
 <!--END MENU-->
@@ -86,9 +88,9 @@
   {{#if currentUser }}
     {{#if isHashesUserId}}
       <li class="only-main-menu dropdown-hashes-menu-main-menu">
-        <button data-dropdown="drop" aria-controls="drop" aria-expanded="false" class="button dropdown">Hashes
+        <button data-dropdown="drop2" aria-controls="drop2" aria-expanded="false" class="button dropdown">Hashes
         </button>
-        <ul id="drop" data-dropdown-content class="f-dropdown" role="menu" aria-hidden="false" tabindex="-1">
+        <ul id="drop2" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
           {{#each getUserHashes }}
             <li><a alt="{{ details.text }}" href="{{ getMenuLinkText }}">{{ getMenuHashName }}</a></li>
           {{/each}}

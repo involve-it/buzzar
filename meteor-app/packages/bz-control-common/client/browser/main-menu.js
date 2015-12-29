@@ -21,6 +21,13 @@ Template.bzControlMenuHashes.helpers({
   }
 });
 
+Template.bzControlMenuHashesMainMenu.onRendered(function() {
+  var el = $('.left-off-canvas-menu');
+  if(el) {
+    return el.find('.dropdown-hashes-menu-main-menu').remove();
+  }
+});
+
 Template.bzControlMenuHashesMainMenu.helpers({
   isHashesUserId: function () {
     return bz.cols.hashes.find({userId: Meteor.userId()}).fetch();
