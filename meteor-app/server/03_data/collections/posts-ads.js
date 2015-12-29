@@ -32,7 +32,7 @@ Meteor.startup(function () {
     order: 1,
     i18n: {
       ru: {
-        name: 'знакомства',
+        name: 'встречи',
         fullName: 'В поисках связей и знакомств'
       }
     }
@@ -61,7 +61,7 @@ Meteor.startup(function () {
     order: 3,
     i18n: {
       ru: {
-        name: 'работы',
+        name: 'работа',
         fullName: 'Требуется или предлагается работа'
       }
     }
