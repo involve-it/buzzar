@@ -64,9 +64,15 @@ Meteor.startup(function () {
   });
   bz.cols.postAdTypes.insert({
     id: 'otEm6ijtatqF7pQj5',
+    name: 'housing',
+    fullName: 'Housing Market',
     color: 'B70808',
     order: 4,
     i18n: {
+      en: {
+        name: 'housing',
+        fullName: 'Housing Market',
+      },
       ru: {
         name: 'жилье',
         fullName: 'рынок жилья - покупка, продажа, съем'
