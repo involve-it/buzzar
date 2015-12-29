@@ -215,3 +215,17 @@ function determinePostTypeFromView (v){
   }
   return ret;
 }
+
+GetPostAdTypesI18n = (lang)=>{
+  var  ret;
+  if(lang){
+    ret = bz.cols.postAdTypes.find({},  {transform: function (doc) {
+      var doc1 = _.extend(doc, doc.i18n[lang]);
+      return doc1;
+    }});
+  } else {
+    ret = bz.cols.postAdTypes.find({});
+  }
+  return ret;
+
+}

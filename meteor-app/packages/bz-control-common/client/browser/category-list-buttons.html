@@ -2,7 +2,7 @@
   {{#if getCategoryItems}}
     <ul class="control--category-list-buttons">
       {{#each getCategoryItems}}
-        <li class="item-category {{ isActive this}}" data-value="{{ name }}">{{ name }}</li>
+        <li class="js-item-category {{ isActive this}}" data-value="{{ intName }}">{{ name }}</li>
       {{/each}}
     </ul>
   {{/if}}

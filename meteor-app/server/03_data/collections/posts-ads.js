@@ -5,11 +5,12 @@
 
 Meteor.startup(function () {
 
-  bz.cols.postAdTypes = new Mongo.Collection('siteTypes');
+  bz.cols.postAdTypes = new Mongo.Collection('postAdTypes');
   bz.cols.postAdTypes.remove({});
   // we add id's so that it's consistent:
   bz.cols.postAdTypes.insert({
     name: 'help',
+    intName: 'help',  // international name, is used for picking templates
     id: 'M5g7ujcKXEx5LHJzc',
     fullName: 'Need or Give Help',
     color: 'D86055',
@@ -24,6 +25,7 @@ Meteor.startup(function () {
 
   bz.cols.postAdTypes.insert({
     name: 'connect',
+    intName: 'connect',
     id: 'ZiGto5xhe4TgAYJhe',
     fullName: 'Looking for Connections',
     color: 'F77012',
@@ -38,6 +40,7 @@ Meteor.startup(function () {
 
   bz.cols.postAdTypes.insert({
     name: 'trade',
+    intName: 'trade',
     id: 'fveonD9cC3i33LfKj',
     fullName: 'Buy & Sell',
     color: 'EF376C',
@@ -51,6 +54,7 @@ Meteor.startup(function () {
   });
   bz.cols.postAdTypes.insert({
     name: 'jobs',
+    intName: 'jobs',
     id: 'qGedj9iA6jS7inCCk',
     fullName: 'Job Market',
     color: '730928',
@@ -65,6 +69,7 @@ Meteor.startup(function () {
   bz.cols.postAdTypes.insert({
     id: 'otEm6ijtatqF7pQj5',
     name: 'housing',
+    intName: 'housing',
     fullName: 'Housing Market',
     color: 'B70808',
     order: 4,
@@ -81,6 +86,7 @@ Meteor.startup(function () {
   });
   bz.cols.postAdTypes.insert({
     name: 'events',
+    intName: 'events',
     id: 'WsCLpEkN4tpAHxE5w',
     fullName: 'Local events',
     color: '333308',
@@ -94,6 +100,7 @@ Meteor.startup(function () {
   });
   bz.cols.postAdTypes.insert({
     name: 'services',
+    intName: 'services',
     id: '8qzzsToxam3GCTEXT',
     fullName: 'Need or provide service',
     color: '370808',
@@ -105,7 +112,7 @@ Meteor.startup(function () {
       }
     }
   });
-  Meteor.publish('siteTypes', function(){
+  Meteor.publish('postAdTypes', function(){
     return bz.cols.postAdTypes.find({}, {sort: ['order','asc']});
   });
 
