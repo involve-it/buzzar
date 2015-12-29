@@ -4,7 +4,7 @@
 /* Make category list */
 Template.categoryListButtons.helpers({
   getCategoryItems: function () {
-    data = bz.cols.siteTypes.find().fetch();
+    data = bz.cols.postAdTypes.find().fetch();
     return data;
   },
   isActive: function (a, b) {

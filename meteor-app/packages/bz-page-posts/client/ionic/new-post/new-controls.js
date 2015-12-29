@@ -1,6 +1,6 @@
 Template.postTypeSelect.helpers({
   getSiteTypes: function () {
-    return bz.cols.siteTypes.find();
+    return bz.cols.postAdTypes.find();
   }
 });
 Template.postTypeSelect.events({

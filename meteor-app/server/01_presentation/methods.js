@@ -158,12 +158,12 @@ Meteor.methods({
     //categories
 
     /*if (!(types && Array.isArray(types) && types.length > 0)) {
-     types = _.map(bz.cols.siteTypes.find().fetch(), function(item){ return item.id});
+     types = _.map(bz.cols.postAdTypes.find().fetch(), function(item){ return item.id});
      }*/
     if (query.activeCats && Array.isArray(query.activeCats) && query.activeCats.length > 0) {
       dbQuery.type = {$in: query.activeCats};
     } else {
-      dbQuery.type = {$in: _.map(bz.cols.siteTypes.find().fetch(), function(item){ return item.name})}
+      dbQuery.type = {$in: _.map(bz.cols.postAdTypes.find().fetch(), function(item){ return item.name})}
     }
     //location
     if (box && box.lat1 && box.lat2 && box.lng1 && box.lng2){

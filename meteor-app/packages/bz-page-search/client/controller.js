@@ -82,7 +82,7 @@ bz.bus.search.doSearchClient = (params, options)=> {
   if (activeCats && Array.isArray(activeCats) && activeCats.length > 0) {
     dbQuery['type'] = {$in: activeCats};
   } else {
-    arrTypes = _.map(bz.cols.siteTypes.find().fetch(), function (item) {
+    arrTypes = _.map(bz.cols.postAdTypes.find().fetch(), function (item) {
       return item.name;
     });
     arrTypes.push(undefined);

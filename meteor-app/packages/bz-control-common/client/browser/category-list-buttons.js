@@ -4,8 +4,10 @@
 /* Make category list */
 Template.categoryListButtons.helpers({
   getCategoryItems: function () {
-    data = bz.cols.siteTypes.find().fetch();
-    return data;
+    /*data = bz.cols.postAdTypes.find().fetch();
+    return data;*/
+    var lang = Session.get('bz.user.language');
+    return GetPostAdTypesI18n(lang);
   },
   isActive: function (a, b) {
     var cats = Session.get('bz.control.category-list.activeCategories') || [];
