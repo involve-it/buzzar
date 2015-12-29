@@ -153,7 +153,7 @@ body {
           border: none;
           color: $color-white-text;
           opacity: .9;
-          padding: 10px 16px;
+          padding: 10px 11px;
           -webkit-border-radius: 2px;
           -moz-border-radius: 2px;
           border-radius: 2px;
@@ -542,11 +542,16 @@ body {
           padding: 0;
         }
 
-        .bz-header-button {
+        .bz-group-menu-btn {
+          display: block;
           position: relative;
           right: 0;
           top: 5px;
           padding: 10px 0;
+          
+          .bz-select-language {
+            display: none;
+          }
           
         }
 
@@ -736,7 +741,7 @@ body {
               padding: 0;
             }
             
-            .bz-header-button {
+            .bz-group-menu-btn {
               position: absolute;
               right: 0;
               top: 26px;

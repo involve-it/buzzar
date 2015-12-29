@@ -159,13 +159,34 @@
   }
 }
 
+.bz-group-menu-btn {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -ms-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  
+  
+}
+
 .bz-header-button {
   margin-right: 15px;
+  
   a {
     .border-radius(2px);
     margin: 0;
+    
+    &.alert {
+      span {
+        border-left-color: rgba(255, 255, 255, 0.3) !important;
+      }
+    }
   }
 }
+
+.bz-select-language {}
 
 /*
 * Hashes dropdown menu
@@ -307,7 +328,7 @@ textarea:-ms-input-placeholder {
 
 /*Button size*/
 .bz-small {
-  padding: 10px 20px 11px;
+  padding: 10px 15px 11px;
   font-size: .8rem;
 }
 

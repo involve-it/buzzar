@@ -65,3 +65,29 @@ Meteor.startup(()=>{
   });
 });
 
+
+Template.bzDropSelectLanguage.rendered = function() {
+  
+  GetUiLanguage().then((lang)=> {
+
+  var el = $('.drop-language');
+  el.children().not('.'+lang).addClass('hide');
+ 
+  });
+
+};
+
+Template.bzDropSelectLanguage.events({
+  'click [data-lang]': function(e, v) {
+    var lang = e.target.getAttribute('data-lang');
+    SetUiLanguage(lang);
+
+    var el = $('.drop-language');
+    el.children('.'+lang).removeClass('hide');
+    el.children().not('.'+lang).addClass('hide');
+  }
+});
+
+
+
+

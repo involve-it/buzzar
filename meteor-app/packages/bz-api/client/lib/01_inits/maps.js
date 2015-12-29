@@ -35,7 +35,7 @@ var Maps = {
         lat: a.coords.latitude,
         lng: a.coords.longitude
       };
-      console.log(a);
+      //console.log(a);
       //bz.runtime.maps.loc = loc;
       args.unshift(loc);
       Session.set('bz.api.maps.recentLoc', loc);
