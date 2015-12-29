@@ -15,7 +15,7 @@ Meteor.startup(function(){
     lngMax = -121.797202,
     latMin = 37.295375,
     latMax = 37.404026,
-      siteTypes = bz.cols.siteTypes.find().fetch().map(function(item) { return item._id; });
+      siteTypes = bz.cols.postAdTypes.find().fetch().map(function(item) { return item._id; });
 
   var links = [
     'http://www.craigslist.org'

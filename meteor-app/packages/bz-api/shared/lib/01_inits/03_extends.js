@@ -16,7 +16,7 @@
     }
   }
 })();
-bz.help.safeCode(function() {
+/*bz.help.safeCode(function() {
   if(!Array.prototype.first){
     Array.prototype.first = function(){
       return this[0];
@@ -27,7 +27,7 @@ bz.help.safeCode(function() {
       return this[0];
     }
   }
-});
+});*/
 
 bz.help.safeCode(function(){
   if (Number.prototype.toRadians === undefined) {

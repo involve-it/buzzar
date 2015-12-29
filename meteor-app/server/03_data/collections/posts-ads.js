@@ -5,61 +5,102 @@
 
 Meteor.startup(function () {
 
-  bz.cols.siteTypes = new Mongo.Collection('siteTypes');
-  bz.cols.siteTypes.remove({});
+  bz.cols.postAdTypes = new Mongo.Collection('siteTypes');
+  bz.cols.postAdTypes.remove({});
   // we add id's so that it's consistent:
-  bz.cols.siteTypes.insert({
+  bz.cols.postAdTypes.insert({
     name: 'help',
     id: 'M5g7ujcKXEx5LHJzc',
     fullName: 'Need or Give Help',
     color: 'D86055',
-    order: 0
+    order: 0,
+    i18n: {
+      ru: {
+        name: 'помощь',
+        fullName: 'Требуется или предлагается помощь'
+      },
+    }
   });
-  bz.cols.siteTypes.insert({
+
+  bz.cols.postAdTypes.insert({
     name: 'connect',
     id: 'ZiGto5xhe4TgAYJhe',
     fullName: 'Looking for Connections',
     color: 'F77012',
-    order: 1
+    order: 1,
+    i18n: {
+      ru: {
+        name: 'знакомства',
+        fullName: 'В поисках связей и знакомств'
+      }
+    }
   });
 
-  bz.cols.siteTypes.insert({
+  bz.cols.postAdTypes.insert({
     name: 'trade',
     id: 'fveonD9cC3i33LfKj',
     fullName: 'Buy & Sell',
     color: 'EF376C',
-    order: 2
+    order: 2,
+    i18n: {
+      ru: {
+        name: 'торг',
+        fullName: 'покупка и продажа'
+      }
+    }
   });
-  bz.cols.siteTypes.insert({
+  bz.cols.postAdTypes.insert({
     name: 'jobs',
     id: 'qGedj9iA6jS7inCCk',
     fullName: 'Job Market',
     color: '730928',
-    order: 3
+    order: 3,
+    i18n: {
+      ru: {
+        name: 'работы',
+        fullName: 'Требуется или предлагается работа'
+      }
+    }
   });
-  bz.cols.siteTypes.insert({
-    name: 'housing',
+  bz.cols.postAdTypes.insert({
     id: 'otEm6ijtatqF7pQj5',
-    fullName: 'Housing Market',
     color: 'B70808',
-    order: 4
+    order: 4,
+    i18n: {
+      ru: {
+        name: 'жилье',
+        fullName: 'рынок жилья - покупка, продажа, съем'
+      }
+    }
   });
-  bz.cols.siteTypes.insert({
+  bz.cols.postAdTypes.insert({
     name: 'events',
     id: 'WsCLpEkN4tpAHxE5w',
     fullName: 'Local events',
     color: '333308',
-    order: 5
+    order: 5,
+    i18n: {
+      ru: {
+        name: 'события',
+        fullName: 'местные события'
+      }
+    }
   });
-  bz.cols.siteTypes.insert({
+  bz.cols.postAdTypes.insert({
     name: 'services',
     id: '8qzzsToxam3GCTEXT',
     fullName: 'Need or provide service',
     color: '370808',
-    order: 5
+    order: 5,
+    i18n: {
+      ru: {
+        name: 'услуги',
+        fullName: 'предложения - платные, бесплатные'
+      }
+    }
   });
   Meteor.publish('siteTypes', function(){
-    return bz.cols.siteTypes.find({}, {sort: ['order','asc']});
+    return bz.cols.postAdTypes.find({}, {sort: ['order','asc']});
   });
 
   // SITES

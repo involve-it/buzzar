@@ -27,7 +27,7 @@ Template.bzAroundYouItem.helpers({
     var postsId = bz.cols.posts.find({_id: this._id}).fetch()[0].type;
     
     if(postsId) {
-      var ret = bz.cols.siteTypes.find({_id: postsId}).fetch()[0].name;
+      var ret = bz.cols.postAdTypes.find({_id: postsId}).fetch()[0].name;
     }*/
     return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
     

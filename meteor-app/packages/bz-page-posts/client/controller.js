@@ -215,8 +215,3 @@ function determinePostTypeFromView (v){
   }
   return ret;
 }
-
-GetPostAdTypes = ()=>{
-  return bz.cols.siteTypes.find();
-
-}
