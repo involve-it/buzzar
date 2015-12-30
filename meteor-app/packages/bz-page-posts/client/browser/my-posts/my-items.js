@@ -173,75 +173,58 @@ Template.onePostRowItemOwner.helpers({
     return ret;
   },
   getDuration: function() {
-    var duration,
-        percent,
-        finish,
-        start,
-        now; 
+    var duration, percent, finish, start, now, days, hours, min, barClass, elapsed; 
     
-    // Дата создания поста в ms
-    start = bz.cols.posts.findOne({_id: this._id}).timestamp;
-    
-    // Продолжительность поста
-    duration = 55;
-    
-    // Текущее время ms
+    /* Current date */
     now = new Date();
     
-    var tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+2);
+    /* Created posts, ms */
+    start = new Date(bz.cols.posts.findOne({_id: this._id}).timestamp); // Dec 26 2015
+
+    /* N Days of Activism, FINISH */
+    finish = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 7); // Jan 25 2016
+
+    /* ALL ms or 100% */
+    duration = finish - start;
     
-    // 100% - 
-    // Значение загруженного (percent) % = 0
-    percent = start + finish;
+    /* left ms */
+    var ms = finish - now;
+        days = Math.floor(ms / 86400000);
+        hours = Math.floor((ms - (days * 86400000)) / 3600000);
+        min = Math.floor((ms - (days * 86400000) - (hours * 3600000)) / 60000);
     
-    if(percent >= 100) {
-      percent = 100;
+    console.log("Объявлению осталось- " + "Дней: " + days + " часов: " + hours + " минут: " + min);
+    
+
+    elapsed = new Date().getTime() - start;
+    /*var elapsedDays = Math.floor(elapsed / 86400000);*/
+        
+    percent = ms / duration * 100;
+    
+    /* bz-bar-yellow < 50; bz-bar-red < 20; bz-bar-green > 50 ] */
+    if( percent < 20 ) {
+      barClass = 'red';
+    } else if( percent < 50 ) {
+      barClass = 'yellow';
+    } else if( percent >= 50 ) {
+      barClass = 'green';
     }
 
-
-
-
-
-
-
-
-    if(percent >= 100) {
-      //завершение отсчета
+    if( percent == 0 ) {
+      console.log('Обявление закрыто');
     }
     
     
-    return duration;
+    return  {
+      name: percent, 
+      leftDays: days,
+      barClass: barClass
+    };
   }
 });
 
 
 Template.onePostRowItemOwner.rendered = function() {};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
