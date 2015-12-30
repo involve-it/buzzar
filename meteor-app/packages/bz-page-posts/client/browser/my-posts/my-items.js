@@ -171,11 +171,87 @@ Template.onePostRowItemOwner.helpers({
       ret = '';
     }
     return ret;
+  },
+  getDuration: function() {
+    var duration,
+        percent,
+        finish,
+        start,
+        now; 
+    
+    // Дата создания поста в ms
+    start = bz.cols.posts.findOne({_id: this._id}).timestamp;
+    
+    // Продолжительность поста
+    duration = 55;
+    
+    // Текущее время ms
+    now = new Date();
+    
+    var tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+2);
+    
+    // 100% - 
+    // Значение загруженного (percent) % = 0
+    percent = start + finish;
+    
+    if(percent >= 100) {
+      percent = 100;
+    }
+
+
+
+
+
+
+
+
+    if(percent >= 100) {
+      //завершение отсчета
+    }
+    
+    
+    return duration;
   }
 });
 
 
 Template.onePostRowItemOwner.rendered = function() {};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
