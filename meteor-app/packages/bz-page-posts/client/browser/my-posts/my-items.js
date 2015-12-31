@@ -173,7 +173,7 @@ Template.onePostRowItemOwner.helpers({
     return ret;
   },
   getDuration: function() {
-    var duration, percent, finish, start, now, days, hours, min, barClass, elapsed; 
+    var duration, percent, finish, start, now, days, hours, min, barClass, elapsed, timeUnit, word, language; 
     
     /* Current date */
     now = new Date();
@@ -187,13 +187,13 @@ Template.onePostRowItemOwner.helpers({
     /* ALL ms or 100% */
     duration = finish - start;
     
-    /* left ms */
+    /* left time */
     var ms = finish - now;
         days = Math.floor(ms / 86400000);
         hours = Math.floor((ms - (days * 86400000)) / 3600000);
         min = Math.floor((ms - (days * 86400000) - (hours * 3600000)) / 60000);
     
-    console.log("Объявлению осталось- " + "Дней: " + days + " часов: " + hours + " минут: " + min);
+    // Объявлению осталось: + "Дней: " + days + " часов: " + hours + " минут: " + min;
     
 
     elapsed = new Date().getTime() - start;
@@ -209,15 +209,43 @@ Template.onePostRowItemOwner.helpers({
     } else if( percent >= 50 ) {
       barClass = 'green';
     }
+    
 
     if( percent == 0 ) {
       console.log('Обявление закрыто');
     }
+      
     
+    language = Session.get('bz.user.language');
+    
+    function endingOfTheWord(lang, number, title) {
+      if( lang === 'en' ) {
+        
+        return ( number <= 1 ) ? title : title += 's';
+        
+      } else if( lang === 'ru' ) {
+
+        var cases = [2, 0, 1, 1, 1, 2];
+        return title[ (number%100>4 && number%100<20) ? 2 : cases[ (number%10<5) ? number%10 : 5 ] ];
+      }
+    }
+
+    if(days >= 1) {
+      timeUnit = days;
+      word = endingOfTheWord(language, timeUnit, ['день', 'дня', 'дней']);
+    } else if(days < 1) {
+      timeUnit = hours;
+      word = endingOfTheWord(language, timeUnit, ['час', 'часа', 'часов']);
+    } else if(hours < 1) {
+      timeUnit = min;
+      word = endingOfTheWord(language, timeUnit, ['минута', 'минуты', 'минут']);
+    }
+       
     
     return  {
       name: percent, 
       leftDays: days,
+      unit: timeUnit + ' ' + word,
       barClass: barClass
     };
   }
