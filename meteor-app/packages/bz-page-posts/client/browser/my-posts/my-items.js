@@ -218,27 +218,27 @@ Template.onePostRowItemOwner.helpers({
     
     language = Session.get('bz.user.language');
     
-    function endingOfTheWord(lang, number, title) {
+    function endingOfTheWord(lang, number, title, titleEng) {
       if( lang === 'en' ) {
         
-        return ( number <= 1 ) ? title : title += 's';
+        var eng = [0, 1];
+        return titleEng[ (number > 1) ? 1 : 0 ];
         
       } else if( lang === 'ru' ) {
-
-        var cases = [2, 0, 1, 1, 1, 2];
-        return title[ (number%100>4 && number%100<20) ? 2 : cases[ (number%10<5) ? number%10 : 5 ] ];
+        var rus = [2, 0, 1, 1, 1, 2];
+        return title[ (number%100>4 && number%100<20) ? 2 : rus[ (number%10<5) ? number%10 : 5 ] ];
       }
     }
 
     if(days >= 1) {
       timeUnit = days;
-      word = endingOfTheWord(language, timeUnit, ['день', 'дня', 'дней']);
+      word = endingOfTheWord(language, timeUnit, ['день', 'дня', 'дней'], ['day', 'days']);
     } else if(days < 1) {
       timeUnit = hours;
-      word = endingOfTheWord(language, timeUnit, ['час', 'часа', 'часов']);
+      word = endingOfTheWord(language, timeUnit, ['час', 'часа', 'часов'], ['hour', 'hours']);
     } else if(hours < 1) {
       timeUnit = min;
-      word = endingOfTheWord(language, timeUnit, ['минута', 'минуты', 'минут']);
+      word = endingOfTheWord(language, timeUnit, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
     }
        
     
