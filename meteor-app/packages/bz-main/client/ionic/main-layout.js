@@ -29,11 +29,10 @@ Template.ionBody.rendered = function () {
 };
 */
 
-angular
-    .module('Whatsapp', [
-      'angular-meteor',
-      'ionic'
-    ]);
+angular.module('Whatsapp', [
+  'angular-meteor',
+  'ionic'
+]).config(config);
 
 if (Meteor.isCordova) {
   angular.element(document).on('deviceready', onReady);
@@ -43,12 +42,9 @@ else {
 }
 
 function onReady() {
+  console.log('angular.bootstrap');
   angular.bootstrap(document, ['Whatsapp']);
 }
-
-angular
-    .module('Whatsapp')
-    .config(config);
 
 function config($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -65,6 +61,6 @@ function config($stateProvider, $urlRouterProvider) {
           }
         }
       });
-
-  $urlRouterProvider.otherwise('tab/chats');
+  console.log('$urlRouterProvider.otherwise();');
+  //$urlRouterProvider.otherwise('tab/chats');
 }

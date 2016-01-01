@@ -24,6 +24,7 @@ Package.onUse(function(api) {
     'client/router.js',
     'client/controller.js'
   ], 'client');
+
   api.addFiles([
     'client/browser/google-map.less',
     'client/browser/google-map.html',
@@ -33,6 +34,7 @@ Package.onUse(function(api) {
     'client/browser/page-map.html',
     'client/browser/page-map.js',
   ], global.bzSettings.webBrowserArray);
+
 });
 
 Package.onTest(function(api) {

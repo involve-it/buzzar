@@ -7,10 +7,7 @@
 //bz.help.maps.initPlaces();
 
 Template.postsPlacesAutoform.created = function () {
-  bz.help.maps.initLocation();
-  bz.help.maps.initPlacesCollection();
-  // doc.ready happened, so:
-  bz.help.maps.googleMapsLoad();
+
 }
 
 Template.postsPlacesAutoform.onRendered(function () {

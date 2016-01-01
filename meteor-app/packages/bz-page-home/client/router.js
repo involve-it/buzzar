@@ -10,6 +10,7 @@ Router.map(function () {
     fastRender: true,
     onBeforeAction: function () {
       var qs = this.params.query;
+      console.log(qs);
 
       setSearchTextFromQs(qs);
       setSearchLocationFromQs(qs);

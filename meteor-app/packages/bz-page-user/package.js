@@ -13,11 +13,11 @@ Package.describe({
 Package.onUse(function(api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use(['iron:router', 'iron:layout', 'aldeed:simple-schema', 'dburles:collection-helpers', 'ecmascript'], ['client', 'server']);
-  api.use(['templating'], 'client');
-  //api.use(['templating', 'aldeed:autoform'], 'client');
-  api.use('less', 'client');
-  api.use('arutune:bz-main');
+  api.use(['iron:router', 'iron:layout', 'aldeed:simple-schema', 'dburles:collection-helpers', 'ecmascript',
+    'arutune:bz-main'
+  ], ['client', 'server']);
+  api.use(['templating', 'less'], 'client');
+
   api.addFiles([
     'collections/users.shared.js'
   ], ['client', 'server']);
@@ -27,6 +27,7 @@ Package.onUse(function(api) {
     'client/model.js',
     'client/controller.js'
   ], 'client');
+
   api.addFiles([
     'client/browser/common.html',
     'client/browser/common.js',

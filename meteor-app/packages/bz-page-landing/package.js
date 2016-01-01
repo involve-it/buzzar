@@ -12,29 +12,32 @@ Package.describe({
 
 Package.onUse(function(api) {
   //api.versionsFrom('1.1.0.3');
-  api.use('iron:router', ['client', 'server']);
-  api.use('iron:layout', ['client', 'server']);
-  api.use('templating', 'client');
-  //api.use('less', 'client');
-  //api.use('arutune:bz-main');
+  api.use(['iron:router', 'iron:layout'], ['client', 'server']);
+  api.use('templating', global.bzSettings.webBrowserArray);
+
   api.addFiles([
     'client/router.js'
   ], 'client');
+
   api.addFiles([
     'client/browser/about-us.html',
     'client/browser/page-not-found.html',
     'client/browser/page-about-us.html',
     'client/browser/page-contact-us.html',
     'client/browser/page-contact-us.js',
-
   ], global.bzSettings.webBrowserArray);
+
+  api.use([
+    'angular-with-blaze',
+    'driftyco:ionic'
+  ], global.bzSettings.webCordovaArray);
+
   api.addFiles([
     'client/ionic/about-us.html',
-    'client/ionic/page-not-found.html',
+     /*'client/ionic/page-not-found.html',
     'client/ionic/page-about-us.html',
     'client/ionic/page-contact-us.html',
-    'client/ionic/page-contact-us.js',
-
+    'client/ionic/page-contact-us.js',*/
   ], global.bzSettings.webCordovaArray);
 });
 

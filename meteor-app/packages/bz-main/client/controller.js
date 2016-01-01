@@ -9,7 +9,7 @@ loggedInUserLazyLoad = function () {
 
   (function () {
     var initializing = true;
-    bz.cols.messages.find({toUserId: userId, seen: false}).observeChanges({
+    bz.cols.messages && bz.cols.messages.find({toUserId: userId, seen: false}).observeChanges({
       added: function (id, doc) {
         if (Meteor.userId() === doc.toUserId) {
 
@@ -68,6 +68,10 @@ layoutRenderedLazyLoad = function () {
      }
      });*/
   }, 10);
+
+  setTimeout(function (){
+    startLoadingMatsLocations();
+  }, 10)
 };
 
 /* move bz.ui */
@@ -206,7 +210,12 @@ createToolTipsForHomePage = function () {
   }, 2000);
 };
 
-
+function startLoadingMatsLocations (){
+  bz.help.maps.initLocation();
+  bz.help.maps.initPlacesCollection();
+  // doc.ready happened, so:
+  bz.help.maps.googleMapsLoad();
+}
 
 
 

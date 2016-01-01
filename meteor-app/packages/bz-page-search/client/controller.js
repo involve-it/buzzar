@@ -38,7 +38,6 @@ Meteor.startup(function () {
     );
   }
   searchPostsReactive();
-
   bz.help.maps.initPlacesCollection();
   Template.bzControlSearch && Template.bzControlSearch.onCreated(function () {
     //debugger;

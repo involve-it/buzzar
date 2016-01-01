@@ -30,7 +30,6 @@ Package.onUse(function (api) {
     'client/controller.js',
     //'resources/t9-en.js'
   ], 'client');
-
   api.addFiles([
     'style/search.less',
 
