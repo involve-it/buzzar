@@ -845,3 +845,75 @@ nav.left-off-canvas-menu {
 
 /* END */
 
+
+/**
+* BZ Progress
+**/
+.bz-content {
+  position: relative;
+}
+
+.bz-progress {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  
+  &.bz-item-progress {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    
+    .bz-progress-wrapper {
+           
+      .progress {
+        height: 2px;
+        border: none;
+        padding: 0;
+      }
+      
+      .square {
+        .border-radius(0);
+      }
+    }
+  }
+
+  margin: auto 0;
+  padding-right: 16px;
+
+  .bz-progress-wrapper {
+
+    .progress {
+      height: 10px;
+      margin: 0;
+    }
+
+    .bz-progress-left {
+      padding-left: 2px;
+      font-size: 11px;
+      display: block;
+      line-height: 13px;
+    }
+
+    .bz-bar-yellow {
+      .meter{
+        background: rgba(255,178,38, 1);
+      }
+    }
+
+    .bz-bar-green {
+      .meter{
+        background: rgba(67,172,106, 1);
+      }
+    }
+
+    .bz-bar-red {
+      .meter{
+        background: rgba(255,65,36, 1);
+      }
+    }
+  }
+}
+
+/* END */

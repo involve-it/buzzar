@@ -214,7 +214,6 @@ Template.onePostRowItemOwner.helpers({
     if( percent == 0 ) {
       console.log('Обявление закрыто');
     }
-      
     
     language = Session.get('bz.user.language');
     
@@ -244,7 +243,7 @@ Template.onePostRowItemOwner.helpers({
        
     
     return  {
-      name: percent, 
+      percent: percent, 
       leftDays: days,
       unit: unit,
       barClass: barClass
@@ -253,7 +252,10 @@ Template.onePostRowItemOwner.helpers({
 });
 
 
-Template.onePostRowItemOwner.rendered = function() {};
+
+
+
+
 
 
 

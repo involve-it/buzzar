@@ -41,19 +41,20 @@
               <!--<a class="bz-position-cover" href="#"></a>-->
             </div>
           </a>
-            <div class="bz-item-progress-bar"></div>
+            
         </div>
 
         <div class="bz-content">
-          <h4 class="bz-title">{{details.title}}</h4>
-          <p class="post-item-text">
-            {{details.description}}
-          </p>
-          <div class="bz-text-align-right">
-            <a class="bz-read-more" href="/post/{{_id}}">Read more</a>
-          </div>
+            <h4 class="bz-title">{{details.title}}</h4>
+            <p class="post-item-text">
+                {{details.description}}
+            </p>
+            <div class="bz-text-align-right">
+                <a class="bz-read-more" href="/post/{{_id}}">Read more</a>
+            </div>
+            {{> postProgressBar}}
         </div>
-        <div class="bz-item-footer">
+        <div class="bz-item-footer">            
           <!--{{#if details.price}}
                 <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
             {{/if}}-->
@@ -66,4 +67,18 @@
       </div>
     </div>
   </div>
+</template>
+
+
+<template name="postProgressBar">
+    {{#if getPostProgressBar}}
+        <div class="bz-progress bz-item-progress">
+            <div class="bz-progress-wrapper">
+                <!--square radius round-->
+                <div class="progress small-12 square bz-bar-{{getPostProgressBar.barClass}}">
+                    <span class="meter" style="width: {{ getPostProgressBar.percent }}%"></span>
+                </div>
+            </div>
+        </div>
+    {{/if}}
 </template>

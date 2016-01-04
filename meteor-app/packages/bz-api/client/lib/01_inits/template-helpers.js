@@ -48,14 +48,93 @@ if(typeof Template !== 'undefined') {
     }
     return ret;
   });
+
+  Template.registerHelper('getPostProgressBar', function() {
+    var duration, percent, finish, start, now, days, hours, min, barClass, elapsed, titleDays, titleHours, titleMinutes, language, unit;
+
+    /* Current date */
+    now = new Date();
+
+    /* Created posts, ms */
+    start = new Date(bz.cols.posts.findOne({_id: this._id}).timestamp); // Dec 26 2015
+
+    /* N Days of Activism, FINISH */
+    finish = new Date(bz.cols.posts.findOne({_id: this._id}).endDatePost); // Jan 25 2016
+
+    /* ALL ms or 100% */
+    duration = finish - start;
+
+    /* left time */
+    var ms = finish - now;
+    days = Math.floor(ms / 86400000);
+    hours = Math.floor((ms - (days * 86400000)) / 3600000);
+    min = Math.floor((ms - (days * 86400000) - (hours * 3600000)) / 60000);
+
+    // Объявлению осталось: + "Дней: " + days + " часов: " + hours + " минут: " + min;
+
+
+    elapsed = new Date().getTime() - start;
+    /*var elapsedDays = Math.floor(elapsed / 86400000);*/
+
+    percent = ms / duration * 100;
+
+    /* bz-bar-yellow < 50; bz-bar-red < 20; bz-bar-green > 50 ] */
+    if( percent < 20 ) {
+      barClass = 'red';
+    } else if( percent < 50 ) {
+      barClass = 'yellow';
+    } else if( percent >= 50 ) {
+      barClass = 'green';
+    }
+
+
+    if( percent == 0 ) {
+      console.log('Обявление закрыто');
+    }
+
+    language = Session.get('bz.user.language');
+
+    function endingOfTheWord(lang, number, title, titleEng) {
+      if( lang === 'en' ) {
+
+        var eng = [0, 1];
+        return titleEng[ (number > 1) ? 1 : 0 ];
+
+      } else if( lang === 'ru' ) {
+        var rus = [2, 0, 1, 1, 1, 2];
+        return title[ (number%100>4 && number%100<20) ? 2 : rus[ (number%10<5) ? number%10 : 5 ] ];
+      }
+    }
+
+    if(days > 1) {
+      titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
+      unit = days + ' ' + titleDays;
+    } else if(days <= 1 && hours > 1) {
+      titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
+      titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
+      unit = (days == 0) ? hours + ' ' + titleHours : days + ' ' + titleDays + '   ' + hours + ' ' + titleHours;
+    } else if(days < 1 && hours < 1) {
+      titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
+      unit = min + ' ' + titleMinutes;
+    }
+
+
+    return  {
+      percent: percent,
+      leftDays: days,
+      unit: unit,
+      barClass: barClass
+    };
+  });
+    
   Template.registerHelper('getFormattedTs', function (ts) {
     return moment(ts).fromNow();
     //return '';
   });
+  
   Template.registerHelper('isRussianLanguage', function () {
     return T9n.language === 'ru';
   });
-  Template.registerHelper('changeLanguage', function() {
-
-  });
+  
+  Template.registerHelper('changeLanguage', function() {});
 }
