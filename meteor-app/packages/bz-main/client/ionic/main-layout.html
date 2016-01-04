@@ -1,7 +1,7 @@
 <template name="mainLayout">
   <ion-nav-bar class="bar-stable">
     <ion-nav-back-button>
-      qwer
+      qwer3
     </ion-nav-back-button>
   </ion-nav-bar>
   <!--
@@ -12,6 +12,8 @@
   <ion-nav-view>
     kpokpko
   </ion-nav-view>
+  wwwwww
+  {{> yield }}
 
 </template>
 
@@ -53,63 +55,11 @@
         </ion-tab>
 
     </ion-tabs>
-
-    <ion-view view-title="Chats">
+    {{> yield }}
+    <!--<ion-view view-title="Chats">
         <ion-content>
-
+            asdfsdafasdf
         </ion-content>
-    </ion-view>
+    </ion-view>-->
     
 </template>
-
-<!--
-<template name="mainLayout">
-  {{#if currentUser}}
-    {{#ionBody}}
-      &lt;!&ndash; Вместо rendered, можно использовать side="left" &ndash;&gt;
-      {{#ionSideMenuContainer }}
-
-        {{> ionMenus}}
-
-        {{#ionSideMenuContent}}
-          &lt;!&ndash;<div id="drag-left"></div>&ndash;&gt;
-          <div id="drag-right"></div>
-
-          {{> ionNavBar class="bar-fantasia"}}
-
-          {{#ionNavView}}
-            {{> yield}}
-          {{/ionNavView}}
-
-        {{/ionSideMenuContent}}
-      {{/ionSideMenuContainer}}
-    {{/ionBody}}
-  {{else}}
-    {{> yield}}
-  {{/if}}
-</template>
-<template name="mainLayoutHome">
-  &lt;!&ndash;{{#if currentUser}}&ndash;&gt;
-    {{#ionBody}}
-      {{> yield}}
-      &lt;!&ndash;{{#ionSideMenuContainer }}
-
-        {{> ionMenus}}
-
-        {{#ionSideMenuContent}}
-          &lt;!&ndash;<div id="drag-left"></div>&ndash;&gt;
-          <div id="drag-right"></div>
-
-          {{> ionNavBar class="bar-fantasia"}}
-
-          {{#ionNavView}}
-            {{> yield}}
-          {{/ionNavView}}
-
-        {{/ionSideMenuContent}}
-      {{/ionSideMenuContainer}}&ndash;&gt;
-    {{/ionBody}}
-  &lt;!&ndash;{{else}}&ndash;&gt;
-    &lt;!&ndash;{{> yield}}&ndash;&gt;
-  &lt;!&ndash;{{/if}}&ndash;&gt;
-</template>-->

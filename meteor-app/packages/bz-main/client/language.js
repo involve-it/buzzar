@@ -37,7 +37,7 @@ _SaveUserLanguage = function(language){
   }
 }
 
-GetUiLanguage = ()=> {
+GetUiLanguage = function () {
   return new Promise((resolve, reject) => {
     var sessLang = Session.get('bz.user.language');
     if(sessLang){
@@ -51,7 +51,7 @@ GetUiLanguage = ()=> {
   });
 }
 
-GetUserLanguage = function () {
+function GetUserLanguage() {
   var langProm, detectedLang = detectClientLanguage();
   if (Meteor.user()) {
     langProm = new Promise((resolve, reject)=>{

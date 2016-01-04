@@ -12,14 +12,15 @@ Package.describe({
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use(['iron:router', 'iron:layout', 'mongo', 'reactive-var', 'tracker', 'ecmascript'], ['client', 'server']);
-  api.use('templating', 'client');
-  api.use('less', 'client');
-  api.use('arutune:bz-main');
+  api.use(['iron:router', 'iron:layout', 'mongo', 'reactive-var', 'tracker', 'ecmascript', 'dburles:collection-helpers',
+    'arutune:bz-main'
+  ], ['client', 'server']);
+  api.use(['templating', 'less'
+  ], 'client');
   api.addFiles([
     'server/model.js'
   ], 'server');
-  api.use(['dburles:collection-helpers'], ['client', 'server']);
+
   api.addFiles(['collections/posts.shared.js'], ['client', 'server']);
 
   api.addFiles([
@@ -29,6 +30,7 @@ Package.onUse(function (api) {
     'client/new-post.controller.js',
     'client/page-my.less'
   ], 'client');
+
   api.addFiles([
     'client/browser/common.html',
 

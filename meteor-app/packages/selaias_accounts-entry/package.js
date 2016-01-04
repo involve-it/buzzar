@@ -8,9 +8,9 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom("1.2.0.1");
 
-  api.use('selaias:alerts@0.3.1', 'client');
+  api.use('selaias:alerts@0.3.1', global.bzSettings.webBrowserArray);
   
-  api.use(['iron:router@1.0.3', 'anti:i18n@0.4.3', 'ecmascript'], ['client', 'server']);
+  api.use(['iron:router@1.0.3', 'anti:i18n@0.4.3', 'ecmascript'], ['server'].join(global.bzSettings.webBrowserArray));
   // CLIENT
   api.use([
     'deps',
@@ -22,8 +22,14 @@ Package.onUse(function(api) {
     'session',
     'check',
     'less',
-    'sha@1.0.3'], 'client');
-
+    'sha@1.0.3'], global.bzSettings.webBrowserArray);
+  // SERVER
+  api.use([
+    'deps',
+    'check',
+    'service-configuration',
+    'accounts-base',
+    'underscore'], 'server');
 
   api.addFiles([
     'client/lib/entry.js',
@@ -48,22 +54,14 @@ Package.onUse(function(api) {
     'client/views/accountButtons/_wrapLinks.html',
     'client/views/accountButtons/signedIn.html',
     'client/views/accountButtons/accountButtons.js'
-  ], 'client');
-  // SERVER
-  api.use([
-    'deps',
-    'check',
-    'service-configuration',
-    'accounts-base',
-    'underscore'], 'server');
+  ], global.bzSettings.webBrowserArray);
 
   api.addFiles(['server/entry.js'], 'server');
 
   // CLIENT and SERVER
-  api.imply('accounts-base', ['client', 'server']);
+  api.imply('accounts-base', ['server'].join(global.bzSettings.webBrowserArray));
 
-  api.export('AccountsEntry', ['client', 'server']);
-  api.export('SimpleForm', ['client', 'server']);
+  api.export(['AccountsEntry', 'SimpleForm'], ['server'].join(global.bzSettings.webBrowserArray));
 
   api.addFiles([
     'shared/router.js',
@@ -80,7 +78,7 @@ Package.onUse(function(api) {
     'shared/i18n/i18n_ru.js',
     'shared/i18n/i18n_sl.js',
     'shared/i18n/i18n_sv.js'*/
-  ], ['client', 'server']);
+  ], ['server'].join(global.bzSettings.webBrowserArray));
 
 });
 

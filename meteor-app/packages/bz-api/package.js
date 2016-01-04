@@ -16,11 +16,11 @@ Package.describe({
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use(['iron:router', 'iron:layout', 'selaias-local:accounts-entry', 'ecmascript'], ['client', 'server']);
+  api.use(['iron:router', 'iron:layout', 'selaias-local:accounts-entry', 'ecmascript'], ['server'].join(global.bzSettings.webBrowserArray));
   api.use('service-configuration', ['server']);
   //api.use('iron:layout', ['client', 'server']);
   api.use(['underscore', 'session']);
-  api.use(['templating'], 'client');
+  api.use(['templating'], global.bzSettings.webBrowserArray);
 
   // load all server/client/shared lib files:
   api.addFiles([
@@ -42,7 +42,6 @@ Package.onUse(function (api) {
     'client/lib/01_inits/location.js',
     'client/lib/01_inits/fb.js',
     'client/lib/01_inits/maps.js',
-    'client/lib/01_inits/t9.js',
     'client/lib/01_inits/template-helpers.js',
     'client/lib/rates/jquery.raty.js',
     'client/lib/animate/animate.css',

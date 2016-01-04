@@ -13,7 +13,6 @@ tracker                 # Meteor's client-side reactive programming library
 
 standard-minifiers      # JS/CSS minifiers run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
-ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 arutune:bz-page-landing
 dburles:collection-helpers
@@ -40,7 +39,6 @@ arutune:bz-page-user
 arutune:bz-page-chat
 iron:router
 arutune:bz-page-map
-blaze-html-templates
 dburles:google-maps
 selaias-local:accounts-entry
 
@@ -48,3 +46,4 @@ accounts-password
 meteorhacks:fast-render
 mrt:cheerio
 edgee:slingshot
+angular-with-blaze

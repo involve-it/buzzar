@@ -36,9 +36,11 @@ if(Meteor.isClient){
 }
 if(Meteor.isClient) {
   Tracker.autorun(function(){
-    _.each(bz.cols.config.find().fetch(), function (item) {
-      bz.config[item.name] = item.value;
-    });
+    if(bz.cols.config) {
+      _.each(bz.cols.config.find().fetch(), function (item) {
+        bz.config[item.name] = item.value;
+      });
+    }
   })
 }
 

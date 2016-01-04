@@ -11,21 +11,10 @@ Router.configure({
     });
   },
   onBeforeAction: function () { // temp for closing whole site.
-    //debugger;
-    var openRoutes = Router.current().url === Router.routes['entrySignUp'].path() || Router.current().url === Router.routes['entrySignIn'].path();
-    if (Meteor.absoluteUrl() === 'http://buzzar.io/' && !Meteor.user() && !openRoutes) {
-      if (Meteor.loggingIn()) {
-        this.render(this.loadingTemplate);
-      } else {
-        Router.go('entrySignUp');
-      }
-    } else {
-    }
     this.next();
   },
   // the appNotFound template is used for unknown routes and missing lists
   //notFoundTemplate: 'appNotFound',
-
   // show the appLoading template whilst the subscriptions below load their data
   loadingTemplate: 'appLoading'
 });
@@ -52,7 +41,6 @@ Router.signIn = function(isReturnBack){
 bz.router.requireLoginController = RouteController.extend({
 
   onBeforeAction: function () {
-    debugger;
     if (!Meteor.user()) {
       if (Meteor.loggingIn()) {
         this.render(this.loadingTemplate);

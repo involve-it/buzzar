@@ -13,10 +13,10 @@ Package.describe({
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use(['iron:router', 'iron:layout', 'ecmascript'], ['client', 'server']);
-  api.use(['templating', 'less', 'sergeyt:typeahead'], 'client'); // todo: replace typeahead with required file
-  //api.use('juliancwirko:zf5', ['web.browser']);
-  api.use(['fourseven:scss@3.2.0', 'edgee:slingshot']); // todo : remove 2.0.0, when package bug is fixed.
+  api.use(['ecmascript'], ['server'].join(global.bzSettings.webBrowserArray));
+  api.use(['iron:router', 'iron:layout', 'less', 'sergeyt:typeahead'], 'client'); // todo: replace typeahead with required file
+  api.use(['templating'], global.bzSettings.webBrowserArray);
+  api.use(['fourseven:scss@3.2.0', 'edgee:slingshot']);
   api.use(['arutune:bz-api', 'arutune:bz-control-common']);
   api.use([
    /* 'meteoric:ionic',
@@ -24,7 +24,7 @@ Package.onUse(function (api) {
     'meteoric:ionicons-sass',
     'meteoric:autoform-ionic',
     'fortawesome:fontawesome'*/
-    'angular',
+    'angular-with-blaze',
     'driftyco:ionic'
   ], global.bzSettings.webCordovaArray);
   //api.use([ 'cordova:com.ionic.keyboard', 'cordova:org.apache.cordova.device' ], 'web.cordova');// @Slava: do we need this?
