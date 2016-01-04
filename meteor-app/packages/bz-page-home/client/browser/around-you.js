@@ -63,6 +63,9 @@ Template.bzAroundYouItem.helpers({
     return Meteor.users.findOne(this.userId);
   },
   getRank: function() {},
+  getProgressBar: function() {
+    debugger;
+  },
   getTimeStamp: function(){
     return Date.now();
   },

@@ -10,7 +10,7 @@ createNewPostFromView = function (v) {
     loc2 = Session.get(bz.const.posts.location2),
 
     rad = $('.js-radius-slider').attr('data-slider') && Number.parseInt($('.js-radius-slider').attr('data-slider')),
-    otherKeyValuePairs = [], timestamp;
+    otherKeyValuePairs = [], timestamp, endTimestamp;
 
   // gather all data and submit for post-create:
   if (userId) {
@@ -46,6 +46,7 @@ createNewPostFromView = function (v) {
     }
     // created timestamp:
     timestamp = Date.now();
+    endTimestamp = new Date(timestamp);
     var newPost = {
 
       userId: userId,
@@ -71,7 +72,9 @@ createNewPostFromView = function (v) {
       status: {
         visible: bz.const.posts.status.visibility.VISIBLE
       },
-      timestamp: timestamp
+      timestamp: timestamp,
+      endDatePost: getEndDatePost(v, endTimestamp)
+      
     };
 
     var currentLoc = Session.get('currentLocation');
@@ -228,4 +231,27 @@ GetPostAdTypesI18n = (lang)=>{
   }
   return ret;
 
+};
+
+function getEndDatePost(v, start) {
+  var val = v.$('#selectEndDatePost').val(),
+      ret;
+
+  switch (val) {
+    case 'oneDay':
+      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 1, start.getHours(), start.getMinutes()); break;
+    case 'twoDay':
+      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 2, start.getHours(), start.getMinutes()); break;
+    case 'week':
+      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 7, start.getHours(), start.getMinutes()); break;
+    case 'twoWeek':
+      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 14, start.getHours(), start.getMinutes()); break;
+    case 'month':
+      ret = new Date(start.getFullYear(), start.getMonth() + 1, start.getDate(), start.getHours(), start.getMinutes()); break;
+    case 'year':
+      ret = new Date(start.getFullYear() +1, start.getMonth(), start.getDate(), start.getHours(), start.getMinutes()); break;
+    default:
+      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 14, start.getHours(), start.getMinutes()); break;
+  }
+  return ret && ret.getTime();
 }

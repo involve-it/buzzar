@@ -173,7 +173,7 @@ Template.onePostRowItemOwner.helpers({
     return ret;
   },
   getDuration: function() {
-    var duration, percent, finish, start, now, days, hours, min, barClass, elapsed, timeUnit, word, language; 
+    var duration, percent, finish, start, now, days, hours, min, barClass, elapsed, titleDays, titleHours, titleMinutes, language, unit; 
     
     /* Current date */
     now = new Date();
@@ -182,7 +182,7 @@ Template.onePostRowItemOwner.helpers({
     start = new Date(bz.cols.posts.findOne({_id: this._id}).timestamp); // Dec 26 2015
 
     /* N Days of Activism, FINISH */
-    finish = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 7); // Jan 25 2016
+    finish = new Date(bz.cols.posts.findOne({_id: this._id}).endDatePost); // Jan 25 2016
 
     /* ALL ms or 100% */
     duration = finish - start;
@@ -230,22 +230,23 @@ Template.onePostRowItemOwner.helpers({
       }
     }
 
-    if(days >= 1) {
-      timeUnit = days;
-      word = endingOfTheWord(language, timeUnit, ['день', 'дня', 'дней'], ['day', 'days']);
-    } else if(days < 1) {
-      timeUnit = hours;
-      word = endingOfTheWord(language, timeUnit, ['час', 'часа', 'часов'], ['hour', 'hours']);
-    } else if(hours < 1) {
-      timeUnit = min;
-      word = endingOfTheWord(language, timeUnit, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
+    if(days > 1) {
+      titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
+      unit = days + ' ' + titleDays;
+    } else if(days <= 1 && hours > 1) {
+      titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
+      titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
+      unit = (days == 0) ? hours + ' ' + titleHours : days + ' ' + titleDays + '   ' + hours + ' ' + titleHours;
+    } else if(days < 1 && hours < 1) {
+      titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
+      unit = min + ' ' + titleMinutes;
     }
        
     
     return  {
       name: percent, 
       leftDays: days,
-      unit: timeUnit + ' ' + word,
+      unit: unit,
       barClass: barClass
     };
   }

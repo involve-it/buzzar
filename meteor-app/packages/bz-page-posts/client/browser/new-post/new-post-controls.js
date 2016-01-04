@@ -60,6 +60,11 @@ Template.postDetailsHelp.events({
   }
 });
 
+Template.bzPostsNewFormAd.events({
+  'change #selectEndDatePost': function(e, v) {
+    //var val = v.$('#selectEndDatePost').val();
+  }
+});
 
 Template.postDetailsCommon.helpers({
   getTitle: function () {
