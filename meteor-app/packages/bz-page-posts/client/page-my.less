@@ -614,3 +614,93 @@
   }
   
 }
+
+
+/* Modal Delete Post */
+
+#modalDeletePost {
+  max-width: 32.5rem;
+  &.reveal-modal {
+    padding: 0;
+  }
+}
+
+.confirmPostModal {
+  
+  .confirmPostModal-wrapper {
+    
+    .confirmPostModal-header {
+      border-bottom: 1px solid rgba(180, 180, 180, 0.2);
+      padding: 20px 20px 15px 20px;
+      margin-bottom: 15px;
+
+      .bz-warning-icon {
+        
+        i {
+          color: rgba(255,65,36, 1);
+          display: block;
+          font-size: 55px;
+          margin-right: 20px;
+        }
+      }
+
+      .bz-modal-header {
+        
+        h1 {
+          &.title {
+            text-transform: uppercase;
+            font-size: 25px;
+            color: @h-title-color;
+            font-weight: 400;
+            margin: 0;
+          }
+        }
+        
+        .sub-title {
+          color: @sub-title-color;
+          font-size: 14px;
+          margin: 0;
+        }
+      }
+    }
+    
+    .confirmPostModal-content {
+      padding: 0 20px;
+      
+      p {
+        margin: 0;
+        color: @text-color;
+        font-weight: 300;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 90%;
+        width: 100%;
+        display: inline-block;
+      }
+    }
+    
+    .confirmPostModal-buttons {
+      padding: 20px;
+      
+      .button {
+        margin-right: 20px;
+        margin-bottom: 0;
+        
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+/* END */
+
+
+
+
+
+
+
+

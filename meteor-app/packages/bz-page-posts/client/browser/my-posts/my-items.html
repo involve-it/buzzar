@@ -229,11 +229,11 @@
                     <div class="bz-post-footer-actions">
                         <div class="">
                             <a class="bz-post-action-link" href="#" title="Share"><span><i class="fa fa-share-square-o"></i></span></a>
-                            <a class="bz-post-action-link" href="#" title="Edit"><span><i class="fa fa-pencil-square-o"></i></span></a>
+                            <a class="bz-post-action-link" data-reveal-id="firstModal" href="#" title="Edit"><span><i class="fa fa-pencil-square-o"></i></span></a>
                             <a class="bz-post-action-link js-delete-post" href="#" title="Trash"><span><i class="fa fa-trash-o"></i></span></a>
                         </div>
                     </div>
-                    
+                    <div class="modalDeletePost"></div>
                 </div>
                 
                 
@@ -242,7 +242,7 @@
     <!--</a>-->
       
   </div>
-
+    
 </template>
 
 <template name="noPosts">
@@ -264,3 +264,38 @@
   </div>
 
 </template>
+
+
+
+
+<template name="modalDeletePost">
+
+      <!-- Reveal Modals begin -->
+    <div id="modalDeletePost" class="reveal-modal confirmPostModal" data-reveal aria-labelledby="modalDeletePostTitle" aria-hidden="true" role="dialog">
+        <div class="confirmPostModal-wrapper bz-flex bz-flex-center bz-flex-column">
+            <div class="confirmPostModal-header bz-flex bz-flex-middle">
+                <div class="bz-warning-icon bz-flex-grow-0">
+                    <i class="fa fa-exclamation-triangle"></i>
+                </div>
+                <div class="bz-modal-header bz-flex-grow-1">
+                    <h1 id="modalDeletePostTitle" class="title">Delete this post?</h1>
+                    <p class="sub-title">This action cannot be undone.</p>
+                </div>
+            </div>
+        
+            <div class="confirmPostModal-content">
+                <p>{{ getPostText }}</p>
+            </div>
+        
+            <div class="confirmPostModal-buttons bz-flex bz-flex-center bz-flex-middle">
+                <a class="button secondary js-close-modal">Cancel</a>
+                <a class="button alert js-ok">Delete</a>
+            </div>
+        </div>
+    </div>
+    
+</template>
+
+
+
+
