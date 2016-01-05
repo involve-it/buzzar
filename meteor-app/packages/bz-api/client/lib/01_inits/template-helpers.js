@@ -93,7 +93,7 @@ if(typeof Template !== 'undefined') {
     if( percent <= 0 ) {
       percent = 0;
       status = false;
-      console.log('Обявление закрыто');
+      /*console.log('Обявление закрыто');*/
     }
 
     language = Session.get('bz.user.language');

@@ -114,6 +114,15 @@ Template.onePostRowItemOwner.events({
         bz.cols.posts.update(v.data._id, {$set: {'status.visible': v.data.status.visible}})
       }, 10);
     }
+  },
+  'click .js-delete-post': function(e) {
+    e.preventDefault();
+    
+    if( confirm('Delete this post?') ) {
+      var currentPostId = this._id;
+      bz.cols.posts.remove(currentPostId);
+      Router.go('/posts/my');
+    }
   }
 });
 
@@ -181,6 +190,7 @@ Template.onePostRowItemOwner.helpers({
     now = new Date();
     
     /* Created posts, ms */
+    if( !bz.cols.posts.findOne({_id: this._id}) ) return;
     start = new Date(bz.cols.posts.findOne({_id: this._id}).timestamp); // Dec 26 2015
 
     /* N Days of Activism, FINISH */
@@ -216,7 +226,7 @@ Template.onePostRowItemOwner.helpers({
     if( percent <= 0 ) {
       percent = 0;
       status = false;
-      console.log('Обявление закрыто');
+      /*console.log('Обявление закрыто');*/
     }
     
     language = Session.get('bz.user.language');

@@ -168,6 +168,7 @@
                 <div class="bz-post-header bz-flex bz-flex-space-between">
                     <a href="/post/{{_id}}"><span>{{details.title}}</span></a>
 
+
                     <div class="bz-switch-activity-post">
                         <div class="switch-wrapper js-switch-wrapper">
                             <div class="switch bz-small">
@@ -180,6 +181,10 @@
                 </div>
                 
                 <div class="bz-post-content">
+                    <!--{{#if categoryType}}
+                        <div class="button bz-btn-category type-category-{{categoryType}}">{{categoryType}}</div>
+                    {{/if}}-->
+                    
                     {{#if getDescription }}
                         <p class="bz-item-text">{{getDescription}} <!--{{details.description}}--></p>
                     {{/if}}
@@ -225,7 +230,7 @@
                         <div class="">
                             <a class="bz-post-action-link" href="#" title="Share"><span><i class="fa fa-share-square-o"></i></span></a>
                             <a class="bz-post-action-link" href="#" title="Edit"><span><i class="fa fa-pencil-square-o"></i></span></a>
-                            <a class="bz-post-action-link" href="#" title="Trash"><span><i class="fa fa-trash-o"></i></span></a>
+                            <a class="bz-post-action-link js-delete-post" href="#" title="Trash"><span><i class="fa fa-trash-o"></i></span></a>
                         </div>
                     </div>
                     
