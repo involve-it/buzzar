@@ -44,15 +44,21 @@ Template.pageHome.rendered = function () {
       video = view.$('.js-header-bg-video');
   homeVideo = video[0];
   getScreenSize();
+  
+  if( !$(video.get(0)).hasClass("video-playing") ) {
+    video.get(0).pause();
+  }
+  
   if( getScreenSize() === 'lg' ) {
       if( video.get(0) && video.get(0).canPlayType ) {
         video.get(0).playbackRate = 0.5; /* 0.5 is half speed (slower) */
-        video.get(0).play();
         video.addClass("video-playing");
+        video.get(0).play();
         view.$(".bz-slide-show-list").addClass("hide");
       }
   } else if( getScreenSize() === 'md' ) {
-    console.log('запустить только slide');
+    console.log(getScreenSize());
+    /*console.log('запустить только slide');*/
   }
   function getScreenSize() {
     var res;

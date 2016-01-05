@@ -50,7 +50,9 @@ if(typeof Template !== 'undefined') {
   });
 
   Template.registerHelper('getPostProgressBar', function() {
-    var duration, percent, finish, start, now, days, hours, min, barClass, elapsed, titleDays, titleHours, titleMinutes, language, unit;
+    var duration, status, percent, finish, start, now, days, hours, min, barClass, elapsed, titleDays, titleHours, titleMinutes, language, unit;
+
+    status = true;
 
     /* Current date */
     now = new Date();
@@ -88,7 +90,9 @@ if(typeof Template !== 'undefined') {
     }
 
 
-    if( percent == 0 ) {
+    if( percent <= 0 ) {
+      percent = 0;
+      status = false;
       console.log('Обявление закрыто');
     }
 
@@ -109,13 +113,15 @@ if(typeof Template !== 'undefined') {
     if(days > 1) {
       titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
       unit = days + ' ' + titleDays;
-    } else if(days <= 1 && hours > 1) {
+    } else if(days == 1) {
       titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
       titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
-      unit = (days == 0) ? hours + ' ' + titleHours : days + ' ' + titleDays + '   ' + hours + ' ' + titleHours;
-    } else if(days < 1 && hours < 1) {
       titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
-      unit = min + ' ' + titleMinutes;
+      unit = (hours == 0) ? days + ' ' + titleDays + '   ' + min + ' ' + titleMinutes : days + ' ' + titleDays + '   ' + hours + ' ' + titleHours;
+    } else if(days == 0) {
+      titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
+      titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
+      unit = (days == 0 && hours == 0) ? min + ' ' + titleMinutes : hours + ' ' + titleHours + '   ' + min + ' ' + titleMinutes;
     }
 
 
@@ -123,7 +129,8 @@ if(typeof Template !== 'undefined') {
       percent: percent,
       leftDays: days,
       unit: unit,
-      barClass: barClass
+      barClass: barClass,
+      status: status
     };
   });
     

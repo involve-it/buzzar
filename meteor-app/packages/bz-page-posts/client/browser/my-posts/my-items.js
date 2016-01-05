@@ -173,7 +173,9 @@ Template.onePostRowItemOwner.helpers({
     return ret;
   },
   getDuration: function() {
-    var duration, percent, finish, start, now, days, hours, min, barClass, elapsed, titleDays, titleHours, titleMinutes, language, unit; 
+    var duration, status, percent, finish, start, now, days, hours, min, barClass, elapsed, titleDays, titleHours, titleMinutes, language, unit; 
+    
+    status = true;
     
     /* Current date */
     now = new Date();
@@ -211,7 +213,9 @@ Template.onePostRowItemOwner.helpers({
     }
     
 
-    if( percent == 0 ) {
+    if( percent <= 0 ) {
+      percent = 0;
+      status = false;
       console.log('Обявление закрыто');
     }
     
@@ -248,7 +252,8 @@ Template.onePostRowItemOwner.helpers({
       percent: percent, 
       leftDays: days,
       unit: unit,
-      barClass: barClass
+      barClass: barClass,
+      status: status
     };
   }
 });

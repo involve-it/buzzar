@@ -41,6 +41,7 @@ en = {
   SEEN_ALL: 'All',
   SEEN_TOTAL: 'Total',
   left: 'Left',
+  POST_STATUS: 'Post close',
   
   //sitewise:
   siteTitleElement: 'instant post, bound to location',

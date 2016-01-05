@@ -41,6 +41,7 @@ ru = {
   SEEN_ALL: 'Всего',
   SEEN_TOTAL: 'Итого',
   left:                'Осталось',
+  POST_STATUS: 'Объявление закрыто',
   
   //home:
   //headliner:           'Мгновенные объявления, привязанные к месту',
@@ -126,7 +127,7 @@ ru = {
 
 
   //Profile
-  PROFILE_USER_DETAILS :'Профиль пользователе',
+  PROFILE_USER_DETAILS :'Профиль пользователя',
   PROFILE_PERSONAL_SETTINGS :'Личные настройки',
   PROFILE_EDIT_PROFILE: 'Редактировать',
   PROFILE_ADDITIONAL_LINKS: 'Внешние ссылки',
