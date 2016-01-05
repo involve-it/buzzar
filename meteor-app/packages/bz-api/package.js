@@ -16,7 +16,7 @@ Package.describe({
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use(['iron:router', 'iron:layout', 'selaias-local:accounts-entry', 'ecmascript'], ['server'].join(global.bzSettings.webBrowserArray));
+  api.use(['iron:router', 'iron:layout', 'selaias-local:accounts-entry', 'ecmascript'], global.bzSettings.webBrowserArrayWithServer);
   api.use('service-configuration', ['server']);
   //api.use('iron:layout', ['client', 'server']);
   api.use(['underscore', 'session']);
@@ -69,12 +69,15 @@ function setPackagesCompilationGlobals (mob){
     // mobile developer:
     global.bzSettings = {
       webBrowserArray: [],
-      webCordovaArray : ['web.browser', 'web.cordova']
+      webBrowserArrayWithServer: [],
+      webCordovaArray : ['web.browser', 'web.cordova'],
+      webCordovaArrayWithServer : ['web.browser', 'web.cordova', 'server']
     }
   } else {
     // browser developer:
     global.bzSettings = {
       webBrowserArray: ['web.browser', 'web.cordova'],
+      webBrowserArrayWithServer: ['web.browser', 'web.cordova', 'server'],
       webCordovaArray: [],
       //webCordovaArray : ['web.cordova']
     }

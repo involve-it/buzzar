@@ -13,7 +13,7 @@ Package.describe({
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use(['ecmascript'], ['server'].join(global.bzSettings.webBrowserArray));
+  api.use(['ecmascript'], global.bzSettings.webBrowserArrayWithServer);
   api.use(['iron:router', 'iron:layout', 'less', 'sergeyt:typeahead'], 'client'); // todo: replace typeahead with required file
   api.use(['templating'], global.bzSettings.webBrowserArray);
   api.use(['fourseven:scss@3.2.0', 'edgee:slingshot']);
