@@ -12,11 +12,16 @@
           <div class="small-12 medium-9 large-9 left">
             <div class="bz-flex-style">
               <div>
-                <input name="url" placeholder="{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER' }}" class="original-url error js-original-url" type="text">
-                <div class="drop-content">
+                  <div class="row collapse labeled">
+                      <div class="small-2 large-2 columns"><span class="prefix">http://</span></div>
+                      <div class="small-10 large-10 columns">
+                          <input name="url" placeholder="{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER' }}" class="original-url error js-original-url" type="text">
+                      </div>
+                  </div>
+                  <div class="drop-content">
                     <span class="bz-drop-close"><i class="fa fa-times-circle"></i></span>
                     <p>{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER_TOOLTIP_TEXT' }}</p>
-                </div>
+                  </div>
               </div>
 
               <!--<small class="error hidden">Value is required</small>-->

@@ -118,42 +118,15 @@ Template.onePostRowItemOwner.events({
   'click .js-delete-post': function(e) {
     e.preventDefault();
     
-    var respond = false, view, el, currentPostId = this._id;
-  
-    Session.set('modalTextPost', this.details.description);
+    var currentPostId = this._id,
+        content = this.details.description;
 
-    view = Blaze.render(Template.modalDeletePost, document.getElementsByClassName('modalDeletePost')[0]);
-    el = view.templateInstance().find('.confirmPostModal');
-
-    /* close modal */
-    $(el).find('.js-close-modal').on('click', function() {
-      $(el).foundation('reveal', 'close');
-      Session.delete('modalTextPost');
+    bz.ui.modal(content, function() {
+      bz.cols.posts.remove(currentPostId);
     });
-
-    /* button yes */
-    $(el).find('.js-ok').on('click', function() {
-      respond = true;
-
-      if(respond) {
-        bz.cols.posts.remove(currentPostId);
-        Router.go('/posts/my');
-      }
-
-      $(el).foundation('reveal', 'close');
-      Session.delete('modalTextPost');
-    });
-
-    /* open modal */
-    $(el).foundation('reveal','open');
   }
 });
 
-Template.modalDeletePost.helpers({
-  getPostText: function() {    
-    return Session.get('modalTextPost');
-  }
-});
 
 Template.onePostRowItemOwner.helpers({
   getPhotoUrl: function () {
@@ -169,6 +142,7 @@ Template.onePostRowItemOwner.helpers({
   },
   getPrice: function () {},
   categoryType: function() {
+    if( !bz.cols.posts.findOne({_id: this._id}) ) return;
     return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
   },
   getDescription: function() {

@@ -181,9 +181,6 @@
                 </div>
                 
                 <div class="bz-post-content">
-                    <!--{{#if categoryType}}
-                        <div class="button bz-btn-category type-category-{{categoryType}}">{{categoryType}}</div>
-                    {{/if}}-->
                     
                     {{#if getDescription }}
                         <p class="bz-item-text">{{getDescription}} <!--{{details.description}}--></p>
@@ -207,7 +204,11 @@
                                 <span class="today-views">{{ t9n 'SEEN_TODAY' }}:</span><span class="bz-count-view-content">{{ stats.seenToday }}</span>
                             {{/if}}
                         </div>
-                    {{/if}}    
+                    {{/if}}
+
+                    {{#if categoryType}}
+                        <div class="button bz-btn-category type-category-{{categoryType}} bz-type-inner">{{categoryType}}</div>
+                    {{/if}}
 
                     <div class="bz-services">
                         <div class="bz-services-wrapper">

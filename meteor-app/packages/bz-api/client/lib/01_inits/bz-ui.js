@@ -19,6 +19,7 @@ bz.ui.initFoundationValidation = function() {
   });
 };
 
+/* BZ DROP TIPS */
 bz.ui.initDropTips = function() {
 
   setTimeout(function () {
@@ -88,8 +89,7 @@ bz.ui.initDropTips = function() {
   
 };
 
-
-
+/* BZ ALERT */
 bz.ui.alert = function(message, obj) {
   obj = obj || { type: 'info' };
 
@@ -142,4 +142,41 @@ bz.ui.alert = function(message, obj) {
 bz.ui.error = function(message, obj) {
   bz.ui.alert(message, {type: 'error'});
 };
+
+/* BZ MODAL CONFIRM WINDOW */
+bz.ui.modal = function(content, onconfirm) {
+
+  "use strict";  
+  
+  var body, modal, modalConfirmTemplate, modalConfirm, id;
+
+  if (!body) body = $('body');
+  id = 'modal-' + Math.round(Math.random() * 100);
+  onconfirm = $.isFunction(onconfirm) ? onconfirm : function(){};
+
+  modalConfirmTemplate = '<div id="'+id+'" class="reveal-modal confirmPostModal" data-reveal aria-labelledby="modalDeleteTitle" aria-hidden="true" role="dialog"></div>';
+
+  modalConfirm = [
+    '<div class="confirmPostModal-wrapper bz-flex bz-flex-center bz-flex-column"><div class="confirmPostModal-header bz-flex bz-flex-middle"><div class="bz-warning-icon bz-flex-grow-0"><i class="fa fa-exclamation-triangle"></i></div>',
+    '<div class="bz-modal-header bz-flex-grow-1"><h1 id="modalDeleteTitle" class="title">Delete this post?</h1><p class="sub-title">This action cannot be undone.</p></div></div>',
+    '<div class="confirmPostModal-content"><p>'+ String(content) +'</p></div>', 
+    '<div class="confirmPostModal-buttons bz-flex bz-flex-center bz-flex-middle"><a class="button secondary js-close-modal">Cancel</a><a class="button alert js-modal-ok">Delete</a></div></div>'
+  ].join('');
+
+  modal = $(modalConfirmTemplate).appendTo('body');
+  $(modalConfirm).appendTo('.confirmPostModal');
+  $(modal).foundation('reveal','open');
+   
+  modal.find(".js-modal-ok, .js-close-modal").on("click", function(){
+    if($(this).is('.js-modal-ok')) onconfirm();
+    modal.foundation('reveal', 'close');
+    modal.remove();
+  });
+  
+  /*return modal;*/
+  
+};
+
+
+
 
