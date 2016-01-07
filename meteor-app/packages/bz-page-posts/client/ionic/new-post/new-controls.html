@@ -38,17 +38,17 @@
             <input class="js-post-title" type="text" label-type="stacked" name="title" required=""
                    data-schema-key="title" maxlength="200" value="{{ getTitle }}">
         </label>
-        <label type="stacked" class="item item-input item-stacked-label">
+        <div type="stacked" class="item item-input item-stacked-label">
             <span class="input-label">Description</span>
             <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
                       data-schema-key="body" value="{{ getDescription }}"></textarea>
-        </label>
+        </div>
     </div>
 </template>
 
 
 <template name="postDetailsHelp">
-    <label class="item item-input item-select">
+    <div class="item item-input item-select">
         <div class="input-label">
             What happened?
         </div>
@@ -58,20 +58,18 @@
             <option value="buy">Emergency situation</option>
             <option value="buy">Other:</option>
         </select>
-    </label>
+    </div>
 </template>
 <template name="postDetailsConnect">
-    <label class="item item-input item-select">
-        <div class="input-label">
-            I am looking for:
-        </div>
+    <div class="item item-input item-select">
+        <div class="input-label">I am looking for:</div>
         <select class="js-charity-type-select">
             <option value="artists">artists and other creative people</option>
             <option value="friends">friends</option>
             <option value="professionals">professionals</option>
             <option value="other">Other:</option>
         </select>
-    </label>
+    </div>
 </template>
 <template name="postDetailsTrade">
     <label type="stacked" class="item item-input item-stacked-label">

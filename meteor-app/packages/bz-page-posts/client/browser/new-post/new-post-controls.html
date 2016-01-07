@@ -590,9 +590,10 @@
 
 <template name="postDetailsConnect">
   <div class="clearfix padding-top">
-    <label class="item item-input item-select">
-      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR' }}</div>
-      <div class="medium-5 large-7 left">
+  <div class="item-details">
+    <div class="item item-input item-select">
+      <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR' }}</div>
+      <div class="small-12 medium-9 large-9 left">
         <select class="js-charity-type-select">
           <option value="artists">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR_ARTISTS' }}</option>
           <option value="friends">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR_FRIENDSHIP' }}</option>
@@ -601,19 +602,33 @@
           <option value="other">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR_OTHER' }}</option>
         </select>
       </div>
-    </label>
+    </div>
+  </div>
   </div>
 </template>
 
 <template name="postDetailsTrade">
-  <div class="clearfix padding-top">
-    <label type="stacked" class="item item-input item-stacked-label">
-      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_PRICE' }}</div>
-      <div class="medium-5 large-7 left">
-        <input class="js-post-price" type="number" value="{{ getPrice }}" label-type="stacked"/>
-      </div>
-    </label>
-  </div>
+    <div class="clearfix padding-top">
+        <div class="item-details">
+            <div type="stacked" class="item item-input item-stacked-label">
+                <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_PRICE' }}</div>
+                <div class="small-12 medium-9 large-9 left">
+                        <div class="row collapse labeled prefix-radius">
+                            <div class="small-2 large-2 columns">
+                                <select class="prefix" name="currency" id="currency">
+                                    <option value="usd">USD</option>
+                                    <option value="rub">RUB</option>
+                                </select>
+                            </div>
+                            <div class="small-10 large-10 columns">
+                                <input class="js-post-price" type="number" placeholder="Value" value="{{ getPrice }}">
+                            </div>
+                        </div>
+                    </div>
+                    <!--<input class="js-post-price" type="number" value="{{ getPrice }}" label-type="stacked"/>-->
+            </div>
+        </div>
+    </div>
 </template>
 
 <template name="postDetailsJobs">

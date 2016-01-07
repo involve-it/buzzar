@@ -153,6 +153,7 @@ bz.ui.modal = function(content, onconfirm) {
   if (!body) body = $('body');
   id = 'modal-' + Math.round(Math.random() * 100);
   onconfirm = $.isFunction(onconfirm) ? onconfirm : function(){};
+  content = content || '';
 
   modalConfirmTemplate = '<div id="'+id+'" class="reveal-modal confirmPostModal" data-reveal aria-labelledby="modalDeleteTitle" aria-hidden="true" role="dialog"></div>';
 
