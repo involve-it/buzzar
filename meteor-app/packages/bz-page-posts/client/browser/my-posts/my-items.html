@@ -187,7 +187,7 @@
                     {{/if}}
                     
                     {{#if details.price}}
-                        <div class="price"> {{details.price}} <span class="bz-prefix"><i class="fa fa-usd"></i></span></div>
+                        {{> chooseCurrency}}
                     {{/if}}
                     
                 </div>
@@ -266,37 +266,11 @@
 
 </template>
 
-
-
-
-<template name="modalDeletePost">
-
-      <!-- Reveal Modals begin -->
-    <div id="modalDeletePost" class="reveal-modal confirmPostModal" data-reveal aria-labelledby="modalDeletePostTitle" aria-hidden="true" role="dialog">
-        <div class="confirmPostModal-wrapper bz-flex bz-flex-center bz-flex-column">
-            <div class="confirmPostModal-header bz-flex bz-flex-middle">
-                <div class="bz-warning-icon bz-flex-grow-0">
-                    <i class="fa fa-exclamation-triangle"></i>
-                </div>
-                <div class="bz-modal-header bz-flex-grow-1">
-                    <h1 id="modalDeletePostTitle" class="title">Delete this post?</h1>
-                    <p class="sub-title">This action cannot be undone.</p>
-                </div>
-            </div>
-        
-            <div class="confirmPostModal-content">
-                <p>{{ getPostText }}</p>
-            </div>
-        
-            <div class="confirmPostModal-buttons bz-flex bz-flex-center bz-flex-middle">
-                <a class="button secondary js-close-modal">Cancel</a>
-                <a class="button alert js-ok">Delete</a>
-            </div>
-        </div>
-    </div>
-    
+<template name="chooseCurrency">
+    {{#if getCurrency 'rub'}}
+        <div class="price rub"> {{details.price}} <span class="bz-prefix"><i class="fa fa-rub"></i></span></div>
+    {{else}}
+        <div class="price usd"> {{details.price}} <span class="bz-prefix"><i class="fa fa-usd"></i></span></div>
+    {{/if}}
 </template>
-
-
-
 

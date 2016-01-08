@@ -146,10 +146,9 @@ Template.onePostRowItemOwner.helpers({
     return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
   },
   getDescription: function() {
-    
     var self = this,
         textDescription = self.details.description,
-        limit = 250;
+        limit = 200;
         /*limit = variable.hash.limitCharacter;*/
     
     if(textDescription) {
@@ -271,8 +270,11 @@ Template.onePostRowItemOwner.helpers({
   }
 });
 
-
-
+Template.chooseCurrency.helpers({
+  getCurrency: function(cur) {
+    return this.cur ==='usd';
+  }
+});
 
 
 
