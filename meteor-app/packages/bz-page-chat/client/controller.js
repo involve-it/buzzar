@@ -1,7 +1,7 @@
 /**
  * Created by Ashot on 9/19/15.
  */
-bz.help.makeNamespace('bz.buz.chats');
+bz.help.makeNamespace('bz.bus.chats');
 
 sendMessage = function (messageText, chat, friendUserId) {
   var  msgTs = Date.now();
@@ -184,7 +184,7 @@ Meteor.startup(function () {
 });
 
 // EXPOSE EXTERNAL API:
-bz.buz.chats.createChatIfFirstMessage = createChatIfFirstMessage;
-bz.buz.chats.showMessageModal = showMessageModal;
+bz.bus.chats.createChatIfFirstMessage = createChatIfFirstMessage;
+bz.bus.chats.showMessageModal = showMessageModal;
 
-bz.buz.chats.showbzAlerMessage = showbzAlerMessage;
+bz.bus.chats.showbzAlerMessage = showbzAlerMessage;

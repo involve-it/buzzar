@@ -74,6 +74,17 @@
     <a class="button btn-default" href="/contacts">{{ t9n 'CONTACT_US' }}</a>
   </div>
 </template>
+<template name="aboutUsRu">
+  <div class="main-content">
+    <h3 class="title">
+      Светлячки - виртуальные данные, привязанные к месту.
+    </h3>
+
+  </div>
+  <div class="text-center bz-padding-top-x1">
+    <a class="button btn-default" href="/contacts">{{ t9n 'CONTACT_US' }}</a>
+  </div>
+</template>
 
 
 <template name="bzAboutUsShort">
@@ -104,14 +115,39 @@
                 </p>
             </div>
 
-            <div class="js-about-us hidden">
+            <!--<div class="js-about-us hidden">
                 {{> aboutUs }}
-            </div>
+            </div>-->
 
             <div class="text-center bz-padding-top-x1">
                 <a class="button btn-default" href="{{pathFor 'bz.aboutUs'}}">{{ t9n 'CONTENT_READ_MORE_TITLE' }}</a>
             </div>
             
+        </div>
+    </section>
+</template>
+<template name="bzAboutUsShortRu">
+    <section id="bz-bottom-a" class="bz-gray-background">
+        <div class="bz-container-body bz-about-us">
+            <h2 class="title">{{ t9n 'ABOUT_US_TITLE' }}</h2>
+            <div class="text-overlay-bottom">
+                <!--<p class="bz-padding-top-x1 text-center">
+                    Think of us as of "Google For People": the way Google lets you search through urls in Web, we let you search among real people around you. Like Google has it's ranking system to order url relevancy, we have our sophisticated Karma algorithm, phone# verification and other means to rank real posts' credibility.
+                </p>-->
+                <p>
+                    <b>Что такое светлячки?</b>
+                </p>
+
+            </div>
+
+            <!--<div class="js-about-us hidden">
+                {{> aboutUs }}
+            </div>-->
+
+            <div class="text-center bz-padding-top-x1">
+                <a class="button btn-default" href="{{pathFor 'bz.aboutUs'}}">{{ t9n 'CONTENT_READ_MORE_TITLE' }}</a>
+            </div>
+
         </div>
     </section>
 </template>

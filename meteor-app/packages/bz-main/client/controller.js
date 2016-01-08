@@ -16,9 +16,9 @@ loggedInUserLazyLoad = function () {
           if (!initializing) {
             //console.log(doc);
             var userObj = Meteor.users.findOne(doc.userId);
-            bz.buz.chats.showMessageModal(doc, userObj, id);
+            bz.bus.chats.showMessageModal(doc, userObj, id);
 
-            bz.buz.chats.showbzAlerMessage(doc, userObj, id);
+            bz.bus.chats.showbzAlerMessage(doc, userObj, id);
           }
         }
       }
