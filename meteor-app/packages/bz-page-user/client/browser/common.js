@@ -47,7 +47,7 @@ Template.bzUserProfileBasic.events({
      toUser: this._id
      }*/
     if (Meteor.userId() !== this._id) {
-      var chatId = bz.buz.chats.createChatIfFirstMessage(Meteor.userId(), this._id);
+      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this._id);
       Router.go('/chat/' + chatId);
     }
   }

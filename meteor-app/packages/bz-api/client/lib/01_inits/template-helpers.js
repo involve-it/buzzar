@@ -143,5 +143,20 @@ if(typeof Template !== 'undefined') {
     return T9n.language === 'ru';
   });
   
-  Template.registerHelper('changeLanguage', function() {});
+  //Template.registerHelper('changeLanguage', function() {});
+
+  Template.registerHelper('bzRenderTemplate', function(templateName){
+    var ret = '',
+      templateNameRu = templateName + 'Ru';
+
+    if(templateName && Blaze.isTemplate(Template[templateName])){
+      if(T9n.language === 'ru' && Template[templateNameRu]){
+        ret = Blaze.toHTML(Template[templateNameRu]);
+      } else {
+        ret = Blaze.toHTML(Template[templateName]);
+      }
+      //ret = Blaze.toHTMLWithData(Template[templateName], dataObj);
+    }
+    return Spacebars.SafeString(ret);
+  });
 }

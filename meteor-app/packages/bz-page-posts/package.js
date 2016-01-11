@@ -15,9 +15,12 @@ Package.onUse(function (api) {
   api.use(['iron:router', 'iron:layout', 'mongo', 'reactive-var', 'tracker', 'ecmascript', 'dburles:collection-helpers',
     'arutune:bz-main'
   ], ['client', 'server']);
+  api.use(['percolate:synced-cron'
+  ], 'server');
   api.use(['templating', 'less'
   ], 'client');
   api.addFiles([
+    'server/main.js',
     'server/model.js'
   ], 'server');
 

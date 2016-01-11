@@ -113,20 +113,12 @@
         <div class="bz-header-menu">
           {{> bzInnerMenuLeft}}
         </div>
-          
+
+
         <div class="bz-group-menu-btn">
-            <div class="bz-header-button">
-                <a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert">{{ t9n 'MENU_BUTTON_NEW_POST' }} <span
-                data-dropdown="createPost"></span></a><br>
-                <ul id="createPost" class="f-dropdown" data-dropdown-content>
-                <li><a href="/posts/new?type=ad">Объявление</a></li>
-                <li><a href="/posts/new?type=memo">Напоминание</a></li>
-                <li><a style="    background: #E8E8E8;">Информация</a></li>
-                <li><a style="    background: #E8E8E8;">Визитка</a></li>
-                </ul>
-            </div>
+          {{ bzRenderTemplate "createNewButton" }}
             
-            {{> bzDropSelectLanguage}}
+          {{> bzDropSelectLanguage}}
         </div>
       </nav>
       <!-- navEND -->
@@ -172,7 +164,6 @@
   </footer>
 </template>
 
-
 <template name="bzChangeLanguage">
   <div class="bz-language-picker">
     <form id="dropdown-choose-lang">
@@ -197,4 +188,29 @@
             </ul>
         </div>
     </div>
+</template>
+
+<template name="createNewButton">
+  <div class="bz-header-button">
+    <a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert">{{ t9n 'MENU_BUTTON_NEW_POST' }} <span
+      data-dropdown="createPost"></span></a><br>
+    <ul id="createPost" class="f-dropdown" data-dropdown-content>
+      <li><a href="/posts/new?type=ad">Advertisement</a></li>
+      <li><a href="/posts/new?type=memo">Reminder</a></li>
+      <li><a style="    background: #E8E8E8;">Information</a></li>
+      <li><a style="    background: #E8E8E8;">Connector</a></li>
+    </ul>
+  </div>
+</template>
+<template name="createNewButtonRu">
+  <div class="bz-header-button">
+    <a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert">{{ t9n 'MENU_BUTTON_NEW_POST' }} <span
+      data-dropdown="createPost"></span></a><br>
+    <ul id="createPost" class="f-dropdown" data-dropdown-content>
+      <li><a href="/posts/new?type=ad">Объявление</a></li>
+      <li><a href="/posts/new?type=memo">Напоминание</a></li>
+      <li><a style="    background: #E8E8E8;">Информация</a></li>
+      <li><a style="    background: #E8E8E8;">Визитка</a></li>
+    </ul>
+  </div>
 </template>
