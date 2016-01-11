@@ -126,6 +126,11 @@ en = {
   NEW_MEMO_WHERE_MUTED: 'С помощью настроек определите, в каком месте ваше напоминание станет активным.',
   NEW_MEMO_CHOOSE_TIME_LIMIT: 'Choose due date for the memo',
 
+
+  //Post details
+  POST_DETAILS_REVIEWS_FIRST: 'Your will be the first',
+  
+
   //Profile
   PROFILE_USER_DETAILS :'User profile details',
   PROFILE_PERSONAL_SETTINGS :'Your personal settings',

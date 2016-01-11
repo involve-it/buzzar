@@ -125,7 +125,11 @@ ru = {
   NEW_MEMO_WHERE_MUTED: 'С помощью настроек определите, в каком месте ваше напоминание станет активным.',
   NEW_MEMO_CHOOSE_TIME_LIMIT: 'Выберите срок действия напоминания',
 
+  
+  //Post details
+  POST_DETAILS_REVIEWS_FIRST: 'Вы будете первый',
 
+  
   //Profile
   PROFILE_USER_DETAILS :'Профиль пользователя',
   PROFILE_PERSONAL_SETTINGS :'Личные настройки',
