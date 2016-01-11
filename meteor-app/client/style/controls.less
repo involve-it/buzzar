@@ -430,7 +430,7 @@ textarea:-ms-input-placeholder {
     .bz-rating-count {
       margin-left: 10px;
       font-size: 14px;
-      color: @text-color;
+      color: @text-color-label;
     }
   }
   
@@ -938,3 +938,51 @@ nav.left-off-canvas-menu {
     display: block;
   }
 }
+
+/* Wish list */
+
+.bz-wish-list {
+  margin-top: 3px;
+  margin-left: 15px;
+  float: left;
+
+  .bz-wish-list-title {
+    cursor: pointer;
+    float: left;
+    text-align: center;
+    padding: 7px 15px;
+    color: #FFFFFF;
+    background-color: #87D0BF;
+    margin: 0 15px 0 0;
+    .border-radius(2px);
+    
+    i {
+      padding-right: 5px;
+    }
+
+    &.disabled {
+      cursor: default;
+      background-color: @disabled-bg;
+      color: @disabled-text;
+    }
+  }
+
+  .bz-wish-list-items {
+    cursor: pointer;
+    float: left;
+    background-color: #f0f0f0;
+    color: #666666;
+    .border-radius(2px);
+
+    .bz-wish-list-item {
+      padding: 10px 12px;
+      float: left;
+      border-right: 1px solid #E4E4E4;
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
+/* END */

@@ -24,12 +24,11 @@
         <p></p><!--<h3 class="title">Post Details</h3>-->
     </div>
 
-    <div class="post-item overflow">
+    <div class="post-item item-sub-description overflow">
       <div class="post-details">
         <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-eye"></i> Views</div>
         <div class="small-12 medium-8 large-8 bz-post-result columns">
-          <!--<p><span>Total</span> {{ stats.seenTotal }}, <span>Today</span> {{ stats.seenToday }} </p>-->
-          <p>{{ stats.seenTotal }} ({{ stats.seenToday }} <span>today</span>) </p>
+          <p><span>All:</span> {{ stats.seenAll }}  &nbsp;&nbsp;  <span>Today:</span> {{ stats.seenToday }} </p>
         </div>
       </div>
 
@@ -70,17 +69,14 @@
         <div class="post-details">
           <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-money"></i> Price</div>
           <div class="small-12 medium-8 large-8 bz-post-result columns">
-            <div class="bz-price">
-              200 <span class="bz-prefix">$</span>
+            <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span>
             </div>
           </div>
         </div>
       {{/if}}
 
-      <div class="bz-separate"></div>
-
-      {{> saveToWishList }}
-
+      <!--<div class="bz-separate"></div>-->
+        
     </div>
 
 
@@ -98,9 +94,9 @@
 <template name="saveToWishList">
   <div class="bz-wish-list">
     <div class="bz-wish-list-title js-like-btn {{isLiked}}">
-        <i class="fa fa-heart-o"></i> Like
+        <i class="fa fa-heart-o"></i> <span>Like</span>
     </div>
-    <div class="bz-wish-list-items">
+    <div class="bz-wish-list-items" style="display: none">
       <div class="bz-wish-list-item"><i class="fa fa-envelope-o"></i> Email</div>
       <div class="bz-wish-list-item"><i class="fa fa-facebook"></i> Facebook</div>
       <div class="bz-wish-list-item"><i class="fa fa-ellipsis-h"></i> more</div>
@@ -146,12 +142,12 @@
                 <div class="rating"></div>
             </div>
             
-            <div class="bz-rating-count">12 reviews</div>
+            <div class="bz-rating-count">{{#if details.reviews}} ** reviews {{else}} <span>{{ t9n 'POST_DETAILS_REVIEWS_FIRST' }}</span> {{/if}}</div>
         </div>
         
-        <div class="bz-rating-details">
+        <div class="bz-rating-details" style="display: none">
             <a href="#" class="bz-rating-details-link js-rating-details">
-                <span>+ Details</span>
+                <span>Details</span>
             </a>
         </div>
     </div>

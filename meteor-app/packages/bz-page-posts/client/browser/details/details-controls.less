@@ -17,6 +17,7 @@
 }
 
 .side-b {
+  padding-left: 0;
   padding-right: 0;
 }
 
@@ -27,7 +28,7 @@
 .bz-post-details {
   
   .item-divider {
-    padding: 0 0 20px 0;
+    padding: 0 0 10px 0;
     
     h2.title {
       padding: 0;
@@ -134,6 +135,8 @@
       overflow: hidden;
       margin-bottom: 10px;
       
+      
+      
       &:last-child {
         margin-bottom: 0;
       }
@@ -141,21 +144,21 @@
       .bz-post-label {
         .display-flex-box();
         .align-self(center);
-        color: @text-color-label;
+        color: lighten(@text-color-label, 15%);
         font-size: 14px;
         padding: 0 15px 0 0;
         
         i {
-          font-size: 20px;
+          font-size: 16px;
           padding-right: 15px;
           .align-self(center);
-          color: lighten(@text-color-label, 15%);
+          color: lighten(@text-color-label, 20%);
         }
       }
 
       .bz-post-result {
         .align-self(center);
-        color: @text-color-label-span;
+        color: @text-color;
         .border-radius(2px);
         width: 100%;
 
@@ -204,44 +207,18 @@
       }
     }
     
-    .bz-wish-list {
+    &.item-sub-description {
       
-      .bz-wish-list-title {
-        cursor: pointer;
-        float: left;
-        text-align: center;
-        padding: 10px;
-        color: #FFFFFF;
-        background-color: #87D0BF;
-        margin-right: 15px;
-        margin-bottom: 15px;
-        .border-radius(2px);
+      .post-details {
+        margin-bottom: 0;
+        height: 42px;
+        padding-left: 0.9375rem;
         
-        &.disabled {
-          cursor: default;
-          background-color: @disabled-bg;
-          color: @disabled-text;
-        }
-      }
-      
-      .bz-wish-list-items {
-        cursor: pointer;
-        float: left;
-        background-color: #f0f0f0;
-        color: #666666;
-        .border-radius(2px);
-                
-        .bz-wish-list-item {
-          padding: 10px 12px;
-          float: left;
-          border-right: 1px solid #E4E4E4;
-          &:last-child {
-            border-right: none;
-          }
+        &:nth-child(2n+1) {
+          background-color: rgba(242,242,242, .5);
         }
       }
     }
-
   }
 
   .bz-post-published {
@@ -340,6 +317,7 @@
       }
       
       .bz-control-reviews {
+        margin-top: 15px;
 
         .custom-dropdown-area {
           margin-right: 15px;
