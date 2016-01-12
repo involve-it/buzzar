@@ -32,8 +32,8 @@ Template.bzSocialButtons.helpers({
     //if(PostIsLikedByCurrentUser()) {
 
     if(PostBelongsToUser(postOwnerId)) {
-      //return 'disabled';
-      return '';
+      return 'disabled';
+      //return '';
     } else {
       return '';
     }
