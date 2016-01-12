@@ -218,71 +218,32 @@ GetPostAdTypesI18n = function(lang) {
 };
 //PostIsLikedByCurrentUser = (curPost)=>{
 PostIsLikedByCurrentUser = function(curPost) {
-  debugger;
-  debugger;
-
   var ret,
     userId = Meteor.userId(),
     postObj = curPost || bz.bus.posts.getCurrentPost(),
-    foundPost = bz.bus.posts.find({
+    foundPost = bz.cols.posts.findOne({
+      _id: 'fBNoBZaWZD2eoTyQ6',
       'social.likes': {$elemMatch: {userId: userId}}
     });
-
   ret = !!foundPost;
-
   return ret;
 }
-//PostBelongsToUser = (postOwnerId)=>{
 PostBelongsToUser = function (postOwnerId) {
-  debugger;
-
   var ret = false,
     userId = Meteor.userId();
   ret = postOwnerId === userId;
   return ret;
 }
-LikePostByCurrentUser = function () {
+LikePostByUser = function (postOwnerId) {
   var ret = false,
     curPost = bz.bus.posts.getCurrentPost(),
-    userId = Meteor.userId();
-  debugger;
-  if(curPost && userId){
-
-    bz.bus.posts.update(curPost._id,
-      /*{$set: {'social.likes': {
-       }}});*/
-      {
-        '$set': {
-          'social.likes.$': {
-            userId: this._id,
-            ts: Date.now()
-          }
-        }
-      }
-      /*function(err,numAffected) {
-
-       if (numAffected == 0) {
-       // Document not updated so you can push onto the array
-       Product.update(
-       {
-       "_id": ObjectId("536c55bf9c8fb24c21000095")
-       },
-       {
-       "$push": {
-       "recentviews": {
-       "viewedby": "abc",
-       "vieweddate": ISODate("2014-05-09T04:12:47.907Z")
-       }
-       }
-       },
-       function(err,numAffected) {
-
-       }
-       );
-       }
-
-       }*/
-    );
+    userId = userId || Meteor.userId();
+  if (curPost && userId && !PostBelongsToUser(postOwnerId)) {
+    if (!PostIsLikedByCurrentUser()) {
+      bz.cols.posts.update(curPost._id, { $push: { 'social.likes': { userId: userId, ts: Date.now() }}});
+    } else {
+      bz.cols.posts.update(curPost._id, { $pop:  { 'social.likes': { userId: userId, ts: Date.now() }}});
+    }
   }
   return ret;
 }

@@ -63,6 +63,12 @@
                 <p>{{ _getDistanceToCurrentLocation }}</p>
             </div>
         </div>
+        <div class="post-details">
+            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-heart"></i> Likes</div>
+            <div class="small-12 medium-8 large-8 bz-post-result columns">
+                <p>{{ _getLikesAmount }}</p>
+            </div>
+        </div>
       
 
       {{#if details.price }}
@@ -93,8 +99,12 @@
 
 <template name="bzSocialButtons">
   <div class="bz-wish-list">
-    <div class="bz-wish-list-title js-like-btn {{isDisabled}}">
+    <div class="bz-wish-list-title js-like-btn {{ disabledIfIsBelongingToCurrentUser }}">
+      {{#if isLikedByUser }}
+        <i class="fa fa-heart"></i> <span>Unlike</span>
+      {{else }}
         <i class="fa fa-heart-o"></i> <span>Like</span>
+      {{/if}}
     </div>
     <div class="bz-wish-list-items" style="display: none">
       <div class="bz-wish-list-item"><i class="fa fa-envelope-o"></i> Email</div>

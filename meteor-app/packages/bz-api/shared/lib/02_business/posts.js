@@ -48,6 +48,9 @@ var helperFunctions = {
     }
     return ret;
   },
+  getLikesAmount: function(){
+    return this.social && this.social.likes && this.social.likes.length;
+  },
   getDistanceQualifier: function(){
     var distance = this._getDistanceToCurrentLocation();
     if (distance){

@@ -18,17 +18,22 @@ Template.bzPostDetails.helpers({
 Template.bzSocialButtons.events({
   'click .js-like-btn': function(e) {
     var el = $(e.target);
-    var res = LikePostByCurrentUser();
+    var res = LikePostByUser(this._id);
   }
 });
 
 Template.bzSocialButtons.helpers({
-  isDisabled: function() {
-    debugger;
+  isLikedByUser: function(){
+    return PostIsLikedByCurrentUser();
+  },
+  disabledIfIsBelongingToCurrentUser: function() {
     var postOwnerId = this._id;
     /* if user logged & yet not clicked into liked */
-    if(PostBelongsToUser(postOwnerId) || PostIsLikedByCurrentUser()) {
-      return 'disabled';
+    //if(PostIsLikedByCurrentUser()) {
+
+    if(PostBelongsToUser(postOwnerId)) {
+      //return 'disabled';
+      return '';
     } else {
       return '';
     }
