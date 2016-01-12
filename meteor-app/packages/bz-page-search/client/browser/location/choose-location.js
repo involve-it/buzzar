@@ -2,6 +2,10 @@
  * Created by root on 9/23/15.
  */
 Template.bzLocationName.helpers({
+  notDefinedLocationClass: function(){
+    var ret = Session.get('bz.control.search.location');
+    return ret && ret.name ? '' : 'bz-fa-location-not-defined';
+  },
   getCurrentLocationName: function(){
     var ret = Session.get('bz.control.search.location');
     return ret && ret.name || 'Location is not defined';
