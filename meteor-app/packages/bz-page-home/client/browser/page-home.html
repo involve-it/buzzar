@@ -7,7 +7,8 @@
             <div class="bz-slideshow-items">
                 <ul class="bz-slide-show-list none-list">
                     <li class="bz-slideshow-item bz-slideshow-item-active">
-                        <img src="https://i.ytimg.com/vi/AUXzW7k3eeo/maxresdefault.jpg" alt="firebug"/>
+                        <!--<img src="https://i.ytimg.com/vi/AUXzW7k3eeo/maxresdefault.jpg" alt="firebug"/>-->
+                        <img src="img/content/bg/state-city.jpg" alt="firebug"/>
                     </li>
                 </ul>
             </div>
@@ -20,25 +21,27 @@
         <div class="bz-slideshow-content">
             <div class="bz-header nav-bg-transparent bz-container-v bz-container-h js-bz-header">
                 {{> bzNavBar}}
-                <div class="bz-header-top">
-                    <h1 class="bz-header-title">{{ t9n 'headliner' }} </h1>
-                </div>
-<!--              <div class="" style="position: absolute; right: 0;    top: 60px;">
-                {{> bzChangeLanguage}}
-              </div>-->
-                <div class="bz-search">
-                    <div class="box-search js-pause-header-video">
-                        <div class="bz-category-buttons">
-                            {{> categoryListButtons}}
+                <div class="bz-header-middle">
+                    <div class="bz-header-middle-wrapper">
+                        <div class="bz-header-top">
+                            <h1 class="bz-header-title">{{ t9n 'headliner' }} </h1>
                         </div>
-                        <form class="search" id="bz-search" role="search" method="post" action="#">
-                            <i class="icon ion-search placeholder-icon"></i>
-
-                            {{> bzControlSearch }}
-
-                        </form>
-
+                        <div class="bz-search">
+                            <div class="box-search js-pause-header-video">
+                                <div class="bz-category-buttons">
+                                    <div class="bz-category-buttons-wrapper">
+                                        {{> categoryListButtons}}
+                                    </div>
+                                </div>
+                                <form class="search" id="bz-search" role="search" method="post" action="#">
+                                    <i class="icon ion-search placeholder-icon"></i>
+                                    {{> bzControlSearch }}
+                                </form>
+                            </div>
+                        </div>
                     </div>
+                    <div class="sp-r"></div>
+                    <div class="sp-l"></div>
                 </div>
             </div>
         </div>
@@ -72,20 +75,16 @@
     </div>-->
 
     <!-- search result on the home page -->
-  <div class="container-background" style="padding: 20px;">
+  <div class="container-background">
     <!--TODO: delete after test-->
     <div style="border-radius: 2px; border-top:1px solid #fff; background-color: #FFFFFF; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); "> 
-    {{> searchResults }}
-
-    <section id="bz-around-you" class="bz-container-body">
+        {{> searchResults }}
+            
         {{> aroundYou}}
-    </section>
-      
-    
-      {{> bzHomePopular}}
+            
+        {{> bzHomePopular}}
 
-      {{ bzRenderTemplate "bzAboutUsShort" }}
-
+        {{ bzRenderTemplate "bzAboutUsShort" }}
     </div>
   </div>
     
