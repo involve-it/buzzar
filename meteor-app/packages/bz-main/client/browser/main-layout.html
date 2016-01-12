@@ -178,8 +178,8 @@
 <template name="bzDropSelectLanguage">
     <div class="bz-select-language">
         <button data-dropdown="dropdown-select-language" class="drop-language dropdown" aria-expanded="false" aria-controls="dropdown-select-language">
-            <div class="lang-icon en"></div>
-            <div class="lang-icon ru"></div>
+            <div class="lang-icon en"><span>eng</span></div>
+            <div class="lang-icon ru"><span>rus</span></div>
         </button>
         <div class="menu">
             <ul id="dropdown-select-language" data-dropdown-content class="f-dropdown drop-language-inner" aria-hidden="true">
@@ -192,7 +192,7 @@
 
 <template name="createNewButton">
   <div class="bz-header-button">
-    <a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert">{{ t9n 'MENU_BUTTON_NEW_POST' }} <span
+    <a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert"><div class="labelText">{{ t9n 'MENU_BUTTON_NEW_POST' }}</div> <span
       data-dropdown="createPost"></span></a><br>
     <ul id="createPost" class="f-dropdown" data-dropdown-content>
       <li><a href="/posts/new?type=ad">Advertisement</a></li>
@@ -204,7 +204,7 @@
 </template>
 <template name="createNewButtonRu">
   <div class="bz-header-button">
-    <a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert">{{ t9n 'MENU_BUTTON_NEW_POST' }} <span
+    <a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert"><div class="labelText">{{ t9n 'MENU_BUTTON_NEW_POST' }}</div> <span
       data-dropdown="createPost"></span></a><br>
     <ul id="createPost" class="f-dropdown" data-dropdown-content>
       <li><a href="/posts/new?type=ad">Объявление</a></li>

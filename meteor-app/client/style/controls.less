@@ -986,3 +986,48 @@ nav.left-off-canvas-menu {
 }
 
 /* END */
+
+
+/* Popular, around you */
+.bz-items {
+    
+  .bz-item-wrapper {
+    padding: 0;
+    
+    .bz-item {
+      margin: 0 10px 20px;
+      transition:         opacity .15s ease-in-out;
+      -moz-transition:    opacity .15s ease-in-out;
+      -webkit-transition: opacity .15s ease-in-out;
+
+      &.bz-post-away {
+        opacity: .75;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      &.bz-post-live {
+        opacity: 1;
+      }
+    }
+    
+    &:first-child {}
+
+    &:last-child {}
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

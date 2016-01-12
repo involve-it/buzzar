@@ -1,7 +1,7 @@
 
 <template name="bzHomePopular">
-    {{#if true}}
-        <section id="bz-around-you" class="bz-container-body">
+    {{#if getPopularItems.length}}
+        <section class="bz-container-body">
             <div class="bz-most-popular">
                 <div class="bz-items">
                     <div class="row">
@@ -19,8 +19,8 @@
 </template>
 
 <template name="bzHomePopularItem">
-    <div class="small-12 medium-4 large-3 columns left">
-    <div class="bz-item">
+    <div class="bz-item-wrapper small-12 medium-4 large-3 columns left">
+    <div class="bz-item {{#if _hasLivePresence }} bz-post-live {{else}} bz-post-away {{/if}}">
       <div class="bz-side-b">
         <div class="bz-photo bz-overlay-hover">
           <a href="/post/{{_id}}">

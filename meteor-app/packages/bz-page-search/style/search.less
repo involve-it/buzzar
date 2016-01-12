@@ -41,13 +41,11 @@
 
 /* search box */
 .bz-search {
-  padding: 150px 0;
-  width: 850px;
+  width: 600px;
   margin: 0 auto;
 
   .box-search {
-    position: relative;
-    max-width: 650px;
+    max-width: 600px;
     margin: 0 auto;
 
     .bz-distance {
@@ -75,19 +73,18 @@
     }
 
     .bz-category-buttons {
-      top:0;
+
 
       .control--category-list-buttons {
 
         li {
           cursor: pointer;
-          font-weight: normal;
           font-size: 14px;
           background: transparent;
           border: 1px solid rgba(255,255,255, 1);
           color: rgba(255,255,255, 1);
-          opacity: .55;
-          padding: 0 13px;
+          opacity: .65;
+          padding: 0 15px;
 
           &.active {
             opacity: 1;
@@ -240,7 +237,7 @@
       border: 0;
       margin: 0;
       outline: none;
-      background-color:     @bg-input-search-field;
+      background-color:     rgba(54,60,78, .8) !important;
       color:                @color-text-input-search-field;
     } 
     
@@ -279,7 +276,10 @@
   &.location {}
   
   .bz-hash-tag-label {
-    position: relative;
+    position: absolute;
+    left:0;
+    right: 0;
+    width: 100%;
     overflow: hidden;
     /*height: 0;*/
     transition: height .5s;
