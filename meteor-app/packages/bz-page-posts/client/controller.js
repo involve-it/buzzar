@@ -222,7 +222,7 @@ PostIsLikedByCurrentUser = function(curPost) {
     userId = Meteor.userId(),
     postObj = curPost || bz.bus.posts.getCurrentPost(),
     foundPost = bz.cols.posts.findOne({
-      _id: 'fBNoBZaWZD2eoTyQ6',
+      _id: postObj._id,
       'social.likes': {$elemMatch: {userId: userId}}
     });
   ret = !!foundPost;
