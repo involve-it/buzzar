@@ -145,7 +145,7 @@ if(typeof Template !== 'undefined') {
   
   //Template.registerHelper('changeLanguage', function() {});
 
-  Template.registerHelper('bzRenderTemplate', function(templateName){
+  Template.registerHelper('bzRenderTemplateI18n', function(templateName){
     var ret = '',
       templateNameRu = templateName + 'Ru';
 
