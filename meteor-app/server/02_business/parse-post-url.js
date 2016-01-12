@@ -14,47 +14,16 @@ function getImageUrl(body){
   return null;
 }
 
-function getContent(body){
-  //possible parent text elements
-  var textElements = body.find('div,section');
-  var tagClone;
-  //helper to get text count for comparison (without any children that potentially may have their own text containers)
-  //spaces and line breaks are replaced with empty character for count only
-  var calculateTextLength = function(tag){
-    tagClone = tag.clone();
-    //:visible and :hidden tags are not supported by cheerio. TBD
-    //tagClone.find('not(:visible)').remove();
-    tagClone.children('div,section,nav,script,aside,figure,a,article,meta,textarea,header,iframe,object,table').remove();
-
-    return tagClone.text().replace(/ /g, '').replace(/\n/g, '').length;
-  };
-  var el, textLength, $el;
-  var count = 0;
-  //go thru all containers and find one with longest text
-  _.each(textElements, function(e, i){
-    $el = textElements.eq(i);
-    textLength = calculateTextLength($el);
-    if (textLength > count){
-      count = textLength;
-      el = $el;
-    }
-  });
-  if (el){
-    //el.find('not(:visible)').remove();
-    tagClone = el.clone();
-    // this is attempt to see if there are unnecessary text containers inside the one we picked - i.e. navigation, banners, ads, meta, scripts, etc.
-    // no 'a' tag removal
-    tagClone.children('div,section,nav,script,aside,figure,article,meta,textarea,header,iframe,object,table').remove();
-    var text = tagClone.text();
-    // if what's left is greater than 70% of original - use that, otherwise - use original
-    if (text.length / el.text().length > 0.7){
-      return text.trim();
-    } else {
-      return el.text().trim();
-    }
+function getContent(body, typeSite){
+  var ret;
+  if(typeSite === 'vk.com') {
+    ret = VkPostParser(body);
+  } else {
+    ret = CatchAllPostParser(body);
   }
 
-  return null;
+
+  return ret;
 }
 
 //returns url up to first '?' (if exists)
@@ -97,42 +66,22 @@ function getProtocol(url){
 }
 
 bz.bus.parseHtml = function(html, url){
-  var $ = cheerio.load(html);
-  var body = $('body');
-
+  var $, body, siteType, imageUrl, content, title;
+  $ = cheerio.load(html);
+  body = $('body');
+  siteType = siteTypeDetector(url);
   //get image
-  var imageUrl = getImageUrl(body);
+  imageUrl = getImageUrl(body);
+  content = getContent(body, siteType);
+  title = $('title').text();
 
   //construct image url
-  if (url && url.length > 0 && imageUrl && (imageUrl.length <4 || imageUrl.slice(0,4).toUpperCase() !== 'HTTP')){
-    //if url starts with '//', just append protocol
-    if (imageUrl.length >= 2 && imageUrl[0] === '/' && imageUrl[1] === '/'){
-      imageUrl = getProtocol(url) + imageUrl;
-    } else {
-      var baseUrl;
-      // if image has '/' as a first symbol - url refers to root, base url will be domain name
-      if (imageUrl[0] === '/') {
-        baseUrl = getDomainUrl(url);
-      }//otherwise, it's relative - base url is full url up until query string
-      else {
-        baseUrl = getBaseUrl(url);
-      }
-      //concatenate those two
-      if (baseUrl) {
-        //making sure that url is in proper format
-        if (baseUrl[baseUrl.length] === '/' && imageUrl[0] !== '/' || baseUrl[baseUrl.length] !== '/' && imageUrl[0] === '/') {
-          imageUrl = baseUrl + imageUrl;
-        } else {
-          imageUrl = baseUrl + '/' + imageUrl;
-        }
-      }
-    }
-  }
+  imageUrl = constructImageUrl(imageUrl, url);
 
   return {
-    title: $('title').text(),
+    title: title,
     imageUrl: imageUrl,
-    content: getContent(body)
+    content: content
   };
 };
 
@@ -156,3 +105,39 @@ bz.bus.parseUrl = function(url){
   }
   return result;
 };
+
+function siteTypeDetector (url) {
+  var ret = 'other';
+  if(url.indexOf('vk.com') > -1 || url.indexOf('vkontakte.ru') > -1) {
+    ret = 'vk.com';
+  }
+  return ret;
+}
+function constructImageUrl(imageUrl, url){
+  var retImageUrl = imageUrl;
+  if (url && url.length > 0 && imageUrl && (imageUrl.length <4 || imageUrl.slice(0,4).toUpperCase() !== 'HTTP')){
+    //if url starts with '//', just append protocol
+    if (imageUrl.length >= 2 && imageUrl[0] === '/' && imageUrl[1] === '/'){
+      retImageUrl = getProtocol(url) + imageUrl;
+    } else {
+      var baseUrl;
+      // if image has '/' as a first symbol - url refers to root, base url will be domain name
+      if (imageUrl[0] === '/') {
+        baseUrl = getDomainUrl(url);
+      }//otherwise, it's relative - base url is full url up until query string
+      else {
+        baseUrl = getBaseUrl(url);
+      }
+      //concatenate those two
+      if (baseUrl) {
+        //making sure that url is in proper format
+        if (baseUrl[baseUrl.length] === '/' && imageUrl[0] !== '/' || baseUrl[baseUrl.length] !== '/' && imageUrl[0] === '/') {
+          retImageUrl = baseUrl + imageUrl;
+        } else {
+          retImageUrl = baseUrl + '/' + imageUrl;
+        }
+      }
+    }
+    return retImageUrl;
+  }
+}
