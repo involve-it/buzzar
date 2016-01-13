@@ -100,7 +100,7 @@ createNewPostFromView = function (v) {
     });
   }
 };
-movingLocationPanelClick = function () {
+movingLocationPanelClick = function() {
   var chosenLocation = Session.get(location1.sessionName);
   if (!chosenLocation) {
     // nothing is set as a location, need to set it, for this show user location-choose control:
@@ -130,7 +130,7 @@ movingLocationPanelClick = function () {
     //Template.bzLocationNameNewPost.showModal();
   }
 };
-staticLocationPanelClick = function () {
+staticLocationPanelClick = function() {
   var chosenLocation = Session.get(location2.sessionName);
   if (!chosenLocation) {
     // nothing is set as a location, need to set it, for this show user location-choose control:
@@ -168,12 +168,9 @@ runHitTracking = function (post, browserInfo) {
     bz.cols.posts.update(post._id, {$set: {'stats.seenAll': ++userSeenAll}});
   }
 };
-
-//HELPERS:
 clearPostData = function() {
   resetImagesArraySession();
 }
-
 // location1 variable:
 location1 = {
   isSet: false,
@@ -206,20 +203,7 @@ getPostPhotoObjectsByIds = function(photoIds){
 resetImagesArraySession = function(){
   Session.set('bz.posts.postImgArr', []);
 }
-
-function determinePostTypeFromView (v){
-  //newPostType
-  //v.$('.js-post-type-select').val()
-  var ret;
-  if(newPostType.get() === bz.const.posts.type.ad) {
-    ret = v.$('.js-ad-type-select').val();
-  } else if (newPostType.get() === bz.const.posts.type.memo) {
-    ret = v.$('.js-memo-type-select').val();
-  }
-  return ret;
-}
-
-GetPostAdTypesI18n = (lang)=>{
+GetPostAdTypesI18n = function(lang) {
   var  ret;
   if(lang){
     ret = bz.cols.postAdTypes.find({},  {transform: function (doc) {
@@ -232,7 +216,60 @@ GetPostAdTypesI18n = (lang)=>{
   return ret;
 
 };
+//PostIsLikedByCurrentUser = (curPost)=>{
+PostIsLikedByCurrentUser = function(curPost) {
+  var ret,
+    userId = Meteor.userId(),
+    postObj = curPost || bz.bus.posts.getCurrentPost(),
+    foundPost = bz.cols.posts.findOne({
+      _id: postObj._id,
+      'social.likes': {$elemMatch: {userId: userId}}
+    });
+  ret = !!foundPost;
+  return ret;
+}
+PostBelongsToUser = function (postOwnerId) {
+  var ret = false,
+    userId = Meteor.userId();
+  ret = postOwnerId === userId;
+  return ret;
+}
+LikePostByUser = function (postOwnerId) {
+  var ret = false,
+    curPost = bz.bus.posts.getCurrentPost(),
+    userId = userId || Meteor.userId();
+  if (curPost && userId && !PostBelongsToUser(postOwnerId)) {
+    if (!PostIsLikedByCurrentUser()) {
+      bz.cols.posts.update(curPost._id, { $push: { 'social.likes': { userId: userId, ts: Date.now() }}});
+    } else {
+      bz.cols.posts.update(curPost._id, { $pop:  { 'social.likes': { userId: userId, ts: Date.now() }}});
+    }
+  }
+  return ret;
+}
+// API:
+bz.help.makeNamespace('bz.bus.posts', {
+  getCurrentPost: function() {
+    var ret, postId = Router.current() && Router.current().params._id;
+    if (postId) {
+      ret = bz.cols.posts.findOne(postId);
+    }
+    return ret;
+  }
+});
 
+//HELPERS:
+function determinePostTypeFromView (v){
+  //newPostType
+  //v.$('.js-post-type-select').val()
+  var ret;
+  if(newPostType.get() === bz.const.posts.type.ad) {
+    ret = v.$('.js-ad-type-select').val();
+  } else if (newPostType.get() === bz.const.posts.type.memo) {
+    ret = v.$('.js-memo-type-select').val();
+  }
+  return ret;
+}
 function getEndDatePost(v, start) {
   var val = v.$('#selectEndDatePost').val(),
       ret;
@@ -255,3 +292,4 @@ function getEndDatePost(v, start) {
   }
   return ret && ret.getTime();
 }
+

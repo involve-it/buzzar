@@ -15,21 +15,27 @@ Template.bzPostDetails.helpers({
 
 
 
-Template.saveToWishList.events({
+Template.bzSocialButtons.events({
   'click .js-like-btn': function(e) {
-   var el = $(e.target);
-   
+    var el = $(e.target);
+    var res = LikePostByUser(this._id);
   }
 });
 
-Template.saveToWishList.helpers({
-  isLiked: function() {
-    var userId = Meteor.userId();
+Template.bzSocialButtons.helpers({
+  isLikedByUser: function(){
+    return PostIsLikedByCurrentUser();
+  },
+  disabledIfIsBelongingToCurrentUser: function() {
+    var postOwnerId = this._id;
     /* if user logged & yet not clicked into liked */
-    if(userId) {
-      return '';
-    } else {
+    //if(PostIsLikedByCurrentUser()) {
+
+    if(PostBelongsToUser(postOwnerId)) {
       return 'disabled';
+      //return '';
+    } else {
+      return '';
     }
   }
 });

@@ -1,7 +1,7 @@
 <template name="bzLocationName">
   <div class="bz-location-name">
     <a href="#" data-reveal-id="choose-locations-global">
-      <i class="fa fa-map-marker"></i> {{#if getCurrentLocationName}} <span>{{ getCurrentLocationName }}</span> {{else}}
+      <i class="fa fa-map-marker {{ notDefinedLocationClass }}"></i> {{#if getCurrentLocationName}} <span>{{ getCurrentLocationName }}</span> {{else}}
       <span>{{ getCurrentLocationName }}</span>
     {{/if}}
     </a>

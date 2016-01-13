@@ -64,16 +64,16 @@ Meteor.startup(function () {
 });
 
 bz.bus.search.doSearchClient = (params, options)=> {
-  var loc = params.loc, activeCats = params.activeCats, radius = params.radius;
+  var ret, arrTypes, box, dbQuery = {}, loc = params.loc, activeCats = params.activeCats, radius = params.radius;
 
-  var ret, arrTypes, box = getLatLngBox(loc.coords.lat, loc.coords.lng, radius),
-    dbQuery = {};
-
-  if (box) {
-    dbQuery['details.locations'] = {
-      $elemMatch: {
-        'coords.lat': {$gte: box.lat1, $lte: box.lat2},
-        'coords.lng': {$gte: box.lng1, $lte: box.lng2}
+  if(loc && loc.coords && loc.coords.lat && loc.coords.lng) {
+    box = getLatLngBox(loc.coords.lat, loc.coords.lng, radius);
+    if (box) {
+      dbQuery['details.locations'] = {
+        $elemMatch: {
+          'coords.lat': {$gte: box.lat1, $lte: box.lat2},
+          'coords.lng': {$gte: box.lng1, $lte: box.lng2}
+        }
       }
     }
   }

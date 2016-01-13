@@ -2,27 +2,25 @@
  * Created by root on 9/15/15.
  */
 Template.bzHomePopular.helpers({
-  getPopularItems: function() {
+  getPopularItems: function () {
     /*var searchSelector = '';
-    var ret = bz.cols.posts.find({'status.visible': bz.const.posts.status.visibility.VISIBLE}, {limit:30});
-    return ret;*/
+     var ret = bz.cols.posts.find({'status.visible': bz.const.posts.status.visibility.VISIBLE}, {limit:30});
+     return ret;*/
     var ret, loc = Session.get('bz.control.search.location'),
       activeCats = Session.get('bz.control.category-list.activeCategories') || [];
 
     // add all-posts reactivity:
     bz.cols.posts.find({});
-    if (loc && loc.coords) {
-      ret = bz.bus.search.doSearchClient({
-        loc: loc,
-        activeCats: activeCats,
-        //radius: bz.const.search.AROUND_YOU_RADIUS,
-        query: {'status.visible': bz.const.posts.status.visibility.VISIBLE}
-      }, {
-        limit: bz.const.search.POPULAR_LIMIT,
-        sort: {'stats.seenAll': -1}
-      });
-    }
-    if(ret) {
+    ret = bz.bus.search.doSearchClient({
+      loc: loc,
+      activeCats: activeCats,
+      //radius: bz.const.search.AROUND_YOU_RADIUS,
+      query: {'status.visible': bz.const.posts.status.visibility.VISIBLE}
+    }, {
+      limit: bz.const.search.POPULAR_LIMIT,
+      sort: {'stats.seenAll': -1}
+    });
+    if (ret) {
       ret.sort(function (a, b) {
         return a._getDistanceToCurrentLocation(true) - b._getDistanceToCurrentLocation(true);
       });
@@ -32,11 +30,11 @@ Template.bzHomePopular.helpers({
 });
 
 
-Template.bzHomePopularItem.onCreated(function(){
+Template.bzHomePopularItem.onCreated(function () {
   Meteor.subscribe('bz.users.all');
 });
 
-Template.bzHomePopularItem.rendered = function() {
+Template.bzHomePopularItem.rendered = function () {
 
   /*init Rate*/
   $('.bz-rating').raty({
@@ -44,7 +42,7 @@ Template.bzHomePopularItem.rendered = function() {
   });
 
   var lineH = $('.bz-content .post-item-text').css('line-height');
-  if (Number.parseInt(lineH) !== 'NaN'){
+  if (Number.parseInt(lineH) !== 'NaN') {
     lineH = Number.parseInt(lineH);
   } else {
     lineH = 20;
@@ -53,23 +51,24 @@ Template.bzHomePopularItem.rendered = function() {
 };
 
 Template.bzHomePopularItem.helpers({
-  getPostOwner: function(){
+  getPostOwner: function () {
     return Meteor.users.findOne(this.userId);
   },
-  getRank: function() {},
-  getTimeStamp: function(){
+  getRank: function () {
+  },
+  getTimeStamp: function () {
     return Date.now();
   },
-  getImgSrc: function(){
+  getImgSrc: function () {
     var ret, phId = this.details.photos && this.details.photos[0];
-    if(phId){
+    if (phId) {
       ret = bz.cols.images.findOne(phId);
       ret = ret && ret.data;
     }
     return ret;
   },
-  disableOwnPost: function(){
-    if(Meteor.userId() === this.userId ) {
+  disableOwnPost: function () {
+    if (Meteor.userId() === this.userId) {
       return 'disabled';
     }
     return '';
@@ -78,7 +77,7 @@ Template.bzHomePopularItem.helpers({
 
 Template.bzHomePopularItem.events({
   'click .js-send-message-btn': function (e, v) {
-    if(!Meteor.userId()){
+    if (!Meteor.userId()) {
       Router.go('/sign-in');
     }
     if (Meteor.userId() !== this.userId && this.userId) {
