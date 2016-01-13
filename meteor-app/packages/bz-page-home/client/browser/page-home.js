@@ -38,28 +38,33 @@ Template.bzMeteorLogo.helpers({
     return Spacebars.SafeString(ret);
   }
 });
+
 homeVideo;
+
 Template.pageHome.rendered = function () {
   var view = this,
       video = view.$('.js-header-bg-video');
   homeVideo = video[0];
   getScreenSize();
-  
-  if( !$(video.get(0)).hasClass("video-playing") ) {
-    video.get(0).pause();
-  }
-  
+    
   if( getScreenSize() === 'lg' ) {
       if( video.get(0) && video.get(0).canPlayType ) {
         video.get(0).playbackRate = 0.5; /* 0.5 is half speed (slower) */
-        video.addClass("video-playing");
         video.get(0).play();
+        video.addClass("video-playing");
         view.$(".bz-slide-show-list").addClass("hide");
+        console.log(getScreenSize());
       }
   } else if( getScreenSize() === 'md' ) {
     console.log(getScreenSize());
     /*console.log('запустить только slide');*/
   }
+
+  if( !$(video.get(0)).hasClass("video-playing") ) {
+    /*video.get(0).pause();*/
+    video.get(0).remove();
+  }
+  
   function getScreenSize() {
     var res;
     if(matchMedia) {
