@@ -106,19 +106,19 @@
       <nav id="bz-navbar" class="">
         <div class="bz-logo">
           {{> bzMeteorLogo }}
-
-          {{> bzLocationName}}
+            
         </div>
 
         <div class="bz-header-menu">
           {{> bzInnerMenuLeft}}
         </div>
-
-
+          
         <div class="bz-group-menu-btn">
-          {{ bzRenderTemplateI18n "createNewButton" }}
+            {{> bzLocationName}}
             
-          {{> bzDropSelectLanguage}}
+            {{ bzRenderTemplateI18n "createNewButton" }}
+            
+            {{> bzDropSelectLanguage}}
         </div>
       </nav>
       <!-- navEND -->
