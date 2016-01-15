@@ -41,9 +41,14 @@ Template.bzSocialButtons.helpers({
 });
 
 
+Template.postRatingInfo.events({
+  'click.raty .js-rating': function(e,v){
+    var curRate = $('.js-rating').raty('score');
+  }
+})
 Template.postRatingInfo.rendered = function() {
   /*init Rate*/
-  $('.rating').raty({
+  $('.js-rating').raty({
     starType: 'i'
   });
 };
