@@ -124,6 +124,30 @@ Template.onePostRowItemOwner.events({
     bz.ui.modal(content, function() {
       bz.cols.posts.remove(currentPostId);
     });
+  },
+  'click .js-reset-post': function(e, v) {
+    var now, start, finish, target, elapsed;
+    
+    now = new Date().getTime();
+    start = new Date(bz.cols.posts.findOne({_id: this._id}).timestamp).getTime(); 
+    finish = new Date(bz.cols.posts.findOne({_id: this._id}).endDatePost).getTime();
+
+    elapsed = now - start;
+    target = finish + elapsed;
+    
+    /* now    =>  timestamp   */
+    /* target =>  endDatePost */
+    
+    if(confirm('Вы уверены, что хотите сбросить срок активности вашего поста?')) {
+      if(v.data) {
+        bz.cols.posts.update(v.data._id, {$set: {
+          'timestamp': now,
+          'endDatePost': target
+        }
+        });
+      }
+    }
+    
   }
 });
 
