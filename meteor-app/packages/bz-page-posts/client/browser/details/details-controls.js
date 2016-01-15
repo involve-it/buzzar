@@ -60,7 +60,12 @@ Template.postRatingInfo.rendered = function() {
   });
 };
 
-Template.postRatingInfo.helpers();
+Template.postRatingInfo.helpers({
+  noReviews: function(){
+    var r = GetPostRating();
+    return !r;
+  }
+});
 
 
 Template.postDetailsHashesControl.helpers({

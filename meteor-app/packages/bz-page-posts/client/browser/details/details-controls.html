@@ -152,7 +152,11 @@
                 <div class="js-rating"></div>
             </div>
             
-            <div class="bz-rating-count">{{#if details.reviews}} ** reviews {{else}} <span>{{ t9n 'POST_DETAILS_REVIEWS_FIRST' }}</span> {{/if}}</div>
+            <div class="bz-rating-count">{{#if details.reviews}} ** reviews {{else}}
+                {{#if noReviews }}
+                    <span>{{ t9n 'POST_DETAILS_REVIEWS_FIRST' }}</span>
+                {{/if}}
+              {{/if}}</div>
         </div>
         
         <div class="bz-rating-details" style="display: none">
