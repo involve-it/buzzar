@@ -48,14 +48,14 @@ body {
 
   .js-button-left-off-canvas {
     position: absolute;
-    top: 28px;
-    left: 30px;
+    top: 18px;
+    left: 20px;
     z-index: 101;
 
     .bz-icon {
       display: block;
-      width: 26px;
-      height: 26px;
+      width: 20px;
+      height: 20px;
       position: relative;
     }
 
@@ -287,7 +287,7 @@ body {
     
     .bz-logo-footer {
       text-transform: uppercase;
-      font-size: 45px;
+      font-size: 35px;
       font-weight: bold;
       opacity: .9;
       @include  text-transition;
@@ -301,11 +301,11 @@ body {
       margin-top: 13px;
       a {
         display: inline-block;
-        font-size: 25px;
+        font-size: 18px;
         text-align: center;
-        height: 40px;
-        width: 40px;
-        line-height: 40px;
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
         border: 1px solid darken($color-text-input-search-field, 20%);
 
         &:hover {
@@ -319,6 +319,9 @@ body {
     .bz-footer-menu {
       margin-top: 20px;
       
+      a {
+        font-size: 14px;
+      }
     }
   }
   
@@ -372,8 +375,21 @@ body {
 
 /* iPhone 4,5,6 */
 @media screen and  (max-width: 375px) {
+
+  .off-canvas-wrap {
+    .js-button-left-off-canvas {
+      top: 15px !important;
+    }
+  }
+  
   .bz-wrap-page {
     #bz-navbar {
+
+      .bz-location-name {
+        top: 10px !important;
+        right: 82px !important;
+      }
+      
       .bz-group-menu-btn {
         .bz-header-button {
           .split.button {
@@ -415,7 +431,7 @@ body {
   
   .off-canvas-wrap {
     .js-button-left-off-canvas {
-      top: 12px;
+      top: 17px;
       left: 20px;
     }
   }
@@ -425,23 +441,25 @@ body {
     display: none;
   }
 
-  .main-content {
-    
-    .bz-muted-text {
-      &.subtitle {
-        margin-top: -5px !important;
+  .bz-container-body {
+    .main-content {
+
+      .bz-muted-text {
+        &.subtitle {
+          margin-top: -5px !important;
+        }
+      }
+
+      .bz-media-q {
+        h1 {
+          font-size: 20px;
+        }
+        h3 {
+          font-size: 18px;
+        }
       }
     }
-    
-    .bz-media-q {
-      h1 {
-        font-size: 20px;
-      }
-      h3 {
-        font-size: 18px;
-      }
-    }
-  }
+  } 
         
   .bz-box {
 
@@ -453,6 +471,16 @@ body {
   .bz-wrap-page {
     
     .bz-main {
+      
+      .bz-container-body {
+        padding: 0;
+      }
+      
+      .bz-nav-bg-default {
+        .bz-nav-bg-wrapper {
+          padding: 0;
+        }
+      }
       
       .bz-slideshow {
         box-shadow: none;
@@ -661,12 +689,22 @@ body {
       }
       
       .container-background {
-        padding: 20px 0;
+        padding: 10px 0;
+
+        .js-container-search-results {
+          margin-bottom: 20px;
+          .title {
+            margin: 30px 0 10px 0;
+          }
+        }
+        
         
         .bz-container-body {
-          padding: 20px;
           
+
+                    
           .bz-search-results {
+            padding: 0 10px;
             
             .bz-search-items {
               padding: 2px;
@@ -684,6 +722,14 @@ body {
                   margin: 0 0 30px 0;
                 }
               }
+            }
+          }
+          
+          &.bz-about-us {
+            padding: 20px;
+            
+            p {
+              font-size: 14px;
             }
           }
           
@@ -706,7 +752,7 @@ body {
               
               .title {
                 padding: 0;
-                margin: 0 0 20px 0;
+                margin: 30px 0 10px 0;
               }
               
               .bz-item-wrapper {
@@ -810,9 +856,10 @@ body {
       }
 
       .bz-location-name {
-        float: right;
-        height: 31px;
-        top: 0;
+        position: absolute;
+        top: 12px;
+        left: auto;
+        right: 129px;
         
         a {
           display: block;
@@ -859,7 +906,7 @@ body {
 
 
     .bz-footer {
-      padding: 40px 15px;
+      padding: 20px;
       text-align: center;
       
       .bz-language-picker-wrapper {
@@ -966,10 +1013,24 @@ body {
 
         .side-a {
           border-right: 0 !important;
+          padding-right: 0;
+          
+          .title {
+            text-align: center;
+            padding: 0;
+            margin: 10px 0 15px 0;
+          }
         }
 
         .side-b {
+          padding: 0;
 
+          .title {
+            text-align: center;
+            padding: 0;
+            margin: 10px 0 15px 0;
+          }
+          
           .user-item {
 
             .item-details {
@@ -1120,6 +1181,8 @@ body {
     .only-main-menu {
       display: block;
     }
+  
+  .bz-location-name {  }
 
     .user-area,
     .only-menu-left {
@@ -1216,13 +1279,15 @@ body {
             .bz-location-name {
               position: relative;
               top: 0;
+              left: auto;
+              right: auto;
               padding: 0;
             }
             
             .bz-group-menu-btn {
               position: absolute;
               right: 0;
-              top: 26px;
+              top: 19px;
             }
             
             .bz-logo {}
