@@ -228,6 +228,17 @@ PostIsLikedByCurrentUser = function(curPost) {
   ret = !!foundPost;
   return ret;
 }
+PostIsRatedByCurrentUser = function(curPost) {
+  var ret,
+    userId = Meteor.userId(),
+    postObj = curPost || bz.bus.posts.getCurrentPost(),
+    foundPost = bz.cols.posts.findOne({
+      _id: postObj._id,
+      'social.rates': {$elemMatch: {userId: userId}}
+    });
+  ret = !!foundPost;
+  return ret;
+}
 PostBelongsToUser = function (postOwnerId) {
   var ret = false,
     userId = Meteor.userId();
@@ -242,10 +253,41 @@ LikePostByUser = function (postOwnerId) {
     if (!PostIsLikedByCurrentUser()) {
       bz.cols.posts.update(curPost._id, { $push: { 'social.likes': { userId: userId, ts: Date.now() }}});
     } else {
-      bz.cols.posts.update(curPost._id, { $pop:  { 'social.likes': { userId: userId, ts: Date.now() }}});
+      bz.cols.posts.update(curPost._id, { $pop:  { 'social.likes': { userId: userId }}});
     }
   }
   return ret;
+}
+RatePostByUser = function (postOwnerId, rateInt) {
+  var ret = false,
+    curPost = bz.bus.posts.getCurrentPost(),
+    userId = userId || Meteor.userId();
+  if (curPost && userId && !PostBelongsToUser(postOwnerId)) {
+    if (!PostIsRatedByCurrentUser()) {
+      bz.cols.posts.update(curPost._id, { $push: { 'social.rates': { userId: userId, ts: Date.now(), rating: rateInt }}});
+    } else {
+      //bz.cols.posts.update(curPost._id, { $pop:  { 'social.likes': { userId: userId, ts: Date.now() }}});
+    }
+  }
+  return ret;
+}
+GetPostRating = function(curPost){
+  var ret,
+    userId = Meteor.userId(),
+    postObj = curPost || bz.bus.posts.getCurrentPost(),
+    foundPost = bz.cols.posts.findOne({
+      _id: postObj._id
+    });
+  var sum = 0, rating;
+  if(foundPost && foundPost.social && foundPost.social.rates) {
+    _.each(foundPost.social.rates, function (item) {
+      if(item.rating){
+        sum += item.rating
+      }
+    });
+    rating = sum / foundPost.social.rates.length;
+  }
+  return rating;
 }
 // API:
 bz.help.makeNamespace('bz.bus.posts', {
