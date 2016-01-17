@@ -156,21 +156,6 @@ en = {
   
   //Error
   ERROR_INVALID_FIELD: 'This field is required'
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
 };
-
 T9n.map('en', en);
+bz.help.makeNamespace('bz.language.i18n.en', en);

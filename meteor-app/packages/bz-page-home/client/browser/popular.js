@@ -31,7 +31,7 @@ Template.bzHomePopular.helpers({
 
 
 Template.bzHomePopularItem.onCreated(function () {
-  Meteor.subscribe('bz.users.all');
+  //Meteor.subscribe('bz.users.all');
 });
 
 Template.bzHomePopularItem.rendered = function () {

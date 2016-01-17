@@ -2,9 +2,7 @@
  * Created by douson on 13.07.15.
  */
 
-var ru;
-
-ru = {
+ruI18n = {
   //Global
   APP_NAME: 'Светлячки',
   CONTENT_READ_MORE_TITLE: 'Подробнее',
@@ -156,23 +154,6 @@ ru = {
   //Error
   ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения'
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
 };
-
-T9n.map('ru', ru);
+//var ruAll = _.extend(bz.language.i18n.ru, ruI18n);
+//T9n.map('ru', ruAll);

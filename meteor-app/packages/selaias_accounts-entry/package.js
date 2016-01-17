@@ -10,7 +10,7 @@ Package.onUse(function(api) {
 
   api.use('selaias:alerts@0.3.1', 'client');
 
-  api.use(['iron:router@1.0.3', 'anti:i18n@0.4.3', 'ecmascript'], ['client', 'server']);
+  api.use(['iron:router@1.0.3', 'anti:i18n', 'ecmascript'], ['client', 'server']);
   // CLIENT
   api.use([
     'deps',
