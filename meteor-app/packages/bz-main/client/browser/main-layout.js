@@ -70,8 +70,18 @@ Template.bzDropSelectLanguage.rendered = function() {
   
   GetUiLanguage().then((lang)=> {
 
-  var el = $('.drop-language');
-  el.children().not('.'+lang).addClass('hide');
+    var el = $('.bz-switcher-language-list'),
+        element = el.children().find('a');
+    
+    element.each(function() {
+      if($(this).data('lang') === lang) {
+        $(this).addClass('active');
+      }
+    });
+    
+    /*OLD V.*/ 
+    /*var el = $('.drop-language');
+    el.children().not('.'+lang).addClass('hide');*/
  
   });
 
@@ -79,12 +89,27 @@ Template.bzDropSelectLanguage.rendered = function() {
 
 Template.bzDropSelectLanguage.events({
   'click [data-lang]': function(e, v) {
+    e.preventDefault();
+    
     var lang = e.target.getAttribute('data-lang');
     SetUiLanguage(lang);
-
-    var el = $('.drop-language');
+    
+    var el = $('.bz-switcher-language-list');
+            
+    var toggles = el.find('>*'),
+        target = $(e.target);
+    
+    if(target.hasClass('active')) {
+      return;
+    }else {
+      toggles.find('a').filter(".active").removeClass("active");
+      target.addClass("active");
+    }
+        
+    /*OLD V.*/
+    /*var el = $('.drop-language');
     el.children('.'+lang).removeClass('hide');
-    el.children().not('.'+lang).addClass('hide');
+    el.children().not('.'+lang).addClass('hide');*/
   }
 });
 

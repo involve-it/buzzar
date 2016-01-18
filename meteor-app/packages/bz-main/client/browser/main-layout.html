@@ -177,7 +177,16 @@
 </template>
 
 <template name="bzDropSelectLanguage">
+
     <div class="bz-select-language">
+        <ul class="bz-switcher-language-list">
+            <li><a class="en" data-lang="en" href="#">EN</a></li>
+            <li><a class="ru" data-lang="ru" href="#">RU</a></li>
+        </ul>
+    </div>
+    
+    <!--OLD V.-->
+    <!--<div class="bz-select-language">
         <button data-dropdown="dropdown-select-language" class="drop-language dropdown" aria-expanded="false" aria-controls="dropdown-select-language">
             <div class="lang-icon en"><span>eng</span></div>
             <div class="lang-icon ru"><span>rus</span></div>
@@ -185,10 +194,10 @@
         <div class="menu">
             <ul id="dropdown-select-language" data-dropdown-content class="f-dropdown drop-language-inner" aria-hidden="true">
                 <li><a data-lang="en" href="#"><span><img src="/img/content/us.svg" alt="English"/></span> English</a></li>
-                <li><a data-lang="ru" href="#"><span><img src="/img/content/ru.svg" alt="English"/></span> Русский</a></li>
+                <li><a data-lang="ru" href="#"><span><img src="/img/content/ru.svg" alt="Russian"/></span> Русский</a></li>
             </ul>
         </div>
-    </div>
+    </div>-->
 </template>
 
 <template name="createNewButton">

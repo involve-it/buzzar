@@ -51,6 +51,35 @@
     opacity: 1;
   }
   
+  
+  .bz-switcher-language-list {
+    overflow: hidden;
+    .border-radius(2px);
+    background-color: rgba(64,72,93, .7);
+    padding: 0;
+    margin: 0;
+    
+    > * {
+      list-style: none;
+      float: left;
+      
+      a {
+        display: block;
+        padding: 7px 9px;
+        font-size: 14px;
+        color: rgba(255,255,255, .5);
+        
+        &.active {
+          -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 1);
+          box-shadow: 0 0 5px 0 rgba(0, 0, 0, 1);
+          background-color: rgba(64,72,93, 1);
+          color: rgba(255,255,255, 1);
+        }
+      }
+    }
+  }
+  
+  /*old v.*/
   .drop-language {
     white-space: nowrap;
     background-color: rgba(64,72,93, .7);

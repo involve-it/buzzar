@@ -207,6 +207,12 @@ Template.onePostRowItemOwner.helpers({
     }
     return ret;
   },
+  getPostOff: function() {
+    /* turn off the post, addClass - bz-post-off */
+    var ret;
+    if(this.status.visible === null) return ret = true;    
+    return ret;
+  },
   getDuration: function() {
     var duration, status, percent, finish, start, now, days, hours, min, barClass, elapsed, titleDays, titleHours, titleMinutes, language, unit; 
     
@@ -252,7 +258,10 @@ Template.onePostRowItemOwner.helpers({
     if( percent <= 0 ) {
       percent = 0;
       status = false;
-      /*console.log('Обявление закрыто');*/
+            
+     /* update the status on visible, null  */
+     bz.cols.posts.update(this._id, { $set: { status: {visible: null} } });
+      
     }
     
     language = Session.get('bz.user.language');
@@ -293,6 +302,8 @@ Template.onePostRowItemOwner.helpers({
     };
   }
 });
+
+
 
 Template.chooseCurrency.helpers({
   getCurrency: function(cur) {
