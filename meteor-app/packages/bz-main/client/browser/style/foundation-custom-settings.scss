@@ -1200,6 +1200,14 @@ body {
 
     .bz-slideshow-background {
 
+      .bz-slideshow-items {
+        .bz-slide-show-list {
+          .bz-slideshow-item {
+            opacity: .93;
+          }
+        }
+      }
+      
       img {
         height: 100%;
         min-width: 100%;

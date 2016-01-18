@@ -58,11 +58,14 @@ Template.pageHome.rendered = function () {
   } else if( getScreenSize() === 'md' ) {
     console.log(getScreenSize());
     /*console.log('запустить только slide');*/
+  } else if( getScreenSize() === 'sm' ) {
+    video.get(0).remove();
   }
 
   if( !$(video.get(0)).hasClass("video-playing") ) {
     /*video.get(0).pause();*/
-    video.get(0).remove();
+    //video.get(0).remove();
+    video.get(0).play();
   }
   
   function getScreenSize() {
