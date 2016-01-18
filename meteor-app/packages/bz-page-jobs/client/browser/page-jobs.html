@@ -1,4 +1,5 @@
-<template name="pageHome">
+<template name="pageJobs">
+
 
     <div class="bz-slideshow">
         <div class="bz-slideshow-background">
@@ -25,7 +26,7 @@
                             <h1 class="bz-header-title">{{ t9n 'headliner' }} </h1>
                         </div>
                         <div class="bz-search">
-                            <div class="box-search js-pause-header-video">
+                            <div class="box-search">
                                 <div class="bz-category-buttons">
                                     <div class="bz-category-buttons-wrapper">
                                         {{> categoryListButtons}}
@@ -37,6 +38,9 @@
                                 </form>
                             </div>
                         </div>
+                      <div class="bz-around-small">
+                        {{> aroundYouSmall}}
+                      </div>
                     </div>
                     <div class="sp-r"></div>
                     <div class="sp-l"></div>
@@ -77,16 +81,15 @@
     <!--TODO: delete after test-->
     <div style="border-radius: 2px; border-top:1px solid #fff; background-color: #FFFFFF; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); "> 
         {{> searchResults }}
-            
         {{> aroundYou}}
-            
-        {{> bzHomePopular}}
+        <!--{{> bzHomePopular}}-->
 
         {{ bzRenderTemplateI18n "bzAboutUsShort" }}
     </div>
   </div>
     
 </template>
+<!--
 
 
 <template name="bzMeteorLogo">
@@ -106,7 +109,7 @@
         <input type="text" class="capitalize js-search-text-modal" placeholder="find anything around you">
       </label>
 
-      <!--Title: <span>{{ getTitle }}</span>-->
+      &lt;!&ndash;Title: <span>{{ getTitle }}</span>&ndash;&gt;
 
       {{> globalSearch }}
     </div>
@@ -119,4 +122,4 @@
       {{categoryType}}
     </div>
   </div>
-</template>
+</template>-->

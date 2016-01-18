@@ -14,7 +14,7 @@ Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
   api.use(['ecmascript'], global.bzSettings.webBrowserArrayWithServer);
-  api.use(['iron:router', 'iron:layout', 'less', 'sergeyt:typeahead'], 'client'); // todo: replace typeahead with required file
+  api.use(['iron:router', 'iron:layout', 'less', 'sergeyt:typeahead', 'anti:i18n'], 'client'); // todo: replace typeahead with required file
   api.use(['templating'], global.bzSettings.webBrowserArray);
   api.use(['fourseven:scss@3.2.0', 'edgee:slingshot']);
   api.use(['arutune:bz-api', 'arutune:bz-control-common']);
@@ -38,7 +38,9 @@ Package.onUse(function (api) {
     'client/controller.js',
     'client/language.js',
     'client/router.js',
-    'client/app-loading.html'
+    'client/app-loading.html',
+    'client/i18n/english.js',
+    'client/i18n/russian.js'
   ], 'client');
   api.addFiles([
     'client/browser/style/foundation/js/vendor/modernizr.js',

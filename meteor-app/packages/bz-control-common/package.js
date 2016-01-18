@@ -30,6 +30,13 @@ Package.onUse(function (api) {
   //  ], ['server']
   //);
   api.addFiles([
+    'client/browser/around-you.html',
+    'client/browser/around-you.js',
+    'client/browser/around-you.less',
+    'client/browser/around-you-small.html',
+    'client/browser/around-you-small.js',
+    'client/browser/around-you-small.less',
+
     'client/browser/category-list-buttons.html',
     'client/browser/category-list-buttons.js',
     'client/browser/category-list-buttons.less',

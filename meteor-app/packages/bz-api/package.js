@@ -16,8 +16,10 @@ Package.describe({
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
+  api.use(['anti:i18n', 'softwarerero:accounts-t9n'], ['client']);
   api.use(['iron:router', 'iron:layout', 'selaias-local:accounts-entry', 'ecmascript'], global.bzSettings.webBrowserArrayWithServer);
   api.use('service-configuration', ['server']);
+
   //api.use('iron:layout', ['client', 'server']);
   api.use(['underscore', 'session']);
   api.use(['templating'], global.bzSettings.webBrowserArray);

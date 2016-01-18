@@ -15,6 +15,7 @@ arutune:bz-control-common@0.0.1
 arutune:bz-main@0.0.1
 arutune:bz-page-chat@0.0.1
 arutune:bz-page-home@0.0.1
+arutune:bz-page-jobs@0.0.1
 arutune:bz-page-landing@0.0.1
 arutune:bz-page-map@0.0.1
 arutune:bz-page-posts@0.0.1
@@ -121,7 +122,7 @@ sergeyt:typeahead@0.11.1_7
 service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4
-softwarerero:accounts-t9n@1.2.0
+softwarerero:accounts-t9n@0.0.20
 spacebars@1.0.7
 spacebars-compiler@1.0.7
 srp@1.0.4
