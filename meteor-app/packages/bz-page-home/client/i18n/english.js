@@ -36,10 +36,10 @@ enI18n = {
   POST_STATUS: 'Post close',
   
   //sitewise:
-  siteTitleElement: 'instant post, bound to location',
+  siteTitleElement: 'instant post, bound to location!!!',
   
   // home page:
-  headliner: 'instant post, bound to location',
+  headliner: 'instant post, bound to location!!!',
 
 
   AROUND_YOU_TITLE: 'Buzz Around you',

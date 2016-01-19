@@ -46,7 +46,7 @@ enI18n = {
   siteTitleElement: 'trainings around',
   
   // home page:
-  headliner: 'instant trainings around!!!',
+  headliner: 'instant trainings around!!!!!!',
   MOST_POPULAR_TITLE: 'Most Popular',
   ABOUT_US_TITLE: 'About us',
 
