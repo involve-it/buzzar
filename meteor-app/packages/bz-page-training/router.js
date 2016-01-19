@@ -3,9 +3,9 @@
  */
 
 Router.map(function () {
-  this.route('jobs', {
-    path: '/jobs',
-    template: 'pageJobs',
+  this.route('trainings', {
+    path: '/trainings',
+    template: 'pageTrainings',
     layoutTemplate: 'mainLayoutHome',
     fastRender: true,
     onBeforeAction: function () {
@@ -18,7 +18,7 @@ Router.map(function () {
       this.next();
     },
     onAfterAction: function(){
-      bz.ui.putCategoriesToSession('jobs');
+      bz.ui.putCategoriesToSession('trainings');
     }
   });
 });

@@ -34,7 +34,6 @@ Template.aroundYouSmall.helpers({
         sort: {'stats.seenAll': -1}
       });
     }
-debugger;
     return ret;
   }
 });
