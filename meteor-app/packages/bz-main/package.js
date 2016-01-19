@@ -17,6 +17,7 @@ Package.onUse(function (api) {
   api.use(['iron:router', 'iron:layout', 'less', 'sergeyt:typeahead', 'anti:i18n'], 'client'); // todo: replace typeahead with required file
   api.use(['templating'], global.bzSettings.webBrowserArray);
   api.use(['fourseven:scss@3.2.0', 'edgee:slingshot']);
+  api.use(['zeroasterisk:meteor-cordova-geolocation-background'], 'web.cordova');
   api.use(['arutune:bz-api', 'arutune:bz-control-common']);
   api.use([
    /* 'meteoric:ionic',
