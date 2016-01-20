@@ -151,9 +151,10 @@ Meteor.methods({
       box = distance === -1 ? null : (query.box || bz.bus.proximityHandler.getLatLngBox(location.lat, location.lng, distance)),
       dbQuery = {
         'details.title': {$regex: regex, $options: 'i'},
-        'status.visible': bz.const.posts.status.visibility.VISIBLE
+        //'status.visible': bz.const.posts.status.visibility.VISIBLE
       },
       ret,
+      typesArr,
       filter = false;
     //categories
 
@@ -163,7 +164,9 @@ Meteor.methods({
     if (query.activeCats && Array.isArray(query.activeCats) && query.activeCats.length > 0) {
       dbQuery.type = {$in: query.activeCats};
     } else {
-      dbQuery.type = {$in: _.map(bz.cols.postAdTypes.find().fetch(), function(item){ return item.name})}
+      typesArr = _.map(bz.cols.postAdTypes.find().fetch(), function(item){ return item.name});
+      typesArr.push(undefined, null);
+      dbQuery.type = {$in: typesArr}
     }
     //location
     if (box && box.lat1 && box.lat2 && box.lng1 && box.lng2){

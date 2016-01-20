@@ -114,6 +114,7 @@ bz.bus.search.doSearchServer = function (callback) {
     };
 
     Meteor.call('search', query, function (err, results) {
+      debugger;
       bz.cols.searchRt._collection.remove({});
       if (results && results.length > 0) {
         for (var i = 0; i < results.length; i++) {
