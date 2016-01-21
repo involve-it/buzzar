@@ -161,7 +161,7 @@ Template.bzControlSearch.events({
   'blur .js-nearby-places': function () {
   },
   'click .js-search-btn': function (e, v) {
-    var text = $('.js-nearby-places').val();
+    var text = $('.js-nearby-places.tt-input').val();
     if (text) {
       Session.set('bz.control.search.searchedText', text);
     }
@@ -189,6 +189,8 @@ Template.bzControlSearch.events({
       // enter bnt hit
       $('.js-nearby-places').typeahead('close');
       $('.js-nearby-places').blur();
+
+      $('.js-search-btn').click();
     }
   }
 

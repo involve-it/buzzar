@@ -104,11 +104,25 @@ Meteor.startup(function () {
     id: '8qzzsToxam3GCTEXT',
     fullName: 'Need or provide service',
     color: '370808',
-    order: 5,
+    order: 6,
     i18n: {
       ru: {
         name: 'услуги',
         fullName: 'предложения - платные, бесплатные'
+      }
+    }
+  });
+  bz.cols.postAdTypes.insert({
+    name: 'trainings',
+    intName: 'trainings',
+    id: '9qzjsToxam3GCHREN',
+    fullName: 'Need or provide training',
+    color: '370808',
+    order: 7,
+    i18n: {
+      ru: {
+        name: 'тренинги',
+        fullName: 'тренинги - платные, бесплатные'
       }
     }
   });

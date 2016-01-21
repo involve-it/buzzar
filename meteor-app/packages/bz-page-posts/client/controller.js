@@ -74,18 +74,18 @@ createNewPostFromView = function (v) {
       },
       timestamp: timestamp,
       endDatePost: getEndDatePost(v, endTimestamp)
-      
+
     };
 
     var currentLoc = Session.get('currentLocation');
-    if (currentLoc){
+    if (currentLoc) {
       currentLoc = {
         lat: currentLoc.latitude,
         lng: currentLoc.longitude
       };
     } else {
       currentLoc = Session.get('bz.control.search.location');
-      if (currentLoc){
+      if (currentLoc) {
         currentLoc = currentLoc.coords;
       }
     }
@@ -100,7 +100,7 @@ createNewPostFromView = function (v) {
     });
   }
 };
-movingLocationPanelClick = function() {
+movingLocationPanelClick = function () {
   var chosenLocation = Session.get(location1.sessionName);
   if (!chosenLocation) {
     // nothing is set as a location, need to set it, for this show user location-choose control:
@@ -130,7 +130,7 @@ movingLocationPanelClick = function() {
     //Template.bzLocationNameNewPost.showModal();
   }
 };
-staticLocationPanelClick = function() {
+staticLocationPanelClick = function () {
   var chosenLocation = Session.get(location2.sessionName);
   if (!chosenLocation) {
     // nothing is set as a location, need to set it, for this show user location-choose control:
@@ -145,7 +145,7 @@ runHitTracking = function (post, browserInfo) {
   userSeenTotal = Cookie.get('bz.posts.seenTotal.postId.' + post._id)
   if (!userSeenTotal) {
     seenTotalPost = post.stats && post.stats.seenTotal || 0;
-    bz.cols.posts.update(post._id, {$set: {'stats.seenTotal': ++seenTotalPost }});
+    bz.cols.posts.update(post._id, {$set: {'stats.seenTotal': ++seenTotalPost}});
     //setCookie('bz.posts.seenTotal.postId.' + post._id, true);
     Cookie.set('bz.posts.seenTotal.postId.' + post._id, true);
     userSeenTotal = undefined;
@@ -156,19 +156,19 @@ runHitTracking = function (post, browserInfo) {
   userSeenToday = Cookie.get('bz.posts.seenToday.postId.' + post._id);
   if (!userSeenToday) {
     seenTodayPost = post.stats && post.stats.seenToday || 0;
-    bz.cols.posts.update(post._id, {$set: {'stats.seenToday': ++seenTodayPost }});
-    Cookie.set('bz.posts.seenToday.postId.' + post._id, true, { days: 1 });
+    bz.cols.posts.update(post._id, {$set: {'stats.seenToday': ++seenTodayPost}});
+    Cookie.set('bz.posts.seenToday.postId.' + post._id, true, {days: 1});
     userSeenToday = undefined;
   } else {
     // user seen this already, do nothing!
   }
   // set total loads (non-unique):
-  if(!userSeenAll) { // need to run only on-time on full load
+  if (!userSeenAll) { // need to run only on-time on full load
     userSeenAll = !userSeenAll && post.stats && post.stats.seenAll || 0;
     bz.cols.posts.update(post._id, {$set: {'stats.seenAll': ++userSeenAll}});
   }
 };
-clearPostData = function() {
+clearPostData = function () {
   resetImagesArraySession();
 }
 // location1 variable:
@@ -193,23 +193,25 @@ location2 = {
   }
 };
 
-getPostPhotoObjectsByIds = function(photoIds){
+getPostPhotoObjectsByIds = function (photoIds) {
   var photos = photoIds, ret = [];
-  _.each(photos, function(id){
+  _.each(photos, function (id) {
     ret.push(bz.cols.images.findOne(id));
   });
   return ret;
 };
-resetImagesArraySession = function(){
+resetImagesArraySession = function () {
   Session.set('bz.posts.postImgArr', []);
 }
-GetPostAdTypesI18n = function(lang) {
-  var  ret;
-  if(lang){
-    ret = bz.cols.postAdTypes.find({},  {transform: function (doc) {
-      var doc1 = _.extend(doc, doc.i18n[lang]);
-      return doc1;
-    }});
+GetPostAdTypesI18n = function (lang) {
+  var ret;
+  if (lang) {
+    ret = bz.cols.postAdTypes.find({}, {
+      transform: function (doc) {
+        var doc1 = _.extend(doc, doc.i18n[lang]);
+        return doc1;
+      }
+    });
   } else {
     ret = bz.cols.postAdTypes.find({});
   }
@@ -217,18 +219,21 @@ GetPostAdTypesI18n = function(lang) {
 
 };
 //PostIsLikedByCurrentUser = (curPost)=>{
-PostIsLikedByCurrentUser = function(curPost) {
+PostIsLikedByCurrentUser = function (curPost) {
   var ret,
     userId = Meteor.userId(),
     postObj = curPost || bz.bus.posts.getCurrentPost(),
+    foundPost;
+  if (userId && postObj) {
     foundPost = bz.cols.posts.findOne({
       _id: postObj._id,
       'social.likes': {$elemMatch: {userId: userId}}
     });
+  }
   ret = !!foundPost;
   return ret;
 }
-PostIsRatedByCurrentUser = function(curPost) {
+PostIsRatedByCurrentUser = function (curPost) {
   var ret,
     userId = Meteor.userId(),
     postObj = curPost || bz.bus.posts.getCurrentPost(),
@@ -251,9 +256,9 @@ LikePostByUser = function (postOwnerId) {
     userId = userId || Meteor.userId();
   if (curPost && userId && !PostBelongsToUser(postOwnerId)) {
     if (!PostIsLikedByCurrentUser()) {
-      bz.cols.posts.update(curPost._id, { $push: { 'social.likes': { userId: userId, ts: Date.now() }}});
+      bz.cols.posts.update(curPost._id, {$push: {'social.likes': {userId: userId, ts: Date.now()}}});
     } else {
-      bz.cols.posts.update(curPost._id, { $pop:  { 'social.likes': { userId: userId }}});
+      bz.cols.posts.update(curPost._id, {$pop: {'social.likes': {userId: userId}}});
     }
   }
   return ret;
@@ -264,14 +269,14 @@ RatePostByUser = function (postOwnerId, rateInt) {
     userId = userId || Meteor.userId();
   if (curPost && userId && !PostBelongsToUser(postOwnerId)) {
     if (!PostIsRatedByCurrentUser()) {
-      bz.cols.posts.update(curPost._id, { $push: { 'social.rates': { userId: userId, ts: Date.now(), rating: rateInt }}});
+      bz.cols.posts.update(curPost._id, {$push: {'social.rates': {userId: userId, ts: Date.now(), rating: rateInt}}});
     } else {
       //bz.cols.posts.update(curPost._id, { $pop:  { 'social.likes': { userId: userId, ts: Date.now() }}});
     }
   }
   return ret;
 }
-GetPostRating = function(curPost){
+GetPostRating = function (curPost) {
   var ret,
     userId = Meteor.userId(),
     postObj = curPost || bz.bus.posts.getCurrentPost(),
@@ -279,9 +284,9 @@ GetPostRating = function(curPost){
       _id: postObj._id
     });
   var sum = 0, rating;
-  if(foundPost && foundPost.social && foundPost.social.rates) {
+  if (foundPost && foundPost.social && foundPost.social.rates) {
     _.each(foundPost.social.rates, function (item) {
-      if(item.rating){
+      if (item.rating) {
         sum += item.rating
       }
     });
@@ -291,7 +296,7 @@ GetPostRating = function(curPost){
 }
 // API:
 bz.help.makeNamespace('bz.bus.posts', {
-  getCurrentPost: function() {
+  getCurrentPost: function () {
     var ret, postId = Router.current() && Router.current().params._id;
     if (postId) {
       ret = bz.cols.posts.findOne(postId);
@@ -301,11 +306,11 @@ bz.help.makeNamespace('bz.bus.posts', {
 });
 
 //HELPERS:
-function determinePostTypeFromView (v){
+function determinePostTypeFromView(v) {
   //newPostType
   //v.$('.js-post-type-select').val()
   var ret;
-  if(newPostType.get() === bz.const.posts.type.ad) {
+  if (newPostType.get() === bz.const.posts.type.ad) {
     ret = v.$('.js-ad-type-select').val();
   } else if (newPostType.get() === bz.const.posts.type.memo) {
     ret = v.$('.js-memo-type-select').val();
@@ -314,23 +319,30 @@ function determinePostTypeFromView (v){
 }
 function getEndDatePost(v, start) {
   var val = v.$('#selectEndDatePost').val(),
-      ret;
+    ret;
 
   switch (val) {
     case 'oneDay':
-      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 1, start.getHours(), start.getMinutes()); break;
+      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 1, start.getHours(), start.getMinutes());
+      break;
     case 'twoDay':
-      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 2, start.getHours(), start.getMinutes()); break;
+      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 2, start.getHours(), start.getMinutes());
+      break;
     case 'week':
-      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 7, start.getHours(), start.getMinutes()); break;
+      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 7, start.getHours(), start.getMinutes());
+      break;
     case 'twoWeek':
-      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 14, start.getHours(), start.getMinutes()); break;
+      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 14, start.getHours(), start.getMinutes());
+      break;
     case 'month':
-      ret = new Date(start.getFullYear(), start.getMonth() + 1, start.getDate(), start.getHours(), start.getMinutes()); break;
+      ret = new Date(start.getFullYear(), start.getMonth() + 1, start.getDate(), start.getHours(), start.getMinutes());
+      break;
     case 'year':
-      ret = new Date(start.getFullYear() +1, start.getMonth(), start.getDate(), start.getHours(), start.getMinutes()); break;
+      ret = new Date(start.getFullYear() + 1, start.getMonth(), start.getDate(), start.getHours(), start.getMinutes());
+      break;
     default:
-      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 14, start.getHours(), start.getMinutes()); break;
+      ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 14, start.getHours(), start.getMinutes());
+      break;
   }
   return ret && ret.getTime();
 }

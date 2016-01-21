@@ -20,6 +20,7 @@ arutune:bz-page-landing@0.0.1
 arutune:bz-page-map@0.0.1
 arutune:bz-page-posts@0.0.1
 arutune:bz-page-search@0.0.1
+arutune:bz-page-training@0.0.1
 arutune:bz-page-user@0.0.1
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
@@ -135,4 +136,5 @@ underscore@1.0.4
 url@1.0.5
 webapp@1.2.3
 webapp-hashing@1.0.5
+zeroasterisk:cordova-geolocation-background@0.0.7
 zimme:active-route@2.3.2
