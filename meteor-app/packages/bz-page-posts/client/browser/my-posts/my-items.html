@@ -24,21 +24,21 @@
         <div>
             <div class="bz-posts-items-owner-post-menu">
                 <ul class="tabs bz-nav bz-horizontal bz-nav-side-b" data-tab="">
-                    <li class="tab-title active"><a id="active" href="#allPosts" aria-selected="true" tabindex="0">All</a></li>
-                    <li class="tab-title"><a id="livePosts" href="#livePosts" aria-selected="false" tabindex="0">Live <!--({{ getCountLivePosts }})--></a></li>
-                    <li class="tab-title"><a id="activePosts" href="#activePosts" aria-selected="false" tabindex="0">Active <!--({{ getCountActivePosts }})--></a></li>
+                  <li class="tab-title active"><a id="activePosts" href="#activePosts" aria-selected="true" tabindex="0">Active <!--({{ getCountActivePosts }})--></a></li>
+                  <li class="tab-title"><a id="livePosts" href="#livePosts" aria-selected="false" tabindex="1">Live <!--({{ getCountLivePosts }})--></a></li>
+                  <li class="tab-title"><a id="active" href="#allPosts" aria-selected="false" tabindex="2"><b>All</b></a></li>
                 </ul>
             </div>
                         
             <div class="tabs-content">
-                <div class="content active" id="allPosts" aria-hidden="false">
-                    <div class="tabs-content-wrapper">
-                        {{#each allPosts}}
-                            {{> onePostRowItemOwner}}
-                        {{/each}}
-                    </div>
-                    {{> bzPaginationPosts }}
+              <div class="content active" id="activePosts" aria-hidden="false">
+                <div class="tabs-content-wrapper">
+                  {{#each activePosts}}
+                    {{> onePostRowItemOwner}}
+                  {{/each}}
                 </div>
+                {{> bzPaginationPosts }}
+              </div>
                 <div class="content" id="livePosts" aria-hidden="true">
                     <div class="tabs-content-wrapper">
                         {{#each livePosts}}
@@ -47,15 +47,14 @@
                     </div>
                     {{> bzPaginationPosts }}
                 </div>
-                <div class="content" id="activePosts" aria-hidden="true">
-                    <div class="tabs-content-wrapper">
-                        {{#each activePosts}}
-                            {{> onePostRowItemOwner}}
-                        {{/each}}
-                    </div>
-                    {{> bzPaginationPosts }}
+              <div class="content" id="allPosts" aria-hidden="true">
+                <div class="tabs-content-wrapper">
+                  {{#each allPosts}}
+                    {{> onePostRowItemOwner}}
+                  {{/each}}
                 </div>
-                
+                {{> bzPaginationPosts }}
+              </div>
             </div>
         </div>
     
