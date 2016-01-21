@@ -179,5 +179,3 @@ bz.ui.modal = function(content, onconfirm) {
 };
 
 
-
-

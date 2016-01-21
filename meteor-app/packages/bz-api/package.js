@@ -36,9 +36,18 @@ Package.onUse(function (api) {
     'server/lib/config.js',
     'server/lib/accounts.js'
   ], 'server');
+
+  /*UI kit fonts*/
+  api.addAssets([
+    'client/lib/vendor/uikit/fonts/FontAwesome.otf',
+    'client/lib/vendor/uikit/fonts/fontawesome-webfont.ttf',
+    'client/lib/vendor/uikit/fonts/fontawesome-webfont.woff',
+    'client/lib/vendor/uikit/fonts/fontawesome-webfont.woff2'
+  ], 'client');
+  
   api.addFiles([
     'client/lib/vendor/toast.js',
-
+      
     'client/lib/01_inits/accounts.js',
     'client/lib/01_inits/bz-ui.js',
     'client/lib/01_inits/location.js',
@@ -50,6 +59,16 @@ Package.onUse(function (api) {
 
     'client/lib/rates/jquery.raty.css'
   ], 'client');
+
+  api.addFiles([
+   'client/lib/vendor/uikit/css/uikit.css',
+   'client/lib/vendor/uikit/css/components/slider.css',
+   'client/lib/vendor/uikit/js/uikit.js',
+   'client/lib/vendor/uikit/js/components/slider.js',
+      
+   'client/lib/vendor/masonry/masonry.pkgd.js'   
+   ], 'client');
+  
   /*api.addAssets([
     'client/lib/rates/fonts/wbotelhos.eot',
     'client/lib/rates/fonts/wbotelhos.svg',

@@ -99,3 +99,19 @@ Template.bzAdCategoryButton.events({
     }
   }
 });
+
+
+
+/*test test test test test test test test test test test test test test test test test */
+
+Template.testMasonry.onRendered(function() {
+  $('.grid').masonry({
+    /*gutter: 10,*/
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-item',
+    percentPosition: true
+  });
+});
+
+
+

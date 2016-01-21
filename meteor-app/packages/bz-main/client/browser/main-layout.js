@@ -3,6 +3,10 @@
  */
 bz.help.maps.initLocation();
 
+Meteor.startup(function() {
+  $('body').attr('data-uk-observe', '1');
+});
+
 Template.mainLayout.created = function () {
 }
 

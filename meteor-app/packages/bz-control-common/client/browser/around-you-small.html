@@ -1,13 +1,14 @@
 <template name="aroundYouSmall">
     {{#if getAroundItems.length}}
-        <section id="bz-around-you" class="bz-container-body">
+        <section id="bz-around-you-small" class="bz-container-body">
             <div class="bz-around-you-small">
-                <div class="bz-items">
-                    <div class="row">
-                        <!--<h2 class="title">{{ t9n 'AROUND_YOU_TITLE' }}</h2>-->
-                        {{#each getAroundItems}}
-                            {{> bzAroundYouSmallItem}}
-                        {{/each}}
+                <div data-uk-slider="{center:true}">
+                    <div class="bz-slidenav-position uk-slider-container">
+                        <ul class="bz-around-you-small-slider uk-slider uk-grid bz-width-mini bz-width-mini-1-4 bz-width-small-1-4 bz-width-medium-1-5 bz-width-large-1-6">
+                            {{#each getAroundItems}}
+                                <li>{{> bzAroundYouSmallItem}}</li>
+                            {{/each}}
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -16,10 +17,10 @@
 </template>
 
 <template name="bzAroundYouSmallItem">
-    <div class="bz-item-wrapper small-4 medium-3 large-3 columns left">
+    <div class="bz-item-wrapper">
         <div class="bz-item">
             <div class="bz-side-b">
-                <div class="bz-photo bz-overlay-hover">
+                <div class="bz-slideset-content bz-overlay-hover">
                     <a href="/post/{{_id}}">
                         {{#if getImgSrc}}
                             <div class="bz-background-image-cover bz-overlay-scale"
@@ -29,37 +30,17 @@
                                  style="background-image: url('/img/content/no-photo.png')"></div>
                         {{/if}}
                         <div class="bz-post-info">
-                            <!--<div class="bz-distance"><i class="fa fa-location-arrow"></i> 30 km</div>-->
                             <div class="bz-flex">
                                 {{> bzPostsPostPresence this}}
                                 {{> bzPostsPostDistance this}}
                             </div>
-
-                            <!--<a class="bz-position-cover" href="#"></a>-->
                         </div>
+                        <div class="bz-post-title"><h4 class="bz-title">{{details.title}}</h4></div>
                     </a>
                   {{> postProgressBar}}
-                  <h4 class="bz-title">{{details.title}}</h4>
                 </div>
-              <!--
-                <div class="bz-content">
-
-                  <h4 class="bz-title">{{details.title}}</h4>
-                    <p class="post-item-text">
-                        {{details.description}}
-                    </p>
-                    <div class="bz-text-align-right">
-                        <a class="bz-read-more" href="/post/{{_id}}">Read more</a>
-                    </div>
-                </div>-->
-                <!--<div class="bz-item-footer">
-                    {{> bzAdCategoryButton  _id=_id}}
-                    <div class="">
-                        <a class="js-send-message-btn {{ disableOwnPost }}">Send Message</a>
-                    </div>
-
-                </div>-->
             </div>
         </div>
     </div>
 </template>
+

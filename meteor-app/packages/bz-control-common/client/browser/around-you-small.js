@@ -16,6 +16,14 @@ function getLatLngBox (lat, lng, radius){
   }
 };
 
+
+
+Template.aroundYouSmall.onCreated(function() {});
+
+
+Template.aroundYouSmall.onRendered(function() {});
+
+
 Template.aroundYouSmall.helpers({
   getAroundItems: function() {
     var ret, loc = Session.get('bz.control.search.location'),
@@ -29,12 +37,12 @@ Template.aroundYouSmall.helpers({
         activeCats: activeCats,
         radius: bz.const.search.AROUND_YOU_RADIUS
       }, {
-        limit: 4,
+        limit: 6,
         //limit: bz.const.search.AROUND_YOU_LIMIT,
         sort: {'stats.seenAll': -1}
       });
     }
-debugger;
+/*debugger;*/
     return ret;
   }
 });
@@ -44,19 +52,7 @@ Template.bzAroundYouSmallItem.onCreated(function(){
 });
 
 Template.bzAroundYouSmallItem.rendered = function() {
-
-  /*init Rate*/
-  $('.bz-rating').raty({
-    starType: 'i'
-  });
   
-  var lineH = $('.bz-content .post-item-text').css('line-height');
-  if (Number.parseInt(lineH) !== 'NaN'){
-    lineH = Number.parseInt(lineH);
-  } else {
-    lineH = 20;
-  }
-  $('.bz-content .post-item-text').css('max-height', lineH * 2);
 };
 
 Template.bzAroundYouSmallItem.helpers({
@@ -65,7 +61,7 @@ Template.bzAroundYouSmallItem.helpers({
   },
   getRank: function() {},
   getProgressBar: function() {
-    debugger;
+    
   },
   getTimeStamp: function(){
     return Date.now();
