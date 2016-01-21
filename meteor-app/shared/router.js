@@ -34,20 +34,21 @@ Router.map(function () {
 /***********************
  * requireLoginController
  ************************/
-
-requireLoginController = RouteController.extend({
-
-  onBeforeAction: function () {
-    if (!Meteor.user()) {
-      if (Meteor.loggingIn()) {
-        this.render(this.loadingTemplate);
+Meteor.startup(function(){
+  requireLoginController = RouteController.extend({
+//requireLoginController = FastRender.RouteController.extend({
+    onBeforeAction: function () {
+      if (!Meteor.user()) {
+        if (Meteor.loggingIn()) {
+          this.render(this.loadingTemplate);
+        } else {
+          Router.signIn(true);
+          //Router.go('entrySignUp');
+          //Router.go('entrySignIn');
+        }
       } else {
-        Router.signIn(true);
-        //Router.go('entrySignUp');
-        //Router.go('entrySignIn');
+        this.next();
       }
-    } else {
-      this.next();
     }
-  }
+  });
 });

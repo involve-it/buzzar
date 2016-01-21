@@ -49,15 +49,15 @@
       {{/if}}
   </div>
 
-  <ul class="off-canvas-list js-pause-header-video">
+  <ul class="off-canvas-list">
     <li><label>{{ t9n 'MENU_MAIN_PAGES_TITLE' }}</label></li>
-    <!--<li class="{{isActiveRoute 'home'}}"><a href="{{pathFor 'home'}}">{{ t9n 'MENU_HOME_PAGE' }}</a></li>-->
+    <li class="{{isActiveRoute 'home'}}"><a href="{{pathFor 'home'}}">{{ t9n 'MENU_HOME_PAGE' }}</a></li>
 
     {{#if currentUser}}
       {{> checkingUserMenu}}
     {{/if}}
 
-    <li class="{{isActiveRoute 'bz.map'}}"><a href="{{pathFor 'bz.map'}}">{{ t9n 'MENU_MAP' }}</a></li>
+    <!--<li class="{{isActiveRoute 'bz.map'}}"><a href="{{pathFor 'bz.map'}}">{{ t9n 'MENU_MAP' }}</a></li>-->
     <li class="{{isActiveRoute 'bz.aboutUs'}}"><a href="{{pathFor 'bz.aboutUs'}}">{{ t9n 'MENU_ABOUT_US' }}</a></li>
   </ul>
   {{#if currentUser}}

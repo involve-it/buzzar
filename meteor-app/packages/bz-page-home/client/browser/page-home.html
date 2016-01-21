@@ -10,10 +10,10 @@
                     </li>
                 </ul>
             </div>
-            <video preload="auto" loop="loop" muted id="bz-bg-video" class="js-header-bg-video" poster="https://i.ytimg.com/vi/AUXzW7k3eeo/maxresdefault.jpg">
+            <!--<video preload="auto" loop="loop" muted id="bz-bg-video" class="js-header-bg-video" poster="https://i.ytimg.com/vi/AUXzW7k3eeo/maxresdefault.jpg">
                 <source src="/video/firebugs.mp4" type="video/mp4"/>
-                <!--<source src="https://a0.muscache.com/airbnb/static/Seoul-P1-4.mp4" type="video/mp4"/>-->
-            </video>
+                &lt;!&ndash;<source src="https://a0.muscache.com/airbnb/static/Seoul-P1-4.mp4" type="video/mp4"/>&ndash;&gt;
+            </video>-->
         </div>
 
         <div class="bz-slideshow-content">
@@ -25,7 +25,7 @@
                             <h1 class="bz-header-title">{{ t9n 'headliner' }} </h1>
                         </div>
                         <div class="bz-search">
-                            <div class="box-search js-pause-header-video">
+                            <div class="box-search">
                                 <div class="bz-category-buttons">
                                     <div class="bz-category-buttons-wrapper">
                                         {{> categoryListButtons}}
@@ -43,10 +43,10 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
-    
-    
+
+
   <!--need delete-->
   <!--  <div class="bz-container nav-bg-transparent">
         <div class="bz-header">
@@ -75,17 +75,17 @@
     <!-- search result on the home page -->
   <div class="container-background">
     <!--TODO: delete after test-->
-    <div style="border-radius: 2px; border-top:1px solid #fff; background-color: #FFFFFF; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); "> 
+    <div style="border-radius: 2px; border-top:1px solid #fff; background-color: #FFFFFF; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); ">
         {{> searchResults }}
-                        
+
         {{> aroundYou}}
-            
+
         {{> bzHomePopular}}
 
         {{ bzRenderTemplateI18n "bzAboutUsShort" }}
     </div>
   </div>
-    
+
 </template>
 
 

@@ -33,54 +33,8 @@ Template.bzMeteorLogo.helpers({
   }
 });
 
-homeVideo;
-
 Template.pageHome.rendered = function () {
-  var view = this,
-      video = view.$('.js-header-bg-video');
-  homeVideo = video[0];
-  getScreenSize();
-    
-  if( getScreenSize() === 'lg' ) {
-      if( video.get(0) && video.get(0).canPlayType ) {
-        video.get(0).playbackRate = 0.5; /* 0.5 is half speed (slower) */
-        video.get(0).play();
-        video.addClass("video-playing");
-        view.$(".bz-slide-show-list").addClass("hide");
-        console.log(getScreenSize());
-      }
-  } else if( getScreenSize() === 'md' ) {
-    console.log(getScreenSize());
-    /*console.log('запустить только slide');*/
-  } else if( getScreenSize() === 'sm' ) {
-    video.get(0).remove();
-  }
 
-  if( !$(video.get(0)).hasClass("video-playing") ) {
-    /*video.get(0).pause();*/
-    //video.get(0).remove();
-    video.get(0).play();
-  }
-  
-  function getScreenSize() {
-    var res;
-    if(matchMedia) {
-      var lg = window.matchMedia("(min-width: 1024px)").matches,
-        md = window.matchMedia("(min-width: 640px) and (max-width: 1024px)").matches,
-        sm = window.matchMedia("(max-width: 640px)").matches;
-
-      if(lg) {
-        res = 'lg';
-      } else if (md) {
-        res = 'md';
-      } else if(sm) {
-        res = 'sm';
-      }
-    }
-
-    return res;
-  }
-  function initSlideshowOrVideo() {}
 };
 
 

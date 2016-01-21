@@ -45,7 +45,10 @@ accounts-password
 meteorhacks:fast-render
 mrt:cheerio
 edgee:slingshot
-angular-with-blaze
 arutune:bz-page-jobs
 arutune:bz-page-training
 zeroasterisk:cordova-geolocation-background
+meteorhacks:kadira
+meteorhacks:zones
+blaze
+blaze-html-templates
