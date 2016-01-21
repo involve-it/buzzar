@@ -16,14 +16,6 @@ function getLatLngBox (lat, lng, radius){
   }
 };
 
-
-
-Template.aroundYouSmall.onCreated(function() {});
-
-
-Template.aroundYouSmall.onRendered(function() {});
-
-
 Template.aroundYouSmall.helpers({
   getAroundItems: function() {
     var ret, loc = Session.get('bz.control.search.location'),

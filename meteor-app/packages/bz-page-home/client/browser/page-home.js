@@ -104,7 +104,7 @@ Template.bzAdCategoryButton.events({
 
 /*test test test test test test test test test test test test test test test test test */
 
-Template.testMasonry.onRendered(function() {
+Template.aroundYou.onRendered(function() {
   $('.grid').masonry({
     /*gutter: 10,*/
     itemSelector: '.grid-item',
