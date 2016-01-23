@@ -18,7 +18,7 @@ Router.map(function () {
       setPackageLanguage();
       this.next();
     }
-  });
+  })
 });
 
 function setPackageLanguage(){

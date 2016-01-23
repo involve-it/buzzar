@@ -318,7 +318,7 @@ function determinePostTypeFromView(v) {
   return ret;
 }
 function getEndDatePost(v, start) {
-  var val = v.$('#selectEndDatePost').val(),
+  var val = v.$('js-post-select-duration').val(),
     ret;
 
   switch (val) {

@@ -12,13 +12,12 @@ Package.describe({
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use(['iron:router', 'iron:layout', 'mongo', 'reactive-var', 'tracker', 'ecmascript', 'dburles:collection-helpers',
+  api.use(['underscore', 'iron:router', 'iron:layout', 'mongo', 'reactive-var', 'tracker', 'ecmascript', 'dburles:collection-helpers',
     'arutune:bz-main'
   ], ['client', 'server']);
   api.use(['percolate:synced-cron'
   ], 'server');
-  api.use(['templating', 'less'
-  ], 'client');
+  api.use(['templating', 'less'], 'client');
   api.addFiles([
     'server/main.js',
     'server/model.js'
@@ -27,9 +26,11 @@ Package.onUse(function (api) {
   api.addFiles(['collections/posts.shared.js'], ['client', 'server']);
 
   api.addFiles([
+    'client/i18n.js',
     'client/router.js',
     'client/model.js',
     'client/controller.js',
+    'client/edit-post.controller.js',
     'client/new-post.controller.js',
     'client/page-my.less'
   ], 'client');
@@ -50,6 +51,14 @@ Package.onUse(function (api) {
     //'client/browser/my-posts/page-my.less',
     'client/browser/my-posts/page-my.html',
     'client/browser/my-posts/page-my.js',
+
+    //'client/browser/my-posts/page-my.less',
+    'client/browser/edit-post/edit-post-controls.html',
+    'client/browser/edit-post/edit-post-controls.js',
+    'client/browser/edit-post/edit-post-controls.less',
+    'client/browser/edit-post/page-edit.html',
+    'client/browser/edit-post/page-edit.js',
+    'client/browser/edit-post/page-edit.less',
 
     //'client/browser/my-posts/page-my.less',
     'client/browser/new-post/new-post-controls.less',

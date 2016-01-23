@@ -60,25 +60,59 @@ Template.postDetailsHelp.events({
   }
 });
 
-Template.bzPostsNewFormAd.events({
-  'change #selectEndDatePost': function(e, v) {
+Template.bzPostsNewDurationPicker.events({
+  'change .js-post-select-duration': function(e, v) {
     //var val = v.$('#selectEndDatePost').val();
   }
 });
 
+Template.postDetailsCommon.onCreated(function(a, b, c){
+});
+Template.postDetailsCommon.events({
+  'change .js-post-description': function(e, v){
+    bz.runtime.changesNotSaved = true;
+  },
+  'change .js-post-title': function(e, v){
+    if(v.data._id){
+      if(v.data.details.title !== e.target.value){
+        bz.runtime.changesNotSaved = true;
+      }
+    } else {
+      bz.runtime.changesNotSaved = true;
+    }
+  }
+})
 Template.postDetailsCommon.helpers({
   getTitle: function () {
-    return Session.get('post-title') || '';
+    var ret = '';
+    if(this._id){
+      ret = this.details.title
+    } else {
+      Session.get('post-title')
+    }
+    return ret;
   },
   getDescription: function () {
-    return Session.get('post-description') || '';
+    var ret = '';
+    if(this._id){
+      ret = this.details.description
+    } else {
+      Session.get('post-description')
+    }
+    return ret;
   }
 });
 //$('.backdrop.visible.active .popup .popup-title').text().toLowerCase()
 
 Template.postDetailsTrade.helpers({
   getPrice: function () {
-    return Session.get('post-price') || '';
+    var ret = '';
+    if(this._id){
+      ret = this.details.price
+    } else {
+      Session.get('post-price')
+    }
+    return ret;
   }
 });
 

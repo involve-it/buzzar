@@ -220,6 +220,20 @@
     </select>
   </label>
 </template>
+<template name="postDetailsDetailsTrainings">
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Looking for
+    </div>
+    <select class="js-housing-type-select" disabled>
+      <option value="roommates">Roommates</option>
+      <option value="rent">Renting</option>
+      <option value="rentOut">Renting out</option>
+      <option value="buy">Buying a house</option>
+      <option value="sell">Selling a house</option>
+    </select>
+  </label>
+</template>
 
 <template name="postDetailsHashesControl">
   {{#if getHashes}}

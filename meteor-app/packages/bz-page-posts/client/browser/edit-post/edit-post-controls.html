@@ -1,0 +1,82 @@
+<template name="bzPostsEditFormAd">
+    <div class="main-content margin-top-20px">
+        <div class="item-group">
+            <div class="item item-divider ">
+              <h3 class="title">{{t9n 'NEW_POST_WHAT'}}</h3>
+            
+              <p class="bz-muted-text">{{t9n 'NEW_POST_MAIN_INFORMATION_MUTED'}}</p>
+            </div>
+            
+            <div class="row">
+              {{> postDetailsCommon}}
+            </div>
+            
+            <div class="row">
+              {{> postTypeSelect }}
+            </div>
+            
+            <div class="row">
+              <div class="js-post-details-categorized"></div>
+            </div>
+            
+            <div class="item item-divider">
+              <!--<h3 class="title ">{{ t9n 'NEW_POST_GALLERY_PHOTOS' }}</h3>-->
+              <p class="bz-muted-text">{{t9n 'NEW_POST_GALLERY_PHOTOS_MUTED'}}</p>
+            </div>
+            
+            <div class="row">
+              {{> postPhotoUpload}}
+            </div>
+            
+            <!--<div class="row">
+              {{> postHashesControl}}
+            </div>-->
+        </div>
+    </div>
+    
+    <div class="main-content margin-top-20px"> 
+        <div class="item-group">
+            <div class="item item-divider">
+                <h3 class="title">{{ t9n 'NEW_POST_WHERE' }}</h3>
+                <p class="bz-muted-text">{{t9n 'NEW_POST_LOCATION_MUTED'}}</p>
+            </div>
+        
+            {{> postsPlacesAutoform }}
+        </div>
+    </div>
+    
+    <div class="main-content margin-top-20px">
+        <div class="item-group">
+            <div class="item item-divider">
+              <h3 class="title ">{{ t9n 'NEW_POST_WHEN' }}</h3>
+              <p class="bz-muted-text">{{ t9n 'NEW_POST_DURATION_MUTED' }}</p>  
+            </div>
+
+            <div class="item-details clearfix">
+                <div class="item-details clearfix">
+                    <div type="stacked" class="item item-input item-stacked-label">
+                        <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_DURATION' }}</div>
+                        <div class="small-12 medium-9 large-9 left">
+                            <div>
+                                <select name="repeat" class="js-post-select-duration">
+                                    <option value="oneDay">Один день</option>
+                                    <option value="twoDay">Два дня</option>
+                                    <option value="week">Неделю</option>
+                                    <option value="twoWeek">Две недели</option>
+                                    <option value="month">Один месяц</option>
+                                    <option value="year">Один год</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    
+            <div class="row">
+              <!--{{> postHashesControl }}-->
+            </div>
+        </div>
+    </div>
+</template>
+
+
