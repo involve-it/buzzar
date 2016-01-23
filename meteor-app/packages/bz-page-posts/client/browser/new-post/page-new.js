@@ -1,6 +1,6 @@
 var data = bz.help.makeNamespace('bz.runtime.newPost');
 Template.postsNew.rendered = function () {
-  trackNewPostTypeChange('js-new-post-placeholder');
+  TrackNewPostTypeChange('js-new-post-placeholder');
 }
 Template.postsNew.created = function () {
   this.data ? _.extend(this.data, data) : _.extend({}, data);
@@ -27,7 +27,7 @@ Template.postsNew.events({
     validatePostsNewPage(v).then((ret)=>{
       if(ret.res){
         !!ret.msg.length && bz.ui.alert(ret.msg.join('; '));
-        createNewPostFromView(v);
+        CreateNewPostFromView(v);
       } else {
         bz.ui.error(ret.msg.join('; '));
       }

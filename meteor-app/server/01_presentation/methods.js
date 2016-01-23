@@ -55,6 +55,29 @@ Meteor.methods({
       //return 'EPzoQSGnGCSsPaQjm'
     }
   },
+  saveExistingPost: function(postObject, currentLocation, connectionId) {
+    if(postObject && postObject._id){
+      /*if (!postObject.presences && postObject.details && postObject.details.locations && Array.isArray(postObject.details.locations) && postObject.details.locations.length > 0){
+        postObject.presences = {};
+        var id;
+        _.each(postObject.details.locations, function(loc){
+          id = loc._id || bz.const.locations.type.DYNAMIC;
+          postObject.presences[id] = bz.const.posts.status.presence.NEAR;
+        });
+      }*/
+      var post = bz.cols.posts.update(postObject._id, { $set : postObject });
+      if (currentLocation){
+        bz.bus.proximityHandler.reportLocation({
+          lat: currentLocation.lat,
+          lng: currentLocation.lng,
+          userId: postObject.userId,
+          sessionId: connectionId
+        });
+      }
+      return post;
+      //return 'EPzoQSGnGCSsPaQjm'
+    }
+  },
   /*searchPostsByParams: function(params, onlyMy){
     if(typeof params === 'boolean') { // first param is omitted, onlyMy is passed.
       onlyMy = params;

@@ -37,6 +37,10 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'client/browser/common.html',
+    'client/browser/post-ad-details-forms.html',
+    'client/browser/post-ad-details-forms.js',
+    'client/browser/post-controls.html',
+    'client/browser/post-controls.js',
 
     'client/browser/details/details-controls.html',
     'client/browser/details/details-controls.less',

@@ -1,6 +1,6 @@
 var data = bz.help.makeNamespace('bz.runtime.editPost');
 Template.pagePostsEdit.rendered = function () {
-  trackNewPostTypeChange('js-new-post-placeholder');
+  TrackNewPostTypeChange('js-new-post-placeholder', this.data);
 }
 Template.pagePostsEdit.created = function () {
   this.data ? _.extend(this.data, data) : _.extend({}, data);
@@ -24,7 +24,7 @@ Template.pagePostsEdit.events({
     validatePostsNewPage(v).then((ret)=>{
       if(ret.res){
         !!ret.msg.length && bz.ui.alert(ret.msg.join('; '));
-        createNewPostFromView(v);
+        SavePostFromView(v, v.data);
       } else {
         bz.ui.error(ret.msg.join('; '));
       }

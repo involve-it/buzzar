@@ -36,7 +36,7 @@ Router.map(function () {
       this.next();
     }
   });
-this.route('posts.edit', {
+  this.route('posts.edit', {
     path: '/posts/:_id/edit',
     template: 'pagePostsEdit',
     data: function () {
@@ -48,10 +48,6 @@ this.route('posts.edit', {
       return ret;
     },
     //controller: 'requireLoginController',
-    onAfterAction: function () {
-      AddHooksToCheckFormSaved();
-
-    },
     onBeforeAction: function () {
       if (!this.data()) {
         Router.go('/page-not-found');
@@ -59,7 +55,7 @@ this.route('posts.edit', {
       }
       this.next();
     },
-    onStop: EditPostRouteStopHandler
+    onStop: Router.UnsavedPageRouteStopHandler
   });
 
   this.route('postsMy', {
@@ -78,13 +74,15 @@ this.route('posts.edit', {
       ]
     },
     onBeforeAction: function () {
-      if(this.params.query.type && this.params.query.type !== 'undefined') {
+      if (this.params.query.type && this.params.query.type !== 'undefined') {
         newPostType.set(this.params.query.type);
       } else {
         newPostType.set(undefined);
       }
       this.next();
-    }
+    },
+    onStop: Router.UnsavedPageRouteStopHandler
+
     /*data: function () {
      return Meteor.users.findOne({_id: this.params._id});
      }*/
