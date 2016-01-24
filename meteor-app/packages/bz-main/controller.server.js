@@ -8,7 +8,7 @@ try {
     region: 'us-west-1',
     maxSize: 5 * 1024 * 1024, // 10 MB (use null for unlimited)
     acl: "public-read",
-    allowedFileTypes: ["image/png", "image/jpeg", "image/gif"],
+    allowedFileTypes: ["image/png", "image/jpeg", "image/gif", "image/tiff", "image/bmp"],
     authorize: function () {
       //Deny uploads if user is not logged in.
       if (!this.userId) {

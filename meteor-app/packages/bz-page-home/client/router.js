@@ -7,7 +7,8 @@ Router.map(function () {
     path: '/home',
     template: 'pageHome',
     layoutTemplate: 'mainLayoutHome',
-    fastRender: true,
+    controller: 'requireLoginController',
+    //fastRender: true,
     onBeforeAction: function () {
       var qs = this.params.query;
       console.log(qs);
@@ -17,7 +18,7 @@ Router.map(function () {
       setPackageLanguage();
       this.next();
     }
-  });
+  })
 });
 
 function setPackageLanguage(){

@@ -1,0 +1,151 @@
+<template name="postDetailsHelp">
+  <div class="clearfix padding-top">
+    <div class="item item-input item-select">
+      <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_DESCRIBE' }}</div>
+      <div class="small-12 medium-9 large-9 left">
+
+        <div class="bz-describe-wrapper bz-style-overlay-depend">
+          <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover"
+               data-theme="drop-theme-arrows-bounce-dark">
+            <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_LOST_MY_PET' }}</div>
+            <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_LOST_MY_PET_TOOLTIP_TEXT' }}</div>
+          </div>
+          <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover"
+               data-theme="drop-theme-arrows-bounce-dark">
+            <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD' }}</div>
+            <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD_TOOLTIP_TEXT' }}</div>
+          </div>
+          <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover"
+               data-theme="drop-theme-arrows-bounce-dark">
+            <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_EMERGENCY_SITUATION' }}</div>
+            <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_EMERGENCY_SITUATION_TOOLTIP_TEXT' }}</div>
+          </div>
+          <div class="panel bz-tool-tip bz-style-soft-background" data-top-center="top center" data-open-on="hover"
+               data-theme="drop-theme-arrows-bounce-dark">
+            <div class="drop-target">{{ t9n 'NEW_POST_DESCRIBE_OTHER' }}</div>
+            <div class="drop-content">{{ t9n 'NEW_POST_DESCRIBE_OTHER_TOOLTIP_TEXT' }}</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</template>
+
+<template name="postDetailsConnect">
+  <div class="clearfix padding-top">
+    <div class="item-details">
+      <div class="item item-input item-select">
+        <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR' }}</div>
+        <div class="small-12 medium-9 large-9 left">
+          <select class="js-charity-type-select">
+            <option value="artists">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR_ARTISTS' }}</option>
+            <option value="friends">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR_FRIENDSHIP' }}</option>
+            <option value="sport">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR_SPORT_ACTIVITIES' }}</option>
+            <option value="professionals">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR_PROFESSIONALS' }}</option>
+            <option value="other">{{ t9n 'NEW_POST_I_AM_LOOKING_FOR_OTHER' }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="postDetailsTrade">
+  <div class="clearfix padding-top">
+    <div class="item-details">
+      <div type="stacked" class="item item-input item-stacked-label">
+        <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_PRICE' }}</div>
+        <div class="small-12 medium-9 large-9 left">
+          <div class="row collapse labeled prefix-radius">
+            <div class="small-2 large-2 columns">
+              <select class="prefix" name="currency" id="currency">
+                <option value="usd">USD</option>
+                <option value="rub">RUB</option>
+              </select>
+            </div>
+            <div class="small-10 large-10 columns">
+              <input class="js-post-price" type="number" placeholder="Value" value="{{ getPrice }}">
+            </div>
+          </div>
+        </div>
+        <!--<input class="js-post-price" type="number" value="{{ getPrice }}" label-type="stacked"/>-->
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="postDetailsJobs">
+  <div class="clearfix padding-top">
+    <label class="item item-input">
+      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_POSITION' }}</div>
+      <div class="medium-5 large-7 left">
+        <input class="js-job-title" type="text" label-type="stacked" name="title" maxlength="200">
+      </div>
+    </label>
+  </div>
+</template>
+
+<template name="postDetailsHousing">
+  <div class="clearfix padding-top">
+    <label class="item item-input item-select">
+      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
+      <div class="medium-5 large-7 left">
+        <select class="js-housing-type-select">
+          <option value="roommates">{{ t9n 'NEW_POST_ROOMMATES' }}</option>
+          <option value="rent">{{ t9n 'NEW_POST_RENTING' }}</option>
+          <option value="rentOut">{{ t9n 'NEW_POST_RENTING_OUT' }}</option>
+          <option value="buy">{{ t9n 'NEW_POST_BUYING_A_HOUSE' }}</option>
+          <option value="sell">{{ t9n 'NEW_POST_SELLING_A_HOUSE' }}</option>
+        </select>
+      </div>
+    </label>
+  </div>
+</template>
+
+<template name="postDetailsEvents">
+  <div class="clearfix padding-top">
+    <label class="item item-input item-select">
+      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
+      <div class="medium-5 large-7 left">
+        <select class="js-service-type-select">
+          <option value="provide">Provide</option>
+          <option value="need">Need</option>
+        </select>
+      </div>
+    </label>
+  </div>
+</template>
+<template name="postDetailsServices">
+  <div class="clearfix padding-top">
+    <label class="item item-input item-select">
+      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
+      <div class="medium-5 large-7 left">
+        <select class="js-service-type-select">
+          <option value="provide">Provide</option>
+          <option value="need">Need</option>
+        </select>
+      </div>
+    </label>
+  </div>
+</template>
+
+<template name="postDetailsTrainings">
+  <div class="clearfix padding-top">
+    <label class="item item-input item-select">
+      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
+      <div class="medium-5 large-7 left">
+        <select class="js-housing-type-select">
+          <option value="roommates">{{ t9n 'NEW_POST_ROOMMATES' }}</option>
+          <option value="rent">{{ t9n 'NEW_POST_RENTING' }}</option>
+          <option value="rentOut">{{ t9n 'NEW_POST_RENTING_OUT' }}</option>
+          <option value="buy">{{ t9n 'NEW_POST_BUYING_A_HOUSE' }}</option>
+          <option value="sell">{{ t9n 'NEW_POST_SELLING_A_HOUSE' }}</option>
+        </select>
+      </div>
+    </label>
+  </div>
+</template>
+

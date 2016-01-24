@@ -31,9 +31,3 @@ Package.onUse(function (api) {
         'client/browser/honeycomb.js',
     ], global.bzSettings.webBrowserArray);
 });
-
-Package.onTest(function (api) {
-    api.use('tinytest');
-    api.use('bz-control-honeycomb');
-    api.addFiles('bz-control-honeycomb-tests.js');
-});

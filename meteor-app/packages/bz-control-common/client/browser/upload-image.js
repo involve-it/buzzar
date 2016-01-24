@@ -137,7 +137,7 @@ function generateRandomFileNameFromExtension(fullName){
 }
 function saveImageFromUrlToSession(imgUrl){
   // try to get non-ssl , todo: remove after we add ssl:
-  imgUrl = imgUrl.replace('htts://', 'http://');
+  imgUrl = imgUrl.replace('https://', 'http://');
   Session.set(SESSION_NAME, {
     type: 'url',
     src: imgUrl,

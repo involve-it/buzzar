@@ -45,7 +45,8 @@ ru = {
   
   //home:
   //headliner:           'Мгновенные объявления, привязанные к месту',
-  headliner:           'Виртуальные данные, привязанные к месту',
+  //headliner:           'Виртуальные данные, привязанные к месту',
+  headliner:           'Вокруг тебя',
   SEARCH_DISTANCE_TITLE: 'Расстояние',
   SEARCH_DISTANCE_MILE: '1 миля',
   SEARCH_DISTANCE_MILES_5: '5 миль',
