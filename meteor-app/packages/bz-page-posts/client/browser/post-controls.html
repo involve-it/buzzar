@@ -127,7 +127,7 @@
           <div class="small-12 medium-3 input-label left"><span class="middle-label"><span class="field-required">*</span> {{ t9n 'NEW_POST_DESCRIPTION' }} <i class="bz-icon bz-hint drop-target"></i></span></div>
           <div class="small-12 medium-9 large-9 left">
             <div class="bz-count-characters text-right"><span>1000</span>  {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
-            <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required data-schema-key="body" maxlength="1000" value="{{ getDescription }}" placeholder="{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER' }}"></textarea>
+            <textarea data-uk-htmleditor class="js-post-description" rows="3" label-type="stacked" name="body" required data-schema-key="body" maxlength="1000" value="{{ getDescription }}" placeholder="{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER' }}"></textarea>
             <!--Error-->
             <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
 
