@@ -1,54 +1,8 @@
 /**
- * Created by arutu_000 on 12/13/2015.
+ * Created by arutu_000 on 1/23/2016.
  */
 
-newPostType = new ReactiveVar();
-
-// set new image to db:
-Meteor.startup(function () {
-
-  Tracker.autorun(function () {
-    bz.runtime.newPost.postImage = Session.get('bz.posts.postImgSrc');
-    bz.runtime.newPost.hashes = Session.get('hashes');
-  });
-});
-
-
-// handle post type:
-setNewPostType = function (type) {
-  newPostType.set(type);
-};
-
-var renderPostFormByType = function (type, $el, data) {
-  var type = type.get();
-  data = data || {};
-  if (type) {
-    var tempName = 'bzPostsNewForm' + type.toCapitalCase();
-    Blaze.renderWithData(Template[tempName], data, $el)
-  } else {
-    var tempName = 'bzPostsNewFormGeneric';
-    Blaze.renderWithData(Template[tempName], data, $el)
-  }
-
-  bz.ui.initFoundationValidation();
-  bz.ui.initDropTips();
-  
-};
-
-// render form according to type on type changed:
-TrackNewPostTypeChange = function (selector, data) {
-  Tracker.autorun(function () {
-    var elem = document.getElementsByClassName(selector);
-    if (elem && elem.length > 0 && (elem = elem[0])) {
-      while (elem.hasChildNodes()) {
-        elem.removeChild(elem.lastChild);
-      }
-      renderPostFormByType(newPostType, elem, data);
-    }
-  })
-};
-
-CreateNewPostFromView = function (v) {
+SavePostFromView = function (v, data) {
   var userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
     locDef = $.Deferred(),
     loc1 = Session.get(bz.const.posts.location1),
@@ -91,35 +45,33 @@ CreateNewPostFromView = function (v) {
     }
     // created timestamp:
     timestamp = Date.now();
-    endTimestamp = new Date(timestamp);
     var newPost = {
-
-      userId: userId,
-      type: DeterminePostTypeFromView(v),
+      _id: data._id,
+      //userId: userId,
+      //type: DeterminePostTypeFromView(v),
       //type: v.$('.js-post-type-select').val(),
       details: {
 
         hashes: bz.runtime.newPost.hashes,
         //location: bz.runtime.newPost.location,
         locations: locationsArr,
-        radius: rad,
-        url: v.$('.js-original-url').val(),
+        //radius: rad,
+        //url: v.$('.js-original-url').val(),
 
-        //details:
-        title: v.$('.js-post-title').val(),
-        description: v.$('.js-post-description').val(),
+        title: v.$('.js-post-title').val() || undefined,
+        description: v.$('.js-post-description').val() || undefined,
         price: v.$('.js-post-price').val(),
         photos: imgArr,
 
         // specific:
         other: otherKeyValuePairs
       },
-      status: {
+      /*status: {
         visible: bz.const.posts.status.visibility.VISIBLE
-      },
-      timestamp: timestamp,
-      endDatePost: GetEndDatePost(v, endTimestamp)
-
+      },*/
+      //timestamp: timestamp,
+      lastEditedTs: timestamp
+      //endDatePost: GetEndDatePost(v, endTimestamp)
     };
 
     var currentLoc = Session.get('currentLocation');
@@ -136,10 +88,11 @@ CreateNewPostFromView = function (v) {
     }
 
     //$.when(locDef).then(function () {
-    Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
-      if (!err && res && res !== '') {
-        clearPostData();
-        bz.runtime.newPost.postId = res;
+    Meteor.call('saveExistingPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
+      if (!err && res === 1) {
+        //clearPostData();
+        //bz.runtime.newPost.postId = res;
+        bz.runtime.changesNotSaved = false;
         Router.go('/posts/my');
       }
     });

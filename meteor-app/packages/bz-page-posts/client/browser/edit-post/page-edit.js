@@ -1,8 +1,8 @@
-var data = bz.help.makeNamespace('bz.runtime.newPost');
-Template.postsNew.rendered = function () {
-  TrackNewPostTypeChange('js-new-post-placeholder');
+var data = bz.help.makeNamespace('bz.runtime.editPost');
+Template.pagePostsEdit.rendered = function () {
+  TrackNewPostTypeChange('js-new-post-placeholder', this.data);
 }
-Template.postsNew.created = function () {
+Template.pagePostsEdit.created = function () {
   this.data ? _.extend(this.data, data) : _.extend({}, data);
   //$('.js-new-post-placeholder').append();
   //temp
@@ -15,19 +15,16 @@ Template.postsNew.created = function () {
    });*/
   clearPostData();
 };
-Template.postsNew.helpers({
-  isNotGenericForm: function(){
-    return newPostType.get() !== undefined;
-  }
+Template.pagePostsEdit.helpers({
 });
-Template.postsNew.events({
-  'click .js-create-post': function (e, v) {
+Template.pagePostsEdit.events({
+  'click .js-edit-post': function (e, v) {
     var res = true;
     event.preventDefault();
     validatePostsNewPage(v).then((ret)=>{
       if(ret.res){
         !!ret.msg.length && bz.ui.alert(ret.msg.join('; '));
-        CreateNewPostFromView(v);
+        SavePostFromView(v, v.data);
       } else {
         bz.ui.error(ret.msg.join('; '));
       }

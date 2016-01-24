@@ -10,9 +10,9 @@ Router.configure({
       });
     });
   },
-  onBeforeAction: function () { // temp for closing whole site.
+  /*onBeforeAction: function () { // temp for closing whole site.
     this.next();
-  },
+  },*/
   // the appNotFound template is used for unknown routes and missing lists
   //notFoundTemplate: 'appNotFound',
   // show the appLoading template whilst the subscriptions below load their data
@@ -34,23 +34,3 @@ Router.signIn = function(isReturnBack){
   }
   Router.go(sR);
 };
-/***********************
- * requireLoginController
- ************************/
-/*
-bz.router.requireLoginController = RouteController.extend({
-
-  onBeforeAction: function () {
-    if (!Meteor.user()) {
-      if (Meteor.loggingIn()) {
-        this.render(this.loadingTemplate);
-      } else {
-        Router.signIn(true);
-        //Router.go('entrySignUp');
-        //Router.go('entrySignIn');
-      }
-    } else {
-      this.next();
-    }
-  }
-});*/

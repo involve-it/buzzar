@@ -25,11 +25,35 @@ Template.postsPlacesAutoform.onRendered(function () {
   $(document).foundation();
 });
 Template.postsPlacesAutoform.rendered = function () {
+  var that = this;
+  if (this.data._id && this.data.details.locations) {
+    _.each(this.data.details.locations, function (el) {
+      if (el.placeType === bz.const.locations.type.DYNAMIC) {
+        that.$('.choose-place-buttons .panel.js-moving-location-panel').click(); // for editing existing posts, need to just 'click' on moving-loc-btn
+      } else {
+        that.$('.choose-place-buttons .panel.js-fixed-location-panel');
+        location2.isSet = true;
+        Session.set(location2.sessionName, el);
+        that.$('.choose-place-buttons .panel.js-fixed-location-panel').addClass('callout');
+
+        /*if (this.sessionName === 'bz.control.search.location') {
+          searchModalView && Blaze.remove(searchModalView);
+          $('.js-global-location').foundation('reveal', 'close');
+        } else {
+          searchModalView2 && Blaze.remove(searchModalView2);
+          $('.js-new-post-location').foundation('reveal', 'close');
+        }*/
+      }
+    });
+  }
+
   Meteor.typeahead.inject();
 }
 Template.postsPlacesAutoform.helpers({
   placesArray: function () {
-    return bz.runtime.maps.places.find().fetch().map(function(object){ return {id: object._id, value: object.name}; });
+    return bz.runtime.maps.places.find().fetch().map(function (object) {
+      return {id: object._id, value: object.name};
+    });
   },
   selected: function (event, suggestion, datasetName) {
     var mapsPlaceId = suggestion && suggestion.id;
@@ -47,24 +71,24 @@ Template.postsPlacesAutoform.events({
       bz.runtime.newPost.location.current = false;
     }
   },
-  'click .js-location-holder': function(e, v){
+  'click .js-location-holder': function (e, v) {
     e.preventDefault();
   },
-  'blur .js-nearby-places': function(){
+  'blur .js-nearby-places': function () {
 
   },
-  'click .choose-place-buttons .panel': function(e,v){
-    if(e.target.nodeName !== "INPUT" && e.target.className.indexOf('tt-suggestion') === -1) { // strange bug
+  'click .choose-place-buttons .panel': function (e, v) {
+    if (e.target.nodeName !== "INPUT" && e.target.className.indexOf('tt-suggestion') === -1) { // strange bug
       var panel = $(e.currentTarget).closest('.panel');
       panel.toggleClass('callout');
-      if(panel.hasClass('js-moving-location-panel')){
-        if(panel.hasClass('callout')){
+      if (panel.hasClass('js-moving-location-panel')) {
+        if (panel.hasClass('callout')) {
           location1.isSet = true;
           movingLocationPanelClick();
         } else {
           location1.isSet = false;
         }
-      } else if(panel.hasClass('js-fixed-location-panel')){
+      } else if (panel.hasClass('js-fixed-location-panel')) {
         location2.isSet = true;
         staticLocationPanelClick();
       } else {

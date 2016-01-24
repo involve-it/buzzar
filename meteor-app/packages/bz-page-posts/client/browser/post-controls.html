@@ -1,0 +1,277 @@
+
+<template name="bzPostTypes">
+  <div class="main-content clearfix bz-create-posts-bg">
+    <div class="item-details">
+
+      <div class="bz-media-q text-center">
+        <h1 class="title uppercase">{{ t9n 'NEW_POST_NEWTYPE_BEACON_TITLE' }}</h1>
+        <h3 class="bz-muted-text subtitle">каждый имеет свои особенности</h3>
+      </div>
+
+
+      <div class="bz-content-block text-center bz-padding-top-x2">
+        <!--2 of 4-->
+        <div class="bz-box">
+          <ul class="bz-flex bz-flex-space-around js-post-type-select bz-grid-block">
+            {{#if isRussianLanguage}}
+              <li class="bz-item bz-flex-grow-1" value="ad">
+                <a class="bz-item-wrapper bz-box-inset" href="/posts/new?type=ad" alt="Объявление">
+                  <div>
+                    <img src="/img/content/ad220.png" width="90" height="90" alt="advertise"/>
+                    <h3 class="bz-depend green">Объявление</h3>
+                    <p>Поможем продать заволявшиеся вещи, решить проблему или найти питомца.</p>
+                  </div>
+                </a>
+              </li>
+              <li class="bz-item bz-flex-grow-1" value="memo">
+                <a class="bz-item-wrapper bz-box-inset" href="/posts/new?type=memo" alt="Сигнал - сообщение, срабатывающее при подходе/уходе(?) к месту, можно использовать как средство запоминания-карточка-учить слово, текст и т.д.">
+                  <div>
+                    <img src="/img/content/megaphone220.png" width="90" height="90" alt="megaphone"/>
+                    <h3 class="bz-depend orange">Напоминалка</h3>
+                    <p>Используйте, чтобы не забыть о важных делах в определенном месте на карте.</p>
+                  </div>
+                </a>
+              </li>
+              <!--<li class="bz-item" value="ad"><a href="/posts/new?type=ad">Объявление (stick to Bulletin Board)</a></li>
+              <li class="bz-item" value="memo"><a href="/posts/new?type=memo">Напоминалка (Сигнал - сообщение, срабатывающее при подходе/уходе(?) к месту)</a></li>
+              <li class="bz-item" value="memo"><a href="/posts/new?type=memo">Запоминалка (карточка-учить слово, текст и т.д.)</a></li>
+              <li class="bz-item" value="sign"><a href="/posts/new?type=sign">Знак (Информация, связанная с данным местоположением)</a></li>
+              <li class="bz-item" value="message"><a href="/posts/new?type=message">Визитка (Страничка из социальных сетей)</a></li>-->
+            {{ else }}
+              <li class="bz-item bz-flex-grow-1" value="ad">
+                <a class="bz-item-wrapper bz-box-inset" href="/posts/new?type=ad" alt="(stick to Bulletin Board)">
+                  <div>
+                    <img src="/img/content/ad220.png" width="90" height="90" alt="advertise"/>
+                    <h3 class="bz-depend green">Ad</h3>
+                    <p>We will help to sell things...bla bla</p>
+                  </div>
+                </a>
+              </li>
+              <li class="bz-item bz-flex-grow-1" value="memo">
+                <a class="bz-item-wrapper bz-box-inset" href="/posts/new?type=memo" alt="(stick to Wall)">
+                  <div>
+                    <img src="/img/content/megaphone220.png" width="90" height="90" alt="megaphone"/>
+                    <h3 class="bz-depend orange">MEMO</h3>
+                    <p>Use this to not forget about things.</p>
+                  </div>
+                </a>
+              </li>
+              <!--<li class="bz-item" value="sign"><a href="/posts/new?type=sign">SIGN (dig into the Ground)</a></li>
+<li class="bz-item" value="message"><a href="/posts/new?type=message">MESSAGE or CARD (put to Post Box)</a></li>
+              <li class="bz-item bz-flex-grow-1" value="">
+                  <a href="#">
+                      <div>
+                          <img src="#" alt="#"/>
+                          <h3 class="bz-depend green">...</h3>
+                          <p>... ...</p>
+                      </div>
+                  </a>
+              </li>-->
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</template>
+
+<template name="postTypeSelect">
+  <div class="clearfix">
+    <div class="item-details">
+      <div class="item item-input item-select">
+        <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_SELECT_TYPE' }} </div>
+        <div class="small-12 medium-9 large-9 left">
+          <select class="js-ad-type-select">
+            <option value="" selected="selected"> {{ t9n 'NEW_POST_SELECT_TYPE_TEXT'}} </option>
+
+            {{#each getSiteTypes }}
+              <option value="{{ intName }}">{{ fullName }}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!--Forms for different types:-->
+<template name="postDetailsCommon">
+  <form data-abide>
+    <div class="clearfix">
+      <div class="item-details">
+        <div class="item item-input bz-tool-tip" data-open-on="click" data-top-center="top center" data-theme="drop-theme-arrows-bounce-dark">
+          <div class="small-12 medium-3 input-label left"><span class="middle-label"><span class="field-required">*</span> {{ t9n 'NEW_POST_TITLE' }} <i class="bz-icon bz-hint drop-target"></i></span></div>
+          <div class="small-12 medium-9 large-9 left">
+            <div class="bz-count-characters text-right"><span>70</span> {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
+            <input class="js-post-title" type="text" label-type="stacked" name="title" required data-schema-key="title" maxlength="70" value="{{ getTitle }}" placeholder="{{ t9n 'NEW_POST_TITLE_PLACEHOLDER' }}">
+            <!--Error-->
+            <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
+            <!--Drop tips-->
+            <div class="drop-content">
+              <div class="drop-content-inner">
+                <span class="bz-drop-close"><i class="fa fa-times-circle"></i></span>
+                <p>{{ t9n 'NEW_POST_TITLE_TOOLTIP_TEXT' }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clearfix">
+      <div class="item-details">
+        <div type="stacked" class="item item-input item-stacked-label bz-tool-tip" data-open-on="click" data-top-center="top center" data-theme="drop-theme-arrows-bounce-dark">
+          <div class="small-12 medium-3 input-label left"><span class="middle-label"><span class="field-required">*</span> {{ t9n 'NEW_POST_DESCRIPTION' }} <i class="bz-icon bz-hint drop-target"></i></span></div>
+          <div class="small-12 medium-9 large-9 left">
+            <div class="bz-count-characters text-right"><span>1000</span>  {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
+            <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required data-schema-key="body" maxlength="1000" value="{{ getDescription }}" placeholder="{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER' }}"></textarea>
+            <!--Error-->
+            <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
+
+            <div class="drop-content">
+              <div class="drop-content-inner">
+                <span class="bz-drop-close"><i class="fa fa-times-circle"></i></span>
+                <p>{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER_TOOLTIP_TEXT' }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</template>
+
+<template name="postPhotoUpload">
+  <div class="post-photo-upload">
+    <!--<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>-->
+    <div class="bz-owner-photo-wrap">
+      <!--gallery:
+      <ul class="clearing-thumbs clearing-feature" data-clearing>
+        <li class="clearing-featured-img">
+          <a href="http://www.stepfordwives.org/diary/wp-content/uploads/2014/01/stepford-wife-organization-perfect-proportion1.jpg">
+            <img src="http://www.stepfordwives.org/diary/wp-content/uploads/2014/01/stepford-wife-organization-perfect-proportion1.jpg">
+          </a>
+        </li>
+      </ul>-->
+      <div class="img-avatar js-edit-avatar">
+        <ul class="clearing-thumbs clearing-feature" data-clearing>
+          <!--<li class="clearing-featured-img">
+            <a href="http://localhost:3000/img/content/avatars/avatar-no.png" onclick="return false;">
+              <img src="http://localhost:3000/img/content/avatars/avatar-no.png" style="height: 50px;">
+            </a>
+          </li>-->
+          {{#each getPostImages }}
+            <li class="clearing-featured-img">
+              <a onclick="return false;">
+                <img src="{{ data }}">
+              </a>
+              <!--<a href="{{ getImageSrc }}" onclick="return false;">
+              <img src="{{ getImageSrc }}">
+            </a>-->
+            </li>
+          {{/each }}
+          <a class="js-plus-img">
+            <!--<img src="/img/plus-button.png"/>-->
+            <div class="bz-post-add-photos">
+              <i class="fa fa-picture-o"></i>
+
+              <p class="text-center">{{ t9n 'NEW_POST_ADD_PHOTO_BTN' }}</p>
+            </div>
+          </a>
+
+          <!--<li></li>-->
+        </ul>
+        <!--<img src="{{ getImageSrc }}" width="60" height="60">-->
+      </div>
+    </div>
+
+    <!--<a class="js-get-picture button">get pic</a>
+    <br/>
+    <a class="js-get-picture-lib button">get pic lib</a>-->
+  </div>
+
+  <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
+       role="dialog">
+    {{> uploadImageModal sessionName='bz.posts.postImgArr'}}
+  </div>
+</template>
+<template name="postHashesControl">
+  <div class="clearfix">
+    <label type="stacked" class="item item-input item-stacked-label padding-right">
+      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_HASHES' }}</div>
+      <div class="medium-5 large-7 left">
+        <button class="button button-block button-stable js-hashes-holder"
+                data-action="showPrompt">{{ getHashes }}</button>
+      </div>
+    </label>
+  </div>
+</template>
+
+<template name="postProfileInfo">
+  <div class="clearfix">
+    <div class="item-details">
+      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_INCOGNITO_MODE' }}</div>
+      <div class="medium-5 large-7 left input-clear">
+        <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">{{ t9n 'YES' }}</label>
+        <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">{{ t9n 'NO' }}</label>
+      </div>
+    </div>
+  </div>
+</template>
+<template name="bzPostsDurationPicker">
+  <div class="item-group">
+    <div class="item item-divider">
+      <h3 class="title ">{{ t9n 'NEW_POST_WHEN' }}</h3>
+      <p class="bz-muted-text">{{ t9n 'NEW_POST_DURATION_MUTED' }}</p>
+    </div>
+
+    <div class="item-details clearfix">
+      <div class="item-details clearfix">
+        <div type="stacked" class="item item-input item-stacked-label">
+          <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_DURATION' }}</div>
+          <div class="small-12 medium-9 large-9 left">
+            <div>
+            {{#if isRussianLanguage}}
+              <select name="repeat" class="js-post-select-duration">
+                <option value="oneDay">Один день</option>
+                <option value="twoDay">Два дня</option>
+                <option value="week">Неделю</option>
+                <option value="twoWeek">Две недели</option>
+                <option value="month">Один месяц</option>
+                <option value="year">Один год</option>
+                <!--<option value="validSpecific">Post Valid Specific Time</option>
+                <option value="validTimeRange">Post Valid Time Range</option>
+                <option value="expirationTime">Expiration Time</option>
+                <option value="postRepeatingTime">Post Repeating Time</option>-->
+              </select>
+            {{else}}
+              <select name="repeat" class="js-post-select-duration">
+                <option value="oneDay">One day</option>
+                <option value="twoDay">Two days</option>
+                <option value="week">Week</option>
+                <option value="twoWeek">Two weeks</option>
+                <option value="month">One month</option>
+                <option value="year">One year</option>
+                <!--<option value="validSpecific">Post Valid Specific Time</option>
+                <option value="validTimeRange">Post Valid Time Range</option>
+                <option value="expirationTime">Expiration Time</option>
+                <option value="postRepeatingTime">Post Repeating Time</option>-->
+              </select>
+            {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!--{{> postHashesControl }}-->
+    </div>
+    <!--<div class="row">
+              {{> postProfileInfo }}
+            </div>-->
+  </div>
+</template>
