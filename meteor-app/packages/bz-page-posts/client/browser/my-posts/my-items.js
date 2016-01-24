@@ -15,7 +15,6 @@ Template.onePostRowItemSearch.rendered = function() {
 };
 
 
-
 Template.myItems.onRendered(function () {
   $(document).foundation();
 });
@@ -29,13 +28,13 @@ Template.myItems.helpers({
   },
   allPosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId()});
-    console.log('all' + posts.count());
+    console.log('All: ' + posts.count());
 
     return posts;
   },
   activePosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId(), 'status.visible': 'visible'});
-    console.log('active' + posts.count());
+    console.log('Active: ' + posts.count());
     return posts;
   },
   livePosts: function () {
@@ -44,7 +43,7 @@ Template.myItems.helpers({
       var ret = !!item._hasLivePresence();
       return ret;
     });
-    console.log('live' + ret.length);
+    console.log('Live: ' + ret.length);
     return ret;
   },
   getCountActivePosts: function() {
@@ -102,6 +101,8 @@ Template.onePostRowItemOwner.events({
   'click .js-switch-wrapper': function(e, v){
   },
   'click .js-switch-activity-input': function(e,v){
+    
+        
     if(v.data) {
       v.data.status = v.data.status || {};
 
@@ -260,8 +261,7 @@ Template.onePostRowItemOwner.helpers({
       status = false;
             
      /* update the status on visible, null  */
-     bz.cols.posts.update(this._id, { $set: { status: {visible: null} } });
-      
+      bz.cols.posts.update(this._id, { $set: { status: {visible: null} } });
     }
     
     language = Session.get('bz.user.language');
