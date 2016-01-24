@@ -180,6 +180,6 @@ bz.bus.proximityHandler = {
         return c * bz.const.locations.earthRadius;
     },
     withinRadius: function(lat, lng, radius, loc){
-        return bz.bus.proximityHandler.distance(lat, lng, loc.coords.lat, loc.coords.lng) <= radius;
+        return loc.coords && bz.bus.proximityHandler.distance(lat, lng, loc.coords.lat, loc.coords.lng) <= radius;
     }
 };

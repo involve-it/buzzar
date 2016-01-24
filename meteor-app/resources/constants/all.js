@@ -43,3 +43,8 @@ bz.const.search.AROUND_YOU_RADIUS = 5;
 bz.const.search.AROUND_YOU_LIMIT = 9;
 //bz.const.search.POPULAR_RADIUS = 12;
 bz.const.search.POPULAR_LIMIT = 30;
+
+bz.help.makeNamespace('bz.const.push.type');
+bz.const.push.type.chat = 'chat';
+bz.const.push.type.comment = 'comment';
+bz.const.push.type.post = 'post';
