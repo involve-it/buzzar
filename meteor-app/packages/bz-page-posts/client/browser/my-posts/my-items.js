@@ -29,13 +29,13 @@ Template.myItems.helpers({
   },
   allPosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId()});
-    console.log('all' + posts.count());
+    console.log('ALL: ' + posts.count());
 
     return posts;
   },
   activePosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId(), 'status.visible': 'visible'});
-    console.log('active' + posts.count());
+    console.log('ACTIVE: ' + posts.count());
     return posts;
   },
   livePosts: function () {
@@ -44,7 +44,7 @@ Template.myItems.helpers({
       var ret = !!item._hasLivePresence();
       return ret;
     });
-    console.log('live' + ret.length);
+    console.log('LIVE: ' + ret.length);
     return ret;
   },
   getCountActivePosts: function() {
