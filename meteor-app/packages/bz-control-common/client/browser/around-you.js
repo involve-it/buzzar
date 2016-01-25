@@ -75,9 +75,8 @@ Template.bzAroundYouItem.helpers({
       ret = bz.cols.images.findOne(phId);
       ret = ret && ret.data;
     }
-    
+
     /*ret = ret || '/img/content/no-photo-400x300.png';*/
-    
     return ret;
   },
   disableOwnPost: function(){

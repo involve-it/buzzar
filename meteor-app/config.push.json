@@ -1,0 +1,16 @@
+{
+  "apn": {
+    "passphrase": "AF2c@:'q",
+    "key": "ApnCertKey.pem",
+    "cert": "ApnCert.pem"
+  },
+  "apn-dev": {
+    "passphrase": "Password123",
+    "key": "ApnDevCertKey.pem",
+    "cert": "ApnDevCert.pem"
+  },
+  "production": false,
+  "badge": true,
+  "sound": true,
+  "alert": false
+}

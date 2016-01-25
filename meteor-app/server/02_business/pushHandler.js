@@ -25,12 +25,14 @@
 
 Meteor.startup(function(){
   bz.bus.pushHandler = {
-    push: function(userIds, title, msg){
+    push: function(userIds, title, msg, payload){
       var notification = {
-            from:'',
+            from:'Buzzar',
             title: title,
             text: msg,
-            badge: 1
+            badge: 1,
+            query: {},
+            payload: payload
           };
       var tokens = [];
       if (!Array.isArray(userIds)) {
@@ -47,10 +49,9 @@ Meteor.startup(function(){
         Push.send(notification);
       }
     },
-    registerToken: function(deviceId, token){
-      console.log('registering deviceId: ' + deviceId + ', token: ' + token.apn);
+    registerToken: function(deviceId, token, userId){
+      //console.log('registering deviceId: ' + deviceId + ', token: ' + token.apn);
       if (deviceId && token && Object.keys(token).length > 0) {
-
         bz.cols.bulkTokens.remove({deviceId: deviceId});
 
         bz.cols.bulkTokens.insert({
@@ -58,6 +59,9 @@ Meteor.startup(function(){
           token: token,
           timestamp: new Date()
         });
+      }
+      if (userId){
+        bz.bus.pushHandler.assignTokenToUser(userId, deviceId);
       }
     },
     //called on log in
@@ -72,7 +76,7 @@ Meteor.startup(function(){
             userId: userId,
             tokens: [bulkToken]
           };
-          bz.cols.tokens.insert(userTokens);
+          bz.cols.userTokens.insert(userTokens);
         }
       } else {
         console.log('WARNING: no token assigned, device id is not found in bulkTokens. Device id: ' + deviceId);
@@ -89,4 +93,28 @@ Meteor.startup(function(){
       }
     }
   };
+
+
+  bz.cols.reviews.after.insert(function(userId, doc){
+    if (userId && doc && doc.entityId && doc.text){
+      //console.log('sending push: ' + doc.text);
+      var post = bz.cols.posts.findOne({_id: doc.entityId});
+      if (post && post.userId !== doc.userId){
+        bz.bus.pushHandler.push(post.userId, 'New comment', doc.text, {
+          type: bz.const.push.type.comment,
+          id: post._id
+        });
+      }
+    }
+  });
+
+  bz.cols.messages.after.insert(function(userId, doc){
+    if (doc && doc.text && doc.toUserId){
+      //console.log('sending push: ' + doc.text);
+      bz.bus.pushHandler.push(doc.toUserId, 'New message', doc.text, {
+        type: bz.const.push.type.chat,
+        id: doc.chatId
+      });
+    }
+  });
 });

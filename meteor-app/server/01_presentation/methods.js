@@ -101,8 +101,14 @@ Meteor.methods({
       return bz.bus.proximityHandler.processUserDisconnect(userId);
     }
   },
-  registerPushToken: function(deviceId, token){
-    bz.bus.pushHandler.registerToken(deviceId, token);
+  registerPushToken: function(deviceId, token, userId){
+    bz.bus.pushHandler.registerToken(deviceId, token, userId);
+  },
+  assignTokenToUser: function(deviceId, userId){
+    bz.bus.pushHandler.assignTokenToUser(userId, deviceId)
+  },
+  unassignTokenFromUser: function(deviceId, userId){
+    bz.bus.pushHandler.unassignTokenFromUser(userId, deviceId)
   },
   sendMessageContactUs: function(msg, userId){
     // send email here:

@@ -57,7 +57,8 @@ Package.onUse(function (api) {
     'client/lib/rates/jquery.raty.js',
     'client/lib/animate/animate.css',
 
-    'client/lib/rates/jquery.raty.css'
+    'client/lib/rates/jquery.raty.css',
+    'client/lib/01_inits/pushNotifications.js'
   ], 'client');
 
   api.addFiles([

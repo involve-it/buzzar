@@ -260,8 +260,7 @@ Template.onePostRowItemOwner.helpers({
       status = false;
             
      /* update the status on visible, null  */
-     bz.cols.posts.update(this._id, { $set: { status: {visible: null} } });
-      
+      bz.cols.posts.update(this._id, { $set: { status: {visible: null} } });
     }
     
     language = Session.get('bz.user.language');
