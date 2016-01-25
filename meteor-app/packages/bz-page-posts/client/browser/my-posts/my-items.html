@@ -109,7 +109,7 @@
           </div>
           <h4 class="bz-item-title">{{details.title}}</h4>
 
-          <p class="bz-item-text">{{details.description}}</p>
+          <p class="bz-item-text">{{{details.description}}}</p>
           
 
         </div>
@@ -182,7 +182,7 @@
                 <div class="bz-post-content">
                     
                     {{#if getDescription }}
-                        <p class="bz-item-text">{{getDescription}} <!--{{details.description}}--></p>
+                        <p class="bz-item-text">{{{getDescription}}} <!--{{details.description}}--></p>
                     {{/if}}
                     
                     {{#if details.price}}
