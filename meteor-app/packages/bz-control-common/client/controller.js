@@ -23,7 +23,7 @@ bz.ui.putCategoriesToSession = (catsToAdd, extend)=> {
     }
   }
   Session.set('bz.control.category-list.activeCategories', cats);
-}
+};
 
 GetPostAdTypesI18n = (lang)=>{
   var  ret;
@@ -37,4 +37,4 @@ GetPostAdTypesI18n = (lang)=>{
   }
   return ret;
 
-}
+};

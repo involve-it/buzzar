@@ -1,7 +1,7 @@
 /**
  * Created by root on 9/23/15.
  */
-Template.bzLocationName.helpers({
+Template.bzLinkLocationName.helpers({
   notDefinedLocationClass: function(){
     var ret = Session.get('bz.control.search.location');
     return ret && ret.name ? '' : 'bz-fa-location-not-defined';
@@ -10,7 +10,8 @@ Template.bzLocationName.helpers({
     var ret = Session.get('bz.control.search.location');
     return ret && ret.name || 'Location is not defined';
   }
-})
+});
+
 Template.bzLocationName.rendered = function () {
   var that = this;
   setTimeout(function () {
@@ -24,10 +25,10 @@ Template.bzLocationName.rendered = function () {
     //$(document).on('opened.fndtn.reveal', '[data-reveal]', function () {
     //});
   }, 1000);
-}
+};
 
 Template.bzLocationNameNewPost.rendered = function () {
-  this.data = this.data || {}
+  this.data = this.data || {};
   this.modalSelector = '[data-reveal].js-new-post-location';
   this.data.sessionName = this.data.sessionName || location2.sessionName;
   var that = this;

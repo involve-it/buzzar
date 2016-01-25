@@ -25,7 +25,11 @@ if(Meteor.isServer)  {
   });
 }
 if(Meteor.isClient) {
-  bz.config = {}
+  bz.config = {
+    isDev: function(){
+      return document.location.origin.indexOf('localhost:') >= 0;
+    }
+  }
   // see router - waitOn
 }
 if(Meteor.isClient){

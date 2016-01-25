@@ -39,7 +39,7 @@ enI18n = {
   siteTitleElement: 'instant post, bound to location',
   
   // home page:
-  headliner: 'instant post, bound to location',
+  headliner: 'Opportunities around',
 
 
   AROUND_YOU_TITLE: 'Buzz Around you',

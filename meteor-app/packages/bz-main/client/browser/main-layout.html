@@ -103,28 +103,39 @@
 <template name="bzNavBar">
   <div class="bz-nav-bg-default">
     <div class="bz-nav-bg-wrapper">
-      <nav id="bz-navbar" class="">
-        <div class="bz-logo">
-          {{> bzMeteorLogo }}
+        <nav id="bz-navbar" class="">
+            <div class="bz-logo">
+                {{> bzMeteorLogo }}
+            </div>
+        
+            <div class="bz-location-name show-for-medium-up">
+                {{> bzLinkLocationName}}
+            </div>
+        
+            <div class="bz-header-menu">
+                {{> bzInnerMenuLeft}}
+            </div>
+        
+            <!--{{> bzLocationName}}-->
+        
+            <div class="bz-group-menu-btn">
+                <div class="bz-header-button">
+                    <div class="show-for-small-only margin-small-right left">{{> bzLinkLocationName}}</div>
+                    <div class="left">{{ bzRenderTemplateI18n "createNewButton" }}</div>
+                </div>
+                
+                {{> bzDropSelectLanguage}}
             
-        </div>
-
-        <div class="bz-header-menu">
-          {{> bzInnerMenuLeft}}
-        </div>
-
-          {{> bzLocationName}}
-          
-        <div class="bz-group-menu-btn">
-            
-            {{ bzRenderTemplateI18n "createNewButton" }}
-            
-            {{> bzDropSelectLanguage}}
-        </div>
-      </nav>
+            </div>
+        </nav>
       <!-- navEND -->
     </div>
   </div>
+
+    
+
+    {{> bzLocationName}}
+    
 </template>
 
 <template name="bzFooter">
@@ -201,26 +212,39 @@
 </template>
 
 <template name="createNewButton">
-  <div class="bz-header-button">
-    <a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert"><div class="labelText">{{ t9n 'MENU_BUTTON_NEW_POST' }}</div> <span
-      data-dropdown="createPost"></span></a><br>
+  
+      <a href="/posts/new?type=ad" class="button bz-small alert">
+          <div class="labelText"><i class="fa fa-plus"></i></div>
+      </a>
+    <!--<a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert">
+        <div class="labelText">{{ t9n 'MENU_BUTTON_NEW_POST' }}</div>
+        <span data-dropdown="createPost"></span>
+    </a><br>
     <ul id="createPost" class="f-dropdown" data-dropdown-content>
       <li><a href="/posts/new?type=ad">Advertisement</a></li>
       <li><a href="/posts/new?type=memo">Reminder</a></li>
       <li><a style="    background: #E8E8E8;">Information</a></li>
       <li><a style="    background: #E8E8E8;">Connector</a></li>
-    </ul>
-  </div>
+    </ul>-->
+
 </template>
+
 <template name="createNewButtonRu">
-  <div class="bz-header-button">
-    <a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert"><div class="labelText">{{ t9n 'MENU_BUTTON_NEW_POST' }}</div> <span
+  
+      <a href="/posts/new?type=ad" class="button bz-small alert">
+          <div class="labelText"><i class="fa fa-plus"></i></div>
+      </a>
+    <!--<a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert"><div class="labelText">{{ t9n 'MENU_BUTTON_NEW_POST' }}</div> <span
       data-dropdown="createPost"></span></a><br>
     <ul id="createPost" class="f-dropdown" data-dropdown-content>
       <li><a href="/posts/new?type=ad">Объявление</a></li>
       <li><a href="/posts/new?type=memo">Напоминание</a></li>
       <li><a style="    background: #E8E8E8;">Информация</a></li>
       <li><a style="    background: #E8E8E8;">Визитка</a></li>
-    </ul>
-  </div>
+    </ul>-->
+
+</template>
+
+<template name="bzHashTags">
+    <a class="button bz-small bz-btn-secondary" href="#"><i class="fa fa-hashtag"></i></a>
 </template>
