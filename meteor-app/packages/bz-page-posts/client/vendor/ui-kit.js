@@ -74,30 +74,27 @@ bz.ui.initUiKit = function () {
 
 };
 
-bz.ui.initCodeMirror = function () {
+bz.ui.initCodeMirror = function (callback) {
   setTimeout(function () {
     //if (bz.config.isDev()) {
-    debugger
       toast(
-        ['/libs/codemirror/codemirror.css',
-        '/libs/codemirror/codemirror.js',
+        '/libs/codemirror/codemirror.css',
+        '/libs/codemirror/htmleditor.css',
+        ['/libs/codemirror/codemirror.js',
           function () {
-            debugger;
             return CodeMirror;
           }],
-        ['/libs/codemirror/mode/markdown.js',
+        '/libs/codemirror/mode/markdown.js',
         '/libs/codemirror/mode/overlay.js',
         '/libs/codemirror/mode/xml.js',
         '/libs/codemirror/mode/gfm.js',
         '/libs/codemirror/marked.js',
-        '/libs/codemirror/htmleditor.css',
-        '/libs/codemirror/htmleditor.js',,function() {
-          return window;
-        }],
+        '/libs/codemirror/htmleditor.js',
         function () {
-          debugger;
-          log('All scripts are fully loaded');
-          return true;
+          console.log('All scripts are fully loaded');
+          callback();
+
+          return window.markdown;
         }
       );
     /*} else {
@@ -112,4 +109,4 @@ bz.ui.initCodeMirror = function () {
       );
     }*/
   });
-}
+};

@@ -1,6 +1,13 @@
 var data = bz.help.makeNamespace('bz.runtime.newPost');
 Template.postsNew.rendered = function () {
   TrackNewPostTypeChange('js-new-post-placeholder');
+  setTimeout(function(){
+    // let's lazy-load code mirror plugin:
+    bz.ui.initCodeMirror(function(){
+      var input = $('.js-post-description');
+      var htmleditor = UIkit.htmleditor(input, { /* options */ });
+    });
+  }, 100);
 }
 Template.postsNew.created = function () {
   this.data ? _.extend(this.data, data) : _.extend({}, data);
