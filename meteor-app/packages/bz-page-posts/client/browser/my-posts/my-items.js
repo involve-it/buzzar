@@ -15,6 +15,7 @@ Template.onePostRowItemSearch.rendered = function() {
 };
 
 
+
 Template.myItems.onRendered(function () {
   $(document).foundation();
 });
@@ -28,13 +29,13 @@ Template.myItems.helpers({
   },
   allPosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId()});
-    console.log('All: ' + posts.count());
+    console.log('ALL: ' + posts.count());
 
     return posts;
   },
   activePosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId(), 'status.visible': 'visible'});
-    console.log('Active: ' + posts.count());
+    console.log('ACTIVE: ' + posts.count());
     return posts;
   },
   livePosts: function () {
@@ -43,7 +44,7 @@ Template.myItems.helpers({
       var ret = !!item._hasLivePresence();
       return ret;
     });
-    console.log('Live: ' + ret.length);
+    console.log('LIVE: ' + ret.length);
     return ret;
   },
   getCountActivePosts: function() {
@@ -101,8 +102,6 @@ Template.onePostRowItemOwner.events({
   'click .js-switch-wrapper': function(e, v){
   },
   'click .js-switch-activity-input': function(e,v){
-    
-        
     if(v.data) {
       v.data.status = v.data.status || {};
 

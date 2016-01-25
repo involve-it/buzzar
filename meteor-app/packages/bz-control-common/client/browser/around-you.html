@@ -1,134 +1,126 @@
 <template name="aroundYou">
-    {{#if getAroundItems.length}}
-        <section id="bz-around-you" class="bz-container-body">
-            <div class="bz-around-you">
-                <div class="bz-items">
-                    <div class="row grid">
-                        <!--<h2 class="title">{{ t9n 'AROUND_YOU_TITLE' }}</h2>-->
-                        {{#each getAroundItems}}
-                            {{> bzAroundYouItem}}
-                        {{/each}}
-                    </div>
-                </div>
-            </div>
-        </section>
-    {{/if}}
+  {{#if getAroundItems.length}}
+    <section id="bz-around-you" class="bz-container-body">
+      <div class="bz-around-you">
+        <div class="bz-items">
+          <div class="row grid">
+            <!--<h2 class="title">{{ t9n 'AROUND_YOU_TITLE' }}</h2>-->
+            {{#each getAroundItems}}
+              {{> bzAroundYouItem}}
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </section>
+  {{/if}}
 </template>
 
 <template name="bzAroundYouItem">
-    
-    {{#if getImgSrc}}
-        <!--PHOTO-->
-        <div class="bz-item-wrapper grid-item">
-            <div class="bz-item">
-                <div class="bz-side-b">
-                    <div class="bz-photo bz-overlay-hover">
-                        <a href="/post/{{_id}}">
-                            {{#if getImgSrc}}
-                                <div class="bz-background-image-cover bz-overlay-scale"
-                                     style="background-image: url('{{ getImgSrc }}')"></div>
-                            {{else}}
-                                <div class="bz-background-image-cover bz-overlay-scale"
-                                     style="background-image: url('/img/content/no-photo.png')"></div>
-                            {{/if}}
-                            <div class="bz-post-info">
-                                <div class="bz-flex">
-                                    {{> bzPostsPostPresence this}}
-                                    {{> bzPostsPostDistance this}}
-                                </div>
-                            </div>
-                        </a>
 
-                    </div>
+  {{#if getImgSrc}}
+    <!--PHOTO-->
+    <div class="bz-item-wrapper grid-item">
+      <div class="bz-item">
+        <div class="bz-side-b">
+          <div class="bz-photo bz-overlay-hover">
+            <a href="/post/{{_id}}">
+              {{#if getImgSrc}}
+                <div class="bz-background-image-cover bz-overlay-scale"
+                     style="background-image: url('{{ getImgSrc }}')"></div>
+              {{else}}
+                <div class="bz-background-image-cover bz-overlay-scale"
+                     style="background-image: url('/img/content/no-photo.png')"></div>
+              {{/if}}
+              <div class="bz-post-info">
+                <div class="bz-flex">
+                  {{> bzPostsPostPresence this}}
+                  {{> bzPostsPostDistance this}}
+                </div>
+              </div>
+            </a>
 
-                    <div class="bz-content">
-                        <h4 class="bz-title">{{details.title}}</h4>
-                        <p class="post-item-text">
-                            {{details.description}}
-                        </p>
-                        <div class="bz-text-align-right">
-                            <a class="bz-read-more" href="/post/{{_id}}">Read more</a>
-                        </div>
-                        {{> postProgressBar}}
-                    </div>
-                    <div class="bz-item-footer">
-                        <!--{{#if details.price}}
+          </div>
+
+          <div class="bz-content">
+
+            <a href="/post/{{_id}}">
+              <h4 class="bz-title">{{details.title}}</h4>
+            </a>
+            <p class="post-item-text">
+              {{details.description}}
+            </p>
+            <div class="bz-text-align-right">
+              <a class="bz-read-more" href="/post/{{_id}}">Read more</a>
+            </div>
+            {{> postProgressBar}}
+          </div>
+          <div class="bz-item-footer">
+            <!--{{#if details.price}}
                 <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
             {{/if}}-->
-                        {{> bzAdCategoryButton  _id=_id}}
-                        <div class="">
-                            <a class="js-send-message-btn {{ disableOwnPost }}">Send Message</a>
-                        </div>
-
-                    </div>
-                </div>
+            {{> bzAdCategoryButton  _id=_id}}
+            <div class="">
+              <a class="js-send-message-btn {{ disableOwnPost }}">Send Message</a>
             </div>
-        </div>
-    {{else}}
-        <!--WITHOUT PHOTO-->
-        <div class="bz-item-wrapper grid-item">
-            <div class="bz-item">
-                <div class="bz-side-b">
-                    <div class="bz-photo bz-overlay-hover">
-                        <a href="/post/{{_id}}">
-                            <div class="bz-post-info">
-                                <div class="bz-flex">
-                                    {{> bzPostsPostPresence this}}
-                                    {{> bzPostsPostDistance this}}
-                                </div>
-                            </div>
-                        </a>
 
-                    </div>
-                    <div class="bz-content">
-                        <h4 class="bz-title">{{details.title}}</h4>
-                        <p class="post-item-text">
-                            {{details.description}}
-                        </p>
-                        <div class="bz-text-align-right">
-                            <a class="bz-read-more" href="/post/{{_id}}">Read more</a>
-                        </div>
-                        {{> postProgressBar}}
-                    </div>
-                    <div class="bz-item-footer">
-                        {{> bzAdCategoryButton  _id=_id}}
-                        <div class="">
-                            <a class="js-send-message-btn {{ disableOwnPost }}">Send Message</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    {{/if}}
-    
+      </div>
+    </div>
+  {{else}}
+    <!--WITHOUT PHOTO-->
+    <div class="bz-item-wrapper grid-item">
+      <div class="bz-item">
+        <div class="bz-side-b">
+          <div class="bz-photo bz-overlay-hover">
+            <a href="/post/{{_id}}">
+              <div class="bz-post-info">
+                <div class="bz-flex">
+                  {{> bzPostsPostPresence this}}
+                  {{> bzPostsPostDistance this}}
+                </div>
+              </div>
+            </a>
+
+          </div>
+          <div class="bz-content">
+            <a href="/post/{{_id}}">
+              <h4 class="bz-title">{{details.title}}</h4>
+            </a>
+            <p class="post-item-text">
+              {{details.description}}
+            </p>
+            <div class="bz-text-align-right">
+              <a class="bz-read-more" href="/post/{{_id}}">Read more</a>
+            </div>
+            {{> postProgressBar}}
+          </div>
+          <div class="bz-item-footer">
+            {{> bzAdCategoryButton  _id=_id}}
+            <div class="">
+              <a class="js-send-message-btn {{ disableOwnPost }}">Send Message</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
 </template>
-
-
-
-
 
 
 <!--used on the around you, home:-->
 <template name="bzUserProfileAroundYou">
-    <div class="bz-status-wrapper">
-        <a href="/user/{{ _id }}">
-            <div class="bz-avatar" style="background-image: url({{ _getAvatarImage }});"></div>
-        </a>
-        {{> bzAvatarUserStatus}}
-    </div>
+  <div class="bz-status-wrapper">
+    <a href="/user/{{ _id }}">
+      <div class="bz-avatar" style="background-image: url({{ _getAvatarImage }});"></div>
+    </a>
+    {{> bzAvatarUserStatus}}
+  </div>
 
-    <!--<div class="bz-rating">{{ getPostRating }}</div>-->
-    <div class="bz-username"><a href="/user/{{ _id }}">{{username}}</a></div>
+  <!--<div class="bz-rating">{{ getPostRating }}</div>-->
+  <div class="bz-username"><a href="/user/{{ _id }}">{{username}}</a></div>
 </template>
-
-
-
-
-
-
-
-
-
 
 
 <!--version 01.18.16 until masonry-->
@@ -145,11 +137,10 @@
                         <img width="400" height="300" class="bz-overlay-scale" src="{{ getImgSrc }}" alt=""/>
                         <div class="bz-post-info bz-flex">
                             {{> bzPostsPostPresence this}}
-    {{> bzPostsPostDistance this}}
+  {{> bzPostsPostDistance this}}
                         </div>
                     </a>
                 </div>
-
                 <div class="bz-content">
                     <h4 class="bz-title">{{details.title}}</h4>
                     <p class="post-item-text">
@@ -174,9 +165,22 @@
                     <div class="">
                         <a class="js-send-message-btn {{ disableOwnPost }}">Send Message</a>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </template>-->
+
+
+<!--used on the around you, home:-->
+<template name="bzUserProfileAroundYou">
+    <div class="bz-status-wrapper">
+        <a href="/user/{{ _id }}">
+            <div class="bz-avatar" style="background-image: url({{ _getAvatarImage }});"></div>
+        </a>
+        {{> bzAvatarUserStatus}}
+    </div>
+
+    <!--<div class="bz-rating">{{ getPostRating }}</div>-->
+    <div class="bz-username"><a href="/user/{{ _id }}">{{username}}</a></div>
+</template>

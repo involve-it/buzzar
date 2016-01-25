@@ -42,7 +42,7 @@ ruI18n = {
   POST_STATUS: 'Объявление закрыто',
   
   //home:
-  headliner:           'Вокруг тебя',
+  headliner:           'Возможности вокруг',
   SEARCH_DISTANCE_TITLE: 'Расстояние',
   SEARCH_DISTANCE_MILE: '1 миля',
   SEARCH_DISTANCE_MILES_5: '5 миль',
