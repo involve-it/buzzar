@@ -32,7 +32,8 @@ Package.onUse(function (api) {
     'client/controller.js',
     'client/edit-post.controller.js',
     'client/new-post.controller.js',
-    'client/page-my.less'
+    'client/page-my.less',
+    'client/vendor/ui-kit.js'
   ], 'client');
 
   api.addFiles([
