@@ -9,6 +9,10 @@
     "key": "ApnDevCertKey.pem",
     "cert": "ApnDevCert.pem"
   },
+  "gcm":{
+    "apiKey": "AIzaSyCzq470boS0yo_r7hh8KC2Qjm0mtQZIoFw",
+    "projectNumber": "485548710693"
+  },
   "production": false,
   "badge": true,
   "sound": true,
