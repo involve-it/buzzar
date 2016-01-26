@@ -16,5 +16,6 @@
   "production": false,
   "badge": true,
   "sound": true,
-  "alert": false
+  "alert": true,
+  "vibrate": true
 }

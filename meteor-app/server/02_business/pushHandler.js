@@ -50,7 +50,7 @@ Meteor.startup(function(){
       }
     },
     registerToken: function(deviceId, token, userId){
-      //console.log('registering deviceId: ' + deviceId + ', token: ' + token.apn);
+      console.log('registering deviceId: ' + deviceId + ', token: ' + token.apn || token.gcm);
       if (deviceId && token && Object.keys(token).length > 0) {
         bz.cols.bulkTokens.remove({deviceId: deviceId});
 
@@ -70,7 +70,19 @@ Meteor.startup(function(){
       var bulkToken = bz.cols.bulkTokens.findOne({deviceId: deviceId});
       if (bulkToken) {
         if (userTokens) {
-          userTokens.tokens.push(bulkToken);
+          var exists = false;
+          _.each(userTokens.tokens, function(token){
+            if (token.deviceId === deviceId){
+              token.token = bulkToken.token;
+              exists = true;
+            }
+          });
+
+          if (!exists){
+            userTokens.tokens.push(bulkToken);
+          }
+
+          bz.cols.userTokens.update({_id: userTokens._id}, userTokens);
         } else {
           userTokens = {
             userId: userId,
@@ -78,6 +90,7 @@ Meteor.startup(function(){
           };
           bz.cols.userTokens.insert(userTokens);
         }
+        bz.cols.bulkTokens.remove({_id: bulkToken._id});
       } else {
         console.log('WARNING: no token assigned, device id is not found in bulkTokens. Device id: ' + deviceId);
       }

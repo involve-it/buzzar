@@ -49,13 +49,5 @@ if (Meteor.isCordova){
     Push.addListener('error', function(err){
       console.log(err);
     });
-
-    Push.enabled(true);
-    Push.Configure({
-      badge: true,
-      sound: true,
-      vibrate: true,
-      alert: false
-    });
   });
 }
