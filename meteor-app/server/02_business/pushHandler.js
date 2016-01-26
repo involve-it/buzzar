@@ -31,7 +31,6 @@ Meteor.startup(function(){
             title: title,
             text: msg,
             badge: 1,
-            query: {},
             payload: payload
           };
       var tokens = [];
