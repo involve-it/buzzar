@@ -8,10 +8,8 @@
         <div class="bz-media-q">
             <h1 class="title uppercase">{{t9n 'NEW_POST_CREATE_NEW_POST'}}</h1>
         </div>
-        <div class="item-group">
-            <div class="row">
-                {{> postsNewUrl }}
-            </div>
+        <div class="row">
+            {{> postsNewUrl }}
         </div>
     </div>
     
@@ -35,7 +33,7 @@
               <div class="js-post-details-categorized"></div>
             </div>
             
-            <div class="item item-divider">
+            <div class="item">
               <!--<h3 class="title ">{{ t9n 'NEW_POST_GALLERY_PHOTOS' }}</h3>-->
               <p class="bz-muted-text">{{t9n 'NEW_POST_GALLERY_PHOTOS_MUTED'}}</p>
             </div>
@@ -106,7 +104,7 @@
                     <div class="small-12 medium-3 input-label left"><span class="middle-label"><span class="field-required">*</span> Описание <i class="bz-icon bz-hint drop-target"></i></span></div>
                     <div class="small-12 medium-9 large-9 left">
                         <div class="bz-count-characters text-right"><span>1000</span>  {{ t9n 'NEW_POST_CHARACTERS_LEFT' }}</div>
-            <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required=""
+                    <textarea class="js-post-description" rows="3" label-type="stacked" name="body" required
                       data-schema-key="body" maxlength="1000" value="{{ getDescription }}"
                       placeholder="{{ t9n 'NEW_POST_DESCRIPTION_PLACEHOLDER' }}"></textarea>
                         <!--Error-->
