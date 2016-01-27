@@ -2,18 +2,18 @@
   <h2 id="modalTitle" class="title">Choose image</h2>
   <!--<ul class="tabs" data-tab data-options="deep_linking: false; scroll_to_content: false">-->
 
-    <div class="bz-toolbar bz-upload-image-toolbar">
-        <div class="bz-upload-image-toolbar-wrapper">
-            <ul class="tabs bz-nav bz-horizontal" data-tab>
-                <li class="tab-title js-tab-title active"><a href="#panel11">Upload Photo</a></li>
-                <li class="tab-title js-tab-title"><a href="#panel21">Take Photo</a></li>
-                <li class="tab-title js-tab-title"><a href="#panel31">Image from Url</a></li>
-                <li class="tab-title js-tab-title"><a href="#panel41" class="js-random-image-tab-btn">Random Image</a></li>
-            </ul>
-        </div>
+  <div class="bz-toolbar bz-upload-image-toolbar">
+    <div class="bz-upload-image-toolbar-wrapper">
+      <ul class="tabs bz-nav bz-horizontal" data-tab>
+        <li class="tab-title js-tab-title active"><a href="#panel11"><i class="fa fa-folder-open fa-2x"></i><br/><span class="hide-for-small-only">Upload Photo</span></a></li>
+        <li class="tab-title js-tab-title"><a href="#panel21"><i class="fa fa-camera fa-2x"></i><br/><span class="hide-for-small-only">Take Photo</span></a></li>
+        <li class="tab-title js-tab-title"><a href="#panel31"><i class="fa fa-cloud-download fa-2x"></i><br/><span class="hide-for-small-only">Image from Url</span></a></li>
+        <li class="tab-title js-tab-title"><a href="#panel41" class="js-random-image-tab-btn"><i class="fa fa-random fa-2x"></i><br/><span class="hide-for-small-only">Random Image</span></a></li>
+        <!--<li class="tab-title js-tab-title"><a href="#panel51" class="js-my-images-tab-btn"><i class="fa fa-recycle fa-2x"></i><br/>My Images</a></li>-->
+      </ul>
     </div>
-    
-    
+  </div>
+
   <div class="tabs-content">
     <div class="content active" id="panel11">
       {{#if countFile}}

@@ -1,9 +1,10 @@
 <template name="aroundYou">
   {{#if getAroundItems.length}}
-    <section id="bz-around-you" class="bz-container-body">
+    <!--bz-container-body-->
+    <section id="bz-around-you" class="">
       <div class="bz-around-you">
         <div class="bz-items">
-          <div class="row grid">
+          <div class="grid">
             <!--<h2 class="title">{{ t9n 'AROUND_YOU_TITLE' }}</h2>-->
             {{#each getAroundItems}}
               {{> bzAroundYouItem}}

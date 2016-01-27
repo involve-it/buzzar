@@ -78,14 +78,143 @@
 </template>
 
 <template name="postDetailsJobs">
-  <div class="clearfix padding-top">
-    <label class="item item-input">
-      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_POSITION' }}</div>
-      <div class="medium-5 large-7 left">
-        <input class="js-job-title" type="text" label-type="stacked" name="title" maxlength="200">
-      </div>
-    </label>
-  </div>
+<form data-abide>
+    <div class="bz-post-details-jobs clearfix padding-top bz-form-group">
+        <div class="clearfix bz-form-group">
+            <!--1-->
+            <div class="small-12 medium-3 input-label left">&nbsp;</div>
+            <div class="small-12 medium-9 large-9 left">
+                <div class="item item-input">
+                    <div class="small-12 medium-5 bz-margin-bottom margin-right left">
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <div>Seniority</div>
+                                <select id="jobs-seniority" class="bz-ui-dropdown" data-prompt="Seniority">
+                                    <option value="1">до 1 года</option>
+                                    <option value="2">от 1 до 3 лет</option>
+                                    <option value="3">от 3 до 5 лет</option>
+                                    <option value="4">от 5 и более</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="small-12 medium-5 left">
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <div>Gender</div>
+                                <select id="jobs-gender" class="bz-ui-dropdown" data-prompt="Gender">
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--2-->
+        <div class="clearfix bz-form-group">
+            <div class="item item-input">
+                <div class="small-12 medium-3 input-label left"><span class="field-required">*</span> Contacts</div>
+                <div class="small-12 medium-9 large-9 left">
+                    <div class="">
+                        <input class="js-job-title" required pattern="integer" placeholder="Phone" type="tel" name="phone">
+                        <!--Error-->
+                        <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--3-->
+        <div class="clearfix bz-form-group">
+            <div class="item item-input">
+                <div class="small-12 medium-3 input-label left">Attachment</div>
+                <div class="small-12 medium-9 large-9 left">
+                    <div id="bz-attach-job-document">
+                        <i class="fa fa-paperclip"></i> <a href=""> Attach a document (optional)</a>
+                    </div>
+                    
+                    <div class="bz-attach-job-form">
+                        <input id="bz-job-files" type="file">
+                        <div class="bz-job-files-wrapper small-12">
+                            <span class="bz-job-file-attach-info"></span>
+                            <button id="js-remove-attachment" class="button bz-small btn-default btn-remove-attachment">Remove Attachment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--4-->
+        <div class="clearfix bz-form-group">
+            <div class="item item-input item-select">
+                <div class="small-12 medium-3 input-label left">Search category</div>
+                <div class="small-12 medium-9 large-9 left">
+                    <select id="jobs-search-category" class="bz-ui-dropdown" data-prompt="Выберите один из вариантов">
+                        <option value="">Ищу работу</option>
+                        <option value="">Предлагаю работу</option>
+                        <option value="">Ищу обучение</option>
+                        <option value="">Предлагаю обучение</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!--5-->
+        <div class="clearfix bz-form-group">
+            <div class="item item-input item-select">
+                <div class="small-12 medium-3 input-label left">Вид</div>
+                <div class="small-12 medium-9 large-9 left">
+                    <select id="jobs-type" class="bz-ui-dropdown" multiple data-prompt="Можно выбрать несколько вариантов">
+                        <option value="">Постоянная</option>
+                        <option value="">Временная</option>
+                        <option value="">По специальности</option>
+                        <option value="">Без опыта</option>
+                        <option value="">Частичная занятость</option>
+                        <option value="">Волонтером</option>
+                        <option value="">Фриланс</option>
+                        <option value="">Без опыта</option>
+                        <option value="">Выбрать все</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!--6-->
+        <div class="clearfix bz-form-group">
+            <div class="small-12 medium-3 input-label left">Pay</div>
+            <div class="small-12 medium-9 large-9 left">
+
+
+                <div class="bz-button-group" data-bz-button-radio>
+                    <button class="js-bz-button bz-button btn-default" aria-checked="false"><i class="fa fa-clock-o"></i> <br> Pay by the hour</button>
+                    <button class="js-bz-button bz-button btn-default" aria-checked="false"><i class="fa fa-usd"></i> <br> Pay a fixed price</button>
+                    <button class="js-bz-button bz-button btn-default" aria-checked="false" data-val-free="true">Free</button>
+                </div>
+
+                <div class="bz-add-post-pay-choose">
+                    <div class="small-12 medium-5 large-5">
+                    <div class="row collapse labeled prefix-radius">
+                        <div class="small-3 large-3 columns">
+                            <select class="prefix" name="currency" id="currency">
+                                <option value="usd">USD</option>
+                                <option value="rub">RUB</option>
+                            </select>
+                        </div>
+                        <div class="small-9 large-9 columns">
+                            <input class="js-post-price" type="number" placeholder="Budget" value="">
+                        </div>
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>        
+        </div>
+    </div>
+</form>
 </template>
 
 <template name="postDetailsHousing">

@@ -368,7 +368,7 @@
       padding: 0 20px;
       height: 487px;
       width: 100%;
-      margin: 0 auto;
+      margin: -50px auto;
 
       .bz-header-middle-wrapper {
         display: table-cell;
@@ -392,29 +392,52 @@
 .grid-item--width2 {/* width: 40%;*/ }
 
 .grid {
-  max-width: 69em;
-  margin: 30px auto;
+  margin: 0 auto 15px;
   padding: 0;
 }
 
 .grid .grid-item {
-  display: block;
+  margin: 15px 8px 0 8px;
+  width: 250px;
   float: left;
-  padding: 7px;
-  width: 33%;
-  opacity: 1;
 }
 
 
-@media screen and (max-width: 1024px) {
-  .grid .grid-item {
-    width: 33.3333%;
+/* 2 */
+@media screen and (min-width: 640px) {
+  .grid {
+    width: 532px;
   }
 }
 
+/* 3 */
+@media screen and (min-width: 960px) {
+  .grid {
+    width: 800px;
+  }
+}
 
-@media screen and (max-width: 640px) {
-  .grid .grid-item {
-    width: 50%;
+/* 4 */
+@media screen and (min-width: 1120px) {
+  .grid {
+    width: 1065px;
+  }
+}
+
+/* 5 */
+@media screen and (min-width: 1385px) {
+  .grid {
+    width: 1330px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .grid {
+    width: 100%;
+
+    .grid-item {
+      width: 50%;
+      margin: 15px 0 0 0;
+    }
   }
 }

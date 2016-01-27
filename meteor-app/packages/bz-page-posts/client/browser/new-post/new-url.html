@@ -13,8 +13,8 @@
             <div class="bz-flex-style">
               <div>
                   <div class="row collapse labeled">
-                      <div class="small-2 large-2 columns"><span class="prefix">http://</span></div>
-                      <div class="small-10 large-10 columns">
+                      <div class="small-3 large-2 columns"><span class="prefix">http://</span></div>
+                      <div class="small-9 large-10 columns">
                           <input name="url" placeholder="{{ t9n 'NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER' }}" class="original-url error js-original-url" type="text">
                       </div>
                   </div>
@@ -27,8 +27,8 @@
               <!--<small class="error hidden">Value is required</small>-->
               <div>
                 <a name="original-post-details"
-                   class="button small disabled margin-left js-post-details-link"
-                   data-ion-modal="parsedPostDetailsModal"><i class="fa fa-check-circle-o"></i> {{ t9n 'BUTTON_CHECK' }}
+                   class="button small disabled margin-left original-post-url js-post-details-link"
+                   data-ion-modal="parsedPostDetailsModal"><i class="fa fa-check-circle-o"></i> <span class="hide-for-small-only">{{ t9n 'BUTTON_CHECK' }}</span>
                 </a>
               </div>
             </div>

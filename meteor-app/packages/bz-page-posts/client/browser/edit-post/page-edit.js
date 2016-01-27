@@ -1,11 +1,13 @@
 var data = bz.help.makeNamespace('bz.runtime.editPost');
+
 Template.pagePostsEdit.rendered = function () {
   TrackNewPostTypeChange('js-new-post-placeholder', this.data);
   bz.ui.initCodeMirror(function(){
     var input = $('.js-post-description');
     var htmleditor = UIkit.htmleditor(input, { /* options */ });
   });
-}
+};
+
 Template.pagePostsEdit.created = function () {
   this.data ? _.extend(this.data, data) : _.extend({}, data);
   //$('.js-new-post-placeholder').append();
