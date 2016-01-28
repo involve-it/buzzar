@@ -52,3 +52,5 @@ meteorhacks:kadira
 meteorhacks:zones
 blaze
 blaze-html-templates
+thinksoftware:image-resize-client
+ground:db

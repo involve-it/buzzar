@@ -18,23 +18,23 @@ Template.uploadImageModal.onRendered(function () {
 Template.uploadImageModal.helpers({
   getPreviewImgSrc: function () {
     var imgSrc, imgObj = Session.get(SESSION_NAME) || {};
-    if (imgObj.type === 'file'){
+    if (imgObj.type === 'file') {
       imgSrc = imgObj.data
     } else {
       imgSrc = imgObj.src;
     }
     return imgSrc;
   },
-  countFile: function() {
+  countFile: function () {
 
     /*if(Session.get('bz.posts.postImgArr') !== undefined) {
-      return true;
-    }*/
+     return true;
+     }*/
   }
 });
 
 Template.uploadImageModal.events({
-  'click .tabs a': function(e, v){
+  'click .tabs a': function (e, v) {
     e.preventDefault();
   },
   'click .js-photo-library': function (e, v) {
@@ -65,11 +65,11 @@ Template.uploadImageModal.events({
   },
   'click .js-take-photo': function (e, v) {
     var options = {
-          width: 350,
-          height: 350,
-          quality: 75
-        },
-        that = this;
+        width: 350,
+        height: 350,
+        quality: 75
+      },
+      that = this;
 
     MeteorCamera.getPicture(options, function (err, data) {
       if (err) {
@@ -88,10 +88,10 @@ Template.uploadImageModal.events({
   },
   'click .js-use-random-image-url': function (e, v) {
     var that = this, imgData,
-        randomImgUrl = bz.const.randomImageSite + '?ts=' + Date.now();
+      randomImgUrl = bz.const.randomImageSite + '?ts=' + Date.now();
     getDataFromImgUrl(randomImgUrl, $('.js-preview')[0], 600, 500, function (imgData) {
-     saveImageFromDataToSession(imgData, randomImgUrl);
-     });
+      saveImageFromDataToSession(imgData, randomImgUrl);
+    });
   },
   'change .js-file-upload': function (e, v) {
     var input = e.target, that = this,
@@ -110,32 +110,32 @@ Template.uploadImageModal.events({
   },
   'click .js-ok-btn': function (e, v) {
     $('.js-avatar-upload-modal').foundation('reveal', 'close');
-    if(this.sessionName)  {
+    if (this.sessionName) {
       doneCloseChooseImageDialog(this.sessionName, Session.get(SESSION_NAME));
     }
   },
-  'click .js-random-image-tab-btn': function(e, v){
+  'click .js-random-image-tab-btn': function (e, v) {
     v.$('.js-use-random-image-url').click();
   },
-  'click .js-tab-title': function(e, v){
+  'click .js-tab-title': function (e, v) {
     v.$('.js-preview').attr('src', '')
   }
 });
 
 
 //HELPERS:
-function clearForm(v){
+function clearForm(v) {
   v = v || window;
   Session.set(SESSION_NAME, {});
   v.$('.js-file-upload').val('');
 }
-function generateRandomFileNameFromExtension(fullName){
+function generateRandomFileNameFromExtension(fullName) {
   fullName = fullName || '';
   var extension = fullName.substr(fullName.lastIndexOf('.') + 1);
   extension = (extension.length > 5 || extension.length < 3) ? 'png' : extension;
   return _.guid() + '.' + extension;
 }
-function saveImageFromUrlToSession(imgUrl){
+function saveImageFromUrlToSession(imgUrl) {
   // try to get non-ssl , todo: remove after we add ssl:
   imgUrl = imgUrl.replace('https://', 'http://');
   Session.set(SESSION_NAME, {
@@ -144,7 +144,7 @@ function saveImageFromUrlToSession(imgUrl){
     name: generateRandomFileNameFromExtension(imgUrl)
   });
 }
-function saveImageFromBlobFileToSession(fileInputSelector, fileName, data){
+function saveImageFromBlobFileToSession(fileInputSelector, fileName, data) {
 
   Session.set(SESSION_NAME, {
     type: 'file',
@@ -153,7 +153,7 @@ function saveImageFromBlobFileToSession(fileInputSelector, fileName, data){
     name: generateRandomFileNameFromExtension(fileName)
   });
 }
-function saveImageFromDataToSession(imgData, fileName){
+function saveImageFromDataToSession(imgData, fileName) {
   Session.set(SESSION_NAME, {
     type: 'data',
     src: imgData,
@@ -185,12 +185,12 @@ function saveImageFromDataToSession(imgData, fileName){
 function dataURItoBlob(dataURI) { // http://stackoverflow.com/a/11954337
   var binary = atob(dataURI.split(',')[1]);
   var array = [];
-  for(var i = 0; i < binary.length; i++) {
+  for (var i = 0; i < binary.length; i++) {
     array.push(binary.charCodeAt(i));
   }
   return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
 }
-function uploadImageToS3(file, callback){
+function uploadImageToS3(file, callback, errCallback) {
 
   var uploader = uploadImageToS3.uploader = uploadImageToS3.uploader || new Slingshot.Upload('bzImagesDirective');
   var error = uploader.validate(file);
@@ -199,16 +199,17 @@ function uploadImageToS3(file, callback){
   }
   uploader.send(file, function (error1, downloadUrl) {
     if (error1) {
-      if (error1 && error1.error === 'Upload denied'){
+      if (error1 && error1.error === 'Upload denied') {
         alert(error1.message);
       }
       // Log service detailed response.
       var printErr = uploader.xhr && uploader.xhr.response || error1;
       //console.error('Error uploading', printErr);
-      alert (error1);
+      errCallback.call(this, error1);
+      //alert(error1);
     }
     else {
-      if (callback && typeof callback === 'function'){
+      if (callback && typeof callback === 'function') {
         callback.call(this, downloadUrl);
       }
       //Meteor.users.update(Meteor.userId(), {$push: {"profile.files": downloadUrl}});
@@ -218,29 +219,52 @@ function uploadImageToS3(file, callback){
   });
 }
 
-doneCloseChooseImageDialog = function(sessionName, imgObj){
+doneCloseChooseImageDialog = function (sessionName, imgObj) {
   var inp, file;
-  if(imgObj.type === 'data'){
+  bz.ui.spinnerAdd('.js-edit-avatar');
+
+  if (imgObj.type === 'data') {
     file = dataURItoBlob(imgObj.src);
     file.name = imgObj.name;
-    uploadImageToS3(file, function(resUrl){
+    makeSmallThumbnailFromFile(file).then(()=>{
+      debugger;
+    })
+    uploadImageToS3(file, function (resUrl) {
+      bz.ui.spinnerRemove('.js-edit-avatar');
+
       saveImageFromUrlToExternalSession(sessionName, resUrl);
+    }, function(error){
+      // error allback:
+      bz.ui.spinnerRemove('.js-edit-avatar');
+
     });
-  } else if (imgObj.type === 'url'){
+  } else if (imgObj.type === 'url') {
     saveImageFromUrlToExternalSession(sessionName, imgObj.src);
-  } else if (imgObj.type === 'file' && (inp = $(imgObj.src)[0])){
+  } else if (imgObj.type === 'file' && (inp = $(imgObj.src)[0])) {
     file = inp.files[0];
-    uploadImageToS3(file, function(resUrl){
-      saveImageFromUrlToExternalSession(sessionName, resUrl);
+    makeSmallThumbnailFromFile(file).done(function(att) {
+      debugger;
     });
+    /*uploadImageToS3(file, function (resUrl) {
+      saveImageFromUrlToExternalSession(sessionName, resUrl);
+    });*/
   }
 }
-saveImageFromUrlToExternalSession = function(sessionName, url){
+makeSmallThumbnailFromFile = function (file) {
+  debugger;
+  //return new Promise((resolve, reject)=>{
+    Resizer.resize(file, {width: 300, height: 300, cropSquare: true}, function (err, file1) {
+      debugger;
+      //resolve(file1);
+    });
+  //});
+}
+saveImageFromUrlToExternalSession = function (sessionName, url) {
   var sessionVal = Session.get(sessionName), newSessionVal,
     imgObj = {
       data: url
     };
-  if(sessionVal && Array.isArray(sessionVal)){
+  if (sessionVal && Array.isArray(sessionVal)) {
     newSessionVal = sessionVal;
 
     newSessionVal.push(imgObj);
@@ -249,7 +273,7 @@ saveImageFromUrlToExternalSession = function(sessionName, url){
   }
   Session.set(sessionName, newSessionVal);
 }
-getDataFromImgUrl = function(url, img$, w, h, cb){
+getDataFromImgUrl = function (url, img$, w, h, cb) {
   var img, canvas, ctx, ret;
   //var img = $('#asdf')[0];                   '
   var img = img$;

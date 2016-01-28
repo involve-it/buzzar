@@ -177,5 +177,25 @@ bz.ui.modal = function(content, onconfirm) {
   /*return modal;*/
   
 };
+var spinners = {};
 
+bz.ui.spinnerAdd = function(elementSelector) {
+  if(Spinner) {
+    if(!spinners[elementSelector]) {
+      var spinner = new Spinner().spin();
+      spinners[elementSelector] = spinner;
+      $(elementSelector)[0].appendChild(spinner.el);
+    }
+  } else {
+    console.error('spinner object is not defined');
+  }
+}
+bz.ui.spinnerRemove = function(elementSelector) {
+    if(!spinners[elementSelector]) {
+      console.error('spinner not found');
+    } else {
+      spinners[elementSelector].stop();
+      delete spinners[elementSelector];
+    }
+}
 

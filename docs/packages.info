@@ -1,0 +1,11 @@
+1. roles:
+meteor add alanning:roles
+
+2. Ground db: meteor add ground:db
+
+3. Image resize:
+meteor add thinksoftware:image-resize-client
+
+4. Spinner:
+https://github.com/SachaG/meteor-spin
+http://spin.js.org/
