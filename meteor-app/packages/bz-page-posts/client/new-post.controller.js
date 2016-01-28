@@ -138,6 +138,7 @@ CreateNewPostFromView = function (v) {
     //$.when(locDef).then(function () {
     Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
       if (!err && res && res !== '') {
+        bz.runtime.changesNotSaved = false;
         clearPostData();
         bz.runtime.newPost.postId = res;
         Router.go('/posts/my');
