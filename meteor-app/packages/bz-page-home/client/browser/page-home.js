@@ -60,13 +60,15 @@ Template.aroundYou.onRendered(function() {
   $('.grid').masonry({
     itemSelector: '.grid-item'
   });
+
+  Meteor.startup(function() {
+    $(window).resize(function() {
+      $('.grid').masonry();
+    });
+  });
+  
 });
 
-Meteor.startup(function() {
-  $(window).resize(function() {
-    $('.grid').masonry();
-  });
-});
 
 
 
