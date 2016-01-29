@@ -13,9 +13,14 @@
   -webkit-border-radius: 2px 2px 0 0;
   -moz-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
-  margin: -16px -16px 16px -16px;
+  padding-bottom: 20px;
+  margin: -20px -20px 20px -20px;
   background-color: rgba(255,255,255, .9);
-  border-bottom: 1px solid @border-color-sep;
+  border-bottom: 1px solid rgba(0,0,0, .05);
+  
+  > div {
+    margin: 0 20px 0 20px;
+  }
 }
 
 .bz-nav {
@@ -31,8 +36,18 @@
     font-size: 14px;
     line-height: 1.4;
     
+    &.tab-title {
+      > a {
+        color: rgba(63, 68, 82, .85);
+      }
+    }
+    
     &.active {
-      background-color: rgba(0,0,0, .1);
+      background-color: transparent;
+      
+      &.tab-title a {
+        color: @off-canvas-link-color-i; //opacity .85
+      }
     }
   }
   
@@ -41,10 +56,10 @@
     
     
     > * {
-      padding: 5px 15px;
+      padding:0;
       font-size: 14px;
       line-height: 1.4;
-      border-right: 1px solid @border-color-sep;
+      border-right: 1px solid @bz-background-tabs-2;
       .border-radius(2px);
       
       
@@ -60,6 +75,26 @@
         -moz-border-radius: 0 2px 2px 0;
         border-radius: 0 2px 2px 0;
         border-right: none;
+      }
+    }
+  }
+  
+  &.sub-sections {
+    border: 1px solid @bz-background-tabs-2;
+
+    > * {
+      text-align: center;
+      
+      &.tab-title {
+        > a {}
+      }
+
+      &.active {
+        .bz-background-tabs();
+
+        &.tab-title a {
+          color: @off-canvas-link-color-i; //opacity .85
+        }
       }
     }
   }

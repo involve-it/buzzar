@@ -151,7 +151,9 @@ ruI18n = {
   PROFILE_USER_SECURITY_SETTINGS : 'Настройки безопасности',
 
   //Error
-  ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения'
+  ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения',
+  
+  COMMON_IMAGE_GET_RANDOM: 'Загрузить случайное фото'
   
 };
 //var ruAll = _.extend(bz.language.i18n.ru, ruI18n);

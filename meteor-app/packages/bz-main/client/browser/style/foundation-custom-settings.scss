@@ -432,6 +432,17 @@ body {
     display: none;
   }
 
+  .bz-nav > * {
+    &.tab-title > a {
+      padding: 4px 12px !important;
+      
+      i {
+        padding: 8px 0;
+        font-size: 24px;
+      }
+    }
+  }
+
   .bz-container-body {
     .main-content {
 

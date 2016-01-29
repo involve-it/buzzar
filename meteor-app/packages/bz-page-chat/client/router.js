@@ -19,7 +19,7 @@ Router.map(function () {
       return [
         //Meteor.subscribe('bz.users.byId', this.params.userId)
         Meteor.subscribe('bz.users.all'),
-        Meteor.subscribe('bz.chats.id', chatId),
+        Meteor.subscribe('bz.chats.id', chatId, Meteor.userId()),
         Meteor.subscribe('bz.messages.chatId', chatId)
       ]
     },
