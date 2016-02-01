@@ -1,6 +1,6 @@
 
 <template name="bzControlReviews">
-  <h3 class="title-review">{{ getCountsReviews }} Comments</h3>
+  <h3 class="title-review">{{ getCountsReviews }} {{ t9n 'COMMENTS' }}</h3>
     <div class="bz-reviews-list">
       {{#each getReviews }}
         {{> bzControlReviewItem }}
@@ -51,7 +51,7 @@
         
         <div class="bz-review-post-body-footer">
             <div>
-                Rating: {{ rating }}
+              {{ t9n 'RATING' }}: {{ rating }}
             </div>
         </div>
     </div>    
@@ -61,11 +61,11 @@
 
 <template name="bzControlAddReview">
   
-    <textarea rows="4" cols="50" class="js-post-text-input" placeholder="put your review here"></textarea>
+    <textarea rows="4" cols="50" class="js-post-text-input" placeholder={{ t9n 'REVIEW_HELP_TEXT' }}></textarea>
     
     <div class="bz-control-reviews">
         
-        <select id="single-bsg-pilot" class="js-rating-select" data-prompt="Choose rating">
+        <select id="single-bsg-pilot" class="js-rating-select" data-prompt={{ t9n 'CHOOSE_RATING' }}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -73,7 +73,7 @@
             <option value="5">5</option>
         </select>
   
-        <button class="button btn-default bz-small js-post-btn">Submit</button>
+        <button class="button btn-default bz-small js-post-btn">{{ t9n 'SUBMIT' }}</button>
         
   </div>
 </template>
