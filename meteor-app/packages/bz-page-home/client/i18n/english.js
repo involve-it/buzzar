@@ -19,7 +19,7 @@ enI18n = {
   MENU_MY_POSTS: 'Posts',
   MENU_MY_PROFILE: 'Profile',
   MENU_MY_MESSAGES: 'Messages',
-  MENU_BUTTON_NEW_POST: 'Create',
+  MENU_BUTTON_NEW_POST: 'Create new',
   MENU_SIGN_IN: 'Sign in',
   MENU_SIGN_OUT: 'Sign out',
   MENU_SIGN_UP: 'Sign up',

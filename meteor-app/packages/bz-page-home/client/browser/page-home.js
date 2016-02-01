@@ -58,6 +58,7 @@ Template.bzAdCategoryButton.events({
 
 Template.aroundYou.onRendered(function() {
   $('.grid').masonry({
+    //isFitWidth: true,
     itemSelector: '.grid-item'
   });
 

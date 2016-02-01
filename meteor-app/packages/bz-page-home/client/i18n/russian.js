@@ -25,7 +25,7 @@ ruI18n = {
   MENU_MY_POSTS: 'Посты',
   MENU_MY_PROFILE: 'Профайл',
   MENU_MY_MESSAGES: 'Сообщения',
-  MENU_BUTTON_NEW_POST: 'Создать',
+  MENU_BUTTON_NEW_POST: 'Создать новый',
   MENU_SIGN_IN: 'Вход',
   MENU_SIGN_OUT: 'Выход',
   MENU_SIGN_UP: 'Регистрация',
