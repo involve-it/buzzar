@@ -117,6 +117,19 @@ Template.bzDropSelectLanguage.events({
   }
 });
 
-
+Template.bzNavMe.helpers({
+  getUserAvatar: function(){
+    var ret = '/img/content/avatars/avatar-no.png';
+    var user = Meteor.user();
+    if(user && user._getAvatarImage()){
+      ret = user._getAvatarImage();
+    }
+    return ret;
+  },
+  username: function() {
+    var user = Meteor.users.findOne({_id: Meteor.userId()} );
+    return user && user.username;
+  }
+});
 
 
