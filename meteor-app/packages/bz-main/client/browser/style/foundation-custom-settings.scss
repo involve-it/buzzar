@@ -121,7 +121,7 @@ body {
   
   #bz-navbar {
     position: relative;
-    padding: 15px 0;
+    padding: 0;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -430,6 +430,17 @@ body {
   .bz-header-menu,
   .only-main-menu {
     display: none;
+  }
+
+  .bz-nav > * {
+    &.tab-title > a {
+      padding: 4px 12px !important;
+      
+      i {
+        padding: 8px 0;
+        font-size: 24px;
+      }
+    }
   }
 
   .bz-container-body {
@@ -895,7 +906,7 @@ body {
           a {
             display: block;
             padding: 10px 15px;
-            line-height: normal;
+            line-height: 11px;
           }
         }
         

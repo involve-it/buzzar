@@ -19,7 +19,7 @@ enI18n = {
   MENU_MY_POSTS: 'Posts',
   MENU_MY_PROFILE: 'Profile',
   MENU_MY_MESSAGES: 'Messages',
-  MENU_BUTTON_NEW_POST: 'Create',
+  MENU_BUTTON_NEW_POST: 'Create new',
   MENU_SIGN_IN: 'Sign in',
   MENU_SIGN_OUT: 'Sign out',
   MENU_SIGN_UP: 'Sign up',
@@ -140,7 +140,9 @@ enI18n = {
   PROFILE_USER_SECURITY_SETTINGS: 'Security settings',
   
   //Error
-  ERROR_INVALID_FIELD: 'This field is required'
+  ERROR_INVALID_FIELD: 'This field is required',
+
+  COMMON_IMAGE_GET_RANDOM: 'Get random image'
 };
 var enAll = _.extend(bz.language.i18n.en, enI18n);
 T9n.map('en', enAll);

@@ -93,7 +93,6 @@ CreateNewPostFromView = function (v) {
     timestamp = Date.now();
     endTimestamp = new Date(timestamp);
     var newPost = {
-
       userId: userId,
       type: DeterminePostTypeFromView(v),
       //type: v.$('.js-post-type-select').val(),
@@ -138,6 +137,7 @@ CreateNewPostFromView = function (v) {
     //$.when(locDef).then(function () {
     Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
       if (!err && res && res !== '') {
+        bz.runtime.changesNotSaved = false;
         clearPostData();
         bz.runtime.newPost.postId = res;
         Router.go('/posts/my');

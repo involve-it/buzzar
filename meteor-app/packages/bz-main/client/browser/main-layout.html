@@ -115,14 +115,14 @@
             <div class="bz-header-menu">
                 {{> bzInnerMenuLeft}}
             </div>
-        
-            <!--{{> bzLocationName}}-->
-        
+                    
             <div class="bz-group-menu-btn">
                 <div class="bz-header-button">
                     <div class="show-for-small-only margin-small-right left">{{> bzLinkLocationName}}</div>
                     <div class="left">{{ bzRenderTemplateI18n "createNewButton" }}</div>
                 </div>
+                
+                {{> bzNavMe}}
                 
                 {{> bzDropSelectLanguage}}
             
@@ -131,8 +131,6 @@
       <!-- navEND -->
     </div>
   </div>
-
-    
 
     {{> bzLocationName}}
     
@@ -214,7 +212,7 @@
 <template name="createNewButton">
   
       <a href="/posts/new?type=ad" class="button bz-small alert">
-          <div class="labelText"><i class="fa fa-plus"></i></div>
+          <div class="labelText bz-flex bz-flex-middle"><i class="fa fa-plus show-for-small-only"></i> <span class="show-for-medium-up">{{ t9n 'MENU_BUTTON_NEW_POST' }}</span></div>
       </a>
     <!--<a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert">
         <div class="labelText">{{ t9n 'MENU_BUTTON_NEW_POST' }}</div>
@@ -232,7 +230,7 @@
 <template name="createNewButtonRu">
   
       <a href="/posts/new?type=ad" class="button bz-small alert">
-          <div class="labelText"><i class="fa fa-plus"></i></div>
+          <div class="labelText bz-flex bz-flex-middle"><i class="fa fa-plus show-for-small-only"></i> <span class="show-for-medium-up">{{ t9n 'MENU_BUTTON_NEW_POST' }}</span></div>
       </a>
     <!--<a href="{{ pathFor 'postsNew'}}" class="button split bz-small alert"><div class="labelText">{{ t9n 'MENU_BUTTON_NEW_POST' }}</div> <span
       data-dropdown="createPost"></span></a><br>
@@ -248,3 +246,31 @@
 <template name="bzHashTags">
     <a class="button bz-small bz-btn-secondary" href="#"><i class="fa fa-hashtag"></i></a>
 </template>
+
+<template name="bzNavMe">
+    <div class="bz-nav-me show-for-large">
+        <ul class="bz-nav-me-wrapper">
+            <li>
+                <a class="bz-nav-me-item-link" href="#" data-dropdown="bzNavMe" data-options="align:bottom; is_hover:true; hover_timeout:5000">
+                    <div class="bz-avatar bz-nav-me-avatar" style="background-image: url({{ getUserAvatar }}); height: 36px; width: 36px;"></div> 
+                    <i class="fa fa-angle-down bz-nav-me-i"></i>
+                </a>
+                <ul id="bzNavMe" class="bz-nav-me-submenu f-dropdown" data-dropdown-content>
+                    <div class="nav-item dropdown-header">Signed in as <strong>{{ username }}</strong></div>
+                    <div class="dropdown-divider"></div>
+                    <li class="nav-item {{isActiveRoute 'myProfile'}}"><a href="{{pathFor 'myProfile'}}"><i class="fa fa-user"></i> {{ t9n 'MENU_MY_PROFILE' }}</a></li>
+                    <li class="nav-item"><a href="/sign-out"><i class="fa fa-sign-out"></i> Sign out</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</template>
+
+
+
+
+
+
+
+
+

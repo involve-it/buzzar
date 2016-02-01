@@ -25,7 +25,7 @@ ruI18n = {
   MENU_MY_POSTS: 'Посты',
   MENU_MY_PROFILE: 'Профайл',
   MENU_MY_MESSAGES: 'Сообщения',
-  MENU_BUTTON_NEW_POST: 'Создать',
+  MENU_BUTTON_NEW_POST: 'Создать новый',
   MENU_SIGN_IN: 'Вход',
   MENU_SIGN_OUT: 'Выход',
   MENU_SIGN_UP: 'Регистрация',
@@ -151,7 +151,9 @@ ruI18n = {
   PROFILE_USER_SECURITY_SETTINGS : 'Настройки безопасности',
 
   //Error
-  ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения'
+  ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения',
+  
+  COMMON_IMAGE_GET_RANDOM: 'Загрузить случайное фото'
   
 };
 //var ruAll = _.extend(bz.language.i18n.ru, ruI18n);

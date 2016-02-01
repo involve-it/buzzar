@@ -4,7 +4,7 @@
 
   <div class="bz-toolbar bz-upload-image-toolbar">
     <div class="bz-upload-image-toolbar-wrapper">
-      <ul class="tabs bz-nav bz-horizontal" data-tab>
+      <ul class="tabs bz-nav sub-sections bz-horizontal" data-tab>
         <li class="tab-title js-tab-title active"><a href="#panel11"><i class="fa fa-folder-open fa-2x"></i><br/><span class="hide-for-small-only">Upload Photo</span></a></li>
         <li class="tab-title js-tab-title"><a href="#panel21"><i class="fa fa-camera fa-2x"></i><br/><span class="hide-for-small-only">Take Photo</span></a></li>
         <li class="tab-title js-tab-title"><a href="#panel31"><i class="fa fa-cloud-download fa-2x"></i><br/><span class="hide-for-small-only">Image from Url</span></a></li>
@@ -63,7 +63,7 @@
     
   <hr/>
     
-  <button class="js-ok-btn btn-default bz-small">Done</button>
+  <button class="js-ok-btn btn-default bz-small bz-button-done">Done</button>
 </template>
 
 
@@ -75,9 +75,9 @@
     <div class="no-upload-image">
         <div class="no-upload-image-wrapper">
             <div class="no-img"><i class="fa fa-picture-o"></i></div>
-            <div class="bz-files-button">
-                <input type="file" accept="image/*" class="bz-custom-file-input js-file-upload">
-            </div>
+        </div>
+        <div class="bz-files-button">
+            <input type="file" accept="image/*" class="bz-custom-file-input js-file-upload">
         </div>
     </div>
 </template>

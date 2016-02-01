@@ -49,8 +49,8 @@ if (Meteor.isServer) {
       ]
     });*/
   });
-  Meteor.publish('bz.chats.id', function (chatId) {
-    return bz.cols.chats.find(chatId);
+  Meteor.publish('bz.chats.id', function (chatId, userId) {
+      return bz.cols.chats.find({_id:chatId, users:userId }); //todo: Не забыть добавить что делать если не соответствует
   });
 }
 

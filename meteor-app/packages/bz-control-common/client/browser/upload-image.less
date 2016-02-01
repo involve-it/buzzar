@@ -30,7 +30,6 @@
 .js-avatar-upload-modal {
   .title {
     text-align: left;
-    font-size: 26px;
   }
 }
 
@@ -38,19 +37,37 @@
   margin-top: 0 !important;
   
   .bz-upload-image-toolbar-wrapper {
-    .display-flex-box();
-    margin: 0 20px 20px 20px; 
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
     
     .bz-nav {
+      -ms-flex-pack: justify;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      width: 100%;
+      
       > li {
         > a {
           background-color: transparent;
           padding: 6px 14px;
+          
+          i {
+            
+          }
+          
+          span {
+            padding-top: 8px;
+            font-size: 14px;
+            line-height: 1;
+          }
         }
       }
     }
     .bz-horizontal {
       > * {
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
         .border-radius(0);
       }
     }
@@ -59,7 +76,7 @@
 
 
 .bz-upload-photo-wrapper {
-
+  
   .bz-upload-photo-wrapper-image,
   .bz-button-box {
     .display-flex-box();
@@ -67,6 +84,7 @@
   }
   
   .bz-upload-photo-wrapper-image {
+    margin-bottom: 30px;
     
     i {
       font-size: 65px;
@@ -74,9 +92,7 @@
     }
   }
   
-  .bz-button-box {
-    margin-top: 30px;
-  }
+  .bz-button-box {}
 
   .bz-upload-photo-wrapper-check {
     .display-flex-box();
@@ -96,27 +112,28 @@
 .no-upload-image {
   
   .no-upload-image-wrapper {
-
+    margin-bottom: 30px;
+    
     .no-img {
       text-align: center;
       
       i {
         font-size: 65px;
-        color: @sub-title-color;
-        
+        color: @sub-title-color;        
       }
     }
+  }
+  
+  .bz-files-button {
+    .display-flex-box();
+    .justify-content(center);
 
-    .bz-files-button {
-      margin-top: 30px;
-      .display-flex-box();
-      .justify-content(center);
-      input {
-        width: auto;
-        margin: 0;
-        font-size: 0;
-        padding-right: 84px;
-      }
+    input {
+      display: block;
+      width: auto;
+      margin: 0 auto;
+      font-size: 0;
+      padding-right: 84px;
     }
   }
 }
