@@ -220,9 +220,10 @@ DeterminePostTypeFromView = function(v) {
     ret = v.$('.js-memo-type-select').val();
   }
   return ret;
-}
+};
+
 GetEndDatePost = function(v, start) {
-  var val = v.$('js-post-select-duration').val(),
+  var val = v.$('.js-post-select-duration').val(),
     ret;
 
   switch (val) {
@@ -246,8 +247,9 @@ GetEndDatePost = function(v, start) {
       break;
     default:
       ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 14, start.getHours(), start.getMinutes());
+      console.log('Default value: ', ret);
       break;
   }
   return ret && ret.getTime();
-}
+};
 
