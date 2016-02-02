@@ -4,7 +4,13 @@
 
 enI18n = {
   //Global
-  
+  COMMENTS:'Comments',
+  RATING: 'Rating',
+  REVIEW_HELP_TEXT: 'put your review here',
+  CHOOSE_RATING: 'Choose rating',
+  SUBMIT: 'Submit',
+
+
   //Buttons
   BUTTON_CHECK: 'Check',
   
@@ -114,6 +120,21 @@ enI18n = {
 
   //Post details
   POST_DETAILS_REVIEWS_FIRST: 'Your will be the first',
+  POST_DETAILS_VIEWS: 'Views',
+  POST_DETAILS_TODAY: 'Today',
+  POST_DETAILS_STATUS: 'Status',
+  POST_DETAILS_DISTANCE: 'Distance',
+  POST_DETAILS_ALL: 'All',
+  POST_DETAILS_LIKES: 'Likes',
+  POST_DETAILS_TYPE: 'Type',
+  POST_DETAILS_PRICE: 'Price',
+  POST_DETAILS_LIKE: 'Like',
+  POST_DETAILS_LEFT: 'Left',
+  POST_DETAILS_DYNAMIC:'Dynamic',
+  POST_DETAILS_STATIC:'Static',
+  POST_DETAILS_VIEW_MAP:'View map',
+  POST_DETAILS_DETAILS: 'Details',
+  POST_DETAILS_PUBLISHED_ON: 'Published on',
   
 
   //Profile

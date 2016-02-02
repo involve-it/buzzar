@@ -9,9 +9,14 @@ en = {
   APP_NAME: 'FireFlies',
   CONTENT_READ_MORE_TITLE: 'Read more...',
   CONTACT_US:'Contact us',
-  CONTACT_SEND_MESSAGE: 'Send message',
+  SEND_MESSAGE: 'Send message',
   YES: 'Yes',
   NO: 'No',
+  COMMENTS:'Comments',
+  RATING: 'Rating',
+  REVIEW_HELP_TEXT: 'put your review here',
+  CHOOSE_RATING: 'Choose rating',
+  SUBMIT: 'Submit',
   
   //Buttons
   BUTTON_CHECK: 'Check',
@@ -119,6 +124,12 @@ en = {
   NEW_POST_HASHES: 'Hashes',
   NEW_POST_CREATE_BTN: 'Create FireFly',
   NEW_POST_SET_LOCATION_BTN: 'Set Location',
+  NEW_POST_SENIORITY: 'Seniority',
+  NEW_POST_GENDER: 'Gender',
+  NEW_POST_ATTACHMENT_FILES: 'Attachments',
+  NEW_POST_CONTACTS: 'Contacts',
+  NEW_POST_ATTACH_A_DOCUMENT: 'Attach a document (optional)',
+  
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',
@@ -130,6 +141,21 @@ en = {
 
   //Post details
   POST_DETAILS_REVIEWS_FIRST: 'Your will be the first',
+  POST_DETAILS_VIEWS: 'Views',
+  POST_DETAILS_TODAY: 'Today',
+  POST_DETAILS_STATUS: 'Status',
+  POST_DETAILS_DISTANCE: 'Distance',
+  POST_DETAILS_ALL: 'All',
+  POST_DETAILS_LIKES: 'Likes',
+  POST_DETAILS_TYPE: 'Type',
+  POST_DETAILS_PRICE: 'Price',
+  POST_DETAILS_LIKE: 'Like',
+  POST_DETAILS_LEFT: 'Left',
+  POST_DETAILS_DYNAMIC:'Dynamic',
+  POST_DETAILS_STATIC:'Static',
+  POST_DETAILS_VIEW_MAP:'View map',
+  POST_DETAILS_DETAILS: 'Details',
+  POST_DETAILS_PUBLISHED_ON: 'Published on',
   
 
   //Profile
@@ -156,7 +182,8 @@ en = {
   PROFILE_USER_SECURITY_SETTINGS: 'Security settings',
   
   //Error
-  ERROR_INVALID_FIELD: 'This field is required'
+  ERROR_INVALID_FIELD: 'This field is required',
+  ERROR_INVALID_INTEGER_PATTERN: 'This field is required and must be an integer'
 };
 T9n.map('en', en);
 bz.help.makeNamespace('bz.language.i18n.en', en);

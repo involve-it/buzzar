@@ -72,7 +72,7 @@ Template.postDetailsJobs.events({
 
     v.$('.bz-button').trigger("change.bz.button", [ele]);
     
-    (ele.data('val-free')) ? payChoose.hide() : payChoose.show();
+    (ele.data('value') === 'free') ? payChoose.hide() : payChoose.show();
     
   },
   'click #bz-attach-job-document': function(e, v) {

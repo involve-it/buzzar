@@ -9,9 +9,14 @@ ru = {
   APP_NAME: 'Светлячки',
   CONTENT_READ_MORE_TITLE: 'Подробнее',
   CONTACT_US:'Свяжитесь с нами',
-  CONTACT_SEND_MESSAGE: 'Отправить сообщение',
+  SEND_MESSAGE: 'Отправить сообщение',
   YES: 'Да',
   NO: 'Нет',
+  COMMENTS:'Комментарии',
+  RATING: 'Рейтинг',
+  REVIEW_HELP_TEXT: 'Оставьте свой комменрарий здесь',
+  CHOOSE_RATING: 'Выберите рейтинг',
+  SUBMIT: 'Отправить',
 
   //Buttons
   BUTTON_CHECK: 'Проверить',
@@ -119,6 +124,12 @@ ru = {
   NEW_POST_HASHES: 'Хэштеги',
   NEW_POST_CREATE_BTN: 'Установить Светлячок',
   NEW_POST_SET_LOCATION_BTN: 'Выберите Местоположение',
+  NEW_POST_SENIORITY: 'Трудовой стаж',
+  NEW_POST_GENDER: 'Пол',
+  NEW_POST_ATTACHMENT_FILES: 'Вложения',
+  NEW_POST_CONTACTS: 'Контакты',
+  NEW_POST_ATTACH_A_DOCUMENT: 'Прикрепить документ (необязательно)',
+  
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Новое напоминание',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',
@@ -130,7 +141,21 @@ ru = {
   
   //Post details
   POST_DETAILS_REVIEWS_FIRST: 'Вы будете первый',
-
+  POST_DETAILS_VIEWS: 'Просмотров',
+  POST_DETAILS_TODAY: 'Сегодня',
+  POST_DETAILS_STATUS: 'Статус',
+  POST_DETAILS_DISTANCE: 'Дистанция',
+  POST_DETAILS_ALL: 'Всего',
+  POST_DETAILS_LIKES: 'Нравится',
+  POST_DETAILS_TYPE: 'Тип',
+  POST_DETAILS_PRICE: 'Цена',
+  POST_DETAILS_LIKE: 'Нравится',
+  POST_DETAILS_LEFT: 'Осталось',
+  POST_DETAILS_DYNAMIC:'Динамический',
+  POST_DETAILS_STATIC:'Статический',
+  POST_DETAILS_VIEW_MAP:'Показать на карте',
+  POST_DETAILS_DETAILS: 'Детали',
+  POST_DETAILS_PUBLISHED_ON: 'Опубликовано',
   
   //Profile
   PROFILE_USER_DETAILS :'Профиль пользователя',
@@ -156,7 +181,8 @@ ru = {
   PROFILE_USER_SECURITY_SETTINGS : 'Настройки безопасности',
 
   //Error
-  ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения'
+  ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения',
+  ERROR_INVALID_INTEGER_PATTERN: 'Это поле обязательно и только цифры'
   
 };
 

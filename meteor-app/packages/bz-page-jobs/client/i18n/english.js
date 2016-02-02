@@ -8,7 +8,7 @@ enI18n = {
   APP_NAME: 'Buzzar',
   CONTENT_READ_MORE_TITLE: 'Read more...',
   CONTACT_US:'Contact us',
-  CONTACT_SEND_MESSAGE: 'Send message',
+  SEND_MESSAGE: 'Send message',
   YES: 'Yes',
   NO: 'No',
   

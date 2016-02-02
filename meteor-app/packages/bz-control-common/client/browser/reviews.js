@@ -8,7 +8,7 @@ Template.bzControlReviews.events({
 });
 Template.bzControlReviews.helpers({
   getReviews: function(){
-    return bz.cols.reviews.find({type: 'postType', entityId: this.postId}, { sort: { dateTime: -1}});
+    return bz.cols.reviews.find({type: 'postType', entityId: this.postId}, { sort: { dateTime: 1}});
   },
   getCountsReviews: function() {
     var counts = bz.cols.reviews.find({type: 'postType', entityId: this.postId}).count();

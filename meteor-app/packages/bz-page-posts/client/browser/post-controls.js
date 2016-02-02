@@ -17,6 +17,8 @@ Template.postTypeSelect.events({
     checkIfFieldIsChanged(v.data, 'type', val);
 
     setPostDetailsTemplate(val.toCapitalCase(), this);
+
+    bz.ui.initFoundationValidation();
   }
 });
 Template.postTypeSelect.rendered = function () {
