@@ -7,7 +7,7 @@ ruI18n = {
   APP_NAME: 'Светлячки',
   CONTENT_READ_MORE_TITLE: 'Подробнее',
   CONTACT_US:'Свяжитесь с нами',
-  CONTACT_SEND_MESSAGE: 'Отправить сообщение',
+  SEND_MESSAGE: 'Отправить сообщение',
   YES: 'Да',
   NO: 'Нет',
 

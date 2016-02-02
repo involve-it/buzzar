@@ -9,7 +9,7 @@ ru = {
   APP_NAME: 'Светлячки',
   CONTENT_READ_MORE_TITLE: 'Подробнее',
   CONTACT_US:'Свяжитесь с нами',
-  CONTACT_SEND_MESSAGE: 'Отправить сообщение',
+  SEND_MESSAGE: 'Отправить сообщение',
   YES: 'Да',
   NO: 'Нет',
   COMMENTS:'Комментарии',
@@ -155,6 +155,7 @@ ru = {
   POST_DETAILS_STATIC:'Статический',
   POST_DETAILS_VIEW_MAP:'Показать на карте',
   POST_DETAILS_DETAILS: 'Детали',
+  POST_DETAILS_PUBLISHED_ON: 'Опубликовано',
   
   //Profile
   PROFILE_USER_DETAILS :'Профиль пользователя',

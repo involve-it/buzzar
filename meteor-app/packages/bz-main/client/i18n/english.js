@@ -9,7 +9,7 @@ en = {
   APP_NAME: 'FireFlies',
   CONTENT_READ_MORE_TITLE: 'Read more...',
   CONTACT_US:'Contact us',
-  CONTACT_SEND_MESSAGE: 'Send message',
+  SEND_MESSAGE: 'Send message',
   YES: 'Yes',
   NO: 'No',
   COMMENTS:'Comments',
@@ -155,6 +155,7 @@ en = {
   POST_DETAILS_STATIC:'Static',
   POST_DETAILS_VIEW_MAP:'View map',
   POST_DETAILS_DETAILS: 'Details',
+  POST_DETAILS_PUBLISHED_ON: 'Published on',
   
 
   //Profile
