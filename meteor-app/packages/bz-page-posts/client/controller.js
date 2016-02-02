@@ -41,7 +41,7 @@ staticLocationPanelClick = function () {
     Template.bzLocationNameNewPost.showModal();
   }
 };
-//userSeenAll;
+userSeenAll;
 // this function calculates browser-specific hits
 runHitTracking = function (post, browserInfo) {
   var userSeenTotal, userSeenToday, seenTotalPost, seenTodayPost;
@@ -220,8 +220,7 @@ DeterminePostTypeFromView = function(v) {
     ret = v.$('.js-memo-type-select').val();
   }
   return ret;
-};
-
+}
 GetEndDatePost = function(v, start) {
   var val = v.$('.js-post-select-duration').val(),
     ret;

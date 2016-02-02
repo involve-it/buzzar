@@ -8,7 +8,12 @@ Template.bzLinkLocationName.helpers({
   },
   getCurrentLocationName: function(){
     var ret = Session.get('bz.control.search.location');
-    return ret && ret.name || 'Location is not defined';
+    if(ret && ret.name) {
+      return ret.name;
+    } else {
+      bz.ui.error('Your location is not defined, <br/> please <a onclick="$(\'.bz-link-lacation-name\').click()">set your location manually.</a>')
+      return 'Location is not defined';
+    }
   }
 });
 

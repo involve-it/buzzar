@@ -28,7 +28,7 @@
       <div class="post-details">
         <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-eye"></i> Views</div>
         <div class="small-12 medium-8 large-8 bz-post-result columns">
-          <p><span>All:</span> {{ stats.seenAll }}  &nbsp;&nbsp;  <span>Today:</span> {{ stats.seenToday }} </p>
+          <p>{{ stats.seenTotal }} ({{ stats.seenToday }} <span>today</span>) </p>
         </div>
       </div>
 
@@ -82,7 +82,7 @@
       {{/if}}
 
       <!--<div class="bz-separate"></div>-->
-        
+
     </div>
 
 

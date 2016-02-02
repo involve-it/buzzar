@@ -104,7 +104,7 @@ bz.ui.alert = function(message, obj) {
   } else if( Array.isArray(message) ) {
       checkTextErrorMessage();
   } else {
-      sAlert.config({html:false});
+      sAlert.config({html:true});
   }
   
   function checkTextErrorMessage() {
