@@ -5,7 +5,7 @@ Template.postsNew.rendered = function () {
     // let's lazy-load code mirror plugin:
     bz.ui.initCodeMirror(function(){
       var input = $('.js-post-description');
-      var htmleditor = UIkit.htmleditor(input, { height:200 });
+      var htmleditor = UIkit.htmleditor(input, { height:200, markdown:true });
     });
   }, 100);
 };
