@@ -23,6 +23,12 @@
   }
 }
 
+.dropdown-divider {
+  height: 1px;
+  margin: 8px 1px;
+  background-color: rgba(222,222,222,1);
+}
+
 .bz-nav {
   margin-bottom: 0;
   margin-left: 0;
@@ -199,6 +205,10 @@
   display: -webkit-flex;
   display: flex;
 
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+
   -ms-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   flex-wrap: nowrap;
@@ -216,6 +226,89 @@
     &.alert {
       span {
         border-left-color: rgba(255, 255, 255, 0.3) !important;
+      }
+    }
+  }
+}
+
+.bz-nav-me {
+  .bz-nav-me-wrapper {
+    margin: 0;
+    li {
+      list-style: none;
+      
+      .bz-nav-me-item-link {
+        display: block;
+        padding: 16px 14px;
+        
+        .bz-nav-me-avatar {
+          float: left;
+          margin-right: 12px;
+        }
+
+        .bz-nav-me-i {
+          line-height: 36px;
+          font-size: 18px;
+          font-weight: 900;
+          color: rgba(255,255,255, 1);
+        }
+      
+        &.open {
+          position: relative;
+          background-color: rgba(255,255,255, 1);
+          z-index: 111;
+
+          .bz-nav-me-i {
+            color: #666666;
+          }
+        }
+      }
+    }
+    .bz-nav-me-submenu {
+      -webkit-border-radius: 0 0 2px 2px;
+      -moz-border-radius: 0 0 2px 2px;
+      border-radius: 0 0 2px 2px;
+      box-shadow: 0 2px 6px rgba(0,0,0, .2);
+      white-space: nowrap;
+      border: none;
+      margin-top: 0;
+      padding: 9px 0;
+      
+      .nav-item {
+        line-height: 26px;
+        display: block;
+        padding: 4px 10px 4px 15px;
+        color: @text-color;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
+        &.dropdown-header {
+          color: #767676;
+          padding: 4px 15px 0 15px;
+          max-width: 100%;
+          width: 100%;
+          display: inline-block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          vertical-align: top;
+        }
+        
+        a {
+          padding: 0;
+          
+          i {
+            opacity: .8;
+            padding-right: 8px;
+          }
+        }
+      }
+      
+      &:before, &:after {
+        content: inherit;
+        border: none;
+        background: transparent;
       }
     }
   }

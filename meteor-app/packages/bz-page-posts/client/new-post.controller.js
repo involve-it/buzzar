@@ -93,7 +93,6 @@ CreateNewPostFromView = function (v) {
     timestamp = Date.now();
     endTimestamp = new Date(timestamp);
     var newPost = {
-
       userId: userId,
       type: DeterminePostTypeFromView(v),
       //type: v.$('.js-post-type-select').val(),
