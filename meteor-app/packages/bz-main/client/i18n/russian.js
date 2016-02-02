@@ -124,6 +124,12 @@ ru = {
   NEW_POST_HASHES: 'Хэштеги',
   NEW_POST_CREATE_BTN: 'Установить Светлячок',
   NEW_POST_SET_LOCATION_BTN: 'Выберите Местоположение',
+  NEW_POST_SENIORITY: 'Трудовой стаж',
+  NEW_POST_GENDER: 'Пол',
+  NEW_POST_ATTACHMENT_FILES: 'Вложения',
+  NEW_POST_CONTACTS: 'Контакты',
+  NEW_POST_ATTACH_A_DOCUMENT: 'Прикрепить документ (необязательно)',
+  
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Новое напоминание',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',
@@ -174,7 +180,8 @@ ru = {
   PROFILE_USER_SECURITY_SETTINGS : 'Настройки безопасности',
 
   //Error
-  ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения'
+  ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения',
+  ERROR_INVALID_INTEGER_PATTERN: 'Это поле обязательно и только цифры'
   
 };
 

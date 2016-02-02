@@ -113,6 +113,19 @@ CreateNewPostFromView = function (v) {
         // specific:
         other: otherKeyValuePairs
       },
+      jobsDetails: {
+        seniority: GetValueJobsSingleData(v, '#select-jobs-seniority'),
+        gender:    GetValueJobsSingleData(v, '#select-jobs-gender'),
+        contacts: {
+          phone:     v.$('.js-job-phone').val()
+        },
+        attachment: {
+          // This will be made by Ashot
+        },
+        typeCategory: GetValueJobsSingleData(v, '#select-jobs-search-category'),
+        jobsType: GetValueJobsMultiData(v, '#select-jobs-type'),
+        payMethod: GetValuePayMethod(v, '.bz-button-group')
+      },
       status: {
         visible: bz.const.posts.status.visibility.VISIBLE
       },

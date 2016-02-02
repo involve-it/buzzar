@@ -178,7 +178,7 @@ RatePostByUser = function (postOwnerId, rateInt) {
     }
   }
   return ret;
-}
+};
 GetPostRating = function (curPost) {
   var ret,
     userId = Meteor.userId(),
@@ -196,7 +196,7 @@ GetPostRating = function (curPost) {
     rating = sum / foundPost.social.rates.length;
   }
   return rating;
-}
+};
 // API:
 bz.help.makeNamespace('bz.bus.posts', {
   getCurrentPost: function () {
@@ -209,6 +209,35 @@ bz.help.makeNamespace('bz.bus.posts', {
 });
 
 //GLOBAL HELPERS:
+
+GetValueJobsSingleData = function(v, selector) {
+  var ret,
+      selectedElement = v.$(selector).find('.selected');
+  
+  if(selectedElement) {
+    ret = selectedElement.data('value');
+  }
+  return ret;
+};
+
+GetValueJobsMultiData = function(v, selector) {
+  var selectedOptions = [];
+  v.$(selector).find('.selected').each(function() {
+    selectedOptions.push($(this).data('value'));
+  });
+  return selectedOptions;
+};
+
+GetValuePayMethod = function(v, selector) {
+  var ret,
+      selectElement = v.$(selector).find('[aria-checked="true"]');
+  
+  if(selectElement) {
+    ret = selectElement.data('value');
+  }
+  return ret;
+};
+
 
 DeterminePostTypeFromView = function(v) {
   //newPostType

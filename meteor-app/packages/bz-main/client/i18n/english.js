@@ -124,6 +124,12 @@ en = {
   NEW_POST_HASHES: 'Hashes',
   NEW_POST_CREATE_BTN: 'Create FireFly',
   NEW_POST_SET_LOCATION_BTN: 'Set Location',
+  NEW_POST_SENIORITY: 'Seniority',
+  NEW_POST_GENDER: 'Gender',
+  NEW_POST_ATTACHMENT_FILES: 'Attachments',
+  NEW_POST_CONTACTS: 'Contacts',
+  NEW_POST_ATTACH_A_DOCUMENT: 'Attach a document (optional)',
+  
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',
@@ -175,7 +181,8 @@ en = {
   PROFILE_USER_SECURITY_SETTINGS: 'Security settings',
   
   //Error
-  ERROR_INVALID_FIELD: 'This field is required'
+  ERROR_INVALID_FIELD: 'This field is required',
+  ERROR_INVALID_INTEGER_PATTERN: 'This field is required and must be an integer'
 };
 T9n.map('en', en);
 bz.help.makeNamespace('bz.language.i18n.en', en);
