@@ -134,6 +134,7 @@ enI18n = {
   POST_DETAILS_STATIC:'Static',
   POST_DETAILS_VIEW_MAP:'View map',
   POST_DETAILS_DETAILS: 'Details',
+  POST_DETAILS_PUBLISHED_ON: 'Published on',
   
 
   //Profile
