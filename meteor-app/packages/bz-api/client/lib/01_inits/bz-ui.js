@@ -215,6 +215,7 @@ bz.ui.validateFoundationForm = function(selector){
         errorMessages: msg
       });
     });
+
     // 2. submit abide forms to trigger validation:
     $(selector).submit();
 

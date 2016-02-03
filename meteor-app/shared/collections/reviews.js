@@ -85,8 +85,12 @@ if (Meteor.isServer) {
       insert: function () {
         return true;
       },
-      remove: function(){
-        return true;
+      remove: function(userId, commentObj){
+        if(commentObj.userId === userId){
+          return true;
+        } else {
+          return false;
+        }
       }
     });
   }

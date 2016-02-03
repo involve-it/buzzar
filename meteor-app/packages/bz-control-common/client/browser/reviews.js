@@ -15,6 +15,13 @@ Template.bzControlReviews.helpers({
     return counts || '';
   }
 });
+Template.bzControlReviewItem.events({
+  'click .js-delete-comment': function(e, v){
+    if(Meteor.userId() === v.data.userId){
+      bz.cols.reviews.remove(v.data._id);
+    }
+  }
+});
 Template.bzControlReviewItem.helpers({
   getTime: function(){
     var d = new Date(this.dateTime);
@@ -23,6 +30,9 @@ Template.bzControlReviewItem.helpers({
   getProfileImage: function(){
     var user = Meteor.users.findOne(this.userId);
     return user && user._getAvatarImage();
+  },
+  isUserCommentOwner: function(e, v){
+    return Meteor.userId() === this.userId;
   }
 });
 Template.bzControlAddReview.onCreated(function(){
@@ -33,6 +43,7 @@ Template.bzControlAddReview.onRendered(function(){
 });
 Template.bzControlAddReview.events({
   'click .js-post-btn': function(e, v){
+
     var text = $('.js-post-text-input').val(),
         userId = Meteor.userId(),
         postId = this.postId,

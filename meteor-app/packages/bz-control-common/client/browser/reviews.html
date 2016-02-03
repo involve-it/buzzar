@@ -47,13 +47,16 @@
           {{ text }}
         </div>
       </div>
+      {{#if isUserCommentOwner}}
+        <a class="js-delete-comment" href="#"><span><i class="fa fa-trash-o"></i></span></a>
+      {{/if}}
     </div>
 
   </div>
 </template>
 
 <template name="bzControlAddReview">
-  <form data-abide>
+  <form data-abide="ajax">
     <textarea required rows="4" cols="50" class="js-post-text-input" placeholder={{ t9n 'REVIEW_HELP_TEXT' }}></textarea>
     <div class="bz-control-reviews">
       <!--<select id="single-bsg-pilot" class="js-rating-select" data-prompt={{ t9n 'CHOOSE_RATING' }}> //todo:
@@ -64,7 +67,7 @@
       <option value="4">4</option>
       <option value="5">5</option>
     </select>-->
-      <button type="submit" class="button btn-default bz-small js-post-btn">{{ t9n 'SUBMIT' }}</button>
+      <button class="button btn-default bz-small js-post-btn">{{ t9n 'SUBMIT' }}</button>
     </div>
   </form>
 </template>
