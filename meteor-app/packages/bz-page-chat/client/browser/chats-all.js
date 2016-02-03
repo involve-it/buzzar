@@ -88,7 +88,15 @@ Template.chatMessage.helpers({
     return className;
   },
   isOwnMessage: function () {
-  }
+  },
+   getAvatarUrl: function(){
+     if (this.userId===currentUser._id) {
+       //my message
+       return currentUser.profile && currentUser.profile.image && currentUser.profile.image.data || "/img/content/avatars/avatar-no.png";
+     }else {
+       return this.user && this.user.profile && this.user.profile.image && this.user.profile.image.data || "/img/content/avatars/avatar-no.png";
+     }
+   }
 });
 
 

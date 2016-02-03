@@ -11,6 +11,12 @@ sendMessage = function (messageText, chat, friendUserId) {
 
   bz.cols.messages.insert({
     userId: currentUser._id,
+    user: {
+      username:  currentUser.username,
+      profile: {
+        image:  currentUser.profile.image
+      }
+    },
     toUserId: friendUserId,
     chatId: chat._id,
     text: messageText,
@@ -126,11 +132,12 @@ getUniqueChatsForUser = function (userId, all) {
 };
 
 messageModals = {};
-showMessageModal = function (msgObj, userObj, id) {
+showMessageModal = function (msgObj, id) {
+
   var data = {
       messageText: msgObj.text,
       chatId: msgObj.chatId,
-      user: userObj
+      user: msgObj.user
     },
     parentNode = $('.js-message-popup-placeholder')[0];
     messageModals[id] = Blaze.renderWithData(Template.bzChatMessagePopup, data, parentNode);
@@ -148,10 +155,11 @@ showbzAlerMessage = function(msgObj, userObj, id) {
   var text = msgObj.text,
       cutMessage = text.slice(0, 70) + '...';
 
+
   var data = {
     messageText: cutMessage,
     chatId: msgObj.chatId,
-    user: userObj
+    user: userObj || msgObj.user //userObj maybe use someones
   };
   
   /*var parentNode = $('.message-loader')[0];
