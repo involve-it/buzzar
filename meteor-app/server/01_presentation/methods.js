@@ -251,6 +251,7 @@ Meteor.methods({
   }
 });
 
+//test comment
 // INFO:
 
 // usage on the client:
