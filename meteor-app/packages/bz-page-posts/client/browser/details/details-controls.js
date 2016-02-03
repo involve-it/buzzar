@@ -3,8 +3,19 @@ Template.bzPostDetails.events({});
 Template.bzPostDetails.helpers({
   getPostCreatedDate: function () {
     var ret = '';
+    var options = {
+     // era: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long',
+     //timezone: 'UTC',
+      //hour: 'numeric',
+     // minute: 'numeric',
+     // second: 'numeric'-->
+    };
     if (this.timestamp) {
-      ret = new Date(this.timestamp).toDateString();
+      ret = new Date(this.timestamp).toLocaleDateString( Session.get("bz.user.language"), options);
     }
     return ret;
   },
