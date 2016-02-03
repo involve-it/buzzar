@@ -65,7 +65,7 @@ runHitTracking = function (post, browserInfo) {
   } else {
     // user seen this already, do nothing!
   }
-  // set total loads (non-unique):
+  // set total loads (non-unique), WE DON'T USE THIS!:
   if (!userSeenAll) { // need to run only on-time on full load
     userSeenAll = !userSeenAll && post.stats && post.stats.seenAll || 0;
     bz.cols.posts.update(post._id, {$set: {'stats.seenAll': ++userSeenAll}});
