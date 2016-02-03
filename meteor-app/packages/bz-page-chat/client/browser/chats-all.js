@@ -94,7 +94,7 @@ Template.chatMessage.helpers({
        //my message
        return currentUser.profile && currentUser.profile.image && currentUser.profile.image.data || "/img/content/avatars/avatar-no.png";
      }else {
-       return this.user.profile && this.user.profile.image && this.user.profile.image.data || "/img/content/avatars/avatar-no.png";
+       return this.user && this.user.profile && this.user.profile.image && this.user.profile.image.data || "/img/content/avatars/avatar-no.png";
      }
    }
 });
