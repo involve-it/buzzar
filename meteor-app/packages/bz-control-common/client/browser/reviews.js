@@ -46,18 +46,25 @@ Template.bzControlAddReview.events({
         Router.signIn(true);
       }
     } else {
-      if(text.trim() && postId){
-        bz.cols.reviews.insert({
-          entityId: postId,
-          type: 'postType',
-          user: Meteor.user(),
-          userId: Meteor.userId(),
-          text: text.trim(),
-          rating: rating || undefined,
-          dateTime: Date.now()
-        });
-        $('.js-post-text-input').val('');
-      }
+      bz.ui.validateFoundationForm().done(function(res) {
+        if(res.isValid){
+          if(text.trim() && postId){
+            bz.cols.reviews.insert({
+              entityId: postId,
+              type: 'postType',
+              user: Meteor.user(),
+              userId: Meteor.userId(),
+              text: text.trim(),
+              rating: rating || undefined,
+              dateTime: Date.now()
+            });
+            $('.js-post-text-input').val('');
+          }
+        } else {
+          bz.ui.error(res.errorMessages);
+        }
+      });
+
     }
 
 

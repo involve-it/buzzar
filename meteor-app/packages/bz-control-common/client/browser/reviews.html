@@ -47,21 +47,16 @@
           {{ text }}
         </div>
       </div>
-
-      <div class="bz-review-post-body-footer">
-        <div>
-          {{ t9n 'RATING' }}: {{ rating }}
-        </div>
-      </div>
     </div>
 
   </div>
 </template>
 
 <template name="bzControlAddReview">
-  <textarea required rows="4" cols="50" class="js-post-text-input" placeholder={{ t9n 'REVIEW_HELP_TEXT' }}></textarea>
-  <div class="bz-control-reviews">
-    <!--<select id="single-bsg-pilot" class="js-rating-select" data-prompt={{ t9n 'CHOOSE_RATING' }}> //todo:
+  <form data-abide>
+    <textarea required rows="4" cols="50" class="js-post-text-input" placeholder={{ t9n 'REVIEW_HELP_TEXT' }}></textarea>
+    <div class="bz-control-reviews">
+      <!--<select id="single-bsg-pilot" class="js-rating-select" data-prompt={{ t9n 'CHOOSE_RATING' }}> //todo:
       Post-Processing Selection Post Rating
       <option value="1">1</option>
       <option value="2">2</option>
@@ -69,6 +64,7 @@
       <option value="4">4</option>
       <option value="5">5</option>
     </select>-->
-    <button class="button btn-default bz-small js-post-btn">{{ t9n 'SUBMIT' }}</button>
-  </div>
+      <button type="submit" class="button btn-default bz-small js-post-btn">{{ t9n 'SUBMIT' }}</button>
+    </div>
+  </form>
 </template>

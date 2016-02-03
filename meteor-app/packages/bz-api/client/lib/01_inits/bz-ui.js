@@ -3,22 +3,6 @@
  */
 bz.help.makeNamespace('bz.ui');
 
-bz.ui.initFoundationValidation = function() {
-  console.error('This is abstract function');
-};
-
-bz.ui.initFoundationValidation = function() {
-  $(document).foundation({
-    abide: {
-      live_validate: true,
-      validate_on_blur: true,
-      focus_on_invalid: true,
-      error_labels: true,
-      timeout: 100
-    }
-  });
-};
-
 /* BZ DROP TIPS */
 bz.ui.initDropTips = function() {
 
@@ -199,3 +183,43 @@ bz.ui.spinnerRemove = function(elementSelector) {
     }
 }
 
+//  foundation:
+
+bz.ui.initFoundationValidation = function() {
+  $(document).foundation({ // see http://foundation.zurb.com/sites/docs/v/5.5.3/components/abide.html
+    abide: {
+      live_validate: true,
+      validate_on_blur: true,
+      focus_on_invalid: true,
+      error_labels: true,
+      timeout: 100
+    }
+  });
+};
+bz.ui.validateFoundationForm = function(selector){
+  return new Promise((resolve, reject) => {
+    var ret = true, msg = [], selector = selector || 'form[data-abide]'; // default selector.
+    // 1. add abide event listeners:
+    $(selector).on('valid.fndtn.abide', function () {
+      // Handle the submission of the form
+      resolve({
+        isValid: true && ret,
+        errorMessages: msg
+      });
+    });
+    $(selector).on('invalid.fndtn.abide', function () {
+      // Handle the submission of the form
+      msg.push('Some fields did not pass validation');
+      resolve({
+        isValid: false,
+        errorMessages: msg
+      });
+    });
+    // 2. submit abide forms to trigger validation:
+    $(selector).submit();
+
+    // 3. remove event listeners:
+    $(selector).off('valid.fndtn.abide');
+    $(selector).off('invalid.fndtn.abide');
+  });
+}
