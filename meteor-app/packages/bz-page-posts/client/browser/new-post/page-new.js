@@ -5,10 +5,11 @@ Template.postsNew.rendered = function () {
     // let's lazy-load code mirror plugin:
     bz.ui.initCodeMirror(function(){
       var input = $('.js-post-description');
-      var htmleditor = UIkit.htmleditor(input, { /* options */ });
+      var htmleditor = UIkit.htmleditor(input, { height:200, markdown:true });
     });
   }, 100);
-}
+};
+
 Template.postsNew.created = function () {
   this.data ? _.extend(this.data, data) : _.extend({}, data);
   //$('.js-new-post-placeholder').append();
