@@ -6,7 +6,7 @@ enI18n = {
   //Global
   COMMENTS:'Comments',
   RATING: 'Rating',
-  REVIEW_HELP_TEXT: 'put your review here',
+  REVIEW_HELP_TEXT: 'Put your review here',
   CHOOSE_RATING: 'Choose rating',
   SUBMIT: 'Submit',
 
@@ -148,6 +148,11 @@ enI18n = {
   PROFILE_USER_SKYPE: 'Skype',
   PROFILE_USER_STATUS: 'Status',
   PROFILE_PROFILE_URL: 'Profile URL',
+  PROFILE_USER_DETAILS_POSTS: 'Posts',
+
+  //Another user profile details
+  PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Personal data',
+  PROFILE_ANOTHER_USER_ADDITIONAL_LINKS: 'External link',
 
   //Profile - edit
   PROFILE_EDIT_USER_AVATAR: 'Edit user avatar',

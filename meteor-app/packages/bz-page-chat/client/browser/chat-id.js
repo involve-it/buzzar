@@ -89,5 +89,8 @@ Template.bzMessageToolbar.helpers({
       partEmail = this.user.emails[0].address;
       return partEmail.split('@')[0];
     }
+  },
+  getFriendAvatarUrl: function(){
+      return this.user.profile && this.user.profile.image && this.user.profile.image.data || "/img/content/avatars/avatar-no.png";
   }
 });

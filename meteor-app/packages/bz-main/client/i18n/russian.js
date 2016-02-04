@@ -14,7 +14,7 @@ ru = {
   NO: 'Нет',
   COMMENTS:'Комментарии',
   RATING: 'Рейтинг',
-  REVIEW_HELP_TEXT: 'Оставьте свой комменрарий здесь',
+  REVIEW_HELP_TEXT: 'Оставьте свой комментарий здесь',
   CHOOSE_RATING: 'Выберите рейтинг',
   SUBMIT: 'Отправить',
 
@@ -172,6 +172,12 @@ ru = {
   PROFILE_USER_SKYPE: 'Skype',
   PROFILE_USER_STATUS: 'Статус',
   PROFILE_PROFILE_URL: 'URL профиля',
+  PROFILE_USER_DETAILS_POSTS: 'Публикации',
+
+  //Another user profile details
+  PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Личные данные',
+  PROFILE_ANOTHER_USER_ADDITIONAL_LINKS: 'Внешние ссылки',
+
 
   //Profile - edit
   PROFILE_EDIT_USER_AVATAR: 'Настройки аватара',
