@@ -127,8 +127,12 @@ en = {
   NEW_POST_SENIORITY: 'Seniority',
   NEW_POST_GENDER: 'Gender',
   NEW_POST_ATTACHMENT_FILES: 'Attachments',
+  NEW_POST_REMOVE_ATTACHMENT: 'Remove Attachment',
   NEW_POST_CONTACTS: 'Contacts',
   NEW_POST_ATTACH_A_DOCUMENT: 'Attach a document (optional)',
+  NEW_POST_CATEGORY_SEARCH: 'Search category',
+  NEW_POST_EMPLOYMENT_AND_WORK_SCHEDULE: 'Employment and work schedule',
+  NEW_POST_PAY_METHOD: 'Pay method',
   
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',

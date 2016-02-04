@@ -127,8 +127,12 @@ ru = {
   NEW_POST_SENIORITY: 'Трудовой стаж',
   NEW_POST_GENDER: 'Пол',
   NEW_POST_ATTACHMENT_FILES: 'Вложения',
+  NEW_POST_REMOVE_ATTACHMENT: 'Удалить вложение',
   NEW_POST_CONTACTS: 'Контакты',
   NEW_POST_ATTACH_A_DOCUMENT: 'Прикрепить документ (необязательно)',
+  NEW_POST_CATEGORY_SEARCH: 'Категория поиска',
+  NEW_POST_EMPLOYMENT_AND_WORK_SCHEDULE:'Занятость и график работы',
+  NEW_POST_PAY_METHOD: 'Способ оплаты',
   
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Новое напоминание',
