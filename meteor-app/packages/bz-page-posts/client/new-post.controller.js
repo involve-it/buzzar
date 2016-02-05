@@ -4,6 +4,8 @@
 
 newPostType = new ReactiveVar();
 
+
+/*
 // set new image to db:
 Meteor.startup(function () {
 
@@ -12,6 +14,7 @@ Meteor.startup(function () {
     bz.runtime.newPost.hashes = Session.get('hashes');
   });
 });
+*/
 
 
 // handle post type:

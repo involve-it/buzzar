@@ -12,7 +12,7 @@ Package.describe({
 
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
-  api.use(['iron:router', 'iron:layout', 'ecmascript'], ['client', 'server']);
+  api.use(['iron:router', 'iron:layout', 'reactive-var', 'tracker', 'ecmascript'], ['client', 'server']);
   api.use(['check', 'thinksoftware:image-resize-client'], ['client', 'server']);// image upload for resizing
 
   api.use(['templating', 'less'], 'client');

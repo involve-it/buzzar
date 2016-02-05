@@ -197,6 +197,7 @@ GetPostRating = function (curPost) {
   }
   return rating;
 };
+
 // API:
 bz.help.makeNamespace('bz.bus.posts', {
   getCurrentPost: function () {
@@ -209,7 +210,6 @@ bz.help.makeNamespace('bz.bus.posts', {
 });
 
 //GLOBAL HELPERS:
-
 GetValueJobsSingleData = function(v, selector) {
   var ret,
       selectedElement = v.$(selector).find('.selected');
@@ -219,7 +219,6 @@ GetValueJobsSingleData = function(v, selector) {
   }
   return ret;
 };
-
 GetValueJobsMultiData = function(v, selector) {
   var selectedOptions = [];
   v.$(selector).find('.selected').each(function() {
@@ -227,7 +226,6 @@ GetValueJobsMultiData = function(v, selector) {
   });
   return selectedOptions;
 };
-
 GetValuePayMethod = function(v, selector) {
   var ret,
       selectElement = v.$(selector).find('[aria-checked="true"]');
@@ -237,8 +235,6 @@ GetValuePayMethod = function(v, selector) {
   }
   return ret;
 };
-
-
 DeterminePostTypeFromView = function(v) {
   //newPostType
   //v.$('.js-post-type-select').val()
@@ -281,3 +277,7 @@ GetEndDatePost = function(v, start) {
   return ret && ret.getTime();
 };
 
+// CLASSES:
+class PostImagesArray {
+
+}

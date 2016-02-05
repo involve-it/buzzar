@@ -3,11 +3,14 @@
  */
 const SESSION_NAME = 'bz.common.uploadImageSrc';
 
+Template.uploadImageModal.onDestroyed(function () {
+  console.log('uploadImageModal destroyed');
+});
 Template.uploadImageModal.onRendered(function () {
   setTimeout(function () {
     $(document).off('open.fndtn.reveal', '[data-reveal].js-avatar-upload-modal');
     $(document).on('open.fndtn.reveal', '[data-reveal].js-avatar-upload-modal', function () {
-      clearForm();
+      Template.uploadImageModal.bzOpened();
     });
   }, 1000);
   // this.data is session var name for holding img src
@@ -15,21 +18,25 @@ Template.uploadImageModal.onRendered(function () {
 
 });
 
+// this is analog to rendered, runs every time modal is open
+Template.uploadImageModal.bzOpened = function () {
+  clearForm();
+  //CreateNewImage();
+}
 Template.uploadImageModal.helpers({
   getPreviewImgSrc: function () {
-    var imgSrc, imgObj = Session.get(SESSION_NAME) || {};
-    if (imgObj.type === 'file') {
-      imgSrc = imgObj.data
-    } else {
-      imgSrc = imgObj.src;
-    }
-    return imgSrc;
+    var imgSrc, imgObj = currentImageReactive.get();
+    /*if (imgObj.type === IMG_TYPES.BLOB) {
+     imgSrc = imgObj.src
+     //imgSrc = imgObj.data
+     } else {
+     imgSrc = imgObj.src;
+     }*/
+    $('.js-preview').animate({opacity: 1.0}, 150);
+    bz.ui.spinnerRemove('.js-preview-wrapper');
+    return imgObj.src;
   },
   countFile: function () {
-
-    /*if(Session.get('bz.posts.postImgArr') !== undefined) {
-     return true;
-     }*/
   }
 });
 
@@ -83,15 +90,18 @@ Template.uploadImageModal.events({
   'click .js-use-image-url': function (e, v) {
     var imgUrl = $('.js-image-url').val();
     if (imgUrl) {
-      saveImageFromUrlToSession(imgUrl);
+      new UrlImageClass(imgUrl);
     }
   },
   'click .js-use-random-image-url': function (e, v) {
     var that = this, imgData,
       randomImgUrl = bz.const.randomImageSite + '?ts=' + Date.now();
-    getDataFromImgUrl(randomImgUrl, $('.js-preview')[0], 600, 500, function (imgData) {
-      saveImageFromDataToSession(imgData, randomImgUrl);
-    });
+    if (randomImgUrl) {
+      bz.ui.spinnerAdd('.js-preview-wrapper');
+      $('.js-preview').animate({opacity: 0}, 150);
+      //$('.js-preview').css({opacity: 1.0, visibility: 'visible'}).animate({opacity: 0}, 50);
+      new BlobImageClass(randomImgUrl, $('.js-preview')[0]);
+    }
   },
   'change .js-file-upload': function (e, v) {
     var input = e.target, that = this,
@@ -115,7 +125,9 @@ Template.uploadImageModal.events({
     }
   },
   'click .js-random-image-tab-btn': function (e, v) {
-    v.$('.js-use-random-image-url').click();
+    setTimeout(()=> {
+      v.$('.js-use-random-image-url').click();
+    }, 150);
   },
   'click .js-tab-title': function (e, v) {
     v.$('.js-preview').attr('src', '')
@@ -129,95 +141,7 @@ function clearForm(v) {
   Session.set(SESSION_NAME, {});
   v.$('.js-file-upload').val('');
 }
-function generateRandomFileNameFromExtension(fullName) {
-  fullName = fullName || '';
-  var extension = fullName.substr(fullName.lastIndexOf('.') + 1);
-  extension = (extension.length > 5 || extension.length < 3) ? 'png' : extension;
-  return _.guid() + '.' + extension;
-}
-function saveImageFromUrlToSession(imgUrl) {
-  // try to get non-ssl , todo: remove after we add ssl:
-  imgUrl = imgUrl.replace('https://', 'http://');
-  Session.set(SESSION_NAME, {
-    type: 'url',
-    src: imgUrl,
-    name: generateRandomFileNameFromExtension(imgUrl)
-  });
-}
-function saveImageFromBlobFileToSession(fileInputSelector, fileName, data) {
 
-  Session.set(SESSION_NAME, {
-    type: 'file',
-    src: fileInputSelector,
-    data: data,
-    name: generateRandomFileNameFromExtension(fileName)
-  });
-}
-function saveImageFromDataToSession(imgData, fileName) {
-  Session.set(SESSION_NAME, {
-    type: 'data',
-    src: imgData,
-    name: generateRandomFileNameFromExtension(fileName)
-  });
-  //var arr = [];
-  /*console.log('sessionName: ' + sessionName);
-   if(img && sessionName) {
-   imagesArrayGlobal.push({
-   sessionName: sessionName,
-   imgUrl: img
-   });
-   }
-   Session.set('bz.posts.postImgSrc', img);*/
-  /*
-   arr = Session.get(sessionName);
-   if (!arr || !Array.isArray(arr)) {
-   arr = [];
-   }
-   arr.push({
-   data: img
-   });
-
-   Session.set(sessionName, arr);
-   }
-   return arr;*/
-}
-
-function dataURItoBlob(dataURI) { // http://stackoverflow.com/a/11954337
-  var binary = atob(dataURI.split(',')[1]);
-  var array = [];
-  for (var i = 0; i < binary.length; i++) {
-    array.push(binary.charCodeAt(i));
-  }
-  return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
-}
-function uploadImageToS3(file, callback, errCallback) {
-
-  var uploader = uploadImageToS3.uploader = uploadImageToS3.uploader || new Slingshot.Upload('bzImagesDirective');
-  var error = uploader.validate(file);
-  if (error) {
-    console.error(error);
-  }
-  uploader.send(file, function (error1, downloadUrl) {
-    if (error1) {
-      if (error1 && error1.error === 'Upload denied') {
-        alert(error1.message);
-      }
-      // Log service detailed response.
-      var printErr = uploader.xhr && uploader.xhr.response || error1;
-      //console.error('Error uploading', printErr);
-      errCallback.call(this, error1);
-      //alert(error1);
-    }
-    else {
-      if (callback && typeof callback === 'function') {
-        callback.call(this, downloadUrl);
-      }
-      //Meteor.users.update(Meteor.userId(), {$push: {"profile.files": downloadUrl}});
-      saveImageFromUrlToSession(downloadUrl);
-      //Session.set(SESSION_NAME, downloadUrl);
-    }
-  });
-}
 
 doneCloseChooseImageDialog = function (sessionName, imgObj) {
   var inp, file;
@@ -226,14 +150,14 @@ doneCloseChooseImageDialog = function (sessionName, imgObj) {
   if (imgObj.type === 'data') {
     file = dataURItoBlob(imgObj.src);
     file.name = imgObj.name;
-    makeSmallThumbnailFromFile(file).then(()=>{
+    makeSmallThumbnailFromFile(file).then(()=> {
       debugger;
     })
     uploadImageToS3(file, function (resUrl) {
       bz.ui.spinnerRemove('.js-edit-avatar');
 
       saveImageFromUrlToExternalSession(sessionName, resUrl);
-    }, function(error){
+    }, function (error) {
       // error allback:
       bz.ui.spinnerRemove('.js-edit-avatar');
 
@@ -242,13 +166,13 @@ doneCloseChooseImageDialog = function (sessionName, imgObj) {
     saveImageFromUrlToExternalSession(sessionName, imgObj.src);
   } else if (imgObj.type === 'file' && (inp = $(imgObj.src)[0])) {
     file = inp.files[0];
-    makeSmallThumbnailFromFile(file).done(function(newFile) {
+    makeSmallThumbnailFromFile(file).done(function (newFile) {
       debugger;
       saveImageFromUrlToExternalSession(sessionName, newFile);
       bz.ui.spinnerRemove('.js-edit-avatar');
     });
     /*uploadImageToS3(file, function (resUrl) {
-      saveImageFromUrlToExternalSession(sessionName, resUrl);
-    });*/
+     saveImageFromUrlToExternalSession(sessionName, resUrl);
+     });*/
   }
 }
