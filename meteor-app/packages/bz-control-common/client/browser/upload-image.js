@@ -20,7 +20,8 @@ Template.uploadImageModal.onRendered(function () {
 
 // this is analog to rendered, runs every time modal is open
 Template.uploadImageModal.bzOpened = function () {
-  clearForm();
+  cleanForm();
+  ImageClass.cleanClass();
   //CreateNewImage();
 }
 Template.uploadImageModal.helpers({
@@ -37,6 +38,9 @@ Template.uploadImageModal.helpers({
     return imgObj.src;
   },
   countFile: function () {
+  },
+  getUserImages: function () {
+    return bz.cols.images.find({userId: Meteor.userId()});
   }
 });
 
@@ -92,6 +96,7 @@ Template.uploadImageModal.events({
     if (imgUrl) {
       new UrlImageClass(imgUrl);
     }
+    return false;
   },
   'click .js-use-random-image-url': function (e, v) {
     var that = this, imgData,
@@ -109,19 +114,19 @@ Template.uploadImageModal.events({
     if (file) {
       var reader = new FileReader();
       reader.onload = function (e1) {
-        //saveImageFromDataToSession(e1.target.result, file.name);
-        saveImageFromBlobFileToSession('.js-file-upload', file.name, e1.target.result);
-
+        new BlobImageClass({
+          fileName: file.name,
+          data: e1.target.result
+        });
       };
       reader.readAsDataURL(file);
-      //saveImageFromBlobFileToSession(file);
-
     }
   },
   'click .js-ok-btn': function (e, v) {
     $('.js-avatar-upload-modal').foundation('reveal', 'close');
-    if (this.sessionName) {
-      doneCloseChooseImageDialog(this.sessionName, Session.get(SESSION_NAME));
+    if (this.imagesArr) {
+      //doneCloseChooseImageDialog(this.sessionName, currentImageReactive.get());
+      doneCloseChooseImageDialog(this.imagesArr, currentImageReactive.get());
     }
   },
   'click .js-random-image-tab-btn': function (e, v) {
@@ -134,45 +139,32 @@ Template.uploadImageModal.events({
   }
 });
 
+Template.bzImagesPreviewList.events({
+  'click .js-images-preview-list-image': function (e, v) {
+    var mongoId = v.data._id;
+    new UrlImageClass({
+      url: v.data.data,
+      mongoId: mongoId
+    });
+  }
+})
 
 //HELPERS:
-function clearForm(v) {
+function cleanForm(v) {
   v = v || window;
-  Session.set(SESSION_NAME, {});
+  //Session.set(SESSION_NAME, {});
   v.$('.js-file-upload').val('');
 }
 
-
-doneCloseChooseImageDialog = function (sessionName, imgObj) {
+doneCloseChooseImageDialog = function (imagesArrExternal, imgObj) {
   var inp, file;
   bz.ui.spinnerAdd('.js-edit-avatar');
-
-  if (imgObj.type === 'data') {
-    file = dataURItoBlob(imgObj.src);
-    file.name = imgObj.name;
-    makeSmallThumbnailFromFile(file).then(()=> {
-      debugger;
-    })
-    uploadImageToS3(file, function (resUrl) {
-      bz.ui.spinnerRemove('.js-edit-avatar');
-
-      saveImageFromUrlToExternalSession(sessionName, resUrl);
-    }, function (error) {
-      // error allback:
-      bz.ui.spinnerRemove('.js-edit-avatar');
-
-    });
-  } else if (imgObj.type === 'url') {
-    saveImageFromUrlToExternalSession(sessionName, imgObj.src);
-  } else if (imgObj.type === 'file' && (inp = $(imgObj.src)[0])) {
-    file = inp.files[0];
-    makeSmallThumbnailFromFile(file).done(function (newFile) {
-      debugger;
-      saveImageFromUrlToExternalSession(sessionName, newFile);
-      bz.ui.spinnerRemove('.js-edit-avatar');
-    });
-    /*uploadImageToS3(file, function (resUrl) {
-     saveImageFromUrlToExternalSession(sessionName, resUrl);
-     });*/
-  }
+  new ThumbnailImageClass(imgObj, (thumbObj)=> {
+    if (imgObj.type === 'blob') {
+    } else if (imgObj.type === 'url') {
+    }
+    imgObj.thumbnail = thumbObj;
+    ImageClass.saveImageToExternalObject(imagesArrExternal, imgObj);
+    bz.ui.spinnerRemove('.js-edit-avatar');
+  });
 }

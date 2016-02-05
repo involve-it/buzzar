@@ -6,12 +6,16 @@
     <div class="bz-upload-image-toolbar-wrapper">
       <ul class="tabs bz-nav sub-sections bz-horizontal" data-tab>
         <li class="tab-title js-tab-title active"><a href="#panel11"><i class="fa fa-folder-open fa-2x"></i><br/><span class="hide-for-small-only">Upload Photo</span></a></li>
-        <li class="tab-title js-tab-title"><a href="#panel21"><i class="fa fa-camera fa-2x"></i><br/><span class="hide-for-small-only">Take Photo</span></a></li>
+        <!--<li class="tab-title js-tab-title"><a href="#panel21"><i class="fa fa-camera fa-2x"></i><br/><span class="hide-for-small-only">Take Photo</span></a></li>-->
         <li class="tab-title js-tab-title"><a href="#panel31"><i class="fa fa-cloud-download fa-2x"></i><br/><span class="hide-for-small-only">Image from Url</span></a></li>
         <li class="tab-title js-tab-title"><a href="#panel41" class="js-random-image-tab-btn"><i class="fa fa-random fa-2x"></i><br/><span class="hide-for-small-only">Random Image</span></a></li>
-        <!--<li class="tab-title js-tab-title"><a href="#panel51" class="js-my-images-tab-btn"><i class="fa fa-recycle fa-2x"></i><br/>My Images</a></li>-->
+        <li class="tab-title js-tab-title"><a href="#panel51" class="js-my-images-tab-btn"><i class="fa fa-recycle fa-2x"></i><br/><span class="hide-for-small-only">My Images</span></a></li>
       </ul>
     </div>
+  </div>
+
+  <div class="js-preview-wrapper">
+    <img class="js-preview" src="{{ getPreviewImgSrc }}"/>
   </div>
 
   <div class="tabs-content">
@@ -44,6 +48,13 @@
             <div class="bz-button-box"><button class="button btn-default btn-gray js-use-random-image-url">{{ t9n 'COMMON_IMAGE_GET_RANDOM'}} </button></div>
         </div>
     </div>
+    <div class="content" id="panel51">
+      <ul>
+        {{#each getUserImages }}
+          {{> bzImagesPreviewList }}
+        {{/each}}
+      </ul>
+    </div>
   </div>
 
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
@@ -52,28 +63,27 @@
     Photo Library is not available.
     <a href="#" class="close">&times;</a>
   </div>
-  
- 
-  <div class="js-preview-wrapper">
-      <img class="js-preview" src="{{ getPreviewImgSrc }}"/>
-  </div>
-
-    
-  <hr/>
-    
+  <hr />
   <button class="js-ok-btn btn-default bz-small bz-button-done">Done</button>
 </template>
 
-
+<template name="bzImagesPreviewList">
+  <li>
+    <a href="#" class="js-images-preview-list-image"><img height="50" style="height:50px; max-height: 50px;" src="{{ data }}" />{{ fileName }}, _id: {{ _id }}</a>
+  </li>
+</template>
 <template name="filePickerUpload">
   <button id="upload">Upload New Profile Image with File Picker</button>
 </template>
 
 <template name="noUploadImagePhoto">
     <div class="no-upload-image">
+      <!--{{#if getPreviewImgSrc }}
+      {{ else }}
         <div class="no-upload-image-wrapper">
-            <div class="no-img"><i class="fa fa-picture-o"></i></div>
+          <div class="no-img"><i class="fa fa-picture-o"></i></div>
         </div>
+      {{/if }}-->
         <div class="bz-files-button">
             <input type="file" accept="image/*" class="bz-custom-file-input js-file-upload">
         </div>

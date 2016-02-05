@@ -4,76 +4,82 @@
 
 const IMG_TYPES = {
   URL: 'url',
-  BLOB: 'blob'
+  BLOB: 'blob',
+  THUMBNAIL: 'thumbnail'
 }
 
 currentImageReactive;
-Meteor.startup(()=>{
+//imagesArrayExternalReactive = new ReactiveVar();
+
+Meteor.startup(()=> {
   currentImageReactive = new ReactiveVar(new ImageClass());
 });
 /*CreateNewImage = function(){
-  var img =  new ImageClass();
-  currentImageReactive.set(img);
-  return img;
-}*/
+ var img =  new ImageClass();
+ currentImageReactive.set(img);
+ return img;
+ }*/
 
 ImageClass = class {
   constructor(options = {}) {
     this.setRandomFileNameFromExtension(options.fileName);
   }
+
   set src(value) {
     this.src = value;
   }
+
   get src() {
     return this._src;
   }
-  save(){
+
+  save() {
 
   }
-  toObject(){
+
+  toObject() {
 
   }
-  makeSmallThumbnailFromFile(file) {
-    return new Promise((resolve, reject)=> {
-      Resizer.resize(file, {width: 300, height: 300, cropSquare: true}, function (err, newFile) {
-        resolve(newFile);
-      });
-    });
-  }
 
-  saveImageFromUrlToExternalSession(sessionName, url) {
-    var sessionVal = Session.get(sessionName), newSessionVal,
-      imgObj = {
-        data: url
-      };
-    if (sessionVal && Array.isArray(sessionVal)) {
-      newSessionVal = sessionVal;
+  static saveImageToExternalObject(objReactive, imgObj) {
+    var objectVal = objReactive.get() || [], newObjectVal;
+    if (objectVal && Array.isArray(objectVal)) {
+      newObjectVal = objectVal;
 
-      newSessionVal.push(imgObj);
+      newObjectVal.push(imgObj);
     } else {
-      newSessionVal = imgObj;
+      newObjectVal = imgObj;
     }
-    Session.set(sessionName, newSessionVal);
+    objReactive.set(newObjectVal);
+    window.aaa = objReactive;
   }
 
   static getDataFromImgUrl(url, img, w, h) {
-    var img, canvas, ctx, ret;
+    var canvas, ctx, ret, imgCreated = false;
+    if(!img){
+      img = $('<img style="opacity:0;"/>');
+      //$(document).append(img);
+      imgCreated = true;
+    }
     //var img = $('#asdf')[0];                   '
-    return new Promise((resolve)=>{
+    return new Promise((resolve)=> {
       img.setAttribute('crossOrigin', 'anonymous');
       canvas = document.createElement('canvas');
 
       ctx = canvas.getContext("2d");
       img.onload = function () {
+
         //canvas.width = img.offsetWidth;
         //canvas.height = img.offsetHeight;
         img.onload = null;
+        w = w || img.offsetWidth;
+        h = h || img.offsetHeight;
         canvas.width = w > img.offsetWidth ? w : img.offsetWidth;
         canvas.height = h > img.offsetHeight ? h : img.offsetHeight;
         ctx.drawImage(img, 0, 0);
         ret = canvas.toDataURL();
         resolve(ret);
-
+        //imgCreated && $(document).remove(img);
         //cb.call(this, ret);
       }
       img.src = url;
@@ -88,18 +94,6 @@ ImageClass = class {
     return this.name;
   }
 
-
-
-  static createBlobImageFromBlobFile(fileInputSelector, fileName, data) {
-    var img = new ImageClass({
-      type: 'file',
-      src: fileInputSelector,
-      data: data,
-      fileName: fileName,
-    });
-    return img;
-  }
-
   static dataURItoBlob(dataURI) { // http://stackoverflow.com/a/11954337
     var binary = atob(dataURI.split(',')[1]);
     var array = [];
@@ -108,10 +102,14 @@ ImageClass = class {
     }
     return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
   }
+
+  static cleanClass() {
+    currentImageReactive.set(new ImageClass());
+  }
 }
 
 BlobImageClass = class extends ImageClass {
-  constructor(options = {}, fileInputSelector){
+  constructor(options = {}, fileInputSelectorEl) {
     if (typeof options === 'string') {
       options = {
         url: options,
@@ -121,19 +119,25 @@ BlobImageClass = class extends ImageClass {
     super(options);
     this.type = IMG_TYPES.BLOB;
     //createBlobImageFromUrl
-    if(fileInputSelector){
-      ImageClass.getDataFromImgUrl(options.url, fileInputSelector, 600, 500).done(function (imgData) {
+    if (fileInputSelectorEl) {
+      ImageClass.getDataFromImgUrl(options.url, fileInputSelectorEl, 600, 500).done((imgData)=> {
         this.src = imgData;
         currentImageReactive.set(this);
       });
+    } else {
+      this.src = options.data;
+      currentImageReactive.set(this);
     }
   }
+
   get src() {
     return this.data;
   }
+
   set src(value) {
     this.data = value;
   }
+
   //uploadImageToS3(file, callback, errCallback) {
   save(file, callback, errCallback) {
     var uploader = uploadImageToS3.uploader = uploadImageToS3.uploader || new Slingshot.Upload('bzImagesDirective');
@@ -163,12 +167,14 @@ BlobImageClass = class extends ImageClass {
     });
     super.save();
   }
-  toObject(){
+
+  toObject() {
+    console.log('toObject');
   }
 }
 
 UrlImageClass = class extends ImageClass {
-  constructor(options = {}){
+  constructor(options = {}) {
     if (typeof options === 'string') {
       options = {
         url: options,
@@ -180,10 +186,43 @@ UrlImageClass = class extends ImageClass {
     this.src = options.url;
     currentImageReactive.set(this);
   }
+
   get src() {
-    return this._src;
+    return this.data;
   }
-  set src(source){
-    this._src = source;
+
+  set src(source) {
+    this.data = source;
+  }
+}
+ThumbnailImageClass = class extends ImageClass {
+  constructor(options = {}, callback) {
+    super(options);
+    this.type = IMG_TYPES.THUMBNAIL;
+    this.fileName = ThumbnailImageClass.getFileNameForThumbnail(options.name);
+
+    var file = options.data;
+    if(options.type === IMG_TYPES.URL){
+      var dataString = ImageClass.getDataFromImgUrl(file);
+      file = ImageClass.dataURItoBlob(dataString);
+    }
+    if (typeof file !== 'object' && file.constructor !== Blob) {
+      file = ImageClass.dataURItoBlob(file);
+    }
+    //return new Promise((resolve, reject)=> {
+    Resizer.resize(file, {width: 300, height: 300, cropSquare: true}, (err, newFile)=> {
+      this.blob = newFile;
+      callback && callback(this);
+      //resolve(newFile);
+    });
+    //});
+  }
+
+  static getFileNameForThumbnail(fileName) {
+    var name, arr = fileName.split('.');
+    if (arr.length > 1) {
+      name = arr[0] + '-thumb.' + arr[1];
+    }
+    return name;
   }
 }

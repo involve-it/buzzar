@@ -163,6 +163,14 @@
               <img src="http://localhost:3000/img/content/avatars/avatar-no.png" style="height: 50px;">
             </a>
           </li>-->
+          <a class="js-plus-img bz-post-controls-plus-img">
+            <!--<img src="/img/plus-button.png"/>-->
+            <div class="bz-post-add-photos">
+              <i class="fa fa-picture-o"></i>
+
+              <p class="text-center">{{ t9n 'NEW_POST_ADD_PHOTO_BTN' }}</p>
+            </div>
+          </a>
           {{#each getPostImages }}
             <li class="clearing-featured-img">
               <a onclick="return false;">
@@ -173,14 +181,7 @@
             </a>-->
             </li>
           {{/each }}
-          <a class="js-plus-img">
-            <!--<img src="/img/plus-button.png"/>-->
-            <div class="bz-post-add-photos">
-              <i class="fa fa-picture-o"></i>
 
-              <p class="text-center">{{ t9n 'NEW_POST_ADD_PHOTO_BTN' }}</p>
-            </div>
-          </a>
 
           <!--<li></li>-->
         </ul>
@@ -195,7 +196,8 @@
 
   <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
        role="dialog">
-    {{> uploadImageModal sessionName='bz.posts.postImgArr'}}
+    {{> uploadImageModal newImagesArrayReactive }}
+    <!--{{> uploadImageModal sessionName='bz.posts.postImgArr' arr=newImagesArrayReactive arr1=['a']}}-->
   </div>
 </template>
 <template name="postHashesControl">

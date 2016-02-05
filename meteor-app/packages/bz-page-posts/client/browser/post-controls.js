@@ -111,12 +111,21 @@ Template.postPhotoUpload.helpers({
     return Session.get('bz.posts.postImgSrc') || ret;
   },
   getPostImages: function(){
-    var imgArr = Session.get('bz.posts.postImgArr');
+    //var imgArr = Session.get('bz.posts.postImgArr');
+    var imgArr = newImagesArrayReactive.get();
     if(!imgArr || !Array.isArray(imgArr)) {
       imgArr = []
     } else {
+      imgArr = _.filter(imgArr, function(img){
+        return img.type !== 'thumbnail';
+      });
     }
     return imgArr;
+  },
+  newImagesArrayReactive: function(){
+    return {
+      imagesArr :newImagesArrayReactive
+    };
   }
 });
 Template.postPhotoUpload.events({

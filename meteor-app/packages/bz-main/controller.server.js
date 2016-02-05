@@ -6,7 +6,7 @@ try {
     bucket: "buzzar",
     //LocationConstraint: 'us-west-1',
     region: 'us-west-1',
-    maxSize: 5 * 1024 * 1024, // 10 MB (use null for unlimited)
+    maxSize: 5 * 1024 * 1024, // 5 MB (use null for unlimited)
     acl: "public-read",
     allowedFileTypes: ["image/png", "image/jpeg", "image/gif", "image/tiff", "image/bmp"],
     authorize: function () {

@@ -2,9 +2,12 @@
  * Created by arutu_000 on 12/13/2015.
  */
 
-newPostType = new ReactiveVar();
+newPostType = new ReactiveVar(),
+  newImagesArrayReactive = new ReactiveVar();
 
-
+Meteor.startup(()=>{
+  newImagesArrayReactive.set([]);
+})
 /*
 // set new image to db:
 Meteor.startup(function () {
