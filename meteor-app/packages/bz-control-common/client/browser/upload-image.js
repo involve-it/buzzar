@@ -129,6 +129,10 @@ Template.uploadImageModal.events({
       doneCloseChooseImageDialog(this.imagesArr, currentImageReactive.get());
     }
   },
+  'click .js-cancel-btn': function (e, v) {
+    $('.js-avatar-upload-modal').foundation('reveal', 'close');
+    ImageClass.cleanClass();
+  },
   'click .js-random-image-tab-btn': function (e, v) {
     setTimeout(()=> {
       v.$('.js-use-random-image-url').click();
@@ -159,12 +163,16 @@ function cleanForm(v) {
 doneCloseChooseImageDialog = function (imagesArrExternal, imgObj) {
   var inp, file;
   bz.ui.spinnerAdd('.js-edit-avatar');
-  new ThumbnailImageClass(imgObj, (thumbObj)=> {
-    if (imgObj.type === 'blob') {
-    } else if (imgObj.type === 'url') {
-    }
-    imgObj.thumbnail = thumbObj;
-    ImageClass.saveImageToExternalObject(imagesArrExternal, imgObj);
-    bz.ui.spinnerRemove('.js-edit-avatar');
-  });
+  if(!imgObj){
+
+  } else {
+    new ThumbnailImageClass(imgObj, (thumbObj)=> {
+      if (imgObj.type === 'blob') {
+      } else if (imgObj.type === 'url') {
+      }
+      imgObj.thumbnail = thumbObj;
+      ImageClass.saveImageToExternalObject(imagesArrExternal, imgObj);
+      bz.ui.spinnerRemove('.js-edit-avatar');
+    });
+  }
 }

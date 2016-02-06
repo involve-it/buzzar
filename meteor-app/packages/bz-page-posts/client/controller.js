@@ -72,7 +72,7 @@ runHitTracking = function (post, browserInfo) {
   }
 };
 clearPostData = function () {
-  resetImagesArraySession();
+  resetImagesArray();
 }
 // location1 variable:
 location1 = {
@@ -103,8 +103,9 @@ getPostPhotoObjectsByIds = function (photoIds) {
   });
   return ret;
 };
-resetImagesArraySession = function () {
-  Session.set('bz.posts.postImgArr', []);
+resetImagesArray = function () {
+  console.error('reset')
+  imagesArrayReactive.set([]);
 }
 GetPostAdTypesI18n = function (lang) {
   var ret;

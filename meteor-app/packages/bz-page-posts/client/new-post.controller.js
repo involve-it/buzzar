@@ -3,10 +3,10 @@
  */
 
 newPostType = new ReactiveVar(),
-  newImagesArrayReactive = new ReactiveVar();
+  imagesArrayReactive = new ReactiveVar();
 
 Meteor.startup(()=>{
-  newImagesArrayReactive.set([]);
+  imagesArrayReactive.set([]);
 })
 /*
 // set new image to db:
@@ -65,13 +65,15 @@ CreateNewPostFromView = function (v) {
 
   // gather all data and submit for post-create:
   if (userId) {
-    if (Session.get('bz.posts.postImgArr')) {
+    if (imagesArrayReactive.get()) {
       //if (bz.runtime.newPost.postImage) {
-      _.each(Session.get('bz.posts.postImgArr'), function (img) {
+      _.each(imagesArrayReactive.get(), function (img) {
         img = img || {};
         imgId = bz.cols.images.insert({
           data: img.data,
-          userId: userId
+          userId: userId,
+          name: img.name,
+          thumbnail: img.thumbnail
         });
         imgArr.push(imgId);
       });

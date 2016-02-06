@@ -1,7 +1,11 @@
 /**
  * Created by arutu_000 on 1/23/2016.
  */
+imagesArrayReactive = new ReactiveVar();
 
+Meteor.startup(()=>{
+  imagesArrayReactive.set([]);
+});
 SavePostFromView = function (v, data) {
   var userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
     locDef = $.Deferred(),
@@ -13,9 +17,9 @@ SavePostFromView = function (v, data) {
 
   // gather all data and submit for post-create:
   if (userId) {
-    if (Session.get('bz.posts.postImgArr')) {
+    if (imagesArrayReactive.get()) {
       //if (bz.runtime.newPost.postImage) {
-      _.each(Session.get('bz.posts.postImgArr'), function (img) {
+      _.each(imagesArrayReactive.get(), function (img) {
         img = img || {};
         imgId = bz.cols.images.insert({
           data: img.data,

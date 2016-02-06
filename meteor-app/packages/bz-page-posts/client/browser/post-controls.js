@@ -11,13 +11,9 @@ Template.postTypeSelect.helpers({
 });
 Template.postTypeSelect.events({
   'change .js-ad-type-select': function (e, v) {
-    /*var name = e.target.value.toCapitalCase();
-     setPostDetailsTemplate(name, v);*/
     var val = e.target.value;
     checkIfFieldIsChanged(v.data, 'type', val);
-
     setPostDetailsTemplate(val.toCapitalCase(), this);
-
     bz.ui.initFoundationValidation();
   }
 });
@@ -111,8 +107,7 @@ Template.postPhotoUpload.helpers({
     return Session.get('bz.posts.postImgSrc') || ret;
   },
   getPostImages: function(){
-    //var imgArr = Session.get('bz.posts.postImgArr');
-    var imgArr = newImagesArrayReactive.get();
+    var imgArr = imagesArrayReactive.get();
     if(!imgArr || !Array.isArray(imgArr)) {
       imgArr = []
     } else {
@@ -122,9 +117,9 @@ Template.postPhotoUpload.helpers({
     }
     return imgArr;
   },
-  newImagesArrayReactive: function(){
+  getImagesArrayReactive: function(){
     return {
-      imagesArr :newImagesArrayReactive
+      imagesArr: imagesArrayReactive
     };
   }
 });
@@ -140,10 +135,10 @@ Template.postPhotoUpload.events({
 Template.bzPostPhotoUploadImagePreview.events({
   'click .js-remove-preview-photo': function(e, v){
     var name = v.data.name,
-      arr = newImagesArrayReactive.get();
+      arr = imagesArrayReactive.get();
     var ind = arr.findIndex(x => x.name === name);
     arr.splice(ind, 1);
-    newImagesArrayReactive.set(arr);
+    imagesArrayReactive.set(arr);
   }
 });
 

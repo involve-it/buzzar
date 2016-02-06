@@ -187,10 +187,8 @@
     <a class="js-get-picture-lib button">get pic lib</a>-->
   </div>
 
-  <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
-       role="dialog">
-    {{> uploadImageModal newImagesArrayReactive }}
-    <!--{{> uploadImageModal sessionName='bz.posts.postImgArr' arr=newImagesArrayReactive arr1=['a']}}-->
+  <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    {{> uploadImageModal getImagesArrayReactive }}
   </div>
 </template>
 <template name="bzPostPhotoUploadImagePreview">
