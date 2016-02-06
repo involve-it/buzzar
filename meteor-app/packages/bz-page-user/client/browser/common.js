@@ -4,14 +4,7 @@
 
 
 
-Template.bzUserProfileBasic.rendered = function () {
 
-  /*init Rate*/
-  $('.bz-rating').raty({
-    starType: 'i'
-  });
-
-};
 
 Template.avatarThumbnail.helpers({
   getAvatarImage: function (e, v) {
@@ -32,14 +25,28 @@ Template.avatarThumbnail.helpers({
     return this.write;
   }
 });
-
 Template.avatarThumbnail.events({
   'click .js-edit-image-icon': function () {
     $('.js-avatar-upload-modal').foundation('reveal', 'open');
   }
   /*'click .js-image-upload-modal': function (event, template) {
-
    },*/
+});
+
+Template.bzUserProfileBasic.rendered = function () {
+  /*init Rate*/
+  $('.bz-rating').raty({
+    starType: 'i'
+  });
+};
+Template.bzUserProfileBasic.helpers({
+  belongsToCurrentUser: function (e, v) {
+    return this._id === Meteor.userId();
+  },
+  getCurrentPostId: function(){
+    var post = bz.bus.posts.getCurrentPost();
+    return post && post._id;
+  }
 });
 Template.bzUserProfileBasic.events({
   'click .js-send-message-btn': function (e, v) {
