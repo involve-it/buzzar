@@ -56,12 +56,12 @@ ImageClass = class {
 
   static getDataFromImgUrl(url, img, w, h) {
     var canvas, ctx, ret, imgCreated = false;
-    if(!img){
-      img = $('<img style="opacity:0;"/>');
-      //$(document).append(img);
-      imgCreated = true;
+    if (!img) {
+      /*img = $('<img id="bz-temp-url-image-holder" style=" position: absolute; top: 0; z-index: -1;"/>')[0];
+      $('body').append(img);
+      imgCreated = true;*/
+      img = new Image();
     }
-    //var img = $('#asdf')[0];                   '
     return new Promise((resolve)=> {
       img.setAttribute('crossOrigin', 'anonymous');
       canvas = document.createElement('canvas');
@@ -71,20 +71,32 @@ ImageClass = class {
 
         //canvas.width = img.offsetWidth;
         //canvas.height = img.offsetHeight;
-        img.onload = null;
+        /*img.onload = null;
         w = w || img.offsetWidth;
         h = h || img.offsetHeight;
         canvas.width = w > img.offsetWidth ? w : img.offsetWidth;
         canvas.height = h > img.offsetHeight ? h : img.offsetHeight;
         ctx.drawImage(img, 0, 0);
         ret = canvas.toDataURL();
+         imgCreated && $('body').remove('#bz-temp-url-image-holder');
+
+         */
+
+        var canvas = document.createElement('canvas');
+        canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+        canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+        canvas.getContext('2d').drawImage(this, 0, 0);
+        ret = canvas.toDataURL('image/png');
         resolve(ret);
-        //imgCreated && $(document).remove(img);
         //cb.call(this, ret);
+      }
+      img.onerror = function() {
       }
       img.src = url;
     });
   }
+
 
   setRandomFileNameFromExtension(fullName) {
     fullName = fullName || this.fullName || '';
@@ -202,19 +214,25 @@ ThumbnailImageClass = class extends ImageClass {
     this.fileName = ThumbnailImageClass.getFileNameForThumbnail(options.name);
 
     var file = options.data;
-    if(options.type === IMG_TYPES.URL){
-      var dataString = ImageClass.getDataFromImgUrl(file);
-      file = ImageClass.dataURItoBlob(dataString);
-    }
-    if (typeof file !== 'object' && file.constructor !== Blob) {
+    if (options.type === IMG_TYPES.URL) {
+      var dataString = ImageClass.getDataFromImgUrl(file).done((result)=> {
+        file = ImageClass.dataURItoBlob(result);
+        Resizer.resize(file, {width: 300, height: 300, cropSquare: true}, (err, newFile)=> {
+          this.blob = newFile;
+          callback && callback(this);
+          //resolve(newFile);
+        });
+      });
+    } else if (typeof file !== 'object' && file.constructor !== Blob) {
       file = ImageClass.dataURItoBlob(file);
+
+      //return new Promise((resolve, reject)=> {
+      Resizer.resize(file, {width: 300, height: 300, cropSquare: true}, (err, newFile)=> {
+        this.blob = newFile;
+        callback && callback(this);
+        //resolve(newFile);
+      });
     }
-    //return new Promise((resolve, reject)=> {
-    Resizer.resize(file, {width: 300, height: 300, cropSquare: true}, (err, newFile)=> {
-      this.blob = newFile;
-      callback && callback(this);
-      //resolve(newFile);
-    });
     //});
   }
 

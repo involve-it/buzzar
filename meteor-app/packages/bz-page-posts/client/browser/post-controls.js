@@ -134,6 +134,16 @@ Template.postPhotoUpload.events({
   },
   'click .js-plus-img': function(e,v){
     $('.js-avatar-upload-modal').foundation('reveal', 'open');
+  },
+
+});
+Template.bzPostPhotoUploadImagePreview.events({
+  'click .js-remove-preview-photo': function(e, v){
+    var name = v.data.name,
+      arr = newImagesArrayReactive.get();
+    var ind = arr.findIndex(x => x.name === name);
+    arr.splice(ind, 1);
+    newImagesArrayReactive.set(arr);
   }
 });
 

@@ -172,14 +172,7 @@
             </div>
           </a>
           {{#each getPostImages }}
-            <li class="clearing-featured-img">
-              <a onclick="return false;">
-                <img src="{{ data }}">
-              </a>
-              <!--<a href="{{ getImageSrc }}" onclick="return false;">
-              <img src="{{ getImageSrc }}">
-            </a>-->
-            </li>
+            {{> bzPostPhotoUploadImagePreview }}
           {{/each }}
 
 
@@ -199,6 +192,14 @@
     {{> uploadImageModal newImagesArrayReactive }}
     <!--{{> uploadImageModal sessionName='bz.posts.postImgArr' arr=newImagesArrayReactive arr1=['a']}}-->
   </div>
+</template>
+<template name="bzPostPhotoUploadImagePreview">
+  <li class="clearing-featured-img">
+    <a onclick="return false;">
+      <img src="{{ data }}">
+    </a>
+    <a alt="remove image" class="js-remove-preview-photo" data-name="{{ name }}" style="position: relative; top: -50px; right: 20px;"><i class="fa fa-times"></i></a>
+  </li>
 </template>
 <template name="postHashesControl">
   <div class="clearfix">
