@@ -161,7 +161,7 @@ CreateNewPostFromView = function (v) {
     //$.when(locDef).then(function () {
     Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
       if (!err && res && res !== '') {
-        bz.ui.alert(`Ваш <a href="/posts/${newPost._id}">пост</a> успешно создан`);
+        bz.ui.alert(`Ваш <a href="/post/${res}">пост</a> успешно создан`);
 
         clearPostData();
         bz.runtime.newPost.postId = res;
