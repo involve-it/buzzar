@@ -91,13 +91,17 @@ SavePostFromView = function (v, data) {
       }
     }
 
+    bz.runtime.changesNotSaved = false;
+    Router.go('/posts/my');
+
     //$.when(locDef).then(function () {
     Meteor.call('saveExistingPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
       if (!err && res === 1) {
+        bz.ui.alert(`Ваш <a href="/posts/${res}">пост</a> успешно сохранен`);
         //clearPostData();
         //bz.runtime.newPost.postId = res;
-        bz.runtime.changesNotSaved = false;
-        Router.go('/posts/my');
+      } else {
+        bz.ui.alert(`При сохранении поста возникла проблема: ${err}`);
       }
     });
   }

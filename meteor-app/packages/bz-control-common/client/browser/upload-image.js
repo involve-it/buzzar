@@ -17,7 +17,6 @@ Template.uploadImageModal.onRendered(function () {
   $(document).foundation('tab', 'reflow');
 
 });
-
 // this is analog to rendered, runs every time modal is open
 Template.uploadImageModal.bzOpened = function () {
   cleanForm();
@@ -97,6 +96,38 @@ Template.uploadImageModal.events({
       new UrlImageClass(imgUrl);
     }
     return false;
+  },
+  'paste .js-image-from-clipboard': function(e, v){ // orig: http://jsfiddle.net/KJW4E/2/, http://stackoverflow.com/questions/18377891/how-can-i-let-user-paste-image-data-from-the-clipboard-into-a-canvas-element-in
+    debugger;
+
+    var data = e.originalEvent && e.originalEvent.clipboardData;
+    if(data){
+      var items = data.items;
+      if (items){
+        for (var i = 0; i < items.length; i++) {
+          if (items[i].type.indexOf("image") !== -1) {
+            var blob = items[i].getAsFile();
+            //var URLObj = window.URL || window.webkitURL;
+            //var source = URLObj.createObjectURL(blob);
+            new BlobImageClass({
+              //fileName: file.name,
+              //data: blob,
+              blob: blob
+            });
+          }
+        }
+      }
+      if(!_.filter(items, (item)=>{
+          return item.type.indexOf("image") !== -1
+        }).length){
+        // pasted object is not blob!!
+        bz.ui.error('pasted object is not image!');
+      }
+      // If we can't handle clipboard data directly (Firefox),
+      // we need to read what was pasted from the contenteditable element
+      else{
+      }
+    }
   },
   'click .js-use-random-image-url': function (e, v) {
     var that = this, imgData,

@@ -104,7 +104,6 @@ getPostPhotoObjectsByIds = function (photoIds) {
   return ret;
 };
 resetImagesArray = function () {
-  console.error('reset')
   imagesArrayReactive.set([]);
 }
 GetPostAdTypesI18n = function (lang) {

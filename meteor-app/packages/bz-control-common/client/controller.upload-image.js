@@ -130,8 +130,12 @@ BlobImageClass = class extends ImageClass {
     }
     super(options);
     this.type = IMG_TYPES.BLOB;
-    //createBlobImageFromUrl
-    if (fileInputSelectorEl) {
+    if(options.blob && options.blob.constructor === Blob){
+      this._getDataUriFromBlobPromise(options.blob).done((res)=>{
+        this.src = res;
+        currentImageReactive.set(this);
+      });
+    } else if (fileInputSelectorEl) {
       ImageClass.getDataFromImgUrl(options.url, fileInputSelectorEl, 600, 500).done((imgData)=> {
         this.src = imgData;
         currentImageReactive.set(this);
@@ -182,6 +186,16 @@ BlobImageClass = class extends ImageClass {
 
   toObject() {
     console.log('toObject');
+  }
+  _getDataUriFromBlobPromise(blob){
+    var blob = blob || this.blob;
+    return new Promise((resolve, reject)=>{
+      var fileReader = new FileReader();
+      fileReader.onload = function(res){
+        resolve(fileReader.result);
+      }
+      fileReader.readAsDataURL(blob);
+    });
   }
 }
 

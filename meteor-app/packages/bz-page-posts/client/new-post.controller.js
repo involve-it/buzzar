@@ -77,7 +77,7 @@ CreateNewPostFromView = function (v) {
         });
         imgArr.push(imgId);
       });
-    }
+    };;
     // set location:
     //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
     if (loc1 && location1.isSet) {
@@ -155,13 +155,19 @@ CreateNewPostFromView = function (v) {
       }
     }
 
+    bz.runtime.changesNotSaved = false;
+    Router.go('/posts/my');
+
     //$.when(locDef).then(function () {
     Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
       if (!err && res && res !== '') {
-        bz.runtime.changesNotSaved = false;
+        bz.ui.alert(`Ваш <a href="/posts/${newPost._id}">пост</a> успешно создан`);
+
         clearPostData();
         bz.runtime.newPost.postId = res;
-        Router.go('/posts/my');
+
+      } else {
+        bz.ui.alert(`При создании поста возникла проблема: ${err}`);
       }
     });
   }
