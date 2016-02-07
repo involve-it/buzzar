@@ -1,11 +1,6 @@
 /**
  * Created by Ashot on 9/26/15.
  */
-
-
-
-
-
 Template.avatarThumbnail.helpers({
   getAvatarImage: function (e, v) {
     var ret = this.image && this.image.data;
@@ -23,6 +18,11 @@ Template.avatarThumbnail.helpers({
   },
   canWrite: function () {
     return this.write;
+  },
+  getImagesArrayReactive: function(){
+    return {
+      imagesArr: avatarThumbnailReactive
+    };
   }
 });
 Template.avatarThumbnail.events({

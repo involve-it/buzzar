@@ -165,7 +165,7 @@ bz.ui.modal = function (content, onconfirm) {
 var spinners = {};
 
 bz.ui.spinnerAdd = function (elementSelector) {
-  if (Spinner) {
+  if (Spinner && $(elementSelector)[0]) {
     spinners[elementSelector] && bz.ui.spinnerRemove(elementSelector);
     var spinner = new Spinner().spin();
     spinners[elementSelector] = spinner;
@@ -176,7 +176,7 @@ bz.ui.spinnerAdd = function (elementSelector) {
       bz.ui.spinnerRemove(elementSelector);
     }, 10000);
   } else {
-    console.error('spinner object is not defined');
+    console.log('spinner object is not defined');
   }
 }
 bz.ui.spinnerRemove = function (elementSelector) {

@@ -237,7 +237,7 @@ ThumbnailImageClass = class extends ImageClass {
           //resolve(newFile);
         });
       });
-    } else if (typeof file !== 'object' && file.constructor !== Blob) {
+    } else if (file && typeof file !== 'object' && file.constructor !== Blob) {
       file = ImageClass.dataURItoBlob(file);
 
       //return new Promise((resolve, reject)=> {

@@ -13,7 +13,7 @@ Package.describe({
 Package.onUse(function(api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use(['iron:router', 'iron:layout', 'aldeed:simple-schema', 'dburles:collection-helpers', 'ecmascript',
+  api.use(['reactive-var', 'iron:router', 'iron:layout', 'aldeed:simple-schema', 'dburles:collection-helpers', 'ecmascript',
     'arutune:bz-main'
   ], ['client', 'server']);
   api.use(['templating', 'less'], 'client');

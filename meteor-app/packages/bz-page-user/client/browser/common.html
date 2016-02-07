@@ -8,7 +8,8 @@
       </a>
       <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
            role="dialog">
-        {{> uploadImageModal sessionName = 'bz.user.profileImgUploaded'}}
+        {{> uploadImageModal getImagesArrayReactive }}
+        <!--{{> uploadImageModal sessionName = 'bz.user.profileImgUploaded'}}-->
       </div>
     </div>
   {{/if}}
