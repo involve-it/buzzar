@@ -21,10 +21,14 @@ SavePostFromView = function (v, data) {
       //if (bz.runtime.newPost.postImage) {
       _.each(imagesArrayReactive.get(), function (img) {
         img = img || {};
-        imgId = bz.cols.images.insert({
-          data: img.data,
-          userId: userId
-        });
+        if(!img._id) {
+          imgId = bz.cols.images.insert({
+            data: img.data,
+            userId: userId
+          });
+        } else {
+          imgId = img._id;
+        }
         imgArr.push(imgId);
       });
     }
@@ -106,3 +110,7 @@ SavePostFromView = function (v, data) {
     });
   }
 };
+
+FillPostData = function(data){
+  imagesArrayReactive.set(data._getImagesObjects());
+}

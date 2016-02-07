@@ -9,6 +9,7 @@ postsColl.helpers({
   _hasLivePresence: bz.help.posts.hasLivePresence,
   _getDistanceToCurrentLocation: bz.help.posts.getDistanceToCurrentLocation,
   _getLikesAmount: bz.help.posts.getLikesAmount,
-  _getDistanceQualifier: bz.help.posts.getDistanceQualifier
+  _getDistanceQualifier: bz.help.posts.getDistanceQualifier,
+  _getImagesObjects: bz.help.posts.getImagesObjects
 });
 
