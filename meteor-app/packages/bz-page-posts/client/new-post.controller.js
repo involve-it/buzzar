@@ -55,7 +55,7 @@ TrackNewPostTypeChange = function (selector, data) {
 };
 
 CreateNewPostFromView = function (v) {
-  var userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
+  var descriptionFormatted, userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
     locDef = $.Deferred(),
     loc1 = Session.get(bz.const.posts.location1),
     loc2 = Session.get(bz.const.posts.location2),
@@ -100,6 +100,7 @@ CreateNewPostFromView = function (v) {
     // created timestamp:
     timestamp = Date.now();
     endTimestamp = new Date(timestamp);
+    descriptionFormatted = stripOutScriptTags(v.$('.js-post-description').val()) || undefined;
     var newPost = {
       userId: userId,
       type: DeterminePostTypeFromView(v),
@@ -114,7 +115,7 @@ CreateNewPostFromView = function (v) {
 
         //details:
         title: v.$('.js-post-title').val(),
-        description: v.$('.js-post-description').val(),
+        description: descriptionFormatted,
         price: v.$('.js-post-price').val(),
         photos: imgArr,
 

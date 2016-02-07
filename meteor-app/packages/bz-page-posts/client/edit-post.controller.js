@@ -7,7 +7,7 @@ Meteor.startup(()=>{
   imagesArrayReactive.set([]);
 });
 SavePostFromView = function (v, data) {
-  var userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
+  var descriptionFormatted, userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
     locDef = $.Deferred(),
     loc1 = Session.get(bz.const.posts.location1),
     loc2 = Session.get(bz.const.posts.location2),
@@ -51,6 +51,7 @@ SavePostFromView = function (v, data) {
         value: v.$('.js-charity-type-select').val()
       });
     }
+    descriptionFormatted = stripOutScriptTags(v.$('.js-post-description').val()) || undefined;
     // created timestamp:
     timestamp = Date.now();
     var newPost = {
@@ -67,7 +68,7 @@ SavePostFromView = function (v, data) {
         //url: v.$('.js-original-url').val(),
 
         title: v.$('.js-post-title').val() || undefined,
-        description: v.$('.js-post-description').val() || undefined,
+        description: descriptionFormatted,
         price: v.$('.js-post-price').val(),
         photos: imgArr,
 
@@ -113,4 +114,10 @@ SavePostFromView = function (v, data) {
 
 FillPostData = function(data){
   imagesArrayReactive.set(data._getImagesObjects());
+}
+
+stripOutScriptTags = function(text = ''){
+  var ret, regex = /<\s*script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/\s*script\s*>/gi;
+  ret = text.replace(regex, '');
+  return ret;
 }
