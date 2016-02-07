@@ -98,8 +98,6 @@ Template.uploadImageModal.events({
     return false;
   },
   'paste .js-image-from-clipboard': function(e, v){ // orig: http://jsfiddle.net/KJW4E/2/, http://stackoverflow.com/questions/18377891/how-can-i-let-user-paste-image-data-from-the-clipboard-into-a-canvas-element-in
-    debugger;
-
     var data = e.originalEvent && e.originalEvent.clipboardData;
     if(data){
       var items = data.items;
@@ -107,11 +105,7 @@ Template.uploadImageModal.events({
         for (var i = 0; i < items.length; i++) {
           if (items[i].type.indexOf("image") !== -1) {
             var blob = items[i].getAsFile();
-            //var URLObj = window.URL || window.webkitURL;
-            //var source = URLObj.createObjectURL(blob);
             new BlobImageClass({
-              //fileName: file.name,
-              //data: blob,
               blob: blob
             });
           }
@@ -122,10 +116,6 @@ Template.uploadImageModal.events({
         }).length){
         // pasted object is not blob!!
         bz.ui.error('pasted object is not image!');
-      }
-      // If we can't handle clipboard data directly (Firefox),
-      // we need to read what was pasted from the contenteditable element
-      else{
       }
     }
   },
