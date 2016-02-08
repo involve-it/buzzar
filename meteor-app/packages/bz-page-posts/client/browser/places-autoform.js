@@ -89,10 +89,12 @@ Template.postsPlacesAutoform.events({
           location1.isSet = false;
         }
       } else if (panel.hasClass('js-fixed-location-panel')) {
-        location2.isSet = true;
-        staticLocationPanelClick();
-      } else {
-        location2.isSet = false;
+        if (panel.hasClass('callout')) {
+          location2.isSet = true;
+          staticLocationPanelClick(true);
+        }else{
+          location2.isSet=false;
+        }
       }
     }
   }

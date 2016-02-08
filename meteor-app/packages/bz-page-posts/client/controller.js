@@ -33,9 +33,9 @@ movingLocationPanelClick = function () {
     });
   }
 };
-staticLocationPanelClick = function () {
+staticLocationPanelClick = function (isSet) {
   var chosenLocation = Session.get(location2.sessionName);
-  if (!chosenLocation) {
+  if (!chosenLocation || isSet) {
     // nothing is set as a location, need to set it, for this show user location-choose control:
     //$('.js-location-holder a').click();
     Template.bzLocationNameNewPost.showModal();
