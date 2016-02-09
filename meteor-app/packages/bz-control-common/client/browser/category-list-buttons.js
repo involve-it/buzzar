@@ -26,7 +26,13 @@ Template.categoryListButtons.events({
       cats.push(this.name);
     }
     Session.set('bz.control.category-list.activeCategories', cats);*/
-    bz.ui.putCategoriesToSession(this.intName, true);
+    
+    
+    //bz.ui.putCategoriesToSession(this.intName, true);
+
+    bz.ui.putCategoriesToLinks(this.intName, true);
+    
+    
     //Session.set('activeTemplate', 'singleSearchTemplate');
     Session.set('activeTemplate', null);
   }

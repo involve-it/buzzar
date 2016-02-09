@@ -29,7 +29,7 @@ Template.aroundYouSmall.helpers({
         activeCats: activeCats,
         radius: bz.const.search.AROUND_YOU_RADIUS
       }, {
-        limit: 6,
+        limit: 12,
         //limit: bz.const.search.AROUND_YOU_LIMIT,
         sort: {'stats.seenAll': -1}
       });

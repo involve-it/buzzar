@@ -25,16 +25,39 @@ bz.ui.putCategoriesToSession = (catsToAdd, extend)=> {
   Session.set('bz.control.category-list.activeCategories', cats);
 };
 
+
+bz.ui.putCategoriesToLinks = (intName, extend) => {
+    
+  if(typeof intName === 'string') {
+    Router.go(intName);
+  }
+   
+  //Session.set('bz.control.category-list.activeLinkCategories', link);
+  
+  //Router.current().route.getName()
+
+  /*_.each(Router.routes, function(route){
+   if(route.getName() === doc1.intName) {
+   console.log(doc1);
+   }
+   });*/
+  
+};
+
+
 GetPostAdTypesI18n = (lang)=>{
   var  ret;
   if(lang){
     ret = bz.cols.postAdTypes.find({},  {transform: function (doc) {
+           
       var doc1 = _.extend(doc, doc.i18n[lang]);
+      
       return doc1;
     }});
   } else {
     ret = bz.cols.postAdTypes.find({});
   }
+  
   return ret;
 
 };
