@@ -1,18 +1,6 @@
 /**
  * Created by Ashot on 9/26/15.
  */
-
-
-
-Template.bzUserProfileBasic.rendered = function () {
-
-  /*init Rate*/
-  $('.bz-rating').raty({
-    starType: 'i'
-  });
-
-};
-
 Template.avatarThumbnail.helpers({
   getAvatarImage: function (e, v) {
     var ret = this.image && this.image.data;
@@ -30,16 +18,35 @@ Template.avatarThumbnail.helpers({
   },
   canWrite: function () {
     return this.write;
+  },
+  getImagesArrayReactive: function(){
+    return {
+      imagesArr: avatarThumbnailReactive
+    };
   }
 });
-
 Template.avatarThumbnail.events({
   'click .js-edit-image-icon': function () {
     $('.js-avatar-upload-modal').foundation('reveal', 'open');
   }
   /*'click .js-image-upload-modal': function (event, template) {
-
    },*/
+});
+
+Template.bzUserProfileBasic.rendered = function () {
+  /*init Rate*/
+  $('.bz-rating').raty({
+    starType: 'i'
+  });
+};
+Template.bzUserProfileBasic.helpers({
+  belongsToCurrentUser: function (e, v) {
+    return this._id === Meteor.userId();
+  },
+  getCurrentPostId: function(){
+    var post = bz.bus.posts.getCurrentPost();
+    return post && post._id;
+  }
 });
 Template.bzUserProfileBasic.events({
   'click .js-send-message-btn': function (e, v) {

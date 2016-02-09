@@ -2,8 +2,13 @@
  * Created by arutu_000 on 12/13/2015.
  */
 
-newPostType = new ReactiveVar();
+newPostType = new ReactiveVar(),
+  imagesArrayReactive = new ReactiveVar();
 
+Meteor.startup(()=>{
+  imagesArrayReactive.set([]);
+})
+/*
 // set new image to db:
 Meteor.startup(function () {
 
@@ -12,6 +17,7 @@ Meteor.startup(function () {
     bz.runtime.newPost.hashes = Session.get('hashes');
   });
 });
+*/
 
 
 // handle post type:
@@ -49,7 +55,7 @@ TrackNewPostTypeChange = function (selector, data) {
 };
 
 CreateNewPostFromView = function (v) {
-  var userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
+  var descriptionFormatted, userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
     locDef = $.Deferred(),
     loc1 = Session.get(bz.const.posts.location1),
     loc2 = Session.get(bz.const.posts.location2),
@@ -59,17 +65,19 @@ CreateNewPostFromView = function (v) {
 
   // gather all data and submit for post-create:
   if (userId) {
-    if (Session.get('bz.posts.postImgArr')) {
+    if (imagesArrayReactive.get()) {
       //if (bz.runtime.newPost.postImage) {
-      _.each(Session.get('bz.posts.postImgArr'), function (img) {
+      _.each(imagesArrayReactive.get(), function (img) {
         img = img || {};
         imgId = bz.cols.images.insert({
           data: img.data,
-          userId: userId
+          userId: userId,
+          name: img.name,
+          thumbnail: img.thumbnail
         });
         imgArr.push(imgId);
       });
-    }
+    };;
     // set location:
     //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
     if (loc1 && location1.isSet) {
@@ -92,6 +100,7 @@ CreateNewPostFromView = function (v) {
     // created timestamp:
     timestamp = Date.now();
     endTimestamp = new Date(timestamp);
+    descriptionFormatted = stripOutScriptTags(v.$('.js-post-description').val()) || undefined;
     var newPost = {
       userId: userId,
       type: DeterminePostTypeFromView(v),
@@ -106,7 +115,7 @@ CreateNewPostFromView = function (v) {
 
         //details:
         title: v.$('.js-post-title').val(),
-        description: v.$('.js-post-description').val(),
+        description: descriptionFormatted,
         price: v.$('.js-post-price').val(),
         photos: imgArr,
 
@@ -147,13 +156,19 @@ CreateNewPostFromView = function (v) {
       }
     }
 
+    bz.runtime.changesNotSaved = false;
+    Router.go('/posts/my');
+
     //$.when(locDef).then(function () {
     Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
       if (!err && res && res !== '') {
-        bz.runtime.changesNotSaved = false;
+        bz.ui.alert(`Ваш <a href="/post/${res}">пост</a> успешно создан`);
+
         clearPostData();
         bz.runtime.newPost.postId = res;
-        Router.go('/posts/my');
+
+      } else {
+        bz.ui.alert(`При создании поста возникла проблема: ${err}`);
       }
     });
   }

@@ -1,0 +1,16 @@
+1. roles:
+meteor add alanning:roles
+
+2. Ground db: meteor add ground:db
+
+3. Image resize:
+meteor add thinksoftware:image-resize-client
+
+4. Spinner:
+https://github.com/SachaG/meteor-spin
+http://spin.js.org/
+
+bz.ui.error('Your location is not defined, please set your location manually: <a onclick="$(\'.bz-link-lacation-name\').click()">asdf</a>')
+
+to set settings in js:
+https://github.com/fourquet/meteor-package-settings

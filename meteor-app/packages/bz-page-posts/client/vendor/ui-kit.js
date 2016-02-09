@@ -74,7 +74,7 @@ bz.ui.initUiKit = function () {
 
 };
 
-bz.ui.initCodeMirror = function (callback) {
+bz.ui.initCodeMirror = function (input, callback) {
   setTimeout(function () {
     //if (bz.config.isDev()) {
       toast(
@@ -91,8 +91,12 @@ bz.ui.initCodeMirror = function (callback) {
         '/libs/codemirror/marked.js',
         '/libs/codemirror/htmleditor.js',
         function () {
-          console.log('All scripts are fully loaded');
-          callback();
+          var options = {
+            height:200,
+            markdown:true
+          },
+            htmlditor = UIkit.htmleditor(input, options);
+          callback && callback(htmleditor);
 
           return window.markdown;
         }

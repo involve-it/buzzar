@@ -12,7 +12,9 @@ Package.describe({
 
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
-  api.use(['iron:router', 'iron:layout', 'ecmascript'], ['client', 'server']);
+  api.use(['iron:router', 'iron:layout', 'reactive-var', 'tracker', 'ecmascript'], ['client', 'server']);
+  api.use(['check', 'thinksoftware:image-resize-client'], ['client', 'server']);// image upload for resizing
+
   api.use(['templating', 'less'], 'client');
   //api.use(['arutune:bz-main']);
   //api.use(['natestrauser:filepicker-plus'], 'client');
@@ -22,6 +24,7 @@ Package.onUse(function (api) {
     'client/router.js',
     'client/model.js',
     'client/controller.js',
+    'client/controller.upload-image.js',
     'client/resources/t9-en.js'
   ], 'client');
 

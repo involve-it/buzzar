@@ -150,7 +150,7 @@ Template.postDetailsPhoto.helpers({
       main, photos = getPostPhotoObjectsByIds(this.details.photos);
     if (photos) {
       main = _.filter(photos, function(item){
-        return item.isMain === true;
+        return item && item.isMain === true;
       });
       if (main && main.length > 0){
         ret = main[0];

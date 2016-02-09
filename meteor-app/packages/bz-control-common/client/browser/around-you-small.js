@@ -29,9 +29,10 @@ Template.aroundYouSmall.helpers({
         activeCats: activeCats,
         radius: bz.const.search.AROUND_YOU_RADIUS
       }, {
-        limit: 12,
+        limit: 20,
         //limit: bz.const.search.AROUND_YOU_LIMIT,
-        sort: {'stats.seenAll': -1}
+        //sort: {'stats.seenAll': -1, }
+        //sort: { _getDistanceToCurrentLocation(): -1 }
       });
     }
 /*debugger;*/

@@ -33,15 +33,15 @@ movingLocationPanelClick = function () {
     });
   }
 };
-staticLocationPanelClick = function () {
+staticLocationPanelClick = function (isSet) {
   var chosenLocation = Session.get(location2.sessionName);
-  if (!chosenLocation) {
+  if (!chosenLocation || isSet) {
     // nothing is set as a location, need to set it, for this show user location-choose control:
     //$('.js-location-holder a').click();
     Template.bzLocationNameNewPost.showModal();
   }
 };
-//userSeenAll;
+userSeenAll;
 // this function calculates browser-specific hits
 runHitTracking = function (post, browserInfo) {
   var userSeenTotal, userSeenToday, seenTotalPost, seenTodayPost;
@@ -65,14 +65,14 @@ runHitTracking = function (post, browserInfo) {
   } else {
     // user seen this already, do nothing!
   }
-  // set total loads (non-unique):
+  // set total loads (non-unique), WE DON'T USE THIS!:
   if (!userSeenAll) { // need to run only on-time on full load
     userSeenAll = !userSeenAll && post.stats && post.stats.seenAll || 0;
     bz.cols.posts.update(post._id, {$set: {'stats.seenAll': ++userSeenAll}});
   }
 };
 clearPostData = function () {
-  resetImagesArraySession();
+  resetImagesArray();
 }
 // location1 variable:
 location1 = {
@@ -103,8 +103,8 @@ getPostPhotoObjectsByIds = function (photoIds) {
   });
   return ret;
 };
-resetImagesArraySession = function () {
-  Session.set('bz.posts.postImgArr', []);
+resetImagesArray = function () {
+  imagesArrayReactive.set([]);
 }
 GetPostAdTypesI18n = function (lang) {
   var ret;
@@ -197,6 +197,7 @@ GetPostRating = function (curPost) {
   }
   return rating;
 };
+
 // API:
 bz.help.makeNamespace('bz.bus.posts', {
   getCurrentPost: function () {
@@ -209,7 +210,6 @@ bz.help.makeNamespace('bz.bus.posts', {
 });
 
 //GLOBAL HELPERS:
-
 GetValueJobsSingleData = function(v, selector) {
   var ret,
       selectedElement = v.$(selector).find('.selected');
@@ -219,7 +219,6 @@ GetValueJobsSingleData = function(v, selector) {
   }
   return ret;
 };
-
 GetValueJobsMultiData = function(v, selector) {
   var selectedOptions = [];
   v.$(selector).find('.selected').each(function() {
@@ -227,7 +226,6 @@ GetValueJobsMultiData = function(v, selector) {
   });
   return selectedOptions;
 };
-
 GetValuePayMethod = function(v, selector) {
   var ret,
       selectElement = v.$(selector).find('[aria-checked="true"]');
@@ -237,8 +235,6 @@ GetValuePayMethod = function(v, selector) {
   }
   return ret;
 };
-
-
 DeterminePostTypeFromView = function(v) {
   //newPostType
   //v.$('.js-post-type-select').val()
@@ -249,8 +245,7 @@ DeterminePostTypeFromView = function(v) {
     ret = v.$('.js-memo-type-select').val();
   }
   return ret;
-};
-
+}
 GetEndDatePost = function(v, start) {
   var val = v.$('.js-post-select-duration').val(),
     ret;
@@ -282,3 +277,7 @@ GetEndDatePost = function(v, start) {
   return ret && ret.getTime();
 };
 
+// CLASSES:
+class PostImagesArray {
+
+}

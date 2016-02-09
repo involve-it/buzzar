@@ -163,17 +163,7 @@
               <img src="http://localhost:3000/img/content/avatars/avatar-no.png" style="height: 50px;">
             </a>
           </li>-->
-          {{#each getPostImages }}
-            <li class="clearing-featured-img">
-              <a onclick="return false;">
-                <img src="{{ data }}">
-              </a>
-              <!--<a href="{{ getImageSrc }}" onclick="return false;">
-              <img src="{{ getImageSrc }}">
-            </a>-->
-            </li>
-          {{/each }}
-          <a class="js-plus-img">
+          <a class="js-plus-img bz-post-controls-plus-img">
             <!--<img src="/img/plus-button.png"/>-->
             <div class="bz-post-add-photos">
               <i class="fa fa-picture-o"></i>
@@ -181,8 +171,9 @@
               <p class="text-center">{{ t9n 'NEW_POST_ADD_PHOTO_BTN' }}</p>
             </div>
           </a>
-
-          <!--<li></li>-->
+          {{#each getPostImages }}
+            {{> bzPostPhotoUploadImagePreview }}
+          {{/each }}
         </ul>
         <!--<img src="{{ getImageSrc }}" width="60" height="60">-->
       </div>
@@ -193,10 +184,17 @@
     <a class="js-get-picture-lib button">get pic lib</a>-->
   </div>
 
-  <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
-       role="dialog">
-    {{> uploadImageModal sessionName='bz.posts.postImgArr'}}
+  <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    {{> uploadImageModal getImagesArrayReactive }}
   </div>
+</template>
+<template name="bzPostPhotoUploadImagePreview">
+  <li class="clearing-featured-img">
+    <a onclick="return false;">
+      <img src="{{ data }}">
+    </a>
+    <a alt="remove image" class="js-remove-preview-photo" data-name="{{ name }}" style="position: relative; top: -50px; right: 20px;"><i class="fa fa-times"></i></a>
+  </li>
 </template>
 <template name="postHashesControl">
   <div class="clearfix">

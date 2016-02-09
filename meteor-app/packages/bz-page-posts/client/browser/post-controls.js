@@ -11,13 +11,9 @@ Template.postTypeSelect.helpers({
 });
 Template.postTypeSelect.events({
   'change .js-ad-type-select': function (e, v) {
-    /*var name = e.target.value.toCapitalCase();
-     setPostDetailsTemplate(name, v);*/
     var val = e.target.value;
     checkIfFieldIsChanged(v.data, 'type', val);
-
     setPostDetailsTemplate(val.toCapitalCase(), this);
-
     bz.ui.initFoundationValidation();
   }
 });
@@ -111,12 +107,33 @@ Template.postPhotoUpload.helpers({
     return Session.get('bz.posts.postImgSrc') || ret;
   },
   getPostImages: function(){
-    var imgArr = Session.get('bz.posts.postImgArr');
+    var imgArr = imagesArrayReactive.get();
     if(!imgArr || !Array.isArray(imgArr)) {
       imgArr = []
     } else {
+      imgArr = _.filter(imgArr, function(img){
+        return img.type !== 'thumbnail';
+      });
     }
-    return imgArr;
+    return _.map(imgArr, function(item){
+      return {
+        data: item.data,
+        name: item.name
+      }
+    });
+
+    /*return [{
+        data: 'http://omesto.ru/wp-content/uploads/2014/09/%D0%9C%D0%B0%D0%B3%D0%B0%D0%B4%D0%B0%D0%BD-715x424.jpg',
+        name: 'qwer'
+      }, {
+        data: 'http://omesto.ru/wp-content/uploads/2014/09/%D0%9C%D0%B0%D0%B3%D0%B0%D0%B4%D0%B0%D0%BD-715x424.jpg',
+        name: 'qwer'
+      }]*/
+  },
+  getImagesArrayReactive: function(){
+    return {
+      imagesArr: imagesArrayReactive
+    };
   }
 });
 Template.postPhotoUpload.events({
@@ -125,6 +142,16 @@ Template.postPhotoUpload.events({
   },
   'click .js-plus-img': function(e,v){
     $('.js-avatar-upload-modal').foundation('reveal', 'open');
+  },
+
+});
+Template.bzPostPhotoUploadImagePreview.events({
+  'click .js-remove-preview-photo': function(e, v){
+    var name = v.data.name,
+      arr = imagesArrayReactive.get();
+    var ind = arr.findIndex(x => x.name === name);
+    arr.splice(ind, 1);
+    imagesArrayReactive.set(arr);
   }
 });
 

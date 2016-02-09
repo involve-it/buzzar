@@ -71,6 +71,11 @@ var helperFunctions = {
     } else {
       return '';
     }
+  },
+  getImagesObjects: function(){
+    return _.map(this.details.photos, function(id){
+      return bz.cols.images.findOne(id);
+    });
   }
 };
 

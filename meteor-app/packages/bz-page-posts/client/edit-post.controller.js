@@ -1,9 +1,13 @@
 /**
  * Created by arutu_000 on 1/23/2016.
  */
+imagesArrayReactive = new ReactiveVar();
 
+Meteor.startup(()=>{
+  imagesArrayReactive.set([]);
+});
 SavePostFromView = function (v, data) {
-  var userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
+  var descriptionFormatted, userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
     locDef = $.Deferred(),
     loc1 = Session.get(bz.const.posts.location1),
     loc2 = Session.get(bz.const.posts.location2),
@@ -13,14 +17,18 @@ SavePostFromView = function (v, data) {
 
   // gather all data and submit for post-create:
   if (userId) {
-    if (Session.get('bz.posts.postImgArr')) {
+    if (imagesArrayReactive.get()) {
       //if (bz.runtime.newPost.postImage) {
-      _.each(Session.get('bz.posts.postImgArr'), function (img) {
+      _.each(imagesArrayReactive.get(), function (img) {
         img = img || {};
-        imgId = bz.cols.images.insert({
-          data: img.data,
-          userId: userId
-        });
+        if(!img._id) {
+          imgId = bz.cols.images.insert({
+            data: img.data,
+            userId: userId
+          });
+        } else {
+          imgId = img._id;
+        }
         imgArr.push(imgId);
       });
     }
@@ -43,6 +51,7 @@ SavePostFromView = function (v, data) {
         value: v.$('.js-charity-type-select').val()
       });
     }
+    descriptionFormatted = stripOutScriptTags(v.$('.js-post-description').val()) || undefined;
     // created timestamp:
     timestamp = Date.now();
     var newPost = {
@@ -59,7 +68,7 @@ SavePostFromView = function (v, data) {
         //url: v.$('.js-original-url').val(),
 
         title: v.$('.js-post-title').val() || undefined,
-        description: v.$('.js-post-description').val() || undefined,
+        description: descriptionFormatted,
         price: v.$('.js-post-price').val(),
         photos: imgArr,
 
@@ -87,14 +96,28 @@ SavePostFromView = function (v, data) {
       }
     }
 
+    bz.runtime.changesNotSaved = false;
+    Router.go('/posts/my');
+
     //$.when(locDef).then(function () {
     Meteor.call('saveExistingPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
       if (!err && res === 1) {
+        bz.ui.alert(`Ваш <a href="/posts/${res}">пост</a> успешно сохранен`);
         //clearPostData();
         //bz.runtime.newPost.postId = res;
-        bz.runtime.changesNotSaved = false;
-        Router.go('/posts/my');
+      } else {
+        bz.ui.alert(`При сохранении поста возникла проблема: ${err}`);
       }
     });
   }
 };
+
+FillPostData = function(data){
+  imagesArrayReactive.set(data._getImagesObjects());
+}
+
+stripOutScriptTags = function(text = ''){
+  var ret, regex = /<\s*script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/\s*script\s*>/gi;
+  ret = text.replace(regex, '');
+  return ret;
+}
