@@ -42,7 +42,7 @@ ruI18n = {
   POST_STATUS: 'Объявление закрыто',
   
   //home:
-  headliner:           'Работа вокруг тебя',
+  headliner:           'Работа вокруг',
   AROUND_YOU_TITLE: 'Срочное рядом',
   MOST_POPULAR_TITLE: 'Популярные',
   ABOUT_US_TITLE: 'О нас',

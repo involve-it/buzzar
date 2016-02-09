@@ -46,7 +46,7 @@ enI18n = {
   siteTitleElement: 'instant jobs around',
   
   // home page:
-  headliner: 'instant jobs around',
+  headliner: 'jobs around',
   MOST_POPULAR_TITLE: 'Most Popular',
   ABOUT_US_TITLE: 'About us',
 
