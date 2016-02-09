@@ -19,6 +19,9 @@ Template.pageHome.events({
 Template.pageHome.rendered = function () {
   //$('select').foundationSelect();
   $(document).foundation();
+
+  
+  
 };
 
 Template.bzMeteorLogo.helpers({
@@ -33,9 +36,6 @@ Template.bzMeteorLogo.helpers({
   }
 });
 
-Template.pageHome.rendered = function () {
-
-};
 
 
 Template.bzAdCategoryButton.helpers({
