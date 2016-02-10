@@ -3,7 +3,7 @@
  */
 // HELPERS:
 bz.ui.putCategoriesToSession = (catsToAdd, extend)=> {
-  var cats = !extend || !Session.get('bz.control.category-list.activeCategories') ? [] : Session.get('bz.control.category-list.activeCategories');
+  var cats = (!extend || !Session.get('bz.control.category-list.activeCategories')) ? [] : Session.get('bz.control.category-list.activeCategories');
 
   if(Array.isArray(catsToAdd)){
     _.each(catsToAdd, (item)=>{
@@ -26,22 +26,10 @@ bz.ui.putCategoriesToSession = (catsToAdd, extend)=> {
 };
 
 
-bz.ui.putCategoriesToLinks = (intName, extend) => {
-    
+bz.ui.putCategoriesToLinks = (intName) => {
   if(typeof intName === 'string') {
     Router.go(intName);
   }
-   
-  //Session.set('bz.control.category-list.activeLinkCategories', link);
-  
-  //Router.current().route.getName()
-
-  /*_.each(Router.routes, function(route){
-   if(route.getName() === doc1.intName) {
-   console.log(doc1);
-   }
-   });*/
-  
 };
 
 

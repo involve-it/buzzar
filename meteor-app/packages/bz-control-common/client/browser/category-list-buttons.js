@@ -29,9 +29,13 @@ Template.categoryListButtons.events({
     
     
     //bz.ui.putCategoriesToSession(this.intName, true);
+    if(this.hasRoute){
+      bz.ui.putCategoriesToLinks(this.intName);
+    } else if(this.name) {
+      bz.ui.putCategoriesToSession(this.intName);
+      bz.ui.alert(`You filtered results by the "${this.name.toCapitalCase()}" category, to undo this click "All" in top search section`);
+    }
 
-    bz.ui.putCategoriesToLinks(this.intName, true);
-    
     
     //Session.set('activeTemplate', 'singleSearchTemplate');
     Session.set('activeTemplate', null);

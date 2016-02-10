@@ -20,6 +20,9 @@ Router.map(function () {
     onAfterAction: function(){
       /*debugger;*/
       bz.ui.putCategoriesToSession('jobs');
+    },
+    onStop: function(){
+      bz.ui.putCategoriesToSession([]);
     }
   });
 });

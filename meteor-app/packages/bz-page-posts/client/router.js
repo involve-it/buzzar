@@ -19,7 +19,7 @@ Router.map(function () {
       var ret;
       ret = bz.cols.posts.findOne({_id: this.params._id});
       if (ret) {
-        Meteor.subscribe('users-one', ret.userId)
+        Meteor.subscribe('bz.users.all')
       }
       return ret;
     },
