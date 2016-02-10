@@ -22,9 +22,40 @@ Template.pageJobs.rendered = function () {
   //$('select').foundationSelect();
   $(document).foundation();
 };
-Template.pageJobs.rendered = function () {
 
-};
+Template.pageJobs.onRendered(function() {
+
+  $(document).foundation();
+
+  $(document).ready(function() {
+    $(window).on({
+      'resize': function(e) {
+        resizeBzSearch();
+      }
+    });
+  });
+
+  if(!this._rendered) {
+    this._rendered = true;
+    resizeBzSearch();
+  }
+
+  function resizeBzSearch() {
+    var $controlBtnList, $windowWidth, $boxSearch;
+
+    $windowWidth =      $(window).width() - 30;
+    $controlBtnList =   $('.control--category-list-buttons').width();
+    $boxSearch =        $('.box-search');
+
+
+    if($windowWidth > $controlBtnList) {
+      $boxSearch.css('width', $controlBtnList);
+    } else {
+      $boxSearch.css('width', '');
+    }
+  }
+
+});
 
 
 /*

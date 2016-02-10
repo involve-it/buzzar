@@ -21,17 +21,9 @@ Template.pageHome.onRendered(function() {
   
   $(document).foundation();
 
-  
-  
   $(document).ready(function() {
-
-    
-    
     $(window).on({
       'resize': function(e) {
-        resizeBzSearch();
-      },
-      'load': function(e) {
         resizeBzSearch();
       }
     });
