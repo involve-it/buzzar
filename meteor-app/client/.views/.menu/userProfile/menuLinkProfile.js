@@ -17,7 +17,7 @@ Template.slideMenuUserProfile.created = function() {
 Template.slideMenuUserProfile.helpers({
     user: function () {
         if (Meteor.userId()) {
-            return Meteor.users.find();
+            return Meteor.user();
         }
     },
     showUserName: function() {
