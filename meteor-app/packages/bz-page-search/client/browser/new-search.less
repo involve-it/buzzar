@@ -5,10 +5,7 @@
   
   /* general style */
   &.bz-f {
-    width: 600px;
-    padding-top: 0;
-    padding-bottom: 2px;
-    z-index: 10;
+    width: 100%;
 
     /*services btn*/
     .bz-btn-services {
@@ -18,7 +15,7 @@
       bottom: 0;
       height: 37px;
       padding: 0;
-      margin-bottom: 0;
+      margin-bottom: -1px;
       overflow-y: hidden;
       overflow-x: scroll;
 
@@ -76,7 +73,7 @@
     }
     
     .bz-search-wrapper {
-      max-width: 600px;
+      width: 100%;
       overflow: hidden;
       white-space: nowrap;
       
@@ -106,7 +103,7 @@
         .bz-search-input-field {
           position: relative;
           height: 52px;
-          max-width: 540px;
+          /*max-width: 540px;*/
           overflow: hidden;
           background-color: #FFFFFF;
           box-shadow: 0 5px 15px rgba(0,0,0, .1);
@@ -197,14 +194,15 @@
     
     /*filter box*/
     .bz-search-box-filter {
-      position: relative;
+      position: absolute;
+      width: ~'calc(100% - 16px)';
       z-index: 1;
       margin: 0 8px;
       background: #ffffff;
       box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
-
+      visibility: visible;
       transition: transform .2s,visibility .2s;
-      transform: translateY(0);
+      /*transform: translateY(0);*/
       
       .bz-search-box-filter-wrapper {
         
@@ -256,7 +254,7 @@
       }
       
       &.filters-closed {
-        transform: translateY(-110%);
+        /*transform: translateY(-110%);*/
         visibility: hidden;
       }
     }

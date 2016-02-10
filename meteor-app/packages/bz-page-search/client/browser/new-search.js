@@ -78,6 +78,7 @@ Template.bzNewControlSearch.onRendered(function() {
   
   $('.post-find-wrapper').append($('.tt-menu'));
   
+  
 });
 
 
@@ -86,6 +87,13 @@ Template.bzNewControlSearch.events({
     bz.ui.newSearchControl.focusInput(e, v);
   },
   'click .js-item-category': function(e, v) {
+    
+    if(!$(e.target).hasClass('active')) {
+        Session.set('bz.control.category-list.activeCategories', '');
+      }
+    
+    
+    
     /* need update masonry here */
     var textInput =  v.$('.bz-form-control')[1];
     $(textInput).val(this.intName);
@@ -166,19 +174,47 @@ Template.bzNewControlSearch.events({
 
 
 Template.bzNewControlSearch.helpers({
-  joinedArray: function(query, process) {
-    
-    return [
+  joinedArray: function() {
+    var ret = [
+      /*{
+       name: 'google-places',
+       valueKey: 'name',
+       displayKey: 'name',
+       template: 'googlePlacesItem',
+       header: '<h3 class="league-name">Google Places Nearby</h3>',
+       local: function () {
+       ret = bz.runtime.maps.places.find({searchEngine: 'google'}).fetch().map(function (item) {
+       return item;
+       });
+
+       return ret;
+       }
+       },
+       {
+       name: 'yelp-places',
+       valueKey: 'name',
+       displayKey: 'name',
+       template: 'googlePlacesItem',
+       header: '<h3 class="league-name">Yelp Places Nearby</h3>',
+       local: function () {
+       ret = bz.runtime.maps.places.find().fetch().map(function (item) {
+       return item;
+       });
+
+       return ret;
+       }
+       },*/
       {
-        name: 'post-found',
+        name: 'post-find-wrapper',
         valueKey: 'name',
         displayKey: 'name',
+        //template: 'newPostFoundItem',
+        /*header: '<h3 class="league-name">Posts found</h3>',*/
         templates: {
           notFound: ['<div class="empty-message"><b>Not Found</b></div>']
         },
-        //template: 'newPostFoundItem',
-        /*header: '<h3 class="league-name">Posts found</h3>',*/
         local: function () {
+          //console.log(Session.get('bz.control.category-list.activeCategories'));
           var searchSelector = {
                 'status.visible': bz.const.posts.status.visibility.VISIBLE
               },
@@ -195,9 +231,16 @@ Template.bzNewControlSearch.helpers({
           }), function (item) {
             return item.name
           });
+          /*
+           var ret = bz.cols.posts.find(searchSelector).fetch().map(function (item) {
+           item.name = item.details.title;
+           return item;
+           });*/
           return ret;
         }
-      }]
+      }];
+
+    return ret;
   }
 });
 
@@ -250,7 +293,7 @@ Template.categoryListButtons.events({
   }
 });
 
-/* передать имя фильтра this.intName и view */
+
 function setSearchFiltersTemplate(name, v) {
   var template;
   $('.bz-filters-box').empty();

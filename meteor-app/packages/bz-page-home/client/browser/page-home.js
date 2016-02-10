@@ -16,13 +16,48 @@ Template.pageHome.events({
   }
 });
 
-Template.pageHome.rendered = function () {
-  //$('select').foundationSelect();
+
+Template.pageHome.onRendered(function() {
+  
   $(document).foundation();
 
   
   
-};
+  $(document).ready(function() {
+
+    
+    
+    $(window).on({
+      'resize': function(e) {
+        resizeBzSearch();
+      },
+      'load': function(e) {
+        resizeBzSearch();
+      }
+    });
+  });
+
+  if(!this._rendered) {
+    this._rendered = true;
+    resizeBzSearch();
+  }
+
+function resizeBzSearch() {
+  var $controlBtnList, $windowWidth, $boxSearch;
+
+  $windowWidth =      $(window).width() - 30;
+  $controlBtnList =   $('.control--category-list-buttons').width();
+  $boxSearch =        $('.box-search');
+
+
+  if($windowWidth > $controlBtnList) {
+    $boxSearch.css('width', $controlBtnList);
+  } else {
+    $boxSearch.css('width', '');
+  }
+}
+  
+});
 
 Template.bzMeteorLogo.helpers({
   getLocalAppName: function(){

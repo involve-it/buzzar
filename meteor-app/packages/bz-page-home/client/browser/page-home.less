@@ -361,19 +361,23 @@
     position: relative;
     height: 600px;
     z-index: 2;
+    
+    > div {
+      -webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+    }
 
     /* additional class - for vertical middle */
     .bz-header-middle {
-      display: table;
-      padding: 0 20px;
-     /* height: 487px;*/
+      .centerer();
+      padding: 0 10px 90px 10px;
       width: 100%;
-      /*margin: -50px auto;*/
-      margin: 30px auto;
+      margin: 0 auto;
+      z-index: 1006;
 
       .bz-header-middle-wrapper {
-        display: table-cell;
-        vertical-align: middle;
+        
         
         .bz-around-small {}
       }

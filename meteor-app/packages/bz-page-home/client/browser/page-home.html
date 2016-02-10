@@ -4,10 +4,11 @@
         <div class="bz-slideshow-background">
             <div class="bz-slideshow-items">
                 <ul class="bz-slide-show-list none-list">
-                    <li class="bz-slideshow-item bz-slideshow-item-active">
-                        <!--<img src="https://i.ytimg.com/vi/AUXzW7k3eeo/maxresdefault.jpg" alt="firebug"/>-->
-                        <img src='/img/content/bg/state-city.jpg' class="hide-for-xlarge-up" title="firebug"/>
-                        <img src="/img/content/bg/fly-balls.jpg" class="show-for-xlarge-up" alt="Fly balls">
+                    <li class="hide-for-xlarge-up">
+                        <div class="bz-cover-background bz-cover-position" style="background-image: url('/img/content/bg/state-city.jpg')"></div>
+                    </li>
+                    <li class="show-for-xlarge-up">
+                        <div class="bz-cover-background bz-cover-position" style="background-image: url('/img/content/bg/fly-balls.jpg')"></div>
                     </li>
                 </ul>
             </div>
@@ -35,14 +36,13 @@
                                 <form class="search" id="bz-search" role="search" method="post" action="#">
                                     <i class="icon ion-search placeholder-icon"></i>
                                     <!--{{> bzControlSearch }}-->
-                                    <p></p>
                                     {{> bzNewControlSearch }}
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="sp-r"></div>
-                    <div class="sp-l"></div>
+                    <!--<div class="sp-r"></div>
+                    <div class="sp-l"></div>-->
                 </div>
 
                 <div class="bz-around-small">
