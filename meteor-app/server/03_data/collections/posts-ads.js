@@ -8,19 +8,36 @@ Meteor.startup(function () {
   bz.cols.postAdTypes = new Mongo.Collection('postAdTypes');
   bz.cols.postAdTypes.remove({});
   // we add id's so that it's consistent:
+
   bz.cols.postAdTypes.insert({
-    name: 'help',
-    intName: 'help',  // international name, is used for picking templates
-    id: 'M5g7ujcKXEx5LHJzc',
-    fullName: 'Need or Give Help',
-    color: 'D86055',
+    name: 'jobs',
+    intName: 'jobs',
+    id: 'qGedj9iA6jS7inCCk',
+    fullName: 'Job Market',
+    color: '730928',
     order: 0,
     i18n: {
       ru: {
-        name: 'помощь',
-        fullName: 'Требуется или предлагается помощь'
-      },
-    }
+        name: 'работа',
+        fullName: 'Требуется или предлагается работа'
+      }
+    },
+    hasRoute: true // use this to redirect to same route on click
+  });
+  bz.cols.postAdTypes.insert({
+    name: 'trainings',
+    intName: 'trainings',
+    id: '9qzjsToxam3GCHREN',
+    fullName: 'Need or provide training',
+    color: '370808',
+    order: 1,
+    i18n: {
+      ru: {
+        name: 'тренинги',
+        fullName: 'тренинги - платные, бесплатные'
+      }
+    },
+    hasRoute: true // use this to redirect to same route on click
   });
 
   bz.cols.postAdTypes.insert({
@@ -29,7 +46,7 @@ Meteor.startup(function () {
     id: 'ZiGto5xhe4TgAYJhe',
     fullName: 'Looking for Connections',
     color: 'F77012',
-    order: 1,
+    order: 2,
     i18n: {
       ru: {
         name: 'встречи',
@@ -44,7 +61,7 @@ Meteor.startup(function () {
     id: 'fveonD9cC3i33LfKj',
     fullName: 'Buy & Sell',
     color: 'EF376C',
-    order: 2,
+    order: 3,
     i18n: {
       ru: {
         name: 'торг',
@@ -52,20 +69,7 @@ Meteor.startup(function () {
       }
     }
   });
-  bz.cols.postAdTypes.insert({
-    name: 'jobs',
-    intName: 'jobs',
-    id: 'qGedj9iA6jS7inCCk',
-    fullName: 'Job Market',
-    color: '730928',
-    order: 3,
-    i18n: {
-      ru: {
-        name: 'работа',
-        fullName: 'Требуется или предлагается работа'
-      }
-    }
-  });
+
   bz.cols.postAdTypes.insert({
     id: 'otEm6ijtatqF7pQj5',
     name: 'housing',
@@ -113,17 +117,17 @@ Meteor.startup(function () {
     }
   });
   bz.cols.postAdTypes.insert({
-    name: 'trainings',
-    intName: 'trainings',
-    id: '9qzjsToxam3GCHREN',
-    fullName: 'Need or provide training',
-    color: '370808',
+    name: 'help',
+    intName: 'help',  // international name, is used for picking templates
+    id: 'M5g7ujcKXEx5LHJzc',
+    fullName: 'Need or Give Help',
+    color: 'D86055',
     order: 7,
     i18n: {
       ru: {
-        name: 'тренинги',
-        fullName: 'тренинги - платные, бесплатные'
-      }
+        name: 'помощь',
+        fullName: 'Требуется или предлагается помощь'
+      },
     }
   });
   Meteor.publish('postAdTypes', function(){

@@ -250,6 +250,36 @@ Template.categoryListButtons.events({
   }
 });
 
+Template.searchCommonFilters.events({
+  'change.fndtn.slider .js-distance-range-slider': function(e, v) {
+    var dist, slDist = $(e.target).attr('data-slider');
+    console.log(slDist);
+    //todo:  @Slava: этот подход неправильный-возникает туча ивентов (если я веду от 1 мили до 20, то 5 миль тоже выставится по дороге). Change this!!
+    if(slDist){
+      slDist = slDist.trim();
+      switch (slDist){
+        case '0':
+          dist = 1; // todo: сделать i18n!!
+          break;
+        case '1':
+          dist = 1; // todo: сделать i18n!!
+          break;
+        case '34':
+          dist = 5;
+          break;
+        case '67':
+          dist = 20;
+          break;
+        case '100':
+          dist = -1;
+          break;
+      }
+      Session.set('bz.control.search.distance', dist);
+    }
+  }
+});
+
+
 /* передать имя фильтра this.intName и view */
 function setSearchFiltersTemplate(name, v) {
   var template;
@@ -283,3 +313,5 @@ Meteor.startup(function () {
     
   });
 });
+
+

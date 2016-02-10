@@ -19,6 +19,9 @@ Router.map(function () {
     },
     onAfterAction: function(){
       bz.ui.putCategoriesToSession('trainings');
+    },
+    onStop: function(){
+      bz.ui.putCategoriesToSession([]);
     }
   });
 });

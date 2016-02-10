@@ -5,9 +5,11 @@
             <div class="bz-slideshow-items">
                 <ul class="bz-slide-show-list none-list">
                     <li class="bz-slideshow-item bz-slideshow-item-active">
-                        <!--<img src="https://i.ytimg.com/vi/AUXzW7k3eeo/maxresdefault.jpg" alt="firebug"/>-->
+<!--
                         <img src='/img/content/bg/state-city.jpg' class="hide-for-large-up" title="firebug"/>
                         <img src="/img/content/bg/fly-balls.jpg" class="show-for-large-up" alt="Fly balls">
+-->
+                      <img src="/img/content/bg/fly-balls.jpg" class="" alt="Fly balls">
                     </li>
                 </ul>
             </div>
@@ -123,7 +125,7 @@
 
 <template name="bzAdCategoryButton">
   <div class="bz-category">
-    <div class="button bz-btn-category type-category-{{categoryType}} js-category-type-btn">
+    <div class="button bz-btn-category type-category-{{categoryType}} js-category-type-btn" data-cat-type="{{ categoryType }}">
       {{categoryType}}
     </div>
   </div>
