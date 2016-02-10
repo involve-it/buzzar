@@ -63,10 +63,16 @@ Template.bzControlAddReview.events({
             bz.cols.reviews.insert({
               entityId: postId,
               type: 'postType',
-              user: Meteor.user(),
+              user: {
+                _id: Meteor.user()._id,
+                username:  Meteor.user().username,
+                profile:
+              {
+                image:  Meteor.user().profile.image
+              }
+              },
               userId: Meteor.userId(),
               text: text.trim(),
-              rating: rating || undefined,
               dateTime: Date.now()
             });
             $('.js-post-text-input').val('');
