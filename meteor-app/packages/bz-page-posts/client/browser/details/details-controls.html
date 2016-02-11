@@ -100,7 +100,7 @@
 <template name="bzSocialButtons">
   <div class="bz-wish-list">
     <div class="bz-wish-list-title js-like-btn {{ disabledIfIsBelongingToCurrentUser }}">
-      {{#if isLikedByUser }} // todo: Like Unlike
+      {{#if isLikedByUser }}
         <i class="fa fa-heart"></i> <span>{{ t9n 'POST_DETAILS_LIKE' }}</span>
       {{else }}
         <i class="fa fa-heart-o"></i> <span>{{ t9n 'POST_DETAILS_LIKE' }}</span>
