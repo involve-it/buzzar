@@ -233,3 +233,19 @@ bz.ui.validateFoundationForm = function (selector) {
     $(selector).off('invalid.fndtn.abide');
   });
 }
+
+
+bz.ui.resizeSearchField = function() {
+  var $controlBtnList, $windowWidth, $boxSearch;
+
+  $windowWidth =      $(window).width() - 30;
+  $controlBtnList =   $('.control--category-list-buttons').width();
+  $boxSearch =        $('.box-search');
+
+
+  if($windowWidth > $controlBtnList) {
+    $boxSearch.css('width', $controlBtnList);
+  } else {
+    $boxSearch.css('width', '');
+  }
+};
