@@ -79,21 +79,27 @@ Template.postsPlacesAutoform.events({
   },
   'click .choose-place-buttons .panel': function (e, v) {
     if (e.target.nodeName !== "INPUT" && e.target.className.indexOf('tt-suggestion') === -1) { // strange bug
-      var panel = $(e.currentTarget).closest('.panel');
-      panel.toggleClass('callout');
-      if (panel.hasClass('js-moving-location-panel')) {
-        if (panel.hasClass('callout')) {
-          location1.isSet = true;
-          movingLocationPanelClick();
-        } else {
-          location1.isSet = false;
-        }
-      } else if (panel.hasClass('js-fixed-location-panel')) {
-        if (panel.hasClass('callout')) {
-          location2.isSet = true;
-          staticLocationPanelClick(true);
-        }else{
-          location2.isSet=false;
+      
+      if(e.target.className.indexOf('js-triangle-help') !== -1) {
+        return false;
+      } else {
+        var panel = $(e.currentTarget).closest('.panel');
+        panel.toggleClass('callout');
+        
+        if (panel.hasClass('js-moving-location-panel')) {
+          if (panel.hasClass('callout')) {
+            location1.isSet = true;
+            movingLocationPanelClick();
+          } else {
+            location1.isSet = false;
+          }
+        } else if (panel.hasClass('js-fixed-location-panel')) {
+          if (panel.hasClass('callout')) {
+            location2.isSet = true;
+            staticLocationPanelClick(true);
+          }else{
+            location2.isSet=false;
+          }
         }
       }
     }

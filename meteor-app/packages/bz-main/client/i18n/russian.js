@@ -133,6 +133,8 @@ ru = {
   NEW_POST_CATEGORY_SEARCH: 'Категория поиска',
   NEW_POST_EMPLOYMENT_AND_WORK_SCHEDULE:'Занятость и график работы',
   NEW_POST_PAY_METHOD: 'Способ оплаты',
+  NEW_POST_DINAMIC_TOOLTIP_TEXT: 'Выберите эту опцию, если желаете, чтобы созданное объявление перемещалось вместе с вашим устройством.',
+  NEW_POST_STATIC_TOOLTIP_TEXT: 'Выберите эту опцию, если желаете, чтобы созданное объявление было зафиксировано на местности и не зависело от вашего перемещения.',
   
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Новое напоминание',
