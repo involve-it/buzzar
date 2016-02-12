@@ -40,7 +40,7 @@ layoutRenderedLazyLoad = function () {
   setTimeout(function () {
     toast(
       '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css',
-      '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js',
+      '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js',
       function () {
         //toastr.info('Are you the 6 fingered man?');
       }

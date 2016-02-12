@@ -48,6 +48,8 @@
           </div>
       {{/if}}
   </div>
+  
+    {{> bzLeftMenuSelectLanguage}}
 
   <ul class="off-canvas-list">
     <li><label>{{ t9n 'MENU_MAIN_PAGES_TITLE' }}</label></li>
@@ -113,4 +115,18 @@
       </a>
     </li>
   {{/if}}
+</template>
+
+
+<template name="bzLeftMenuSelectLanguage">
+    <div class="bz-left-menu-select-language only-menu-left">
+        <div class="title">Please, select you language</div>
+        <div class="bz-menu-select-language">
+            <ul class="bz-menu-switcher-language-list">
+                <li class="active"><a class="en" data-lang="en" href="#">EN</a><div class="bz-lang-bottom-line"></div></li>
+                <li><a class="ru" data-lang="ru" href="#">RU</a><div class="bz-lang-bottom-line"></div></li>
+            </ul>
+            <div class="bz-menu-switcher-language-bar"></div>
+        </div>
+    </div>
 </template>

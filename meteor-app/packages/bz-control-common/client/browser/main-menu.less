@@ -1,0 +1,70 @@
+@import "{}/client/style/constants.less";
+
+.bz-left-menu-select-language {
+  margin-bottom: 25px;
+  
+  .title {
+    color: #999999;
+    background-color: rgba(0, 0, 0, 0.1);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.9375rem;
+    text-transform: uppercase;
+  }
+  
+  .bz-menu-select-language {
+    position: relative;
+    margin-top: 10px;
+    padding: 0 16px;
+    
+    /*ul*/
+    .bz-menu-switcher-language-list {
+      overflow: hidden;
+      margin: 0;
+
+      li {
+        list-style: none;
+        float: left;
+        text-align: center;
+        width: 40px;
+
+        > a {
+          cursor: pointer;
+          display: block;
+          padding: 4px 6px;
+          font-size: 14px;
+          color: #ffffff;
+        }
+        
+        .bz-lang-bottom-line {
+          position: absolute;
+          bottom: 0;
+          height: 2px;
+          width: 40px;
+        }
+
+        &.active {
+          
+          a {
+            background-color: transparent;
+            color: rgba(255, 255, 255, 0.5);
+          }
+          
+          .bz-lang-bottom-line {
+            background-color: @text-link-green;
+          }
+        }
+      }
+    }
+
+    .bz-menu-switcher-language-bar {
+      clear: both;
+      margin: 0 auto;
+      height: 2px;
+      width: 220px;
+      background-color: rgba(255,255,255, .9);
+    }
+  }
+  
+  
+  
+}
