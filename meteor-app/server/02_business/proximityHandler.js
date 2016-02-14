@@ -11,15 +11,21 @@ Meteor.onConnection(function(connection){
     var connectionId = connection.id;
     connection.onClose(function(){
         //console.log('Disconnected: ' + connectionId);
-        var user = Meteor.users.findOne({'lastSessionId': connectionId});
+        var user = Meteor.users.findOne({'sessionIds': connectionId});
         if (user){
             //console.log('Found userId: ' + user._id);
-            bz.bus.proximityHandler.processUserDisconnect(user._id);
+            bz.bus.proximityHandler.processUserDisconnect(user._id, connectionId);
         }
     });
 });
 
 bz.bus.proximityHandler = {
+    isUserOnline: function(userId){
+        var sockets = Meteor.default_server.stream_server.open_sockets;
+        return _.any(sockets,function(socket){
+            return userId === socket._meteorSession.userId;
+        });
+    },
     reportLocation: function(report){
         //console.log('Location reported for userId: ' + report.userId + ', sessionId: ' + report.sessionId + ', lat: ' + report.lat + ', lng: ' + report.lng);
         var posts = bz.cols.posts.find({
@@ -31,12 +37,16 @@ bz.bus.proximityHandler = {
         bz.bus.proximityHandler.processLocationReport(posts, report.lat, report.lng);
 
         var user = Meteor.users.findOne({'_id': report.userId});
-        if (user){
+        if (user && report.sessionId){
+            var setObj = {
+                online: true,
+                sessionIds: user.sessionIds || []
+            };
+            if (setObj.sessionIds.indexOf(report.sessionId) === -1){
+                setObj.sessionIds.push(report.sessionId);
+            }
             Meteor.users.update({'_id': report.userId},{
-                $set: {
-                    lastSessionId: report.sessionId,
-                    online: true
-                }
+                $set: setObj
             });
         }
     },
@@ -64,24 +74,37 @@ bz.bus.proximityHandler = {
         }
         return posts;
     },*/
-    processUserDisconnect: function(userId){
+    processUserDisconnect: function(userId, connectionId){
         //console.log('Disconnected');
+
+        var user = Meteor.users.findOne({_id: userId}),
+            sessionIds = user.sessionIds;
+
+        if (connectionId && sessionIds.indexOf(connectionId) !== -1){
+            sessionIds.splice(sessionIds.indexOf(connectionId), 1);
+        }
+        var online = bz.bus.proximityHandler.isUserOnline(userId);
+            //sessionIds > 0;
+
         Meteor.users.update({'_id': userId}, {
             $set: {
-                online: false
+                online: online,
+                sessionIds: sessionIds
             }
         });
 
-        var posts = bz.cols.posts.find({
-            userId: userId
-        }).fetch(),
-            updated;
-        _.each(posts, function(post){
-            if (post && post.details && post.details.locations && Array.isArray(post.details.locations)){
-                updated = false;
-                bz.cols.posts.update({'_id': post._id}, {$set:{presences: {}}});
-            }
-        });
+        if (!online) {
+            var posts = bz.cols.posts.find({
+                    userId: userId
+                }).fetch(),
+                updated;
+            _.each(posts, function (post) {
+                if (post && post.details && post.details.locations && Array.isArray(post.details.locations)) {
+                    updated = false;
+                    bz.cols.posts.update({'_id': post._id}, {$set: {presences: {}}});
+                }
+            });
+        }
     },
     processLocationReport: function(posts, lat, lng){
         var updated, presences;
