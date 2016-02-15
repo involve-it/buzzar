@@ -46,17 +46,10 @@ Template.bzAroundYouSmallItem.onCreated(function(){
   Meteor.subscribe('bz.users.all');
 });
 
+Template.aroundYouSmall.onCreated(function() {});
 
 Template.aroundYouSmall.onRendered(function() {
-  //bz.ui.initSwiper();
-  
-    var swiper = new Swiper('.swiper-container', {
-      //slidesPerView: 4,
-      slidesPerView: 'auto',
-      calculateHeight: true,
-      resizeReInit: true
-    })
-  
+  bz.ui.initSwiper();
 });
 
 

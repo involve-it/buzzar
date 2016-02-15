@@ -7,18 +7,17 @@ Meteor.startup(function() {
   //$('body').attr('data-uk-observe', '1');
 });
 
+Template.mainLayoutHome.onCreated(function() {});
 
 Template.mainLayout.rendered = function () {
   InitFoundationOffCanvas();
   layoutRenderedLazyLoad();
-  bz.ui.initSwiper();
   //UIkit.$html.trigger('changed.uk.dom');
 };
 
 Template.mainLayoutHome.rendered = function () {
   InitFoundationOffCanvas();
   layoutRenderedLazyLoad();
-  bz.ui.initSwiper();
   //UIkit.$html.trigger('changed.uk.dom');
 };
 

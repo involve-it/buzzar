@@ -38,30 +38,60 @@ Meteor.startup(function () {
 
 
 bz.ui.initSwiper = function() {
-  var swiper;
-  setTimeout(function() {
+
+  (function() {
+    var timeouts = [];
+    var messageName = "zero-timeout-message";
+
+    // Like setTimeout, but only takes a function argument.  There's
+    // no time argument (always zero) and no arguments (you have to
+    // use a closure).
+    function setZeroTimeout(fn) {
+      timeouts.push(fn);
+      window.postMessage(messageName, "*");
+    }
+
+    function handleMessage(event) {
+      if (event.source == window && event.data == messageName) {
+        event.stopPropagation();
+        if (timeouts.length > 0) {
+          var fn = timeouts.shift();
+          fn();
+        }
+      }
+    }
+
+    window.addEventListener("message", handleMessage, true);
+
+    // Add the one thing we want added to the window object.
+    window.setZeroTimeout = setZeroTimeout;
+  })();
+  
+  
+  function includeSwiper() {
     toast(
         '/libs/idangerous-swiper.css',
         ['/libs/idangerous-swiper.js', function () {
           return window.Swiper;
-        }]/*,
-        function() {
-                    
-          swiper = new Swiper('.swiper-container',{
-            slidesPerView: 4,
+        }],
+        function () {
+          var swiper;
+          swiper = new Swiper('.swiper-container', {
+            //slidesPerView: 4,
+            slidesPerView: 'auto',
             calculateHeight: true,
             resizeReInit: true,
-            onSwiperCreated : function(swiper) {
-              //Do something when you touch the slide
-              console.log('OMG you touch the slide!');
-            }
+            freeModeMomentum: true
           });
-          return swiper;
-        }*/
+          
+          
+        }
     );
-  }, 10);
+  }
 
-  return swiper;
+  setZeroTimeout(includeSwiper, 0);
+  
+  //read more ajaxian.com/archives/settimeout-delay
   
 };
 
