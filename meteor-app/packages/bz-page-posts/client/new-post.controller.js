@@ -5,19 +5,19 @@
 newPostType = new ReactiveVar(),
   imagesArrayReactive = new ReactiveVar();
 
-Meteor.startup(()=>{
+Meteor.startup(()=> {
   imagesArrayReactive.set([]);
 })
 /*
-// set new image to db:
-Meteor.startup(function () {
+ // set new image to db:
+ Meteor.startup(function () {
 
-  Tracker.autorun(function () {
-    bz.runtime.newPost.postImage = Session.get('bz.posts.postImgSrc');
-    bz.runtime.newPost.hashes = Session.get('hashes');
-  });
-});
-*/
+ Tracker.autorun(function () {
+ bz.runtime.newPost.postImage = Session.get('bz.posts.postImgSrc');
+ bz.runtime.newPost.hashes = Session.get('hashes');
+ });
+ });
+ */
 
 
 // handle post type:
@@ -38,7 +38,7 @@ var renderPostFormByType = function (type, $el, data) {
 
   bz.ui.initFoundationValidation();
   bz.ui.initDropTips();
-  
+
 };
 
 // render form according to type on type changed:
@@ -61,23 +61,35 @@ CreateNewPostFromView = function (v) {
     loc2 = Session.get(bz.const.posts.location2),
 
     rad = $('.js-radius-slider').attr('data-slider') && Number.parseInt($('.js-radius-slider').attr('data-slider')),
-    otherKeyValuePairs = [], timestamp, endTimestamp;
+    otherKeyValuePairs = [], timestamp, endTimestamp,
+    imgsPromisesArr = [], imgPromise;
 
   // gather all data and submit for post-create:
   if (userId) {
-    if (imagesArrayReactive.get()) {
-      //if (bz.runtime.newPost.postImage) {
-      _.each(imagesArrayReactive.get(), function (img) {
-        img = img || {};
-        imgId = bz.cols.images.insert({
-          data: img.data,
-          userId: userId,
-          name: img.name,
-          thumbnail: img.thumbnail
-        });
-        imgArr.push(imgId);
+    _.each(imagesArrayReactive.get(), function (imgItem) {
+      imgId = bz.cols.images.insert({
+        userId: userId,
+        name: imgItem.name,
       });
-    };;
+      imgArr.push(imgId);
+      // let's set data on the client-side (temp for showing in site):
+      bz.cols.images._collection.update(imgId, { $set: {
+        data: imgItem.data
+      }});
+      if(!imgItem.thumbnail.data) {
+        imgItem.thumbnail.getBlob().then((url)=>{
+          imgItem.thumbnail.data = url;
+          bz.cols.images._collection.update(imgId, { $set: {
+            thumbnail: imgItem.thumbnail.data
+          }});
+        });
+      } else {
+        bz.cols.images._collection.update(imgId, { $set: {
+          thumbnail: imgItem.thumbnail.data
+        }});
+      }
+    });
+
     // set location:
     //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
     if (loc1 && location1.isSet) {
@@ -124,9 +136,9 @@ CreateNewPostFromView = function (v) {
       },
       jobsDetails: {
         seniority: GetValueJobsSingleData(v, '#select-jobs-seniority'),
-        gender:    GetValueJobsSingleData(v, '#select-jobs-gender'),
+        gender: GetValueJobsSingleData(v, '#select-jobs-gender'),
         contacts: {
-          phone:     v.$('.js-job-phone').val()
+          phone: v.$('.js-job-phone').val()
         },
         attachment: {
           // This will be made by Ashot
@@ -161,6 +173,17 @@ CreateNewPostFromView = function (v) {
 
     //$.when(locDef).then(function () {
     Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
+
+      _.each(imagesArrayReactive.get(), function (imgItem) {
+
+        imgItem.save().then(img=> {
+          bz.cols.images.update(imgId, {$set: {data: img.src}});
+        });
+        imgItem.thumbnail.save().then(thumb=> {
+          bz.cols.images.update(imgId, {$set: {thumbnail: thumb.src}});
+        });
+      });
+
       if (!err && res && res !== '') {
         bz.ui.alert(`Ваш <a href="/post/${res}">пост</a> успешно создан`);
 

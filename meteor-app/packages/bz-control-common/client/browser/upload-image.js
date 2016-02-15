@@ -125,8 +125,10 @@ Template.uploadImageModal.events({
     if (randomImgUrl) {
       bz.ui.spinnerAdd('.js-preview-wrapper');
       $('.js-preview').animate({opacity: 0}, 150);
-      //$('.js-preview').css({opacity: 1.0, visibility: 'visible'}).animate({opacity: 0}, 50);
-      new BlobImageClass(randomImgUrl, $('.js-preview')[0]);
+      new RandomImageClass({
+        url: randomImgUrl,
+        img: $('.js-preview')[0]
+      });
     }
   },
   'change .js-file-upload': function (e, v) {
@@ -137,7 +139,8 @@ Template.uploadImageModal.events({
       reader.onload = function (e1) {
         new BlobImageClass({
           fileName: file.name,
-          data: e1.target.result
+          data: e1.target.result,
+          blob: file
         });
       };
       reader.readAsDataURL(file);
@@ -184,16 +187,20 @@ function cleanForm(v) {
 doneCloseChooseImageDialog = function (imagesArrExternal, imgObj) {
   var inp, file;
   bz.ui.spinnerAdd('.js-edit-avatar');
-  if(!imgObj){
-
-  } else {
-    new ThumbnailImageClass(imgObj, (thumbObj)=> {
+  if(imgObj){
+    imgObj.createThumbnail().then(()=>{
+      ImageClass.saveImageToExternalObject(imagesArrExternal, imgObj);
+      bz.ui.spinnerRemove('.js-edit-avatar');
+    });
+    /*new ThumbnailImageClass(imgObj, (thumbObj)=> {
       if (imgObj.type === 'blob') {
       } else if (imgObj.type === 'url') {
       }
       imgObj.thumbnail = thumbObj;
       ImageClass.saveImageToExternalObject(imagesArrExternal, imgObj);
       bz.ui.spinnerRemove('.js-edit-avatar');
-    });
+    });*/
+    //ImageClass.saveImageToExternalObject(imagesArrExternal, imgObj);
+    //bz.ui.spinnerRemove('.js-edit-avatar');
   }
 }
