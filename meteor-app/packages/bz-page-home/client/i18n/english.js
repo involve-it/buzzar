@@ -149,6 +149,11 @@ enI18n = {
   PROFILE_USER_STATUS: 'Status',
   PROFILE_PROFILE_URL: 'Profile URL',
   PROFILE_USER_DETAILS_POSTS: 'Posts',
+  PROFILE_USER_VK: 'Vkontakte',
+  PROFILE_USER_FACEBOOK: 'Facebook',
+  PROFILE_USER_TWITTER: 'Twitter',
+  PROFILE_USER_TOWN: 'Town',
+  PROFILE_CANCEL: 'Cancel',
 
   //Another user profile details
   PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Personal data',
