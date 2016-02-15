@@ -20,9 +20,15 @@
 
           <div class="user-info">
             <div class="user-name capitalize"> {{ username }} </div>
-            <div class="user-location"> San-Francisco, CA</div>
+            <div class="user-fio"> {{getFIO}}</div>
+            <div class="user-location"> {{getCity}}</div>
+
           </div>
 
+          <div class="user-attainment">
+            <div class="count-posts">{{getPostsCount}}<span>{{ t9n 'PROFILE_USER_DETAILS_POSTS' }}</span></div>
+            <div class="count-comments">{{getReviewsCount}}<span>{{ t9n 'COMMENTS' }}</span></div>
+          </div>
 
           <div class="btn-edit-account">
             <button class="button btn-default js-send-message-btn">{{ t9n 'SEND_MESSAGE' }}</button>
@@ -45,16 +51,20 @@
                 </div>
               </div>
             </div>
+            {{#if $eq getPhoneStatus  "1" }}
+              <div class="item-details">
+                <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_PHONE' }}</div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p>{{getPhoneNumber}} </p></div>
+              </div>
+            {{/if}}
 
-            <div class="item-details">
-              <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_PHONE' }}</div>
-              <div class="small-12 medium-10 large-10 bz-input-result columns"><p> +1 (800) 123-456 </p></div>
-            </div>
+            {{#if $eq getSkypeStatus  "1" }}
+              <div class="item-details">
+                <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_SKYPE' }}</div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getSkype}} </p></div>
+              </div>
+            {{/if}}
 
-            <div class="item-details">
-              <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_SKYPE' }}</div>
-              <div class="small-12 medium-10 large-10 bz-input-result columns"><p> Underground87 </p></div>
-            </div>
             <div class="item-details">
               <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_STATUS'}}</div>
               <div class="small-12 medium-10 large-10 bz-input-result columns">
@@ -71,17 +81,32 @@
 
           <div class="clearfix"></div>
 
-          <div class="item item-divider">
-            <h3 class="title uppercase">{{ t9n 'PROFILE_ANOTHER_USER_ADDITIONAL_LINKS'}}</h3>
-          </div>
-          <div class="user-item overflow">
-            <div class="item-details">
-              <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_FACEBOOK_URL'}}</div>
-              <div class="small-12 medium-10 large-10 bz-input-result columns"><p> Upon request
-                <!--{{ getFaceBookDetails }}--> </p></div>
+          {{#if $eq getVKStatus  "1" }}
+            <div class="user-item overflow">
+              <div class="item-details">
+                <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_VK'}}</div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getVK}}</p></div>
+              </div>
             </div>
-          </div>
+          {{/if}}
 
+          {{#if $eq getFaceBookStatus  "1" }}
+            <div class="user-item overflow">
+              <div class="item-details">
+                <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_FACEBOOK_URL'}}</div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getFacebook }} </p></div>
+              </div>
+            </div>
+          {{/if}}
+
+          {{#if $eq getTwitterStatus  "1" }}
+            <div class="user-item overflow">
+              <div class="item-details">
+                <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_TWITTER'}}</div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p>{{getTwitter}}</p></div>
+              </div>
+            </div>
+          {{/if}}
         </div>
 
         <div class="clearfix"></div>
