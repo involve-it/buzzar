@@ -52,6 +52,9 @@ Package.onUse(function (api) {
     'client/browser/reviews.js',
     'client/browser/reviews.less',
 
+    'client/browser/ui-spinner.js',
+    'client/browser/ui-spinner.less',
+
     'client/browser/upload-image.html',
     'client/browser/upload-image.js',
     'client/browser/upload-image.less',

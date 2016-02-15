@@ -98,19 +98,6 @@ if (Meteor.isServer) {
   }
 }
 
-bz.cols.images = new Mongo.Collection('images');
-bz.cols.images.helpers({
-  _getThumbnail: function(){
-    debugger;
-  }
-});
-if(Meteor.isServer){
-  bz.cols.images.allow({
-    insert: function () {
-      return true;
-    }
-  });
-}
 if(Meteor.isClient){
   Meteor.subscribe('posts-all');
   Meteor.subscribe('posts-my');

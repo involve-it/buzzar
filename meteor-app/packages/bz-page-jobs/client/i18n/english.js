@@ -109,7 +109,7 @@ enI18n = {
   NEW_POST_SELLING_A_HOUSE: 'Selling a house',
   NEW_POST_INCOGNITO_MODE: 'Incognito mode',
   NEW_POST_HASHES: 'Hashes',
-  NEW_POST_CREATE_BTN: 'Create FireFly',
+  NEW_POST_CREATE_BTN: 'Create Shiner',
   NEW_POST_SET_LOCATION_BTN: 'Set Location',
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',

@@ -94,9 +94,9 @@ bz.ui.initCodeMirror = function (input, callback) {
           var options = {
             height:200,
             markdown:true
-          },
-            htmlditor = UIkit.htmleditor(input, options);
-          callback && callback(htmleditor);
+          }
+            //htmlditor = UIkit.htmleditor(input, options);
+          //callback && callback(htmleditor);
 
           return window.markdown;
         }

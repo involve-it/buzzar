@@ -162,35 +162,6 @@ bz.ui.modal = function (content, onconfirm) {
   /*return modal;*/
 
 };
-var spinners = {};
-
-bz.ui.spinnerAdd = function (elementSelector) {
-  if (Spinner && $(elementSelector)[0]) {
-    spinners[elementSelector] && bz.ui.spinnerRemove(elementSelector);
-    var spinner = new Spinner().spin();
-    spinners[elementSelector] = spinner;
-    spinner.cssPositionOld = $(elementSelector).css('position');
-    $(elementSelector).css('position', 'relative');
-    $(elementSelector)[0].appendChild(spinner.el);
-    setTimeout(()=> {
-      bz.ui.spinnerRemove(elementSelector);
-    }, 10000);
-  } else {
-    console.log('spinner object is not defined');
-  }
-}
-bz.ui.spinnerRemove = function (elementSelector) {
-  var spinner;
-  if (!spinners[elementSelector]) {
-    //console.error('spinner not found');
-  } else {
-    spinner = spinners[elementSelector]
-    spinner.stop();
-    $(elementSelector).css('position', spinner.cssPositionOld);
-
-    delete spinner;
-  }
-}
 
 //  foundation:
 
