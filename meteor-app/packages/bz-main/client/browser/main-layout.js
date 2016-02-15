@@ -4,20 +4,22 @@
 bz.help.maps.initLocation();
 
 Meteor.startup(function() {
-  $('body').attr('data-uk-observe', '1');
+  //$('body').attr('data-uk-observe', '1');
 });
 
 
 Template.mainLayout.rendered = function () {
   InitFoundationOffCanvas();
   layoutRenderedLazyLoad();
-  UIkit.$html.trigger('changed.uk.dom');
+  bz.ui.initSwiper();
+  //UIkit.$html.trigger('changed.uk.dom');
 };
 
 Template.mainLayoutHome.rendered = function () {
   InitFoundationOffCanvas();
   layoutRenderedLazyLoad();
-  UIkit.$html.trigger('changed.uk.dom');
+  bz.ui.initSwiper();
+  //UIkit.$html.trigger('changed.uk.dom');
 };
 
 Template.bzChangeLanguage.rendered = function () {
@@ -133,3 +135,42 @@ Template.bzNavMe.helpers({
 });
 
 
+Template.bzLeftMenuSelectLanguage.onRendered(function() {
+  var lang = Session.get('bz.user.language');
+  if(lang) {
+    var el = $('.bz-menu-switcher-language-list'),
+        element = el.children().find('a');
+
+    element.each(function() {
+      if($(this).data('lang') === lang) {
+        $(this).closest('.bz-button').addClass('bz-active');
+      }
+    });
+  }
+});
+
+
+Template.bzLeftMenuSelectLanguage.events({
+  'click .js-bz-button': function(e, v) {
+    e.preventDefault();
+
+    var ele = $(e.target.closest('.bz-button'));
+
+    if(!ele.hasClass('bz-active')) {
+      var lang = v.$('.bz-button').not('.bz-active').find('a').data('lang');
+      SetUiLanguage(lang);
+
+      //$('[data-lang]').trigger("click", e);
+    }
+
+    $('[data-bz-button-radio] > *').attr('aria-checked', 'false').filter('.bz-active').attr('aria-checked', 'true');
+
+    v.$('.bz-button').not(ele).removeClass('bz-active').blur();
+    ele.addClass('bz-active');
+
+    v.$('.bz-button').not(ele).attr('aria-checked', 'false');
+    ele.attr('aria-checked', 'true');
+
+    v.$('.js-bz-button').trigger("change.bz.button", [ele]);
+  }
+});

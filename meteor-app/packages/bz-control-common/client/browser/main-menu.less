@@ -7,6 +7,7 @@
     color: #999999;
     background-color: rgba(0, 0, 0, 0.1);
     font-size: 0.75rem;
+    font-weight: bold;
     padding: 0.3rem 0.9375rem;
     text-transform: uppercase;
   }
@@ -32,7 +33,16 @@
           display: block;
           padding: 4px 6px;
           font-size: 14px;
-          color: #ffffff;
+          color: rgba(255,255,255, .75);
+          
+          &:hover {
+            background-color: transparent;
+            color: rgba(255,255,255, 1);
+          }
+
+          .bz-lang-bottom-line {
+            background-color: rgba(255,255,255, .75);
+          }
         }
         
         .bz-lang-bottom-line {
@@ -42,21 +52,24 @@
           width: 40px;
         }
 
-        &.active {
+        &.bz-active {
           
           a {
             background-color: transparent;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.45);
           }
           
           .bz-lang-bottom-line {
-            background-color: @text-link-green;
+            background-color: rgba(0,0,0, .45);
+            z-index: 3;
           }
         }
       }
     }
 
     .bz-menu-switcher-language-bar {
+      position: relative;
+      z-index: 2;
       clear: both;
       margin: 0 auto;
       height: 2px;

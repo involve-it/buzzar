@@ -47,7 +47,7 @@ Package.onUse(function (api) {
   
   api.addFiles([
     'client/lib/vendor/toast.js',
-      
+
     'client/lib/01_inits/accounts.js',
     'client/lib/01_inits/bz-ui.js',
     'client/lib/01_inits/location.js',

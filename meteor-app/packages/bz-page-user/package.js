@@ -16,7 +16,7 @@ Package.onUse(function(api) {
   api.use(['reactive-var', 'iron:router', 'iron:layout', 'aldeed:simple-schema', 'dburles:collection-helpers', 'ecmascript',
     'arutune:bz-main'
   ], ['client', 'server']);
-  api.use(['templating', 'less'], 'client');
+  api.use(['templating', 'less', 'raix:handlebar-helpers'], 'client');
 
   api.addFiles([
     'collections/users.shared.js'
@@ -39,9 +39,9 @@ Package.onUse(function(api) {
     'client/browser/user-settings.html',
     'client/browser/user-settings.js',
 
-    'client/browser/profile-edit.less',
-    'client/browser/profile-edit.html',
-    'client/browser/profile-edit.js',
+    //'client/browser/profile-edit.less',
+    //'client/browser/profile-edit.html',
+    //'client/browser/profile-edit.js',
   ], global.bzSettings.webBrowserArray);
 });
 
