@@ -175,6 +175,11 @@ ru = {
   PROFILE_USER_STATUS: 'Статус',
   PROFILE_PROFILE_URL: 'URL профиля',
   PROFILE_USER_DETAILS_POSTS: 'Публикации',
+  PROFILE_USER_VK: 'Вконтакте',
+  PROFILE_USER_FACEBOOK: 'Facebook',
+  PROFILE_USER_TWITTER: 'Twitter',
+  PROFILE_USER_TOWN: 'Город',
+  PROFILE_CANCEL: 'Отмена',
 
   //Another user profile details
   PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Личные данные',

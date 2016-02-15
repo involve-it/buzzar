@@ -3,111 +3,237 @@
   <div class="main-content">
     <div class="page-settings">
       <div class="profile-box">
-
-        <!--SIDE A-->
-        <div class="side-a text-center small-12 medium-4 columns">
-          <div class="item item-divider">
-            <h3 class="title uppercase">{{ t9n 'PROFILE_USER_DETAILS' }}</h3>
-          </div>
-
-            <div class="bz-status-wrapper">
-                <div class="user-avatar">
-                    {{> avatarThumbnail image=profile.image}}
-                </div>
-                {{> bzAvatarUserStatus}}
+        <form data-abide>
+          <!--SIDE A-->
+          <div class="side-a text-center small-12 medium-4 columns">
+            <div class="item item-divider">
+              <h3 class="title uppercase">{{ t9n 'PROFILE_USER_DETAILS' }}</h3>
             </div>
 
-          <div class="user-info">
-            <div class="user-name capitalize"> {{ username }} </div>
-            <div class="user-location"> San-Francisco, CA</div>
+              <div class="bz-status-wrapper">
+                  <div class="user-avatar">
+                      {{> avatarThumbnail write=true image=profile.image}}
+                  </div>
+                  {{> bzAvatarUserStatus}}
+              </div>
+
+            <div class="user-info">
+              <div class="user-name capitalize"> {{ username }} </div>
+              <div class="user-location"> {{getCity}}</div>
+            </div>
+
+            <div class="user-attainment">
+              <div class="count-posts">{{getPostsCount}}<span>{{ t9n 'PROFILE_USER_DETAILS_POSTS' }}</span></div>
+              <div class="count-comments">{{getReviewsCount}}<span>{{ t9n 'COMMENTS' }}</span></div>
+            </div>
+
+
+            <ul class="stack button-group">
+              <li>
+                <div class="btn-edit-account">
+                  <a class="button btn-default js-edit-btn">{{ t9n 'PROFILE_EDIT_PROFILE' }}</a>
+                </div>
+              </li>
+              <li>
+                <div class="btn-edit-account">
+                  <a class="button disabled btn-default js-done-btn">{{ t9n 'PROFILE_SAVE_AND_UPDATE' }}</a>
+                </div>
+              </li>
+              <li>
+                <div class="btn-edit-account">
+                  <a class="button disabled btn-default js-cancel-btn">{{ t9n 'PROFILE_CANCEL' }}</a>
+                </div>
+              </li>
+            </ul>
+
           </div>
 
-          <div class="user-attainment">
-            <div class="count-posts">86<span>{{ t9n 'PROFILE_USER_DETAILS_POSTS' }}</span></div>
-            <div class="count-comments">1,1k<span>{{ t9n 'COMMENTS' }}</span></div>
-            <div class="count-smth">666<span>something</span></div>
-          </div>
+          <!--SIDE B-->
+          <div class="side-b small-12 medium-8 large-8 columns">
 
+            <div class="item-divider">
+              <h3 class="title uppercase">{{ t9n 'PROFILE_PERSONAL_SETTINGS' }}</h3>
+            </div>
 
-          <div class="btn-edit-account">
-            <a class="button btn-default" href="{{pathFor 'settings.edit'}}">{{ t9n 'PROFILE_EDIT_PROFILE' }}</a>
-          </div>
-
-        </div>
-
-        <!--SIDE B-->
-        <div class="side-b small-12 medium-8 large-8 columns">
-
-          <div class="item-divider">
-            <h3 class="title uppercase">{{ t9n 'PROFILE_PERSONAL_SETTINGS' }}</h3>
-          </div>
-          <div class="user-item overflow">
-            <div class="item-details">
-              <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_PROFILE_URL' }}</div>
-              <div class="small-12 medium-9 large-10 bz-input-result columns">
-                <div class="bz-text-overflow-ellipsis">
-                  <p><a href="{{ getIdProfile}}">{{ getIdProfile}}</a></p>
+            <div class="user-item overflow">
+            <div class="edit-fields-user">
+              <div class="item-details">
+                <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_FIRST_NAME' }}</div>
+                <div class="small-12 medium-9 large-10 bz-input-result columns">
+                  <input class="bz-profile-first-name disabled" autocomplete="off" type="text" value="{{getFirstName}}">
+                  <!--Error-->
+                  <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
                 </div>
               </div>
-            </div>
 
-            <div class="item-details">
-              <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_PHONE' }}</div>
-              <div class="small-12 medium-9 large-10 bz-input-result columns"><p> Upon request </p></div>
-            </div>
-
-            <div class="item-details">
-              <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_SKYPE' }}</div>
-              <div class="small-12 medium-9 large-10 bz-input-result columns"><p> Hidden </p></div>
-            </div>
-            <div class="item-details">
-              <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_STATUS' }}</div>
-              <div class="small-12 medium-9 large-10 bz-input-result columns">
-                <p>
-                  {{#if _isOnline }}
-                    Online
-                  {{else }}
-                    offline
-                  {{/if}}
-                </p>
+              <div class="item-details">
+                <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_LAST_NAME' }}</div>
+                <div class="small-12 medium-9 large-10 bz-input-result columns">
+                  <input class="bz-profile-last-name disabled" autocomplete="off" type="text" value="{{getLastName}}">
+                  <!--Error-->
+                  <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
+                </div>
               </div>
-            </div>
+
+              <div class="item-details">
+                <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_TOWN' }}</div>
+                <div class="small-12 medium-9 large-10 bz-input-result columns">
+                  <input class="bz-profile-city disabled" autocomplete="off" type="text" value="{{getCity}}">
+                  <!--Error-->
+                  <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
+                </div>
+              </div>
 
               <div class="bz-separate"></div>
-              
-              <div class="item-details">
-                  <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_LANGUAGE' }}</div>
-                  <div class="small-12 medium-9 large-10 bz-input-result columns">
 
-                      {{> bzChangeLanguage}}
-                      
-                      <!--<select id="bz-set-language" class="dropdown-choose-lang">
-                          {{#each setLanguage}}
-                              <option value="{{code}}">{{name}}</option>
-                          {{/each}}
-                      </select>-->
+              <div class="item-details">
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_PHONE_NUMBER' }}</div>
+                  <div class="small-12 bz-input-result columns">
+                    <input class="bz-profile-phone-number disabled" autocomplete="off" type="text" value="{{getPhoneNumber}}">
+                    <!--Error-->
+                    <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
                   </div>
+                </div>
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_SECURITY_SETTINGS' }}</div>
+                  <div class="small-12 bz-input-result columns disabled">
+                    <select class="js-profile-phone-status">
+                      {{#if $eq getPhoneNumberStatus  "1" }}
+                        <option selected value="1">Public</option>
+                        <option value="0">Hidden</option>
+                      {{else}}
+                        <option value="1">Public</option>
+                        <option selected value="0">Hidden</option>
+                      {{/if}}
+                    </select>
+                  </div>
+                </div>
               </div>
-              
+
+
+              <div class="item-details">
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_SKYPE_LOGIN' }}</div>
+                  <div class="small-12 bz-input-result columns">
+                    <input class="bz-profile-skype disabled" autocomplete="off" type="text" value="{{getSkype}}">
+                    <!--Error-->
+                    <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
+                  </div>
+                </div>
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_SECURITY_SETTINGS' }}</div>
+                  <div class="small-12 bz-input-result columns disabled">
+                    <select class="js-profile-skype-status">
+                      {{#if $eq getSkypeStatus  "1" }}
+                        <option selected value="1">Public</option>
+                        <option value="0">Hidden</option>
+                      {{else}}
+                        <option value="1">Public</option>
+                        <option selected value="0">Hidden</option>
+                      {{/if}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bz-separate"></div>
+
+              <div class="item-details">
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_VK' }}</div>
+                  <div class="small-12 bz-input-result columns">
+                    <input class="bz-profile-vk-url disabled" autocomplete="off" type="text" value="{{getVKUrl}}">
+                    <!--Error-->
+                    <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
+                  </div>
+                </div>
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_SECURITY_SETTINGS' }}</div>
+                  <div class="small-12 bz-input-result columns disabled">
+                    <select class="js-profile-vk-status">
+                      {{#if $eq getVKUrlStatus  "1" }}
+                        <option selected value="1">Public</option>
+                        <option value="0">Hidden</option>
+                      {{else}}
+                        <option value="1">Public</option>
+                        <option selected value="0">Hidden</option>
+                      {{/if}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="item-details">
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_FACEBOOK' }}</div>
+                  <div class="small-12 bz-input-result columns">
+                    <input class="bz-profile-facebook-url disabled" autocomplete="off" type="text" value="{{getFacebookUrl}}">
+                    <!--Error-->
+                    <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
+                  </div>
+                </div>
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_SECURITY_SETTINGS' }}</div>
+                  <div class="small-12 bz-input-result columns disabled">
+                    <select id="js-profile-facebook-status">
+                      {{#if $eq getFacebookUrlStatus  "1" }}
+                        <option selected value="1">Public</option>
+                        <option value="0">Hidden</option>
+                      {{else}}
+                        <option value="1">Public</option>
+                        <option selected value="0">Hidden</option>
+                      {{/if}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="item-details">
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_TWITTER' }}</div>
+                  <div class="small-12 bz-input-result columns">
+                    <input class="bz-profile-twitter-url disabled" autocomplete="off" type="text" value="{{getTwitterUrl}}">
+                    <!--Error-->
+                    <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
+                  </div>
+                </div>
+                <div class="small-12 medium-6 large-6 bz-input-label columns">
+                  <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_SECURITY_SETTINGS' }}</div>
+                  <div class="small-12 bz-input-result columns disabled">
+                    <select class="js-profile-twitter-status">
+                      {{#if $eq getTwitterUrlStatus  "1" }}
+                        <option selected value="1">Public</option>
+                        <option value="0">Hidden</option>
+                      {{else}}
+                        <option value="1">Public</option>
+                        <option selected value="0">Hidden</option>
+                      {{/if}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="bz-separate"></div>
+              <div class="item-details">
+                <div class="small-12 medium-3 bz-input-label columns">{{ t9n 'PROFILE_USER_LANGUAGE' }}</div>
+                <div class="small-12 medium-9 large-10 bz-input-result columns">
+                        {{> bzChangeLanguage}}
+
+                        <!--<select id="bz-set-language" class="dropdown-choose-lang">
+                          {{#each setLanguage}}
+                          <option value="{{code}}">{{name}}</option>
+                          {{/each}}
+                  </select>-->
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+
           </div>
 
           <div class="clearfix"></div>
-
-          <div class="item item-divider">
-            <h3 class="title uppercase">{{ t9n 'PROFILE_ADDITIONAL_LINKS' }}</h3>
-          </div>
-          <div class="user-item overflow">
-            <div class="item-details">
-              <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_FACEBOOK_URL' }}</div>
-              <div class="small-12 medium-10 large-10 bz-input-result columns"><p> -------
-                <!--{{ getFaceBookDetails }}--> </p></div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="clearfix"></div>
-
+        </form>
       </div>
     </div>
 

@@ -175,6 +175,11 @@ ruI18n = {
   PROFILE_USER_PHONE_NUMBER: 'Номер телефона',
   PROFILE_USER_SKYPE_LOGIN : 'Логин Skype',
   PROFILE_USER_SECURITY_SETTINGS : 'Настройки безопасности',
+  PROFILE_USER_VK: 'Вконтакте',
+  PROFILE_USER_FACEBOOK: 'Facebook',
+  PROFILE_USER_TWITTER: 'Twitter',
+  PROFILE_USER_TOWN: 'Город',
+  PROFILE_CANCEL: 'Отмена',
 
   //Error
   ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения',

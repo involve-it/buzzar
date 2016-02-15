@@ -101,4 +101,4 @@ Schema.User = new SimpleSchema({
   }*/
 });
 
-Meteor.users.attachSchema(Schema.User);
+//Meteor.users.attachSchema(Schema.User);
