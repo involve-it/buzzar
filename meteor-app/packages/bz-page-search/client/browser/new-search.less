@@ -91,13 +91,12 @@
             text-align: center;
             border-bottom-left-radius: 0;
             border-top-left-radius: 0;
-            height: 52px;
+            height: 44px;
             margin: 0;
             padding: 0;
             width: 60px;
             min-width: 58px !important;
-            background-color: @btn-search;
-            background-image: none;
+            background: @btn-search;
             border: none;
             color: rgba(255,255,255, .9);
             font-weight: 300;
@@ -120,7 +119,7 @@
 
         .bz-search-input-field {
           position: relative;
-          height: 52px;
+          height: 44px;
           /*max-width: 540px;*/
           overflow: hidden;
           background-color: #FFFFFF;
@@ -130,7 +129,7 @@
           .bz-search-btn-wrapper {
             position: static;
             float: right;
-            line-height: 52px;
+            line-height: 44px;
             padding: 0 8px;
             font-size: 18px;
 
@@ -213,9 +212,9 @@
     /*filter box*/
     .bz-search-box-filter {
       position: absolute;
-      width: ~'calc(100% - 16px)';
+      width: 100%;
       z-index: 1;
-      margin: 0 8px;
+      margin: 3px 0 0 0;
       background: #ffffff;
       box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
       visibility: visible;
@@ -258,9 +257,9 @@
           
           
           .tt-suggestion {
-            line-height: 24px;
-            height: 24px;
-            padding: 6px 16px;
+            line-height: 32px;
+            height: 32px;
+            padding: 0 16px;
           }
         }
       }

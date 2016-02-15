@@ -36,6 +36,36 @@ Meteor.startup(function () {
   }
 });
 
+
+bz.ui.initSwiper = function() {
+  var swiper;
+  setTimeout(function() {
+    toast(
+        '/libs/idangerous-swiper.css',
+        ['/libs/idangerous-swiper.js', function () {
+          return window.Swiper;
+        }]/*,
+        function() {
+                    
+          swiper = new Swiper('.swiper-container',{
+            slidesPerView: 4,
+            calculateHeight: true,
+            resizeReInit: true,
+            onSwiperCreated : function(swiper) {
+              //Do something when you touch the slide
+              console.log('OMG you touch the slide!');
+            }
+          });
+          return swiper;
+        }*/
+    );
+  }, 10);
+
+  return swiper;
+  
+};
+
+
 layoutRenderedLazyLoad = function () {
   setTimeout(function () {
     toast(

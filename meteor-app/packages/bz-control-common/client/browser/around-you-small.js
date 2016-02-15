@@ -21,6 +21,8 @@ Template.aroundYouSmall.helpers({
     var ret, loc = Session.get('bz.control.search.location'),
       activeCats = Session.get('bz.control.category-list.activeCategories') || [];
 
+    
+    
     // add all-posts reactivity:
     bz.cols.posts.find({});
     if (loc && loc.coords) {
@@ -43,6 +45,20 @@ Template.aroundYouSmall.helpers({
 Template.bzAroundYouSmallItem.onCreated(function(){
   Meteor.subscribe('bz.users.all');
 });
+
+
+Template.aroundYouSmall.onRendered(function() {
+  //bz.ui.initSwiper();
+  
+    var swiper = new Swiper('.swiper-container', {
+      //slidesPerView: 4,
+      slidesPerView: 'auto',
+      calculateHeight: true,
+      resizeReInit: true
+    })
+  
+});
+
 
 Template.bzAroundYouSmallItem.rendered = function() {
   

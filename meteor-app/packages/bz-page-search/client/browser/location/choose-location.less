@@ -5,9 +5,15 @@
   &.reveal-modal {
     &.js-global-location {
       padding: 0;
+      overflow: auto;
     }
   }
+
+  .close-reveal-modal {
+    top: 2px;
+  }
 }
+
 
 // make my location icon red:
 .bz-fa-location-not-defined {
@@ -21,18 +27,23 @@
   .header-toolbar {
 
     .header-toolbar-title {
-      padding: 1.57895em 30px 1.31579em;
+      padding: 15px 16px;
       
       span {
         text-transform: uppercase;
         color: @h-title-color;
         font-weight: 400;
+        width: 88%;
+        display: block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
     }
 
     .header-toolbar-search {
       border-top: 1px solid rgba(180,180,180, .2);
-      padding: 30px;
+      padding: 16px 16px;
       background-color: rgba(230,230,230, .2);
 
       input {
@@ -42,7 +53,8 @@
 
     .header-toolbar-regions {
       border-top: 1px solid rgba(180,180,180, .2);
-      padding: 30px 15px;
+      padding: 16px 16px;
+      overflow: auto;
       
       ul {
         margin-left: 0;
