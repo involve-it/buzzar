@@ -6,7 +6,7 @@ var en;
 
 en = {
   //Global
-  APP_NAME: 'FireFlies',
+  APP_NAME: 'Shiners',
   CONTENT_READ_MORE_TITLE: 'Read more...',
   CONTACT_US:'Contact us',
   SEND_MESSAGE: 'Send message',
@@ -87,7 +87,7 @@ en = {
   NEW_POST_WHEN: 'When',
   NEW_POST_DURATION: 'Duration',
   NEW_POST_DURATION_MUTED: 'Установите время, в течении которого ваше объявление будет активным.',
-  NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователям Buzzar найдут объявления в подходящем для них месте.',
+  NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователи Светлячков найдут объявления в подходящем для них месте.',
   NEW_POST_GALLERY_PHOTOS: 'Photos',
   NEW_POST_GALLERY_PHOTOS_MUTED: 'Please add photos for the post.',
   NEW_POST_TITLE: 'Title',
@@ -122,7 +122,7 @@ en = {
   NEW_POST_SELLING_A_HOUSE: 'Selling a house',
   NEW_POST_INCOGNITO_MODE: 'Incognito mode',
   NEW_POST_HASHES: 'Hashes',
-  NEW_POST_CREATE_BTN: 'Create FireFly',
+  NEW_POST_CREATE_BTN: 'Create Shiner',
   NEW_POST_SET_LOCATION_BTN: 'Set Location',
   NEW_POST_SENIORITY: 'Seniority',
   NEW_POST_GENDER: 'Gender',

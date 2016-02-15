@@ -77,7 +77,7 @@ Meteor.methods({
 // надо перенести к нам!!:
 Meteor.startup(function () {
   AccountsEntry.config({
-    signupCode: 'сплин',         // only restricts username+password users, not OAuth
-    showSignupCode: true,         // place it also on server for extra security
+    //signupCode: 'сплин',         // only restricts username+password users, not OAuth
+    //showSignupCode: true,         // place it also on server for extra security
   });
 });
