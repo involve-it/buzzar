@@ -3,12 +3,10 @@ Template.postsNew.rendered = function () {
   TrackNewPostTypeChange('js-new-post-placeholder');
   setTimeout(function(){
     // let's lazy-load code mirror plugin:
-    bz.ui.initCodeMirror(function(){
-      var input = $('.js-post-description');
-      var htmleditor = UIkit.htmleditor(input, { /* options */ });
-    });
+    bz.ui.initCodeMirror($('.js-post-description'));
   }, 100);
-}
+};
+
 Template.postsNew.created = function () {
   this.data ? _.extend(this.data, data) : _.extend({}, data);
   //$('.js-new-post-placeholder').append();
@@ -30,7 +28,7 @@ Template.postsNew.helpers({
 Template.postsNew.events({
   'click .js-create-post': function (e, v) {
     var res = true;
-    event.preventDefault();
+    e.preventDefault();
     validatePostsNewPage(v).then((ret)=>{
       if(ret.res){
         !!ret.msg.length && bz.ui.alert(ret.msg.join('; '));

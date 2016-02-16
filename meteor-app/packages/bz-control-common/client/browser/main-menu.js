@@ -77,3 +77,4 @@ Template.bzInnerMenuLeft.events({
     }
   }
 });
+

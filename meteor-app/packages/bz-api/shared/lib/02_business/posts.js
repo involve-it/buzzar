@@ -31,14 +31,27 @@ var helperFunctions = {
         loc = this.details.locations[0];
       }
       distance =  bz.help.location.getDistance(currentLocation.latitude, currentLocation.longitude, loc.coords.lat, loc.coords.lng);
+      var user = Meteor.user(),
+          lang = user&&user.profile&&user.profile.language;
 
       if(!retNumberFormat) {
-        if (distance <= .3) {
-          ret = (distance * 5280).toFixed(0) + ' ft';
-        } else if (distance <= 10) {
-          ret = distance.toFixed(1) + ' mi';
+        if (lang === 'ru') {
+          distance = distance * 1.60934;
+          if (distance <= .3) {
+            ret = (distance * 1000).toFixed(0) + ' м';
+          } else if (distance < 10) {
+            ret = distance.toFixed(1) + ' км';
+          } else {
+            ret = distance.toFixed(0) + ' км';
+          }
         } else {
-          ret = distance.toFixed(0) + ' mi';
+          if (distance <= .3) {
+            ret = (distance * 5280).toFixed(0) + ' ft';
+          } else if (distance < 10) {
+            ret = distance.toFixed(1) + ' mi';
+          } else {
+            ret = distance.toFixed(0) + ' mi';
+          }
         }
       } else {
         num = distance.toFixed(3);
@@ -71,6 +84,11 @@ var helperFunctions = {
     } else {
       return '';
     }
+  },
+  getImagesObjects: function(){
+    return _.map(this.details.photos, function(id){
+      return bz.cols.images.findOne(id);
+    });
   }
 };
 

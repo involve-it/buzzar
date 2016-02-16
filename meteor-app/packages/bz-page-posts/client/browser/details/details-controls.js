@@ -3,8 +3,19 @@ Template.bzPostDetails.events({});
 Template.bzPostDetails.helpers({
   getPostCreatedDate: function () {
     var ret = '';
+    var options = {
+     // era: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long',
+     //timezone: 'UTC',
+      //hour: 'numeric',
+     // minute: 'numeric',
+     // second: 'numeric'-->
+    };
     if (this.timestamp) {
-      ret = new Date(this.timestamp).toDateString();
+      ret = new Date(this.timestamp).toLocaleDateString( Session.get("bz.user.language"), options);
     }
     return ret;
   },
@@ -139,7 +150,7 @@ Template.postDetailsPhoto.helpers({
       main, photos = getPostPhotoObjectsByIds(this.details.photos);
     if (photos) {
       main = _.filter(photos, function(item){
-        return item.isMain === true;
+        return item && item.isMain === true;
       });
       if (main && main.length > 0){
         ret = main[0];

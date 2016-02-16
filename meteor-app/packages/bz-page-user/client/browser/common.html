@@ -1,57 +1,60 @@
 <template name="avatarThumbnail">
-    <div class="bz-avatar" style="background-image: url({{ getAvatarImage }})"></div>
-    
-    {{#if canWrite }}
-        <div class="edit-image-holder">
-            <a class="js-edit-image-icon">
-              <i class="fa fa-pencil"></i>
-            </a>
-            <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
-                 role="dialog">
-              {{> uploadImageModal sessionName = 'bz.user.profileImgUploaded'}}
-            </div>
-        </div>
-    {{/if}}
+  <div class="bz-avatar" style="background-image: url({{ getAvatarImage }})"></div>
+
+  {{#if canWrite }}
+    <div class="edit-image-holder">
+      <a class="js-edit-image-icon">
+        <i class="fa fa-pencil"></i>
+      </a>
+      <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
+           role="dialog">
+        {{> uploadImageModal getImagesArrayReactive }}
+        <!--{{> uploadImageModal sessionName = 'bz.user.profileImgUploaded'}}-->
+      </div>
+    </div>
+  {{/if}}
 </template>
 
 <template name="bzUserProfileBasic">
- 
+
   <div class="bz-user-card">
-      <div class="bz-padding-10 overflow">
-        <div class="bz-user-badge">
-            <a href="/user/{{_id}}">
-                {{> avatarThumbnail image=profile.image }}
-            </a>
-            {{> bzAvatarUserStatus}}
+    <div class="bz-padding-10 overflow">
+      <div class="bz-user-badge">
+        <a href="/user/{{_id}}">
+          {{> avatarThumbnail image=profile.image }}
+        </a>
+        {{> bzAvatarUserStatus}}
+      </div>
+
+      <div class="bz-user-date">
+        <div class="bz-user-date-status">
+          <a href="/user/{{_id}}">
+            <div class="bz-user-date-username">{{ username }}</div>
+          </a>
         </div>
-          
-        <div class="bz-user-date">
-          <div class="bz-user-date-status">
-              <a href="/user/{{_id}}">
-                  <div class="bz-user-date-username">{{ username }}</div>
-              </a>
-          </div>
-          <!--<div class="">
+        <!--<div class="">
             {{#if isOnline }}
               [[Online]]
             {{else }}
               [[offline]]
             {{/if}}
           </div>-->
-          <!--<div class="bz-rating"></div>-->
-        </div>
-        
-        <div class="bz-send-message">
-          <button class="js-send-message-btn bz-small">Send Message</button>
-        </div>
-
-        {{> bzSocialButtons }}
-          
+        <!--<div class="bz-rating"></div>-->
       </div>
-      
+
+      <div class="bz-send-message">
+        <button class="js-send-message-btn bz-small">{{ t9n 'SEND_MESSAGE' }}</button>
+      </div>
+
+      {{> bzSocialButtons }}
+      {{#if belongsToCurrentUser }}
+        <a class="bz-post-action-link" href="/posts/{{ getCurrentPostId }}/edit" title="Edit"><span><i
+          class="fa fa-pencil-square-o"></i></span></a>
+      {{/if}}
+    </div>
+
   </div>
-    
-  
+
 
 </template>
 

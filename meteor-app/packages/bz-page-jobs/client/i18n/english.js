@@ -8,7 +8,7 @@ enI18n = {
   APP_NAME: 'Buzzar',
   CONTENT_READ_MORE_TITLE: 'Read more...',
   CONTACT_US:'Contact us',
-  CONTACT_SEND_MESSAGE: 'Send message',
+  SEND_MESSAGE: 'Send message',
   YES: 'Yes',
   NO: 'No',
   
@@ -46,7 +46,7 @@ enI18n = {
   siteTitleElement: 'instant jobs around',
   
   // home page:
-  headliner: 'instant jobs around',
+  headliner: 'jobs around',
   MOST_POPULAR_TITLE: 'Most Popular',
   ABOUT_US_TITLE: 'About us',
 
@@ -109,7 +109,7 @@ enI18n = {
   NEW_POST_SELLING_A_HOUSE: 'Selling a house',
   NEW_POST_INCOGNITO_MODE: 'Incognito mode',
   NEW_POST_HASHES: 'Hashes',
-  NEW_POST_CREATE_BTN: 'Create FireFly',
+  NEW_POST_CREATE_BTN: 'Create Shiner',
   NEW_POST_SET_LOCATION_BTN: 'Set Location',
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',

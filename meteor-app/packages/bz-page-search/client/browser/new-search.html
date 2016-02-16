@@ -1,0 +1,173 @@
+<template name="bzNewControlSearch">
+        
+    <div class="bz-control--search bz-f">
+        
+        <div class="bz-btn-services">
+            <div class="bz-btn-services-box">
+                <div class="bz-btn-services-wrapper">
+                    {{> categoryListButtons}}
+                </div>
+            </div>
+        </div>
+        
+        <div class="bz-search-wrapper">
+            <div class="bz-search-wrapper-outer">
+                <div class="bz-search-btn-submit right">
+                    <button class="button js-search-btn bz-btn-search-style"></button>
+                </div>
+                <div class="bz-search-input-field">
+                    <div class="bz-search-btn-wrapper">
+                        <div class="bz-search-btn-filters"><div class="bz-btn-filters js-toggle-filters"><i class="fa fa-sliders"></i></div></div>
+                        <div class="bz-search-btn-reset"><div class="bz-btn-reset js-reset-field"><i class="fa fa-times-circle"></i></div></div>
+                    </div>
+                    <div class="bz-search-input-wrapper">
+                        <div class="bz-search-input-style">
+                            <input class="bz-form-control typeahead js-nearby-places" name="team" type="text"
+                               placeholder="{{ t9n 'LOOKING_FOR_TEXT'}}" 
+                               value=""
+                               autocomplete="off"
+                               spellcheck="off"
+                               data-sets="joinedArray"
+                               data-selected="searchItemSelected"
+                               data-template="newPostFoundItem"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bz-search-box-filter filters-closed">
+                {{> bzNewControlSearchFilters}}
+                {{> newPostFoundWrapper}}
+            </div>
+        </div>
+        
+    </div>
+ 
+</template>
+
+
+<template name="bzNewControlSearchFilters">
+    <div class="bz-search-box-filter-wrapper">
+        <div class="bz-filter-info">
+            <div class="bz-filter-info-result left">
+                Results found:  
+                <span class="bz-ret-sesult">{{countSearchRQ}}</span>
+            </div>
+            <div class="bz-filter-info-help right">
+                <a href="#">Learn more</a>
+            </div>
+        </div>
+        <div class="bz-filters-box"></div>
+    </div>
+</template>
+
+
+<!-- newPostFound -->
+
+<template name="newPostFoundWrapper">
+    <div class="post-find-wrapper"></div>
+</template>
+
+<template name="newPostFoundItem">
+    <li><i class="fa fa-map-pin"></i><i>{{ name }}</i></li>
+</template>
+
+<template name="newPostNoFound">
+    <div>NO FOUND</div>
+</template>
+
+<template name="bzSearchSpinner">
+    <div>*****</div>
+</template>
+
+<!-- END newPostFind -->
+
+
+<template name="searchFiltersHelp">
+    <div>Help HELP</div>
+</template>
+
+
+<template name="searchCommonFilters">
+    <div class="bzSearchTmpl-common">
+        <div class="list">
+            <div class="item item-divider">
+                Distance
+            </div>
+
+            <div class="item">
+                <div class="bz-range-slider">
+                    <div class="js-distance-range-slider range-slider bz-range-slider-wrapper" data-slider data-options="step: 33; initial: 0; start: 1;">
+                        <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                        <span class="range-slider-active-segment"></span>
+                        <input type="hidden">
+                    </div>
+                    <span class="bz-range-grid">
+                        <span class="bz-range-grid-grid-pol w-start"></span>
+                        <span class="bz-range-grid-grid-text w-start">1 mile</span>
+                        <span class="bz-range-grid-grid-pol w2"></span>
+                        <span class="bz-range-grid-grid-text w2">5 miles</span>
+                        <span class="bz-range-grid-grid-pol w3"></span>
+                        <span class="bz-range-grid-grid-text w3">20 miles</span>
+                        <span class="bz-range-grid-grid-pol w-finish"></span>
+                        <span class="bz-range-grid-grid-text w-finish">Everywhere</span>
+                    </span>
+                </div>
+            </div>            
+        </div>
+    </div>
+</template>
+
+
+<template name="searchFiltersJobs">
+    <div class="bzSearchTmpl-jobs">            
+        <div class="list">
+            {{> searchCommonFilters}}
+            
+            <div class="bz-additional-filters-search">
+                <div class="item item-divider">
+                    Category settings
+                </div>
+        
+                <div class="item">
+                    <select id="jobs-search-category-home" class="bz-ui-dropdown" data-prompt="Выберите один из вариантов">
+                        <option value="all-jobs">Все подкатегории</option>
+                        <option value="looking-for-job">Вакансии</option>
+                        <option value="jobs-offered">Резюме</option>
+                    </select>
+                </div>
+        
+                <div class="item item-divider">
+                    Employment and work schedule
+                </div>
+        
+                <div class="item">
+                    <select id="jobs-type-home" class="bz-ui-dropdown" multiple data-prompt="Можно выбрать несколько вариантов">
+                        <option value="full-day">Постоянная</option>
+                        <option value="project">Проектная/Временная работа</option>
+                        <option value="by-profession">По специальности</option>
+                        <option value="without-experience">Без опыта</option>
+                        <option value="part">Частичная занятость</option>
+                        <option value="volunteer">Волонтером</option>
+                        <option value="freelance">Фриланс</option>
+                        <option value="probation">Без опыта</option>
+                        <option value="choose-all">Выбрать все</option>
+                    </select>
+                </div>
+            
+                <div class="item bz-gray-background">
+                    <div class="">Only with photos</div>
+                    <div class="bz-switch-is-photo">
+                        <div class="switch-wrapper js-switch-wrapper">
+                            <div class="switch bz-small">
+                                <input id="switch-is-photo" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                <label for="switch-is-photo"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

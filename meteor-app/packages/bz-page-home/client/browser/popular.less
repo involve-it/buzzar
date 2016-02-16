@@ -94,13 +94,13 @@
         .bz-post-info {
           position: absolute;
           top: 9px;
-          right: 10px;
+          right: 6px;
           z-index: 102;
           line-height: 36px;
 
           > * {
             > * {
-              margin-left: 10px;
+              margin-left: 6px;
             }
           }
 
@@ -123,13 +123,13 @@
             color: @white-color-text;
             font-size: 12px;
             background-color: rgba(0, 0, 0, .2);
-            padding: 0 8px;
+            padding: 0 8px 0 0;
             opacity: 1;
             line-height: 16px;
             .border-radius(2px);
 
             i {
-              padding-right: 3px;
+              padding: 0 5px;
             }
           }
         }
@@ -184,46 +184,7 @@
   }
 }
 
-/*
- * Scale
- */
 
-.bz-overlay-scale {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
-}
-
-.bz-overlay-hover:hover {
-  .bz-overlay-scale {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-}
-
-/*
- * Position cover on the photo
- */
-
-.bz-position-cover {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 102;
-}
-
-.bz-background-image-cover {
-  background-position: center center;
-  background-size: cover;
-  height: 168px;
-  width: 100%;
-  background-color: #CCCCCC;
-}
-
-/* END */
 
 @media only screen and (max-width: 40em) {
 

@@ -22,9 +22,21 @@ Template.pageJobs.rendered = function () {
   //$('select').foundationSelect();
   $(document).foundation();
 };
-Template.pageJobs.rendered = function () {
 
-};
+Template.pageJobs.onRendered(function() {
+
+  $(document).foundation();
+
+  bz.ui.resizeSearchField();
+  
+  $(document).ready(function() {
+    $(window).on({
+      'resize': function(e) {
+        bz.ui.resizeSearchField();
+      }
+    });
+  });
+});
 
 
 /*

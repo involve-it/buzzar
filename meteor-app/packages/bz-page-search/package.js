@@ -45,7 +45,12 @@ Package.onUse(function (api) {
     'client/browser/search-results.html',
     'client/browser/search-results.js',
     'client/browser/search.html',
+    
     'client/browser/search.js',
+
+    'client/browser/new-search.html',  
+    'client/browser/new-search.js',  
+    'client/browser/new-search.less'  
 
   ], global.bzSettings.webBrowserArray);
   api.addFiles([

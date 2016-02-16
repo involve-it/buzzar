@@ -14,22 +14,40 @@
               <div class="small-12 medium-9 large-9 left">
                   <div class="bz-location-position">
                         <!--1-->
-                        <div class="bz-style-soft-background bz-dynamic bz-panel-overlay panel padding js-moving-location-panel">
-                            <div class="bz-triangle-help"></div>
+                        <div class="bz-style-soft-background bz-dynamic bz-panel-overlay panel padding js-moving-location-panel bz-tool-tip" data-open-on="click" data-top-center="top right" data-theme="drop-theme-arrows-bounce-dark">
+                            <div class="bz-triangle-help js-triangle-help drop-target"></div>
                             <i class="fa fa-map-signs"></i>
                             <div class="title uppercase">Dynamic</div>
                             <p>Moving with you ad</p>
+
+                            <!--Drop tips-->
+                            <div class="drop-content">
+                                <div class="drop-content-inner">
+                                    <span class="bz-drop-close"><i class="fa fa-times-circle"></i></span>
+                                    <p>{{ t9n 'NEW_POST_DINAMIC_TOOLTIP_TEXT' }}</p>
+                                </div>
+                            </div>
+                            
                         </div>
                       
                         <!--2-->
-                        <div class="bz-style-soft-background bz-static bz-panel-overlay panel padding js-fixed-location-panel" id="moving-ad">
-                            <div class="bz-triangle-help"></div>
-                            <i class="fa fa-thumb-tack"></i>
+                        <div class="bz-style-soft-background bz-static bz-panel-overlay panel padding js-fixed-location-panel bz-tool-tip" id="moving-ad" data-open-on="click" data-top-center="top right" data-theme="drop-theme-arrows-bounce-dark">
+                            <div class="bz-triangle-help js-triangle-help drop-target"></div>
+                            <i class="fa fa-thumb-tack drop-target"></i>
                           <div class="title uppercase">Static</div>
                           <p>Pinned to static location</p>
                           <span class="js-location-holder">
                               {{> bzLocationNameNewPost sessionName='bz.posts.new.location2'}}
                           </span>
+
+                            <!--Drop tips-->
+                            <div class="drop-content">
+                                <div class="drop-content-inner">
+                                    <span class="bz-drop-close"><i class="fa fa-times-circle"></i></span>
+                                    <p>{{ t9n 'NEW_POST_STATIC_TOOLTIP_TEXT' }}</p>
+                                </div>
+                            </div>
+                            
                         </div>
                       
                   </div>

@@ -7,9 +7,17 @@ ruI18n = {
   APP_NAME: 'Светлячки',
   CONTENT_READ_MORE_TITLE: 'Подробнее',
   CONTACT_US:'Свяжитесь с нами',
-  CONTACT_SEND_MESSAGE: 'Отправить сообщение',
+  SEND_MESSAGE: 'Отправить сообщение',
   YES: 'Да',
   NO: 'Нет',
+  COMMENTS:'Комментарии',
+  RATING: 'Рейтинг',
+  REVIEW_HELP_TEXT: 'Оставьте свой комментарий здесь',
+  CHOOSE_RATING: 'Выберите рейтинг',
+  SUBMIT: 'Отправить',
+  CANCEL: 'Отмена',
+  OR:'ИЛИ',
+
 
   //Buttons
   BUTTON_CHECK: 'Проверить',
@@ -125,6 +133,22 @@ ruI18n = {
   
   //Post details
   POST_DETAILS_REVIEWS_FIRST: 'Вы будете первый',
+  POST_DETAILS_VIEWS: 'Просмотров',
+  POST_DETAILS_TODAY: 'Сегодня',
+  POST_DETAILS_STATUS: 'Статус',
+  POST_DETAILS_DISTANCE: 'Дистанция',
+  POST_DETAILS_ALL: 'Всего',
+  POST_DETAILS_LIKES: 'Нравится',
+  POST_DETAILS_TYPE: 'Тип',
+  POST_DETAILS_PRICE: 'Цена',
+  POST_DETAILS_LIKE: 'Нравится',
+  POST_DETAILS_LEFT: 'Осталось',
+  POST_DETAILS_DYNAMIC:'Динамический',
+  POST_DETAILS_STATIC:'Статический',
+  POST_DETAILS_VIEW_MAP:'Показать на карте',
+  POST_DETAILS_DETAILS: 'Детали',
+  POST_DETAILS_PUBLISHED_ON: 'Опубликовано',
+
 
   
   //Profile
@@ -138,6 +162,11 @@ ruI18n = {
   PROFILE_USER_SKYPE: 'Skype',
   PROFILE_USER_STATUS: 'Статус',
   PROFILE_PROFILE_URL: 'URL профиля',
+  PROFILE_USER_DETAILS_POSTS: 'Публикации',
+
+  //Another user profile details
+  PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Личные данные',
+  PROFILE_ANOTHER_USER_ADDITIONAL_LINKS: 'Внешние ссылки',
 
   //Profile - edit
   PROFILE_EDIT_USER_AVATAR: 'Настройки аватара',
@@ -149,6 +178,11 @@ ruI18n = {
   PROFILE_USER_PHONE_NUMBER: 'Номер телефона',
   PROFILE_USER_SKYPE_LOGIN : 'Логин Skype',
   PROFILE_USER_SECURITY_SETTINGS : 'Настройки безопасности',
+  PROFILE_USER_VK: 'Вконтакте',
+  PROFILE_USER_FACEBOOK: 'Facebook',
+  PROFILE_USER_TWITTER: 'Twitter',
+  PROFILE_USER_TOWN: 'Город',
+  PROFILE_CANCEL: 'Отмена',
 
   //Error
   ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения',

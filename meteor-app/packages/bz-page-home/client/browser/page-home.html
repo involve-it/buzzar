@@ -4,9 +4,11 @@
         <div class="bz-slideshow-background">
             <div class="bz-slideshow-items">
                 <ul class="bz-slide-show-list none-list">
-                    <li class="bz-slideshow-item bz-slideshow-item-active">
-                        <!--<img src="https://i.ytimg.com/vi/AUXzW7k3eeo/maxresdefault.jpg" alt="firebug"/>-->
-                        <img src='/img/content/bg/state-city.jpg' title="firebug"/>
+                    <li class="show-for-small-only">
+                        <div class="bz-cover-background bz-cover-position" style="background-image: url('/img/content/bg/state-city.jpg')"></div>
+                    </li>
+                    <li class="show-for-medium-up">
+                        <div class="bz-cover-background bz-cover-position" style="background-image: url('/img/content/bg/fly-balls.jpg')"></div>
                     </li>
                 </ul>
             </div>
@@ -28,18 +30,19 @@
                             <div class="box-search">
                                 <div class="bz-category-buttons">
                                     <div class="bz-category-buttons-wrapper">
-                                        {{> categoryListButtons}}
+                                        <!--{{> categoryListButtons}}-->
                                     </div>
                                 </div>
                                 <form class="search" id="bz-search" role="search" method="post" action="#">
                                     <i class="icon ion-search placeholder-icon"></i>
-                                    {{> bzControlSearch }}
+                                    <!--{{> bzControlSearch }}-->
+                                    {{> bzNewControlSearch }}
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="sp-r"></div>
-                    <div class="sp-l"></div>
+                    <!--<div class="sp-r"></div>
+                    <div class="sp-l"></div>-->
                 </div>
 
                 <div class="bz-around-small">
@@ -95,7 +98,7 @@
 
 
 <template name="bzMeteorLogo">
-  <div class="bz-logo-wrapper" style="    font-size: 18px;">
+  <div class="bz-logo-wrapper" style="    font-size: 20px;">
     <a href="/home" style="color: white;">
       {{ getLocalAppName }}
     </a>
@@ -120,7 +123,7 @@
 
 <template name="bzAdCategoryButton">
   <div class="bz-category">
-    <div class="button bz-btn-category type-category-{{categoryType}} js-category-type-btn">
+    <div class="button bz-btn-category type-category-{{categoryType}} js-category-type-btn" data-cat-type="{{ categoryType }}">
       {{categoryType}}
     </div>
   </div>

@@ -85,8 +85,12 @@ if (Meteor.isServer) {
       insert: function () {
         return true;
       },
-      remove: function(){
-        return true;
+      remove: function(userId, commentObj){
+        if(commentObj.userId === userId){
+          return true;
+        } else {
+          return false;
+        }
       }
     });
   }
@@ -97,6 +101,7 @@ if (Meteor.isServer) {
   })
 }
 // reviews schema:
+/*
 if (Meteor.isServer && false) {
 // click google map link, see: 37.3715461,-121.996919
   bz.cols.reviews.insert({
@@ -136,4 +141,4 @@ if (Meteor.isServer && false) {
     dateTime: Date.now()
   });
   // post: https://www.linkedin.com/profile/view?id=100149100
-}
+}*/

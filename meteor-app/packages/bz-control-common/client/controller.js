@@ -3,7 +3,7 @@
  */
 // HELPERS:
 bz.ui.putCategoriesToSession = (catsToAdd, extend)=> {
-  var cats = !extend || !Session.get('bz.control.category-list.activeCategories') ? [] : Session.get('bz.control.category-list.activeCategories');
+  var cats = (!extend || !Session.get('bz.control.category-list.activeCategories')) ? [] : Session.get('bz.control.category-list.activeCategories');
 
   if(Array.isArray(catsToAdd)){
     _.each(catsToAdd, (item)=>{
@@ -25,16 +25,27 @@ bz.ui.putCategoriesToSession = (catsToAdd, extend)=> {
   Session.set('bz.control.category-list.activeCategories', cats);
 };
 
+
+bz.ui.putCategoriesToLinks = (intName) => {
+  if(typeof intName === 'string') {
+    Router.go(intName);
+  }
+};
+
+
 GetPostAdTypesI18n = (lang)=>{
   var  ret;
   if(lang){
     ret = bz.cols.postAdTypes.find({},  {transform: function (doc) {
+           
       var doc1 = _.extend(doc, doc.i18n[lang]);
+      
       return doc1;
     }});
   } else {
     ret = bz.cols.postAdTypes.find({});
   }
+  
   return ret;
 
 };

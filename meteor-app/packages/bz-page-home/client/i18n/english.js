@@ -4,7 +4,15 @@
 
 enI18n = {
   //Global
-  
+  COMMENTS:'Comments',
+  RATING: 'Rating',
+  REVIEW_HELP_TEXT: 'Put your review here',
+  CHOOSE_RATING: 'Choose rating',
+  SUBMIT: 'Submit',
+  CANCEL: 'Cancel',
+  OR:'OR',
+
+
   //Buttons
   BUTTON_CHECK: 'Check',
   
@@ -39,7 +47,7 @@ enI18n = {
   siteTitleElement: 'instant post, bound to location',
   
   // home page:
-  headliner: 'Opportunities around',
+  headliner: 'Options around',
 
 
   AROUND_YOU_TITLE: 'Buzz Around you',
@@ -101,7 +109,7 @@ enI18n = {
   NEW_POST_SELLING_A_HOUSE: 'Selling a house',
   NEW_POST_INCOGNITO_MODE: 'Incognito mode',
   NEW_POST_HASHES: 'Hashes',
-  NEW_POST_CREATE_BTN: 'Create FireFly',
+  NEW_POST_CREATE_BTN: 'Create Shiner',
   NEW_POST_SET_LOCATION_BTN: 'Set Location',
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',
@@ -114,6 +122,21 @@ enI18n = {
 
   //Post details
   POST_DETAILS_REVIEWS_FIRST: 'Your will be the first',
+  POST_DETAILS_VIEWS: 'Views',
+  POST_DETAILS_TODAY: 'Today',
+  POST_DETAILS_STATUS: 'Status',
+  POST_DETAILS_DISTANCE: 'Distance',
+  POST_DETAILS_ALL: 'All',
+  POST_DETAILS_LIKES: 'Likes',
+  POST_DETAILS_TYPE: 'Type',
+  POST_DETAILS_PRICE: 'Price',
+  POST_DETAILS_LIKE: 'Like',
+  POST_DETAILS_LEFT: 'Left',
+  POST_DETAILS_DYNAMIC:'Dynamic',
+  POST_DETAILS_STATIC:'Static',
+  POST_DETAILS_VIEW_MAP:'View map',
+  POST_DETAILS_DETAILS: 'Details',
+  POST_DETAILS_PUBLISHED_ON: 'Published on',
   
 
   //Profile
@@ -127,6 +150,16 @@ enI18n = {
   PROFILE_USER_SKYPE: 'Skype',
   PROFILE_USER_STATUS: 'Status',
   PROFILE_PROFILE_URL: 'Profile URL',
+  PROFILE_USER_DETAILS_POSTS: 'Posts',
+  PROFILE_USER_VK: 'Vkontakte',
+  PROFILE_USER_FACEBOOK: 'Facebook',
+  PROFILE_USER_TWITTER: 'Twitter',
+  PROFILE_USER_TOWN: 'Town',
+  PROFILE_CANCEL: 'Cancel',
+
+  //Another user profile details
+  PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Personal data',
+  PROFILE_ANOTHER_USER_ADDITIONAL_LINKS: 'External link',
 
   //Profile - edit
   PROFILE_EDIT_USER_AVATAR: 'Edit user avatar',
@@ -138,6 +171,19 @@ enI18n = {
   PROFILE_USER_PHONE_NUMBER: 'Phone number',
   PROFILE_USER_SKYPE_LOGIN: 'Skype username',
   PROFILE_USER_SECURITY_SETTINGS: 'Security settings',
+
+  //Image select
+  IMAGE_SELECT_UPLOAD_PHOTO: 'Upload Photo',
+  IMAGE_SELECT_IMAGE_FROM_URL: 'Image from Url',
+  IMAGE_SELECT_RANDOM_IMAGE: 'Random Image',
+  IMAGE_SELECT_MY_IMAGES: 'My Images',
+  IMAGE_SELECT_TAKE_PHOTO:'Take Photo',
+  IMAGE_SELECT_IMAGE_URL:'image url',
+  IMAGE_SELECT_CHECK_IMAGE:'Check Image',
+  IMAGE_SELECT_PASTE_FROM_CLIPBOARD:'Paste from clipboard',
+  IMAGE_SELECT_DONE: 'Done',
+  IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE: 'Upload New Profile Image with File Picker',
+  IMAGE_SELECT_CHOOSE_IMAGE: 'Choose image',
   
   //Error
   ERROR_INVALID_FIELD: 'This field is required',

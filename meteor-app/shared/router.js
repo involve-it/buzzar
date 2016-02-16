@@ -34,8 +34,17 @@ Router.map(function () {
 /***********************
  * requireLoginController
  ************************/
-Meteor.startup(function(){
-  requireLoginController = RouteController.extend({
+Meteor.startup(function () {
+  baseController = RouteController.extend({
+    onStop: function () {
+      console.log('baseController - route stopped: ' + new Date());
+      //bz.ui.spinnerAdd('body', true);
+    },
+    /*onAfterAction: function () {
+      bz.ui.spinnerRemove('body', true);
+    }*/
+  });
+  requireLoginController = baseController.extend({
 //requireLoginController = FastRender.RouteController.extend({
     onBeforeAction: function () {
       if (!Meteor.user()) {

@@ -34,6 +34,18 @@
 
 
 /* MIXIN */
+
+.centerer() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .border-radius(@radius) {
   -webkit-border-radius: @radius;
   -moz-border-radius:    @radius;
@@ -79,7 +91,7 @@
   height: 26px;
   .border-radius(2px);
   font-size: 12px;
-  padding: 6px 8px;
+  padding: 6px 5px;
   margin: 5px 0;
   
   &.bz-type-inner {
@@ -134,6 +146,59 @@ ul.none-list {
   }
 }
 
+/* FONT FACE */
+/* BZ ICONS */
+
+@font-face {
+  font-family: "bz-font-face";
+  src:url("fonts/bz-font-face/bz-font-face.eot");
+  src:url("fonts/bz-font-face/bz-font-face.eot?#iefix") format("embedded-opentype"),
+  url("fonts/bz-font-face/bz-font-face.woff") format("woff"),
+  url("fonts/bz-font-face/bz-font-face.ttf") format("truetype"),
+  url("fonts/bz-font-face/bz-font-face.svg#bz-font-face") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "bz-font-face" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="bz-icon-"]:before,
+[class*=" bz-icon-"]:before {
+  font-family: "bz-font-face" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bz-icon {
+  display: inline-block;
+  font-size: inherit;
+  text-rendering: auto;
+  
+  &.bz-icon-dinamic:before {
+    content: "\61";
+  }
+  &.bz-icon-flag:before {
+    content: "\62";
+  }
+}
 
 
 

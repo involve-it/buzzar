@@ -52,7 +52,8 @@ Package.onUse(function (api) {
 	  'client/browser/style/foundation/js/foundation/foundation.dropdown.js',
     'client/browser/style/foundation/js/foundation/foundation.tab.js',
     'client/browser/style/foundation/js/foundation/foundation.offcanvas.js',
-    'client/browser/style/foundation/js/foundation/foundation.abide.js'
+    'client/browser/style/foundation/js/foundation/foundation.abide.js',
+    'client/browser/style/foundation/js/foundation/foundation.slider.js'
   ], global.bzSettings.webBrowserArray);
   api.addFiles([
     'client/browser/style/foundation/foundation-select.css',

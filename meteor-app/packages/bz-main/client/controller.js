@@ -36,11 +36,71 @@ Meteor.startup(function () {
   }
 });
 
+
+bz.ui.initSwiper = function() {
+
+  (function() {
+    var timeouts = [];
+    var messageName = "zero-timeout-message";
+
+    // Like setTimeout, but only takes a function argument.  There's
+    // no time argument (always zero) and no arguments (you have to
+    // use a closure).
+    function setZeroTimeout(fn) {
+      timeouts.push(fn);
+      window.postMessage(messageName, "*");
+    }
+
+    function handleMessage(event) {
+      if (event.source == window && event.data == messageName) {
+        event.stopPropagation();
+        if (timeouts.length > 0) {
+          var fn = timeouts.shift();
+          fn();
+        }
+      }
+    }
+
+    window.addEventListener("message", handleMessage, true);
+
+    // Add the one thing we want added to the window object.
+    window.setZeroTimeout = setZeroTimeout;
+  })();
+  
+  
+  function includeSwiper() {
+    toast(
+        '/libs/idangerous-swiper.css',
+        ['/libs/idangerous-swiper.js', function () {
+          return window.Swiper;
+        }],
+        function () {
+          var swiper;
+          swiper = new Swiper('.swiper-container', {
+            //slidesPerView: 4,
+            slidesPerView: 'auto',
+            calculateHeight: true,
+            resizeReInit: true,
+            freeModeMomentum: true
+          });
+          
+          
+        }
+    );
+  }
+
+  setZeroTimeout(includeSwiper, 0);
+  
+  //read more ajaxian.com/archives/settimeout-delay
+  
+};
+
+
 layoutRenderedLazyLoad = function () {
   setTimeout(function () {
     toast(
       '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css',
-      '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js',
+      '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js',
       function () {
         //toastr.info('Are you the 6 fingered man?');
       }

@@ -25,10 +25,10 @@
         <div class="bz-photo bz-overlay-hover">
           <a href="/post/{{_id}}">
             {{#if getImgSrc}}
-              <div class="bz-background-image-cover bz-overlay-scale"
+              <div class="bz-background-image-cover"
                    style="background-image: url('{{ getImgSrc }}')"></div>
             {{else}}
-              <div class="bz-background-image-cover bz-overlay-scale"
+              <div class="bz-background-image-cover"
                    style="background-image: url('/img/content/no-photo.png')"></div>
             {{/if}}
             <div class="bz-post-info">
@@ -60,9 +60,9 @@
           <!--{{#if details.price}}
                 <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
             {{/if}}-->
-          {{> bzAdCategoryButton  _id=_id}}
+          {{> bzAdCategoryButton }}
           <div class="">
-            <a class="js-send-message-btn {{ disableOwnPost }}">Send Message</a>
+            <a class="js-send-message-btn {{ disableOwnPost }}">{{ t9n 'SEND_MESSAGE' }}</a>
           </div>
 
         </div>

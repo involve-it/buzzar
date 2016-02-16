@@ -6,13 +6,19 @@ var en;
 
 en = {
   //Global
-  APP_NAME: 'FireFlies',
+  APP_NAME: 'Shiners',
   CONTENT_READ_MORE_TITLE: 'Read more...',
   CONTACT_US:'Contact us',
-  CONTACT_SEND_MESSAGE: 'Send message',
+  SEND_MESSAGE: 'Send message',
   YES: 'Yes',
   NO: 'No',
-  
+  COMMENTS:'Comments',
+  RATING: 'Rating',
+  REVIEW_HELP_TEXT: 'Put your review here',
+  CHOOSE_RATING: 'Choose rating',
+  SUBMIT: 'Submit',
+  CANCEL: 'Cancel',
+  OR:'OR',
   //Buttons
   BUTTON_CHECK: 'Check',
   
@@ -31,6 +37,7 @@ en = {
   MENU_SIGN_IN: 'Sign in',
   MENU_SIGN_OUT: 'Sign out',
   MENU_SIGN_UP: 'Sign up',
+  MENU_SIGNED_IN_AS: 'Signed in as ',
   
   getAllUsers: 'Get all system users',
   getContactUsers: 'Contacts found',
@@ -81,7 +88,7 @@ en = {
   NEW_POST_WHEN: 'When',
   NEW_POST_DURATION: 'Duration',
   NEW_POST_DURATION_MUTED: 'Установите время, в течении которого ваше объявление будет активным.',
-  NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователям Buzzar найдут объявления в подходящем для них месте.',
+  NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователи Светлячков найдут объявления в подходящем для них месте.',
   NEW_POST_GALLERY_PHOTOS: 'Photos',
   NEW_POST_GALLERY_PHOTOS_MUTED: 'Please add photos for the post.',
   NEW_POST_TITLE: 'Title',
@@ -116,8 +123,20 @@ en = {
   NEW_POST_SELLING_A_HOUSE: 'Selling a house',
   NEW_POST_INCOGNITO_MODE: 'Incognito mode',
   NEW_POST_HASHES: 'Hashes',
-  NEW_POST_CREATE_BTN: 'Create FireFly',
+  NEW_POST_CREATE_BTN: 'Create Shiner',
   NEW_POST_SET_LOCATION_BTN: 'Set Location',
+  NEW_POST_SENIORITY: 'Seniority',
+  NEW_POST_GENDER: 'Gender',
+  NEW_POST_ATTACHMENT_FILES: 'Attachments',
+  NEW_POST_REMOVE_ATTACHMENT: 'Remove Attachment',
+  NEW_POST_CONTACTS: 'Contacts',
+  NEW_POST_ATTACH_A_DOCUMENT: 'Attach a document (optional)',
+  NEW_POST_CATEGORY_SEARCH: 'Search category',
+  NEW_POST_EMPLOYMENT_AND_WORK_SCHEDULE: 'Employment and work schedule',
+  NEW_POST_PAY_METHOD: 'Pay method',
+  NEW_POST_DINAMIC_TOOLTIP_TEXT: '??????????????????????',
+  NEW_POST_STATIC_TOOLTIP_TEXT: '??????????????????????',
+  
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',
@@ -129,6 +148,21 @@ en = {
 
   //Post details
   POST_DETAILS_REVIEWS_FIRST: 'Your will be the first',
+  POST_DETAILS_VIEWS: 'Views',
+  POST_DETAILS_TODAY: 'Today',
+  POST_DETAILS_STATUS: 'Status',
+  POST_DETAILS_DISTANCE: 'Distance',
+  POST_DETAILS_ALL: 'All',
+  POST_DETAILS_LIKES: 'Likes',
+  POST_DETAILS_TYPE: 'Type',
+  POST_DETAILS_PRICE: 'Price',
+  POST_DETAILS_LIKE: 'Like',
+  POST_DETAILS_LEFT: 'Left',
+  POST_DETAILS_DYNAMIC:'Dynamic',
+  POST_DETAILS_STATIC:'Static',
+  POST_DETAILS_VIEW_MAP:'View map',
+  POST_DETAILS_DETAILS: 'Details',
+  POST_DETAILS_PUBLISHED_ON: 'Published on',
   
 
   //Profile
@@ -142,6 +176,16 @@ en = {
   PROFILE_USER_SKYPE: 'Skype',
   PROFILE_USER_STATUS: 'Status',
   PROFILE_PROFILE_URL: 'Profile URL',
+  PROFILE_USER_DETAILS_POSTS: 'Posts',
+  PROFILE_USER_VK: 'Vkontakte',
+  PROFILE_USER_FACEBOOK: 'Facebook',
+  PROFILE_USER_TWITTER: 'Twitter',
+  PROFILE_USER_TOWN: 'Town',
+  PROFILE_CANCEL: 'Cancel',
+
+  //Another user profile details
+  PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Personal data',
+  PROFILE_ANOTHER_USER_ADDITIONAL_LINKS: 'External link',
 
   //Profile - edit
   PROFILE_EDIT_USER_AVATAR: 'Edit user avatar',
@@ -153,9 +197,25 @@ en = {
   PROFILE_USER_PHONE_NUMBER: 'Phone number',
   PROFILE_USER_SKYPE_LOGIN: 'Skype username',
   PROFILE_USER_SECURITY_SETTINGS: 'Security settings',
+
+  //Image select
+  IMAGE_SELECT_UPLOAD_PHOTO: 'Upload Photo',
+  IMAGE_SELECT_IMAGE_FROM_URL: 'Image from Url',
+  IMAGE_SELECT_RANDOM_IMAGE: 'Random Image',
+  IMAGE_SELECT_MY_IMAGES: 'My Images',
+  IMAGE_SELECT_TAKE_PHOTO:'Take Photo',
+  IMAGE_SELECT_IMAGE_URL:'image url',
+  IMAGE_SELECT_CHECK_IMAGE:'Check Image',
+  IMAGE_SELECT_PASTE_FROM_CLIPBOARD:'Paste from clipboard',
+  IMAGE_SELECT_DONE: 'Done',
+  IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE: 'Upload New Profile Image with File Picker',
+  IMAGE_SELECT_CHOOSE_IMAGE: 'Choose image',
   
   //Error
-  ERROR_INVALID_FIELD: 'This field is required'
+  ERROR_INVALID_FIELD: 'This field is required',
+  ERROR_INVALID_INTEGER_PATTERN: 'This field is required and must be an integer',
+
+  COMMON_IMAGE_GET_RANDOM: 'Get random image'
 };
 T9n.map('en', en);
 bz.help.makeNamespace('bz.language.i18n.en', en);

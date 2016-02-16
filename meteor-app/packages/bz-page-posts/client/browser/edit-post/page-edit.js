@@ -2,10 +2,7 @@ var data = bz.help.makeNamespace('bz.runtime.editPost');
 
 Template.pagePostsEdit.rendered = function () {
   TrackNewPostTypeChange('js-new-post-placeholder', this.data);
-  bz.ui.initCodeMirror(function(){
-    var input = $('.js-post-description');
-    var htmleditor = UIkit.htmleditor(input, { /* options */ });
-  });
+  bz.ui.initCodeMirror($('.js-post-description'));
 };
 
 Template.pagePostsEdit.created = function () {
@@ -20,13 +17,14 @@ Template.pagePostsEdit.created = function () {
    }
    });*/
   clearPostData();
+  FillPostData(this.data);
 };
 Template.pagePostsEdit.helpers({
 });
 Template.pagePostsEdit.events({
   'click .js-edit-post': function (e, v) {
     var res = true;
-    event.preventDefault();
+    e.preventDefault();
     validatePostsNewPage(v).then((ret)=>{
       if(ret.res){
         !!ret.msg.length && bz.ui.alert(ret.msg.join('; '));

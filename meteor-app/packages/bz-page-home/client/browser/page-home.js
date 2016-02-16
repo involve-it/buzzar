@@ -16,10 +16,22 @@ Template.pageHome.events({
   }
 });
 
-Template.pageHome.rendered = function () {
-  //$('select').foundationSelect();
+
+Template.pageHome.onRendered(function() {
+  
   $(document).foundation();
-};
+
+  bz.ui.resizeSearchField();
+  
+  $(document).ready(function() {
+    $(window).on({
+      'resize': function(e) {
+        bz.ui.resizeSearchField();
+      }
+    });
+  });
+  
+});
 
 Template.bzMeteorLogo.helpers({
   getLocalAppName: function(){
@@ -33,23 +45,26 @@ Template.bzMeteorLogo.helpers({
   }
 });
 
-Template.pageHome.rendered = function () {
-
-};
 
 
 Template.bzAdCategoryButton.helpers({
   categoryType: function() {
-    return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
+    return this.type;
+    //return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
   }
 });
 
 Template.bzAdCategoryButton.events({
   'click .js-category-type-btn': (e, v)=> {
-    var catName = e.target.innerText;
+    var type = bz.cols.postAdTypes.findOne({intName: e.target.innerText}) || {}
+    var catName = type.intName;
     if(catName) {
-      bz.ui.putCategoriesToSession(catName);
-      bz.ui.alert(`You filtered results by the "${catName.toCapitalCase()}" category, take Category Filter off in the top search section`);
+      if(type.hasRoute){
+        Router.go('/' + catName);
+      } else {
+        bz.ui.putCategoriesToSession(catName);
+        bz.ui.alert(`You filtered results by the "${catName.toCapitalCase()}" category, to undo this click "All" in top search section`);
+      }
     }
   }
 });

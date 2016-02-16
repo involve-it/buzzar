@@ -9,9 +9,16 @@ ru = {
   APP_NAME: 'Светлячки',
   CONTENT_READ_MORE_TITLE: 'Подробнее',
   CONTACT_US:'Свяжитесь с нами',
-  CONTACT_SEND_MESSAGE: 'Отправить сообщение',
+  SEND_MESSAGE: 'Отправить сообщение',
   YES: 'Да',
   NO: 'Нет',
+  COMMENTS:'Комментарии',
+  RATING: 'Рейтинг',
+  REVIEW_HELP_TEXT: 'Оставьте свой комментарий здесь',
+  CHOOSE_RATING: 'Выберите рейтинг',
+  SUBMIT: 'Отправить',
+  CANCEL: 'Отмена',
+  OR:'ИЛИ',
 
   //Buttons
   BUTTON_CHECK: 'Проверить',
@@ -31,7 +38,8 @@ ru = {
   MENU_SIGN_IN: 'Вход',
   MENU_SIGN_OUT: 'Выход',
   MENU_SIGN_UP: 'Регистрация',
-    
+  MENU_SIGNED_IN_AS: 'Вы вошли как ',
+
   getAllUsers:         'Все пользователи системы',
   getContactUsers:     'Найденные контакты',
   status:              'Статус',
@@ -81,7 +89,7 @@ ru = {
   NEW_POST_WHEN: 'Когда',
   NEW_POST_DURATION: 'Продолжительность',
   NEW_POST_DURATION_MUTED: 'Установите время, в течении которого ваше объявление будет активным.',
-  NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователям Buzzar найдут объявления в подходящем для них месте.',
+  NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователи Светлячков найдут объявления в подходящем для них месте.',
   NEW_POST_GALLERY_PHOTOS: 'Фотографии',
   NEW_POST_GALLERY_PHOTOS_MUTED: 'Добавьте фотографии для объявления. Вы всегда можете вернуться к сохраненному объявлению и добавить новые фотографии.',
   NEW_POST_TITLE: 'Название объявления',
@@ -118,6 +126,18 @@ ru = {
   NEW_POST_HASHES: 'Хэштеги',
   NEW_POST_CREATE_BTN: 'Установить Светлячок',
   NEW_POST_SET_LOCATION_BTN: 'Выберите Местоположение',
+  NEW_POST_SENIORITY: 'Трудовой стаж',
+  NEW_POST_GENDER: 'Пол',
+  NEW_POST_ATTACHMENT_FILES: 'Вложения',
+  NEW_POST_REMOVE_ATTACHMENT: 'Удалить вложение',
+  NEW_POST_CONTACTS: 'Контакты',
+  NEW_POST_ATTACH_A_DOCUMENT: 'Прикрепить документ (необязательно)',
+  NEW_POST_CATEGORY_SEARCH: 'Категория поиска',
+  NEW_POST_EMPLOYMENT_AND_WORK_SCHEDULE:'Занятость и график работы',
+  NEW_POST_PAY_METHOD: 'Способ оплаты',
+  NEW_POST_DINAMIC_TOOLTIP_TEXT: 'Выберите эту опцию, если желаете, чтобы созданное объявление перемещалось вместе с вашим устройством.',
+  NEW_POST_STATIC_TOOLTIP_TEXT: 'Выберите эту опцию, если желаете, чтобы созданное объявление было зафиксировано на местности и не зависело от вашего перемещения.',
+  
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Новое напоминание',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',
@@ -129,7 +149,21 @@ ru = {
   
   //Post details
   POST_DETAILS_REVIEWS_FIRST: 'Вы будете первый',
-
+  POST_DETAILS_VIEWS: 'Просмотров',
+  POST_DETAILS_TODAY: 'Сегодня',
+  POST_DETAILS_STATUS: 'Статус',
+  POST_DETAILS_DISTANCE: 'Дистанция',
+  POST_DETAILS_ALL: 'Всего',
+  POST_DETAILS_LIKES: 'Нравится',
+  POST_DETAILS_TYPE: 'Тип',
+  POST_DETAILS_PRICE: 'Цена',
+  POST_DETAILS_LIKE: 'Нравится',
+  POST_DETAILS_LEFT: 'Осталось',
+  POST_DETAILS_DYNAMIC:'Динамический',
+  POST_DETAILS_STATIC:'Статический',
+  POST_DETAILS_VIEW_MAP:'Показать на карте',
+  POST_DETAILS_DETAILS: 'Детали',
+  POST_DETAILS_PUBLISHED_ON: 'Опубликовано',
   
   //Profile
   PROFILE_USER_DETAILS :'Профиль пользователя',
@@ -142,6 +176,17 @@ ru = {
   PROFILE_USER_SKYPE: 'Skype',
   PROFILE_USER_STATUS: 'Статус',
   PROFILE_PROFILE_URL: 'URL профиля',
+  PROFILE_USER_DETAILS_POSTS: 'Публикации',
+  PROFILE_USER_VK: 'Вконтакте',
+  PROFILE_USER_FACEBOOK: 'Facebook',
+  PROFILE_USER_TWITTER: 'Twitter',
+  PROFILE_USER_TOWN: 'Город',
+  PROFILE_CANCEL: 'Отмена',
+
+  //Another user profile details
+  PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Личные данные',
+  PROFILE_ANOTHER_USER_ADDITIONAL_LINKS: 'Внешние ссылки',
+
 
   //Profile - edit
   PROFILE_EDIT_USER_AVATAR: 'Настройки аватара',
@@ -154,8 +199,24 @@ ru = {
   PROFILE_USER_SKYPE_LOGIN : 'Логин Skype',
   PROFILE_USER_SECURITY_SETTINGS : 'Настройки безопасности',
 
+  //Image select
+  IMAGE_SELECT_UPLOAD_PHOTO: 'Загрузить фото',
+  IMAGE_SELECT_IMAGE_FROM_URL: 'Указать URL картинки',
+  IMAGE_SELECT_RANDOM_IMAGE: 'Случайное изображение',
+  IMAGE_SELECT_MY_IMAGES: 'Мои картинки',
+  IMAGE_SELECT_TAKE_PHOTO:'Сделать фото',
+  IMAGE_SELECT_IMAGE_URL:'URL изображения',
+  IMAGE_SELECT_CHECK_IMAGE:'Проверить картинку',
+  IMAGE_SELECT_PASTE_FROM_CLIPBOARD:'Вставить из буфера обмена',
+  IMAGE_SELECT_DONE: 'Применить',
+  IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE: 'Загрузить новый профиль изображения',
+  IMAGE_SELECT_CHOOSE_IMAGE: 'Выбрать картинку',
+
   //Error
-  ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения'
+  ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения',
+  ERROR_INVALID_INTEGER_PATTERN: 'Это поле обязательно и только цифры',
+
+  COMMON_IMAGE_GET_RANDOM: 'Загрузить случайное фото'
   
 };
 

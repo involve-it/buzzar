@@ -93,10 +93,14 @@
     <div class="bz-item-mask">
       <a href="/post/{{_id}}">
         <div class="bz-item-photo">
-          {{#if getPhotoUrl.data}}
-            <img src="{{getPhotoUrl.data}}">
+          {{#if getPhotoUrl.thumbnail}}
+            <img src="{{getPhotoUrl.thumbnail}}">
           {{else}}
-            <img src="/img/content/no-photo.png">
+            {{#if getPhotoUrl.data}}
+              <img src="{{getPhotoUrl.data}}">
+            {{else}}
+              <img src="/img/content/no-photo.png">
+            {{/if}}
           {{/if}}
         </div>
 
@@ -154,11 +158,17 @@
         <div class="bz-post-wrapper {{#if _hasLivePresence }} bz-post-live {{else}} bz-post-away {{/if}} {{#if getPostOff}}bz-post-off{{/if}} ">
             <div class="photo">
                 <div class="photo-wrapper">
-                    {{#if getPhotoUrl.data}}
-                        <img src="{{getPhotoUrl.data}}">
+                  <a href="/post/{{_id}}">
+                    {{#if getPhotoUrl.thumbnail}}
+                        <img src="{{getPhotoUrl.thumbnail}}">
                     {{else}}
+                      {{#if getPhotoUrl.data}}
+                        <img src="{{getPhotoUrl.data}}">
+                      {{else}}
                         <img src="/img/content/no-photo.png">
+                      {{/if}}
                     {{/if}}
+                  </a>
                 </div>
             </div>
     

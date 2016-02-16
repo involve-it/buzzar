@@ -54,7 +54,7 @@
     <div class="bz-message {{ getMessageClass}}">
       <div class="bz-box-message">
         <div class="bz-message-user-avatar">
-            <img src="/img/content/avatars/avatar-no.png" style="height:40px; width:40px;">
+            <img src="{{getAvatarUrl}}" style="height:40px; width:40px;">
         </div>
         <div class="bz-message-body">
             <div class="bz-message-text">{{ text }}</div>
@@ -74,7 +74,7 @@
 
       <div class="user-inputs">
         <form>
-          <textarea class="btn--input-message" id="message-input" name="textMessage" placeholder="Send Message &crarr;"
+          <textarea class="btn--input-message" id="message-input" name="textMessage" placeholder="{{ t9n 'SEND_MESSAGE' }} &crarr;"
                     data-autoresize rows="1"></textarea>
           <!--<input id="message-input" type="text" name="textMessage" value="" placeholder="Your message" class="btn-input-message"> - -->
           <input id="send-btn" type="button" value="send" class="btn--send">
@@ -100,7 +100,7 @@
         below.
       </div>
 
-      <div class="bz-padding-top-x2">
+      <div class="bz-padding-top-x2 hide">
         <button class="button button-outline btn-default goContacts">go to the Contacts</button>
       </div>
     </div>

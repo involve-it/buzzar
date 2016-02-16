@@ -48,6 +48,7 @@
           </div>
       {{/if}}
   </div>
+    
 
   <ul class="off-canvas-list">
     <li><label>{{ t9n 'MENU_MAIN_PAGES_TITLE' }}</label></li>
@@ -60,6 +61,9 @@
     <!--<li class="{{isActiveRoute 'bz.map'}}"><a href="{{pathFor 'bz.map'}}">{{ t9n 'MENU_MAP' }}</a></li>-->
     <li class="{{isActiveRoute 'bz.aboutUs'}}"><a href="{{pathFor 'bz.aboutUs'}}">{{ t9n 'MENU_ABOUT_US' }}</a></li>
   </ul>
+
+    {{> bzLeftMenuSelectLanguage}}
+    
   {{#if currentUser}}
     {{> bzControlMenuHashes }}
   {{/if}}
@@ -113,4 +117,18 @@
       </a>
     </li>
   {{/if}}
+</template>
+
+
+<template name="bzLeftMenuSelectLanguage">
+    <div class="bz-left-menu-select-language only-menu-left">
+        <div class="title">Please, select you language</div>
+        <div class="bz-menu-select-language">
+            <ul class="bz-menu-switcher-language-list" data-bz-button-radio>
+                <li class="js-bz-button bz-button"><a class="en" data-lang="en" href="#">EN</a><div class="bz-lang-bottom-line"></div></li>
+                <li class="js-bz-button bz-button"><a class="ru" data-lang="ru" href="#">RU</a><div class="bz-lang-bottom-line"></div></li>
+            </ul>
+            <div class="bz-menu-switcher-language-bar"></div>
+        </div>
+    </div>
 </template>

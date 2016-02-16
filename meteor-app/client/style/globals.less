@@ -118,7 +118,7 @@ input.js-nearby-places:focus {
 .reveal-modal {
   padding: 20px;
   
-  .bz-js-preview-wrapper {
+  .js-preview-wrapper {
     .display-flex-box();
     .justify-content(center);
     
@@ -339,6 +339,7 @@ h2.title {
 .bz-wrapper-no-message {
   display: block; /*If don't contacts*/
   height: 100%;
+  margin: 0 0 15px 0;
   text-align: center;
   .display-flex-box();
   .align-items(center);
@@ -350,7 +351,7 @@ h2.title {
     .bz-img-conversation {
       i {
         font-size: 150px;
-        margin: 50px 0;
+        margin: 0 0 15px 0;
         color: rgba(30,188,210, .5);
       }
     }
@@ -729,6 +730,46 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
 }
 /* END */
 
+
+/*
+ * Position cover on the photo
+ */
+
+/*
+ * Background image always covers and centers its element
+ */
+.bz-cover-background {
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bz-cover-position {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bz-position-cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 102;
+}
+
+.bz-background-image-cover {
+  background-position: center center;
+  background-size: cover;
+  height: 168px;
+  width: 100%;
+  background-color: #CCCCCC;
+}
+
+/* END */
 
 
 /*

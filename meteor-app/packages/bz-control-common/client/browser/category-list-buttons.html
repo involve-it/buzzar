@@ -1,7 +1,8 @@
 <template name="categoryListButtons">
   {{#if getCategoryItems}}
     <ul class="control--category-list-buttons">
-      {{#each getCategoryItems}}
+        <li class="js-item-category {{isActiveRoute 'home'}}" data-value="{{ all }}"><a href="{{pathFor 'home'}}"><b>ALL</b></a></li>
+        {{#each getCategoryItems}}
         <li class="js-item-category {{ isActive this}}" data-value="{{ intName }}">{{ name }}</li>
       {{/each}}
     </ul>

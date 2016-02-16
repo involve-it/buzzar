@@ -2,16 +2,22 @@
  * Created by arutu_000 on 12/13/2015.
  */
 
-newPostType = new ReactiveVar();
+newPostType = new ReactiveVar(),
+  imagesArrayReactive = new ReactiveVar();
 
-// set new image to db:
-Meteor.startup(function () {
+Meteor.startup(()=> {
+  imagesArrayReactive.set([]);
+})
+/*
+ // set new image to db:
+ Meteor.startup(function () {
 
-  Tracker.autorun(function () {
-    bz.runtime.newPost.postImage = Session.get('bz.posts.postImgSrc');
-    bz.runtime.newPost.hashes = Session.get('hashes');
-  });
-});
+ Tracker.autorun(function () {
+ bz.runtime.newPost.postImage = Session.get('bz.posts.postImgSrc');
+ bz.runtime.newPost.hashes = Session.get('hashes');
+ });
+ });
+ */
 
 
 // handle post type:
@@ -32,7 +38,7 @@ var renderPostFormByType = function (type, $el, data) {
 
   bz.ui.initFoundationValidation();
   bz.ui.initDropTips();
-  
+
 };
 
 // render form according to type on type changed:
@@ -49,27 +55,41 @@ TrackNewPostTypeChange = function (selector, data) {
 };
 
 CreateNewPostFromView = function (v) {
-  var userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
+  var descriptionFormatted, userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
     locDef = $.Deferred(),
     loc1 = Session.get(bz.const.posts.location1),
     loc2 = Session.get(bz.const.posts.location2),
 
     rad = $('.js-radius-slider').attr('data-slider') && Number.parseInt($('.js-radius-slider').attr('data-slider')),
-    otherKeyValuePairs = [], timestamp, endTimestamp;
+    otherKeyValuePairs = [], timestamp, endTimestamp,
+    imgsPromisesArr = [], imgPromise;
 
   // gather all data and submit for post-create:
   if (userId) {
-    if (Session.get('bz.posts.postImgArr')) {
-      //if (bz.runtime.newPost.postImage) {
-      _.each(Session.get('bz.posts.postImgArr'), function (img) {
-        img = img || {};
-        imgId = bz.cols.images.insert({
-          data: img.data,
-          userId: userId
-        });
-        imgArr.push(imgId);
+    _.each(imagesArrayReactive.get(), function (imgItem) {
+      imgId = bz.cols.images.insert({
+        userId: userId,
+        name: imgItem.name,
       });
-    }
+      imgArr.push(imgId);
+      // let's set data on the client-side (temp for showing in site):
+      bz.cols.images._collection.update(imgId, { $set: {
+        data: imgItem.data
+      }});
+      if(!imgItem.thumbnail.data) {
+        imgItem.thumbnail.getBlob().then((url)=>{
+          imgItem.thumbnail.data = url;
+          bz.cols.images._collection.update(imgId, { $set: {
+            thumbnail: imgItem.thumbnail.data
+          }});
+        });
+      } else {
+        bz.cols.images._collection.update(imgId, { $set: {
+          thumbnail: imgItem.thumbnail.data
+        }});
+      }
+    });
+
     // set location:
     //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
     if (loc1 && location1.isSet) {
@@ -92,6 +112,7 @@ CreateNewPostFromView = function (v) {
     // created timestamp:
     timestamp = Date.now();
     endTimestamp = new Date(timestamp);
+    descriptionFormatted = stripOutScriptTags(v.$('.js-post-description').val()) || undefined;
     var newPost = {
       userId: userId,
       type: DeterminePostTypeFromView(v),
@@ -106,12 +127,25 @@ CreateNewPostFromView = function (v) {
 
         //details:
         title: v.$('.js-post-title').val(),
-        description: v.$('.js-post-description').val(),
+        description: descriptionFormatted,
         price: v.$('.js-post-price').val(),
         photos: imgArr,
 
         // specific:
         other: otherKeyValuePairs
+      },
+      jobsDetails: {
+        seniority: GetValueJobsSingleData(v, '#select-jobs-seniority'),
+        gender: GetValueJobsSingleData(v, '#select-jobs-gender'),
+        contacts: {
+          phone: v.$('.js-job-phone').val()
+        },
+        attachment: {
+          // This will be made by Ashot
+        },
+        typeCategory: GetValueJobsSingleData(v, '#select-jobs-search-category'),
+        jobsType: GetValueJobsMultiData(v, '#select-jobs-type'),
+        payMethod: GetValuePayMethod(v, '.bz-button-group')
       },
       status: {
         visible: bz.const.posts.status.visibility.VISIBLE
@@ -134,13 +168,30 @@ CreateNewPostFromView = function (v) {
       }
     }
 
+    bz.runtime.changesNotSaved = false;
+    Router.go('/posts/my');
+
     //$.when(locDef).then(function () {
     Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
+
+      _.each(imagesArrayReactive.get(), function (imgItem) {
+
+        imgItem.save().then(img=> {
+          bz.cols.images.update(imgId, {$set: {data: img.src}});
+        });
+        imgItem.thumbnail.save().then(thumb=> {
+          bz.cols.images.update(imgId, {$set: {thumbnail: thumb.src}});
+        });
+      });
+
       if (!err && res && res !== '') {
-        bz.runtime.changesNotSaved = false;
+        bz.ui.alert(`Ваш <a href="/post/${res}">пост</a> успешно создан`);
+
         clearPostData();
         bz.runtime.newPost.postId = res;
-        Router.go('/posts/my');
+
+      } else {
+        bz.ui.alert(`При создании поста возникла проблема: ${err}`);
       }
     });
   }

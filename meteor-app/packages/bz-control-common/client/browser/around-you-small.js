@@ -21,6 +21,8 @@ Template.aroundYouSmall.helpers({
     var ret, loc = Session.get('bz.control.search.location'),
       activeCats = Session.get('bz.control.category-list.activeCategories') || [];
 
+    
+    
     // add all-posts reactivity:
     bz.cols.posts.find({});
     if (loc && loc.coords) {
@@ -29,9 +31,10 @@ Template.aroundYouSmall.helpers({
         activeCats: activeCats,
         radius: bz.const.search.AROUND_YOU_RADIUS
       }, {
-        limit: 6,
+        limit: 20,
         //limit: bz.const.search.AROUND_YOU_LIMIT,
-        sort: {'stats.seenAll': -1}
+        //sort: {'stats.seenAll': -1, }
+        //sort: { _getDistanceToCurrentLocation(): -1 }
       });
     }
 /*debugger;*/
@@ -42,6 +45,13 @@ Template.aroundYouSmall.helpers({
 Template.bzAroundYouSmallItem.onCreated(function(){
   Meteor.subscribe('bz.users.all');
 });
+
+Template.aroundYouSmall.onCreated(function() {});
+
+Template.aroundYouSmall.onRendered(function() {
+  bz.ui.initSwiper();
+});
+
 
 Template.bzAroundYouSmallItem.rendered = function() {
   

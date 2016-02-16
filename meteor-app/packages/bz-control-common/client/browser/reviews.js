@@ -8,11 +8,18 @@ Template.bzControlReviews.events({
 });
 Template.bzControlReviews.helpers({
   getReviews: function(){
-    return bz.cols.reviews.find({type: 'postType', entityId: this.postId}, { sort: { dateTime: -1}});
+    return bz.cols.reviews.find({type: 'postType', entityId: this.postId}, { sort: { dateTime: 1}});
   },
   getCountsReviews: function() {
     var counts = bz.cols.reviews.find({type: 'postType', entityId: this.postId}).count();
     return counts || '';
+  }
+});
+Template.bzControlReviewItem.events({
+  'click .js-delete-comment': function(e, v){
+    if(Meteor.userId() === v.data.userId){
+      bz.cols.reviews.remove(v.data._id);
+    }
   }
 });
 Template.bzControlReviewItem.helpers({
@@ -23,6 +30,9 @@ Template.bzControlReviewItem.helpers({
   getProfileImage: function(){
     var user = Meteor.users.findOne(this.userId);
     return user && user._getAvatarImage();
+  },
+  isUserCommentOwner: function(e, v){
+    return Meteor.userId() === this.userId;
   }
 });
 Template.bzControlAddReview.onCreated(function(){
@@ -33,6 +43,7 @@ Template.bzControlAddReview.onRendered(function(){
 });
 Template.bzControlAddReview.events({
   'click .js-post-btn': function(e, v){
+
     var text = $('.js-post-text-input').val(),
         userId = Meteor.userId(),
         postId = this.postId,
@@ -46,18 +57,31 @@ Template.bzControlAddReview.events({
         Router.signIn(true);
       }
     } else {
-      if(text.trim() && postId){
-        bz.cols.reviews.insert({
-          entityId: postId,
-          type: 'postType',
-          user: Meteor.user(),
-          userId: Meteor.userId(),
-          text: text.trim(),
-          rating: rating || undefined,
-          dateTime: Date.now()
-        });
-        $('.js-post-text-input').val('');
-      }
+      bz.ui.validateFoundationForm().done(function(res) {
+        if(res.isValid){
+          if(text.trim() && postId){
+            bz.cols.reviews.insert({
+              entityId: postId,
+              type: 'postType',
+              user: {
+                _id: Meteor.user()._id,
+                username:  Meteor.user().username,
+                profile:
+              {
+                image:  Meteor.user().profile.image
+              }
+              },
+              userId: Meteor.userId(),
+              text: text.trim(),
+              dateTime: Date.now()
+            });
+            $('.js-post-text-input').val('');
+          }
+        } else {
+          bz.ui.error(res.errorMessages);
+        }
+      });
+
     }
 
 
