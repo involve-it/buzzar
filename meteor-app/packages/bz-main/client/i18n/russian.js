@@ -17,6 +17,8 @@ ru = {
   REVIEW_HELP_TEXT: 'Оставьте свой комментарий здесь',
   CHOOSE_RATING: 'Выберите рейтинг',
   SUBMIT: 'Отправить',
+  CANCEL: 'Отмена',
+  OR:'ИЛИ',
 
   //Buttons
   BUTTON_CHECK: 'Проверить',
@@ -197,9 +199,24 @@ ru = {
   PROFILE_USER_SKYPE_LOGIN : 'Логин Skype',
   PROFILE_USER_SECURITY_SETTINGS : 'Настройки безопасности',
 
+  //Image select
+  IMAGE_SELECT_UPLOAD_PHOTO: 'Загрузить фото',
+  IMAGE_SELECT_IMAGE_FROM_URL: 'Указать URL картинки',
+  IMAGE_SELECT_RANDOM_IMAGE: 'Случайное изображение',
+  IMAGE_SELECT_MY_IMAGES: 'Мои картинки',
+  IMAGE_SELECT_TAKE_PHOTO:'Сделать фото',
+  IMAGE_SELECT_IMAGE_URL:'URL изображения',
+  IMAGE_SELECT_CHECK_IMAGE:'Проверить картинку',
+  IMAGE_SELECT_PASTE_FROM_CLIPBOARD:'Вставить из буфера обмена',
+  IMAGE_SELECT_DONE: 'Применить',
+  IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE: 'Загрузить новый профиль изображения',
+  IMAGE_SELECT_CHOOSE_IMAGE: 'Выбрать картинку',
+
   //Error
   ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения',
-  ERROR_INVALID_INTEGER_PATTERN: 'Это поле обязательно и только цифры'
+  ERROR_INVALID_INTEGER_PATTERN: 'Это поле обязательно и только цифры',
+
+  COMMON_IMAGE_GET_RANDOM: 'Загрузить случайное фото'
   
 };
 
