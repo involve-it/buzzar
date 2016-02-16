@@ -10,9 +10,12 @@ Meteor.startup(function () {
     var img = avatarThumbnailReactive.get() && avatarThumbnailReactive.get()[0];
     console.log(img);
     if (img && img !== '') {
-      Meteor.users.update(Meteor.userId(), { $set: {'profile.image': {
-        data: img.data
-      } }});
+      img.save().then(img1=> {
+        Meteor.users.update(Meteor.userId(), { $set: {'profile.image': {
+          data: img1.data
+        } }});
+      });
+
     }
   });
 });
