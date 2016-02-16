@@ -14,16 +14,16 @@
         <div class="bz-box">
           <ul class="bz-flex bz-flex-space-around js-post-type-select bz-grid-block">
             {{#if isRussianLanguage}}
-              <li class="bz-item bz-flex-grow-1" value="ad">
+              <li class="bz-item bz-flex-grow-1 columns" value="ad">
                 <a class="bz-item-wrapper bz-box-inset" href="/posts/new?type=ad" alt="Объявление">
                   <div>
                     <img src="/img/content/ad220.png" width="90" height="90" alt="advertise"/>
                     <h3 class="bz-depend green">Объявление</h3>
-                    <p>Поможем продать заволявшиеся вещи, решить проблему или найти питомца.</p>
+                    <p>Расскажите о своем объявлении.</p>
                   </div>
                 </a>
               </li>
-              <li class="bz-item bz-flex-grow-1" value="memo">
+              <li class="bz-item bz-flex-grow-1 columns disabled" value="memo">
                 <a class="bz-item-wrapper bz-box-inset" href="/posts/new?type=memo" alt="Сигнал - сообщение, срабатывающее при подходе/уходе(?) к месту, можно использовать как средство запоминания-карточка-учить слово, текст и т.д.">
                   <div>
                     <img src="/img/content/megaphone220.png" width="90" height="90" alt="megaphone"/>
@@ -32,27 +32,40 @@
                   </div>
                 </a>
               </li>
-              <!--<li class="bz-item" value="ad"><a href="/posts/new?type=ad">Объявление (stick to Bulletin Board)</a></li>
-              <li class="bz-item" value="memo"><a href="/posts/new?type=memo">Напоминалка (Сигнал - сообщение, срабатывающее при подходе/уходе(?) к месту)</a></li>
-              <li class="bz-item" value="memo"><a href="/posts/new?type=memo">Запоминалка (карточка-учить слово, текст и т.д.)</a></li>
-              <li class="bz-item" value="sign"><a href="/posts/new?type=sign">Знак (Информация, связанная с данным местоположением)</a></li>
-              <li class="bz-item" value="message"><a href="/posts/new?type=message">Визитка (Страничка из социальных сетей)</a></li>-->
+              <li class="bz-item bz-flex-grow-1 columns disabled" value="link">
+                <a class="bz-item-wrapper bz-box-inset" href="/posts/new?type=link" alt="Ссылка - ссылка на страницу в интернете.">
+                  <div>
+                    <img src="/img/content/cloud_link-512.png" width="90" height="90" alt="link"/>
+                    <h3 class="bz-depend blue">Ссылка</h3>
+                    <p>Используйте, чтобы поместить ссылку на карту.</p>
+                  </div>
+                </a>
+              </li>
             {{ else }}
-              <li class="bz-item bz-flex-grow-1" value="ad">
+              <li class="bz-item bz-flex-grow-1 columns" value="ad">
                 <a class="bz-item-wrapper bz-box-inset" href="/posts/new?type=ad" alt="(stick to Bulletin Board)">
                   <div>
                     <img src="/img/content/ad220.png" width="90" height="90" alt="advertise"/>
                     <h3 class="bz-depend green">Ad</h3>
-                    <p>We will help to sell things...bla bla</p>
+                    <p>Tell others around about your ad</p>
                   </div>
                 </a>
               </li>
-              <li class="bz-item bz-flex-grow-1" value="memo">
-                <a class="bz-item-wrapper bz-box-inset" href="/posts/new?type=memo" alt="(stick to Wall)">
+              <li class="bz-item bz-flex-grow-1 columns disabled" value="memo">
+                <a class="bz-item-wrapper bz-box-inset" href="/posts/new?type=memo" alt="(stick Memo to Wall)">
                   <div>
                     <img src="/img/content/megaphone220.png" width="90" height="90" alt="megaphone"/>
                     <h3 class="bz-depend orange">MEMO</h3>
                     <p>Use this to not forget about things.</p>
+                  </div>
+                </a>
+              </li>
+              <li class="bz-item bz-flex-grow-1 columns disabled" value="link">
+                <a class="bz-item-wrapper bz-box-inset" href="/posts/new?type=link" alt="(stick link to Place)">
+                  <div>
+                    <img src="/img/content/cloud_link-512.png" width="90" height="90" alt="link"/>
+                    <h3 class="bz-depend blue">LINK</h3>
+                    <p>Link any url to a place.</p>
                   </div>
                 </a>
               </li>
