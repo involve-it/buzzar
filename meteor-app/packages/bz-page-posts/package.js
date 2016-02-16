@@ -41,6 +41,7 @@ Package.onUse(function (api) {
     'client/browser/post-ad-details-forms.html',
     'client/browser/post-ad-details-forms.js',
     'client/browser/post-controls.html',
+    'client/browser/post-controls.less',
     'client/browser/post-controls.js',
 
     'client/browser/details/details-controls.html',

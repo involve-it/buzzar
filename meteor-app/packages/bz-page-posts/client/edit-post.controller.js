@@ -3,7 +3,7 @@
  */
 imagesArrayReactive = new ReactiveVar();
 
-Meteor.startup(()=>{
+Meteor.startup(()=> {
   imagesArrayReactive.set([]);
 });
 SavePostFromView = function (v, data) {
@@ -17,21 +17,52 @@ SavePostFromView = function (v, data) {
 
   // gather all data and submit for post-create:
   if (userId) {
-    if (imagesArrayReactive.get()) {
-      //if (bz.runtime.newPost.postImage) {
-      _.each(imagesArrayReactive.get(), function (img) {
-        img = img || {};
-        if(!img._id) {
-          imgId = bz.cols.images.insert({
-            data: img.data,
-            userId: userId
+    /* if (imagesArrayReactive.get()) {
+     //if (bz.runtime.newPost.postImage) {
+     _.each(imagesArrayReactive.get(), function (img) {
+     img = img || {};
+     if(!img._id) {
+     imgId = bz.cols.images.insert({
+     data: img.data,
+     userId: userId
+     });
+     } else {
+     imgId = img._id;
+     }
+     imgArr.push(imgId);
+     });*/
+
+    _.each(imagesArrayReactive.get(), function (imgItem) {
+      if(!imgItem._id) {
+        imgId = bz.cols.images.insert({
+          userId: userId,
+          name: imgItem.name,
+        });
+        imgArr.push(imgId);
+        // let's set data on the client-side (temp for showing in site):
+        bz.cols.images._collection.update(imgId, {
+          $set: {
+            data: imgItem.data
+          }
+        });
+        if (!imgItem.thumbnail.data) {
+          imgItem.thumbnail.getBlob().then((url)=> {
+            imgItem.thumbnail.data = url;
+            bz.cols.images._collection.update(imgId, {
+              $set: {
+                thumbnail: imgItem.thumbnail.data
+              }
+            });
           });
         } else {
-          imgId = img._id;
+          bz.cols.images._collection.update(imgId, {
+            $set: {
+              thumbnail: imgItem.thumbnail.data
+            }
+          });
         }
-        imgArr.push(imgId);
-      });
-    }
+      }
+    });
     // set location:
     //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
     if (loc1 && location1.isSet) {
@@ -76,8 +107,8 @@ SavePostFromView = function (v, data) {
         other: otherKeyValuePairs
       },
       /*status: {
-        visible: bz.const.posts.status.visibility.VISIBLE
-      },*/
+       visible: bz.const.posts.status.visibility.VISIBLE
+       },*/
       //timestamp: timestamp,
       lastEditedTs: timestamp
       //endDatePost: GetEndDatePost(v, endTimestamp)
@@ -101,22 +132,33 @@ SavePostFromView = function (v, data) {
 
     //$.when(locDef).then(function () {
     Meteor.call('saveExistingPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
-      if (!err && res === 1) {
-        bz.ui.alert(`Ваш <a href="/posts/${res}">пост</a> успешно сохранен`);
+      _.each(imagesArrayReactive.get(), function (imgItem) {
+        if(!imgItem._id) {
+          imgItem.save().then(img=> {
+            bz.cols.images.update(imgId, {$set: {data: img.src}});
+          });
+          imgItem.thumbnail.save().then(thumb=> {
+            bz.cols.images.update(imgId, {$set: {thumbnail: thumb.src}});
+          });
+        }
+      });
+
+      if (!err && res) {
+        bz.ui.alert(`Ваш <a href="/post/${res}">пост</a> успешно сохранен`);
         //clearPostData();
         //bz.runtime.newPost.postId = res;
-      } else {
+      } else if(err) {
         bz.ui.alert(`При сохранении поста возникла проблема: ${err}`);
       }
     });
   }
 };
 
-FillPostData = function(data){
+FillPostData = function (data) {
   imagesArrayReactive.set(data._getImagesObjects());
 }
 
-stripOutScriptTags = function(text = ''){
+stripOutScriptTags = function (text = '') {
   var ret, regex = /<\s*script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/\s*script\s*>/gi;
   ret = text.replace(regex, '');
   return ret;

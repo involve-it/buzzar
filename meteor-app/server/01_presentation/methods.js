@@ -56,6 +56,7 @@ Meteor.methods({
     }
   },
   saveExistingPost: function(postObject, currentLocation, connectionId) {
+    var res, ret;
     if(postObject && postObject._id){
       /*if (!postObject.presences && postObject.details && postObject.details.locations && Array.isArray(postObject.details.locations) && postObject.details.locations.length > 0){
         postObject.presences = {};
@@ -65,7 +66,7 @@ Meteor.methods({
           postObject.presences[id] = bz.const.posts.status.presence.NEAR;
         });
       }*/
-      var post = bz.cols.posts.update(postObject._id, { $set : postObject });
+      res = bz.cols.posts.update(postObject._id, { $set : postObject });
       if (currentLocation){
         bz.bus.proximityHandler.reportLocation({
           lat: currentLocation.lat,
@@ -74,7 +75,10 @@ Meteor.methods({
           sessionId: connectionId
         });
       }
-      return post;
+      if (res === 1){
+        ret = postObject._id;
+      }
+      return ret;
       //return 'EPzoQSGnGCSsPaQjm'
     }
   },

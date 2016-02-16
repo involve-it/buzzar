@@ -145,8 +145,7 @@ BlobImageClass = class extends ImageClass {
     var that = this, uploader = BlobImageClass.uploader = BlobImageClass.uploader || new Slingshot.Upload('bzImagesDirective'),
       file = this, error = uploader.validate(file), blob = file.blob;
     return new Promise((resolve, reject)=> {
-
-
+      blob.name = file.name;
       if (error) {
         console.error(error);
       }
@@ -165,23 +164,13 @@ BlobImageClass = class extends ImageClass {
           }
           // Log service detailed response.
           var printErr = uploader.xhr && uploader.xhr.response || error1;
-          //console.error('Error uploading', printErr);
-          //errCallback.call(this, error1);
-          //alert(error1);
           reject(error1);
         }
         else {
-          /*if (callback && typeof callback === 'function') {
-           callback.call(this, downloadUrl);
-           }*/
           that.src = downloadUrl;
           resolve(that);
-          //Meteor.users.update(Meteor.userId(), {$push: {"profile.files": downloadUrl}});
-          //saveImageFromUrlToSession(downloadUrl);
-          //Session.set(SESSION_NAME, downloadUrl);
         }
       });
-      //super.save();
     });
   }
   toObject() {
@@ -215,9 +204,64 @@ RandomImageClass = class extends ImageClass {
   save() {
     var that = this, uploader = BlobImageClass.uploader = BlobImageClass.uploader || new Slingshot.Upload('bzImagesDirective'),
       file = this, error, blob;
+    blob = ImageClass.dataURItoBlob(that.src);
+    that.blob = blob;
+    blob.name = this.name;
+    error = uploader.validate(file);
+    if (error) {
+      console.error(error);
+    }
+    return new Promise((resolve, reject)=> {
+      uploader.send(blob, (error1, downloadUrl)=> {
+        if (error1) {
+          if (error1 && error1.error === 'Upload denied') {
+            switch (error1.reason) {
+              case 'File exceeds allowed size of 5 MB':
+                bz.ui.error(error1.message + ' . Please use other image.');
+                break;
+              default:
+                bz.ui.error(error1.message);
+                break;
+            }
+            alert(error1.message);
+          }
+          // Log service detailed response.
+          var printErr = uploader.xhr && uploader.xhr.response || error1;
+          reject(error1);
+        }
+        else {
+          that.src = downloadUrl;
+          resolve(that);
+        }
+      });
+    });
+  }
+}
+UrlImageClass = class extends ImageClass {
+  constructor(options = {}) {
+    var that;
+    //options.fileName = UrlImageClass.getNameFromUrl(options.url);
+
+    super(options);
+    that = this;
+    this.type = IMG_TYPES.URL;
+    this.url = options.url;
+    if (options.img) {
+      ImageClass.imgToDataUrl(options.img, options.url).then(dataUrl=>{
+        that.src = dataUrl;
+        currentImageReactive.set(that);
+      });
+    } else {
+    }
+    //currentImageReactive.set(this);
+  }
+  save() {
+    var that = this, uploader = BlobImageClass.uploader = BlobImageClass.uploader || new Slingshot.Upload('bzImagesDirective'),
+      file = this, error, blob;
     return new Promise((resolve, reject)=> {
       blob = ImageClass.dataURItoBlob(that.src);
       that.blob = blob;
+      blob.name = this.name;
       error = uploader.validate(file);
       if (error) {
         console.error(error);
@@ -246,23 +290,6 @@ RandomImageClass = class extends ImageClass {
       });
     });
   }
-}
-UrlImageClass = class extends ImageClass {
-  constructor(options = {}) {
-    if (typeof options === 'string') {
-      options = {
-        url: options,
-        //fileName: options
-      }
-    }
-    options.fileName = UrlImageClass.getNameFromUrl(options.url);
-
-    super(options);
-    this.type = IMG_TYPES.URL;
-    this.src = options.url;
-    currentImageReactive.set(this);
-  }
-
   static getNameFromUrl(url) {
     var matches = /.+\/(.+)/gmi.exec("http://localhost:3000/posts/newtype=a?d.");
     return matches && matches[1];
@@ -303,11 +330,11 @@ ThumbnailImageClass = class extends ImageClass {
   save() {
     var that = this, uploader = ThumbnailImageClass.uploader = ThumbnailImageClass.uploader || new Slingshot.Upload('bzImagesDirective'),
       file = this, error = uploader.validate(file), blob = file.blob;
-    blob.name = file.name;
     return new Promise((resolve, reject)=> {
       if (error) {
         console.error(error);
       }
+      blob.name = file.name;
       uploader.send(blob, (error1, downloadUrl)=> {
         if (error1) {
           if (error1 && error1.error === 'Upload denied') {

@@ -93,7 +93,10 @@ Template.uploadImageModal.events({
   'click .js-use-image-url': function (e, v) {
     var imgUrl = $('.js-image-url').val();
     if (imgUrl) {
-      new UrlImageClass(imgUrl);
+      new UrlImageClass({
+        url: imgUrl,
+        img: $('.js-preview')[0]
+      });
     }
     return false;
   },

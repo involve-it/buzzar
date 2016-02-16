@@ -19,14 +19,73 @@ Template.userSettings.helpers({
     //console.log('ID профайла пользователя ' + this._id);
     return Meteor.absoluteUrl() + 'user/' + this._id;
   },
-/*  getIdGuestUser: function () {
-    //console.log('ID гостя ( залогиненного ) ' + Meteor.userId());
-    return Meteor.userId();
-  },*/
-  getFaceBookDetails: function () {
-    return 'N/A';
+
+  getCity: function(){
+    return this.profile.city;
   },
-  getStatusLocation: function () {
+  getPostsCount: function(){
+    return bz.cols.posts.find({userId: this._id}).count();
+  },
+  getReviewsCount: function(){
+    return bz.cols.reviews.find({userId: this._id}).count();
+  },
+  getFIO: function(){
+    return this.profile.firstName + ' ' + this.profile.lastName;
+  },
+  getPhoneStatus: function () {
+    return this.profile.phone.status;
+  },
+  getSkypeStatus: function () {
+    return this.profile.skype.status;
+  },
+  getVKStatus: function () {
+    return this.profile.vk.status;
+  },
+  getTwitterStatus: function () {
+    return this.profile.twitter.status;
+  },
+  getFaceBookStatus: function () {
+    return this.profile.facebook.status;
+  },
+  getPhoneNumber: function(){
+    if (this.profile.phone.status == "1"){
+      return this.profile.phone.number;
+    }
+    else {
+      return 'Hidden';
+    }
+  },
+  getSkype: function(){
+    if (this.profile.skype.status == "1"){
+      return this.profile.skype.account;
+    }
+    else {
+      return 'Hidden';
+    }
+  },
+  getVK: function(){
+    if (this.profile.vk.status == "1"){
+      return this.profile.vk.url;
+    }
+    else {
+      return 'Hidden';
+    }
+  },
+  getFacebook: function(){
+    if (this.profile.facebook.status == "1"){
+      return this.profile.facebook.url;
+    }
+    else {
+      return 'Hidden';
+    }
+  },
+  getTwitter: function(){
+    if (this.profile.twitter.status == "1"){
+      return this.profile.twitter.url;
+    }
+    else {
+      return 'Hidden';
+    }
   }
 });
 

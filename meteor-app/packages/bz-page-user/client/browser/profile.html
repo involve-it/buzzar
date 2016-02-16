@@ -23,7 +23,7 @@
             </div>
 
             <div class="user-attainment">
-              <div class="count-posts">{{getPostsCount}}<span>{{ t9n 'PROFILE_USER_DETAILS_POSTS' }}</span></div>
+              <div class="count-posts">{{getPostsCount}}<span><a href="/posts/my">{{ t9n 'PROFILE_USER_DETAILS_POSTS' }}</a></span></div>
               <div class="count-comments">{{getReviewsCount}}<span>{{ t9n 'COMMENTS' }}</span></div>
             </div>
 
@@ -175,7 +175,7 @@
                 <div class="small-12 medium-6 large-6 bz-input-label columns">
                   <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_SECURITY_SETTINGS' }}</div>
                   <div class="small-12 bz-input-result columns disabled">
-                    <select id="js-profile-facebook-status">
+                    <select class="js-profile-facebook-status">
                       {{#if $eq getFacebookUrlStatus  "1" }}
                         <option selected value="1">Public</option>
                         <option value="0">Hidden</option>

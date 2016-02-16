@@ -1,19 +1,19 @@
 <template name="uploadImageModal">
-  <h2 id="modalTitle" class="title">Choose image</h2>
+  <h2 id="modalTitle" class="title">{{ t9n 'IMAGE_SELECT_CHOOSE_IMAGE'}}</h2>
   <!--<ul class="tabs" data-tab data-options="deep_linking: false; scroll_to_content: false">-->
 
   <div class="bz-toolbar bz-upload-image-toolbar">
     <div class="bz-upload-image-toolbar-wrapper">
       <ul class="tabs bz-nav sub-sections bz-horizontal" data-tab>
         <li class="tab-title js-tab-title active"><a href="#panel11"><i class="fa fa-folder-open fa-2x"></i><br/><span
-          class="hide-for-small-only">Upload Photo</span></a></li>
+          class="hide-for-small-only">{{ t9n 'IMAGE_SELECT_UPLOAD_PHOTO'}}</span></a></li>
         <!--<li class="tab-title js-tab-title"><a href="#panel21"><i class="fa fa-camera fa-2x"></i><br/><span class="hide-for-small-only">Take Photo</span></a></li>-->
         <li class="tab-title js-tab-title"><a href="#panel31"><i class="fa fa-cloud-download fa-2x"></i><br/><span
-          class="hide-for-small-only">Image from Url</span></a></li>
+          class="hide-for-small-only">{{ t9n 'IMAGE_SELECT_IMAGE_FROM_URL'}}</span></a></li>
         <li class="tab-title js-tab-title"><a href="#panel41" class="js-random-image-tab-btn"><i
-          class="fa fa-random fa-2x"></i><br/><span class="hide-for-small-only">Random Image</span></a></li>
+          class="fa fa-random fa-2x"></i><br/><span class="hide-for-small-only">{{ t9n 'IMAGE_SELECT_RANDOM_IMAGE'}}</span></a></li>
         <li class="tab-title js-tab-title"><a href="#panel51" class="js-my-images-tab-btn"><i
-          class="fa fa-recycle fa-2x"></i><br/><span class="hide-for-small-only">My Images</span></a></li>
+          class="fa fa-recycle fa-2x"></i><br/><span class="hide-for-small-only">{{ t9n 'IMAGE_SELECT_MY_IMAGES'}}</span></a></li>
       </ul>
     </div>
   </div>
@@ -37,22 +37,22 @@
       <div class="bz-upload-photo-wrapper">
         <div class="bz-upload-photo-wrapper-image"><i class="fa fa-camera"></i></div>
         <div class="bz-button-box">
-          <button class="button btn-default btn-gray js-take-photo">Take Photo</button>
+          <button class="button btn-default btn-gray js-take-photo">{{ t9n 'IMAGE_SELECT_TAKE_PHOTO'}}</button>
         </div>
       </div>
     </div>
     <div class="content" id="panel31">
       <div class="bz-upload-photo-wrapper">
         <div class="bz-upload-photo-wrapper-check">
-          <div class="bz-input-flex"><input type="text" placeholder="image url" class="js-image-url"></div>
+          <div class="bz-input-flex"><input type="text" placeholder="{{ t9n 'IMAGE_SELECT_IMAGE_URL'}}" class="js-image-url"></div>
           <div class="margin-left">
-            <button class="button btn-default bz-small js-use-image-url">Check Image</button>
+            <button class="button btn-default bz-small js-use-image-url">{{ t9n 'IMAGE_SELECT_CHECK_IMAGE'}}</button>
           </div>
         </div>
       </div>
       <div>
-        OR<br/>
-        <div class="bz-input-flex"><input type="text" placeholder="Paste from clipboard" class="js-image-from-clipboard"></div>
+        {{ t9n 'OR'}}<br/>
+        <div class="bz-input-flex"><input type="text" placeholder="{{ t9n 'IMAGE_SELECT_PASTE_FROM_CLIPBOARD'}}" class="js-image-from-clipboard"></div>
       </div>
     </div>
     <div class="content" id="panel41">
@@ -79,8 +79,8 @@
     <a href="#" class="close">&times;</a>
   </div>
   <hr/>
-  <button class="js-ok-btn btn-default bz-small bz-button-done">Done</button>
-  <button class="js-cancel-btn btn-default bz-small bz-button-done">Cancel</button>
+  <button class="js-ok-btn btn-default bz-small bz-button-done">{{ t9n 'IMAGE_SELECT_DONE'}}</button>
+  <button class="js-cancel-btn secondary btn-default bz-small bz-button-done">{{ t9n 'CANCEL'}}</button>
 </template>
 
 <template name="bzImagesPreviewList">
@@ -90,7 +90,7 @@
   </li>
 </template>
 <template name="filePickerUpload">
-  <button id="upload">Upload New Profile Image with File Picker</button>
+  <button id="upload">{{ t9n 'IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE'}}</button>
 </template>
 
 <template name="noUploadImagePhoto">
