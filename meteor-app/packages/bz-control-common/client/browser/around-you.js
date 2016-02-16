@@ -16,6 +16,11 @@ function getLatLngBox (lat, lng, radius){
   }
 };
 
+Template.aroundYou.onRendered(function() {
+  
+});
+
+
 Template.aroundYou.helpers({
   getAroundItems: function() {
     var ret, loc = Session.get('bz.control.search.location'),

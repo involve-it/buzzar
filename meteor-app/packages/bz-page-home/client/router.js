@@ -10,6 +10,7 @@ Router.map(function () {
     controller: 'requireLoginController',
     //fastRender: true,
     onBeforeAction: function () {
+      //debugger;
       var qs = this.params.query;
       console.log(qs);
       setSearchTextFromQs(qs);
@@ -17,8 +18,10 @@ Router.map(function () {
       setPackageLanguage();
       this.next();
     }
-  })
+  });
+  
 });
+
 
 function setPackageLanguage(){
   var enAll = _.extend(bz.language.i18n.en, enI18n);
