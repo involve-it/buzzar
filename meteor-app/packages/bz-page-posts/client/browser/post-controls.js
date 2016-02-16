@@ -107,7 +107,7 @@ Template.postPhotoUpload.helpers({
     return Session.get('bz.posts.postImgSrc') || ret;
   },
   getPostImages: function(){
-    var imgArr = imagesArrayReactive.get();
+    var imgArr = imagesArrayReactive.get(), ret;
     if(!imgArr || !Array.isArray(imgArr)) {
       imgArr = []
     } else {
@@ -115,13 +115,14 @@ Template.postPhotoUpload.helpers({
         return img.type !== 'thumbnail';
       });
     }
-    return _.map(imgArr, function(item){
+
+    ret = _.map(imgArr, function(item){
       return {
         data: item.data,
         name: item.name
       }
     });
-
+    return ret;
     /*return [{
         data: 'http://omesto.ru/wp-content/uploads/2014/09/%D0%9C%D0%B0%D0%B3%D0%B0%D0%B4%D0%B0%D0%BD-715x424.jpg',
         name: 'qwer'

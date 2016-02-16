@@ -204,13 +204,14 @@ RandomImageClass = class extends ImageClass {
   save() {
     var that = this, uploader = BlobImageClass.uploader = BlobImageClass.uploader || new Slingshot.Upload('bzImagesDirective'),
       file = this, error, blob;
+    blob = ImageClass.dataURItoBlob(that.src);
+    that.blob = blob;
+    blob.name = this.name;
+    error = uploader.validate(file);
+    if (error) {
+      console.error(error);
+    }
     return new Promise((resolve, reject)=> {
-      blob = ImageClass.dataURItoBlob(that.src);
-      that.blob = blob;
-      error = uploader.validate(file);
-      if (error) {
-        console.error(error);
-      }
       uploader.send(blob, (error1, downloadUrl)=> {
         if (error1) {
           if (error1 && error1.error === 'Upload denied') {
