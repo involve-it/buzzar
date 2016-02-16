@@ -15,6 +15,9 @@ ruI18n = {
   REVIEW_HELP_TEXT: 'Оставьте свой комментарий здесь',
   CHOOSE_RATING: 'Выберите рейтинг',
   SUBMIT: 'Отправить',
+  CANCEL: 'Отмена',
+  OR:'ИЛИ',
+
 
   //Buttons
   BUTTON_CHECK: 'Проверить',

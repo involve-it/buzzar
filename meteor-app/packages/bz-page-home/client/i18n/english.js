@@ -9,6 +9,8 @@ enI18n = {
   REVIEW_HELP_TEXT: 'Put your review here',
   CHOOSE_RATING: 'Choose rating',
   SUBMIT: 'Submit',
+  CANCEL: 'Cancel',
+  OR:'OR',
 
 
   //Buttons
@@ -169,6 +171,19 @@ enI18n = {
   PROFILE_USER_PHONE_NUMBER: 'Phone number',
   PROFILE_USER_SKYPE_LOGIN: 'Skype username',
   PROFILE_USER_SECURITY_SETTINGS: 'Security settings',
+
+  //Image select
+  IMAGE_SELECT_UPLOAD_PHOTO: 'Upload Photo',
+  IMAGE_SELECT_IMAGE_FROM_URL: 'Image from Url',
+  IMAGE_SELECT_RANDOM_IMAGE: 'Random Image',
+  IMAGE_SELECT_MY_IMAGES: 'My Images',
+  IMAGE_SELECT_TAKE_PHOTO:'Take Photo',
+  IMAGE_SELECT_IMAGE_URL:'image url',
+  IMAGE_SELECT_CHECK_IMAGE:'Check Image',
+  IMAGE_SELECT_PASTE_FROM_CLIPBOARD:'Paste from clipboard',
+  IMAGE_SELECT_DONE: 'Done',
+  IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE: 'Upload New Profile Image with File Picker',
+  IMAGE_SELECT_CHOOSE_IMAGE: 'Choose image',
   
   //Error
   ERROR_INVALID_FIELD: 'This field is required',
