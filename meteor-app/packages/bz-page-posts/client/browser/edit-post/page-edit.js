@@ -24,7 +24,7 @@ Template.pagePostsEdit.helpers({
 Template.pagePostsEdit.events({
   'click .js-edit-post': function (e, v) {
     var res = true;
-    event.preventDefault();
+    e.preventDefault();
     validatePostsNewPage(v).then((ret)=>{
       if(ret.res){
         !!ret.msg.length && bz.ui.alert(ret.msg.join('; '));

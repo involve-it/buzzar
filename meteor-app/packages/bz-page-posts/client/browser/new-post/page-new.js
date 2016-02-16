@@ -28,7 +28,7 @@ Template.postsNew.helpers({
 Template.postsNew.events({
   'click .js-create-post': function (e, v) {
     var res = true;
-    event.preventDefault();
+    e.preventDefault();
     validatePostsNewPage(v).then((ret)=>{
       if(ret.res){
         !!ret.msg.length && bz.ui.alert(ret.msg.join('; '));
