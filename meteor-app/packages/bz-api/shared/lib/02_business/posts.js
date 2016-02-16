@@ -63,6 +63,32 @@ var helperFunctions = {
     }
     return ret;
   },
+  getDistanceToCurrentLocationNumber: function(retNumberFormat){
+    var currentLocation = Session.get('bz.control.search.location'), ret, loc, distance, num;
+    if(currentLocation){
+      currentLocation = currentLocation.coords;
+    }
+    if (currentLocation && this.details && this.details.locations && Array.isArray(this.details.locations) && this.details.locations.length > 0){
+      loc = _.find(this.details.locations, function(l){ return l.placeType === bz.const.locations.type.DYNAMIC});
+      if (!loc){
+        loc = this.details.locations[0];
+      }
+      distance =  bz.help.location.getDistance(currentLocation.lat, currentLocation.lng, loc.coords.lat, loc.coords.lng);
+      var user = Meteor.user(),
+        lang = user&&user.profile&&user.profile.language;
+
+        if (lang === 'ru') {
+          distance = distance * 1.60934;
+        } else {
+
+        }
+      ret = distance;
+
+    } else {
+      ret = Number.MAX_VALUE;
+    }
+    return ret;
+  },
   getLikesAmount: function(){
     return this.social && this.social.likes && this.social.likes.length;
   },
