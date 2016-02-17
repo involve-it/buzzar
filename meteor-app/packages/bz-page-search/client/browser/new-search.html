@@ -23,7 +23,7 @@
                     <div class="bz-search-input-wrapper">
                         <div class="bz-search-input-style">
                             <input class="bz-form-control typeahead js-nearby-places" name="team" type="text"
-                               placeholder="{{ t9n 'LOOKING_FOR_TEXT'}}" 
+                               placeholder="{{ t9n 'SEARCH_LOOKING_FOR_TEXT'}}"
                                value=""
                                autocomplete="off"
                                spellcheck="off"
@@ -98,7 +98,7 @@
 
             <div class="item">
                 <div class="bz-range-slider">
-                    <div class="js-distance-range-slider range-slider bz-range-slider-wrapper" data-slider data-options="step: 33; initial: 0; start: 1;">
+                    <div class="js-distance-range-slider range-slider bz-range-slider-wrapper" data-slider data-options="step: 33; initial: {{ getDistanceFromSession }}; start: 1;">
                         <span class="range-slider-handle" role="slider" tabindex="0"></span>
                         <span class="range-slider-active-segment"></span>
                         <input type="hidden">
