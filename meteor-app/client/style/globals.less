@@ -129,11 +129,46 @@ input.js-nearby-places:focus {
     }
   }
   
+  .bz-choose-image-user-images-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    @media only screen and (min-width: 40.063em) {
+      max-height: 300px;
+    }
+    
+    
+    ul {
+      list-style: none;
+      margin: 0;
+      
+      li {
+        padding: 8px 0;
+        margin-right: 16px;
+        
+        a {
+          display: block;
+          color: @text-color-label;
+        }
+        &:first-child {
+          padding-top: 0;
+        }
+        &:last-child {
+          padding-bottom: 0;
+        }
+        &:nth-child(even) {
+          background-color: rgba(0,0,0, .02);
+        }
+      }
+    }
+  }
+  
   button {
     
     
     &.bz-button-done {
       float: right;
+      margin-left: 16px;
       text-transform: uppercase;
     }
   }
@@ -226,6 +261,7 @@ h2.title {
 
 #bz-bottom-a {
   margin: 20px 0;
+  clear: both;
 }
 
 /*

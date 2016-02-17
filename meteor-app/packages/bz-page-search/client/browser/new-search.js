@@ -361,10 +361,4 @@ var updateScrollPos = function(e) {
   
 };
 
-Meteor.startup(function () {
-  Tracker.autorun(function () {
-    
-  });
-});
-
 

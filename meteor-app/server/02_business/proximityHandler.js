@@ -186,7 +186,6 @@ bz.bus.proximityHandler = {
         } else {
             return null;
         }
-
     },
     distance: function(lat1, lon1, lat2, lon2) {
         var radlat1 = lat1 * Math.PI/180;
