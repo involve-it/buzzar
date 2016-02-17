@@ -6,126 +6,126 @@ var clicked = false, clickX;
 
 (function ($, document, window, navigator, undefined) {
   "use strict";
-  
+
   bz.ui.newSearchControl = {
-    
-    focusInput: function(e, v) {
+
+    focusInput: function (e, v) {
       //$('.bz-search-box-filter').removeClass('filters-closed').find('.bz-additional-filters-search').hide();
-      
+
       /*open filter*/
-      if(v.$('.bz-search-box-filter').hasClass('filters-closed')) {
+      if (v.$('.bz-search-box-filter').hasClass('filters-closed')) {
         this.open(e, v);
       }
     },
-    open: function(e, v) {
+    open: function (e, v) {
       var hasTarget = v.$('.bzSearchTmpl-common').parent('.bz-filters-box');
       var filterName = Router.current().route.getName();
       /*!hasTarget.hasClass('bz-filters-box')*/
-      if(!hasTarget.hasClass('bz-filters-box')) {
+      if (!hasTarget.hasClass('bz-filters-box')) {
         setSearchFiltersTemplate(false, this);
-      } 
-      
-      if(filterName !== 'home') {
+      }
+
+      if (filterName !== 'home') {
         setSearchFiltersTemplate(filterName.toCapitalCase(), this);
       }
-      
+
       //v.$('.bz-search-box-filter').toggleClass('filters-closed');
-      
-      if(v.$('.bz-search-box-filter').hasClass('filters-closed')) {
+
+      if (v.$('.bz-search-box-filter').hasClass('filters-closed')) {
         v.$('.bz-btn-filters').addClass('active');
         v.$('.bz-search-box-filter').removeClass('filters-closed');
         v.$('.bz-form-control').focus();
-      }else {
+      } else {
         v.$('.bz-btn-filters').removeClass('active');
         v.$('.bz-search-box-filter').addClass('filters-closed');
       }
     },
-    close: function(e) {
+    close: function (e) {
       $('.bz-btn-filters').removeClass('active');
       $('.bz-search-box-filter').addClass('filters-closed');
     }
-    
+
   }
 }(jQuery, document, window, navigator));
 
 
-Template.searchFiltersJobs.onRendered(function() {
+Template.searchFiltersJobs.onRendered(function () {
   //var name = Session.get('bz.control.category-list.activeCategories').join() || '';
   //setSearchFiltersTemplate(name.toCapitalCase(), this);
   //setSearchFiltersTemplate('jobs'.toCapitalCase(), this);
   $('.bz-ui-dropdown').foundationSelect();
-  
+
 });
 
 
 /* Close the window filters on action click somewhere on the page */
-Template.bzNewControlSearch.onRendered(function() {
-  $('body').bind('click', function(e) {
+Template.bzNewControlSearch.onRendered(function () {
+  $('body').bind('click', function (e) {
     var target = e.target;
     if (!$(target).is('.bz-control--search') && !$(target).parents().is('.bz-control--search')) {
-      if(!$('.bz-search-box-filter').hasClass('filters-closed')) {
+      if (!$('.bz-search-box-filter').hasClass('filters-closed')) {
         /*close filter*/
         bz.ui.newSearchControl.close(e);
       }
     }
   });
-  
+
   Meteor.typeahead.inject();
   Session.set('bz.control.search.searchedText', '');
 
   /* autocomplete = off */
   $('.js-nearby-places').attr('autocomplete', 'off');
-  
+
   $('.post-find-wrapper').append($('.tt-menu'));
-  
+
 });
 
 
 Template.bzNewControlSearch.events({
-  'focus .bz-form-control': function(e, v) {
+  'focus .bz-form-control': function (e, v) {
     bz.ui.newSearchControl.focusInput(e, v);
   },
-  'click .js-item-category': function(e, v) {
+  'click .js-item-category': function (e, v) {
     /* need update masonry here */
-    var textInput =  v.$('.bz-form-control')[1];
+    var textInput = v.$('.bz-form-control')[1];
     $(textInput).val(this.intName);
 
     /* 1 */
     var clearBtn = $('.js-reset-field'),
-        style = ($(textInput).val().length) ? 'visible' : 'hidden';
+      style = ($(textInput).val().length) ? 'visible' : 'hidden';
     clearBtn.css('visibility', style);
 
     /* загрузка шаблона в зависимости от выбора кнопки */
     //var name = Session.get('bz.control.category-list.activeCategories').join() || '';
     //setSearchFiltersTemplate(name.toCapitalCase(), this);
-    
+
   },
-  'keyup .bz-form-control': function(e, v) {
+  'keyup .bz-form-control': function (e, v) {
     /* 1 */
-    var textInput =  v.$('.bz-form-control')[1],
-        clearBtn = v.$('.js-reset-field'),
-        style = ($(textInput).val().length) ? 'visible' : 'hidden';
-    
+    var textInput = v.$('.bz-form-control')[1],
+      clearBtn = v.$('.js-reset-field'),
+      style = ($(textInput).val().length) ? 'visible' : 'hidden';
+
     clearBtn.css('visibility', style);
-    
+
   },
-  'click .js-reset-field': function(e, v) {
+  'click .js-reset-field': function (e, v) {
     /* 1 */
-    var textInput =  v.$('.bz-form-control')[1],
-        clearBtn = v.$('.js-reset-field');
-    
+    var textInput = v.$('.bz-form-control')[1],
+      clearBtn = v.$('.js-reset-field');
+
     clearBtn.css('visibility', 'hidden');
-    
+
     /*НЕ ЗАБЫТЬ СДЕЛАТЬ ПРОВЕРКУ. ВДРУГ КНОПКА ДОСТУПНА ТОЛЬКО ДЛЯ ВВЕДЕННОГО ТЕКСТА А НЕ КНОПОК */
-    
+
     /*turn off the service buttons*/
     //Session.set('bz.control.category-list.activeCategories', []);
     /*erase input value*/
     $(textInput).val('');
-    
+
     /* СДЕЛАТЬ ЗАКРЫТИЕ ПАНЕЛИ ФИЛЬТРА */
   },
-  'click .js-toggle-filters': function(e, v) {
+  'click .js-toggle-filters': function (e, v) {
     /* set template as jobs */
     //setSearchFiltersTemplate('jobs'.toCapitalCase(), this);
     bz.ui.newSearchControl.open(e, v);
@@ -150,14 +150,14 @@ Template.bzNewControlSearch.events({
   'typeahead:select .js-nearby-places': function (e, v, val) {
     val = val.name && val.name.trim() || '';
     Session.set('bz.control.search.searchedText', val);
-   /* $('.js-nearby-places').typeahead('close');
-    $('.js-nearby-places').blur();*/
+    /* $('.js-nearby-places').typeahead('close');
+     $('.js-nearby-places').blur();*/
   },
   'keydown .js-nearby-places': function (e, v, val) {
     if (e.keyCode === 13) {
       // enter bnt hit
       /*$('.js-nearby-places').typeahead('close');
-      $('.js-nearby-places').blur();*/
+       $('.js-nearby-places').blur();*/
 
       $('.js-search-btn').click();
     }
@@ -166,7 +166,7 @@ Template.bzNewControlSearch.events({
 
 
 Template.bzNewControlSearch.helpers({
-  joinedArray: function() {
+  joinedArray: function () {
     var ret = [
       /*{
        name: 'google-places',
@@ -208,9 +208,9 @@ Template.bzNewControlSearch.helpers({
         local: function () {
           //console.log(Session.get('bz.control.category-list.activeCategories'));
           var searchSelector = {
-                'status.visible': bz.const.posts.status.visibility.VISIBLE
-              },
-              catList = Session.get('bz.control.category-list.activeCategories');
+              'status.visible': bz.const.posts.status.visibility.VISIBLE
+            },
+            catList = Session.get('bz.control.category-list.activeCategories');
 
           if (catList && catList.length > 0) {
             searchSelector.type = {$in: catList};
@@ -249,17 +249,17 @@ Template.bzNewControlSearch.helpers({
     // make it look selected:
     $('.js-location-nearby').addClass('selected');
   },
-  searchTagIsVisible: function(e, v){
+  searchTagIsVisible: function (e, v) {
     return Session.get('bz.control.search.searchedText') !== '' && Session.get('bz.control.search.searchedText') !== undefined;
   }
 });
 
 
 Template.bzNewControlSearchFilters.helpers({
-  countSearchRQ: function() {
+  countSearchRQ: function () {
     var ret, loc = Session.get('bz.control.search.location'),
-        activeCats = Session.get('bz.control.category-list.activeCategories') || [];
-    
+      activeCats = Session.get('bz.control.category-list.activeCategories') || [];
+
     ret = bz.bus.search.doSearchClient({
       loc: loc,
       activeCats: activeCats,
@@ -271,49 +271,80 @@ Template.bzNewControlSearchFilters.helpers({
 
 
 Template.categoryListButtons.events({
-  'mousemove ': function(e, v) {
-    
+  'mousemove ': function (e, v) {
+
     clicked && updateScrollPos(e);
   },
-  'mousedown': function(e) {
+  'mousedown': function (e) {
     clicked = true;
     clickX = e.pageX;
   },
-  'mouseup': function(e) {
+  'mouseup': function (e) {
     clicked = false;
     $('.control--category-list-buttons li').css('cursor', 'auto');
   }
 });
 
-Template.searchCommonFilters.onRendered(()=>{
-  var dist = Session.get('bz.control.search.distance'), sliderDist;
-  if(dist) {
-    dist = dist && dist.toString();
-    switch (dist) {
-      case '1':
-        sliderDist = 1; // todo: сделать i18n!!
-        break;
-      case '5':
-        sliderDist = 34;
-        break;
-      case '20':
-        sliderDist = 67;
-        break;
-      case bz.const.locations.MAXRADIUS:
-        sliderDist = 100;
-        break;
+Template.searchCommonFilters.onRendered(()=> {
+  Tracker.autorun(function () {
+    var dist = Session.get('bz.control.search.distance'), sliderDist, ret = 1;
+    if (dist) {
+      dist = dist && dist.toString();
+      switch (dist) {
+        case '1':
+          sliderDist = 1; // todo: сделать i18n!!
+          break;
+        case '5':
+          sliderDist = 34;
+          break;
+        case '20':
+          sliderDist = 67;
+          break;
+        case bz.const.locations.MAXRADIUS.toString():
+          sliderDist = 100;
+          break;
+      }
+      ret = sliderDist;
+      $('.js-distance-range-slider').foundation('slider', 'set_value', sliderDist);
     }
-    $('.js-distance-range-slider').foundation('slider', 'set_value', sliderDist);
+    return ret;
+  });
+});
+Template.searchCommonFilters.helpers({
+  getDistanceFromSession: function () {
+    //Tracker.autorun(function () {
+      var dist = Session.get('bz.control.search.distance'), sliderDist, ret = 1;
+      if (dist) {
+        dist = dist && dist.toString();
+        switch (dist) {
+          case '1':
+            sliderDist = 1; // todo: сделать i18n!!
+            break;
+          case '5':
+            sliderDist = 34;
+            break;
+          case '20':
+            sliderDist = 67;
+            break;
+          case bz.const.locations.MAXRADIUS:
+            sliderDist = 100;
+            break;
+        }
+        ret = sliderDist;
+        //$('.js-distance-range-slider').foundation('slider', 'set_value', sliderDist);
+      }
+      return ret;
+    //});
   }
-})
+});
 Template.searchCommonFilters.events({
-  'change.fndtn.slider .js-distance-range-slider': function(e, v) {
+  'change.fndtn.slider .js-distance-range-slider': function (e, v) {
     var dist, slDist = $(e.target).attr('data-slider');
     //console.log(slDist);
     //todo:  @Slava: этот подход неправильный-возникает туча ивентов (если я веду от 1 мили до 20, то 5 миль тоже выставится по дороге). Change this!!
-    if(slDist){
+    if (slDist) {
       slDist = slDist.trim();
-      switch (slDist){
+      switch (slDist) {
         case '0':
           dist = 1; // todo: сделать i18n!!
           break;
@@ -340,28 +371,25 @@ Template.searchCommonFilters.events({
 function setSearchFiltersTemplate(name, v) {
   var template;
   $('.bz-filters-box').empty();
-  
-  if(!name) {
+
+  if (!name) {
     template = Template['searchCommonFilters'];
-  } else if(name) {
+  } else if (name) {
     template = Template['searchFilters' + name];
   }
-  
-  if(v && template) {
+
+  if (v && template) {
     Blaze.renderWithData(template, v.data, $('.bz-filters-box')[0]);
-    
+
     $(document).foundation('reflow');
   }
 }
 
 
-
-
-
-var updateScrollPos = function(e) {
+var updateScrollPos = function (e) {
   $('.control--category-list-buttons li').css('cursor', 'pointer');
   $('.bz-btn-services').scrollLeft($('.bz-btn-services').scrollLeft() + (clickX - e.pageX));
-  
+
 };
 
 
