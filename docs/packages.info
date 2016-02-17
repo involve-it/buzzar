@@ -1,3 +1,5 @@
+Meteor inputs: METEOR_PROFILE=1 (show detailed output)
+
 1. roles:
 meteor add alanning:roles
 

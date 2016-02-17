@@ -15,16 +15,18 @@ Template.bzHomePopular.helpers({
       loc: loc,
       activeCats: activeCats,
       //radius: bz.const.search.AROUND_YOU_RADIUS,
-      query: {'status.visible': bz.const.posts.status.visibility.VISIBLE}
+      /*query: {
+        'status.visible': {$exists: true}
+      }*/
     }, {
       limit: bz.const.search.POPULAR_LIMIT,
-      sort: {'stats.seenAll': -1}
-    });
-    if (ret) {
-      ret.sort(function (a, b) {
-        return a._getDistanceToCurrentLocation(true) - b._getDistanceToCurrentLocation(true);
-      });
-    }
+    }).fetch();
+    ret = _(ret).chain().sortBy(function(item){
+      return item.stats && item.stats.seenTotal  || 0;
+    }).reverse().sortBy(function(doc) {
+      return doc._getDistanceToCurrentLocationNumber();
+    }).value();
+    console.log('Popular posts amount: ' + ret.length);
     return ret;
   }
 });

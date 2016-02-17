@@ -17,20 +17,16 @@
 </template>
 
 <template name="bzAroundYouItem">
-  {{#if getImgSrc}}
+  <!--{{#if getImgSrc}}-->
+  {{#if true}}
     <!--PHOTO-->
     <div class="bz-item-wrapper grid-item">
       <div class="bz-item">
         <div class="bz-side-b">
           <div class="bz-photo bz-overlay-hover">
             <a href="/post/{{_id}}">
-              {{#if getImgSrc}}
-                <div class="bz-background-image-cover"
-                     style="background-image: url('{{ getImgSrc }}')"></div>
-              {{else}}
-                <div class="bz-background-image-cover"
-                     style="background-image: url('/img/content/no-photo.png')"></div>
-              {{/if}}
+              <div class="bz-background-image-cover"
+                   style="background-image: url('{{ getImgSrc }}')"></div>
               <div class="bz-post-info">
                 <div class="bz-flex">
                   {{> bzPostsPostPresence this}}

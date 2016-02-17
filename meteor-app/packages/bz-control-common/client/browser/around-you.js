@@ -19,21 +19,30 @@ function getLatLngBox (lat, lng, radius){
 Template.aroundYou.helpers({
   getAroundItems: function() {
     var ret, loc = Session.get('bz.control.search.location'),
+      distSession = Session.get('bz.control.search.distance') || [],
       activeCats = Session.get('bz.control.category-list.activeCategories') || [];
+    if(['home', 'jobs', 'training'].indexOf(Router.getCurrentRouteName()) > -1) {
 
-    // add all-posts reactivity:
-    bz.cols.posts.find({});
-    if (loc && loc.coords) {
-      ret = bz.bus.search.doSearchClient({
-        loc: loc,
-        activeCats: activeCats,
-        radius: bz.const.search.AROUND_YOU_RADIUS
-      }, {
-        limit: bz.const.search.AROUND_YOU_LIMIT,
-        sort: {'stats.seenAll': -1}
-      });
+      // add all-posts reactivity:
+      bz.cols.posts.find({});
+      if (loc && loc.coords) {
+        ret = bz.bus.search.doSearchClient({
+          loc: loc,
+          activeCats: activeCats,
+          radius: distSession
+          //radius: bz.const.search.AROUND_YOU_RADIUS
+        }, {
+          limit: bz.const.search.AROUND_YOU_LIMIT,
+        }).fetch();
+        ret = _(ret).chain().sortBy(function(item){
+          return item.stats && item.stats.seenTotal  || 0;
+        }).reverse().sortBy(function(doc) {
+          return doc._getDistanceToCurrentLocationNumber();
+        }).reverse().value();
+      }
+      console.log('Around you posts amount: ' + ret.length);
+
     }
-
     return ret;
   }
 });
@@ -73,10 +82,10 @@ Template.bzAroundYouItem.helpers({
     var ret, phId = this.details.photos && this.details.photos[0];
     if(phId){
       ret = bz.cols.images.findOne(phId);
-      ret = ret && ret.data;
+      ret = ret && ret._getThumbnailUrl();
     }
 
-    /*ret = ret || '/img/content/no-photo-400x300.png';*/
+    ret = ret || '/img/content/no-photo.png';
     return ret;
   },
   disableOwnPost: function(){

@@ -89,7 +89,7 @@ Template.postDetailsDetailsCommon.events({
   'click .js-show-location-on-map': function(e, v){
     // show modal with map here:
     var coords = this.coords.lat + ', ' + this.coords.lng;
-    prompt('coords: ', coords);
+    //prompt('coords: ', coords);
     console.log('coords: ' + coords);
   }
 })
@@ -102,6 +102,11 @@ Template.postDetailsDetailsCommon.helpers({
   },
   getMyLocations: function () {
     return this.details.locations;
+  },
+  getGoogleMapsHref: function(){
+    //http://maps.google.com/maps?z=12&t=m&q=loc:38.9419+-78.3020
+    var lat = this.coords.lat, lon = this.coords.lng;
+    return `http://maps.google.com/maps?z=12&t=m&q=loc:${ lat }+${ lon }`;
   }
 });
 //$('.backdrop.visible.active .popup .popup-title').text().toLowerCase()

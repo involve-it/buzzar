@@ -13,4 +13,3 @@ postsColl.helpers({
   _getDistanceQualifier: bz.help.posts.getDistanceQualifier,
   _getImagesObjects: bz.help.posts.getImagesObjects
 });
-

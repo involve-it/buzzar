@@ -62,8 +62,8 @@ Template.bzAdCategoryButton.events({
       if(type.hasRoute){
         Router.go('/' + catName);
       } else {
-        bz.ui.putCategoriesToSession(catName);
-        bz.ui.alert(`You filtered results by the "${catName.toCapitalCase()}" category, to undo this click "All" in top search section`);
+        //bz.ui.putCategoriesToSession(catName);
+        //bz.ui.alert(`You filtered results by the "${catName.toCapitalCase()}" category, to undo this click "All" in top search section`);
       }
     }
   }

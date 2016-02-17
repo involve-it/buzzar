@@ -1,27 +1,18 @@
 /**
  * Created by douson on 24.08.15.
  */
-
 Template.myItems.onCreated(function () {
   //return Meteor.subscribe('posts-images');
 });
-
-
 Template.onePostRowItemSearch.rendered = function() {
   /*init Rate*/
   $('.bz-rating').raty({
     starType: 'i'
   });
 };
-
-
-
 Template.myItems.onRendered(function () {
   $(document).foundation();
 });
- 
-
-
 Template.myItems.helpers({
   hasPosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId()}).fetch();
@@ -29,13 +20,10 @@ Template.myItems.helpers({
   },
   allPosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId()});
-    console.log('ALL: ' + posts.count());
-
     return posts;
   },
   activePosts: function () {
-    var posts = bz.cols.posts.find({userId: Meteor.userId(), 'status.visible': 'visible'});
-    console.log('ACTIVE: ' + posts.count());
+    var posts = bz.cols.posts.find({userId: Meteor.userId(), 'status.visible': bz.const.posts.status.visibility.VISIBLE});
     return posts;
   },
   livePosts: function () {
@@ -44,7 +32,6 @@ Template.myItems.helpers({
       var ret = !!item._hasLivePresence();
       return ret;
     });
-    console.log('LIVE: ' + ret.length);
     return ret;
   },
   getCountActivePosts: function() {
@@ -60,14 +47,24 @@ Template.myItems.helpers({
 Template.onePostRowItemSearch.helpers({
   getPhotoUrl: function () {
     var photo = bz.cols.posts.findOne({_id: this._id}),
-      photoId = photo.details.photos && photo.details.photos[0] || undefined;
+      photoId = photo && photo.details.photos && photo.details.photos[0] || undefined;
 
     if (photoId) {
       var image = bz.cols.images.findOne({_id: photoId});
     }
-
+    // try to get thumb:
+    if(image) {
+      if(image.thumbnail && typeof image.thumbnail === 'string'){
+        image = image.thumbnail;
+      } else if(image.thumbnail && image.thumbnail.src) {
+        image = image.thumbnail.src
+      } else if(image.data){
+        image = image.data
+      } else {
+        image = '/img/content/no-photo.png';
+      }
+    }
     return image;
-
   },
   getPrice: function () {},
   categoryType: function() {
@@ -90,14 +87,9 @@ Template.onePostRowItemSearch.helpers({
     return ret;
   }
 });
-
-
-
-
-/* 
+/*
 * Template for owner posts
 */
-
 Template.onePostRowItemOwner.events({
   'click .js-switch-wrapper': function(e, v){
   },
@@ -106,9 +98,9 @@ Template.onePostRowItemOwner.events({
       v.data.status = v.data.status || {};
 
       if (e.target.checked === false) {
-        v.data.status.visible = null;
+        v.data.status.visible = bz.const.posts.status.visibility.INVISIBLE;
       } else {
-        v.data.status.visible = 'visible';
+        v.data.status.visible = bz.const.posts.status.visibility.VISIBLE;
       }
       setTimeout(function(){
         bz.cols.posts.update(v.data._id, {$set: {'status.visible': v.data.status.visible}})
@@ -134,10 +126,8 @@ Template.onePostRowItemOwner.events({
 
     elapsed = now - start;
     target = finish + elapsed;
-    
     /* now    =>  timestamp   */
     /* target =>  endDatePost */
-    
     if(confirm('Вы уверены, что хотите сбросить срок активности вашего поста?')) {
       if(v.data) {
         bz.cols.posts.update(v.data._id, {$set: {
@@ -147,11 +137,8 @@ Template.onePostRowItemOwner.events({
         });
       }
     }
-    
   }
 });
-
-
 Template.onePostRowItemOwner.helpers({
   getPhotoUrl: function () {
     var photo = bz.cols.posts.findOne({_id: this._id}),
@@ -160,9 +147,19 @@ Template.onePostRowItemOwner.helpers({
     if (photoId) {
       var image = bz.cols.images.findOne({_id: photoId});
     }
-
+    // try to get thumb:
+    if(image) {
+      if(image.thumbnail && typeof image.thumbnail === 'string'){
+        image = image.thumbnail;
+      } else if(image.thumbnail && image.thumbnail.src) {
+        image = image.thumbnail.src
+      } else if(image.data){
+        image = image.data
+      } else {
+        image = '/img/content/no-photo.png';
+      }
+    }
     return image;
-
   },
   getPrice: function () {},
   categoryType: function() {
@@ -200,7 +197,7 @@ Template.onePostRowItemOwner.helpers({
   },
   getVisibilityVal: function(e,v,c){
     var ret;
-    if(this.status.visible === 'visible'){
+    if(this.status.visible === bz.const.posts.status.visibility.VISIBLE){
       ret = 'checked'
     } else {
       ret = '';
@@ -253,8 +250,6 @@ Template.onePostRowItemOwner.helpers({
     } else if( percent >= 50 ) {
       barClass = 'green';
     }
-    
-
     if( percent <= 0 ) {
       percent = 0;
       status = false;
@@ -262,9 +257,7 @@ Template.onePostRowItemOwner.helpers({
      /* update the status on visible, null  */
       bz.cols.posts.update(this._id, { $set: { status: {visible: null} } });
     }
-    
     language = Session.get('bz.user.language');
-    
     function endingOfTheWord(lang, number, title, titleEng) {
       if( lang === 'en' ) {
         
@@ -276,7 +269,6 @@ Template.onePostRowItemOwner.helpers({
         return title[ (number%100>4 && number%100<20) ? 2 : rus[ (number%10<5) ? number%10 : 5 ] ];
       }
     }
-
     if(days > 1) {
       titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
       unit = days + ' ' + titleDays;
@@ -290,8 +282,6 @@ Template.onePostRowItemOwner.helpers({
       titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
       unit = (days == 0 && hours == 0) ? min + ' ' + titleMinutes : hours + ' ' + titleHours + '   ' + min + ' ' + titleMinutes;
     }
-       
-    
     return  {
       percent: percent, 
       leftDays: days,
@@ -301,31 +291,8 @@ Template.onePostRowItemOwner.helpers({
     };
   }
 });
-
-
-
 Template.chooseCurrency.helpers({
   getCurrency: function(cur) {
     return this.cur ==='usd';
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

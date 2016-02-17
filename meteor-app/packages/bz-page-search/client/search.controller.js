@@ -1,7 +1,7 @@
 /**
  * Created by Ashot on 9/19/15.
  */
-const SEARCH_RADIUS = 4000; // 1km ~ 10 min walk
+const GOOGLE_LOCALS_SEARCH_RADIUS = 4000; // 1km ~ 10 min walk
 bz.help.makeNamespace('bz.bus.search');
 
 
@@ -37,7 +37,7 @@ Meteor.startup(function () {
       }
     );
   }
-  searchPostsReactive();
+  //searchPostsReactive();
   bz.help.maps.initPlacesCollection();
   Template.bzControlSearch && Template.bzControlSearch.onCreated(function () {
     //debugger;
@@ -47,24 +47,19 @@ Meteor.startup(function () {
     // doc.ready happened, so:
     //bz.help.maps.googleMapsLoad();
   });
-
-
   // fill google maps locations into bz.runtime.maps.places:
   Tracker.autorun(function () {
-    //bz.help.maps.initPlacesCollection();
     bz.runtime.maps.places._collection.remove({});
     if (Session.get('bz.control.search.location')) {
       if (GoogleMaps.loaded()) {
-        fillNearByPlacesFromLocationGoogle(Session.get('bz.control.search.location'), SEARCH_RADIUS);
+        fillNearByPlacesFromLocationGoogle(Session.get('bz.control.search.location'), GOOGLE_LOCALS_SEARCH_RADIUS);
       }
-
-      //fillNearByPlacesFromLocationYelp(Session.get('bz.control.search.location'), SEARCH_RADIUS);
     }
   });
 });
 
 bz.bus.search.doSearchClient = (params, options)=> {
-  var ret, arrTypes, box, dbQuery = {}, loc = params.loc, activeCats = params.activeCats, radius = params.radius;
+  var ret, arrTypes, box, dbQuery = {}, loc = params.loc, activeCats = params.activeCats, radius = params.radius, $where = params.$where;
 
   if(loc && loc.coords && loc.coords.lat && loc.coords.lng) {
     box = getLatLngBox(loc.coords.lat, loc.coords.lng, radius);
@@ -85,11 +80,14 @@ bz.bus.search.doSearchClient = (params, options)=> {
       return item.name;
     });
     arrTypes.push(undefined);
+    arrTypes.push('');
     dbQuery['type'] = {$in: arrTypes}
   }
+  if(params.$where){
+    dbQuery['$where'] = params.$where;
+  }
   _.extend(dbQuery, params.query);
-  //ret = bz.cols.posts.find(dbQuery, options).sort( { name: 1 } ).fetch();
-  ret = bz.cols.posts.find(dbQuery, options).fetch();
+  ret = bz.cols.posts.find(dbQuery, options);
 
   return ret;
 }
@@ -146,6 +144,7 @@ function getLatLngBox(lat, lng, radius) {
   }
 };
 function searchPostsReactive() {
+  // this function will run on every page, tracking "bz.cols.posts.find()". Danger!
   Tracker.autorun(function () {
     bz.cols.searchRt._collection.remove({});
     bz.cols.posts.find().count();

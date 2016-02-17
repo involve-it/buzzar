@@ -288,7 +288,7 @@ Template.categoryListButtons.events({
 Template.searchCommonFilters.events({
   'change.fndtn.slider .js-distance-range-slider': function(e, v) {
     var dist, slDist = $(e.target).attr('data-slider');
-    console.log(slDist);
+    //console.log(slDist);
     //todo:  @Slava: этот подход неправильный-возникает туча ивентов (если я веду от 1 мили до 20, то 5 миль тоже выставится по дороге). Change this!!
     if(slDist){
       slDist = slDist.trim();
@@ -306,7 +306,7 @@ Template.searchCommonFilters.events({
           dist = 20;
           break;
         case '100':
-          dist = -1;
+          dist = bz.const.locations.MAXRADIUS;
           break;
       }
       Session.set('bz.control.search.distance', dist);
