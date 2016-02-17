@@ -4,8 +4,22 @@
 
 bz.cols.images = new Mongo.Collection('images');
 bz.cols.images.helpers({
-  _getThumbnail: function(){
-    debugger;
+  _getThumbnailUrl: function(){
+    var image = this;
+
+    // try to get thumb:
+    if(image) {
+      if(image.thumbnail && typeof image.thumbnail === 'string'){
+        image = image.thumbnail;
+      } else if(image.thumbnail && image.thumbnail.src) {
+        image = image.thumbnail.src
+      } else if(image.data){
+        image = image.data
+      } else {
+        image = '/img/content/no-photo.png';
+      }
+    }
+    return image;
   }
 });
 if(Meteor.isServer){
