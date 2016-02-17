@@ -287,21 +287,24 @@ Template.categoryListButtons.events({
 
 Template.searchCommonFilters.onRendered(()=>{
   var dist = Session.get('bz.control.search.distance'), sliderDist;
-  switch (dist){
-    case '1':
-      sliderDist = 1; // todo: сделать i18n!!
-      break;
-    case '5':
-      sliderDist = 34;
-      break;
-    case '20':
-      sliderDist = 67;
-      break;
-    case bz.const.locations.MAXRADIUS:
-      sliderDist = 100;
-      break;
+  if(dist) {
+    dist = dist && dist.toString();
+    switch (dist) {
+      case '1':
+        sliderDist = 1; // todo: сделать i18n!!
+        break;
+      case '5':
+        sliderDist = 34;
+        break;
+      case '20':
+        sliderDist = 67;
+        break;
+      case bz.const.locations.MAXRADIUS:
+        sliderDist = 100;
+        break;
+    }
+    $('.js-distance-range-slider').foundation('slider', 'set_value', sliderDist);
   }
-  $('.js-distance-range-slider').foundation('slider', 'set_value', sliderDist);
 })
 Template.searchCommonFilters.events({
   'change.fndtn.slider .js-distance-range-slider': function(e, v) {
