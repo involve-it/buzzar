@@ -30,7 +30,7 @@ en = {
   MENU_MAP: 'Map',
   MENU_MAIN_PAGES_TITLE: 'Main pages',
   MENU_HASHES_TITLE: 'Hashes',
-  MENU_MY_POSTS: 'Posts',
+  MENU_MY_POSTS: 'My Posts',
   MENU_MY_PROFILE: 'Profile',
   MENU_MY_MESSAGES: 'Messages',
   MENU_BUTTON_NEW_POST: 'Create',
@@ -52,20 +52,21 @@ en = {
   
   //sitewise:
   siteTitleElement: 'instant post, bound to location',
-  
-  // home page:
-  headliner: 'instant post, bound to location',
+
+  // search:
   SEARCH_DISTANCE_TITLE: 'Distance',
   SEARCH_DISTANCE_MILE: '1 ml',
   SEARCH_DISTANCE_MILES_5: '5 ml',
   SEARCH_DISTANCE_MILES_20: '20 ml',
   SEARCH_DISTANCE_FT_200: '200 ft',
   SEARCH_DISTANCE_EVERYWHERE: 'Everywhere',
+  SEARCH_LOOKING_FOR_TEXT: 'Your WHAT or WHERE or WHEN you\'re looking for',
+
+  // home page:
+  headliner: 'instant post, bound to location',
   MOST_POPULAR_TITLE: 'Most Popular',
   ABOUT_US_TITLE: 'About us',
-
   AROUND_YOU_TITLE: 'Buzz Around you',
-  LOOKING_FOR_TEXT: 'Your WHAT or WHERE or WHEN you\'re looking for',
 
   //Location
   LOCATION_SET_YOUR_LOCATION: 'Set your location',
@@ -73,97 +74,6 @@ en = {
   LOCATION_BUTTON_SET_LOCATION: 'Set',
   LOCATION_MY_CURRENT_LOCATION: 'My current location',
   MY_LOCATION_TEXT: 'My Location',
-  //New post
-  NEW_POST_NEWTYPE_BEACON_TITLE: 'Choose the appropriate beacon',
-  NEW_POST_IMPORT_FROM_WEB: 'Import from Web',
-  NEW_POST_IMPORT_FROM_WEB_OPTIONAL: 'optional',
-  NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER: 'Original Post Url',
-  NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER_TOOLTIP_TEXT: 'Добавьте адрес вашего объявления с другого ресурса, чтобы не заполнять информацию снова. Мы это сделаем за вас.',
-  NEW_POST_ADD_PHOTO_BTN: '+ Add Photo',
-  NEW_POST_CHARACTERS_LEFT: 'character(s) left',
-  NEW_POST_CREATE_NEW_POST: 'Create new Ad',
-  NEW_POST_WHAT: 'What',
-  NEW_POST_MAIN_INFORMATION_MUTED: 'Информация из этой секции будет использоваться при поиске вашего объявления. Пожалуйста, указывайте точные сведения, чтобы найти подходящий вариант.',
-  NEW_POST_WHERE: 'Where',
-  NEW_POST_WHEN: 'When',
-  NEW_POST_DURATION: 'Duration',
-  NEW_POST_DURATION_MUTED: 'Установите время, в течении которого ваше объявление будет активным.',
-  NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователи Светлячков найдут объявления в подходящем для них месте.',
-  NEW_POST_GALLERY_PHOTOS: 'Photos',
-  NEW_POST_GALLERY_PHOTOS_MUTED: 'Please add photos for the post.',
-  NEW_POST_TITLE: 'Title',
-  NEW_POST_TITLE_PLACEHOLDER: 'The title should be clear and descriptive.',
-  NEW_POST_TITLE_TOOLTIP_TEXT: 'Встречают по одежке. Уделите названию должное внимание, чтобы привлечь клиента.',
-  NEW_POST_DESCRIPTION: 'Description',
-  NEW_POST_DESCRIPTION_PLACEHOLDER: 'Tell us a little about your Ad.',
-  NEW_POST_DESCRIPTION_PLACEHOLDER_TOOLTIP_TEXT: 'Описание создает представление о вашем объявлении. Опишите, что вы считаете самым главным.',
-  NEW_POST_SELECT_TYPE: 'Type Ad',
-  NEW_POST_DESCRIBE: 'Describe',
-  NEW_POST_DESCRIBE_LOST_MY_PET: 'Lost my pet',
-  NEW_POST_DESCRIBE_LOST_MY_PET_TOOLTIP_TEXT: 'Если вдруг вы потеряли домашнего любимца, выберите это значение.',
-  NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD: 'Need money for food',
-  NEW_POST_DESCRIBE_NEED_MONEY_FOR_FOOD_TOOLTIP_TEXT: 'Нет денег на продукты? Выберите этот пункт, чтобы обратиться за помощью к добрым людям.',
-  NEW_POST_DESCRIBE_EMERGENCY_SITUATION: 'Emergency situation',
-  NEW_POST_DESCRIBE_EMERGENCY_SITUATION_TOOLTIP_TEXT: 'Мы сожалеем, что это случилось. Опишите свою проблемы и выберите этот пункт, чтобы отметить это объявление как важное.',
-  NEW_POST_DESCRIBE_OTHER: 'Other',
-  NEW_POST_DESCRIBE_OTHER_TOOLTIP_TEXT: 'Не нашли подходящий для вас тип объявления? Тогда этот пункт для вас.',
-  NEW_POST_PRICE: 'Цена',
-  NEW_POST_I_AM_LOOKING_FOR: 'I am looking for',
-  NEW_POST_I_AM_LOOKING_FOR_ARTISTS: 'Artists and other creative people',
-  NEW_POST_I_AM_LOOKING_FOR_FRIENDSHIP: 'Friendship',
-  NEW_POST_I_AM_LOOKING_FOR_SPORT_ACTIVITIES: 'Sport activities',
-  NEW_POST_I_AM_LOOKING_FOR_PROFESSIONALS: 'Professionals',
-  NEW_POST_I_AM_LOOKING_FOR_OTHER: 'Other',
-  NEW_POST_POSITION: 'Position',
-  NEW_POST_LOOKING_FOR: 'Looking for',
-  NEW_POST_ROOMMATES: 'Roommates',
-  NEW_POST_RENTING: 'Renting',
-  NEW_POST_RENTING_OUT: 'Renting out',
-  NEW_POST_BUYING_A_HOUSE: 'Buying a house',
-  NEW_POST_SELLING_A_HOUSE: 'Selling a house',
-  NEW_POST_INCOGNITO_MODE: 'Incognito mode',
-  NEW_POST_HASHES: 'Hashes',
-  NEW_POST_CREATE_BTN: 'Create Shiner',
-  NEW_POST_SET_LOCATION_BTN: 'Set Location',
-  NEW_POST_SENIORITY: 'Seniority',
-  NEW_POST_GENDER: 'Gender',
-  NEW_POST_ATTACHMENT_FILES: 'Attachments',
-  NEW_POST_REMOVE_ATTACHMENT: 'Remove Attachment',
-  NEW_POST_CONTACTS: 'Contacts',
-  NEW_POST_ATTACH_A_DOCUMENT: 'Attach a document (optional)',
-  NEW_POST_CATEGORY_SEARCH: 'Search category',
-  NEW_POST_EMPLOYMENT_AND_WORK_SCHEDULE: 'Employment and work schedule',
-  NEW_POST_PAY_METHOD: 'Pay method',
-  NEW_POST_DINAMIC_TOOLTIP_TEXT: '??????????????????????',
-  NEW_POST_STATIC_TOOLTIP_TEXT: '??????????????????????',
-  
-  //New Memo
-  NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',
-  NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',
-  NEW_MEMO_DESCRIPTION_PLACEHOLDER_TOOLTIP_TEXT: 'Точное описание поможет сориентироваться в списке созданных напоминаний.',
-  NEW_MEMO_WHAT_MUTED: 'Информация из этой секции содержит сведения, которые будут испольоваться для отображения и поиска вашего напоминания. Пожалуйста, указывайте точные сведения, для корректного поиска.',
-  NEW_MEMO_WHERE_MUTED: 'С помощью настроек определите, в каком месте ваше напоминание станет активным.',
-  NEW_MEMO_CHOOSE_TIME_LIMIT: 'Choose due date for the memo',
-
-
-  //Post details
-  POST_DETAILS_REVIEWS_FIRST: 'Your will be the first',
-  POST_DETAILS_VIEWS: 'Views',
-  POST_DETAILS_TODAY: 'Today',
-  POST_DETAILS_STATUS: 'Status',
-  POST_DETAILS_DISTANCE: 'Distance',
-  POST_DETAILS_ALL: 'All',
-  POST_DETAILS_LIKES: 'Likes',
-  POST_DETAILS_TYPE: 'Type',
-  POST_DETAILS_PRICE: 'Price',
-  POST_DETAILS_LIKE: 'Like',
-  POST_DETAILS_LEFT: 'Left',
-  POST_DETAILS_DYNAMIC:'Dynamic',
-  POST_DETAILS_STATIC:'Static',
-  POST_DETAILS_VIEW_MAP:'View map',
-  POST_DETAILS_DETAILS: 'Details',
-  POST_DETAILS_PUBLISHED_ON: 'Published on',
-  
 
   //Profile
   PROFILE_USER_DETAILS :'User profile details',
@@ -210,12 +120,12 @@ en = {
   IMAGE_SELECT_DONE: 'Done',
   IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE: 'Upload New Profile Image with File Picker',
   IMAGE_SELECT_CHOOSE_IMAGE: 'Choose image',
-  
+  COMMON_IMAGE_GET_RANDOM: 'Get random image',
+
   //Error
   ERROR_INVALID_FIELD: 'This field is required',
   ERROR_INVALID_INTEGER_PATTERN: 'This field is required and must be an integer',
 
-  COMMON_IMAGE_GET_RANDOM: 'Get random image'
 };
 T9n.map('en', en);
 bz.help.makeNamespace('bz.language.i18n.en', en);
