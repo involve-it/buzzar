@@ -115,7 +115,7 @@ Template.bzNewControlSearch.events({
       clearBtn = v.$('.js-reset-field');
 
     clearBtn.css('visibility', 'hidden');
-
+    Session.set('bz.control.search.searchedText', '');
     /*НЕ ЗАБЫТЬ СДЕЛАТЬ ПРОВЕРКУ. ВДРУГ КНОПКА ДОСТУПНА ТОЛЬКО ДЛЯ ВВЕДЕННОГО ТЕКСТА А НЕ КНОПОК */
 
     /*turn off the service buttons*/
