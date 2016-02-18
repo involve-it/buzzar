@@ -30,7 +30,7 @@ var helperFunctions = {
       if (!loc){
         loc = this.details.locations[0];
        }
-      var coords= loc.obscuredCoords;
+      var coords= loc.obscuredCoords || loc.coords;
       distance =  bz.help.location.getDistance(currentLocation.latitude, currentLocation.longitude, coords.lat, coords.lng);
       var user = Meteor.user(),
           lang = user&&user.profile&&user.profile.language;
@@ -74,7 +74,7 @@ var helperFunctions = {
       if (!loc){
         loc = this.details.locations[0];
       }
-      var coords= loc.obscuredCoords;
+      var coords= loc.obscuredCoords || loc.coords;
       distance =  bz.help.location.getDistance(currentLocation.lat, currentLocation.lng, coords.lat, coords.lng);
       var user = Meteor.user(),
         lang = user&&user.profile&&user.profile.language;
