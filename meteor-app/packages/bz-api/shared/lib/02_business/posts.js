@@ -29,8 +29,9 @@ var helperFunctions = {
       loc = _.find(this.details.locations, function(l){ return l.placeType === bz.const.locations.type.DYNAMIC});
       if (!loc){
         loc = this.details.locations[0];
-      }
-      distance =  bz.help.location.getDistance(currentLocation.latitude, currentLocation.longitude, loc.coords.lat, loc.coords.lng);
+       }
+      var coords= loc.obscuredCoords;
+      distance =  bz.help.location.getDistance(currentLocation.latitude, currentLocation.longitude, coords.lat, coords.lng);
       var user = Meteor.user(),
           lang = user&&user.profile&&user.profile.language;
 
@@ -73,7 +74,8 @@ var helperFunctions = {
       if (!loc){
         loc = this.details.locations[0];
       }
-      distance =  bz.help.location.getDistance(currentLocation.lat, currentLocation.lng, loc.coords.lat, loc.coords.lng);
+      var coords= loc.obscuredCoords;
+      distance =  bz.help.location.getDistance(currentLocation.lat, currentLocation.lng, coords.lat, coords.lng);
       var user = Meteor.user(),
         lang = user&&user.profile&&user.profile.language;
 

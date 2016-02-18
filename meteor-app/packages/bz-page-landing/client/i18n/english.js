@@ -2,69 +2,13 @@
  * Created by douson on 13.07.15.
  */
 
-var en;
-
-en = {
-  //Global
-  APP_NAME: 'Shiners',
-  CONTENT_READ_MORE_TITLE: 'Read more...',
-  CONTACT_US:'Contact us',
-  SEND_MESSAGE: 'Send message',
-  YES: 'Yes',
-  NO: 'No',
-  COMMENTS:'Comments',
-  RATING: 'Rating',
-  REVIEW_HELP_TEXT: 'Put your review here',
-  CHOOSE_RATING: 'Choose rating',
-  SUBMIT: 'Submit',
-  CANCEL: 'Cancel',
-  OR:'OR',
-  //Buttons
-  BUTTON_CHECK: 'Check',
-  
-  //Menu
-  MENU_HOME_PAGE: 'Home',
-  MENU_ABOUT_US: 'About us',
-  MENU_CONTACTS: 'Contacts',
-  MENU_OR_SPLIT: 'or',
-  MENU_MAP: 'Map',
-  MENU_MAIN_PAGES_TITLE: 'Main pages',
-  MENU_HASHES_TITLE: 'Hashes',
-  MENU_MY_POSTS: 'Posts',
-  MENU_MY_PROFILE: 'Profile',
-  MENU_MY_MESSAGES: 'Messages',
-  MENU_BUTTON_NEW_POST: 'Create',
-  MENU_SIGN_IN: 'Sign in',
-  MENU_SIGN_OUT: 'Sign out',
-  MENU_SIGN_UP: 'Sign up',
-  MENU_SIGNED_IN_AS: 'Signed in as ',
-  
-  getAllUsers: 'Get all system users',
-  getContactUsers: 'Contacts found',
-  status: 'Status',
-  active: 'Active',
-  inactive: 'Inactive',
-  SEEN_TODAY: 'Today',
-  SEEN_ALL: 'All',
-  SEEN_TOTAL: 'Total',
-  left: 'Left',
-  POST_STATUS: 'Post close',
-  
-  //sitewise:
-  siteTitleElement: 'instant post, bound to location',
-  
+enI18n = {
   // home page:
-  headliner: 'instant post, bound to location',
-  SEARCH_DISTANCE_TITLE: 'Distance',
-  SEARCH_DISTANCE_MILE: '1 ml',
-  SEARCH_DISTANCE_MILES_5: '5 ml',
-  SEARCH_DISTANCE_MILES_20: '20 ml',
-  SEARCH_DISTANCE_FT_200: '200 ft',
-  SEARCH_DISTANCE_EVERYWHERE: 'Everywhere',
-  MOST_POPULAR_TITLE: 'Most Popular',
-  ABOUT_US_TITLE: 'About us',
-
+  headliner: 'Options around',
   AROUND_YOU_TITLE: 'Buzz Around you',
+<<<<<<< Updated upstream
+  SEARCH_LOOKING_FOR_TEXT: 'Your WHAT or WHERE or WHEN you\'re looking for',
+=======
   LOOKING_FOR_TEXT: 'Your WHAT or WHERE or WHEN you\'re looking for',
 
   //Location
@@ -88,7 +32,7 @@ en = {
   NEW_POST_WHEN: 'When',
   NEW_POST_DURATION: 'Duration',
   NEW_POST_DURATION_MUTED: 'Установите время, в течении которого ваше объявление будет активным.',
-  NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователи Светлячков найдут объявления в подходящем для них месте.',
+  NEW_POST_LOCATION_MUTED: 'Выберите надстройку для вашего объявления. С помощью этих данных пользователям Buzzar найдут объявления в подходящем для них месте.',
   NEW_POST_GALLERY_PHOTOS: 'Photos',
   NEW_POST_GALLERY_PHOTOS_MUTED: 'Please add photos for the post.',
   NEW_POST_TITLE: 'Title',
@@ -125,18 +69,6 @@ en = {
   NEW_POST_HASHES: 'Hashes',
   NEW_POST_CREATE_BTN: 'Create Shiner',
   NEW_POST_SET_LOCATION_BTN: 'Set Location',
-  NEW_POST_SENIORITY: 'Seniority',
-  NEW_POST_GENDER: 'Gender',
-  NEW_POST_ATTACHMENT_FILES: 'Attachments',
-  NEW_POST_REMOVE_ATTACHMENT: 'Remove Attachment',
-  NEW_POST_CONTACTS: 'Contacts',
-  NEW_POST_ATTACH_A_DOCUMENT: 'Attach a document (optional)',
-  NEW_POST_CATEGORY_SEARCH: 'Search category',
-  NEW_POST_EMPLOYMENT_AND_WORK_SCHEDULE: 'Employment and work schedule',
-  NEW_POST_PAY_METHOD: 'Pay method',
-  NEW_POST_DINAMIC_TOOLTIP_TEXT: '??????????????????????',
-  NEW_POST_STATIC_TOOLTIP_TEXT: '??????????????????????',
-  
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',
@@ -216,12 +148,12 @@ en = {
   PAGE_CONTACT_WHO_WE_ARE:'Who we are',
   PAGE_CONTACT_PUT_WE_ARE:'We are a small startup, located in the Silicon Valley. We were dreaming about such a system to come. Still nothing, so we decided to build it ourselves.',
   PAGE_CONTACT_YOUR_MESSAGE:'Your message',
-
+  
   //Error
   ERROR_INVALID_FIELD: 'This field is required',
-  ERROR_INVALID_INTEGER_PATTERN: 'This field is required and must be an integer',
 
   COMMON_IMAGE_GET_RANDOM: 'Get random image'
+>>>>>>> Stashed changes
 };
-T9n.map('en', en);
-bz.help.makeNamespace('bz.language.i18n.en', en);
+var enAll = _.extend(bz.language.i18n.en, enI18n);
+T9n.map('en', enAll);

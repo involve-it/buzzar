@@ -121,6 +121,11 @@ bz.bus.proximityHandler = {
                                 lng: lng,
                                 timestamp: new Date()
                             };
+                            var box= bz.bus.proximityHandler.getLatLngBox(lat, lng, 0.1);
+                            loc.obscuredCoords={
+                                lat: Math.random()*(box.lat2-box.lat1)+box.lat1,
+                                lng:  Math.random()*(box.lng2-box.lng1)+box.lng1
+                            };
                             updated = true;
                         }
                         presences[bz.const.locations.type.DYNAMIC] = bz.const.posts.status.presence.NEAR;

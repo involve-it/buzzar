@@ -3,64 +3,13 @@
  */
 
 ruI18n = {
-  //Global
-  APP_NAME: 'Светлячки',
-  CONTENT_READ_MORE_TITLE: 'Подробнее',
-  CONTACT_US:'Свяжитесь с нами',
-  SEND_MESSAGE: 'Отправить сообщение',
-  YES: 'Да',
-  NO: 'Нет',
-  COMMENTS:'Комментарии',
-  RATING: 'Рейтинг',
-  REVIEW_HELP_TEXT: 'Оставьте свой комментарий здесь',
-  CHOOSE_RATING: 'Выберите рейтинг',
-  SUBMIT: 'Отправить',
-  CANCEL: 'Отмена',
-  OR:'ИЛИ',
-
-
-  //Buttons
-  BUTTON_CHECK: 'Проверить',
-
-  //Menu
-  MENU_HOME_PAGE: 'Главная',
-  MENU_ABOUT_US: 'О нас',
-  MENU_CONTACTS: 'Контакты',
-  MENU_OR_SPLIT: 'или',
-  MENU_MAP: 'Карта',
-  MENU_MAIN_PAGES_TITLE: 'Основные страницы',
-  MENU_HASHES_TITLE: 'Хэштеги',
-  MENU_MY_POSTS: 'Посты',
-  MENU_MY_PROFILE: 'Профайл',
-  MENU_MY_MESSAGES: 'Сообщения',
-  MENU_BUTTON_NEW_POST: 'Создать новый',
-  MENU_SIGN_IN: 'Вход',
-  MENU_SIGN_OUT: 'Выход',
-  MENU_SIGN_UP: 'Регистрация',
-    
-  getAllUsers:         'Все пользователи системы',
-  getContactUsers:     'Найденные контакты',
-  status:              'Статус',
-  active:              'Активные',
-  inactive:            'Завершенные',
-  SEEN_TODAY: 'Сегодня',
-  SEEN_ALL: 'Всего',
-  SEEN_TOTAL: 'Итого',
-  left:                'Осталось',
-  POST_STATUS: 'Объявление закрыто',
-  
   //home:
   headliner:           'Возможности вокруг',
-  SEARCH_DISTANCE_TITLE: 'Расстояние',
-  SEARCH_DISTANCE_MILE: '1 миля',
-  SEARCH_DISTANCE_MILES_5: '5 миль',
-  SEARCH_DISTANCE_MILES_20: '20 миль',
-  SEARCH_DISTANCE_FT_200: '200 футов',
-  SEARCH_DISTANCE_EVERYWHERE: 'Везде',
   MOST_POPULAR_TITLE: 'Популярные',
   ABOUT_US_TITLE: 'О нас',
-
   AROUND_YOU_TITLE: 'Срочное рядом',
+<<<<<<< Updated upstream
+=======
   LOOKING_FOR_TEXT: 'Искать ЧТО, ГДЕ, КОГДА',
 
   //Location
@@ -208,6 +157,7 @@ ruI18n = {
   
   COMMON_IMAGE_GET_RANDOM: 'Загрузить случайное фото'
   
+>>>>>>> Stashed changes
 };
 //var ruAll = _.extend(bz.language.i18n.ru, ruI18n);
 //T9n.map('ru', ruAll);
