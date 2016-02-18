@@ -17,7 +17,6 @@ Package.onUse(function(api) {
 
   api.addFiles([
     'client/router.js',
-    'client/controller.js',
     'client/i18n/english.js',
     'client/i18n/russian.js'
   ], 'web');
