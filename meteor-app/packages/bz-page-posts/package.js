@@ -30,7 +30,7 @@ Package.onUse(function (api) {
     'client/i18n/russian.js',
     'client/router.js',
     'client/model.js',
-    'client/controller.js',
+    'client/post.controller.js',
     'client/edit-post.controller.js',
     'client/new-post.controller.js',
     'client/page-my.less',

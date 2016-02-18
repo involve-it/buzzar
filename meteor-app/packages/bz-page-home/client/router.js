@@ -7,7 +7,7 @@ Router.map(function () {
     path: '/home',
     template: 'pageHome',
     layoutTemplate: 'mainLayoutHome',
-    controller: 'requireLoginController',
+    controller: 'baseController',
     //fastRender: true,
     data: function() {
       var path = this.route.path();
