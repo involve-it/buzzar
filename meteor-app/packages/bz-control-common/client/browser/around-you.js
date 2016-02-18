@@ -18,20 +18,7 @@ Template.bzAroundYouHolder.onRendered(function () {
   });
 });
 
-
-if(Meteor.isServer) {
-  Meteor.publish('aroundYou', function() {
-    
-  });
-}
-
-
-Template.aroundYou.helpers({
-  getAroundItems: function() {
-    var ret, loc = Session.get('bz.control.search.location'),
-      distSession = Session.get('bz.control.search.distance') || [],
-      activeCats = Session.get('bz.control.category-list.activeCategories') || [];
-    if(['home', 'jobs', 'training', 'connect', 'trade', 'housing', 'events', 'services', 'help'].indexOf(Router.getCurrentRouteName()) > -1) {
+       
 Template.bzAroundYou.onRendered(function () {
   Meteor.startup(function () {
     $(window).resize(function () {
@@ -39,6 +26,7 @@ Template.bzAroundYou.onRendered(function () {
     });
   });
 });
+      
 Template.bzAroundYou.helpers({
   getAroundItems: function () {
     return this.items;
