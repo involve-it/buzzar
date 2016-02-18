@@ -66,9 +66,7 @@ Package.onUse(function (api) {
    'client/lib/vendor/uikit/css/uikit.css',
    'client/lib/vendor/uikit/css/components/slider.css',
    'client/lib/vendor/uikit/js/uikit.js',
-   'client/lib/vendor/uikit/js/components/slider.js',
-      
-   'client/lib/vendor/masonry.pkgd.js'
+   'client/lib/vendor/uikit/js/components/slider.js'
    ], 'client');
   
   /*api.addAssets([
