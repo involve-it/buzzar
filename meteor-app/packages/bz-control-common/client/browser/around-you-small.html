@@ -5,38 +5,14 @@
         <div class="bz-around-you-small">
             <div class="swiper-container swiper-container-horizontal">
                 <div class="swiper-wrapper bz-around-you-small-slider">
-
-                        {{#each getAroundItems}}
-                            <div class="swiper-slide">{{> bzAroundYouSmallItem}}</div>
-                        {{/each}}
-            
+                    {{#each getAroundItems}}
+                        <div class="swiper-slide">{{> bzAroundYouSmallItem}}</div>
+                    {{/each}}
                 </div>
             </div>
         </div>
     </section>
-    
-{{/if}}   
-    
-    
-    
-    
-    
-    
-    <!--{{#if getAroundItems.length}}
-        <section id="bz-around-you-small">
-            <div class="bz-around-you-small">
-                <div data-uk-slider="{infinite: false}">
-                    <div class="bz-slidenav-position uk-slider-container">
-                        <ul class="bz-around-you-small-slider uk-slider uk-grid bz-width-mini bz-width-mini-1-4 bz-width-small-1-4 bz-width-medium-1-5 bz-width-large-1-6">
-                            {{#each getAroundItems}}
-                                <li>{{> bzAroundYouSmallItem}}</li>
-                            {{/each}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-    {{/if}}-->
+{{/if}}
 </template>
 
 <template name="bzAroundYouSmallItem">
@@ -66,4 +42,3 @@
         </div>
     </div>
 </template>
-

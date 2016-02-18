@@ -17,63 +17,61 @@
       </ul>
     </div>
   </div>
-
-  <div class="js-preview-wrapper">
-    <img class="js-preview" src="{{ getPreviewImgSrc }}"/>
-  </div>
-
-  <div class="tabs-content">
-    <div class="content active" id="panel11">
-      {{#if countFile}}
-        <p>
-          <input type="file" accept="image/*" class="js-file-upload">
-          <!--<button class="button js-photo-library">Choose file</button>-->
-        </p>
-      {{else}}
-        {{> noUploadImagePhoto}}
-      {{/if}}
-    </div>
-    <div class="content" id="panel21">
-      <div class="bz-upload-photo-wrapper">
-        <div class="bz-upload-photo-wrapper-image"><i class="fa fa-camera"></i></div>
-        <div class="bz-button-box">
-          <button class="button btn-default btn-gray js-take-photo">{{ t9n 'IMAGE_SELECT_TAKE_PHOTO'}}</button>
-        </div>
+    <div class="bz-choose-image-user-images-list"> 
+      <div class="js-preview-wrapper">
+          <img class="js-preview" src="{{ getPreviewImgSrc }}"/>
       </div>
-    </div>
-    <div class="content" id="panel31">
-      <div class="bz-upload-photo-wrapper">
-        <div class="bz-upload-photo-wrapper-check">
-          <div class="bz-input-flex"><input type="text" placeholder="{{ t9n 'IMAGE_SELECT_IMAGE_URL'}}" class="js-image-url"></div>
-          <div class="margin-left">
-            <button class="button btn-default bz-small js-use-image-url">{{ t9n 'IMAGE_SELECT_CHECK_IMAGE'}}</button>
+
+      <div class="tabs-content">
+        <div class="content active" id="panel11">
+          {{#if countFile}}
+            <p>
+              <input type="file" accept="image/*" class="js-file-upload">
+              <!--<button class="button js-photo-library">Choose file</button>-->
+            </p>
+          {{else}}
+            {{> noUploadImagePhoto}}
+          {{/if}}
+        </div>
+        <div class="content" id="panel21">
+          <div class="bz-upload-photo-wrapper">
+            <div class="bz-upload-photo-wrapper-image"><i class="fa fa-camera"></i></div>
+            <div class="bz-button-box">
+              <button class="button btn-default btn-gray js-take-photo">{{ t9n 'IMAGE_SELECT_TAKE_PHOTO'}}</button>
+            </div>
           </div>
         </div>
-      </div>
-      <div>
-        {{ t9n 'OR'}}<br/>
-        <div class="bz-input-flex"><input type="text" placeholder="{{ t9n 'IMAGE_SELECT_PASTE_FROM_CLIPBOARD'}}" class="js-image-from-clipboard"></div>
-      </div>
-    </div>
-    <div class="content" id="panel41">
-      <div class="bz-upload-photo-wrapper">
-        <div class="bz-button-box">
-          <button
-            class="button btn-default btn-gray js-use-random-image-url">{{ t9n 'COMMON_IMAGE_GET_RANDOM'}} </button>
+        <div class="content" id="panel31">
+          <div class="bz-upload-photo-wrapper">
+            <div class="bz-upload-photo-wrapper-check">
+              <div class="bz-input-flex"><input type="text" placeholder="{{ t9n 'IMAGE_SELECT_IMAGE_URL'}}" class="js-image-url"></div>
+              <div class="margin-left">
+                <button class="button btn-default bz-small js-use-image-url">{{ t9n 'IMAGE_SELECT_CHECK_IMAGE'}}</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            {{ t9n 'OR'}}<br/>
+            <div class="bz-input-flex"><input type="text" placeholder="{{ t9n 'IMAGE_SELECT_PASTE_FROM_CLIPBOARD'}}" class="js-image-from-clipboard"></div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="content" id="panel51">
-        <div class="bz-choose-image-user-images-list">
+        <div class="content" id="panel41">
+          <div class="bz-upload-photo-wrapper">
+            <div class="bz-button-box">
+              <button
+                class="button btn-default btn-gray js-use-random-image-url">{{ t9n 'COMMON_IMAGE_GET_RANDOM'}} </button>
+            </div>
+          </div>
+        </div>
+        <div class="content" id="panel51">
             <ul>
                 {{#each getUserImages }}
                     {{> bzImagesPreviewList }}
                 {{/each}}
             </ul>
         </div>
+      </div>
     </div>
-  </div>
-
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 
   <div data-alert class="alert-box alert hidden js-library-not-available-alert">

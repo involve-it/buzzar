@@ -9,6 +9,16 @@ Router.map(function () {
     layoutTemplate: 'mainLayoutHome',
     controller: 'requireLoginController',
     //fastRender: true,
+    data: function() {
+      var path = this.route.path();
+      console.log(path);
+      return {
+        pageOptions: {
+          backgroundMobile: '/img/content/bg/state-city.jpg',
+          backgroundDesktop:  '/img/content/bg/fly-balls.jpg'
+        }
+      }
+    },
     onBeforeAction: function () {
       //debugger;
       var qs = this.params.query;
