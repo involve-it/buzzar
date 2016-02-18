@@ -11,8 +11,8 @@ Template.bzAroundYouHolder.onRendered(function () {
       cats: Session.get('bz.control.category-list.activeCategories'),
       text: Session.get('bz.control.search.searchedText')
     });
-    data.items = ret || [];
-    Session.set('bz.control.search.amount', ret.length);
+    data.items = ret;
+    Session.set('bz.control.search.amount', ret && ret.length);
     $('.js-around-you-holder').empty();
     Blaze.renderWithData(Template.bzAroundYou, data, $('.js-around-you-holder')[0]);
   });
