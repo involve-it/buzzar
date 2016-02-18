@@ -59,9 +59,9 @@ Meteor.startup(function () {
 });
 
 bz.bus.search.doSearchClient = (params, options)=> {
-  var ret, arrTypes, box, dbQuery = {}, loc = params.loc, activeCats = params.activeCats, radius = params.radius, $where = params.$where;
+  var ret, arrTypes, box, dbQuery = {}, loc = params.loc, activeCats = params.activeCats, radius = params.radius, $where = params.$where, text = params.text;
 
-  if(loc && loc.coords && loc.coords.lat && loc.coords.lng) {
+  if (loc && loc.coords && loc.coords.lat && loc.coords.lng) {
     box = getLatLngBox(loc.coords.lat, loc.coords.lng, radius);
     if (box) {
       dbQuery['details.locations'] = {
@@ -72,7 +72,13 @@ bz.bus.search.doSearchClient = (params, options)=> {
       }
     }
   }
-
+  if (text) {
+    dbQuery['$or'] = [
+      {'details.title': {$regex: `.*${text}.*`}},
+      {'details.description': {$regex: `.*${text}.*`}},
+      {'details.price': {$regex: `.*${text}.*`}}
+    ]
+  }
   if (activeCats && Array.isArray(activeCats) && activeCats.length > 0) {
     dbQuery['type'] = {$in: activeCats};
   } else {
@@ -83,7 +89,7 @@ bz.bus.search.doSearchClient = (params, options)=> {
     arrTypes.push('');
     dbQuery['type'] = {$in: arrTypes}
   }
-  if(params.$where){
+  if (params.$where) {
     dbQuery['$where'] = params.$where;
   }
   _.extend(dbQuery, params.query);

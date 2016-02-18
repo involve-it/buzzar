@@ -26,7 +26,8 @@ Package.onUse(function (api) {
   api.addFiles(['collections/posts.shared.js'], ['client', 'server']);
 
   api.addFiles([
-    'client/i18n.js',
+    'client/i18n/english.js',
+    'client/i18n/russian.js',
     'client/router.js',
     'client/model.js',
     'client/controller.js',

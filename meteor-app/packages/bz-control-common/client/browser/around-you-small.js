@@ -34,9 +34,9 @@ Template.aroundYouSmall.helpers({
             //return this._hasLivePresence();
             return !!bz.help.posts.hasLivePresence.apply(this);
           },
-          query: {
+          /*query: {
             'status.visible': {$exists: true}
-          }
+          }*/
           //radius: bz.const.search.AROUND_YOU_RADIUS
         }, {
           //limit: 20,
