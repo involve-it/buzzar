@@ -211,84 +211,87 @@ Template.onePostRowItemOwner.helpers({
     return ret;
   },
   getDuration: function() {
-    var duration, status, percent, finish, start, now, days, hours, min, barClass, elapsed, titleDays, titleHours, titleMinutes, language, unit; 
-    
-    status = true;
-    
-    /* Current date */
-    now = new Date();
-    
-    /* Created posts, ms */
-    if( !bz.cols.posts.findOne({_id: this._id}) ) return;
-    start = new Date(bz.cols.posts.findOne({_id: this._id}).timestamp); // Dec 26 2015
+    if(false) {
+      var duration, status, percent, finish, start, now, days, hours, min, barClass, elapsed, titleDays, titleHours, titleMinutes, language, unit;
 
-    /* N Days of Activism, FINISH */
-    finish = new Date(bz.cols.posts.findOne({_id: this._id}).endDatePost); // Jan 25 2016
+      status = true;
 
-    /* ALL ms or 100% */
-    duration = finish - start;
-    
-    /* left time */
-    var ms = finish - now;
-        days = Math.floor(ms / 86400000);
-        hours = Math.floor((ms - (days * 86400000)) / 3600000);
-        min = Math.floor((ms - (days * 86400000) - (hours * 3600000)) / 60000);
-    
-    // Объявлению осталось: + "Дней: " + days + " часов: " + hours + " минут: " + min;
-    
+      /* Current date */
+      now = new Date();
 
-    elapsed = new Date().getTime() - start;
-    /*var elapsedDays = Math.floor(elapsed / 86400000);*/
-        
-    percent = ms / duration * 100;
-    
-    /* bz-bar-yellow < 50; bz-bar-red < 20; bz-bar-green > 50 ] */
-    if( percent < 20 ) {
-      barClass = 'red';
-    } else if( percent < 50 ) {
-      barClass = 'yellow';
-    } else if( percent >= 50 ) {
-      barClass = 'green';
-    }
-    if( percent <= 0 ) {
-      percent = 0;
-      status = false;
-            
-     /* update the status on visible, null  */
-      bz.cols.posts.update(this._id, { $set: { status: {visible: null} } });
-    }
-    language = Session.get('bz.user.language');
-    function endingOfTheWord(lang, number, title, titleEng) {
-      if( lang === 'en' ) {
-        
-        var eng = [0, 1];
-        return titleEng[ (number > 1) ? 1 : 0 ];
-        
-      } else if( lang === 'ru' ) {
-        var rus = [2, 0, 1, 1, 1, 2];
-        return title[ (number%100>4 && number%100<20) ? 2 : rus[ (number%10<5) ? number%10 : 5 ] ];
+      /* Created posts, ms */
+      if( !bz.cols.posts.findOne({_id: this._id}) ) return;
+      start = new Date(bz.cols.posts.findOne({_id: this._id}).timestamp); // Dec 26 2015
+
+      /* N Days of Activism, FINISH */
+      finish = new Date(bz.cols.posts.findOne({_id: this._id}).endDatePost); // Jan 25 2016
+
+      /* ALL ms or 100% */
+      duration = finish - start;
+
+      /* left time */
+      var ms = finish - now;
+      days = Math.floor(ms / 86400000);
+      hours = Math.floor((ms - (days * 86400000)) / 3600000);
+      min = Math.floor((ms - (days * 86400000) - (hours * 3600000)) / 60000);
+
+      // Объявлению осталось: + "Дней: " + days + " часов: " + hours + " минут: " + min;
+
+
+      elapsed = new Date().getTime() - start;
+      /*var elapsedDays = Math.floor(elapsed / 86400000);*/
+
+      percent = ms / duration * 100;
+
+      /* bz-bar-yellow < 50; bz-bar-red < 20; bz-bar-green > 50 ] */
+      if( percent < 20 ) {
+        barClass = 'red';
+      } else if( percent < 50 ) {
+        barClass = 'yellow';
+      } else if( percent >= 50 ) {
+        barClass = 'green';
       }
+      if( percent <= 0 ) {
+        percent = 0;
+        status = false;
+
+        /* update the status on visible, null  */
+        bz.cols.posts.update(this._id, { $set: { status: {visible: null} } });
+      }
+      language = Session.get('bz.user.language');
+      function endingOfTheWord(lang, number, title, titleEng) {
+        if( lang === 'en' ) {
+
+          var eng = [0, 1];
+          return titleEng[ (number > 1) ? 1 : 0 ];
+
+        } else if( lang === 'ru' ) {
+          var rus = [2, 0, 1, 1, 1, 2];
+          return title[ (number%100>4 && number%100<20) ? 2 : rus[ (number%10<5) ? number%10 : 5 ] ];
+        }
+      }
+      if(days > 1) {
+        titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
+        unit = days + ' ' + titleDays;
+      } else if(days == 1) {
+        titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
+        titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
+        titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
+        unit = (hours == 0) ? days + ' ' + titleDays + '   ' + min + ' ' + titleMinutes : days + ' ' + titleDays + '   ' + hours + ' ' + titleHours;
+      } else if(days == 0) {
+        titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
+        titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
+        unit = (days == 0 && hours == 0) ? min + ' ' + titleMinutes : hours + ' ' + titleHours + '   ' + min + ' ' + titleMinutes;
+      }
+      return  {
+        percent: percent,
+        leftDays: days,
+        unit: unit,
+        barClass: barClass,
+        status: status
+      };
     }
-    if(days > 1) {
-      titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
-      unit = days + ' ' + titleDays;
-    } else if(days == 1) {
-      titleDays = endingOfTheWord(language, days, ['день', 'дня', 'дней'], ['day', 'days']);
-      titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
-      titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
-      unit = (hours == 0) ? days + ' ' + titleDays + '   ' + min + ' ' + titleMinutes : days + ' ' + titleDays + '   ' + hours + ' ' + titleHours;
-    } else if(days == 0) {
-      titleHours = endingOfTheWord(language, hours, ['час', 'часа', 'часов'], ['hour', 'hours']);
-      titleMinutes = endingOfTheWord(language, min, ['минута', 'минуты', 'минут'], ['minute', 'minutes']);
-      unit = (days == 0 && hours == 0) ? min + ' ' + titleMinutes : hours + ' ' + titleHours + '   ' + min + ' ' + titleMinutes;
-    }
-    return  {
-      percent: percent, 
-      leftDays: days,
-      unit: unit,
-      barClass: barClass,
-      status: status
-    };
+    
   }
 });
 Template.chooseCurrency.helpers({
