@@ -71,21 +71,3 @@ Template.bzAdCategoryButton.events({
 
 
 
-Template.aroundYou.onRendered(function() {
-  $('.grid').masonry({
-    //isFitWidth: true,
-    itemSelector: '.grid-item'
-  });
-
-  Meteor.startup(function() {
-    $(window).resize(function() {
-      $('.grid').masonry();
-    });
-  });
-  
-});
-
-
-
-
-
