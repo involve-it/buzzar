@@ -121,12 +121,6 @@ ru = {
   IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE: 'Загрузить новый профиль изображения',
   IMAGE_SELECT_CHOOSE_IMAGE: 'Выбрать картинку',
 
-  //Contact us
-  PAGE_CONTACT_PUT_YOUR_QUESTION:'Оставте свой вопрос, пожелание, отзыв или предложение здесь, мы обязательно все рассмотрим',
-  PAGE_CONTACT_WHO_WE_ARE:'Кто мы',
-  PAGE_CONTACT_PUT_WE_ARE:'Мы небольшая группа startup, расположенная в Силиконовой долине. Мы мечтали о появлении такой системы. Но она все не появлялась, поэтому мы решили создать её сами.',
-  PAGE_CONTACT_YOUR_MESSAGE:'Ваше сообщение',
-
   //Error
   ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения',
   ERROR_INVALID_INTEGER_PATTERN: 'Это поле обязательно и только цифры',
