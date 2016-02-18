@@ -31,6 +31,9 @@ Template.categoryListButtons.events({
     //bz.ui.putCategoriesToSession(this.intName, true);
     
     var $target = e.target.closest('.js-item-category');
+
+    //console.log($target);
+    
     if($($target).data('value') === 'all') {
       Session.set('bz.control.category-list.activeCategories', '');
     }
