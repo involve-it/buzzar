@@ -16,8 +16,11 @@ Package.onUse(function(api) {
   api.use('templating', global.bzSettings.webBrowserArray);
 
   api.addFiles([
-    'client/router.js'
-  ], 'client');
+    'client/router.js',
+    'client/controller.js',
+    'client/i18n/english.js',
+    'client/i18n/russian.js'
+  ], 'web');
 
   api.addFiles([
     'client/browser/about-us.html',
