@@ -5,4 +5,4 @@ bz.help.makeNamespace('bz.js');
 
 bz.js.setTimeout = function(){
   //...
-}
+};

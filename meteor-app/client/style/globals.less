@@ -124,7 +124,7 @@ input.js-nearby-places:focus {
     
     img[src*='/'] {
       .border-radius(2px);
-      height: 250px;
+      height: 185px;
       width: auto;
     }
   }
@@ -179,6 +179,8 @@ a, .uk-link, a:hover, .uk-link:hover {
 }
 
 .margin-left {margin-left: 20px;}
+
+.margin-bottom-20px {margin-bottom: 20px}
 
 .margin-top-20px {margin-top: 20px}
 
@@ -372,10 +374,11 @@ h2.title {
 * if do not message 
 **/
 
-.bz-wrapper-no-message {
+.bz-wrapper-no-message,
+.not-found-items {
   display: block; /*If don't contacts*/
   height: 100%;
-  margin: 0 0 15px 0;
+  margin: 15px;
   text-align: center;
   .display-flex-box();
   .align-items(center);
@@ -391,21 +394,21 @@ h2.title {
         color: rgba(30,188,210, .5);
       }
     }
+  }
+  
+  .title-message {
+    color: @h-title-color;
+    font-family: @roboto-font-family;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 28px;
+    margin-bottom: 0.5em;
+  }
 
-    .title-message {
-      color: @h-title-color;
-      font-family: @roboto-font-family;
-      font-size: 24px;
-      font-weight: 300;
-      line-height: 28px;
-      margin-bottom: 0.5em;
-    }
-
-    .subtitle-message {
-      color: #aaaaaa;
-      font-size: 14px;
-      line-height: 20px;
-    }
+  .subtitle-message {
+    color: #aaaaaa;
+    font-size: 14px;
+    line-height: 20px;
   }
 } /* END */
 

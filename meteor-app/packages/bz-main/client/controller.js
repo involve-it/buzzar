@@ -84,7 +84,6 @@ bz.ui.initSwiper = function() {
             freeModeMomentum: true
           });
           
-          
         }
     );
   }

@@ -22,6 +22,19 @@ Template.pageTrainings.rendered = function () {
   //$('select').foundationSelect();
   $(document).foundation();
 };
-Template.pageTrainings.rendered = function () {
 
-};
+
+Template.pageTrainings.onRendered(function() {
+
+  $(document).foundation();
+
+  bz.ui.resizeSearchField();
+
+  $(document).ready(function() {
+    $(window).on({
+      'resize': function(e) {
+        bz.ui.resizeSearchField();
+      }
+    });
+  });
+});
