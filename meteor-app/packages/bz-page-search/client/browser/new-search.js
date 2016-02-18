@@ -257,15 +257,8 @@ Template.bzNewControlSearch.helpers({
 
 Template.bzNewControlSearchFilters.helpers({
   countSearchRQ: function () {
-    var ret, loc = Session.get('bz.control.search.location'),
-      activeCats = Session.get('bz.control.category-list.activeCategories') || [];
-
-    ret = bz.bus.search.doSearchClient({
-      loc: loc,
-      activeCats: activeCats,
-      radius: bz.const.search.AROUND_YOU_RADIUS
-    });
-    return ret && ret.length;
+    var ret = Session.get('bz.control.search.amount') || 0;
+    return ret;
   }
 });
 
@@ -365,8 +358,6 @@ Template.searchCommonFilters.events({
     }
   }
 });
-
-
 /* передать имя фильтра this.intName и view */
 function setSearchFiltersTemplate(name, v) {
   var template;
@@ -384,12 +375,9 @@ function setSearchFiltersTemplate(name, v) {
     $(document).foundation('reflow');
   }
 }
-
-
 var updateScrollPos = function (e) {
   $('.control--category-list-buttons li').css('cursor', 'pointer');
   $('.bz-btn-services').scrollLeft($('.bz-btn-services').scrollLeft() + (clickX - e.pageX));
-
 };
 
 

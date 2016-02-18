@@ -3,41 +3,20 @@
  */
 Template.bzAroundYouHolder.onRendered(function () {
   Tracker.autorun(()=> {
-    var ret, loc = Session.get('bz.control.search.location'),
-      distSession = Session.get('bz.control.search.distance') || [],
-      activeCats = Session.get('bz.control.category-list.activeCategories') || []
-    data = {};
-    if ($('.js-around-you-holder')[0]) {
-      if (['home', 'jobs', 'training'].indexOf(Router.getCurrentRouteName()) > -1) {
-
-        // add all-posts reactivity:
-        bz.cols.posts.find({});
-        if (loc && loc.coords) {
-          ret = bz.bus.search.doSearchClient({
-            loc: loc,
-            activeCats: activeCats,
-            radius: distSession
-            //radius: bz.const.search.AROUND_YOU_RADIUS
-          }, {
-            limit: bz.const.search.AROUND_YOU_LIMIT,
-          }).fetch();
-          ret = _(ret).chain().sortBy(function (item) {
-            return item.stats && item.stats.seenTotal || 0;
-          }).reverse().sortBy(function (doc) {
-            return doc._getDistanceToCurrentLocationNumber();
-          }).value();
-        }
-        console.log('Around you posts amount: ' + ret.length);
-      }
-      //reorderGrid();
-      data.items = ret;
-      $('.js-around-you-holder').empty();
-      Blaze.renderWithData(Template.bzAroundYou, data, $('.js-around-you-holder')[0]);
-    }
-    return ret;
+    //reorderGrid();
+    var data = {}, ret;
+    ret = getSearchResultsFromSessionParameters({
+      loc: Session.get('bz.control.search.location'),
+      dist: Session.get('bz.control.search.distance'),
+      cats: Session.get('bz.control.category-list.activeCategories'),
+      text: Session.get('bz.control.search.searchedText')
+    });
+    data.items = ret || [];
+    Session.set('bz.control.search.amount', ret.length);
+    $('.js-around-you-holder').empty();
+    Blaze.renderWithData(Template.bzAroundYou, data, $('.js-around-you-holder')[0]);
   });
 });
-
 
 Template.bzAroundYou.onRendered(function () {
   Meteor.startup(function () {
@@ -169,4 +148,39 @@ function reorderGrid() {
       itemSelector: '.grid-item',
     }
   });
+}
+function getSearchResultsFromSessionParameters(options = {}){
+  var ret, loc = options.loc,
+    distSession = options.dist || [],
+    activeCats = options.cats || [],
+    searchedText = options.text;
+  /*
+  var ret, loc = options.loc || Session.get('bz.control.search.location'),
+    distSession = options.dist || Session.get('bz.control.search.distance') || [],
+    activeCats = options.cats || Session.get('bz.control.category-list.activeCategories') || [];*/
+  if ($('.js-around-you-holder')[0]) {
+    if (['home', 'jobs', 'training'].indexOf(Router.getCurrentRouteName()) > -1) {
+
+      // add all-posts reactivity:
+      bz.cols.posts.find({});
+      if (loc && loc.coords) {
+        ret = bz.bus.search.doSearchClient({
+          loc: loc,
+          activeCats: activeCats,
+          radius: distSession,
+          text: searchedText
+          //radius: bz.const.search.AROUND_YOU_RADIUS
+        }, {
+          limit: bz.const.search.AROUND_YOU_LIMIT,
+        }).fetch();
+        ret = _(ret).chain().sortBy(function (item) {
+          return item.stats && item.stats.seenTotal || 0;
+        }).reverse().sortBy(function (doc) {
+          return doc._getDistanceToCurrentLocationNumber();
+        }).value();
+      }
+      console.log('Around you posts amount: ' + ret.length);
+    }
+  }
+  return ret;
 }
