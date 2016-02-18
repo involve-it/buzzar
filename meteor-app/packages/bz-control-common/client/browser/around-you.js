@@ -21,12 +21,19 @@ Template.aroundYou.onRendered(function() {
 });
 
 
+if(Meteor.isServer) {
+  Meteor.publish('aroundYou', function() {
+    
+  });
+}
+
+
 Template.aroundYou.helpers({
   getAroundItems: function() {
     var ret, loc = Session.get('bz.control.search.location'),
       distSession = Session.get('bz.control.search.distance') || [],
       activeCats = Session.get('bz.control.category-list.activeCategories') || [];
-    if(['home', 'jobs', 'training'].indexOf(Router.getCurrentRouteName()) > -1) {
+    if(['home', 'jobs', 'training', 'connect', 'trade', 'housing', 'events', 'services', 'help'].indexOf(Router.getCurrentRouteName()) > -1) {
 
       // add all-posts reactivity:
       bz.cols.posts.find({});

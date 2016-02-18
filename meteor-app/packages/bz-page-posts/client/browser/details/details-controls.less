@@ -89,19 +89,34 @@
       color: @text-color-label;
       
       .bz-user-date-status {
+        margin-top: 10px;
+        
         .display-flex-box();
         .bz-avatar-user-status {
           position: relative;
           margin-right: 3px;
           background-color: transparent;
         }
-        .bz-user-date-username {}
       }
       
       .bz-rating {
         i {
           font-size: 16px;
         }
+      }
+    }
+    
+    .bz-user-date-username {
+      margin-right: 4px;
+    }
+    
+    .bz-post-action-link {
+      display: block;
+      padding: 0 3px;
+      color: @text-color-label-span;
+      
+      &:hover {
+        color: @text-link-green;
       }
     }
     
