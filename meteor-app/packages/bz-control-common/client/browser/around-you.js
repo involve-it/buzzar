@@ -1,35 +1,26 @@
 /**
  * Created by root on 9/15/15.
  */
-Template.bzAroundYouHolder.onRendered(function () {
-  Tracker.autorun(()=> {
-    //reorderGrid();
-    var data = {}, ret;
+
+Template.bzAroundYou.onRendered(function () {
+  Meteor.startup(function () {});
+});
+      
+
+Template.bzAroundYou.helpers({
+  getAroundItems: function () {
+    var ret;
     ret = getSearchResultsFromSessionParameters({
       loc: Session.get('bz.control.search.location'),
       dist: Session.get('bz.control.search.distance'),
       cats: Session.get('bz.control.category-list.activeCategories'),
       text: Session.get('bz.control.search.searchedText')
     });
-    data.items = ret;
+    
     Session.set('bz.control.search.amount', ret && ret.length);
-    $('.js-around-you-holder').empty();
-    Blaze.renderWithData(Template.bzAroundYou, data, $('.js-around-you-holder')[0]);
-  });
-});
-
-       
-Template.bzAroundYou.onRendered(function () {
-  Meteor.startup(function () {
-    $(window).resize(function () {
-      $('.js-isotope-grid').masonry();
-    });
-  });
-});
-      
-Template.bzAroundYou.helpers({
-  getAroundItems: function () {
-    return this.items;
+    
+    return ret;
+    
     /*var ret, loc = Session.get('bz.control.search.location'),
      distSession = Session.get('bz.control.search.distance') || [],
      activeCats = Session.get('bz.control.category-list.activeCategories') || [];
@@ -60,9 +51,7 @@ Template.bzAroundYou.helpers({
   }
 });
 
-Template.bzAroundYouItem.onCreated(function () {
-  Meteor.subscribe('bz.users.all');
-});
+
 Template.bzAroundYouItem.rendered = function () {
 
   /*init Rate*/
@@ -78,6 +67,8 @@ Template.bzAroundYouItem.rendered = function () {
   }
   $('.bz-content .post-item-text').css('max-height', lineH * 2);
 };
+
+
 Template.bzAroundYouItem.helpers({
   getPostOwner: function () {
     return Meteor.users.findOne(this.userId);
@@ -107,6 +98,8 @@ Template.bzAroundYouItem.helpers({
     return '';
   }
 });
+
+
 Template.bzAroundYouItem.events({
   'click .js-send-message-btn': function (e, v) {
     if (!Meteor.userId()) {
@@ -117,11 +110,14 @@ Template.bzAroundYouItem.events({
       Router.go('/chat/' + chatId);
     }
   }
-})
+});
+
+
 Template.bzUserProfileAroundYou.helpers({
   getNameFormatted: function () {
   }
 });
+
 
 // HELPERS:
 function getLatLngBox(lat, lng, radius) {
@@ -137,20 +133,9 @@ function getLatLngBox(lat, lng, radius) {
   } else {
     return null;
   }
-};
-function reorderGrid() {
-  $('.js-isotope-grid').isotope({
-    //isFitWidth: true,
-    itemSelector: '.grid-item',
-    getSortData: {
-      number: '.js-distance-to-current-location parseFloat'
-    },
-    sortBy: 'number',
-    masonry: {
-      itemSelector: '.grid-item',
-    }
-  });
 }
+
+
 function getSearchResultsFromSessionParameters(options = {}){
   var ret, loc = options.loc,
     distSession = options.dist || [],
@@ -160,8 +145,8 @@ function getSearchResultsFromSessionParameters(options = {}){
   var ret, loc = options.loc || Session.get('bz.control.search.location'),
     distSession = options.dist || Session.get('bz.control.search.distance') || [],
     activeCats = options.cats || Session.get('bz.control.category-list.activeCategories') || [];*/
-  if ($('.js-around-you-holder')[0]) {
-    if (['home', 'jobs', 'training'].indexOf(Router.getCurrentRouteName()) > -1) {
+  
+    if (['home', 'jobs', 'training', 'connect', 'trade', 'housing', 'events', 'services', 'help'].indexOf(Router.getCurrentRouteName()) > -1) {
 
       // add all-posts reactivity:
       bz.cols.posts.find({});
@@ -182,7 +167,6 @@ function getSearchResultsFromSessionParameters(options = {}){
         }).value();
       }
       console.log('Around you posts amount: ' + ret.length);
-    }
   }
   return ret;
 }
