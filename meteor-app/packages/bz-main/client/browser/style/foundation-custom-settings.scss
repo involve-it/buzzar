@@ -182,6 +182,14 @@ body {
       font-size: 40px;
       font-weight: bold;
       color: rgba(255,255,255, .85);
+      
+      .bz-logo-wrapper {
+        .bz-log-logotype {
+          height: 30px;
+          margin-bottom: 5px;
+          vertical-align: middle;
+        }
+      }
 
       span {
         font-weight: lighter;
@@ -246,6 +254,13 @@ body {
 
   .bz-header-top {
     margin-bottom: 16px;
+  }
+  
+  .bz-header-logo {
+    display: block;
+    height: 60px;
+    width: 60px;
+    margin: 0 auto;
   }
 
   .bz-header-title {
@@ -565,6 +580,11 @@ body {
             }
 
             .bz-header-top {
+              margin-bottom: 0;
+              .bz-header-logo {
+                height: 30px;
+                width: 30px;
+              }
               
               .bz-header-title {
                 font-size: 23px;
@@ -852,7 +872,9 @@ body {
         font-size: 25px;
         margin-left: 65px;
 
-        .bz-logo-wrapper {}
+        .bz-logo-wrapper {
+          .bz-log-logotype {}
+        }
       }
 
       .bz-location-name {
