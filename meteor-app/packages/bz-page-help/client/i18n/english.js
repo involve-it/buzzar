@@ -2,10 +2,11 @@
  * Created by douson on 13.07.15.
  */
 
-//ONLY HOUSING PAGE
 enI18n = {
-  
-  
-  
+  // home page:
+  headliner: 'Help around',
+  AROUND_YOU_TITLE: 'Help Around you',
+  SEARCH_LOOKING_FOR_TEXT: 'Help you\'re looking for',
 };
-//T9n.map('en', enI18n);
+var enAll = _.extend(bz.language.i18n.en, enI18n);
+T9n.map('en', enAll);

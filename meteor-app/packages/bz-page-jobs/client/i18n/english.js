@@ -2,14 +2,11 @@
  * Created by douson on 13.07.15.
  */
 
-
 enI18n = {
   // home page:
-  headliner: 'jobs around',
-  MOST_POPULAR_TITLE: 'Most Popular Jobs',
-  ABOUT_US_TITLE: 'About us',
-
+  headliner: 'Jobs around',
   AROUND_YOU_TITLE: 'Jobs Around you',
-  SEARCH_LOOKING_FOR_TEXT: 'Your WHAT or WHERE or WHEN you\'re looking for',
+  SEARCH_LOOKING_FOR_TEXT: 'Jobs you\'re looking for',
 };
-//T9n.map('en', enI18n);
+var enAll = _.extend(bz.language.i18n.en, enI18n);
+T9n.map('en', enAll);

@@ -4,10 +4,10 @@
 
 ruI18n = {
   //home:
-  headliner:           'Возможности вокруг',
+  headliner: 'Возможности вокруг',
   MOST_POPULAR_TITLE: 'Популярные',
-  ABOUT_US_TITLE: 'О нас',
-  AROUND_YOU_TITLE: 'Срочное рядом',
+  AROUND_YOU_TITLE: 'Возможности рядом',
+  SEARCH_LOOKING_FOR_TEXT: 'Искать вокруг',
 };
-//var ruAll = _.extend(bz.language.i18n.ru, ruI18n);
-//T9n.map('ru', ruAll);
+var ruAll = _.extend(bz.language.i18n.ru, ruI18n);
+T9n.map('ru', ruAll);

@@ -4,12 +4,11 @@
 
 ruI18n = {
   //home:
-  headliner:           'Тренинги вокруг',
-  AROUND_YOU_TITLE: 'Срочное рядом',
+  headliner: 'Тренинги, обучение, инструкторы вокруг',
   MOST_POPULAR_TITLE: 'Популярные',
-  ABOUT_US_TITLE: 'О нас',
+  AROUND_YOU_TITLE: 'Обучение рядом',
+  SEARCH_LOOKING_FOR_TEXT: 'Искать в обучении',
 
-  SEARCH_LOOKING_FOR_TEXT: 'Искать по объявлениям',
 };
-
-//T9n.map('ru', ruI18n);
+var ruAll = _.extend(bz.language.i18n.ru, ruI18n);
+T9n.map('ru', ruAll);

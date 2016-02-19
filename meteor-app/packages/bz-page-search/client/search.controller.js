@@ -97,15 +97,15 @@ bz.bus.search.doSearchClient = (params, options)=> {
 
   return ret;
 }
-bz.bus.search.doSearchServer = function (callback) {
-  var searchedText = Session.get('bz.control.search.searchedText');
+bz.bus.search.doSearchServer = function (options, callback) {
+  var searchedText = options.text;
   searchedText = searchedText && searchedText.trim();
   if (searchedText) {
     var query = {},
     //map = GoogleMaps.maps.map.instance, latitude, longitude,
-      activeCats = Session.get('bz.control.category-list.activeCategories') || [],
-      searchDistance = Session.get('bz.control.search.distance'),
-      location = Session.get('bz.control.search.location') || {};
+      activeCats = options.cats || [],
+      searchDistance = options.dist,
+      location = options.loc || {};
     if (!searchedText && searchedText === undefined) {
       searchedText = '';
     }
@@ -118,7 +118,6 @@ bz.bus.search.doSearchServer = function (callback) {
     };
 
     Meteor.call('search', query, function (err, results) {
-      debugger;
       bz.cols.searchRt._collection.remove({});
       if (results && results.length > 0) {
         for (var i = 0; i < results.length; i++) {
@@ -152,9 +151,14 @@ function getLatLngBox(lat, lng, radius) {
 function searchPostsReactive() {
   // this function will run on every page, tracking "bz.cols.posts.find()". Danger!
   Tracker.autorun(function () {
-    bz.cols.searchRt._collection.remove({});
-    bz.cols.posts.find().count();
-    bz.bus.search.doSearchServer();
+    //bz.cols.searchRt._collection.remove({});
+    //bz.cols.posts.find().count();
+    bz.bus.search.doSearchServer({
+      text: Session.get('bz.control.search.searchedText'),
+      cats: Session.get('bz.control.category-list.activeCategories'),
+      dist: Session.get('bz.control.search.distance'),
+      loc: Session.get('bz.control.search.location')
+    });
   });
 }
 setSearchedText = function (text) {

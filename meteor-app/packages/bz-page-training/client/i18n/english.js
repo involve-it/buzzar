@@ -2,14 +2,11 @@
  * Created by douson on 13.07.15.
  */
 
-
 enI18n = {
   // home page:
-  headliner: 'instant trainings around',
-  MOST_POPULAR_TITLE: 'Most Popular',
-  ABOUT_US_TITLE: 'About us',
-
-  AROUND_YOU_TITLE: 'Buzz Around you',
-  SEARCH_LOOKING_FOR_TEXT: 'Your WHAT or WHERE or WHEN you\'re looking for',
+  headliner: 'Trainings, instructors and educators around',
+  AROUND_YOU_TITLE: 'Trainings, instructors and educators around you',
+  SEARCH_LOOKING_FOR_TEXT: 'Trainings you\'re looking for',
 };
-//T9n.map('en', enI18n);
+var enAll = _.extend(bz.language.i18n.en, enI18n);
+T9n.map('en', enAll);
