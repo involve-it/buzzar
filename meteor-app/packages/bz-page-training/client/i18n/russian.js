@@ -4,9 +4,9 @@
 
 ruI18n = {
   //home:
-  headliner: 'Тренинги, обучение, инструкторы вокруг',
+  headliner: 'Обучение рядом',
   MOST_POPULAR_TITLE: 'Популярные',
-  AROUND_YOU_TITLE: 'Обучение рядом',
+  AROUND_YOU_TITLE: 'Тренинги, обучение, инструкторы вокруг',
   SEARCH_LOOKING_FOR_TEXT: 'Искать в обучении',
 
 };
