@@ -178,10 +178,15 @@ CreateNewPostFromView = function (v) {
 
         imgItem.save().then(img=> {
           bz.cols.images.update(imgId, {$set: {data: img.src}});
+          imgItem.thumbnail.save().then(thumb=> {
+            bz.cols.images.update(imgId, {$set: {thumbnail: thumb.src}});
+          }).catch(error=> {
+            bz.ui.alert(`При создании поста возникла проблема: ${error}`);
+          });
+        }).catch(error=>{
+          bz.ui.alert(`При создании поста возникла проблема: ${error}`);
         });
-        imgItem.thumbnail.save().then(thumb=> {
-          bz.cols.images.update(imgId, {$set: {thumbnail: thumb.src}});
-        });
+
       });
 
       if (!err && res && res !== '') {

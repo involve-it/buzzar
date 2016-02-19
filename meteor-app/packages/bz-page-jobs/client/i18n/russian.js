@@ -4,9 +4,9 @@
 
 ruI18n = {
   //home:
-  headliner:           'Работы вокруг',
+  headliner:           'Работа вокруг',
   MOST_POPULAR_TITLE: 'Популярные работы',
-  AROUND_YOU_TITLE: 'Работы рядом',
+  AROUND_YOU_TITLE: 'Работа рядом',
   SEARCH_LOOKING_FOR_TEXT: 'Искать в работах',
 
 };
