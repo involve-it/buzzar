@@ -19,10 +19,13 @@ try {
     },
     AWSAccessKeyId: 'AKIAJRKMTZEEIOLOAJ5Q',
     AWSSecretAccessKey: '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',
-    key: function (file) {
+    key: function (file, customName) {
       //Store file into a directory by the user's username.
-      var user = Meteor.users.findOne(this.userId);
-      return  bz.config.version + '/public/images/' + file.name;
+      var user = Meteor.users.findOne(this.userId), name = customName || (Date.now() + "-" + file.name);
+      console.log('custom name = ' + customName);
+      console.log('final name = ' + name);
+      console.log('full url = ' + bz.config.version + '/public/images/' + name);
+      return  bz.config.version + '/public/images/' + name;
     }
   });
 } catch(e){

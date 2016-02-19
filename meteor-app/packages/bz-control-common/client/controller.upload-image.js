@@ -142,7 +142,7 @@ BlobImageClass = class extends ImageClass {
     }
   }
   save() {
-    var that = this, uploader = BlobImageClass.uploader = BlobImageClass.uploader || new Slingshot.Upload('bzImagesDirective'),
+    var that = this, uploader = new Slingshot.Upload('bzImagesDirective', this.name),
       file = this, error = uploader.validate(file), blob = file.blob;
     return new Promise((resolve, reject)=> {
       blob.name = file.name;
@@ -151,6 +151,7 @@ BlobImageClass = class extends ImageClass {
       }
       uploader.send(blob, (error1, downloadUrl)=> {
         if (error1) {
+          console.error(error1);
           if (error1 && error1.error === 'Upload denied') {
             switch (error1.reason) {
               case 'File exceeds allowed size of 5 MB':
@@ -204,9 +205,10 @@ RandomImageClass = class extends ImageClass {
   save() {
     var that = this, uploader = BlobImageClass.uploader = BlobImageClass.uploader || new Slingshot.Upload('bzImagesDirective'),
       file = this, error, blob;
+
     blob = ImageClass.dataURItoBlob(that.src);
     that.blob = blob;
-    blob.name = this.name;
+    blob.name = file.name;
     error = uploader.validate(file);
     if (error) {
       console.error(error);
@@ -214,6 +216,7 @@ RandomImageClass = class extends ImageClass {
     return new Promise((resolve, reject)=> {
       uploader.send(blob, (error1, downloadUrl)=> {
         if (error1) {
+          console.error(error1);
           if (error1 && error1.error === 'Upload denied') {
             switch (error1.reason) {
               case 'File exceeds allowed size of 5 MB':
@@ -261,13 +264,14 @@ UrlImageClass = class extends ImageClass {
     return new Promise((resolve, reject)=> {
       blob = ImageClass.dataURItoBlob(that.src);
       that.blob = blob;
-      blob.name = this.name;
+      blob.name = file.name;
       error = uploader.validate(file);
       if (error) {
         console.error(error);
       }
       uploader.send(blob, (error1, downloadUrl)=> {
         if (error1) {
+          console.error(error1);
           if (error1 && error1.error === 'Upload denied') {
             switch (error1.reason) {
               case 'File exceeds allowed size of 5 MB':
@@ -302,7 +306,7 @@ ThumbnailImageClass = class extends ImageClass {
     super(options);
     that = this;
     this.type = IMG_TYPES.THUMBNAIL;
-    this.fileName = ThumbnailImageClass.getFileNameForThumbnail(this.name);
+    this.name = ThumbnailImageClass.getFileNameForThumbnail(this.name) || this.setRandomNameFromExtension(fullName);
 
     ret = new Promise((resolve, reject)=> {
       if (options.type === IMG_TYPES.URL) {
@@ -337,6 +341,7 @@ ThumbnailImageClass = class extends ImageClass {
       blob.name = file.name;
       uploader.send(blob, (error1, downloadUrl)=> {
         if (error1) {
+          console.error(error1);
           if (error1 && error1.error === 'Upload denied') {
             switch (error1.reason) {
               case 'File exceeds allowed size of 5 MB':

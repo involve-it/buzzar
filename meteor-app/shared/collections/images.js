@@ -35,12 +35,26 @@ bz.cols.images.helpers({
 });
 if(Meteor.isServer){
   bz.cols.images.allow({
-    insert: function () {
-      return true;
+    insert: function (userId, doc) {
+      if(userId && userId === doc.userId) {
+        return true;
+      } else {
+        return false;
+      }
     },
     update: function(userId, doc, fieldNames, modifier){
-      //todo: check security (http://docs.meteor.com/#/full/allow)
-      return true;
+      if(userId && doc && doc.userId === userId) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    remove: function(userId, doc){
+      if(userId && doc && doc.userId === userId) {
+        return true;
+      } else {
+        return false;
+      }
     }
   });
 }
