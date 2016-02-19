@@ -81,8 +81,11 @@ Router.route('entrySignOut', {
   onBeforeAction: function() {
     Alerts.clear();
     if (AccountsEntry.settings.homeRoute) {
+      var userId = Meteor.userId();
       Meteor.logout();
       Router.go(AccountsEntry.settings.homeRoute);
+      Meteor.call('logOut', userId, function () {
+      });
     }
     this.next();
   }
