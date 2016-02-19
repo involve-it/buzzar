@@ -5,11 +5,12 @@
   "Statement": [
     {
       "Sid": "Stmt1455909467278",
+      "Principal": "*",
       "Action": [
         "s3:GetObject"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::buzzar/*/public",
+      "Resource": "arn:aws:s3:::buzzar/*/public/*",
       "Principal": "*"
     }
   ]
