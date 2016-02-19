@@ -253,6 +253,15 @@ Meteor.methods({
   // function for testing in the console Meteor runtime server-side:
   console: function(){
     debugger;
+  },
+  updateProfileDetails: function(userId, attributes){
+    _.each(attributes,function(attribute){
+        attribute.userId=userId;
+        bz.cols.profileDetails.update({userId:userId,key: attribute.key},
+          attribute,
+          {upsert: true});
+    }
+    )
   }
 });
 

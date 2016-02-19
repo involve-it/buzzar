@@ -58,6 +58,13 @@ ruI18n = {
   NEW_POST_HASHES: 'Хэштеги',
   NEW_POST_CREATE_BTN: 'Установить Светлячок',
   NEW_POST_SET_LOCATION_BTN: 'Выберите Местоположение',
+  NEW_POST_DINAMIC_TOOLTIP_TEXT: 'Выберите эту опцию, если желаете, чтобы созданное объявление перемещалось вместе с вашим устройством.',
+  NEW_POST_STATIC_TOOLTIP_TEXT: 'Выберите эту опцию, если желаете, чтобы созданное объявление было привязано к местности и не зависело от вашего перемещения.',
+  NEW_POST_MOVING_WITH_YOU_AD: 'Объявление перемещается вместе с вами',
+  NEW_POST_DYNAMIC: 'Динамическое',
+  NEW_POST_STATIC: 'Статическое',
+  NEW_POST_PINNED_TO_STATIC_LOCATION: 'Установка статического расположения',
+  NEW_POST_PLACE_AD: 'Местонахождение объявления',
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Новое напоминание',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',

@@ -1,9 +1,9 @@
 /**
  * Created by douson on 09.07.15.
  */
-
 Template.profileSettings.onCreated(function() {
-  return Meteor.subscribe('users', Router.current().params._id);
+  Meteor.subscribe('users', Router.current().params._id);
+  Meteor.subscribe('profileDetails-my');
 });
 
 
@@ -29,43 +29,56 @@ Template.profileSettings.helpers({
   },
 
   getFirstName: function(){
-    return this.profile.firstName;
+    var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'firstName'});
+    return details && details.value;
   },
   getLastName: function(){
-    return this.profile.lastName;
+    var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'lastName'});
+    return details && details.value;
   },
   getCity: function(){
-    return this.profile.city;
+    var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'city'});
+    return details && details.value;
   },
   getPhoneNumber: function(){
-    return this.profile.phone.number;
+    var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'phone'});
+    return details && details.value;
   },
   getPhoneNumberStatus: function(){
-    return this.profile.phone.status;
+    var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'phone'});
+    return details && details.policy;
   },
   getSkype: function(){
-    return this.profile.skype.account;
+    var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'skype'});
+    return details && details.value;
   },
   getSkypeStatus: function(){
-    return this.profile.skype.status;
+    var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'skype'});
+    return details && details.policy;
   },
   getVKUrl: function(){
-    return this.profile.vk.url;
+    var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'vk'});
+    return details && details.value;
   },
   getVKUrlStatus: function(){
-    return this.profile.vk.status;
+    var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'vk'});
+    return details && details.policy;
   },
   getFacebookUrl: function(){
-    return this.profile.facebook.url;
+    var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'facebook'});
+    return details && details.value;
   },
   getFacebookUrlStatus: function(){
-    return this.profile.facebook.status;
+    var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'facebook'});
+    return details && details.policy;
   },
   getTwitterUrl: function(){
-    return this.profile.twitter.url;
+    var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'twitter'});
+    return details && details.value;
   },
   getTwitterUrlStatus: function(){
-    return this.profile.twitter.status;
+    var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'twitter'});
+    return details && details.policy;
   }
 
 });
@@ -125,34 +138,56 @@ Template.profileSettings.events({
     v.$(event.currentTarget).addClass('disabled');
     v.$('div.btn-edit-account a.js-edit-btn').removeClass('disabled');
     v.$('div.btn-edit-account a.js-cancel-btn').addClass('disabled');
-
-    Meteor.users.update({_id: Meteor.userId()},{
-      $set: {
-        "profile.firstName": v.$('input.bz-profile-first-name').val(),
-        "profile.lastName": v.$('input.bz-profile-last-name').val(),
-        "profile.city": v.$('input.bz-profile-city').val(),
-        "profile.phone":{
-          number: v.$('input.bz-profile-phone-number').val(),
-          status: v.$('select.js-profile-phone-status').val()
-        },
-        "profile.skype":{
-          account: v.$('input.bz-profile-skype').val(),
-          status: v.$('select.js-profile-skype-status').val()
-        },
-        "profile.vk":{
-          url: v.$('input.bz-profile-vk-url').val(),
-          status: v.$('select.js-profile-vk-status').val()
-        },
-        "profile.twitter": {
-          url:  v.$('input.bz-profile-twitter-url').val(),
-          status: v.$('select.js-profile-twitter-status').val()
-        },
-        "profile.facebook": {
-          url: v.$('input.bz-profile-facebook-url').val(),
-          status: v.$('select.js-profile-facebook-status').val()
-        }
+    var attributes = [{
+      key: 'firstName',
+      value: v.$('input.bz-profile-first-name').val(),
+      policy: '1'
+    },
+      {
+        key: 'lastName',
+        value: v.$('input.bz-profile-last-name').val(),
+        policy: '1'
+      },
+      {
+        key: 'city',
+        value: v.$('input.bz-profile-city').val(),
+        policy: '1'
+      },
+      {
+        key: 'phone',
+        value: v.$('input.bz-profile-phone-number').val(),
+        policy: v.$('select.js-profile-phone-status').val()
+      },
+      {
+        key: 'skype',
+        value: v.$('input.bz-profile-skype').val(),
+        policy:  v.$('select.js-profile-skype-status').val()
+      },
+      {
+        key: 'vk',
+        value: v.$('input.bz-profile-vk-url').val(),
+        policy: v.$('select.js-profile-vk-status').val()
+      },
+      {
+        key: 'twitter',
+        value: v.$('input.bz-profile-twitter-url').val(),
+        policy:  v.$('select.js-profile-twitter-status').val()
+      },
+      {
+        key: 'facebook',
+        value: v.$('input.bz-profile-facebook-url').val(),
+        policy:  v.$('select.js-profile-facebook-status').val()
       }
-    });
+    ];
+   Meteor.call('updateProfileDetails', this._id, attributes, function(err){
+     if (err){
+
+     }
+     else
+     {
+
+     }
+   });
   },
   'submit form': function (event){
     event.preventDefault();
@@ -165,18 +200,18 @@ Template.profileSettings.events({
     v.$(event.currentTarget).addClass('disabled');
     v.$('div.btn-edit-account a.js-done-btn').addClass('disabled');
     v.$('div.btn-edit-account a.js-edit-btn').removeClass('disabled');
-    v.$('input.bz-profile-first-name').val(this.profile.firstName);
-    v.$('input.bz-profile-last-name').val(this.profile.lastName);
-    v.$('input.bz-profile-city').val(this.profile.city);
-    v.$('input.bz-profile-phone-number').val(this.profile.phone.number);
-    v.$('input.bz-profile-skype').val(this.profile.skype.account);
-    v.$('input.bz-profile-vk-url').val(this.profile.vk.url);
-    v.$('input.bz-profile-twitter-url').val(this.profile.twitter.url);
-    v.$('input.bz-profile-facebook-url').val(this.profile.facebook.url);
-    v.$('select.js-profile-phone-status').val(this.profile.phone.status);
-    v.$('select.js-profile-skype-status').val(this.profile.skype.status);
-    v.$('select.js-profile-vk-status').val(this.profile.vk.status);
-    v.$('select.js-profile-twitter-status').val(this.profile.twitter.status);
-    v.$('select.js-profile-facebook-status').val(this.profile.facebook.status);
+    v.$('input.bz-profile-first-name').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'firstName'}).value);
+    v.$('input.bz-profile-last-name').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'lastName'}).value);
+    v.$('input.bz-profile-city').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'city'}).value);
+    v.$('input.bz-profile-phone-number').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'phone'}).value);
+    v.$('input.bz-profile-skype').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'skype'}).value);
+    v.$('input.bz-profile-vk-url').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'vk'}).value);
+    v.$('input.bz-profile-twitter-url').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'twitter'}).value);
+    v.$('input.bz-profile-facebook-url').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'facebook'}).value);
+    v.$('select.js-profile-phone-status').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'phone'}).policy);
+    v.$('select.js-profile-skype-status').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'skype'}).policy);
+    v.$('select.js-profile-vk-status').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'vk'}).policy);
+    v.$('select.js-profile-twitter-status').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'twitter'}).policy);
+    v.$('select.js-profile-facebook-status').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'facebook'}).policy);
   }
 });
