@@ -11,6 +11,8 @@ Router.map(function () {
     data: function() {
       return {
         pageOptions: {
+          logoType: '/img/logo/logo-home-logotype.png',
+          logo: '/img/logo/logo-housing.png',
           backgroundMobile: '/img/content/bg/mobile-housing.jpg',
           backgroundDesktop:  '/img/content/bg/desktop-housing.jpg'
         }
