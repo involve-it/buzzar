@@ -18,7 +18,7 @@ Template.postTypeSelect.events({
   }
 });
 Template.postTypeSelect.rendered = function () {
-  if(this.data._id && this.data.type){
+  if (this.data._id && this.data.type) {
 
     this.$('.js-ad-type-select').val(this.data.type);
     this.$('.js-ad-type-select').addClass('disabled'); // for now logic is "do not let to change type"
@@ -30,7 +30,7 @@ Template.postTypeSelect.rendered = function () {
 function setPostDetailsTemplate(name, v) {
   $('.js-post-details-categorized').empty();
   var template = Template['postDetails' + name];
-  if(name && v && template) {
+  if (name && v && template) {
     Blaze.renderWithData(template, v.data, $('.js-post-details-categorized')[0]);
   }
 }
@@ -63,20 +63,20 @@ Template.postHashesControl.events({
     });
   }
 });
-Template.bzPostsDurationPicker.onRendered(function(){
+Template.bzPostsDurationPicker.onRendered(function () {
 });
 Template.bzPostsDurationPicker.events({
-  'change .js-post-select-duration': function(e, v) {
+  'change .js-post-select-duration': function (e, v) {
   }
 });
-Template.postDetailsCommon.onCreated(function(a, b, c){
+Template.postDetailsCommon.onCreated(function (a, b, c) {
 });
 Template.postDetailsCommon.events({
-  'change .js-post-description': function(e, v){
+  'change .js-post-description': function (e, v) {
     var val = e.target.value || '';
     checkIfFieldIsChanged(v.data, 'title', val);
   },
-  'change .js-post-title': function(e, v){
+  'change .js-post-title': function (e, v) {
     var val = e.target.value || '';
     checkIfFieldIsChanged(v.data, 'title', val);
   }
@@ -84,7 +84,7 @@ Template.postDetailsCommon.events({
 Template.postDetailsCommon.helpers({
   getTitle: function () {
     var ret = '';
-    if(this._id){
+    if (this._id) {
       ret = this.details.title
     } else {
       Session.get('post-title')
@@ -93,7 +93,7 @@ Template.postDetailsCommon.helpers({
   },
   getDescription: function () {
     var ret = '';
-    if(this._id){
+    if (this._id) {
       ret = this.details.description
     } else {
       Session.get('post-description')
@@ -101,37 +101,48 @@ Template.postDetailsCommon.helpers({
     return ret;
   }
 });
+var lastComputation;
+Template.postPhotoUpload.onRendered(()=> {
+  var that = this;
+  lastComputation && lastComputation.stop();
+  that.$('.js-post-photo-upload-preview-holder').empty();
+  setTimeout(()=> {
+    Tracker.autorun((computation)=> {
+      lastComputation = computation;
+      var holder$ = that.$('.js-post-photo-upload-preview-holder'), imgArr, ret;
+      if (holder$ && holder$[0]) {
+        imgArr = imagesArrayReactive.get(), ret;
+        if (!imgArr || !Array.isArray(imgArr)) {
+          imgArr = []
+        } else {
+          imgArr = _.filter(imgArr, function (img) {
+            return img.type !== 'thumbnail';
+          });
+        }
+
+        ret = _.map(imgArr, function (item) {
+          return {
+            data: item.data,
+            name: item.name
+          }
+        });
+        holder$.empty();
+        _.each(ret, (img)=> {
+          Blaze.renderWithData(Template.bzPostPhotoUploadImagePreview, img, holder$[0]);
+        });
+      }
+    });
+  }, 1000);
+});
 Template.postPhotoUpload.helpers({
   getImageSrc: function () {
     var ret = 'http://localhost:3000/img/content/avatars/avatar-no.png';
     return Session.get('bz.posts.postImgSrc') || ret;
   },
-  getPostImages: function(){
-    var imgArr = imagesArrayReactive.get(), ret;
-    if(!imgArr || !Array.isArray(imgArr)) {
-      imgArr = []
-    } else {
-      imgArr = _.filter(imgArr, function(img){
-        return img.type !== 'thumbnail';
-      });
-    }
-
-    ret = _.map(imgArr, function(item){
-      return {
-        data: item.data,
-        name: item.name
-      }
-    });
-    return ret;
-    /*return [{
-        data: 'http://omesto.ru/wp-content/uploads/2014/09/%D0%9C%D0%B0%D0%B3%D0%B0%D0%B4%D0%B0%D0%BD-715x424.jpg',
-        name: 'qwer'
-      }, {
-        data: 'http://omesto.ru/wp-content/uploads/2014/09/%D0%9C%D0%B0%D0%B3%D0%B0%D0%B4%D0%B0%D0%BD-715x424.jpg',
-        name: 'qwer'
-      }]*/
+  getPostImages: function () {
+    // not working due to some M bug, used renderImgsPreviews instead
   },
-  getImagesArrayReactive: function(){
+  getImagesArrayReactive: function () {
     return {
       imagesArr: imagesArrayReactive
     };
@@ -141,13 +152,13 @@ Template.postPhotoUpload.events({
   'click .js-edit-avatar': function (event, template) {
     //$('.js-avatar-upload-modal').foundation('reveal', 'open');
   },
-  'click .js-plus-img': function(e,v){
+  'click .js-plus-img': function (e, v) {
     $('.js-avatar-upload-modal').foundation('reveal', 'open');
   },
 
 });
 Template.bzPostPhotoUploadImagePreview.events({
-  'click .js-remove-preview-photo': function(e, v){
+  'click .js-remove-preview-photo': function (e, v) {
     var name = v.data.name,
       arr = imagesArrayReactive.get();
     var ind = arr.findIndex(x => x.name === name);
@@ -156,8 +167,8 @@ Template.bzPostPhotoUploadImagePreview.events({
   }
 });
 
-function checkIfFieldIsChanged(data, fieldName, value){
-  if(data && fieldName && value !== undefined && value !== null) {
+function checkIfFieldIsChanged(data, fieldName, value) {
+  if (data && fieldName && value !== undefined && value !== null) {
     if (data._id) {
       if (data[fieldName] !== value) {
         bz.runtime.changesNotSaved = true;

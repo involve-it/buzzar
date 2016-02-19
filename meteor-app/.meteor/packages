@@ -41,7 +41,6 @@ dburles:google-maps
 selaias-local:accounts-entry
 
 accounts-password
-meteorhacks:fast-render
 mrt:cheerio
 edgee:slingshot
 
@@ -60,6 +59,5 @@ meteorhacks:kadira
 meteorhacks:zones
 blaze
 blaze-html-templates
-ground:db
 check
 email

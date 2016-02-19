@@ -55,7 +55,8 @@ TrackNewPostTypeChange = function (selector, data) {
 };
 
 CreateNewPostFromView = function (v) {
-  var descriptionFormatted, userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
+  var descriptionFormatted, userId = Meteor.userId(), imgId, imgArr = [],
+    imgArrReact = imagesArrayReactive.get(), locationsArr = [],
     locDef = $.Deferred(),
     loc1 = Session.get(bz.const.posts.location1),
     loc2 = Session.get(bz.const.posts.location2),
@@ -66,12 +67,15 @@ CreateNewPostFromView = function (v) {
 
   // gather all data and submit for post-create:
   if (userId) {
-    _.each(imagesArrayReactive.get(), function (imgItem) {
+    _.each(imagesArrayReactive.get(), function (imgItem, i) {
       imgId = bz.cols.images.insert({
         userId: userId,
         name: imgItem.name,
       });
       imgArr.push(imgId);
+      if(imagesArrayReactive.curValue[i]){
+        imagesArrayReactive.curValue[i].tempId = imgId;
+      }
       // let's set data on the client-side (temp for showing in site):
       bz.cols.images._collection.update(imgId, { $set: {
         data: imgItem.data
@@ -173,17 +177,21 @@ CreateNewPostFromView = function (v) {
 
     //$.when(locDef).then(function () {
     Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
-
       _.each(imagesArrayReactive.get(), function (imgItem) {
-
-        imgItem.save().then(img=> {
-          bz.cols.images.update(imgId, {$set: {data: img.src}});
-        });
-        imgItem.thumbnail.save().then(thumb=> {
-          bz.cols.images.update(imgId, {$set: {thumbnail: thumb.src}});
-        });
+        if(!imgItem._id && !imgItem.isSaved) {
+          imgItem.save().then(img=> {
+            id = bz.cols.images.update(imgItem.tempId, {$set: {data: img.src}});
+            imgItem.thumbnail.save().then(thumb=> {
+              bz.cols.images.update(imgItem.tempId, {$set: {thumbnail: thumb.src}});
+              bz.ui.alert(`Фотографии поста были созданы`);
+            }).catch(error=>{
+              bz.ui.error(`При создании фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
+            });
+          }).catch(error=>{
+            bz.ui.error(`При создании фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
+          });
+        }
       });
-
       if (!err && res && res !== '') {
         bz.ui.alert(`Ваш <a href="/post/${res}">пост</a> успешно создан`);
 

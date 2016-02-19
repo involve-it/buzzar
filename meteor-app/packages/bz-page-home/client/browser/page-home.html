@@ -36,6 +36,7 @@
                 <div class="bz-header-middle">
                     <div class="bz-header-middle-wrapper">
                         <div class="bz-header-top">
+                            {{#if pageOptions.logo}}<img class="bz-header-logo" src="{{pageOptions.logo}}" alt="shiners logo">{{/if}}
                             <h1 class="bz-header-title">{{ t9n 'headliner' }} </h1>
                         </div>
                         <div class="bz-search">
@@ -83,6 +84,7 @@
 <template name="bzMeteorLogo">
   <div class="bz-logo-wrapper" style="    font-size: 20px;">
     <a href="/home" style="color: white;">
+      <img class="bz-log-logotype" src="{{#if pageOptions}}{{pageOptions.logoType}}{{else}}/img/logo/logo-home-logotype.png{{/if}}" alt="logotype">
       {{ getLocalAppName }}
     </a>
   </div>

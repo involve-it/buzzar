@@ -161,14 +161,6 @@
   <div class="post-photo-upload">
     <!--<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>-->
     <div class="bz-owner-photo-wrap">
-      <!--gallery:
-      <ul class="clearing-thumbs clearing-feature" data-clearing>
-        <li class="clearing-featured-img">
-          <a href="http://www.stepfordwives.org/diary/wp-content/uploads/2014/01/stepford-wife-organization-perfect-proportion1.jpg">
-            <img src="http://www.stepfordwives.org/diary/wp-content/uploads/2014/01/stepford-wife-organization-perfect-proportion1.jpg">
-          </a>
-        </li>
-      </ul>-->
       <div class="img-avatar js-edit-avatar">
         <ul class="clearing-thumbs clearing-feature" data-clearing>
           <!--<li class="clearing-featured-img">
@@ -184,9 +176,10 @@
               <p class="text-center">{{ t9n 'NEW_POST_ADD_PHOTO_BTN' }}</p>
             </div>
           </a>
-          {{#each getPostImages }}
+          <!--{{#each getPostImages }}
             {{> bzPostPhotoUploadImagePreview }}
-          {{/each }}
+          {{/each }}-->
+          <span class="js-post-photo-upload-preview-holder"></span>
         </ul>
         <!--<img src="{{ getImageSrc }}" width="60" height="60">-->
       </div>
@@ -201,6 +194,8 @@
     {{> uploadImageModal getImagesArrayReactive }}
   </div>
 </template>
+
+
 <template name="bzPostPhotoUploadImagePreview">
   <li class="clearing-featured-img">
     <a onclick="return false;">
@@ -209,6 +204,8 @@
     <a alt="remove image" class="js-remove-preview-photo" data-name="{{ name }}" style="position: relative; top: -50px; right: 20px;"><i class="fa fa-times"></i></a>
   </li>
 </template>
+
+
 <template name="postHashesControl">
   <div class="clearfix">
     <label type="stacked" class="item item-input item-stacked-label padding-right">
@@ -220,6 +217,7 @@
     </label>
   </div>
 </template>
+
 
 <template name="postProfileInfo">
   <div class="clearfix">

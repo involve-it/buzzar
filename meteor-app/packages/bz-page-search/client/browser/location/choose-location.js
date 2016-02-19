@@ -189,7 +189,8 @@ Template.bzChooseLocationModal.helpers({
     if (Meteor.userId()) {
 
       ret = bz.cols.locations.find({
-        userId: Meteor.userId()
+        userId: Meteor.userId(),
+        name: {$ne: '>MY_LOCATION_TEXT<'}
       });
     }
     return ret;

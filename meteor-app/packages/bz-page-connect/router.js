@@ -11,8 +11,10 @@ Router.map(function () {
     data: function() {
       return {
         pageOptions: {
-          backgroundMobile: '/img/content/bg/state-city.jpg',
-          backgroundDesktop:  '/img/content/bg/fly-balls.jpg'
+          logoType: '/img/logo/logo-home-logotype.png',
+          logo: '/img/logo/logo-connect.png',
+          backgroundMobile: '/img/content/bg/mobile-connect.jpg',
+          backgroundDesktop:  '/img/content/bg/desktop-connect.jpg'
         }
       }
     },

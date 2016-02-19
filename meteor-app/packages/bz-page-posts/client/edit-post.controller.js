@@ -1,13 +1,16 @@
 /**
  * Created by arutu_000 on 1/23/2016.
  */
-imagesArrayReactive = new ReactiveVar();
+window.a = imagesArrayReactive = new ReactiveVar();
 
 Meteor.startup(()=> {
   imagesArrayReactive.set([]);
 });
 SavePostFromView = function (v, data) {
-  var descriptionFormatted, userId = Meteor.userId(), imgId, imgArr = [], locationsArr = [],
+  var descriptionFormatted, userId = Meteor.userId(), imgId, diffElemsArr,
+    imgArr = data.details.photos || [],
+    imgArrReact = imagesArrayReactive.get(),
+    locationsArr = [],
     locDef = $.Deferred(),
     loc1 = Session.get(bz.const.posts.location1),
     loc2 = Session.get(bz.const.posts.location2),
@@ -17,28 +20,27 @@ SavePostFromView = function (v, data) {
 
   // gather all data and submit for post-create:
   if (userId) {
-    /* if (imagesArrayReactive.get()) {
-     //if (bz.runtime.newPost.postImage) {
-     _.each(imagesArrayReactive.get(), function (img) {
-     img = img || {};
-     if(!img._id) {
-     imgId = bz.cols.images.insert({
-     data: img.data,
-     userId: userId
-     });
-     } else {
-     imgId = img._id;
-     }
-     imgArr.push(imgId);
-     });*/
-
-    _.each(imagesArrayReactive.get(), function (imgItem) {
+    // 1. remove deleted images (take those ids that are in db array but not in in new array:
+    diffElemsArr = _.difference(imgArr, _.map(imgArrReact, function(item) { return item._id}));
+    _.each(diffElemsArr, function(imgItem){
+      if(imgItem){
+        bz.cols.images.remove(imgItem);
+        // todo: need to remove it from S3 too!
+        imgArr.splice(imgArr.indexOf(imgItem), 1);
+      }
+    });
+    _.each(imgArrReact, function (imgItem, i) {
       if(!imgItem._id) {
         imgId = bz.cols.images.insert({
           userId: userId,
           name: imgItem.name,
         });
         imgArr.push(imgId);
+
+        if(imagesArrayReactive.curValue[i]){
+          imagesArrayReactive.curValue[i].tempId = imgId;
+        }
+        console.log(imgArrReact);
         // let's set data on the client-side (temp for showing in site):
         bz.cols.images._collection.update(imgId, {
           $set: {
@@ -64,16 +66,11 @@ SavePostFromView = function (v, data) {
       }
     });
     // set location:
-    //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
     if (loc1 && location1.isSet) {
-      // bz.help.maps.getCurrentLocation(function (loc) {
       locationsArr.push(loc1);
-      //locDef.resolve();
-      //});
     }
     if (loc2 && location2.isSet) {
       locationsArr.push(loc2);
-      //locDef.resolve();
     }
     // set the 'other' field, that contains: all other post-specific key-value pairs of info that we want:
     if (v.$('.js-charity-type-select').val()) {
@@ -128,27 +125,32 @@ SavePostFromView = function (v, data) {
     }
 
     bz.runtime.changesNotSaved = false;
-    Router.go('/posts/my');
+    Router.go(`/post/${data._id}`);
 
     //$.when(locDef).then(function () {
     Meteor.call('saveExistingPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
       _.each(imagesArrayReactive.get(), function (imgItem) {
-        if(!imgItem._id) {
+        if(!imgItem._id && !imgItem.isSaved) {
           imgItem.save().then(img=> {
-            bz.cols.images.update(imgId, {$set: {data: img.src}});
-          });
-          imgItem.thumbnail.save().then(thumb=> {
-            bz.cols.images.update(imgId, {$set: {thumbnail: thumb.src}});
+            id = bz.cols.images.update(imgItem.tempId, {$set: {data: img.src}});
+            imgItem.thumbnail.save().then(thumb=> {
+              bz.cols.images.update(imgItem.tempId, {$set: {thumbnail: thumb.src}});
+              bz.ui.alert(`Фотографии поста были сохранены`);
+            }).catch(error=>{
+              bz.ui.error(`При сохранении фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
+            });
+          }).catch(error=>{
+            bz.ui.error(`При сохранении фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
           });
         }
       });
 
       if (!err && res) {
-        bz.ui.alert(`Ваш <a href="/post/${res}">пост</a> успешно сохранен`);
+        bz.ui.alert(`Ваш <a href="/post/${res}">пост</a> сохранен`);
         //clearPostData();
         //bz.runtime.newPost.postId = res;
       } else if(err) {
-        bz.ui.alert(`При сохранении поста возникла проблема: ${err}`);
+        bz.ui.error(`При сохранении поста возникла проблема: ${err}`);
       }
     });
   }

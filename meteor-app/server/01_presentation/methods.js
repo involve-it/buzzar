@@ -120,7 +120,7 @@ Meteor.methods({
       from: 'info@shiners.ru',
       to: 'info@shiners.ru',
       cc: 'arutune@gmail.com,yury.dorofeev@gmail.com,',
-      subject: 'from Buzzar.org: feedback from Contact Us page',
+      subject: 'from Shiners.ru: feedback from Contact Us page',
       html: 'Message: ' + msg + '<br> Please contact <a href="'+Meteor.absoluteUrl()+'user/'+userId+'">this user</a>.'
     };
     var ret = bz.cols.contactUsMsgs.insert({
@@ -253,6 +253,15 @@ Meteor.methods({
   // function for testing in the console Meteor runtime server-side:
   console: function(){
     debugger;
+  },
+  updateProfileDetails: function(userId, attributes){
+    _.each(attributes,function(attribute){
+        attribute.userId=userId;
+        bz.cols.profileDetails.update({userId:userId,key: attribute.key},
+          attribute,
+          {upsert: true});
+    }
+    )
   }
 });
 

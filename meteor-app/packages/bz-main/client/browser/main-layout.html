@@ -248,6 +248,7 @@
 </template>
 
 <template name="bzNavMe">
+{{#if currentUser}}
     <div class="bz-nav-me hide-for-small-only hide-for-medium-only">
         <ul class="bz-nav-me-wrapper">
             <li>
@@ -264,6 +265,13 @@
             </li>
         </ul>
     </div>
+{{else}}
+<div class="bz-nav-me hide-for-small-only hide-for-medium-only">
+    <div class="bz-nav-sign-in">
+        <a class="bz-nav-sign-in-link js-bz-btn-signin" href="/sign-in"><i class="fa fa-lock"></i> {{ t9n 'MENU_SIGN_IN' }}</a>
+    </div>
+</div>
+{{/if}}    
 </template>
 
 
