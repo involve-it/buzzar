@@ -10,15 +10,15 @@
           <!--<a class="js-plus-img"><img src="/img/plus-button.png" style="width: 60px; height: 60px;"/> </a>-->
 
 
-              <div class="small-12 medium-3 input-label left"><span class="field-required">*</span> Местонахождение объявления</div>
+              <div class="small-12 medium-3 input-label left"><span class="field-required">*</span> {{ t9n 'NEW_POST_PLACE_AD' }}</div>
               <div class="small-12 medium-9 large-9 left">
                   <div class="bz-location-position">
                         <!--1-->
                         <div class="bz-style-soft-background bz-dynamic bz-panel-overlay panel padding js-moving-location-panel bz-tool-tip" data-open-on="click" data-top-center="top right" data-theme="drop-theme-arrows-bounce-dark">
                             <div class="bz-triangle-help js-triangle-help drop-target"></div>
                             <i class="fa fa-map-signs"></i>
-                            <div class="title uppercase">Dynamic</div>
-                            <p>Moving with you ad</p>
+                            <div class="title uppercase">{{ t9n 'NEW_POST_DYNAMIC' }}</div>
+                            <p>{{ t9n 'NEW_POST_MOVING_WITH_YOU_AD' }}</p>
 
                             <!--Drop tips-->
                             <div class="drop-content">
@@ -34,8 +34,8 @@
                         <div class="bz-style-soft-background bz-static bz-panel-overlay panel padding js-fixed-location-panel bz-tool-tip" id="moving-ad" data-open-on="click" data-top-center="top right" data-theme="drop-theme-arrows-bounce-dark">
                             <div class="bz-triangle-help js-triangle-help drop-target"></div>
                             <i class="fa fa-thumb-tack drop-target"></i>
-                          <div class="title uppercase">Static</div>
-                          <p>Pinned to static location</p>
+                          <div class="title uppercase">{{ t9n 'NEW_POST_STATIC' }}</div>
+                          <p>{{ t9n 'NEW_POST_PINNED_TO_STATIC_LOCATION' }}</p>
                           <span class="js-location-holder">
                               {{> bzLocationNameNewPost sessionName='bz.posts.new.location2'}}
                           </span>

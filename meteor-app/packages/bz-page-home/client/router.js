@@ -14,7 +14,9 @@ Router.map(function () {
       //console.log(path);
       return {
         pageOptions: {
-          backgroundMobile: '/img/content/bg/state-city.jpg',
+          logoType: '/img/logo/logo-home-logotype.png',
+          logo: '/img/logo/logo-home.png',
+          backgroundMobile: '/img/content/bg/mobile-home.jpg',
           backgroundDesktop:  '/img/content/bg/desktop-home.jpg'
         }
       }
