@@ -12,7 +12,7 @@ Router.map(function () {
       return {
         pageOptions: {
           backgroundMobile: '/img/content/bg/state-city.jpg',
-          backgroundDesktop:  '/img/content/bg/fly-balls.jpg'
+          backgroundDesktop:  '/img/content/bg/desktop-housing.jpg'
         }
       }
     },
