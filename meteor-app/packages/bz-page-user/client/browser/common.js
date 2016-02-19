@@ -60,7 +60,7 @@ Template.bzUserProfileBasic.events({
   }
 })
 Template.bzUserProfileBasic.onRendered(function () {
-  if (Meteor.userId() === this.data._id) {
+  if (this.data && Meteor.userId() === this.data._id) {
     $('.js-send-message-btn').addClass('disabled');
   }
 });
