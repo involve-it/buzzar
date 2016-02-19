@@ -120,7 +120,7 @@ Meteor.methods({
       from: 'info@shiners.ru',
       to: 'info@shiners.ru',
       cc: 'arutune@gmail.com,yury.dorofeev@gmail.com,',
-      subject: 'from Buzzar.org: feedback from Contact Us page',
+      subject: 'from Shiners.ru: feedback from Contact Us page',
       html: 'Message: ' + msg + '<br> Please contact <a href="'+Meteor.absoluteUrl()+'user/'+userId+'">this user</a>.'
     };
     var ret = bz.cols.contactUsMsgs.insert({

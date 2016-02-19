@@ -4,11 +4,9 @@
 window.avatarThumbnailReactive = ReactiveVar();
 
 Meteor.startup(function () {
-  avatarThumbnailReactive.set([]);
+  avatarThumbnailReactive.set();
   Tracker.autorun(function () {
-    //var img = Session.get('bz.user.profileImgUploaded');
-    var img = avatarThumbnailReactive.get() && avatarThumbnailReactive.get()[0];
-    console.log(img);
+    var img = avatarThumbnailReactive.get();
     if (img && img !== '') {
       img.save().then(img1=> {
         Meteor.users.update(Meteor.userId(), { $set: {'profile.image': {
