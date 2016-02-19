@@ -20,6 +20,17 @@ bz.cols.images.helpers({
       }
     }
     return image;
+  },
+  _getImageUrl: function(){
+    var image = this;
+    if(image) {
+      if(image.data){
+        image = image.data
+      } else {
+        image = '/img/content/no-photo.png';
+      }
+    }
+    return image;
   }
 });
 if(Meteor.isServer){
