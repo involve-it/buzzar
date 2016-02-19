@@ -248,6 +248,7 @@
 </template>
 
 <template name="bzNavMe">
+{{#if currentUser}}
     <div class="bz-nav-me hide-for-small-only hide-for-medium-only">
         <ul class="bz-nav-me-wrapper">
             <li>
@@ -264,6 +265,7 @@
             </li>
         </ul>
     </div>
+{{/if}}    
 </template>
 
 
