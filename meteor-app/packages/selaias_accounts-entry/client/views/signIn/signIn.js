@@ -41,11 +41,22 @@ AccountsEntry.entrySignInEvents = {
       if (error) {
         sAlert.error('<div class="bz-msg-text">' + error.reason + '</div>', {effect: 'scale', html: true});
         Alerts.add(error, 'danger')
-      } else if (Session.get('fromWhere')) {
-        Router.go(Session.get('fromWhere'));
-        Session.set('fromWhere',null);
       } else {
-        Router.go(AccountsEntry.settings.dashboardRoute);
+        var location = Session.get('currentLocation');
+        if (location){
+          Meteor.call('reportLocation', {
+            userId: Meteor.userId(),
+            lat: location.latitude,
+            lng: location.longitude,
+            sessionId: Meteor.connection._lastSessionId
+          }, function (err, posts) { });
+        }
+        if (Session.get('fromWhere')) {
+          Router.go(Session.get('fromWhere'));
+          Session.set('fromWhere', null);
+        } else {
+          Router.go(AccountsEntry.settings.dashboardRoute);
+        }
       }
     });
   }

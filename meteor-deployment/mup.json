@@ -2,9 +2,9 @@
   // Server authentication info
   "servers": [
     {
-      "host": "104.131.150.47",
+      "host": "188.225.37.147",
       "username": "root",
-      "password": "gavrila4"
+      "password": "ZV5D8edJ"
       // or pem file (ssh based authentication)
       //"pem": "~/.ssh/id_rsa"
     }
@@ -14,13 +14,13 @@
   "setupMongo": true,
 
   // WARNING: Node.js is required! Only skip if you already have Node.js installed on server.
-  //"setupNode": true,
+  "setupNode": false,
 
   // WARNING: If nodeVersion omitted will setup 0.10.36 by default. Do not use v, only version number.
   //"nodeVersion": "0.10.36",
 
   // Install PhantomJS in the server
-  "setupPhantom": true,
+  "setupPhantom": false,
 
   // Show a progress bar during the upload of the bundle to the server. 
   // Might cause an error in some rare cases if set to true, for instance in Shippable CI
@@ -35,7 +35,7 @@
   // Configure environment
   "env": {
   	"PORT":80,
-    "ROOT_URL": "http://www.buzzar.org",
+    "ROOT_URL": "http://buzzarlive.webhop.org",
     "MONGO_URL":"mongodb://localhost:27017/buzzar"
   },
 
