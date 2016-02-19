@@ -211,7 +211,7 @@ Template.onePostRowItemOwner.helpers({
     return ret;
   },
   getDuration: function() {
-    if(true) {
+    if(false) {
       var duration, status, percent, finish, start, now, days, hours, min, barClass, elapsed, titleDays, titleHours, titleMinutes, language, unit;
 
       status = true;
