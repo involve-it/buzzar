@@ -13,8 +13,8 @@ Router.map(function () {
         pageOptions: {
           logoType: '/img/logo/logo-home-logotype.png',
           logo: '/img/logo/logo-services.png',
-          backgroundMobile: '/img/content/bg/state-city.jpg',
-          backgroundDesktop:  '/img/content/bg/fly-balls.jpg'
+          backgroundMobile: '/img/content/bg/mobile-services.jpg',
+          backgroundDesktop:  '/img/content/bg/desktop-services.jpg'
         }
       }
     },

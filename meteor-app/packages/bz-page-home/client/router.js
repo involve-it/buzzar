@@ -16,7 +16,7 @@ Router.map(function () {
         pageOptions: {
           logoType: '/img/logo/logo-home-logotype.png',
           logo: '/img/logo/logo-home.png',
-          backgroundMobile: '/img/content/bg/state-city.jpg',
+          backgroundMobile: '/img/content/bg/mobile-home.jpg',
           backgroundDesktop:  '/img/content/bg/desktop-home.jpg'
         }
       }
