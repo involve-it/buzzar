@@ -3,6 +3,7 @@
  */
 
 Template.userSettings.onCreated(function () {
+  Meteor.subscribe('profileDetails-another');
 });
 Template.userSettings.onRendered(function () {
   if(Meteor.userId() === this.data._id) {
@@ -21,7 +22,8 @@ Template.userSettings.helpers({
   },
 
   getCity: function(){
-    return this.profile.city;
+    var details = bz.cols.profileDetails.findOne({userId: this._id, key:'city'});
+    return details && details.value;
   },
   getPostsCount: function(){
     return bz.cols.posts.find({userId: this._id}).count();
@@ -30,61 +32,120 @@ Template.userSettings.helpers({
     return bz.cols.reviews.find({userId: this._id}).count();
   },
   getFIO: function(){
-    return this.profile.firstName + ' ' + this.profile.lastName;
+    var details = bz.cols.profileDetails.findOne({userId: this._id, key:'firstName'});
+    var fio = details && details.value;
+    details = bz.cols.profileDetails.findOne({userId: this._id, key:'lastName'});
+    fio= fio +' ' + (details && details.value);
+    return fio;
   },
   getPhoneStatus: function () {
-    return this.profile.phone.status;
+    var details = bz.cols.profileDetails.findOne({userId: this._id, key:'phone'});
+    if (!details)
+    {
+      return '0'
+    }
+     else
+    {
+      return details && details.policy;
+    }
   },
   getSkypeStatus: function () {
-    return this.profile.skype.status;
+    var details = bz.cols.profileDetails.findOne({userId: this._id, key:'skype'});
+    if (!details)
+    {
+      return '0'
+    }
+    else
+    {
+      return details && details.policy;
+    }
   },
   getVKStatus: function () {
-    return this.profile.vk.status;
+    var details = bz.cols.profileDetails.findOne({userId: this._id, key:'vk'});
+    if (!details)
+    {
+      return '0'
+    }
+    else
+    {
+      return details && details.policy;
+    }
   },
   getTwitterStatus: function () {
-    return this.profile.twitter.status;
+    var details = bz.cols.profileDetails.findOne({userId: this._id, key:'twitter'});
+    if (!details)
+    {
+      return '0'
+    }
+    else
+    {
+      return details && details.policy;
+    }
   },
   getFaceBookStatus: function () {
-    return this.profile.facebook.status;
+    var details = bz.cols.profileDetails.findOne({userId: this._id, key:'facebook'});
+    if (!details)
+    {
+      return '0'
+    }
+    else
+    {
+      return details && details.policy;
+    }
   },
   getPhoneNumber: function(){
-    if (this.profile.phone.status == "1"){
-      return this.profile.phone.number;
+    var details = bz.cols.profileDetails.findOne({userId: this._id, key:'phone'});
+    if (!details)
+    {
+      return 'Hidden'
     }
-    else {
-      return 'Hidden';
+    else
+    {
+      return details && details.value;
     }
   },
   getSkype: function(){
-    if (this.profile.skype.status == "1"){
-      return this.profile.skype.account;
+    var details =  bz.cols.profileDetails.findOne({userId: this._id, key:'skype'});
+    if (!details)
+    {
+      return 'Hidden'
     }
-    else {
-      return 'Hidden';
+    else
+    {
+      return details && details.value;
     }
   },
   getVK: function(){
-    if (this.profile.vk.status == "1"){
-      return this.profile.vk.url;
+    var details = bz.cols.profileDetails.findOne({userId: this._id, key:'vk'});
+    if (!details)
+    {
+      return 'Hidden'
     }
-    else {
-      return 'Hidden';
+    else
+    {
+      return details && details.value;
     }
   },
   getFacebook: function(){
-    if (this.profile.facebook.status == "1"){
-      return this.profile.facebook.url;
+    var details =  bz.cols.profileDetails.findOne({userId: this._id, key:'facebook'});
+    if (!details)
+    {
+      return 'Hidden'
     }
-    else {
-      return 'Hidden';
+    else
+    {
+      return details && details.value;
     }
   },
   getTwitter: function(){
-    if (this.profile.twitter.status == "1"){
-      return this.profile.twitter.url;
+    var details =  bz.cols.profileDetails.findOne({userId: this._id, key:'twitter'});
+    if (!details)
+    {
+      return 'Hidden'
     }
-    else {
-      return 'Hidden';
+    else
+    {
+      return details && details.value;
     }
   }
 });
