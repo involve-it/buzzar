@@ -6,8 +6,7 @@ try {
     bucket: "buzzar",
     //LocationConstraint: 'us-west-1',
     region: 'us-west-1',
-    maxSize: 5 * 1024 * 1024, // 5 MB (use null for unlimited)
-    acl: "public-read",
+    maxSize: null, //lic-read",
     allowedFileTypes: ["image/png", "image/jpeg", "image/gif", "image/tiff", "image/bmp"],
     authorize: function () {
       //Deny uploads if user is not logged in.
@@ -17,12 +16,16 @@ try {
       }
       return true;
     },
+    /*AWSAccessKeyId: 'AKIAJ7US4FBIQQ2DWIFA',// new one
+    AWSSecretAccessKey: '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',*/
     AWSAccessKeyId: 'AKIAJRKMTZEEIOLOAJ5Q',
     AWSSecretAccessKey: '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',
-    key: function (file, customName) {
-      //Store file into a directory by the user's username.
-      var user = Meteor.users.findOne(this.userId), name = customName || (Date.now() + "-" + file.name);
-      console.log('custom name = ' + customName);
+    key: function (file) {
+      //var name = file.name;
+      var name = Date.now() + '-' + file.name;
+/*      //Store file into a directory by the user's username.
+      var user = Meteor.users.findOne(this.userId), name = customName || (Date.now() + "-" + file.name);*/
+      console.log('file name = ' + file.name);
       console.log('final name = ' + name);
       console.log('full url = ' + bz.config.version + '/public/images/' + name);
       return  bz.config.version + '/public/images/' + name;

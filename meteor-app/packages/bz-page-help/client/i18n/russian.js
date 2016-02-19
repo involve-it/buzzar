@@ -4,7 +4,7 @@
 
 ruI18n = {
   //home:
-  headliner:           'Зомби вокруг',
+  headliner:           'Помощь вокруг',
   MOST_POPULAR_TITLE: 'Популярное',
   AROUND_YOU_TITLE: 'Помощь рядом',
   SEARCH_LOOKING_FOR_TEXT: 'Искать в помощи',

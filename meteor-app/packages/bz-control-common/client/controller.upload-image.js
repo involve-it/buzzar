@@ -23,23 +23,29 @@ Meteor.startup(()=> {
 
 ImageClass = class {
   constructor(options = {}) {
+    this.isSaved = false;
     this.setRandomNameFromExtension(options.fileName);
   }
+
   set src(value) {
     this.data = value;
   }
+
   get src() {
     return this.data;
   }
+
   save() {
     return new Promise((resolve)=> {
       resolve(this);
     });
     //return this._createThumbnail();
   }
+
   toObject() {
 
   }
+
   static saveImageToExternalObject(objReactive, imgObj) {
     var objectVal = objReactive.get(), newObjectVal;
     if (objectVal && Array.isArray(objectVal)) {
@@ -52,6 +58,7 @@ ImageClass = class {
     objReactive.set(newObjectVal);
     window.aaa = objReactive;
   }
+
   static getDataFromImgUrl(url, img, w, h) {
     var canvas, ctx, ret, imgCreated = false;
     if (!img) {
@@ -60,6 +67,7 @@ ImageClass = class {
     ret = ImageClass.imgToDataUrl(img, url);
     return ret;
   }
+
   static imgToDataUrl(img, url) {
     var resUrl;
     return new Promise((resolve)=> {
@@ -80,9 +88,11 @@ ImageClass = class {
       }
     });
   }
+
   static getDataFromImg$(img$) {
     return data;
   }
+
   createThumbnail() {
     var that = this, thisClone = _.clone(this);
     thisClone.name = ThumbnailImageClass.getFileNameForThumbnail(this.name);
@@ -93,6 +103,7 @@ ImageClass = class {
       });
     });
   }
+
   setRandomNameFromExtension(fullName) {
     fullName = fullName || this.fullName || '';
     var extension = fullName.substr(fullName.lastIndexOf('.') + 1);
@@ -100,6 +111,7 @@ ImageClass = class {
     this.name = _.guid() + '.' + extension;
     return this.name;
   }
+
   static dataURItoBlob(dataURI) { // http://stackoverflow.com/a/11954337
     var binary = atob(dataURI.split(',')[1]);
     var array = [];
@@ -108,6 +120,7 @@ ImageClass = class {
     }
     return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
   }
+
   static cleanClass() {
     currentImageReactive.set(new ImageClass());
   }
@@ -141,42 +154,48 @@ BlobImageClass = class extends ImageClass {
       currentImageReactive.set(that);
     }
   }
+
   save() {
-    var that = this, uploader = new Slingshot.Upload('bzImagesDirective', this.name),
+    var that = this, uploader = new Slingshot.Upload('bzImagesDirective'),
       file = this, error = uploader.validate(file), blob = file.blob;
     return new Promise((resolve, reject)=> {
       blob.name = file.name;
       if (error) {
         console.error(error);
-      }
-      uploader.send(blob, (error1, downloadUrl)=> {
-        if (error1) {
-          console.error(error1);
-          if (error1 && error1.error === 'Upload denied') {
-            switch (error1.reason) {
-              case 'File exceeds allowed size of 5 MB':
-                bz.ui.error(error1.message + ' . Please use other image.');
-                break;
-              default:
-                bz.ui.error(error1.message);
-                break;
+        reject(error);
+      } else {
+        uploader.send(blob, (error1, downloadUrl)=> {
+          if (error1) {
+            console.error(error1);
+            if (error1 && error1.error === 'Upload denied') {
+              switch (error1.reason) {
+                case 'File exceeds allowed size of 5 MB':
+                  bz.ui.error(error1.message + ' . Please use other image.');
+                  break;
+                default:
+                  bz.ui.error(error1.message);
+                  break;
+              }
+              alert(error1.message);
             }
-            alert(error1.message);
+            // Log service detailed response.
+            var printErr = uploader.xhr && uploader.xhr.response || error1;
+            reject(error1);
           }
-          // Log service detailed response.
-          var printErr = uploader.xhr && uploader.xhr.response || error1;
-          reject(error1);
-        }
-        else {
-          that.src = downloadUrl;
-          resolve(that);
-        }
-      });
+          else {
+            that.src = downloadUrl;
+            that.isSaved = true;
+            resolve(that);
+          }
+        });
+      }
     });
   }
+
   toObject() {
     console.log('toObject');
   }
+
   _getDataUriFromBlobPromise(blob) {
     var blob = blob || this.blob;
     return new Promise((resolve, reject)=> {
@@ -195,13 +214,14 @@ RandomImageClass = class extends ImageClass {
     that = this;
     this.type = IMG_TYPES.RANDOM;
     if (options.img) {
-       ImageClass.imgToDataUrl(options.img, options.url).then(dataUrl=>{
-         that.src = dataUrl;
-         currentImageReactive.set(that);
-       });
+      ImageClass.imgToDataUrl(options.img, options.url).then(dataUrl=> {
+        that.src = dataUrl;
+        currentImageReactive.set(that);
+      });
     } else {
     }
   }
+
   save() {
     var that = this, uploader = BlobImageClass.uploader = BlobImageClass.uploader || new Slingshot.Upload('bzImagesDirective'),
       file = this, error, blob;
@@ -209,35 +229,41 @@ RandomImageClass = class extends ImageClass {
     blob = ImageClass.dataURItoBlob(that.src);
     that.blob = blob;
     blob.name = file.name;
-    error = uploader.validate(file);
-    if (error) {
-      console.error(error);
-    }
+
+
     return new Promise((resolve, reject)=> {
-      uploader.send(blob, (error1, downloadUrl)=> {
-        if (error1) {
-          console.error(error1);
-          if (error1 && error1.error === 'Upload denied') {
-            switch (error1.reason) {
-              case 'File exceeds allowed size of 5 MB':
-                bz.ui.error(error1.message + ' . Please use other image.');
-                break;
-              default:
-                bz.ui.error(error1.message);
-                break;
+      error = uploader.validate(file);
+      if (error) {
+        console.error(error);
+        reject(error);
+      } else {
+        uploader.send(blob, (error1, downloadUrl)=> {
+          if (error1) {
+            console.error(error1);
+            if (error1 && error1.error === 'Upload denied') {
+              switch (error1.reason) {
+                case 'File exceeds allowed size of 5 MB':
+                  bz.ui.error(error1.message + ' . Please use other image.');
+                  break;
+                default:
+                  bz.ui.error(error1.message);
+                  break;
+              }
+              alert(error1.message);
             }
-            alert(error1.message);
+            // Log service detailed response.
+            var printErr = uploader.xhr && uploader.xhr.response || error1;
+            reject(error1);
           }
-          // Log service detailed response.
-          var printErr = uploader.xhr && uploader.xhr.response || error1;
-          reject(error1);
-        }
-        else {
-          that.src = downloadUrl;
-          resolve(that);
-        }
-      });
+          else {
+            that.src = downloadUrl;
+            that.isSaved = true;
+            resolve(that);
+          }
+        });
+      }
     });
+
   }
 }
 UrlImageClass = class extends ImageClass {
@@ -250,7 +276,7 @@ UrlImageClass = class extends ImageClass {
     this.type = IMG_TYPES.URL;
     this.url = options.url;
     if (options.img) {
-      ImageClass.imgToDataUrl(options.img, options.url).then(dataUrl=>{
+      ImageClass.imgToDataUrl(options.img, options.url).then(dataUrl=> {
         that.src = dataUrl;
         currentImageReactive.set(that);
       });
@@ -258,6 +284,7 @@ UrlImageClass = class extends ImageClass {
     }
     //currentImageReactive.set(this);
   }
+
   save() {
     var that = this, uploader = BlobImageClass.uploader = BlobImageClass.uploader || new Slingshot.Upload('bzImagesDirective'),
       file = this, error, blob;
@@ -268,32 +295,36 @@ UrlImageClass = class extends ImageClass {
       error = uploader.validate(file);
       if (error) {
         console.error(error);
-      }
-      uploader.send(blob, (error1, downloadUrl)=> {
-        if (error1) {
-          console.error(error1);
-          if (error1 && error1.error === 'Upload denied') {
-            switch (error1.reason) {
-              case 'File exceeds allowed size of 5 MB':
-                bz.ui.error(error1.message + ' . Please use other image.');
-                break;
-              default:
-                bz.ui.error(error1.message);
-                break;
+        reject(error);
+      } else {
+        uploader.send(blob, (error1, downloadUrl)=> {
+          if (error1) {
+            console.error(error1);
+            if (error1 && error1.error === 'Upload denied') {
+              switch (error1.reason) {
+                case 'File exceeds allowed size of 5 MB':
+                  bz.ui.error(error1.message + ' . Please use other image.');
+                  break;
+                default:
+                  bz.ui.error(error1.message);
+                  break;
+              }
+              alert(error1.message);
             }
-            alert(error1.message);
+            // Log service detailed response.
+            var printErr = uploader.xhr && uploader.xhr.response || error1;
+            reject(error1);
           }
-          // Log service detailed response.
-          var printErr = uploader.xhr && uploader.xhr.response || error1;
-          reject(error1);
-        }
-        else {
-          that.src = downloadUrl;
-          resolve(that);
-        }
-      });
+          else {
+            that.src = downloadUrl;
+            that.isSaved = true;
+            resolve(that);
+          }
+        });
+      }
     });
   }
+
   static getNameFromUrl(url) {
     var matches = /.+\/(.+)/gmi.exec("http://localhost:3000/posts/newtype=a?d.");
     return matches && matches[1];
@@ -312,7 +343,11 @@ ThumbnailImageClass = class extends ImageClass {
       if (options.type === IMG_TYPES.URL) {
         var dataString = ImageClass.getDataFromImgUrl(file).done((result)=> {
           file = ImageClass.dataURItoBlob(result);
-          Resizer.resize(file, {width: bz.const.images.THUMB_WIDTH, height: bz.const.images.THUMB_HEIGHT, cropSquare: true}, (err, newFile)=> {
+          Resizer.resize(file, {
+            width: bz.const.images.THUMB_WIDTH,
+            height: bz.const.images.THUMB_HEIGHT,
+            cropSquare: true
+          }, (err, newFile)=> {
             that.blob = newFile;
             //callback && callback(this);
             resolve(that);
@@ -321,7 +356,11 @@ ThumbnailImageClass = class extends ImageClass {
 
       } else if (file && typeof file !== 'object' && file.constructor !== Blob) {
         file = ImageClass.dataURItoBlob(file);
-        Resizer.resize(file, {width: bz.const.images.THUMB_WIDTH, height: bz.const.images.THUMB_HEIGHT, cropSquare: true}, (err, newFile)=> {
+        Resizer.resize(file, {
+          width: bz.const.images.THUMB_WIDTH,
+          height: bz.const.images.THUMB_HEIGHT,
+          cropSquare: true
+        }, (err, newFile)=> {
           that.blob = newFile;
           //callback && callback(this);
           resolve(that);
@@ -339,28 +378,34 @@ ThumbnailImageClass = class extends ImageClass {
         console.error(error);
       }
       blob.name = file.name;
-      uploader.send(blob, (error1, downloadUrl)=> {
-        if (error1) {
-          console.error(error1);
-          if (error1 && error1.error === 'Upload denied') {
-            switch (error1.reason) {
-              case 'File exceeds allowed size of 5 MB':
-                bz.ui.error(error1.message + ' . Please use other image.');
-                break;
-              default:
-                bz.ui.error(error1.message);
-                break;
+      if (error) {
+        console.error(error);
+        reject(error);
+      } else {
+        uploader.send(blob, (error1, downloadUrl)=> {
+          if (error1) {
+            console.error(error1);
+            if (error1 && error1.error === 'Upload denied') {
+              switch (error1.reason) {
+                case 'File exceeds allowed size of 5 MB':
+                  bz.ui.error(error1.message + ' . Please use other image.');
+                  break;
+                default:
+                  bz.ui.error(error1.message);
+                  break;
+              }
+              alert(error1.message);
             }
-            alert(error1.message);
+            var printErr = uploader.xhr && uploader.xhr.response || error1;
+            reject(error1);
           }
-          var printErr = uploader.xhr && uploader.xhr.response || error1;
-          reject(error1);
-        }
-        else {
-          that.src = downloadUrl;
-          resolve(that);
-        }
-      });
+          else {
+            that.src = downloadUrl;
+            that.isSaved = true;
+            resolve(that);
+          }
+        });
+      }
     });
   }
 

@@ -145,6 +145,8 @@ Template.postDetailsPhoto.helpers({
 
   },
   getPhotos: function(){
+    bz.cols.images.find({}); // <- for reactiveness
+    //bz.cols.images.find({_id: {$in: this.details.photos}}); // <- for reactiveness
     var ret = getPostPhotoObjectsByIds(this.details.photos);
     return ret;
   },
