@@ -11,14 +11,14 @@ Router.map(function () {
     data: function() {
       return {
         pageOptions: {
-          backgroundMobile: '/img/content/bg/state-city.jpg',
+          backgroundMobile: '/img/content/bg/mobile-housing.jpg',
           backgroundDesktop:  '/img/content/bg/desktop-housing.jpg'
         }
       }
     },
     onBeforeAction: function () {
       var qs = this.params.query;
-      console.log(qs);
+      //console.log(qs);
       //setSearchTextFromQs(qs);
       //setSearchLocationFromQs(qs);
       setPackageLanguage();

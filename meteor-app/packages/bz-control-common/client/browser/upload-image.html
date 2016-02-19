@@ -12,13 +12,13 @@
           class="hide-for-small-only">{{ t9n 'IMAGE_SELECT_IMAGE_FROM_URL'}}</span></a></li>
         <li class="tab-title js-tab-title"><a href="#panel41" class="js-random-image-tab-btn"><i
           class="fa fa-random fa-2x"></i><br/><span class="hide-for-small-only">{{ t9n 'IMAGE_SELECT_RANDOM_IMAGE'}}</span></a></li>
-        <li class="tab-title js-tab-title"><a href="#panel51" class="js-my-images-tab-btn"><i
-          class="fa fa-recycle fa-2x"></i><br/><span class="hide-for-small-only">{{ t9n 'IMAGE_SELECT_MY_IMAGES'}}</span></a></li>
+        <!--<li class="tab-title js-tab-title"><a href="#panel51" class="js-my-images-tab-btn"><i
+          class="fa fa-recycle fa-2x"></i><br/><span class="hide-for-small-only">{{ t9n 'IMAGE_SELECT_MY_IMAGES'}}</span></a></li>-->
       </ul>
     </div>
   </div>
     <div class="bz-choose-image-user-images-list"> 
-      <div class="js-preview-wrapper">
+      <div class="bz-preview-wrapper js-preview-wrapper">
           <img class="js-preview" src="{{ getPreviewImgSrc }}"/>
       </div>
 
@@ -59,7 +59,7 @@
           <div class="bz-upload-photo-wrapper">
             <div class="bz-button-box">
               <button
-                class="button btn-default btn-gray js-use-random-image-url">{{ t9n 'COMMON_IMAGE_GET_RANDOM'}} </button>
+                class="button bz-small btn-default btn-gray js-use-random-image-url">{{ t9n 'COMMON_IMAGE_GET_RANDOM'}} </button>
             </div>
           </div>
         </div>

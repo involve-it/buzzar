@@ -1209,7 +1209,35 @@ body {
       }
     }
   }
-  
+
+
+  .reveal-modal {
+    
+    .bz-upload-image-toolbar {
+      .bz-upload-image-toolbar-wrapper {
+        .bz-nav {
+          > li {
+            > a {
+              padding: 1px 14px;
+              i {}
+              span {}
+            }
+          }
+        }
+        .bz-horizontal {
+          > * {}
+        }
+      }
+    }
+    
+    .bz-choose-image-user-images-list {
+      .bz-preview-wrapper {
+        img[src*='/'] {
+          height: 140px;
+        }
+      }
+    }
+  }
   
   
   

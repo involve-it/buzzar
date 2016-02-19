@@ -11,11 +11,11 @@ Router.map(function () {
     //fastRender: true,
     data: function() {
       var path = this.route.path();
-      console.log(path);
+      //console.log(path);
       return {
         pageOptions: {
           backgroundMobile: '/img/content/bg/state-city.jpg',
-          backgroundDesktop:  '/img/content/bg/fly-balls.jpg'
+          backgroundDesktop:  '/img/content/bg/desktop-home.jpg'
         }
       }
     },
