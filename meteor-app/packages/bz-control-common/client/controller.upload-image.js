@@ -41,7 +41,7 @@ ImageClass = class {
 
   }
   static saveImageToExternalObject(objReactive, imgObj) {
-    var objectVal = objReactive.get() || [], newObjectVal;
+    var objectVal = objReactive.get(), newObjectVal;
     if (objectVal && Array.isArray(objectVal)) {
       newObjectVal = objectVal;
 
