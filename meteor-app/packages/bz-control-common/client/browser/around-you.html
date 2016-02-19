@@ -1,10 +1,11 @@
-<template name="aroundYou">
+
+<template name="bzAroundYou">
   {{#if getAroundItems.length}}
     <!--bz-container-body-->
     <section id="bz-around-you" class="">
       <div class="bz-around-you">
         <div class="bz-items">
-          <div class="grid">
+          <div class="bz-isotope-grid">
             <!--<h2 class="title">{{ t9n 'AROUND_YOU_TITLE' }}</h2>-->
             {{#each getAroundItems}}
               {{> bzAroundYouItem}}
@@ -13,24 +14,22 @@
         </div>
       </div>
     </section>
+      
+  {{else}}
+      {{> notFoundAroundItems}}
   {{/if}}
 </template>
 
 <template name="bzAroundYouItem">
-  {{#if getImgSrc}}
+  {{#if true}}
     <!--PHOTO-->
-    <div class="bz-item-wrapper grid-item">
+    <div class="bz-item-wrapper grid-item" data-distance="{{ _getDistanceToCurrentLocationNumber }}">
       <div class="bz-item">
         <div class="bz-side-b">
           <div class="bz-photo bz-overlay-hover">
             <a href="/post/{{_id}}">
-              {{#if getImgSrc}}
-                <div class="bz-background-image-cover"
-                     style="background-image: url('{{ getImgSrc }}')"></div>
-              {{else}}
-                <div class="bz-background-image-cover"
-                     style="background-image: url('/img/content/no-photo.png')"></div>
-              {{/if}}
+              <div class="bz-background-image-cover"
+                   style="background-image: url('{{ getImgSrc }}')"></div>
               <div class="bz-post-info">
                 <div class="bz-flex">
                   {{> bzPostsPostPresence this}}
@@ -103,7 +102,6 @@
     </div>
   {{/if}}
 </template>
-
 <!--used on the around you, home:-->
 <template name="bzUserProfileAroundYou">
     <div class="bz-status-wrapper">
@@ -115,4 +113,18 @@
 
     <!--<div class="bz-rating">{{ getPostRating }}</div>-->
     <div class="bz-username"><a href="/user/{{ _id }}">{{username}}</a></div>
+</template>
+    
+    
+<template name="notFoundAroundItems">
+    <div class="not-found-items">
+        <div class="bz-flex-box bz-margin">
+            <div class="title-message">You have no items around</div>
+            <div class="subtitle-message margin-bottom-20px">Вы могли бы добавить объявление, чтобы другие пользователи могли им воспользоваться. Для этого нажмите на кнопку ниже</div>
+    
+            <a href="/posts/new?type=ad" class="button alert bz-margin-zero">
+                <div class="labelText bz-flex bz-flex-middle"><i class="fa fa-plus show-for-small-only"></i> <span class="show-for-medium-up">Создать</span></div>
+            </a>
+        </div>
+    </div>
 </template>

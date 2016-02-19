@@ -1,21 +1,7 @@
-
 @import "{}/client/style/constants.less";
-
-
-
-
 .bz-around-you {
   padding: 0;
   width: 100%;
-  
-  /*.title {
-    padding: 0 15px;
-    margin: 0 0 30px 0;
-    text-align: center;
-    font-weight: 300;
-    color: @h-title-color;
-  }*/
-  
   .bz-items {
     .row {
       max-width: 80rem;
@@ -143,17 +129,23 @@
           .bz-post-presence {
             .display-flex-box();
             .align-self(center);
-            
             a {
               .bz-i-wrapper {
-                line-height: normal;
-                color: rgba(53,203,75, 1);
+                i {
+                  color: rgba(53,203,75, 1);
+                  padding: 0 2px;
+                  height: 13px;
+                  line-height: 13px;
+                }
               }
             }
-            
             .bz-i-wrapper {
-              line-height: normal;
-              color: @white-color-text;
+              i {
+                color: rgba(255,255,255, .8);
+                padding: 0 2px;
+                height: 13px;
+                line-height: 13px;
+              }
             }
           }
 
@@ -217,12 +209,9 @@
     }
   }
 }
-
-
 /*
  * Position cover on the photo
  */
-
 .bz-position-cover {
   position: absolute;
   top: 0;
@@ -231,11 +220,7 @@
   right: 0;
   z-index: 102;
 }
-
-
-
 @media only screen and (max-width: 40em) {
-
   /* General menu from 0px to 640px */
   .bz-item {
     .justify-content(center);

@@ -308,7 +308,7 @@ ThumbnailImageClass = class extends ImageClass {
       if (options.type === IMG_TYPES.URL) {
         var dataString = ImageClass.getDataFromImgUrl(file).done((result)=> {
           file = ImageClass.dataURItoBlob(result);
-          Resizer.resize(file, {width: 200, height: 150, cropSquare: true}, (err, newFile)=> {
+          Resizer.resize(file, {width: bz.const.images.THUMB_WIDTH, height: bz.const.images.THUMB_HEIGHT, cropSquare: true}, (err, newFile)=> {
             that.blob = newFile;
             //callback && callback(this);
             resolve(that);
@@ -317,7 +317,7 @@ ThumbnailImageClass = class extends ImageClass {
 
       } else if (file && typeof file !== 'object' && file.constructor !== Blob) {
         file = ImageClass.dataURItoBlob(file);
-        Resizer.resize(file, {width: 200, height: 150, cropSquare: true}, (err, newFile)=> {
+        Resizer.resize(file, {width: bz.const.images.THUMB_WIDTH, height: bz.const.images.THUMB_HEIGHT, cropSquare: true}, (err, newFile)=> {
           that.blob = newFile;
           //callback && callback(this);
           resolve(that);

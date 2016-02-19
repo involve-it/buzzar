@@ -25,6 +25,7 @@ Package.onUse(function (api) {
     'client/model.js',
     'client/controller.js',
     'client/controller.upload-image.js',
+    'client/resources/constants.js',
     'client/resources/t9-en.js'
   ], 'client');
 

@@ -70,13 +70,14 @@
       
       
       &:first-child {
-        
+        margin-left: -1px;
         -webkit-border-radius: 2px 0 0 2px;
         -moz-border-radius: 2px 0 0 2px;
         border-radius: 2px 0 0 2px;
       }
 
       &:last-child {
+        margin-right: -1px;
         -webkit-border-radius: 0 2px 2px 0;
         -moz-border-radius: 0 2px 2px 0;
         border-radius: 0 2px 2px 0;
@@ -87,6 +88,8 @@
   
   &.sub-sections {
     border: 1px solid @bz-background-tabs-2;
+    margin: 0;
+
 
     > * {
       text-align: center;
@@ -520,24 +523,37 @@ textarea:-ms-input-placeholder {
       .border-radius(2px);
       border: 1px solid rgba(53,203,75, .8);
       color: rgba(53,203,75, 1);
+      line-height: normal;
       background-color: transparent;
       font-size: 12px;
-      padding: 0 8px;
-      /*background-color: rgba(53,203,75, .95);*/
-      /*color: rgba(255,255,255, .75);*/
+      padding: 0;
 
-      i {}
+      i {
+        display: block;
+        font-size: 16px;
+        line-height: 17px;
+        padding: 2px 8px;
+        height: 17px;
+        margin-top: 1px;
+      }
     }
   }
 
   .bz-i-wrapper {
     font-size: 12px;
     .border-radius(2px);
-    padding: 0 8px;
+    padding: 0 2px;
     border: 1px solid @border-color-sep;
     color: darken(@border-color-sep, 30%);
 
-    i {}
+    i {
+      display: block;
+      font-size: 16px;
+      line-height: 17px;
+      padding: 2px 8px;
+      height: 17px;
+      margin-top: 1px;
+    }
   }
 }
 
@@ -961,7 +977,7 @@ nav.left-off-canvas-menu {
 **/
 
 .tabs-content { 
-  
+  margin: 0;
   .content {
     
     .tabs-content-wrapper {

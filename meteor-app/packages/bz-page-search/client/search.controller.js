@@ -1,7 +1,7 @@
 /**
  * Created by Ashot on 9/19/15.
  */
-const SEARCH_RADIUS = 4000; // 1km ~ 10 min walk
+const GOOGLE_LOCALS_SEARCH_RADIUS = 4000; // 1km ~ 10 min walk
 bz.help.makeNamespace('bz.bus.search');
 
 
@@ -37,7 +37,7 @@ Meteor.startup(function () {
       }
     );
   }
-  searchPostsReactive();
+  //searchPostsReactive();
   bz.help.maps.initPlacesCollection();
   Template.bzControlSearch && Template.bzControlSearch.onCreated(function () {
     //debugger;
@@ -47,26 +47,21 @@ Meteor.startup(function () {
     // doc.ready happened, so:
     //bz.help.maps.googleMapsLoad();
   });
-
-
   // fill google maps locations into bz.runtime.maps.places:
   Tracker.autorun(function () {
-    //bz.help.maps.initPlacesCollection();
     bz.runtime.maps.places._collection.remove({});
     if (Session.get('bz.control.search.location')) {
       if (GoogleMaps.loaded()) {
-        fillNearByPlacesFromLocationGoogle(Session.get('bz.control.search.location'), SEARCH_RADIUS);
+        fillNearByPlacesFromLocationGoogle(Session.get('bz.control.search.location'), GOOGLE_LOCALS_SEARCH_RADIUS);
       }
-
-      //fillNearByPlacesFromLocationYelp(Session.get('bz.control.search.location'), SEARCH_RADIUS);
     }
   });
 });
 
 bz.bus.search.doSearchClient = (params, options)=> {
-  var ret, arrTypes, box, dbQuery = {}, loc = params.loc, activeCats = params.activeCats, radius = params.radius;
+  var ret, arrTypes, box, dbQuery = {}, loc = params.loc, activeCats = params.activeCats, radius = params.radius, $where = params.$where, text = params.text;
 
-  if(loc && loc.coords && loc.coords.lat && loc.coords.lng) {
+  if (loc && loc.coords && loc.coords.lat && loc.coords.lng) {
     box = getLatLngBox(loc.coords.lat, loc.coords.lng, radius);
     if (box) {
       dbQuery['details.locations'] = {
@@ -77,7 +72,13 @@ bz.bus.search.doSearchClient = (params, options)=> {
       }
     }
   }
-
+  if (text) {
+    dbQuery['$or'] = [
+      {'details.title': {$regex: `.*${text}.*`}},
+      {'details.description': {$regex: `.*${text}.*`}},
+      {'details.price': {$regex: `.*${text}.*`}}
+    ]
+  }
   if (activeCats && Array.isArray(activeCats) && activeCats.length > 0) {
     dbQuery['type'] = {$in: activeCats};
   } else {
@@ -85,23 +86,26 @@ bz.bus.search.doSearchClient = (params, options)=> {
       return item.name;
     });
     arrTypes.push(undefined);
+    arrTypes.push('');
     dbQuery['type'] = {$in: arrTypes}
   }
+  if (params.$where) {
+    dbQuery['$where'] = params.$where;
+  }
   _.extend(dbQuery, params.query);
-  //ret = bz.cols.posts.find(dbQuery, options).sort( { name: 1 } ).fetch();
-  ret = bz.cols.posts.find(dbQuery, options).fetch();
+  ret = bz.cols.posts.find(dbQuery, options);
 
   return ret;
 }
-bz.bus.search.doSearchServer = function (callback) {
-  var searchedText = Session.get('bz.control.search.searchedText');
+bz.bus.search.doSearchServer = function (options, callback) {
+  var searchedText = options.text;
   searchedText = searchedText && searchedText.trim();
   if (searchedText) {
     var query = {},
     //map = GoogleMaps.maps.map.instance, latitude, longitude,
-      activeCats = Session.get('bz.control.category-list.activeCategories') || [],
-      searchDistance = Session.get('bz.control.search.distance'),
-      location = Session.get('bz.control.search.location') || {};
+      activeCats = options.cats || [],
+      searchDistance = options.dist,
+      location = options.loc || {};
     if (!searchedText && searchedText === undefined) {
       searchedText = '';
     }
@@ -114,7 +118,6 @@ bz.bus.search.doSearchServer = function (callback) {
     };
 
     Meteor.call('search', query, function (err, results) {
-      debugger;
       bz.cols.searchRt._collection.remove({});
       if (results && results.length > 0) {
         for (var i = 0; i < results.length; i++) {
@@ -146,10 +149,16 @@ function getLatLngBox(lat, lng, radius) {
   }
 };
 function searchPostsReactive() {
+  // this function will run on every page, tracking "bz.cols.posts.find()". Danger!
   Tracker.autorun(function () {
-    bz.cols.searchRt._collection.remove({});
-    bz.cols.posts.find().count();
-    bz.bus.search.doSearchServer();
+    //bz.cols.searchRt._collection.remove({});
+    //bz.cols.posts.find().count();
+    bz.bus.search.doSearchServer({
+      text: Session.get('bz.control.search.searchedText'),
+      cats: Session.get('bz.control.category-list.activeCategories'),
+      dist: Session.get('bz.control.search.distance'),
+      loc: Session.get('bz.control.search.location')
+    });
   });
 }
 setSearchedText = function (text) {

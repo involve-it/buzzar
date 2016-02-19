@@ -22,7 +22,9 @@ bz.ui.putCategoriesToSession = (catsToAdd, extend)=> {
       cats.push(el);
     }
   }
+  
   Session.set('bz.control.category-list.activeCategories', cats);
+  
 };
 
 

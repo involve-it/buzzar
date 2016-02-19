@@ -1,130 +1,15 @@
 <template name="pageJobs">
 
-
-    <div class="bz-slideshow">
-        <div class="bz-slideshow-background">
-            <div class="bz-slideshow-items">
-                <ul class="bz-slide-show-list none-list">
-                    <li class="hide-for-xlarge-up">
-                        <div class="bz-cover-background bz-cover-position" style="background-image: url('/img/content/bg/state-city.jpg')"></div>
-                    </li>
-                    <li class="show-for-xlarge-up">
-                        <div class="bz-cover-background bz-cover-position" style="background-image: url('/img/content/bg/fly-balls.jpg')"></div>
-                    </li>
-                </ul>
-            </div>
-            <!--<video preload="auto" loop="loop" muted id="bz-bg-video" class="js-header-bg-video" poster="https://i.ytimg.com/vi/AUXzW7k3eeo/maxresdefault.jpg">
-                <source src="/video/firebugs.mp4" type="video/mp4"/>
-                &lt;!&ndash;<source src="https://a0.muscache.com/airbnb/static/Seoul-P1-4.mp4" type="video/mp4"/>&ndash;&gt;
-            </video>-->
-        </div>
-
-        <div class="bz-slideshow-content">
-            <div class="bz-header nav-bg-transparent bz-container-v bz-container-h js-bz-header">
-                {{> bzNavBar}}
-                <div class="bz-header-middle">
-                    <div class="bz-header-middle-wrapper">
-                        <div class="bz-header-top">
-                            <h1 class="bz-header-title">{{ t9n 'headliner' }} </h1>
-                        </div>
-                        <div class="bz-search">
-                            <div class="box-search">
-                                <div class="bz-category-buttons">
-                                    <div class="bz-category-buttons-wrapper">
-                                        <!--{{> categoryListButtons}}-->
-                                    </div>
-                                </div>
-                                <form class="search" id="bz-search" role="search" method="post" action="#">
-                                    <i class="icon ion-search placeholder-icon"></i>
-                                    <!--{{> bzControlSearch }}-->
-                                    {{> bzNewControlSearch }}
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!--<div class="sp-r"></div>
-                    <div class="sp-l"></div>-->
-                </div>
-
-                <div class="bz-around-small">
-                    {{> aroundYouSmall}}
-                </div>
-                
-            </div>
-        </div>
-
-    </div>
-
-
-  <!--need delete-->
-  <!--  <div class="bz-container nav-bg-transparent">
-        <div class="bz-header">
-            {{> bzNavBar}}
-            <div class="bz-header-top">
-                <h1 class="bz-header-title">{{ t9n 'headliner' }} </h1>
-            </div>
-    
-            <div class="bz-search">
-                <div class="box-search">
-                  <div class="bz-category-buttons">
-                    {{> categoryListButtons}}
-                  </div>
-                  <form class="search" id="bz-search" role="search" method="post" action="#">
-                    <i class="icon ion-search placeholder-icon"></i>
-        
-                    {{> bzControlSearch }}
-        
-                  </form>
-                    
-                </div>
-          </div>
-        </div>
-    </div>-->
+    {{> pagesTemplateHeaderContent}}
 
     <!-- search result on the home page -->
-  <div class="container-background">
-    <!--TODO: delete after test-->
-    <div style="border-radius: 2px; border-top:1px solid #fff; background-color: #FFFFFF; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); ">
-        {{> searchResults }}
-        {{> aroundYou}}
-        <!--{{> bzHomePopular}}-->
-
-        {{ bzRenderTemplateI18n "bzAboutUsShort" }}
+    <div class="container-background">
+        <div style="border-radius: 2px; border-top:1px solid #fff; background-color: #FFFFFF; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); ">
+            <!--{{> searchResults }}-->
+            {{> bzAroundYou}}
+            {{> bzHomePopular}}
+            {{ bzRenderTemplateI18n "bzAboutUsShort" }}
+        </div>
     </div>
-  </div>
 
 </template>
-<!--
-
-
-<template name="bzMeteorLogo">
-  <div class="bz-logo-wrapper" style="    font-size: 18px;">
-    <a href="/home" style="color: white;">
-      {{ getLocalAppName }}
-    </a>
-  </div>
-</template>
-
-
-<template name="searchPostsModal">
-  {{#ionModal title="Url Post Details"}}
-    <div class="padding">
-      <label class="item item-input">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" class="capitalize js-search-text-modal" placeholder="find anything around you">
-      </label>
-
-      &lt;!&ndash;Title: <span>{{ getTitle }}</span>&ndash;&gt;
-
-      {{> globalSearch }}
-    </div>
-  {{/ionModal}}
-</template>
-
-<template name="bzAdCategoryButton">
-  <div class="bz-category">
-    <div class="button bz-btn-category type-category-{{categoryType}} js-category-type-btn">
-      {{categoryType}}
-    </div>
-  </div>
-</template>-->

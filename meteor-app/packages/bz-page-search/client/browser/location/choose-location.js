@@ -140,7 +140,7 @@ Template.bzChooseLocationModal.helpers({
         valueKey: 'name',
         displayKey: 'name',
         template: 'googlePlacesItem',
-        header: '<h3 class="league-name">Suggested Places</h3>',
+        header: '<h3 class="league-name">Popular Places</h3>',
         local: function () {
           ret = bz.cols.locations.find().fetch().map(function (item) {
             //return {id: item._id, value: item.name};

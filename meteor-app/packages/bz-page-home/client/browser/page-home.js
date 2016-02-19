@@ -62,30 +62,12 @@ Template.bzAdCategoryButton.events({
       if(type.hasRoute){
         Router.go('/' + catName);
       } else {
-        bz.ui.putCategoriesToSession(catName);
-        bz.ui.alert(`You filtered results by the "${catName.toCapitalCase()}" category, to undo this click "All" in top search section`);
+        //bz.ui.putCategoriesToSession(catName);
+        //bz.ui.alert(`You filtered results by the "${catName.toCapitalCase()}" category, to undo this click "All" in top search section`);
       }
     }
   }
 });
-
-
-
-Template.aroundYou.onRendered(function() {
-  $('.grid').masonry({
-    //isFitWidth: true,
-    itemSelector: '.grid-item'
-  });
-
-  Meteor.startup(function() {
-    $(window).resize(function() {
-      $('.grid').masonry();
-    });
-  });
-  
-});
-
-
 
 
 

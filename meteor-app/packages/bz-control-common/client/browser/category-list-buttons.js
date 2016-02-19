@@ -29,15 +29,34 @@ Template.categoryListButtons.events({
     
     
     //bz.ui.putCategoriesToSession(this.intName, true);
-    if(this.hasRoute){
-      bz.ui.putCategoriesToLinks(this.intName);
-    } else if(this.name) {
+    
+    var $target = e.target.closest('.js-item-category');
+    
+    if($($target).data('value') === 'all') {
+      Session.set('bz.control.category-list.activeCategories', '');
+    }
+    
+    
+    if(this.intName) {
       bz.ui.putCategoriesToSession(this.intName);
-      bz.ui.alert(`You filtered results by the "${this.name.toCapitalCase()}" category, to undo this click "All" in top search section`);
     }
 
     
+    
+    /*if(this.hasRoute){
+      bz.ui.putCategoriesToLinks(this.intName);
+      
+    } else if(this.name) {
+      bz.ui.putCategoriesToSession(this.intName);
+      bz.ui.alert(`You filtered results by the "${this.name.toCapitalCase()}" category, to undo this click "All" in top search section`);
+    }*/
+    
+    
+    //bz.ui.putCategoriesToSession('jobs');
+    
+    
     //Session.set('activeTemplate', 'singleSearchTemplate');
     Session.set('activeTemplate', null);
+    
   }
 });

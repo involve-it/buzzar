@@ -112,4 +112,8 @@ bz.help.safeCode(function () {
     }
     return ret;
   };
+  Router.getCurrentRouteName = function(){
+    var cur = Router.current();
+    return cur && cur.route && cur.route.getName();
+  }
 });

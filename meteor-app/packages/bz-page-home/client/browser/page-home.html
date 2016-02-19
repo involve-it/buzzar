@@ -1,21 +1,33 @@
 <template name="pageHome">
+    
+    {{> pagesTemplateHeaderContent}}
 
+    <!-- search result on the home page -->
+    <div class="container-background">
+        <div style="border-radius: 2px; border-top:1px solid #fff; background-color: #FFFFFF; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); ">
+            <!--{{> searchResults }}-->
+            {{> bzAroundYou}}
+            {{> bzHomePopular}}
+            {{ bzRenderTemplateI18n "bzAboutUsShort" }}
+        </div>
+    </div>
+
+</template>
+
+
+<template name="pagesTemplateHeaderContent">
     <div class="bz-slideshow">
         <div class="bz-slideshow-background">
             <div class="bz-slideshow-items">
                 <ul class="bz-slide-show-list none-list">
                     <li class="show-for-small-only">
-                        <div class="bz-cover-background bz-cover-position" style="background-image: url('/img/content/bg/state-city.jpg')"></div>
+                        <div class="bz-cover-background bz-cover-position" style="background-image: url({{pageOptions.backgroundMobile}})"></div>
                     </li>
                     <li class="show-for-medium-up">
-                        <div class="bz-cover-background bz-cover-position" style="background-image: url('/img/content/bg/fly-balls.jpg')"></div>
+                        <div class="bz-cover-background bz-cover-position" style="background-image: url({{pageOptions.backgroundDesktop}})"></div>
                     </li>
                 </ul>
             </div>
-            <!--<video preload="auto" loop="loop" muted id="bz-bg-video" class="js-header-bg-video" poster="https://i.ytimg.com/vi/AUXzW7k3eeo/maxresdefault.jpg">
-                <source src="/video/firebugs.mp4" type="video/mp4"/>
-                &lt;!&ndash;<source src="https://a0.muscache.com/airbnb/static/Seoul-P1-4.mp4" type="video/mp4"/>&ndash;&gt;
-            </video>-->
         </div>
 
         <div class="bz-slideshow-content">
@@ -48,51 +60,22 @@
                 <div class="bz-around-small">
                     {{> aroundYouSmall}}
                 </div>
-                
+
             </div>
         </div>
-
     </div>
-
-
-  <!--need delete-->
-  <!--  <div class="bz-container nav-bg-transparent">
-        <div class="bz-header">
-            {{> bzNavBar}}
-            <div class="bz-header-top">
-                <h1 class="bz-header-title">{{ t9n 'headliner' }} </h1>
-            </div>
     
-            <div class="bz-search">
-                <div class="box-search">
-                  <div class="bz-category-buttons">
-                    {{> categoryListButtons}}
-                  </div>
-                  <form class="search" id="bz-search" role="search" method="post" action="#">
-                    <i class="icon ion-search placeholder-icon"></i>
-        
-                    {{> bzControlSearch }}
-        
-                  </form>
-                    
-                </div>
-          </div>
-        </div>
-    </div>-->
-
     <!-- search result on the home page -->
-  <div class="container-background">
-    <!--TODO: delete after test-->
+  <!--<div class="container-background">
     <div style="border-radius: 2px; border-top:1px solid #fff; background-color: #FFFFFF; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); ">
         {{> searchResults }}
-
-        {{> aroundYou}}
+        {{> bzAroundYou}}
 
         {{> bzHomePopular}}
 
         {{ bzRenderTemplateI18n "bzAboutUsShort" }}
     </div>
-  </div>
+  </div>-->
 
 </template>
 
@@ -129,5 +112,28 @@
   </div>
 </template>
 
-
+<!--need delete inner home-->
+<!--  <div class="bz-container nav-bg-transparent">
+        <div class="bz-header">
+            {{> bzNavBar}}
+            <div class="bz-header-top">
+                <h1 class="bz-header-title">{{ t9n 'headliner' }} </h1>
+            </div>
+    
+            <div class="bz-search">
+                <div class="box-search">
+                  <div class="bz-category-buttons">
+                    {{> categoryListButtons}}
+                  </div>
+                  <form class="search" id="bz-search" role="search" method="post" action="#">
+                    <i class="icon ion-search placeholder-icon"></i>
+        
+                    {{> bzControlSearch }}
+        
+                  </form>
+                    
+                </div>
+          </div>
+        </div>
+    </div>-->
 

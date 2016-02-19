@@ -23,34 +23,39 @@
         <a href="/user/{{_id}}">
           {{> avatarThumbnail image=profile.image }}
         </a>
-        {{> bzAvatarUserStatus}}
+        {{> bzAvatarUserStatus}}`
       </div>
 
-      <div class="bz-user-date">
-        <div class="bz-user-date-status">
-          <a href="/user/{{_id}}">
-            <div class="bz-user-date-username">{{ username }}</div>
-          </a>
-        </div>
-        <!--<div class="">
-            {{#if isOnline }}
-              [[Online]]
-            {{else }}
-              [[offline]]
+        <div class="bz-user-date">
+            <div class="bz-user-date-status">
+                <a href="/user/{{_id}}">
+                    <div class="bz-user-date-username">{{ username }}</div>
+                </a>
+            
+            {{#if belongsToCurrentUser }}
+                <a class="bz-post-action-link" href="/posts/{{ getCurrentPostId }}/edit" title="Edit">
+                    <i class="fa fa-pencil-square"></i>
+                </a>
             {{/if}}
-          </div>-->
-        <!--<div class="bz-rating"></div>-->
-      </div>
+            
+            </div>
+            
+            <!--<div class="">
+            {{#if isOnline }}
+            [[Online]]
+            {{else }}
+            [[offline]]
+            {{/if}}
+            </div>-->
+            <!--<div class="bz-rating"></div>-->
+        </div>
 
       <div class="bz-send-message">
         <button class="js-send-message-btn bz-small">{{ t9n 'SEND_MESSAGE' }}</button>
       </div>
 
       {{> bzSocialButtons }}
-      {{#if belongsToCurrentUser }}
-        <a class="bz-post-action-link" href="/posts/{{ getCurrentPostId }}/edit" title="Edit"><span><i
-          class="fa fa-pencil-square-o"></i></span></a>
-      {{/if}}
+        
     </div>
 
   </div>

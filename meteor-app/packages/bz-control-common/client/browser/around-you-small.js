@@ -19,25 +19,39 @@ function getLatLngBox (lat, lng, radius){
 Template.aroundYouSmall.helpers({
   getAroundItems: function() {
     var ret, loc = Session.get('bz.control.search.location'),
+      distSession = Session.get('bz.control.search.distance') || [],
       activeCats = Session.get('bz.control.category-list.activeCategories') || [];
-
-    
-    
-    // add all-posts reactivity:
-    bz.cols.posts.find({});
-    if (loc && loc.coords) {
-      ret = bz.bus.search.doSearchClient({
-        loc: loc,
-        activeCats: activeCats,
-        radius: bz.const.search.AROUND_YOU_RADIUS
-      }, {
-        limit: 20,
-        //limit: bz.const.search.AROUND_YOU_LIMIT,
-        //sort: {'stats.seenAll': -1, }
-        //sort: { _getDistanceToCurrentLocation(): -1 }
-      });
+    if(['home', 'jobs', 'training', 'connect', 'trade', 'housing', 'events', 'services', 'help'].indexOf(Router.getCurrentRouteName()) > -1) {
+      // add all-posts reactivity:
+      bz.cols.posts.find({});
+      if (loc && loc.coords) {
+        ret = bz.bus.search.doSearchClient({
+          loc: loc,
+          activeCats: activeCats,
+          radius: distSession,
+          $where: function() {
+            //debugger;
+            //return this._hasLivePresence();
+            return !!bz.help.posts.hasLivePresence.apply(this);
+          },
+          /*query: {
+            'status.visible': {$exists: true}
+          }*/
+          //radius: bz.const.search.AROUND_YOU_RADIUS
+        }, {
+          //limit: 20,
+          limit: bz.const.search.AROUND_YOU_LIMIT,
+          //sort: {'stats.seenAll': -1, }
+        }).fetch();
+        ret = _(ret).chain().sortBy(function(item){
+          return item.stats && item.stats.seenTotal  || 0;
+        }).reverse().sortBy(function(doc) {
+          return doc._getDistanceToCurrentLocationNumber();
+        }).value();
+      }
     }
-/*debugger;*/
+    //console.log('Around you gallery posts amount: ' + ret.length);
+    /*debugger;*/
     return ret;
   }
 });
@@ -79,7 +93,7 @@ Template.bzAroundYouSmallItem.helpers({
     var ret, phId = this.details.photos && this.details.photos[0];
     if(phId){
       ret = bz.cols.images.findOne(phId);
-      ret = ret && ret.data;
+      ret = ret && ret._getThumbnailUrl();
     }
     ret = ret || '/img/content/no-photo-400x300.png';
     return ret;

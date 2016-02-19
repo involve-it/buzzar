@@ -8,10 +8,17 @@ Router.map(function () {
     template: 'pageTrainings',
     layoutTemplate: 'mainLayoutHome',
     fastRender: true,
+    data: function() {
+      return {
+        pageOptions: {
+          backgroundMobile: '/img/content/bg/state-city.jpg',
+          backgroundDesktop:  '/img/content/bg/fly-balls.jpg'
+        }
+      }
+    },
     onBeforeAction: function () {
       var qs = this.params.query;
       console.log(qs);
-
       //setSearchTextFromQs(qs);
       //setSearchLocationFromQs(qs);
       setPackageLanguage();

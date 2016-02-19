@@ -49,6 +49,7 @@ Package.onUse(function (api) {
     'client/lib/vendor/toast.js',
 
     'client/lib/01_inits/accounts.js',
+    'client/lib/01_inits/bz-js.js',
     'client/lib/01_inits/bz-ui.js',
     'client/lib/01_inits/location.js',
     'client/lib/01_inits/fb.js',
@@ -65,9 +66,7 @@ Package.onUse(function (api) {
    'client/lib/vendor/uikit/css/uikit.css',
    'client/lib/vendor/uikit/css/components/slider.css',
    'client/lib/vendor/uikit/js/uikit.js',
-   'client/lib/vendor/uikit/js/components/slider.js',
-      
-   'client/lib/vendor/masonry/masonry.pkgd.js'   
+   'client/lib/vendor/uikit/js/components/slider.js'
    ], 'client');
   
   /*api.addAssets([

@@ -124,8 +124,42 @@ input.js-nearby-places:focus {
     
     img[src*='/'] {
       .border-radius(2px);
-      height: 250px;
+      height: 185px;
       width: auto;
+    }
+  }
+  
+  .bz-choose-image-user-images-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    @media only screen and (min-width: 40.063em) {
+      max-height: 300px;
+    }
+    
+    
+    ul {
+      list-style: none;
+      margin: 0;
+      
+      li {
+        padding: 8px 0;
+        margin-right: 16px;
+        
+        a {
+          display: block;
+          color: @text-color-label;
+        }
+        &:first-child {
+          padding-top: 0;
+        }
+        &:last-child {
+          padding-bottom: 0;
+        }
+        &:nth-child(even) {
+          background-color: rgba(0,0,0, .02);
+        }
+      }
     }
   }
   
@@ -134,6 +168,7 @@ input.js-nearby-places:focus {
     
     &.bz-button-done {
       float: right;
+      margin-left: 16px;
       text-transform: uppercase;
     }
   }
@@ -144,6 +179,8 @@ a, .uk-link, a:hover, .uk-link:hover {
 }
 
 .margin-left {margin-left: 20px;}
+
+.margin-bottom-20px {margin-bottom: 20px}
 
 .margin-top-20px {margin-top: 20px}
 
@@ -226,6 +263,7 @@ h2.title {
 
 #bz-bottom-a {
   margin: 20px 0;
+  clear: both;
 }
 
 /*
@@ -336,10 +374,11 @@ h2.title {
 * if do not message 
 **/
 
-.bz-wrapper-no-message {
+.bz-wrapper-no-message,
+.not-found-items {
   display: block; /*If don't contacts*/
   height: 100%;
-  margin: 0 0 15px 0;
+  margin: 15px;
   text-align: center;
   .display-flex-box();
   .align-items(center);
@@ -355,21 +394,21 @@ h2.title {
         color: rgba(30,188,210, .5);
       }
     }
+  }
+  
+  .title-message {
+    color: @h-title-color;
+    font-family: @roboto-font-family;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 28px;
+    margin-bottom: 0.5em;
+  }
 
-    .title-message {
-      color: @h-title-color;
-      font-family: @roboto-font-family;
-      font-size: 24px;
-      font-weight: 300;
-      line-height: 28px;
-      margin-bottom: 0.5em;
-    }
-
-    .subtitle-message {
-      color: #aaaaaa;
-      font-size: 14px;
-      line-height: 20px;
-    }
+  .subtitle-message {
+    color: #aaaaaa;
+    font-size: 14px;
+    line-height: 20px;
   }
 } /* END */
 

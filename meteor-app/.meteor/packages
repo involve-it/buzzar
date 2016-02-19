@@ -29,7 +29,6 @@ raix:push
 service-configuration
 zimme:active-route
 arutune:bz-main
-arutune:bz-page-home
 less
 matb33:collection-hooks
 arutune:bz-api
@@ -45,8 +44,17 @@ accounts-password
 meteorhacks:fast-render
 mrt:cheerio
 edgee:slingshot
+
+arutune:bz-page-home
 arutune:bz-page-jobs
 arutune:bz-page-training
+arutune:bz-page-connect
+arutune:bz-page-trade
+arutune:bz-page-housing
+arutune:bz-page-events
+arutune:bz-page-services
+arutune:bz-page-help
+
 zeroasterisk:cordova-geolocation-background
 meteorhacks:kadira
 meteorhacks:zones

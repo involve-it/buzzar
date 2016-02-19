@@ -8,10 +8,19 @@ Router.map(function () {
     template: 'pageJobs',
     layoutTemplate: 'mainLayoutHome',
     fastRender: true,
+    data: function() {
+      var path = this.route.path();
+      console.log(path);
+      return {
+        pageOptions: {
+          backgroundMobile: '/img/content/bg/state-city.jpg',
+          backgroundDesktop:  '/img/content/bg/fly-balls.jpg'
+        }
+      }
+    },
     onBeforeAction: function () {
-      var qs = this.params.query;
-      console.log(qs);
-
+      //var qs = this.params.query;
+      //console.log(qs);
       //setSearchTextFromQs(qs);
       //setSearchLocationFromQs(qs);
       setPackageLanguage();

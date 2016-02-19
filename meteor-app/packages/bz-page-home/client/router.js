@@ -7,9 +7,20 @@ Router.map(function () {
     path: '/home',
     template: 'pageHome',
     layoutTemplate: 'mainLayoutHome',
-    controller: 'requireLoginController',
+    controller: 'baseController',
     //fastRender: true,
+    data: function() {
+      var path = this.route.path();
+      console.log(path);
+      return {
+        pageOptions: {
+          backgroundMobile: '/img/content/bg/state-city.jpg',
+          backgroundDesktop:  '/img/content/bg/fly-balls.jpg'
+        }
+      }
+    },
     onBeforeAction: function () {
+      //debugger;
       var qs = this.params.query;
       console.log(qs);
       setSearchTextFromQs(qs);
@@ -17,8 +28,10 @@ Router.map(function () {
       setPackageLanguage();
       this.next();
     }
-  })
+  });
+  
 });
+
 
 function setPackageLanguage(){
   var enAll = _.extend(bz.language.i18n.en, enI18n);

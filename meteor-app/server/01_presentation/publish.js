@@ -25,7 +25,12 @@ Meteor.publish('users-one', function (userIds) {
 });
 
 Meteor.publish('posts-all', function () {
-  return bz.cols.posts.find();
+  return bz.cols.posts.find({
+    'status.visible': {$ne: null}
+    //'status.visible': {$exists: true}
+  }, {
+    fields: {}
+  });
 });
 Meteor.publish('posts-my', function () {
   return bz.cols.posts.find({

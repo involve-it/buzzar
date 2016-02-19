@@ -117,7 +117,7 @@ Meteor.methods({
   sendMessageContactUs: function(msg, userId){
     // send email here:
     var emailOptions = {
-      from: 'info@buzzar.io',
+      from: 'info@shiners.ru',
       to: 'arutune@gmail.com',
       subject: 'from Buzzar.org: feedback from Contact Us page',
       text: 'Message: " ' + msg + '", please contact this user: ' +  userId
