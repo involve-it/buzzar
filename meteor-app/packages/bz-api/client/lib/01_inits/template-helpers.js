@@ -11,8 +11,8 @@ if(typeof Template !== 'undefined') {
     var ret, post = postIn || this,
       x, y, xcur, ycur, curLoc, dist;
     if (post.details && post.details.locations && post.details.locations[0] && post.details.locations[0].coords) {
-      x = post.details.locations[0].coords.lat;
-      y = post.details.locations[0].coords.lng;
+      x = post.details.locations[0].obscuredCoords.lat;
+      y = post.details.locations[0].obscuredCoords.lng;
       if (curLoc = Session.get('currentLocation')) {
         xcur = curLoc.latitude;
         ycur = curLoc.longitude;

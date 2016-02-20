@@ -66,8 +66,8 @@ bz.bus.search.doSearchClient = (params, options)=> {
     if (box) {
       dbQuery['details.locations'] = {
         $elemMatch: {
-          'coords.lat': {$gte: box.lat1, $lte: box.lat2},
-          'coords.lng': {$gte: box.lng1, $lte: box.lng2}
+          'obscuredCoords.lat': {$gte: box.lat1, $lte: box.lat2},
+          'obscuredCoords.lng': {$gte: box.lng1, $lte: box.lng2}
         }
       }
     }
