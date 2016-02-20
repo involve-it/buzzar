@@ -66,8 +66,8 @@ var module = {
     var defColor = 'FE7569';
     _.each(collection, function (item) {
       if (item && item.coords) {
-        var latitude = item.coords.lat,
-            longitude = item.coords.lng,
+        var latitude = item.coords.lat && item.obscuredCoords.lat,
+            longitude = item.coords.lng && item.obscuredCoords.lng,
             infoWindow = new google.maps.InfoWindow({
               content: '<h4>' + item.title + '</h4>'
             }),
