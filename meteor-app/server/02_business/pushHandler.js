@@ -68,6 +68,36 @@ Meteor.startup(function(){
       var userTokens = bz.cols.userTokens.findOne({userId: userId});
       var bulkToken = bz.cols.bulkTokens.findOne({deviceId: deviceId});
       if (bulkToken) {
+        var existingUserToken, tokens = [];
+        if (bulkToken.token.apn) {
+          existingUserToken = bz.cols.userTokens.findOne({'tokens.token.apn': bulkToken.token.apn});
+          _.each(existingUserToken.tokens, function(t){
+            if (t.gcm !== bulkToken.token.gcm){
+              tokens.push(t);
+            }
+          });
+          existingUserToken.tokens = tokens;
+          bz.cols.userTokens.update({_id: existingUserToken._id}, {
+            $set:{
+              tokens: tokens
+            }
+          });
+        } else if (bulkToken.token.gcm) {
+          existingUserToken = bz.cols.userTokens.findOne({'tokens.token.gcm': bulkToken.token.gcm});
+          _.each(existingUserToken.tokens, function(t){
+            if (t.gcm !== bulkToken.token.gcm){
+              tokens.push(t);
+            }
+          });
+          existingUserToken.tokens = tokens;
+          bz.cols.userTokens.update({_id: existingUserToken._id}, {
+            $set:{
+              tokens: tokens
+            }
+          });
+        }
+
+
         if (userTokens) {
           var exists = false;
           _.each(userTokens.tokens, function(token){

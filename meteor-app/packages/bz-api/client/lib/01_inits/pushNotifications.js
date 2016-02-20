@@ -10,7 +10,9 @@ if (Meteor.isCordova){
     });
 
     Push.addListener('token', function(token){
-      Meteor.call('registerPushToken', device.uuid, token, Meteor.userId());
+      setTimeout(function(){
+        Meteor.call('registerPushToken', device.uuid, token, Meteor.userId());
+      }, 1000);
     });
 
     Push.addListener('message', function(notification){

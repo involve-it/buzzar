@@ -100,8 +100,11 @@ Meteor.methods({
   reportLocation: function(report){
     return bz.bus.proximityHandler.reportLocation(report);
   },
-  logOut: function(userId){
+  logOut: function(userId, deviceId){
     if (userId) {
+      if (deviceId){
+        bz.bus.pushHandler.unassignTokenFromUser(userId, deviceId);
+      }
       return bz.bus.proximityHandler.processUserDisconnect(userId);
     }
   },
@@ -109,10 +112,10 @@ Meteor.methods({
     bz.bus.pushHandler.registerToken(deviceId, token, userId);
   },
   assignTokenToUser: function(deviceId, userId){
-    bz.bus.pushHandler.assignTokenToUser(userId, deviceId)
+    bz.bus.pushHandler.assignTokenToUser(userId, deviceId);
   },
   unassignTokenFromUser: function(deviceId, userId){
-    bz.bus.pushHandler.unassignTokenFromUser(userId, deviceId)
+    bz.bus.pushHandler.unassignTokenFromUser(userId, deviceId);
   },
   sendMessageContactUs: function(msg, userId){
     // send email here:

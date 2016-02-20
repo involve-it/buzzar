@@ -84,7 +84,11 @@ Router.route('entrySignOut', {
       var userId = Meteor.userId();
       Meteor.logout();
       Router.go(AccountsEntry.settings.homeRoute);
-      Meteor.call('logOut', userId, function () {
+      var deviceId;
+      if (Meteor.isCordova){
+        deviceId = device.uuid;
+      }
+      Meteor.call('logOut', userId, deviceId, function () {
       });
     }
     this.next();
