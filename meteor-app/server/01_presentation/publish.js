@@ -29,7 +29,7 @@ Meteor.publish('posts-all', function () {
     'status.visible': {$ne: null}
     //'status.visible': {$exists: true}
   }, {
-    fields: {}
+    fields: {'details.locations.coords':0}
   });
 });
 Meteor.publish('posts-my', function () {
