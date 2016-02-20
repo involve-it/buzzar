@@ -111,6 +111,7 @@ Template.postDetailsDetailsCommon.helpers({
 });
 //$('.backdrop.visible.active .popup .popup-title').text().toLowerCase()
 
+
 Template.postDetailsPhoto.onCreated(function () {
 
 });
