@@ -38,6 +38,13 @@
       padding: 0;
       font-size: 18px;
       color: lighten(@text-color-label, 10%);
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      max-width: 98%;
+      display: block;
+      white-space: nowrap;
     }
     
     
@@ -208,6 +215,9 @@
       
       .bz-post-description {
         color: rgb(63, 68, 82);
+        width: 100%;
+        word-wrap: break-word;
+        overflow: hidden;
       }
     }
     
