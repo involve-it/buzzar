@@ -21,12 +21,12 @@ var clicked = false, clickX;
       var hasTarget = v.$('.bzSearchTmpl-common').parent('.bz-filters-box');
       var filterName = Router.current().route.getName();
       /*!hasTarget.hasClass('bz-filters-box')*/
-      if (!hasTarget.hasClass('bz-filters-box')) {
-        setSearchFiltersTemplate(false, this);
-      }
+      
 
-      if (filterName !== 'home') {
-        setSearchFiltersTemplate(filterName.toCapitalCase(), this);
+      if (filterName === 'home') {
+        setSearchFiltersTemplate(false, v);
+      } else if(!hasTarget.hasClass('bz-filters-box')) {
+        setSearchFiltersTemplate(filterName.toCapitalCase(), v);
       }
 
       //v.$('.bz-search-box-filter').toggleClass('filters-closed');
@@ -60,7 +60,7 @@ Template.searchFiltersJobs.onRendered(function () {
 
 /* Close the window filters on action click somewhere on the page */
 Template.bzNewControlSearch.onRendered(function () {
-  $('body').bind('click', function (e) {
+  $('body').on('click', function (e) {
     var target = e.target;
     if (!$(target).is('.bz-control--search') && !$(target).parents().is('.bz-control--search')) {
       if (!$('.bz-search-box-filter').hasClass('filters-closed')) {
@@ -362,16 +362,20 @@ Template.searchCommonFilters.events({
 function setSearchFiltersTemplate(name, v) {
   var template;
   $('.bz-filters-box').empty();
-
+  
+  
   if (!name) {
     template = Template['searchCommonFilters'];
   } else if (name) {
     template = Template['searchFilters' + name];
   }
 
+  
   if (v && template) {
     Blaze.renderWithData(template, v.data, $('.bz-filters-box')[0]);
-
+    $(document).foundation('reflow');
+  } else {
+    Blaze.renderWithData(Template['searchCommonFilters'], v.data, $('.bz-filters-box')[0]);
     $(document).foundation('reflow');
   }
 }
