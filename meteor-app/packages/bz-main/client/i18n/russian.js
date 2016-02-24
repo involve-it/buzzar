@@ -6,6 +6,7 @@ var ru;
 
 ru = {
   //Global
+  ADD: 'Добавить',
   APP_NAME: 'Светлячки',
   CONTENT_READ_MORE_TITLE: 'Подробнее',
   CONTACT_US:'Свяжитесь с нами',
@@ -19,6 +20,13 @@ ru = {
   SUBMIT: 'Отправить',
   CANCEL: 'Отмена',
   OR:'ИЛИ',
+  READ_MORE:'Подробнее',
+  NEW_POST: 'Новый пост',
+  CREATE_POST: 'Создать пост',
+
+  //No posts around
+  NO_ITEMS_AROUND_YOU: 'У вас нету постов рядом',
+  YOU_CAN_CREATE_POST: 'Вы могли бы добавить объявление, чтобы другие пользователи могли им воспользоваться. Для этого нажмите на кнопку ниже',
 
   //Buttons
   BUTTON_CHECK: 'Проверить',
@@ -94,7 +102,6 @@ ru = {
 
   //Another user profile details
   PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Личные данные',
-  PROFILE_ANOTHER_USER_ADDITIONAL_LINKS: 'Внешние ссылки',
 
 
   //Profile - edit

@@ -6,6 +6,7 @@ var en;
 
 en = {
   //Global
+  ADD: 'Add',
   APP_NAME: 'Shiners',
   CONTENT_READ_MORE_TITLE: 'Read more...',
   CONTACT_US:'Contact us',
@@ -21,6 +22,14 @@ en = {
   OR:'OR',
   //Buttons
   BUTTON_CHECK: 'Check',
+  READ_MORE:'Read more',
+  NEW_POST: 'New post',
+  CREATE_POST: 'Create Post',
+
+  //No posts around
+  NO_ITEMS_AROUND_YOU: 'You have no items around',
+  YOU_CAN_CREATE_POST: 'You could add an advertisement, so that other users can use it. To do this, click on the button below',
+
   
   //Menu
   MENU_HOME_PAGE: 'Home',
@@ -95,7 +104,6 @@ en = {
 
   //Another user profile details
   PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Personal data',
-  PROFILE_ANOTHER_USER_ADDITIONAL_LINKS: 'External link',
 
   //Profile - edit
   PROFILE_EDIT_USER_AVATAR: 'Edit user avatar',

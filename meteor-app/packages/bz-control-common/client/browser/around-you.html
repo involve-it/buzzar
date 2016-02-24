@@ -46,7 +46,7 @@
               {{{details.description}}}
             </p>
             <div class="bz-text-align-right">
-              <a class="bz-read-more" href="/post/{{_id}}">Read more</a>
+              <a class="bz-read-more" href="/post/{{_id}}">{{ t9n 'READ_MORE'}}</a>
             </div>
             {{> postProgressBar}}
           </div>
@@ -87,7 +87,7 @@
               {{{details.description}}}
             </p>
             <div class="bz-text-align-right">
-              <a class="bz-read-more" href="/post/{{_id}}">Read more</a>
+              <a class="bz-read-more" href="/post/{{_id}}">{{ t9n 'READ_MORE'}}</a>
             </div>
             {{> postProgressBar}}
           </div>
@@ -119,11 +119,11 @@
 <template name="notFoundAroundItems">
     <div class="not-found-items">
         <div class="bz-flex-box bz-margin">
-            <div class="title-message">You have no items around</div>
-            <div class="subtitle-message margin-bottom-20px">Вы могли бы добавить объявление, чтобы другие пользователи могли им воспользоваться. Для этого нажмите на кнопку ниже</div>
+            <div class="title-message">{{ t9n 'NO_ITEMS_AROUND_YOU'}}</div>
+            <div class="subtitle-message margin-bottom-20px">{{ t9n 'YOU_CAN_CREATE_POST'}}</div>
     
             <a href="/posts/new?type=ad" class="button alert bz-margin-zero">
-                <div class="labelText bz-flex bz-flex-middle"><i class="fa fa-plus show-for-small-only"></i> <span class="show-for-medium-up">Создать</span></div>
+                <div class="labelText bz-flex bz-flex-middle"><i class="fa fa-plus show-for-small-only"></i> <span class="show-for-medium-up">{{ t9n 'MENU_BUTTON_NEW_POST'}}</span></div>
             </a>
         </div>
     </div>
