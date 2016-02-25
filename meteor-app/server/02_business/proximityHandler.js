@@ -106,6 +106,13 @@ bz.bus.proximityHandler = {
             });
         }
     },
+    getObscuredCoords: function(lat, lng, rad){
+        var box= bz.bus.proximityHandler.getLatLngBox(lat, lng, rad);
+        return {
+            lat: Math.random()*(box.lat2-box.lat1)+box.lat1,
+            lng:  Math.random()*(box.lng2-box.lng1)+box.lng1
+        };
+    },
     processLocationReport: function(posts, lat, lng){
         var updated, presences;
         _.each(posts, function(post){
@@ -121,11 +128,7 @@ bz.bus.proximityHandler = {
                                 lng: lng,
                                 timestamp: new Date()
                             };
-                            var box= bz.bus.proximityHandler.getLatLngBox(lat, lng, 0.1);
-                            loc.obscuredCoords={
-                                lat: Math.random()*(box.lat2-box.lat1)+box.lat1,
-                                lng:  Math.random()*(box.lng2-box.lng1)+box.lng1
-                            };
+                            loc.obscuredCoords=bz.bus.proximityHandler.getObscuredCoords(lat, lng, 0.1);
                             updated = true;
                         }
                         presences[bz.const.locations.type.DYNAMIC] = bz.const.posts.status.presence.NEAR;

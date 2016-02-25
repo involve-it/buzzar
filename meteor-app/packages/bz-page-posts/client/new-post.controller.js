@@ -98,11 +98,13 @@ CreateNewPostFromView = function (v) {
     //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
     if (loc1 && location1.isSet) {
       // bz.help.maps.getCurrentLocation(function (loc) {
+      loc1.obscuredCoords=loc1.coords;
       locationsArr.push(loc1);
       //locDef.resolve();
       //});
     }
     if (loc2 && location2.isSet) {
+      loc2.obscuredCoords=loc2.coords;
       locationsArr.push(loc2);
       //locDef.resolve();
     }
