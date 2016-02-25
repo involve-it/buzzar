@@ -42,6 +42,13 @@ Meteor.methods({
           postObject.presences[id] = bz.const.posts.status.presence.NEAR;
         });
       }*/
+      if (postObject.details && postObject.details.locations) {
+        _.each(postObject.details.locations, function(location){
+          if (location.placeType === bz.const.locations.type.DYNAMIC){
+            location.obscuredCoords = bz.bus.proximityHandler.getObscuredCoords(location.coords.lat, location.coords.lng, 0.1);
+          }
+        });
+      }
       var post = bz.cols.posts.insert(postObject);
       if (currentLocation){
         bz.bus.proximityHandler.reportLocation({
