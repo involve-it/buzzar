@@ -22,3 +22,17 @@ bz.cols.postTypes.insert({
 
 
 bz.cols.nearbyPosts = new Mongo.Collection('nearbyPosts');
+
+Meteor.publish('posts-all', function () {
+  return bz.cols.posts.find({
+    'status.visible': {$ne: null}
+    //'status.visible': {$exists: true}
+  }, {
+    fields: {'details.locations.coords':0}
+  });
+});
+Meteor.publish('posts-my', function () {
+  return bz.cols.posts.find({
+    userId: this.userId
+  });
+});
