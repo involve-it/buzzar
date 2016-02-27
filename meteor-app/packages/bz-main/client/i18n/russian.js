@@ -23,6 +23,7 @@ ru = {
   READ_MORE:'Подробнее',
   NEW_POST: 'Новый пост',
   CREATE_POST: 'Создать пост',
+  CHECK_ALL: 'Выбрать все',
 
   //No posts around
   NO_ITEMS_AROUND_YOU: 'У вас нету постов рядом',

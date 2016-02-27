@@ -81,3 +81,27 @@ Template.postDetailsJobs.events({
 });
 
 Template.postDetailsJobs.helpers({});
+
+
+
+/* tmpl TRAININGS */
+Template.postDetailsTrainings.events({
+  'click #select-trainings-section-learning': function(e, v) {
+    var $target = $(e.target);
+    
+    if($target.closest('li').data('value')) {
+      $target.closest('#select-trainings-section-learning').children('.disabled').remove();
+      v.$('#select-trainings-search-category').closest('.custom-dropdown-area').removeClass('disabled');
+    }
+    
+  }
+});
+
+
+Template.postDetailsTrainings.onRendered(function() {
+  $('.bz-ui-dropdown').foundationSelect();
+  
+  $('#select-trainings-search-category').closest('.custom-dropdown-area').addClass('disabled');
+});
+
+Template.postDetailsTrainings.helpers({});

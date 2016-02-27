@@ -153,6 +153,10 @@ CreateNewPostFromView = function (v) {
         jobsType: GetValueJobsMultiData(v, '#select-jobs-type'),
         payMethod: GetValuePayMethod(v, '.bz-button-group')
       },
+      trainingsDetails: {
+        sectionLearning: GetValueJobsSingleData(v, '#select-trainings-section-learning'),
+        typeCategory: GetValueJobsSingleData(v, '#select-trainings-search-category')
+      },
       status: {
         visible: bz.const.posts.status.visibility.VISIBLE
       },

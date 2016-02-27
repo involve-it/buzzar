@@ -34,7 +34,7 @@ Meteor.startup(function () {
     i18n: {
       ru: {
         name: 'тренинги',
-        fullName: 'тренинги - платные, бесплатные'
+        fullName: 'Тренинги - платные, бесплатные'
       }
     },
     hasRoute: true // use this to redirect to same route on click
@@ -65,7 +65,7 @@ Meteor.startup(function () {
     i18n: {
       ru: {
         name: 'торг',
-        fullName: 'покупка и продажа'
+        fullName: 'Покупка и продажа'
       }
     }
   });
@@ -84,7 +84,7 @@ Meteor.startup(function () {
       },
       ru: {
         name: 'жилье',
-        fullName: 'рынок жилья - покупка, продажа, съем'
+        fullName: 'Рынок жилья - покупка, продажа, съем'
       }
     }
   });
@@ -98,7 +98,7 @@ Meteor.startup(function () {
     i18n: {
       ru: {
         name: 'события',
-        fullName: 'местные события'
+        fullName: 'Местные события'
       }
     }
   });
@@ -112,7 +112,7 @@ Meteor.startup(function () {
     i18n: {
       ru: {
         name: 'услуги',
-        fullName: 'предложения - платные, бесплатные'
+        fullName: 'Предложения - платные, бесплатные'
       }
     }
   });

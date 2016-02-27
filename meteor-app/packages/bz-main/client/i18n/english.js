@@ -25,6 +25,7 @@ en = {
   READ_MORE:'Read more',
   NEW_POST: 'New post',
   CREATE_POST: 'Create Post',
+  CHECK_ALL: 'All',
 
   //No posts around
   NO_ITEMS_AROUND_YOU: 'You have no items around',

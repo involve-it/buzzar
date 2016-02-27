@@ -1297,6 +1297,63 @@ nav.left-off-canvas-menu {
 
 
 
+.bz-checkboxes-filters {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 7px 0;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.bz-checkbox {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 6px 6px 6px 45px;
+  height: 32px;
+  line-height: 22px;
+  .border-radius(2px);
+  color: rgba(51,51,51, 1);
+  vertical-align: top;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  font-size: 12px;
+  
+  &.mobile {
+    padding: 6px 6px 6px 50px;
+    width: 50%;
+  }
+
+  &:nth-child(even) {
+    left: 6px;
+  }
+  
+  &:hover {
+    background-color: rgba(0,0,0, .05);
+    .border-radius(2px);
+  }
+  
+  .bz-checkbox-wrapper {
+    position: absolute;
+    left: 6px;
+    top: 0;
+    width: 42px;
+    height: 32px;
+    
+  }
+}
 
 
 

@@ -79,7 +79,7 @@
 
 <template name="postDetailsJobs">
 <form data-abide>
-    <div class="bz-post-details-jobs clearfix padding-top bz-form-group">
+    <div class="bz-post-details-jobs bz-dropdown-section-ad clearfix padding-top bz-form-group">
         <div class="clearfix bz-form-group">
             <!--1-->
             <div class="small-12 medium-3 input-label left">&nbsp;</div>
@@ -156,8 +156,8 @@
                     <select id="jobs-search-category" class="bz-ui-dropdown" data-prompt="{{ t9n 'SELECT_ONE_OPTION' }}">
                         <option value="looking-for-job">{{ t9n 'SELECT_ONE_OPTION_WORK' }}</option>
                         <option value="jobs-offered">{{ t9n 'SELECT_ONE_OPTION_JOBS' }}</option>
-                        <option value="looking-for-training">{{ t9n 'SELECT_ONE_OPTION_LEARNING' }}</option>
-                        <option value="training-offer">{{ t9n 'SELECT_ONE_OPTION_TRAINING' }}</option>
+                        <!--<option value="looking-for-training">{{ t9n 'SELECT_ONE_OPTION_LEARNING' }}</option>
+                        <option value="training-offer">{{ t9n 'SELECT_ONE_OPTION_TRAINING' }}</option>-->
                     </select>
                 </div>
             </div>
@@ -247,6 +247,7 @@
     </label>
   </div>
 </template>
+
 <template name="postDetailsServices">
   <div class="clearfix padding-top">
     <label class="item item-input item-select">
@@ -262,19 +263,36 @@
 </template>
 
 <template name="postDetailsTrainings">
-  <div class="clearfix padding-top">
-    <label class="item item-input item-select">
-      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
-      <div class="medium-5 large-7 left">
-        <select class="js-housing-type-select">
-          <option value="roommates">{{ t9n 'NEW_POST_ROOMMATES' }}</option>
-          <option value="rent">{{ t9n 'NEW_POST_RENTING' }}</option>
-          <option value="rentOut">{{ t9n 'NEW_POST_RENTING_OUT' }}</option>
-          <option value="buy">{{ t9n 'NEW_POST_BUYING_A_HOUSE' }}</option>
-          <option value="sell">{{ t9n 'NEW_POST_SELLING_A_HOUSE' }}</option>
-        </select>
-      </div>
-    </label>
-  </div>
+    <div class="bz-post-details-trainings bz-dropdown-section-ad">
+        <!--1-->
+        <div class="clearfix bz-form-group">
+            <div class="item item-input">
+                <div class="small-12 medium-3 input-label left">{{ t9n 'SECTION_LEARNING' }}</div>
+                <div class="small-12 medium-9 large-9 left">
+                    <select id="trainings-section-learning" class="bz-ui-dropdown" data-prompt="{{ t9n 'SELECT_ONE_OPTION' }}">
+                        <option value="looking-for-training">{{ t9n 'SELECT_ONE_OPTION_LEARNING' }}</option>
+                        <option value="training-offer">{{ t9n 'SELECT_ONE_OPTION_TRAINING' }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!--2-->
+        <div class="clearfix bz-form-group">
+            <div class="item item-input">
+                <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_CATEGORY_SEARCH' }}</div>
+                <div class="small-12 medium-9 large-9 left">
+                    <select id="trainings-search-category" class="bz-ui-dropdown" data-prompt="{{ t9n 'SELECT_ONE_OPTION' }}">
+                        <option value="training-trainings">{{ t9n 'TRAININGS_SECTION_TRAININGS' }}</option>
+                        <option value="training-master-class">{{ t9n 'TRAININGS_SECTION_MASTER' }}</option>
+                        <option value="training-tutoring">{{ t9n 'TRAININGS_SECTION_TUTORING' }}</option>
+                        <option value="training-courses">{{ t9n 'TRAININGS_SECTION_COURSES' }}</option>
+                        <option value="training-school">{{ t9n 'TRAININGS_SECTION_SCHOOL' }}</option>
+                        <option value="training-high-school">{{ t9n 'TRAININGS_SECTION_HIGH_SCHOOL' }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
