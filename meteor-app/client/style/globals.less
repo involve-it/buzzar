@@ -439,32 +439,41 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
 
 
 
-
-
-
-
-
-
 /*
 * Bz alert message
 */
 
 .custom-alert-class {
   &.s-alert-error {
-    background-image: linear-gradient(rgba(240,65,36,.95), rgba(247,84,57, .95));
+    //background-image: linear-gradient(rgba(240,65,36,.95), rgba(247,84,57, .95));
   }
   
   &.s-alert-success {
-    background-image: linear-gradient(rgba(70,214,130, .95), rgba(70,200,130, .95));
+    //background-image: linear-gradient(rgba(70,214,130, .95), rgba(70,200,130, .95));
   }
 }
 
+.s-alert-error {
+  background-color: #ff3b30;
+}
+
+.s-alert-success {
+  background-color: #4cd964;
+}
+
+.s-alert-info {
+  background-color: #007AFF;
+}
+
+
 .s-alert-box {
+  //background-color: #FF3B30;
   /*background-color: rgba(253,253,253, .98);*/
-  box-shadow: inset 0 0 50px rgba(220,220,220,.1);
+  -webkit-box-shadow: inset 0 0 50px rgba(220,220,220,.1), 2px 2px 2px rgba(0,0,0,0.2);
+  box-shadow: inset 0 0 50px rgba(220,220,220,.1), 2px 2px 2px rgba(0,0,0,0.2);
   width: 350px;
   max-width: 350px;
-  height: 80px;
+  height: auto;
   padding: 0;
   overflow: hidden;
   .border-radius(2px);
@@ -497,7 +506,7 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
 }
 
 .s-alert-box {
-  opacity: .95;
+  opacity: .97;
   
   .bz-msg-reason {
     h5 {
@@ -508,11 +517,14 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
       font-weight: 700;
     }
   }
-  .bz-msg-text {
-    font-size: 18px;
-    line-height: 75px;
-    font-weight: 700;
-    text-align: center;
+  .s-alert-box-inner {
+    p {
+      font-size: 16px;
+      line-height: normal;
+      font-weight: 700;
+      text-align: center;
+      padding: 15px 15px 15px 20px;
+    }
   }
 }
 
@@ -585,9 +597,45 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
   &.without-user {}
 }
 
-
 /* END */
 
+
+/*4,5,6*/
+@media screen and  (max-width: 375px) {
+  
+  .s-alert-box {
+    height: auto;
+    max-width: 300px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+   
+    
+    .s-alert-box-inner {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-align-items: center;
+      align-items: center;
+      
+      p {
+        font-size: 14px;
+        line-height: 18px;
+        text-align: left;
+      }
+    }
+    
+    .s-alert-close {
+      height: 24px;
+      width: 24px;
+    }
+  }
+  
+  .s-alert-top-right {}
+  
+}
 
 
 /*

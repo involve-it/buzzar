@@ -57,10 +57,23 @@ AccountsEntry.entrySignInEvents = {
         } else {
           Router.go(AccountsEntry.settings.dashboardRoute);
         }
+
+        /* for example, see   https://github.com/involve-it/buzzar/issues/94*/
+        /*
+        if (Router.current().route.path() === '/sign-in') {
+          // if we are on the login route, we want to redirect the user
+          return Router.go('home');
+        }
+        */
+        
       }
     });
+    
+    return false;
   }
 };
+
+
 
 Template.entrySignIn.helpers(AccountsEntry.entrySignInHelpers);
 Template.entrySignIn.events(AccountsEntry.entrySignInEvents);
@@ -68,7 +81,7 @@ Template.entrySignIn.events(AccountsEntry.entrySignInEvents);
 Template.entrySignIn.rendered = function() {
   $(document).foundation({
     abide: {
-      live_validate: true,
+      live_validate: false,
       validate_on_blur: true,
       focus_on_invalid: true,
       error_labels: true,
