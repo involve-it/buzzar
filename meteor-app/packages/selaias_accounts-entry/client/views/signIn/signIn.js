@@ -28,7 +28,7 @@ AccountsEntry.entrySignInEvents = {
   'submit #signIn': function(event) {
     var email;
     event.preventDefault();
-    Alerts.clear();
+    //Alerts.clear();
     email = $('input[name="email"]').val();
     if ((AccountsEntry.isStringEmail(email) && AccountsEntry.settings.emailToLower) || (!AccountsEntry.isStringEmail(email) && AccountsEntry.settings.usernameToLower)) {
       email = email.toLowerCase();
@@ -40,7 +40,7 @@ AccountsEntry.entrySignInEvents = {
       Session.set('password', null);
       if (error) {
         sAlert.error('<div class="bz-msg-text">' + error.reason + '</div>', {effect: 'scale', html: true});
-        Alerts.add(error, 'danger')
+        //Alerts.add(error, 'danger')
       } else {
         var location = Session.get('currentLocation');
         if (location){
