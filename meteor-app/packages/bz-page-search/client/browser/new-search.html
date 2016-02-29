@@ -185,36 +185,19 @@
                     
                     <!--<div class="bz-separate small"></div>-->
                     
-                    <li class="has-children">
-                        <a href="#0">Choose section learning <i class="fa fa-angle-right"></i></a>
-
-                        <ul class="cd-secondary-nav is-hidden">
-                            <li class="go-back"><a href="#0"><i class="fa fa-angle-left"></i> Choose section learning</a></li>
-                            <li>
-                                <p class="bz-filters-section-title">Section learning (shortly description)</p>
-                                <div class="bz-checkboxes-filters">
-                                    <div class="bz-checkbox mobile">
-                                        <div>{{ t9n 'SELECT_ONE_OPTION_LEARNING' }}</div>
-                                        <div class="bz-checkbox-wrapper js-switch-wrapper">
-                                            <div class="switch bz-small">
-                                                <input id="filter-option-learning" type="radio" name="option-training" {{ getVisibilityVal }} class="js-switch-option-training">
-                                                <label for="filter-option-learning"></label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="bz-checkbox mobile">
-                                        <div>{{ t9n 'SELECT_ONE_OPTION_TRAINING' }}</div>
-                                        <div class="bz-checkbox-wrapper js-switch-wrapper">
-                                            <div class="switch bz-small">
-                                                <input id="filter-option-training" type="radio" name="option-training" {{ getVisibilityVal }} class="js-switch-option-training">
-                                                <label for="filter-option-training"></label>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <li>
+                        <div class="filter-wrapper">
+                            <p class="bz-filters-title">Section learning</p>
+                            <div class="bz-checkboxes-filters">
+                                <div class="bz-checkbox radio-f">
+                                    <input type="radio" name="section-learning" value="option-learning" id="filter-option-learning"><label for="filter-option-learning">{{ t9n 'SELECT_ONE_OPTION_LEARNING' }}</label>
                                 </div>
-                            </li>
-                        </ul>
+                                
+                                <div class="bz-checkbox radio-f">
+                                    <input type="radio" name="section-learning" value="option-training" id="filter-option-training"><label for="filter-option-training">{{ t9n 'SELECT_ONE_OPTION_TRAINING' }}</label>
+                                </div>
+                            </div>
+                        </div>
                     </li>
 
                     <li class="has-children">

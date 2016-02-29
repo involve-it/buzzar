@@ -375,7 +375,7 @@
           &.item-divider {
             padding: 8px 16px 8px 16px;
             background-color: rgba(0,0,0, .05);
-            color: rgba(0,0,0, .6);
+            color: @h-title-color;
             min-height: 30px;
             font-weight: 400;
             
@@ -553,12 +553,17 @@
 
 .cd-primary-nav .go-back > a {
   color: @text-link-green;
+  border-bottom: 1px solid @border-color-sep;
 }
 
 .cd-primary-nav {
   li {
     display: block;
-    border-bottom: 1px solid @border-color-sep;
+    
+    &.has-children {
+      border-bottom: 1px solid @border-color-sep;
+      border-top: 1px solid @border-color-sep;
+    }
     
     &:last-child {
       border-bottom: none;
@@ -572,6 +577,19 @@
   line-height: 18px;
   padding: 15px 15px 0 15px;
   margin: 0;
+}
+
+.cd-primary-nav .bz-filters-title {
+  padding: 8px 16px;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: @h-title-color;
+  font-size: 14px;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .cd-primary-nav.is-hidden, .cd-primary-nav ul.is-hidden {
