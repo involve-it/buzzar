@@ -104,6 +104,7 @@ bz.bus.proximityHandler = {
                     bz.cols.posts.update({'_id': post._id}, {$set: {presences: {}}});
                 }
             });
+            Meteor.users.update({_id: userId}, {$set: {sessionIds: []}});
         }
     },
     getObscuredCoords: function(lat, lng, rad){

@@ -1,4 +1,5 @@
 /*Find contacts*/
+/*
 Meteor.publish('users', function () {
   return Meteor.users.find({}, {fields: {
     '_id':1,
@@ -41,3 +42,4 @@ Meteor.publish('posts-my', function () {
 Meteor.publish('posts-images', function () {
     return bz.cols.images.find();
 });
+*/
