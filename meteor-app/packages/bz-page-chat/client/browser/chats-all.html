@@ -40,7 +40,7 @@
 
         {{/each }}
 
-        <div class="bz-last-timestamp"> Last message: {{ getFormattedTs timeBegin }} </div>
+        <div class="bz-last-timestamp"> {{ t9n 'CHATS_LAST_MESSAGE' }}: {{ getFormattedTs timeBegin }} </div>
         <div class="">Chat id: {{ _id }} </div>
 
       </div>
@@ -94,14 +94,11 @@
         <i class="fa fa-comments"></i>
       </div>
 
-      <div class="title-message">You have<br>no conversations yet</div>
-      <div class="subtitle-message">Start messaging by pressing the pencil button in the top right corner or press
-        button
-        below.
-      </div>
+      <div class="title-message">{{ t9n 'CHATS_NO_CONVERSATIONS' }}</div>
+      <div class="subtitle-message">{{ t9n 'CHATS_START_MESSAGING' }}</div>
 
       <div class="bz-padding-top-x2 hide">
-        <button class="button button-outline btn-default goContacts">go to the Contacts</button>
+        <button class="button button-outline btn-default goContacts">{{ t9n 'CHATS_GO_CONTACTS' }}</button>
       </div>
     </div>
   </div>
@@ -114,11 +111,11 @@
     <div class="bz-search-header">
       <label class="bz-item-input-wrapper">
         <i class="fa fa-search placeholder-icon"></i>
-        <input type="search" placeholder="Search for messages or username" class="bz-input-search">
+        <input type="search" placeholder="{{ t9n 'CHATS_SEARCH' }}" class="bz-input-search">
       </label>
     </div>
 
-    <div style="height: 62px; line-height: 62px; padding: 0 15px;">Filter</div>
+    <div style="height: 62px; line-height: 62px; padding: 0 15px;">{{ t9n 'CHATS_FILTER' }}</div>
 
   </div>
 
@@ -141,8 +138,8 @@
         {{#if details.price}}
           <div class="price"> {{details.price}} <span class="prefix">$</span></div>
         {{/if}}
-        <div class="count-view">{{t9n 'views'}} 250 <span class="today">(15 today)</span></div>
-        <div class="progress">{{t9n 'left'}} 15 days</div>
+        <div class="count-view">{{t9n 'views'}} 250 <span class="today">(15 {{ t9n 'TODAY' }})</span></div>
+        <div class="progress">{{t9n 'left'}} 15 {{ t9n 'DAYS' }}</div>
         <div class="services" style="display: none">
           <ul>
             <li class="vip">VIP</li>

@@ -13,20 +13,28 @@ ru = {
   SEND_MESSAGE: 'Отправить сообщение',
   YES: 'Да',
   NO: 'Нет',
+  ALL:'Все',
+  LIVE:'Живые',
+  ACTIVE:'Активные',
   COMMENTS:'Комментарии',
   RATING: 'Рейтинг',
   REVIEW_HELP_TEXT: 'Оставьте свой комментарий здесь',
   CHOOSE_RATING: 'Выберите рейтинг',
   SUBMIT: 'Отправить',
+  SEND:'Отправить',
   CANCEL: 'Отмена',
   OR:'ИЛИ',
   READ_MORE:'Подробнее',
   NEW_POST: 'Новый пост',
   CREATE_POST: 'Создать пост',
   CHECK_ALL: 'Выбрать все',
+  TODAY:'сегодня',
+  DAYS:'дней',
+  searchLocationText:'Название места или адресс',
+
 
   //No posts around
-  NO_ITEMS_AROUND_YOU: 'У вас нету постов рядом',
+  NO_ITEMS_AROUND_YOU: 'У вас нет постов рядом',
   YOU_CAN_CREATE_POST: 'Вы могли бы добавить объявление, чтобы другие пользователи могли им воспользоваться. Для этого нажмите на кнопку ниже',
 
   //Buttons
@@ -115,6 +123,8 @@ ru = {
   PROFILE_USER_PHONE_NUMBER: 'Номер телефона',
   PROFILE_USER_SKYPE_LOGIN : 'Логин Skype',
   PROFILE_USER_SECURITY_SETTINGS : 'Настройки безопасности',
+  PROFILE_POLICY_PUBLIC:'Публично',
+  PROFILE_POLICY_HIDDEN:'Скрыто',
 
   //Image select
   IMAGE_SELECT_UPLOAD_PHOTO: 'Загрузить фото',
@@ -128,13 +138,31 @@ ru = {
   IMAGE_SELECT_DONE: 'Применить',
   IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE: 'Загрузить новый профиль изображения',
   IMAGE_SELECT_CHOOSE_IMAGE: 'Выбрать картинку',
+  IMAGE_PHOTO_LIBRARY_IS_NOT_AVAILABLE:'Фото библиотека недоступна.',
+
+  //chats
+  CHATS_LAST_MESSAGE: 'Последнее сообщение',
+  CHATS_NO_CONVERSATIONS: 'У вас нет разговоров пока',
+  CHATS_START_MESSAGING:'Вы можете начать обмен сообщениями, нажав на кнопку карандаша в правом верхнем углу или нажмите кнопку ниже.',
+  CHATS_GO_CONTACTS:'перейти в контакты',
+  CHATS_SEARCH: 'Поиск по сообщениям или пользователям',
+  CHATS_FILTER:'Фильтр',
+  CHATS_TYPE_YOUR_MESSAGE: 'Текст сообщения ...',
 
   //Error
   ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения',
   ERROR_INVALID_INTEGER_PATTERN: 'Это поле обязательно и только цифры',
 
-  COMMON_IMAGE_GET_RANDOM: 'Загрузить случайное фото'
-  
+  COMMON_IMAGE_GET_RANDOM: 'Загрузить случайное фото',
+
+  //Sign In and Sign Up
+  SIGN_IN:'Войдите в систему',
+  TO_SEE_YOUR_PLACES_HISTORY:'для того чтобы увидеть ваши последние места.',
+  PLEASE_SIGN_IN:'Пожалуйста',
+  confirmPassword:'Подтвердите пароль',
+  SIGN_VALID_USERNAME:'Введите корректное имя пользователя',
+  SIGN_VALID_EMAIL: 'Введите корректный адресс почты',
+  SIGN_VALID_PASSWORD:'Ваш пароль должен соответствовать требованиям'
 };
 
 T9n.map('ru', ru);

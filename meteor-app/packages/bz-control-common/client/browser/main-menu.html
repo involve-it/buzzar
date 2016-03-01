@@ -91,7 +91,7 @@
   {{#if currentUser }}
     {{#if isHashesUserId}}
       <li class="only-main-menu dropdown-hashes-menu-main-menu">
-        <button data-dropdown="drop2" aria-controls="drop2" aria-expanded="false" class="button dropdown">Hashes
+        <button data-dropdown="drop2" aria-controls="drop2" aria-expanded="false" class="button dropdown">{{ t9n 'MENU_HASHES_TITLE' }}
         </button>
         <ul id="drop2" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
           {{#each getUserHashes }}

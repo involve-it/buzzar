@@ -5,6 +5,7 @@
 ruI18n = {
   EDIT_POST_EDIT_BTN: 'Сохранить изменения',
   NEW_POST_SELECT_TYPE_TEXT: '--Выберите тип--',
+  MORE:'больше',
 
   //No Posts
   YOU_HAVE_NO_POSTS: 'У вас пока еще нет постов',
@@ -77,8 +78,11 @@ ruI18n = {
   NEW_POST_STATIC: 'Статическое',
   NEW_POST_PINNED_TO_STATIC_LOCATION: 'Установка статического расположения',
   NEW_POST_PLACE_AD: 'Местонахождение объявления',
-
-
+  NEW_POST_VALUE:'Значение',
+  NEW_POST_PHONE: 'Телефон',
+  NEW_POST_BUDGET:'Бюджет',
+  NEW_POST_PROVIDE:'Предоставляется',
+  NEW_POST_NEED:'Требуется',
 
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Новое напоминание',
@@ -135,7 +139,9 @@ ruI18n = {
   TRAININGS_SECTION_TUTORING:'Репетитор',
   TRAININGS_SECTION_COURSES:'Курсы',
   TRAININGS_SECTION_SCHOOL:'Школа',
-  TRAININGS_SECTION_HIGH_SCHOOL:'ВУЗ'
+  TRAININGS_SECTION_HIGH_SCHOOL:'ВУЗ',
+
+  SELECT_LOCATION_TO_ADD: 'Выберите место, чтобы добавить'
   
 };
 var ruAll = _.extend(bz.language.i18n.ru, ruI18n);

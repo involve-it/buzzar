@@ -67,7 +67,7 @@
               </select>
             </div>
             <div class="small-10 large-10 columns">
-              <input class="js-post-price" type="number" placeholder="Value" value="{{ getPrice }}">
+              <input class="js-post-price" type="number" placeholder="{{ t9n 'NEW_POST_VALUE' }}" value="{{ getPrice }}">
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@
                 <div class="small-12 medium-3 input-label left"><span class="field-required">*</span> {{ t9n 'NEW_POST_CONTACTS' }}</div>
                 <div class="small-12 medium-9 large-9 left">
                     <div class="">
-                        <input class="js-job-phone" required pattern="integer" placeholder="Phone" type="tel" name="phone">
+                        <input class="js-job-phone" required pattern="integer" placeholder="{{ t9n 'NEW_POST_PHONE' }}" type="tel" name="phone">
                         <!--Error-->
                         <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_INTEGER_PATTERN' }}</small></div>
                     </div>
@@ -205,7 +205,7 @@
                             </select>
                         </div>
                         <div class="small-9 large-9 columns">
-                            <input class="js-post-price" type="number" placeholder="Budget" value="">
+                            <input class="js-post-price" type="number" placeholder="{{ t9n 'NEW_POST_BUDGET' }}" value="">
                         </div>
                     </div>
                     </div>
@@ -240,8 +240,8 @@
       <div class="medium-3 input-label left">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
       <div class="medium-5 large-7 left">
         <select class="js-service-type-select">
-          <option value="provide">Provide</option>
-          <option value="need">Need</option>
+          <option value="provide">{{ t9n 'NEW_POST_PROVIDE' }}</option>
+          <option value="need">{{ t9n 'NEW_POST_NEED' }}</option>
         </select>
       </div>
     </label>
@@ -254,8 +254,8 @@
       <div class="medium-3 input-label left">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
       <div class="medium-5 large-7 left">
         <select class="js-service-type-select">
-          <option value="provide">Provide</option>
-          <option value="need">Need</option>
+          <option value="provide">{{ t9n 'NEW_POST_PROVIDE' }}</option>
+          <option value="need">{{ t9n 'NEW_POST_NEED' }}</option>
         </select>
       </div>
     </label>

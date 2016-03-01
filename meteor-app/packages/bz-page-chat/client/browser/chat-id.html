@@ -17,10 +17,10 @@
             <div class="bz-user-inputs-messages-wrapper">
                 <div class="bz-user-inputs">
                     <div class="bz-user-inputs-message">
-                        <textarea class="btn--input-message" id="message-input" placeholder="Type your message ..." name="textMessage" data-autoresize rows="1"></textarea>
+                        <textarea class="btn--input-message" id="message-input" placeholder="{{ t9n 'CHATS_TYPE_YOUR_MESSAGE' }}" name="textMessage" data-autoresize rows="1"></textarea>
                     </div>
                     <div class="bz-user-inputs-btn-send">
-                        <button id="send-btn" type="button" class="button bz-small btn-default btn--send">Send</button>
+                        <button id="send-btn" type="button" class="button bz-small btn-default btn--send">{{ t9n 'SEND' }}</button>
                     </div>
                 </div>
             </div>
@@ -43,10 +43,10 @@
                     <div class="bz-username">
                         <a href="/user/{{user._id}}">{{getFriendUserName}}</a>
                     </div>
-                    <div class="bz-user-status"><span>online or offline</span></div>
+                    <!-- <div class="bz-user-status"><span>online or offline</span></div> -->
                 </div>
             </div>
-            <div class="bz-user-service-menu">Will be service menu</div>
+            <!-- <div class="bz-user-service-menu">Will be service menu</div> -->
         </div>
     </div>
 </template>
