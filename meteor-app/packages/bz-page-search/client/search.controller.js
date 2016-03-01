@@ -13,7 +13,9 @@ Meteor.startup(function () {
     }
   });
 
-  Session.set('bz.control.search.distance', 1);
+  //Set default distance
+  Session.set('bz.control.search.distance', 20);
+  
   bz.help.maps.getCurrentLocation(function (loc) {
     Session.set('currentLocation', {
       latitude: loc.lat,
