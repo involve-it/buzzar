@@ -283,7 +283,11 @@ Template.categoryListButtons.events({
 
 Template.searchCommonFilters.onRendered(()=> {
   Tracker.autorun(function () {
-    var dist = Session.get('bz.control.search.distance'), sliderDist, ret = 1;
+    //default distance
+    
+    var dist = Session.get('bz.control.search.distance'), sliderDist, ret = 20;
+    //(dist) ? Session.get('bz.control.search.distance') : Session.set('bz.control.search.distance', 20);
+    
     if (dist) {
       dist = dist && dist.toString();
       switch (dist) {
@@ -309,7 +313,7 @@ Template.searchCommonFilters.onRendered(()=> {
 Template.searchCommonFilters.helpers({
   getDistanceFromSession: function () {
     //Tracker.autorun(function () {
-      var dist = Session.get('bz.control.search.distance'), sliderDist, ret = 1;
+      var dist = Session.get('bz.control.search.distance'), sliderDist, ret = 20;
       if (dist) {
         dist = dist && dist.toString();
         switch (dist) {
