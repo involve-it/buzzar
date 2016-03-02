@@ -10,7 +10,7 @@ ru = {
   APP_NAME: 'Светлячки',
   CONTENT_READ_MORE_TITLE: 'Подробнее',
   CONTACT_US:'Свяжитесь с нами',
-  SEND_MESSAGE: 'Отправить сообщение',
+  SEND_MESSAGE: 'Написать сообщение',
   YES: 'Да',
   NO: 'Нет',
   ALL:'Все',
@@ -32,6 +32,26 @@ ru = {
   DAYS:'дней',
   searchLocationText:'Название места или адресс',
 
+  BZ_RESULTS_FOUND: 'Найдено результатов',
+  BZ_DISTANCE: 'Дистанция',
+  BZ_IS_PHOTO: 'Есть фото',
+  BZ_SETTINGS_CATEGORY: 'Настройки категории',
+  BZ_ALL_CATEGORIES_JOBS: 'Все подкатегории',
+  BZ_LOOKING_FOR_JOBS: 'Ищу работу',
+  BZ_JOBS_OFFERED: 'Предлагаю работу',
+  BZ_EMPLOYMENT_AND_WORK_SCHEDULE: 'Работа и график работы',
+  BZ_EMPLOYMENT_AND_WORK_SCHEDULE_DESC: 'Работа и график работы',
+  BZ_FULL_DAY: 'Полная занятость',
+  BZ_PROJECT:'Проектная/Временная работа',
+  BZ_PART_TIME: 'Частичная занятость',
+  BZ_VOLUNTEER:'Волонтерство',
+  BZ_WORK_PROBATION: 'Стажировка',
+  BZ_BY_PROFESSION: 'По профессии',
+  BZ_WITHOUT_EXPERIENCE: 'Без опыта',
+  BZ_FREELANCE: 'Фрилансер',
+  BZ_CHOOSE_TYPE_TRAININGS: 'Выбрать тип тренинга',
+  BZ_CHOOSE_TYPE_TRAININGS_DESC: 'Выбрать тип тренинга',
+
 
   //No posts around
   NO_ITEMS_AROUND_YOU: 'У вас нет постов рядом',
@@ -39,6 +59,7 @@ ru = {
 
   //Buttons
   BUTTON_CHECK: 'Проверить',
+  BUTTONS_BACK: 'Назад',
 
   //Menu
   MENU_HOME_PAGE: 'Главная',

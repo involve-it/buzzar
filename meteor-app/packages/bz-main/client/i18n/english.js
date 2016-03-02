@@ -34,11 +34,32 @@ en = {
   DAYS:'days',
   searchLocationText: 'Place name or address',
 
+  BZ_RESULTS_FOUND: 'Results found',
+  BZ_DISTANCE: 'Distance',
+  BZ_IS_PHOTO: 'Photo available',
+  BZ_SETTINGS_CATEGORY: 'Category settings',
+  BZ_ALL_CATEGORIES_JOBS: 'All categories',
+  BZ_LOOKING_FOR_JOBS: 'Looking for job',
+  BZ_JOBS_OFFERED: 'Job Offer',
+  BZ_EMPLOYMENT_AND_WORK_SCHEDULE: 'Employment and work schedule',
+  BZ_EMPLOYMENT_AND_WORK_SCHEDULE_DESC: 'Employment and work schedule',
+  BZ_FULL_DAY: 'Full time',
+  BZ_PROJECT: 'Project/Temporary work',
+  BZ_PART_TIME: 'Part time',
+  BZ_VOLUNTEER: 'Volunteering',
+  BZ_WORK_PROBATION: 'Work placement',
+  BZ_BY_PROFESSION: 'By profession',
+  BZ_WITHOUT_EXPERIENCE: 'I have no work experience',
+  BZ_FREELANCE: 'Freelancer',
+  BZ_CHOOSE_TYPE_TRAININGS: 'Select the type of training',
+  BZ_CHOOSE_TYPE_TRAININGS_DESC: 'Select the type of training',
+
 
   //No posts around
   NO_ITEMS_AROUND_YOU: 'You have no items around',
   YOU_CAN_CREATE_POST: 'You could add an advertisement, so that other users can use it. To do this, click on the button below',
 
+  BUTTONS_BACK: 'Back',
   
   //Menu
   MENU_HOME_PAGE: 'Home',

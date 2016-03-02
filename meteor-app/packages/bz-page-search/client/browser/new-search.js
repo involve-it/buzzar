@@ -388,7 +388,28 @@ Template.searchFiltersTrainings.events({
 
 
 
+Template.searchFiltersJobs.events({
+  //prevent default clicking on direct children of .cd-primary-nav
+  'click .cd-primary-nav li.has-children > a': function(e, v) {
+    e.preventDefault();
+  },
+  'click .has-children > a': function(e, v) {
+    var selected = $(e.target);
 
+    if( selected.next('ul').hasClass('is-hidden') ) {
+      selected.addClass('selected').next('ul').removeClass('is-hidden').end().parent('.has-children').parent('ul').addClass('moves-out');
+      selected.parent('.has-children').siblings('.has-children').children('ul').addClass('is-hidden').end().children('a').removeClass('selected');
+      //$('.cd-overlay').addClass('is-visible');
+    } else {
+      selected.removeClass('selected').next('ul').addClass('is-hidden').end().parent('.has-children').parent('ul').removeClass('moves-out');
+      //$('.cd-overlay').removeClass('is-visible');
+    }
+  },
+  //submenu items - go back link
+  'click .go-back': function(e, v) {
+    $(e.target).closest('.go-back').parent('ul').addClass('is-hidden').parent('.has-children').parent('ul').removeClass('moves-out');
+  }
+});
 
 
 Template.searchFiltersTrainings.events({
