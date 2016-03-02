@@ -179,8 +179,19 @@ hideMessageModal = function(msgId){
 
 Template.registerHelper("timestampToTime", function (timestamp) {
   var date = new Date(timestamp);
+  var options = {
+    // era: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    //weekday: 'long',
+    //timezone: 'UTC',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric'
+  };
   //return '';
-  return moment(date).fromNow();
+  return date.toLocaleDateString( Session.get("bz.user.language"), options);
 });
 Meteor.startup(function () {
   /*bz.cols.messages.find().observeChanges({
