@@ -147,6 +147,13 @@ Template.bzNavMe.helpers({
 });
 
 
+/*Template.bzNavMe.events({
+  'click .js-sign-out': function(e, v) {
+    Session.set('fromWhere', null);
+  }
+});*/
+
+
 Template.bzLeftMenuSelectLanguage.onRendered(function() {
   var lang = Session.get('bz.user.language');
   if(lang) {

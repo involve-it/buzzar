@@ -50,7 +50,7 @@ bz.ui.initDropTips = function () {
               constrainToScrollParent: false,
               openOn: openOn,
               content: content,
-              remove: false
+              remove: true
             });
 
             $(drop.drop).find('.bz-drop-close').click(function () {

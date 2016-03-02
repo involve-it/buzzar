@@ -360,14 +360,23 @@
 
     /* additional class - for vertical middle */
     .bz-header-middle {
-      .centerer();
+      //.centerer();
+      position: relative;
+      -webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      height: ~'calc(100% - 86px)';
       padding: 0 10px 90px 10px;
       width: 100%;
       margin: 0 auto;
       z-index: 1006;
 
       .bz-header-middle-wrapper {
-        
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
         
         .bz-around-small {}
       }
