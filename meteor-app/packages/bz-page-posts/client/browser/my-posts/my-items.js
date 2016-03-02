@@ -1,9 +1,12 @@
 /**
  * Created by douson on 24.08.15.
  */
+Template.onePostRowItemOwner.onRendered(function () {});
+
 Template.myItems.onCreated(function () {
   //return Meteor.subscribe('posts-images');
 });
+
 Template.onePostRowItemSearch.rendered = function() {
   /*init Rate*/
   $('.bz-rating').raty({

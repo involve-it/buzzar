@@ -51,7 +51,13 @@ AccountsEntry.entrySignInEvents = {
             sessionId: Meteor.connection._lastSessionId
           }, function (err, posts) { });
         }
-        if (Session.get('fromWhere')) {
+        
+        if(Meteor.userId()) {}
+
+        if (Session.get('fromWhere') && Session.get('fromWhere') === '/sign-in' || Session.get('fromWhere') === '/forgot-password' || Session.get('fromWhere') === '/sign-up') {
+          return Router.go('home');
+          Session.set('fromWhere', null);
+        } else if (Session.get('fromWhere')) {
           Router.go(Session.get('fromWhere'));
           Session.set('fromWhere', null);
         } else {
