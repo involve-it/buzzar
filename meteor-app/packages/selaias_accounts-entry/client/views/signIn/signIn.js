@@ -52,8 +52,6 @@ AccountsEntry.entrySignInEvents = {
           }, function (err, posts) { });
         }
         
-        if(Meteor.userId()) {}
-
         if (Session.get('fromWhere') && Session.get('fromWhere') === '/sign-in' || Session.get('fromWhere') === '/forgot-password' || Session.get('fromWhere') === '/sign-up') {
           return Router.go('home');
           Session.set('fromWhere', null);
