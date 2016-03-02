@@ -6,6 +6,7 @@ enI18n = {
   //Global
   EDIT_POST_EDIT_BTN: 'Save changes',
   NEW_POST_SELECT_TYPE_TEXT: '--Select type--',
+  MORE:'more',
 
   //No Posts
   YOU_HAVE_NO_POSTS: 'You have no posts yet',
@@ -85,7 +86,11 @@ enI18n = {
   NEW_POST_STATIC: 'Static',
   NEW_POST_PINNED_TO_STATIC_LOCATION: 'Pinned to static location',
   NEW_POST_PLACE_AD: 'Place ad',
-
+  NEW_POST_VALUE:'Value',
+  NEW_POST_PHONE: 'Phone',
+  NEW_POST_BUDGET:'Budget',
+  NEW_POST_PROVIDE:'Provide',
+  NEW_POST_NEED:'Need',
 
   //Post details
   POST_DETAILS_REVIEWS_FIRST: 'Your will be the first',
@@ -134,7 +139,9 @@ enI18n = {
   TRAININGS_SECTION_TUTORING:'Tutoring',
   TRAININGS_SECTION_COURSES:'Courses',
   TRAININGS_SECTION_SCHOOL:'School',
-  TRAININGS_SECTION_HIGH_SCHOOL:'High school'
+  TRAININGS_SECTION_HIGH_SCHOOL:'High school',
+
+  SELECT_LOCATION_TO_ADD: 'Select location to add'
 };
 var enAll = _.extend(bz.language.i18n.en, enI18n);
 T9n.map('en', enAll);

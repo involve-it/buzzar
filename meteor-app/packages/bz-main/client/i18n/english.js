@@ -13,11 +13,15 @@ en = {
   SEND_MESSAGE: 'Send message',
   YES: 'Yes',
   NO: 'No',
+  ALL:'ALL',
+  LIVE:'Live',
+  ACTIVE:'Active',
   COMMENTS:'Comments',
   RATING: 'Rating',
   REVIEW_HELP_TEXT: 'Put your review here',
   CHOOSE_RATING: 'Choose rating',
   SUBMIT: 'Submit',
+  SEND:'Send',
   CANCEL: 'Cancel',
   OR:'OR',
   //Buttons
@@ -26,6 +30,10 @@ en = {
   NEW_POST: 'New post',
   CREATE_POST: 'Create Post',
   CHECK_ALL: 'All',
+  TODAY:'today',
+  DAYS:'days',
+  searchLocationText: 'Place name or address',
+
 
   //No posts around
   NO_ITEMS_AROUND_YOU: 'You have no items around',
@@ -116,6 +124,8 @@ en = {
   PROFILE_USER_PHONE_NUMBER: 'Phone number',
   PROFILE_USER_SKYPE_LOGIN: 'Skype username',
   PROFILE_USER_SECURITY_SETTINGS: 'Security settings',
+  PROFILE_POLICY_PUBLIC:'Public',
+  PROFILE_POLICY_HIDDEN:'Hidden',
 
   //Image select
   IMAGE_SELECT_UPLOAD_PHOTO: 'Upload Photo',
@@ -130,11 +140,29 @@ en = {
   IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE: 'Upload New Profile Image with File Picker',
   IMAGE_SELECT_CHOOSE_IMAGE: 'Choose image',
   COMMON_IMAGE_GET_RANDOM: 'Get random image',
+  IMAGE_PHOTO_LIBRARY_IS_NOT_AVAILABLE:'Photo Library is not available.',
+
+  //chats
+  CHATS_LAST_MESSAGE: 'Last message',
+  CHATS_NO_CONVERSATIONS: 'You have no conversations yet',
+  CHATS_START_MESSAGING:'Start messaging by pressing the pencil button in the top right corner or press button below.',
+  CHATS_GO_CONTACTS:'go to the Contacts',
+  CHATS_SEARCH: 'Search for messages or username',
+  CHATS_FILTER:'Filter',
+  CHATS_TYPE_YOUR_MESSAGE: 'Type your message ...',
 
   //Error
   ERROR_INVALID_FIELD: 'This field is required',
   ERROR_INVALID_INTEGER_PATTERN: 'This field is required and must be an integer',
 
+  //Sign In and Sign Up
+  SIGN_IN:'Sign In',
+  TO_SEE_YOUR_PLACES_HISTORY:'to see your places history.',
+  PLEASE_SIGN_IN:'Please',
+  confirmPassword:'Confirm Password',
+  SIGN_VALID_USERNAME:'A valid username is required',
+  SIGN_VALID_EMAIL: 'A valid email address is required',
+  SIGN_VALID_PASSWORD:'Your password must match the requirements'
 };
 T9n.map('en', en);
 bz.help.makeNamespace('bz.language.i18n.en', en);

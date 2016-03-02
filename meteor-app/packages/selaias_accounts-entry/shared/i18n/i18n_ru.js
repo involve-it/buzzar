@@ -11,6 +11,7 @@ var ru = {
   resetYourPassword: "Сбросить пароль",
   updateYourPassword: "Обновить пароль",
   password: "Пароль",
+  confirmPassword: "Подтвердите пароль",
   usernameOrEmail: "Имя пользователя или email",
   email: "Email",
   ifYouAlreadyHaveAnAccount: "Если у вас уже есть аккаунт",

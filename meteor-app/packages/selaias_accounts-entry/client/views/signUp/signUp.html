@@ -7,7 +7,7 @@
         <div class="entry-logo">
           <a href="/">
               <img src="{{logo}}" alt="logo">
-              <span class="entry-logo-title">shiners</span></a>
+              <span class="entry-logo-title">{{t9n "APP_NAME"}}</span></a>
         </div>
       {{else}}
         <h1 class="title-auth">Fantasia</h1>
@@ -50,7 +50,7 @@
                 <div class="input-symbol">
                   <input autofocus name="username" placeholder="{{t9n "username"}}" type="text" class="form-control"
                          value='' autocapitalize="none" autocomplete="off" autocorrect="off" required>
-                  <small class="error">A valid username is required</small>
+                  <small class="error">{{t9n 'SIGN_VALID_USERNAME'}}</small>
                 </div>
               </div>
 
@@ -62,12 +62,12 @@
                   <div class="input-symbol">
                     <input type="email" placeholder="{{t9n 'emailAddress'}}" class="form-control"
                            value='{{emailAddress}}' autocapitalize="none" autocomplete="off" autocorrect="off" required>
-                    <small class="error">A valid email address is required</small>
+                    <small class="error">{{t9n 'SIGN_VALID_EMAIL'}}</small>
                   </div>
                 {{else}}
                   <input autofocus type="email" placeholder="{{t9n 'emailAddress'}}" class="form-control"
                          value='{{emailAddress}}' autocapitalize="none" autocomplete="off" autocorrect="off" required>
-                  <small class="error">A valid email address is required</small>
+                  <small class="error">{{t9n 'SIGN_VALID_EMAIL'}}</small>
                 {{/if}}
               </div>
             {{/if}}
@@ -76,16 +76,16 @@
               <div class="input-symbol">
                 <input type="password" placeholder="{{t9n "password"}}" class="form-control" name="password1" value=''
                        required>
-                <small class="error">Your password must match the requirements</small>
+                <small class="error">{{t9n 'SIGN_VALID_PASSWORD'}}</small>
               </div>
             </div>
 
             {{#if showPasswordConfirmation}}
               <div class="form-group">
                 <div class="input-symbol">
-                  <input type="password" placeholder="Confirm Password" class="form-control" name="password2" value=''
+                  <input type="password" placeholder="{{t9n "confirmPassword"}}" class="form-control" name="password2" value=''
                          required>
-                  <small class="error">Your password must match the requirements</small>
+                  <small class="error">{{t9n 'SIGN_VALID_PASSWORD'}}</small>
                 </div>
               </div>
             {{/if}}
