@@ -189,8 +189,13 @@ bz.ui.validateFoundationForm = function (selector) {
     });
     $(selector).on('invalid.fndtn.abide', function () {
       // Handle the submission of the form
-      msg.push('Some fields did not pass validation');
-      resolve({
+      if (Session.get("bz.user.language")=='ru'){
+        msg.push('Некоторые поля не прошли проверку');
+      }
+      else {
+        msg.push('Some fields did not pass validation');
+      }
+        resolve({
         isValid: false,
         errorMessages: msg
       });

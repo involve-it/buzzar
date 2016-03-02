@@ -162,7 +162,8 @@ en = {
   confirmPassword:'Confirm Password',
   SIGN_VALID_USERNAME:'A valid username is required',
   SIGN_VALID_EMAIL: 'A valid email address is required',
-  SIGN_VALID_PASSWORD:'Your password must match the requirements'
+  SIGN_VALID_PASSWORD:'Your password must match the requirements',
+  SIGN_VALID_USERNAME_OR_EMAIL:'A valid email address or username is required'
 };
 T9n.map('en', en);
 bz.help.makeNamespace('bz.language.i18n.en', en);
