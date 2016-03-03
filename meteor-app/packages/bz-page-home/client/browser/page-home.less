@@ -306,6 +306,41 @@
     right: 0;
     top: 0;
     
+    /*********/
+    .bz-slideshow-items {
+      background-color: #000000;
+      background-position: 50% 50%;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+
+      &.bg1 {
+        &:after {
+          background-image: url("http://semantic-ui.com/images/backgrounds/1.jpg");
+        }
+      }
+    }
+
+    .bz-slideshow-items,
+    .bz-slideshow-items:after {
+      -ms-transition: background 6s cubic-bezier(0.680, -0.550, 0.265, 1.4) 0s, opacity 6s cubic-bezier(0.680, -0.550, 0.265, 1.4) 0s;
+      -moz-transition: background 6s cubic-bezier(0.680, -0.550, 0.265, 1.4) 0s, opacity 6s cubic-bezier(0.680, -0.550, 0.265, 1.4) 0s;
+      -webkit-transition:background 6s cubic-bezier(0.680, -0.550, 0.265, 1.4) 0s,opacity 6s cubic-bezier(0.680, -0.550, 0.265, 1.4) 0s;
+      transition: background 6s cubic-bezier(0.680, -0.550, 0.265, 1.4) 0s,opacity 6s cubic-bezier(0.680, -0.550, 0.265, 1.4) 0s;
+
+      &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        content: '';
+        background-size: cover;
+        opacity: 0.45;
+      }
+    }
+    /***********/
+    
     .bz-slideshow-items {
       overflow: hidden;
       position: relative;
