@@ -13,8 +13,8 @@ Router.map(function () {
         pageOptions: {
           logoType: '/img/logo/logo-home-logotype.png',
           logo: '/img/logo/logo-trainings.png',
-          //backgroundMobile: '/img/content/bg/mobile-trainings.jpg',
-          //backgroundDesktop: '/img/content/bg/desktop-trainings.jpg'
+          backgroundMobile: '/img/content/bg/mobile-trainings.jpg',
+          backgroundDesktop: '/img/content/bg/desktop-trainings.jpg'
         }
       }
     },
