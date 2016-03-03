@@ -36,7 +36,21 @@ Template.bzChatItem.helpers({
       _id: {$in: _.without(this.users, Meteor.userId())}
     });
   }
-})
+  
+});
+
+
+Template.bzChatsToolbar.helpers({
+  getSummaryUsers: function() {
+    var ret = bz.cols.chats.find({
+      users: {$in: [Meteor.userId()]}, activated: true}
+    ).fetch().length;
+    
+    return ret || 0;
+  }
+});
+
+
 Template.onePostRowItem.helpers({
   getPhotoUrl: function () {
     var photo = bz.cols.posts.findOne({_id: this._id}),

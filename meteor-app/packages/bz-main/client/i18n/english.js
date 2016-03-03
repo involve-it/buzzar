@@ -172,6 +172,8 @@ en = {
   CHATS_GO_CONTACTS:'go to the Contacts',
   CHATS_SEARCH: 'Search for messages or username',
   CHATS_FILTER:'Filter',
+  CHATS_NEW_CHAT_MESSAGE: 'New message',
+  CHATS_SUMMARY: 'Dialogues',
   CHATS_TYPE_YOUR_MESSAGE: 'Type your message ...',
 
   //Error

@@ -170,6 +170,8 @@ ru = {
   CHATS_GO_CONTACTS:'перейти в контакты',
   CHATS_SEARCH: 'Поиск по сообщениям или пользователям',
   CHATS_FILTER:'Фильтр',
+  CHATS_NEW_CHAT_MESSAGE: 'Новое сообщение',
+  CHATS_SUMMARY: 'Диалогов',
   CHATS_TYPE_YOUR_MESSAGE: 'Текст сообщения ...',
 
   //Error

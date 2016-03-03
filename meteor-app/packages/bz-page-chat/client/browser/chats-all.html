@@ -41,7 +41,6 @@
         {{/each }}
 
         <div class="bz-last-timestamp"> {{ t9n 'CHATS_LAST_MESSAGE' }}: {{ getFormattedTs timeBegin }} </div>
-        <div class="">Chat id: {{ _id }} </div>
 
       </div>
     </a>
@@ -114,10 +113,14 @@
         <input type="search" placeholder="{{ t9n 'CHATS_SEARCH' }}" class="bz-input-search">
       </label>
     </div>
-
-    <div style="height: 62px; line-height: 62px; padding: 0 15px;">{{ t9n 'CHATS_FILTER' }}</div>
-
+    <a class="button btn-default bz-small disabled"><span class="show-for-small-only"><i class="fa fa-plus"></i></span> <span class="show-for-medium-up">{{ t9n 'CHATS_NEW_CHAT_MESSAGE' }}</span></a>
   </div>
+    
+    <div class="bz-summary-wrapper">
+        <div class="bz-summary">
+            {{ t9n 'CHATS_SUMMARY' }}: <span>{{getSummaryUsers}}</span> 
+        </div>
+    </div>
 
 </template>
 
