@@ -57,7 +57,7 @@ en = {
 
   //No posts around
   NO_ITEMS_AROUND_YOU: 'You have no items around',
-  YOU_CAN_CREATE_POST: 'You could add an advertisement, so that other users can use it. To do this, click on the button below',
+  YOU_CAN_CREATE_POST: 'You could add an advertisement, so that other users can use it. To do this, click on the button below.',
 
   BUTTONS_BACK: 'Back',
   
@@ -88,6 +88,8 @@ en = {
   SEEN_TOTAL: 'Total',
   left: 'Left',
   POST_STATUS: 'Post close',
+  
+  POST_SWITCH_OFF_ON: 'Switch off the post. Previous publication of the advertisement is not displayed to other users. You can reactivate them in My posts in the "ALL" tab.',
   
   //sitewise:
   siteTitleElement: 'instant post, bound to location',

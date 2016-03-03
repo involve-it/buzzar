@@ -34,7 +34,8 @@ Package.onUse(function (api) {
     'client/edit-post.controller.js',
     'client/new-post.controller.js',
     'client/page-my.less',
-    'client/vendor/ui-kit.js'
+    'client/vendor/ui-kit.js',
+    'client/vendor/components/tooltip.js'
   ], 'client');
 
   api.addFiles([
