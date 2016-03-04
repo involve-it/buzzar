@@ -1616,6 +1616,30 @@ body {
         }
       }
     }
+
+
+    .bz-page-chat {
+      .bz-user-owner-toolbar {
+        .bz-user-owner-toolbar-wrapper {
+          padding: 8px 15px;
+
+          .bz-user-wrap-inner {
+            .bz-user-avatar {
+              height: 40px;
+              width: 40px;
+              
+              a {
+                img {
+                  height: 40px !important;
+                  width: 40px !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
   }
 }
 
