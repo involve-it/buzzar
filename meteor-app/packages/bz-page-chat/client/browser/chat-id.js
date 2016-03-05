@@ -43,7 +43,9 @@ Template.bzChatId.onRendered(function() {
 
       $(this).on('keyup input', function() {
           if(this.scrollHeight > 44) {
-              resizeTextarea(this);
+            resizeTextarea(this);
+            
+            resizeWinChat();
           }
       }).removeAttr('data-autoresize');
   });
