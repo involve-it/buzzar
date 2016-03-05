@@ -99,11 +99,51 @@ Template.onePostRowItemOwner.events({
   'click .js-switch-activity-input': function(e,v){
     if(v.data) {
       v.data.status = v.data.status || {};
-
+      var now, start, finish, target, duration, tsPause;
+      now = new Date().getTime();
+      start = new Date(bz.cols.posts.findOne({_id: this._id}).timestamp).getTime();
+      finish = new Date(bz.cols.posts.findOne({_id: this._id}).endDatePost).getTime();
       if (e.target.checked === false) {
         v.data.status.visible = bz.const.posts.status.visibility.INVISIBLE;
+        tsPause=finish-now;
+        if(v.data) {
+          bz.cols.posts.update(v.data._id, {$set: {
+            'timePause':tsPause,
+            'status.visible': v.data.status.visible
+          }
+          });
+        }
       } else {
         v.data.status.visible = bz.const.posts.status.visibility.VISIBLE;
+        if(v.data.timePause=='0'){
+
+          duration = finish - start;
+          target = finish + duration;
+          if(v.data) {
+            bz.cols.posts.update(v.data._id, {$set: {
+              'timestamp': now,
+              'endDatePost': target,
+              'timePause':duration,
+              'status.visible': v.data.status.visible
+            }
+            });
+          }
+        }else{
+          var newTimeStamp;
+          tsPause=new Date(bz.cols.posts.findOne({_id: this._id}).timePause).getTime();
+          duration= finish - start;
+          target = now + tsPause;
+          newTimeStamp=target-duration;
+          if(v.data) {
+            bz.cols.posts.update(v.data._id, {$set: {
+              'timestamp': newTimeStamp,
+              'endDatePost': target,
+              'timePause':tsPause,
+              'status.visible': v.data.status.visible
+            }
+            });
+          }
+        }
       }
       setTimeout(function(){
         bz.cols.posts.update(v.data._id, {$set: {'status.visible': v.data.status.visible}})
@@ -135,7 +175,9 @@ Template.onePostRowItemOwner.events({
       if(v.data) {
         bz.cols.posts.update(v.data._id, {$set: {
           'timestamp': now,
-          'endDatePost': target
+          'endDatePost': target,
+          'timePause': target-now,
+          'status.visible':bz.const.posts.status.visibility.VISIBLE
         }
         });
       }
@@ -259,7 +301,7 @@ Template.onePostRowItemOwner.helpers({
         status = false;
 
         /* update the status on visible, null  */
-        bz.cols.posts.update(this._id, { $set: { status: {visible: null} } });
+        bz.cols.posts.update(this._id, { $set: { status: {visible: null} , timePause: '0'} });
       }
       language = Session.get('bz.user.language');
       function endingOfTheWord(lang, number, title, titleEng) {
