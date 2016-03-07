@@ -25,8 +25,8 @@ bz.cols.nearbyPosts = new Mongo.Collection('nearbyPosts');
 
 Meteor.publish('posts-all', function () {
   return bz.cols.posts.find({
-    'status.visible': {$ne: null}
-    //'status.visible': {$exists: true}
+    'status.visible': {$ne: null},
+    endDatePost: {$gte: Date().getTime()}
   }, {
     fields: {'details.locations.coords':0}
   });

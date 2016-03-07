@@ -22,5 +22,21 @@ Meteor.startup(function () {
       return bz.cols.posts.update({}, {$set: {'stats.seenToday': 0}}, {multi:true});
     }
   });
+/*
+  SyncedCron.add({
+    name: 'test',
+    schedule: function (parser) {
+      // parser is a later.parse object
+      return parser.text('every 5 minutes');
+    },
+    job: function () {
+      var now;
+      now= new Date().getTime();
+      bz.cols.posts.update({'status.visible': {$ne: null}, endDatePost: {$lte: now}}, {$set: {'status.visible': bz.const.posts.status.visibility.INVISIBLE}}, {multi:true});
+    }
+  });*/
   SyncedCron.start();
 });
+
+
+
