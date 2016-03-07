@@ -360,14 +360,25 @@
 
     /* additional class - for vertical middle */
     .bz-header-middle {
-      .centerer();
-      padding: 0 10px 90px 10px;
+      //.centerer();
+      /*position: relative;*/
+      /*-webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      transform-style: preserve-3d;*/
+      height: ~'calc(100% - 86px)';
       width: 100%;
       margin: 0 auto;
-      z-index: 1006;
+      /*z-index: 1006;*/
 
       .bz-header-middle-wrapper {
-        
+        position: absolute;
+        width: 100%;
+        z-index: 10;
+        top: 50%;
+        padding: 0 10px 90px 10px;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
         
         .bz-around-small {}
       }
@@ -389,42 +400,55 @@
 .bz-isotope-grid {
   margin: 0 auto 15px;
   padding: 0;
+  //overflow: hidden;
 }
 
 .bz-isotope-grid .grid-item {
   position: relative;
-  margin: 15px 8px 0 8px;
-  width: 250px;
+  margin: 15px 0 0 0;
+  width: 240px;
   float: left;
   z-index: 1;
 }
 
-
-/* 2 */
-@media screen and (min-width: 640px) {
+@media only screen and (min-device-width : 640px) and (max-device-width : 767px) {
   .bz-isotope-grid {
-    width: 532px;
+    width: 100%;
+    .grid-item {
+      width: 50%;
+    }
   }
 }
 
-/* 3 */
-@media screen and (min-width: 960px) {
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
   .bz-isotope-grid {
-    width: 800px;
+    width: 728px;
+    .grid-item {
+      width: 33.3333%;
+    }
+  }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+  .bz-isotope-grid {
+    width: 984px;
+    .grid-item {
+      width: 25%;
+    }
   }
 }
 
 /* 4 */
-@media screen and (min-width: 1120px) {
+@media screen and (min-width: 1025px) {
   .bz-isotope-grid {
-    width: 1065px;
+    width: 985px;
   }
 }
 
 /* 5 */
-@media screen and (min-width: 1385px) {
+@media screen and (min-width: 1255px) {
   .bz-isotope-grid {
-    width: 1330px;
+    width: 1215px;
   }
 }
 

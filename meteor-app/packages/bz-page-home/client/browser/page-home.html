@@ -41,11 +41,11 @@
                         </div>
                         <div class="bz-search">
                             <div class="box-search">
-                                <div class="bz-category-buttons">
+                                <!--<div class="bz-category-buttons">
                                     <div class="bz-category-buttons-wrapper">
-                                        <!--{{> categoryListButtons}}-->
+                                        {{> categoryListButtons}}
                                     </div>
-                                </div>
+                                </div>-->
                                 <form class="search" id="bz-search" role="search" method="post" action="#">
                                     <i class="icon ion-search placeholder-icon"></i>
                                     <!--{{> bzControlSearch }}-->
@@ -84,7 +84,7 @@
 <template name="bzMeteorLogo">
   <div class="bz-logo-wrapper" style="    font-size: 20px;">
     <a href="/home" style="color: white;">
-      <img class="bz-log-logotype" src="{{#if pageOptions}}{{pageOptions.logoType}}{{else}}/img/logo/logo-home-logotype.png{{/if}}" alt="logotype">
+      <img class="bz-log-logotype show-for-medium-up" src="{{#if pageOptions}}{{pageOptions.logoType}}{{else}}/img/logo/logo-home-logotype.png{{/if}}" alt="logotype">
       {{ getLocalAppName }}
     </a>
   </div>
@@ -96,7 +96,7 @@
     <div class="padding">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" class="capitalize js-search-text-modal" placeholder="find anything around you">
+        <input type="text" class="capitalize js-search-text-modal" placeholder="{{ t9n 'FIND_ANYTHING_AROUND_YOU' }}">
       </label>
 
       <!--Title: <span>{{ getTitle }}</span>-->

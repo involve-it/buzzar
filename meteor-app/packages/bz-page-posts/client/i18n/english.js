@@ -6,7 +6,11 @@ enI18n = {
   //Global
   EDIT_POST_EDIT_BTN: 'Save changes',
   NEW_POST_SELECT_TYPE_TEXT: '--Select type--',
+  MORE:'more',
 
+  //No Posts
+  YOU_HAVE_NO_POSTS: 'You have no posts yet',
+  PRESS_BUTTON_BELOW:'Press button below',
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Create new Memo',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Add a title for your memo.',
@@ -82,6 +86,11 @@ enI18n = {
   NEW_POST_STATIC: 'Static',
   NEW_POST_PINNED_TO_STATIC_LOCATION: 'Pinned to static location',
   NEW_POST_PLACE_AD: 'Place ad',
+  NEW_POST_VALUE:'Value',
+  NEW_POST_PHONE: 'Phone',
+  NEW_POST_BUDGET:'Budget',
+  NEW_POST_PROVIDE:'Provide',
+  NEW_POST_NEED:'Need',
 
   //Post details
   POST_DETAILS_REVIEWS_FIRST: 'Your will be the first',
@@ -100,7 +109,39 @@ enI18n = {
   POST_DETAILS_VIEW_MAP:'View map',
   POST_DETAILS_DETAILS: 'Details',
   POST_DETAILS_PUBLISHED_ON: 'Published on',
+  PAY_METHOD_FIXED_PRICE: 'Fixed price',
+  PAY_METHOD_HOUR:'Hour',
+  PAY_METHOD_FREE:'Free',
+  SENIORITY_BEFORE_ONE_YEAR:'before 1 year',
+  SENIORITY_ONE_THREE_YEAR: 'from 1 before 3 years',
+  SENIORITY_THREE_FIVE_YEAR: 'from 3 before 5 years',
+  SENIORITY_FIVE_AND_GREAT_YEAR: 'from 5 and more',
+  GENDER_MALE:'Male',
+  GENDER_FEMALE:'Female',
+  SELECT_ONE_OPTION:'Select an option',
+  SELECT_ONE_OPTION_WORK: 'Looking for work',
+  SELECT_ONE_OPTION_JOBS:'Jobs offered',
+  SELECT_ONE_OPTION_LEARNING:'Looking for learning',
+  SELECT_ONE_OPTION_TRAINING:'Training Offers',
+  EMPLOYMENT_AND_WORK_SCHEDULE_SELECTED_VARIANTS:'You can select multiple options',
+  EMPLOYMENT_AND_WORK_SCHEDULE_CONSTANT:'Constant',
+  EMPLOYMENT_AND_WORK_SCHEDULE_PROJECT_temporary: 'Project / Temporary',
+  EMPLOYMENT_AND_WORK_SCHEDULE_PROFESSION: 'By profession',
+  EMPLOYMENT_AND_WORK_SCHEDULE_WITHOUT_EXPERIENCE: 'Without experience',
+  EMPLOYMENT_AND_WORK_SCHEDULE_PART:'Part-time employment',
+  EMPLOYMENT_AND_WORK_SCHEDULE_VOLUNTEER:'volunteer',
+  EMPLOYMENT_AND_WORK_SCHEDULE_FREELANCE:'Freelance',
+  EMPLOYMENT_AND_WORK_SCHEDULE_PROBATION:'probation',
+  EMPLOYMENT_AND_WORK_SCHEDULE_CHOSE_ALL:'choose all',
+  SECTION_LEARNING: 'Section learning',
+  TRAININGS_SECTION_TRAININGS:'Trainings',
+  TRAININGS_SECTION_MASTER:'Master class',
+  TRAININGS_SECTION_TUTORING:'Tutoring',
+  TRAININGS_SECTION_COURSES:'Courses',
+  TRAININGS_SECTION_SCHOOL:'School',
+  TRAININGS_SECTION_HIGH_SCHOOL:'High school',
 
+  SELECT_LOCATION_TO_ADD: 'Select location to add'
 };
 var enAll = _.extend(bz.language.i18n.en, enI18n);
 T9n.map('en', enAll);

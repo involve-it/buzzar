@@ -5,7 +5,11 @@
 ruI18n = {
   EDIT_POST_EDIT_BTN: 'Сохранить изменения',
   NEW_POST_SELECT_TYPE_TEXT: '--Выберите тип--',
+  MORE:'больше',
 
+  //No Posts
+  YOU_HAVE_NO_POSTS: 'У вас пока еще нет постов',
+  PRESS_BUTTON_BELOW:'Чтобы создать новый пост нажмите кнопку ниже',
   //New post
   NEW_POST_NEWTYPE_BEACON_TITLE: 'Выберите подходящий маячок',
   NEW_POST_IMPORT_FROM_WEB: 'Взять из интернета',
@@ -58,6 +62,15 @@ ruI18n = {
   NEW_POST_HASHES: 'Хэштеги',
   NEW_POST_CREATE_BTN: 'Установить Светлячок',
   NEW_POST_SET_LOCATION_BTN: 'Выберите Местоположение',
+  NEW_POST_SENIORITY: 'Стаж',
+  NEW_POST_GENDER: 'Пол',
+  NEW_POST_ATTACHMENT_FILES: 'Вложения',
+  NEW_POST_REMOVE_ATTACHMENT: 'Удалить вложение',
+  NEW_POST_CONTACTS: 'Контакты',
+  NEW_POST_ATTACH_A_DOCUMENT: 'Прикрепить документ(необязательно)',
+  NEW_POST_CATEGORY_SEARCH: 'Выберите категорию',
+  NEW_POST_EMPLOYMENT_AND_WORK_SCHEDULE: 'Работа и график работы',
+  NEW_POST_PAY_METHOD: 'Способ оплаты',
   NEW_POST_DINAMIC_TOOLTIP_TEXT: 'Выберите эту опцию, если желаете, чтобы созданное объявление перемещалось вместе с вашим устройством.',
   NEW_POST_STATIC_TOOLTIP_TEXT: 'Выберите эту опцию, если желаете, чтобы созданное объявление было привязано к местности и не зависело от вашего перемещения.',
   NEW_POST_MOVING_WITH_YOU_AD: 'Объявление перемещается вместе с вами',
@@ -65,6 +78,12 @@ ruI18n = {
   NEW_POST_STATIC: 'Статическое',
   NEW_POST_PINNED_TO_STATIC_LOCATION: 'Установка статического расположения',
   NEW_POST_PLACE_AD: 'Местонахождение объявления',
+  NEW_POST_VALUE:'Значение',
+  NEW_POST_PHONE: 'Телефон',
+  NEW_POST_BUDGET:'Бюджет',
+  NEW_POST_PROVIDE:'Предоставляется',
+  NEW_POST_NEED:'Требуется',
+
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Новое напоминание',
   NEW_MEMO_TITLE_TOOLTIP_TEXT: 'Добавьте название для вашего напоминания.',
@@ -90,6 +109,40 @@ ruI18n = {
   POST_DETAILS_VIEW_MAP:'Показать на карте',
   POST_DETAILS_DETAILS: 'Детали',
   POST_DETAILS_PUBLISHED_ON: 'Опубликовано',
+  PAY_METHOD_FIXED_PRICE: 'Фиксированный оклад',
+  PAY_METHOD_HOUR:'Почасовой',
+  PAY_METHOD_FREE:'Бесплатно',
+  SENIORITY_BEFORE_ONE_YEAR:'до 1 года',
+  SENIORITY_ONE_THREE_YEAR: 'от 1 до 3 лет',
+  SENIORITY_THREE_FIVE_YEAR: 'от 3 до 5 лет',
+  SENIORITY_FIVE_AND_GREAT_YEAR: 'от 5 и более',
+  GENDER_MALE:'мужской',
+  GENDER_FEMALE:'женский',
+  SELECT_ONE_OPTION:'Выберите один из вариантов',
+  SELECT_ONE_OPTION_WORK: 'Ищу работу',
+  SELECT_ONE_OPTION_JOBS:'Предлагаю работу',
+  SELECT_ONE_OPTION_LEARNING:'Ищу обучение',
+  SELECT_ONE_OPTION_TRAINING:'Предлагаю обучение',
+  EMPLOYMENT_AND_WORK_SCHEDULE_SELECTED_VARIANTS:'Можно выбрать несколько вариантов',
+  EMPLOYMENT_AND_WORK_SCHEDULE_CONSTANT:'Постоянная',
+  EMPLOYMENT_AND_WORK_SCHEDULE_PROJECT_temporary: 'Проектная/Временная работа',
+  EMPLOYMENT_AND_WORK_SCHEDULE_PROFESSION: 'По специальности',
+  EMPLOYMENT_AND_WORK_SCHEDULE_WITHOUT_EXPERIENCE: 'Без опыта',
+  EMPLOYMENT_AND_WORK_SCHEDULE_PART:'Частичная занятость',
+  EMPLOYMENT_AND_WORK_SCHEDULE_VOLUNTEER:'Волонтером',
+  EMPLOYMENT_AND_WORK_SCHEDULE_FREELANCE:'Фриланс',
+  EMPLOYMENT_AND_WORK_SCHEDULE_PROBATION:'Без опыта',
+  EMPLOYMENT_AND_WORK_SCHEDULE_CHOSE_ALL:'Выбрать все',
+  SECTION_LEARNING: 'Раздел обучения',
+  TRAININGS_SECTION_TRAININGS:'Тренинг',
+  TRAININGS_SECTION_MASTER:'Мастер-класс',
+  TRAININGS_SECTION_TUTORING:'Репетитор',
+  TRAININGS_SECTION_COURSES:'Курсы',
+  TRAININGS_SECTION_SCHOOL:'Школа',
+  TRAININGS_SECTION_HIGH_SCHOOL:'ВУЗ',
+
+  SELECT_LOCATION_TO_ADD: 'Выберите место, чтобы добавить'
+  
 };
 var ruAll = _.extend(bz.language.i18n.ru, ruI18n);
 T9n.map('ru', ruAll);

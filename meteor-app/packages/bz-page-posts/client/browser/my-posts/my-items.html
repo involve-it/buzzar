@@ -24,9 +24,9 @@
         <div>
             <div class="bz-posts-items-owner-post-menu">
                 <ul class="tabs bz-nav bz-horizontal bz-nav-side-b" data-tab="">
-                  <li class="tab-title active"><a id="activePosts" href="#activePosts" aria-selected="true" tabindex="0">Active <!--({{ getCountActivePosts }})--></a></li>
-                  <li class="tab-title"><a id="livePosts" href="#livePosts" aria-selected="false" tabindex="1">Live <!--({{ getCountLivePosts }})--></a></li>
-                  <li class="tab-title"><a id="active" href="#allPosts" aria-selected="false" tabindex="2"><b>All</b></a></li>
+                  <li class="tab-title active"><a id="activePosts" href="#activePosts" aria-selected="true" tabindex="0">{{t9n 'ACTIVE'}} <!--({{ getCountActivePosts }})--></a></li>
+                  <li class="tab-title"><a id="livePosts" href="#livePosts" aria-selected="false" tabindex="1">{{t9n 'LIVE'}} <!--({{ getCountLivePosts }})--></a></li>
+                  <li class="tab-title"><a id="active" href="#allPosts" aria-selected="false" tabindex="2"><b>{{t9n 'ALL'}}</b></a></li>
                 </ul>
             </div>
                         
@@ -160,11 +160,11 @@
             <div class="description bz-flex">
                 
                 <div class="bz-post-header bz-flex bz-flex-space-between">
-                    <a href="/post/{{_id}}"><span>{{details.title}}</span></a>
+                    <a href="/post/{{_id}}">{{details.title}}</a>
 
 
-                    <div class="bz-switch-activity-post">
-                        <div class="switch-wrapper js-switch-wrapper">
+                    <div class="bz-switch-activity-post" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'POST_SWITCH_OFF_ON'}}">
+                        <div class="switch-wrapper js-switch-wrapper" >
                             <div class="switch bz-small">
                                 <input id="switch-activity-{{_id}}" type="checkbox" {{ getVisibilityVal }} class="js-switch-activity-input">
                                 <label for="switch-activity-{{_id}}"></label>
@@ -250,11 +250,11 @@
         <i class="fa fa-envelope"></i>
       </div>
 
-      <div class="title-message">You have no posts yet</div>
-      <div class="subtitle-message">Press button below.</div>
+      <div class="title-message">{{t9n 'YOU_HAVE_NO_POSTS'}}</div>
+      <div class="subtitle-message">{{t9n 'PRESS_BUTTON_BELOW'}}</div>
 
       <div class="bz-padding-top-x2">
-        <a href="{{pathFor 'postsNew'}}" class="button alert">New Post</a>
+        <a href="{{pathFor 'postsNew'}}" class="button alert">{{t9n 'NEW_POST'}}</a>
       </div>
     </div>
   </div>

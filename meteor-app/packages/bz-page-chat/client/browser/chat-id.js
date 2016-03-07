@@ -4,25 +4,65 @@
 
 Template.bzChatId.onRendered(function() {
 
-    $.each($('textarea[data-autoresize]'), function() {
-        var offset = this.offsetHeight - this.clientHeight;
-        var resizeTextarea = function(el) {
-            $(el).css('height', 'auto').css('height', el.scrollHeight + offset);
-        };
 
-        $(this).on('keyup input', function() {
-            if(this.scrollHeight > 44) {
-                resizeTextarea(this);
-            }
-        }).removeAttr('data-autoresize');
-    });
+  var userAgent = navigator.userAgent;
+  var ios = /AppleWebKit/.test(userAgent) && /Mobile\/\w+/.test(userAgent);
+  var mobile = ios || /Android|webOS|BlackBerry|Opera Mini|Opera Mobi|IEMobile/i.test(userAgent);
+
+  
+  function resizeWinChat() {
+    var $win = $(window).height(),
+        headerH = $('.bz-nav-bg-default').outerHeight(),
+        chatHeader = $('.bz-user-owner-toolbar').outerHeight(),
+        chatTextInput = $('.bz-user-inputs-messages').outerHeight(),
+        paddingBorder = (mobile) ? 1 : 41;
+    
+    if(mobile) {
+      $('.bz-footer').outerHeight(0).css('display','none');
+      var footerH = 0;
+    } else {
+      var footerH = $('.bz-footer').outerHeight();
+    }
+    
+    $('.bz-messages-container').css('height', ( $win - headerH - footerH - chatHeader - chatTextInput - paddingBorder) );
+  }
+  
+  Meteor.startup(function() {
+    $(window).resize(function(e) {
+      resizeWinChat();
+    });  
+  });
+  
+  resizeWinChat();
+  
+  $.each($('textarea[data-autoresize]'), function() {
+      var offset = this.offsetHeight - this.clientHeight;
+      var resizeTextarea = function(el) {
+          $(el).css('height', 'auto').css('height', el.scrollHeight + offset);
+      };
+
+      $(this).on('keyup input', function() {
+          if(this.scrollHeight > 44) {
+            resizeTextarea(this);
+            
+            resizeWinChat();
+          }
+      }).removeAttr('data-autoresize');
+  });
 
 });
+
+
+Template.bzChatId.onDestroyed(function() {
+  $(window).off('resize');
+});
+
 
 Template.bzChatId.created = function () {
   currentUser = Meteor.user();
   //friendUserId = Router.current().params.userId;
 };
+
 
 Template.bzChatId.rendered = function () {
 //todo: Don't forget turn on:

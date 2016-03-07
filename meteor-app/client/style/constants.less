@@ -31,7 +31,9 @@
 
 @bg-menu-color-1: rgb(63, 68, 82);
 
-
+p {
+  font-size: 15px;
+}
 
 /* MIXIN */
 
@@ -39,11 +41,11 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  -o-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
 }
 
 .border-radius(@radius) {
@@ -111,23 +113,27 @@
 
 .type-category() {
   /*Category type*/
-  &.type-category-trade     {background-color: rgba(81,185,200, 1);}
-  &.type-category-jobs      {background-color: rgba(121,121,121, 1);}
-  &.type-category-help      {background-color: rgba(121,206,33, 1);}
-  &.type-category-connect   {background-color: rgba(30,188,210, 1);}
-  &.type-category-housing   {background-color: rgba(241,186,56, 1);}
-  &.type-category-events    {background-color: rgba(0,150,136, 1);}
+  &.type-category-jobs      {background-color: rgba(114,201,234, 1);}
+  &.type-category-trainings {background-color: rgba(209,138,189, 1);}
+  &.type-category-connect   {background-color: rgba(253,94,81, 1);}
+  &.type-category-trade     {background-color: rgba(155,156,156, 1);}
+  &.type-category-housing   {background-color: rgba(189,208,39, 1);}
+  &.type-category-events    {background-color: rgba(237,116,40, 1);}
+  &.type-category-services  {background-color: rgba(166,210,173, 1);}
+  &.type-category-help      {background-color: rgba(90,163,147, 1);}
   &.type-category-          {display: none; }
 }
 
 .type-category-color() {
   /*Category type*/
-  &.type-category-trade     {color: rgba(81,185,200, 1);}
-  &.type-category-jobs      {color: rgba(121,121,121, 1);}
-  &.type-category-help      {color: rgba(121,206,33, 1);}
-  &.type-category-connect   {color: rgba(30,188,210, 1);}
-  &.type-category-housing   {color: rgba(241,186,56, 1);}
-  &.type-category-events    {color: rgba(0,150,136, 1);}
+  &.type-category-jobs      {color: rgba(114,201,234, 1);}
+  &.type-category-trainings {color: rgba(209,138,189, 1);}
+  &.type-category-connect   {color: rgba(253,94,81, 1);}
+  &.type-category-trade     {color: rgba(155,156,156, 1);}
+  &.type-category-housing   {color: rgba(189,208,39, 1);}
+  &.type-category-events    {color: rgba(237,116,40, 1);}
+  &.type-category-services  {color: rgba(166,210,173, 1);}
+  &.type-category-help      {color: rgba(90,163,147, 1);}
 }
 
 /* END MIXIN */

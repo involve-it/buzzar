@@ -98,11 +98,13 @@ CreateNewPostFromView = function (v) {
     //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
     if (loc1 && location1.isSet) {
       // bz.help.maps.getCurrentLocation(function (loc) {
+      loc1.obscuredCoords=loc1.coords;
       locationsArr.push(loc1);
       //locDef.resolve();
       //});
     }
     if (loc2 && location2.isSet) {
+      loc2.obscuredCoords=loc2.coords;
       locationsArr.push(loc2);
       //locDef.resolve();
     }
@@ -150,6 +152,10 @@ CreateNewPostFromView = function (v) {
         typeCategory: GetValueJobsSingleData(v, '#select-jobs-search-category'),
         jobsType: GetValueJobsMultiData(v, '#select-jobs-type'),
         payMethod: GetValuePayMethod(v, '.bz-button-group')
+      },
+      trainingsDetails: {
+        sectionLearning: GetValueJobsSingleData(v, '#select-trainings-section-learning'),
+        typeCategory: GetValueJobsSingleData(v, '#select-trainings-search-category')
       },
       status: {
         visible: bz.const.posts.status.visibility.VISIBLE

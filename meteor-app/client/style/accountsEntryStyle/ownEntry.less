@@ -20,11 +20,42 @@
     .email-option h3 {
       color: rgba(255,255,255,.85);
       font-size: 16px;
-      margin: 15px 0;
+      margin: 15px 0 5px 0;
     }
 
     .entry-logo {
-      margin: 0 auto;
+      
+      a {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        
+        img {
+          height: 45px;
+          width: auto;
+        }
+        
+        .entry-logo-title {
+          font-size: 30px;
+        }
+      }
+    }
+    
+    .entry-logo-title {
+      font-size: 35px;
+      padding-left: 8px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: rgba(255,255,255, .95);
+      text-shadow: 0 1px 5px rgba(0,0,0,.1);
     }
 
     .entry-form p,
@@ -33,6 +64,7 @@
       color: rgba(34,34,34, .85);
 
       a {
+        padding-left: 15px;
         color: #FFFFFF;
       }
     }
@@ -59,7 +91,7 @@
     input[type="password"] {
       color: #FFFFFF;
       font-weight: 300;
-      height: 52px;
+      height: 42px;
       line-height: 22px;
       padding: 0 0 0 10px;
       margin: 0;
@@ -97,7 +129,7 @@
     form .btn-primary {
       outline: none;
       margin-left: 0;
-      margin-top: 30px;
+      margin-top: 15px;
       margin-right: 0;
       height: 52px;
       width: 100%;
@@ -154,29 +186,19 @@
 @media only screen and (min-width : 320px) {
 
   .page-wrapper-auth {
-
-    .entry-logo {
-      width: 130px;
-    }
-
-    .entry-logo img {
-      height: 130px;
-      width: 130px;
-    }
+    .entry-logo {}
+    .entry-logo img {}
+    .wrapper-auth {}
 
     .title-auth {
       font-size: 40px;
     }
-
-
   }
 
 }
 
 /* Extra Small Devices, Phones */
-@media only screen and (min-width : 480px) {
-
-}
+@media only screen and (min-width : 480px) {}
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
@@ -184,12 +206,12 @@
   .page-wrapper-auth {
 
     .entry-logo {
-      width: 210px;
-    }
-
-    .entry-logo img {
-      height: 210px;
-      width: 210px;
+      a {
+        img {
+          height: 65px;
+          width: auto;
+        }
+      }
     }
 
     .title-auth {

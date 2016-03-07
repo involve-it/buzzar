@@ -13,13 +13,13 @@
   -webkit-border-radius: 2px 2px 0 0;
   -moz-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
-  padding-bottom: 20px;
-  margin: -20px -20px 20px -20px;
+  padding-bottom: 0;
+  margin: -16px -16px 16px -16px;
   background-color: rgba(255,255,255, .9);
   border-bottom: 1px solid rgba(0,0,0, .05);
   
   > div {
-    margin: 0 20px 0 20px;
+    margin-right: 16px;
   }
 }
 
@@ -338,7 +338,8 @@
   button.dropdown {
     margin: 0;
     background-color: transparent;
-    padding: 0.66667rem 1.9rem 0.66667rem 0.66667rem;
+    padding: 6px 28px 6px 8px;
+    font-size: 14px;
     font-family: @roboto-font-family;
     &:after {
       right: 0.66667rem;
@@ -823,7 +824,8 @@ nav.left-off-canvas-menu {
 .bz-search-header {
   .display-flex-box();
   .flex(1,0);
-  padding:10px;
+  padding: 10px 0;
+  max-width: 450px;
 }
 
 .bz-item-input-wrapper {
@@ -1297,6 +1299,73 @@ nav.left-off-canvas-menu {
 
 
 
+.bz-checkboxes-filters {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 7px 0;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.bz-checkbox {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 6px 6px 6px 45px;
+  height: 32px;
+  line-height: 22px;
+  .border-radius(2px);
+  color: rgba(51,51,51, 1);
+  vertical-align: top;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  font-size: 12px;
+  
+  &.mobile {
+    padding: 6px 6px 6px 50px;
+    width: 50%;
+  }
+
+  &.radio-f {
+    padding: 6px;
+    width: 50%;
+  }
+
+  &.radio-three {
+    padding: 6px;
+    width: 33.3333%;
+  }
+
+  &:nth-child(even) {
+    //left: 6px;
+  }
+  
+  &:hover {
+    background-color: rgba(0,0,0, .025);
+    .border-radius(2px);
+  }
+  
+  .bz-checkbox-wrapper {
+    position: absolute;
+    left: 6px;
+    top: 0;
+    width: 42px;
+    height: 32px;
+    
+  }
+}
 
 
 

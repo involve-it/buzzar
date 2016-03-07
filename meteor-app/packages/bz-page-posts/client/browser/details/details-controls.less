@@ -38,6 +38,13 @@
       padding: 0;
       font-size: 18px;
       color: lighten(@text-color-label, 10%);
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      max-width: 98%;
+      display: block;
+      white-space: nowrap;
     }
     
     
@@ -208,6 +215,9 @@
       
       .bz-post-description {
         color: rgb(63, 68, 82);
+        width: 100%;
+        word-wrap: break-word;
+        overflow: hidden;
       }
     }
     
@@ -215,7 +225,7 @@
       
       .post-details {
         margin-bottom: 0;
-        height: 42px;
+        height: 37px;
         padding-left: 0.9375rem;
         
         &:nth-child(2n+1) {
@@ -423,7 +433,7 @@
 
     /*overlay mode*/
     &.clearing-blackout {
-      
+      z-index: 998000;
       .carousel {
         height: auto;
         position: relative;
@@ -460,6 +470,7 @@
 .post-photo-upload .clearing-thumbs {
   .bz-post-controls-plus-img {
     float: left;
+    margin-right: 16px;
   }
 }
 

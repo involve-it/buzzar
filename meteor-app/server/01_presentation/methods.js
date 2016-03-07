@@ -42,6 +42,13 @@ Meteor.methods({
           postObject.presences[id] = bz.const.posts.status.presence.NEAR;
         });
       }*/
+      if (postObject.details && postObject.details.locations) {
+        _.each(postObject.details.locations, function(location){
+          if (location.placeType === bz.const.locations.type.DYNAMIC){
+            location.obscuredCoords = bz.bus.proximityHandler.getObscuredCoords(location.coords.lat, location.coords.lng, 0.1);
+          }
+        });
+      }
       var post = bz.cols.posts.insert(postObject);
       if (currentLocation){
         bz.bus.proximityHandler.reportLocation({
@@ -100,8 +107,11 @@ Meteor.methods({
   reportLocation: function(report){
     return bz.bus.proximityHandler.reportLocation(report);
   },
-  logOut: function(userId){
+  logOut: function(userId, deviceId){
     if (userId) {
+      if (deviceId){
+        bz.bus.pushHandler.unassignTokenFromUser(userId, deviceId);
+      }
       return bz.bus.proximityHandler.processUserDisconnect(userId);
     }
   },
@@ -109,10 +119,10 @@ Meteor.methods({
     bz.bus.pushHandler.registerToken(deviceId, token, userId);
   },
   assignTokenToUser: function(deviceId, userId){
-    bz.bus.pushHandler.assignTokenToUser(userId, deviceId)
+    bz.bus.pushHandler.assignTokenToUser(userId, deviceId);
   },
   unassignTokenFromUser: function(deviceId, userId){
-    bz.bus.pushHandler.unassignTokenFromUser(userId, deviceId)
+    bz.bus.pushHandler.unassignTokenFromUser(userId, deviceId);
   },
   sendMessageContactUs: function(msg, userId){
     // send email here:

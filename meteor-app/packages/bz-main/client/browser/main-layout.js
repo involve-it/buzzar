@@ -52,22 +52,31 @@ Template.bzChangeLanguage.events({
   //'change .dropdown-choose-lang': function (e, v) {
   'change .js-language-picker': function (e, v) {
     var lang = e.target.value;
-    //$('.js-language-picker').val(lang);
 
     SetUiLanguage(lang);
     setTimeout(()=>{
       $('.js-bz-header').hide().show(0);
     }, 100);
-  }
-});
 
-Meteor.startup(()=>{
-  Tracker.autorun(()=>{
-    var sessLang = Session.get('bz.user.language');
-    if(sessLang) {
-      //$('.dropdown-choose-lang').val(lang);
-    }
-  });
+    // Set language - in the headerof the site
+    var elms = $('.bz-switcher-language-list').children().find('a');
+    elms.each(function() {
+      $(this).removeClass('active');
+      if($(this).data('lang') === lang) {
+        $(this).addClass('active');
+      }
+    });
+
+    //Set language - left menu
+    var langLeftMenu = $('.bz-menu-switcher-language-list').children().find('a');
+    langLeftMenu.each(function() {
+      $(this).closest('.bz-button').removeClass('bz-active');
+      if($(this).data('lang') === lang) {
+        $(this).closest('.bz-button').addClass('bz-active');
+      }
+    });
+    
+  }
 });
 
 
@@ -83,14 +92,10 @@ Template.bzDropSelectLanguage.rendered = function() {
         $(this).addClass('active');
       }
     });
-    
-    /*OLD V.*/ 
-    /*var el = $('.drop-language');
-    el.children().not('.'+lang).addClass('hide');*/
- 
   });
 
 };
+
 
 Template.bzDropSelectLanguage.events({
   'click [data-lang]': function(e, v) {
@@ -110,13 +115,21 @@ Template.bzDropSelectLanguage.events({
       toggles.find('a').filter(".active").removeClass("active");
       target.addClass("active");
     }
-        
-    /*OLD V.*/
-    /*var el = $('.drop-language');
-    el.children('.'+lang).removeClass('hide');
-    el.children().not('.'+lang).addClass('hide');*/
+
+    // Set language - in the footer of the site
+    $('select.js-language-picker').val(Session.get('bz.user.language'));
+
+    //Set language - left menu
+    var langLeftMenu = $('.bz-menu-switcher-language-list').children().find('a');
+    langLeftMenu.each(function() {
+      $(this).closest('.bz-button').removeClass('bz-active');
+      if($(this).data('lang') === lang) {
+        $(this).closest('.bz-button').addClass('bz-active');
+      }
+    });
   }
 });
+
 
 Template.bzNavMe.helpers({
   getUserAvatar: function(){
@@ -134,13 +147,19 @@ Template.bzNavMe.helpers({
 });
 
 
+/*Template.bzNavMe.events({
+  'click .js-sign-out': function(e, v) {
+    Session.set('fromWhere', null);
+  }
+});*/
+
+
 Template.bzLeftMenuSelectLanguage.onRendered(function() {
   var lang = Session.get('bz.user.language');
   if(lang) {
-    var el = $('.bz-menu-switcher-language-list'),
-        element = el.children().find('a');
+    var el = $('.bz-menu-switcher-language-list').children().find('a');
 
-    element.each(function() {
+    el.each(function() {
       if($(this).data('lang') === lang) {
         $(this).closest('.bz-button').addClass('bz-active');
       }
@@ -171,5 +190,18 @@ Template.bzLeftMenuSelectLanguage.events({
     ele.attr('aria-checked', 'true');
 
     v.$('.js-bz-button').trigger("change.bz.button", [ele]);
+
+
+    // Set language - in the footer of the site
+    $('select.js-language-picker').val(Session.get('bz.user.language'));
+
+    // Set language - in the header of the site
+    var elms = $('.bz-switcher-language-list').children().find('a');
+    elms.each(function() {
+      $(this).removeClass('active');
+      if($(this).data('lang') === Session.get('bz.user.language')) {
+        $(this).addClass('active');
+      }
+    });
   }
 });

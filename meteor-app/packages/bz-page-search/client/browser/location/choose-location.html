@@ -1,21 +1,19 @@
 <template name="bzLocationName">
-  <!--<div class="bz-location-name">
-    {{> bzLinkLocationName}}
-  </div>-->
-
-  <div id="choose-locations-global" class="reveal-modal js-global-location" data-reveal aria-labelledby="modalTitle"
-       aria-hidden="true" role="dialog">
-    <!--{{> bzChooseLocationModal}}-->
-    <div class=" js-location-modal-holder-global"></div>
-    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-  </div>
+    <div id="choose-locations-global" class="reveal-modal js-global-location" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <!--{{> bzChooseLocationModal}}-->
+        <div class=" js-location-modal-holder-global"></div>
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
 </template>
 
 <template name="bzLinkLocationName">
     <a class="bz-link-lacation-name" href="#" data-reveal-id="choose-locations-global">
-        <i class="fa fa-map-marker {{ notDefinedLocationClass }}"></i> {{#if getCurrentLocationName}} <span>{{ getCurrentLocationName }}</span> {{else}}
-        <span>{{ getCurrentLocationName }}</span>
-    {{/if}}
+        <i class="fa fa-map-marker {{ notDefinedLocationClass }}"></i> 
+        {{#if getCurrentLocationName}}
+            <span>{{ getCurrentLocationName }}</span> 
+        {{else}}
+            <span>{{ getCurrentLocationName }}</span>
+        {{/if}}
     </a>
 </template>
 
@@ -87,8 +85,7 @@
               </ul>
             {{ else }}
               <div data-alert class="alert-box info">
-                  <strong>Sign In</strong> Please <a class="close-modal" href="/sign-in">sign in</a> to see your places
-                  history.
+                  <strong>{{ t9n 'SIGN_IN'}}</strong> {{ t9n 'PLEASE_SIGN_IN'}} <a class="close-modal" href="/sign-in">{{ t9n 'SIGN_IN'}}</a> {{ t9n 'TO_SEE_YOUR_PLACES_HISTORY'}}
                 <a href="#" class="close">&times;</a>
               </div>
             {{/if}}

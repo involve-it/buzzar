@@ -67,7 +67,7 @@
               </select>
             </div>
             <div class="small-10 large-10 columns">
-              <input class="js-post-price" type="number" placeholder="Value" value="{{ getPrice }}">
+              <input class="js-post-price" type="number" placeholder="{{ t9n 'NEW_POST_VALUE' }}" value="{{ getPrice }}">
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@
 
 <template name="postDetailsJobs">
 <form data-abide>
-    <div class="bz-post-details-jobs clearfix padding-top bz-form-group">
+    <div class="bz-post-details-jobs bz-dropdown-section-ad clearfix padding-top bz-form-group">
         <div class="clearfix bz-form-group">
             <!--1-->
             <div class="small-12 medium-3 input-label left">&nbsp;</div>
@@ -89,11 +89,11 @@
                         <div class="row">
                             <div class="small-12 columns">
                                 <div>{{ t9n 'NEW_POST_SENIORITY' }}</div>
-                                <select id="jobs-seniority" class="bz-ui-dropdown" data-prompt="Seniority">
-                                    <option value="until-1">до 1 года</option>
-                                    <option value="1-3">от 1 до 3 лет</option>
-                                    <option value="3-5">от 3 до 5 лет</option>
-                                    <option value="5-more">от 5 и более</option>
+                                <select id="jobs-seniority" class="bz-ui-dropdown" data-prompt="{{ t9n 'NEW_POST_SENIORITY' }}">
+                                    <option value="until-1">{{ t9n 'SENIORITY_BEFORE_ONE_YEAR' }}</option>
+                                    <option value="1-3">{{ t9n 'SENIORITY_ONE_THREE_YEAR' }}</option>
+                                    <option value="3-5">{{ t9n 'SENIORITY_THREE_FIVE_YEAR' }}</option>
+                                    <option value="5-more">{{ t9n 'SENIORITY_FIVE_AND_GREAT_YEAR' }}</option>
                                 </select>
                             </div>
                         </div>
@@ -103,9 +103,9 @@
                         <div class="row">
                             <div class="small-12 columns">
                                 <div>{{ t9n 'NEW_POST_GENDER' }}</div>
-                                <select id="jobs-gender" class="bz-ui-dropdown" data-prompt="Gender">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                <select id="jobs-gender" class="bz-ui-dropdown" data-prompt="{{ t9n 'NEW_POST_GENDER' }}">
+                                    <option value="male">{{ t9n 'GENDER_MALE' }}</option>
+                                    <option value="female">{{ t9n 'GENDER_FEMALE' }}</option>
                                 </select>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                 <div class="small-12 medium-3 input-label left"><span class="field-required">*</span> {{ t9n 'NEW_POST_CONTACTS' }}</div>
                 <div class="small-12 medium-9 large-9 left">
                     <div class="">
-                        <input class="js-job-phone" required pattern="integer" placeholder="Phone" type="tel" name="phone">
+                        <input class="js-job-phone" required pattern="integer" placeholder="{{ t9n 'NEW_POST_PHONE' }}" type="tel" name="phone">
                         <!--Error-->
                         <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_INTEGER_PATTERN' }}</small></div>
                     </div>
@@ -153,11 +153,11 @@
             <div class="item item-input item-select">
                 <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_CATEGORY_SEARCH' }}</div>
                 <div class="small-12 medium-9 large-9 left">
-                    <select id="jobs-search-category" class="bz-ui-dropdown" data-prompt="Выберите один из вариантов">
-                        <option value="looking-for-job">Ищу работу</option>
-                        <option value="jobs-offered">Предлагаю работу</option>
-                        <option value="looking-for-training">Ищу обучение</option>
-                        <option value="training-offer">Предлагаю обучение</option>
+                    <select id="jobs-search-category" class="bz-ui-dropdown" data-prompt="{{ t9n 'SELECT_ONE_OPTION' }}">
+                        <option value="looking-for-job">{{ t9n 'SELECT_ONE_OPTION_WORK' }}</option>
+                        <option value="jobs-offered">{{ t9n 'SELECT_ONE_OPTION_JOBS' }}</option>
+                        <!--<option value="looking-for-training">{{ t9n 'SELECT_ONE_OPTION_LEARNING' }}</option>
+                        <option value="training-offer">{{ t9n 'SELECT_ONE_OPTION_TRAINING' }}</option>-->
                     </select>
                 </div>
             </div>
@@ -168,16 +168,16 @@
             <div class="item item-input item-select">
                 <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_EMPLOYMENT_AND_WORK_SCHEDULE' }}</div>
                 <div class="small-12 medium-9 large-9 left">
-                    <select id="jobs-type" class="bz-ui-dropdown" multiple data-prompt="Можно выбрать несколько вариантов">
-                        <option value="full-day">Постоянная</option>
-                        <option value="project">Проектная/Временная работа</option>
-                        <option value="by-profession">По специальности</option>
-                        <option value="without-experience">Без опыта</option>
-                        <option value="part">Частичная занятость</option>
-                        <option value="volunteer">Волонтером</option>
-                        <option value="freelance">Фриланс</option>
-                        <option value="probation">Без опыта</option>
-                        <option value="choose-all">Выбрать все</option>
+                    <select id="jobs-type" class="bz-ui-dropdown" multiple data-prompt="{{ t9n 'EMPLOYMENT_AND_WORK_SCHEDULE_SELECTED_VARIANTS' }}">
+                        <option value="full-day">{{ t9n 'EMPLOYMENT_AND_WORK_SCHEDULE_CONSTANT' }}</option>
+                        <option value="project">{{ t9n 'EMPLOYMENT_AND_WORK_SCHEDULE_PROJECT_temporary' }}</option>
+                        <option value="by-profession">{{ t9n 'EMPLOYMENT_AND_WORK_SCHEDULE_PROFESSION' }}</option>
+                        <option value="without-experience">{{ t9n 'EMPLOYMENT_AND_WORK_SCHEDULE_WITHOUT_EXPERIENCE' }}</option>
+                        <option value="part">{{ t9n 'EMPLOYMENT_AND_WORK_SCHEDULE_PART' }}</option>
+                        <option value="volunteer">{{ t9n 'EMPLOYMENT_AND_WORK_SCHEDULE_VOLUNTEER' }}</option>
+                        <option value="freelance">{{ t9n 'EMPLOYMENT_AND_WORK_SCHEDULE_FREELANCE' }}</option>
+                        <option value="probation">{{ t9n 'EMPLOYMENT_AND_WORK_SCHEDULE_PROBATION' }}</option>
+                        <option value="choose-all">{{ t9n 'EMPLOYMENT_AND_WORK_SCHEDULE_CHOSE_ALL' }}</option>
                     </select>
                 </div>
             </div>
@@ -190,9 +190,9 @@
 
 
                 <div class="bz-button-group" data-bz-button-radio>
-                    <button class="js-bz-button bz-button" aria-checked="false" data-value="hour"><i class="fa fa-clock-o fa-2x"></i> <span>Hour</span></button>
-                    <button class="js-bz-button bz-button" aria-checked="false" data-value="fixed"><i class="fa fa-usd fa-2x"></i> <span>Fixed price</span></button>
-                    <button class="js-bz-button bz-button" aria-checked="false" data-value="free"><span class="title-free">FREE</span></button>
+                    <button class="js-bz-button bz-button" aria-checked="false" data-value="hour"><i class="fa fa-clock-o fa-2x"></i> <span>{{ t9n 'PAY_METHOD_HOUR' }}</span></button>
+                    <button class="js-bz-button bz-button" aria-checked="false" data-value="fixed"><i class="fa fa-usd fa-2x"></i> <span>{{ t9n 'PAY_METHOD_FIXED_PRICE' }}</span></button>
+                    <button class="js-bz-button bz-button" aria-checked="false" data-value="free"><span class="title-free">{{ t9n 'PAY_METHOD_FREE' }}</span></button>
                 </div>
 
                 <div class="bz-add-post-pay-choose">
@@ -205,7 +205,7 @@
                             </select>
                         </div>
                         <div class="small-9 large-9 columns">
-                            <input class="js-post-price" type="number" placeholder="Budget" value="">
+                            <input class="js-post-price" type="number" placeholder="{{ t9n 'NEW_POST_BUDGET' }}" value="">
                         </div>
                     </div>
                     </div>
@@ -240,21 +240,22 @@
       <div class="medium-3 input-label left">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
       <div class="medium-5 large-7 left">
         <select class="js-service-type-select">
-          <option value="provide">Provide</option>
-          <option value="need">Need</option>
+          <option value="provide">{{ t9n 'NEW_POST_PROVIDE' }}</option>
+          <option value="need">{{ t9n 'NEW_POST_NEED' }}</option>
         </select>
       </div>
     </label>
   </div>
 </template>
+
 <template name="postDetailsServices">
   <div class="clearfix padding-top">
     <label class="item item-input item-select">
       <div class="medium-3 input-label left">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
       <div class="medium-5 large-7 left">
         <select class="js-service-type-select">
-          <option value="provide">Provide</option>
-          <option value="need">Need</option>
+          <option value="provide">{{ t9n 'NEW_POST_PROVIDE' }}</option>
+          <option value="need">{{ t9n 'NEW_POST_NEED' }}</option>
         </select>
       </div>
     </label>
@@ -262,19 +263,36 @@
 </template>
 
 <template name="postDetailsTrainings">
-  <div class="clearfix padding-top">
-    <label class="item item-input item-select">
-      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
-      <div class="medium-5 large-7 left">
-        <select class="js-housing-type-select">
-          <option value="roommates">{{ t9n 'NEW_POST_ROOMMATES' }}</option>
-          <option value="rent">{{ t9n 'NEW_POST_RENTING' }}</option>
-          <option value="rentOut">{{ t9n 'NEW_POST_RENTING_OUT' }}</option>
-          <option value="buy">{{ t9n 'NEW_POST_BUYING_A_HOUSE' }}</option>
-          <option value="sell">{{ t9n 'NEW_POST_SELLING_A_HOUSE' }}</option>
-        </select>
-      </div>
-    </label>
-  </div>
+    <div class="bz-post-details-trainings bz-dropdown-section-ad">
+        <!--1-->
+        <div class="clearfix bz-form-group">
+            <div class="item item-input">
+                <div class="small-12 medium-3 input-label left">{{ t9n 'SECTION_LEARNING' }}</div>
+                <div class="small-12 medium-9 large-9 left">
+                    <select id="trainings-section-learning" class="bz-ui-dropdown" data-prompt="{{ t9n 'SELECT_ONE_OPTION' }}">
+                        <option value="looking-for-training">{{ t9n 'SELECT_ONE_OPTION_LEARNING' }}</option>
+                        <option value="training-offer">{{ t9n 'SELECT_ONE_OPTION_TRAINING' }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!--2-->
+        <div class="clearfix bz-form-group">
+            <div class="item item-input">
+                <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_CATEGORY_SEARCH' }}</div>
+                <div class="small-12 medium-9 large-9 left">
+                    <select id="trainings-search-category" class="bz-ui-dropdown" data-prompt="{{ t9n 'SELECT_ONE_OPTION' }}">
+                        <option value="training-trainings">{{ t9n 'TRAININGS_SECTION_TRAININGS' }}</option>
+                        <option value="training-master-class">{{ t9n 'TRAININGS_SECTION_MASTER' }}</option>
+                        <option value="training-tutoring">{{ t9n 'TRAININGS_SECTION_TUTORING' }}</option>
+                        <option value="training-courses">{{ t9n 'TRAININGS_SECTION_COURSES' }}</option>
+                        <option value="training-school">{{ t9n 'TRAININGS_SECTION_SCHOOL' }}</option>
+                        <option value="training-high-school">{{ t9n 'TRAININGS_SECTION_HIGH_SCHOOL' }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 

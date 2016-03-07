@@ -6,21 +6,60 @@ var en;
 
 en = {
   //Global
+  ADD: 'Add',
   APP_NAME: 'Shiners',
   CONTENT_READ_MORE_TITLE: 'Read more...',
   CONTACT_US:'Contact us',
   SEND_MESSAGE: 'Send message',
   YES: 'Yes',
   NO: 'No',
+  ALL:'ALL',
+  LIVE:'Live',
+  ACTIVE:'Active',
   COMMENTS:'Comments',
   RATING: 'Rating',
   REVIEW_HELP_TEXT: 'Put your review here',
   CHOOSE_RATING: 'Choose rating',
   SUBMIT: 'Submit',
+  SEND:'Send',
   CANCEL: 'Cancel',
   OR:'OR',
   //Buttons
   BUTTON_CHECK: 'Check',
+  READ_MORE:'Read more',
+  NEW_POST: 'New post',
+  CREATE_POST: 'Create Post',
+  CHECK_ALL: 'All',
+  TODAY:'today',
+  DAYS:'days',
+  searchLocationText: 'Place name or address',
+
+  BZ_RESULTS_FOUND: 'Results found',
+  BZ_DISTANCE: 'Distance',
+  BZ_IS_PHOTO: 'Photo available',
+  BZ_SETTINGS_CATEGORY: 'Category settings',
+  BZ_ALL_CATEGORIES_JOBS: 'All categories',
+  BZ_LOOKING_FOR_JOBS: 'Looking for job',
+  BZ_JOBS_OFFERED: 'Job Offer',
+  BZ_EMPLOYMENT_AND_WORK_SCHEDULE: 'Employment and work schedule',
+  BZ_EMPLOYMENT_AND_WORK_SCHEDULE_DESC: 'Employment and work schedule',
+  BZ_FULL_DAY: 'Full time',
+  BZ_PROJECT: 'Project/Temporary work',
+  BZ_PART_TIME: 'Part time',
+  BZ_VOLUNTEER: 'Volunteering',
+  BZ_WORK_PROBATION: 'Work placement',
+  BZ_BY_PROFESSION: 'By profession',
+  BZ_WITHOUT_EXPERIENCE: 'I have no work experience',
+  BZ_FREELANCE: 'Freelancer',
+  BZ_CHOOSE_TYPE_TRAININGS: 'Select the type of training',
+  BZ_CHOOSE_TYPE_TRAININGS_DESC: 'Select the type of training',
+
+
+  //No posts around
+  NO_ITEMS_AROUND_YOU: 'You have no items around',
+  YOU_CAN_CREATE_POST: 'You could add an advertisement, so that other users can use it. To do this, click on the button below.',
+
+  BUTTONS_BACK: 'Back',
   
   //Menu
   MENU_HOME_PAGE: 'Home',
@@ -49,6 +88,8 @@ en = {
   SEEN_TOTAL: 'Total',
   left: 'Left',
   POST_STATUS: 'Post close',
+  
+  POST_SWITCH_OFF_ON: 'Switch off the post. Previous publication of the advertisement is not displayed to other users. You can reactivate them in My posts in the "ALL" tab.',
   
   //sitewise:
   siteTitleElement: 'instant post, bound to location',
@@ -95,7 +136,6 @@ en = {
 
   //Another user profile details
   PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Personal data',
-  PROFILE_ANOTHER_USER_ADDITIONAL_LINKS: 'External link',
 
   //Profile - edit
   PROFILE_EDIT_USER_AVATAR: 'Edit user avatar',
@@ -107,6 +147,8 @@ en = {
   PROFILE_USER_PHONE_NUMBER: 'Phone number',
   PROFILE_USER_SKYPE_LOGIN: 'Skype username',
   PROFILE_USER_SECURITY_SETTINGS: 'Security settings',
+  PROFILE_POLICY_PUBLIC:'Public',
+  PROFILE_POLICY_HIDDEN:'Hidden',
 
   //Image select
   IMAGE_SELECT_UPLOAD_PHOTO: 'Upload Photo',
@@ -121,11 +163,32 @@ en = {
   IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE: 'Upload New Profile Image with File Picker',
   IMAGE_SELECT_CHOOSE_IMAGE: 'Choose image',
   COMMON_IMAGE_GET_RANDOM: 'Get random image',
+  IMAGE_PHOTO_LIBRARY_IS_NOT_AVAILABLE:'Photo Library is not available.',
+
+  //chats
+  CHATS_LAST_MESSAGE: 'Last message',
+  CHATS_NO_CONVERSATIONS: 'You have no conversations yet',
+  CHATS_START_MESSAGING:'Start messaging by pressing the pencil button in the top right corner or press button below.',
+  CHATS_GO_CONTACTS:'go to the Contacts',
+  CHATS_SEARCH: 'Search for messages or username',
+  CHATS_FILTER:'Filter',
+  CHATS_NEW_CHAT_MESSAGE: 'New message',
+  CHATS_SUMMARY: 'Dialogues',
+  CHATS_TYPE_YOUR_MESSAGE: 'Type your message ...',
 
   //Error
   ERROR_INVALID_FIELD: 'This field is required',
   ERROR_INVALID_INTEGER_PATTERN: 'This field is required and must be an integer',
 
+  //Sign In and Sign Up
+  SIGN_IN:'Sign In',
+  TO_SEE_YOUR_PLACES_HISTORY:'to see your places history.',
+  PLEASE_SIGN_IN:'Please',
+  confirmPassword:'Confirm Password',
+  SIGN_VALID_USERNAME:'A valid username is required',
+  SIGN_VALID_EMAIL: 'A valid email address is required',
+  SIGN_VALID_PASSWORD:'Your password must match the requirements',
+  SIGN_VALID_USERNAME_OR_EMAIL:'A valid email address or username is required'
 };
 T9n.map('en', en);
 bz.help.makeNamespace('bz.language.i18n.en', en);

@@ -29,7 +29,7 @@ Template.bzLocationName.rendered = function () {
     });
     //$(document).on('opened.fndtn.reveal', '[data-reveal]', function () {
     //});
-  }, 1000);
+  }, 0);
 };
 
 Template.bzLocationNameNewPost.rendered = function () {
@@ -49,8 +49,9 @@ Template.bzLocationNameNewPost.rendered = function () {
     });
     //$(document).on('opened.fndtn.reveal', '[data-reveal]', function () {
     //});
-  }, 1000);
-}
+  }, 0);
+};
+
 // custom helper to show the modal:
 Template.bzLocationNameNewPost.showModal = function(){
   $('[data-reveal].js-new-post-location').foundation('reveal', 'open');

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <widget id="org.buzzar.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>meteor-app</name>
-  <description>New Meteor Mobile App</description>
+  <name>Shiners</name>
+  <description>Shiners</description>
   <author href="n/a" email="n/a">A Meteor Developer</author>
   <preference name="webviewbounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -11,6 +11,7 @@
   <preference name="SplashScreenDelay" value="10000"/>
   <preference name="StatusBarOverlaysWebView" value="false"/>
   <preference name="StatusBarStyle" value="default"/>
+  <preference name="orientation" value="portrait" />
   <content src="index.html"/>
   <access origin="tel:*" launch-external="true"/>
   <access origin="geo:*" launch-external="true"/>

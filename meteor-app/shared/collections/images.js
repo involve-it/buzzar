@@ -57,4 +57,7 @@ if(Meteor.isServer){
       }
     }
   });
+  Meteor.publish('posts-images', function () {
+    return bz.cols.images.find();
+  });
 }

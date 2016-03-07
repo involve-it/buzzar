@@ -46,7 +46,12 @@ function validatePostsNewPage (v){
     var ret = true, msg = [];
     // 0. synchronous validation:
     if (!Session.get(bz.const.posts.location1) && !Session.get(bz.const.posts.location2)) {
-      msg.push('Please select at least one location');
+      if (Session.get("bz.user.language")=='ru'){
+        msg.push('Пожалуйста, выберите хотя бы одно местоположение');
+      }
+      else {
+        msg.push('Please select at least one location');
+      }
       ret = false;
     }
 
@@ -60,7 +65,12 @@ function validatePostsNewPage (v){
     });
     $('form[data-abide]').on('invalid.fndtn.abide', function () {
       // Handle the submission of the form
-      msg.push('Some fields did not pass validation');
+      if (Session.get("bz.user.language")=='ru'){
+        msg.push('Некоторые поля не прошли проверку');
+      }
+      else {
+        msg.push('Some fields did not pass validation');
+      }
       resolve({
         res: false,
         msg: msg

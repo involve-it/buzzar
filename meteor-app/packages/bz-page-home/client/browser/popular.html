@@ -52,7 +52,7 @@
             {{{details.description}}}
           </p>
           <div class="bz-text-align-right">
-            <a class="bz-read-more" href="/post/{{_id}}">Read more</a>
+            <a class="bz-read-more" href="/post/{{_id}}">{{ t9n 'READ_MORE'}}</a>
           </div>
           {{> postProgressBar}}
         </div>
@@ -61,7 +61,7 @@
                 <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
             {{/if}}-->
           {{> bzAdCategoryButton }}
-          <div class="">
+          <div class="bz-sent-text">
             <a class="js-send-message-btn {{ disableOwnPost }}">{{ t9n 'SEND_MESSAGE' }}</a>
           </div>
 

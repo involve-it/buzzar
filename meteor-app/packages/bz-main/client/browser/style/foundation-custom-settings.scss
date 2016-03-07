@@ -33,6 +33,8 @@ $font-family: "Roboto", sans-serif;
 body {
   background-color: rgba(237,237,237, .9);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .bz-container-body {
@@ -53,7 +55,7 @@ body {
     position: absolute;
     top: 18px;
     left: 20px;
-    z-index: 101;
+    z-index: 10000;
 
     .bz-icon {
       display: block;
@@ -153,13 +155,14 @@ body {
           border: none;
           color: $color-white-text;
           opacity: .9;
-          padding: 6px 10px;
+          padding: 6px 8px;
+          font-size: 14px;
           -webkit-border-radius: 2px;
           -moz-border-radius: 2px;
           border-radius: 2px;
 
           &:hover {
-            background-color: rgba(0, 0, 0, .1);
+            background-color: rgba(0, 0, 0, .2);
             opacity: 1;
           }
         }
@@ -167,7 +170,7 @@ body {
         &.active {
           a {
             opacity: 1;
-            background-color: rgba(0, 0, 0, .2);
+            background-color: rgba(0, 0, 0, .5);
 
           }
         }
@@ -222,6 +225,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1000;
     background-image: -webkit-linear-gradient(-35deg, $bg-header-color-1, $bg-header-color-2);
     background-image: linear-gradient(135deg, $bg-header-color-1, $bg-header-color-2);
     background-color: $bg-header-color-1;
@@ -235,7 +239,8 @@ body {
 
   .nav-bg-transparent {
     .bz-nav-bg-default {
-      background-color: transparent;
+      background-color: rgba(0,0,0, .2);
+      /*background-color: transparent;*/
       background-image: none;
     }
   }
@@ -530,10 +535,11 @@ body {
 
             /* additional class - for vertical middle */
             .bz-header-middle {
-              padding: 0 10px 70px 10px;
+              //
               
 
               .bz-header-middle-wrapper {
+                padding: 0 10px 70px 10px;
                 /*display: table-cell;
                 vertical-align: middle;*/
               }
@@ -565,7 +571,7 @@ body {
               left: 0;
               right: 0;
               top: 0;
-              background-color: rgba(0,0,0, .1);
+              background-color: rgba(0,0,0, .2);
               
               .bz-nav-bg-wrapper {
                 padding: 0;
@@ -1497,6 +1503,12 @@ body {
 
   .bz-wrap-page {
 
+    .page-wrapper-auth {
+      .wrapper-auth {
+        padding-top: 2em;
+      }
+    }
+
     .bz-main {
       .bz-slideshow {
         height: 275px;
@@ -1604,6 +1616,30 @@ body {
         }
       }
     }
+
+
+    .bz-page-chat {
+      .bz-user-owner-toolbar {
+        .bz-user-owner-toolbar-wrapper {
+          padding: 8px 15px;
+
+          .bz-user-wrap-inner {
+            .bz-user-avatar {
+              height: 40px;
+              width: 40px;
+              
+              a {
+                img {
+                  height: 40px !important;
+                  width: 40px !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
   }
 }
 

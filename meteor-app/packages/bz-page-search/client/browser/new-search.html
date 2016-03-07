@@ -51,8 +51,7 @@
     <div class="bz-search-box-filter-wrapper">
         <div class="bz-filter-info">
             <div class="bz-filter-info-result left">
-                Results found:  
-                <span class="bz-ret-sesult">{{countSearchRQ}}</span>
+                {{ t9n 'BZ_RESULTS_FOUND' }}: <span class="bz-ret-sesult">{{countSearchRQ}}</span>
             </div>
             <div class="bz-filter-info-help right">
                 <a href="#">Learn more</a>
@@ -92,9 +91,7 @@
 <template name="searchCommonFilters">
     <div class="bzSearchTmpl-common">
         <div class="list">
-            <div class="item item-divider">
-                Distance
-            </div>
+            <div class="item item-divider">{{ t9n 'BZ_DISTANCE' }}</div>
 
             <div class="item">
                 <div class="bz-range-slider">
@@ -121,53 +118,278 @@
 
 
 <template name="searchFiltersJobs">
-    <div class="bzSearchTmpl-jobs">            
-        <div class="list">
-            {{> searchCommonFilters}}
-            
-            <div class="bz-additional-filters-search">
-                <div class="item item-divider">
-                    Category settings
-                </div>
-        
-                <div class="item">
-                    <select id="jobs-search-category-home" class="bz-ui-dropdown" data-prompt="Выберите один из вариантов">
-                        <option value="all-jobs">Все подкатегории</option>
-                        <option value="looking-for-job">Вакансии</option>
-                        <option value="jobs-offered">Резюме</option>
-                    </select>
-                </div>
-        
-                <div class="item item-divider">
-                    Employment and work schedule
-                </div>
-        
-                <div class="item">
-                    <select id="jobs-type-home" class="bz-ui-dropdown" multiple data-prompt="Можно выбрать несколько вариантов">
-                        <option value="full-day">Постоянная</option>
-                        <option value="project">Проектная/Временная работа</option>
-                        <option value="by-profession">По специальности</option>
-                        <option value="without-experience">Без опыта</option>
-                        <option value="part">Частичная занятость</option>
-                        <option value="volunteer">Волонтером</option>
-                        <option value="freelance">Фриланс</option>
-                        <option value="probation">Без опыта</option>
-                        <option value="choose-all">Выбрать все</option>
-                    </select>
-                </div>
-            
-                <div class="item bz-gray-background">
-                    <div class="">Only with photos</div>
-                    <div class="bz-switch-is-photo">
-                        <div class="switch-wrapper js-switch-wrapper">
-                            <div class="switch bz-small">
-                                <input id="switch-is-photo" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
-                                <label for="switch-is-photo"></label>
+    <div class="bzSearchTmpl-jobs">
+        <!--old place a common filter-->
+        <div class="bz-additional-filters-search">
+            <ul id="cd-primary-nav" class="cd-primary-nav">
+                <li>
+                    <div class="filter-wrapper">{{> searchCommonFilters}}</div>
+                </li>
+
+                <li>
+                    <div class="filter-wrapper">
+                        <p class="bz-filters-title">{{ t9n 'BZ_SETTINGS_CATEGORY' }}</p>
+                        <div class="bz-checkboxes-filters">
+                            <div class="bz-checkbox radio-three">
+                                <input type="radio" name="section-jobs" value="all-jobs" id="filter-all-jobs"><label for="filter-all-jobs">{{ t9n 'BZ_ALL_CATEGORIES_JOBS' }}</label>
+                            </div>
+                            
+                            <div class="bz-checkbox radio-three">
+                                <input type="radio" name="section-jobs" value="looking-for-job" id="filter-looking-for-job"><label for="filter-looking-for-job">{{ t9n 'BZ_LOOKING_FOR_JOBS' }}</label>
+                            </div>
+
+                            <div class="bz-checkbox radio-three">
+                                <input type="radio" name="section-jobs" value="jobs-offered" id="filter-jobs-offered"><label for="filter-jobs-offered">{{ t9n 'BZ_JOBS_OFFERED' }}</label>
                             </div>
                         </div>
                     </div>
-                </div>
+                </li>
+
+
+                <li class="has-children">
+                    <a href="#" class="">{{ t9n 'BZ_EMPLOYMENT_AND_WORK_SCHEDULE' }} <i class="fa fa-angle-right"></i></a>
+
+                    <ul class="cd-secondary-nav is-hidden">
+                        <li class="go-back"><a href="#"><i class="fa fa-angle-left"></i> {{ t9n 'BUTTONS_BACK' }}</a></li>
+                        <li>
+                            <p class="bz-filters-section-title">{{ t9n 'BZ_EMPLOYMENT_AND_WORK_SCHEDULE_DESC' }}</p>
+                            <div class="bz-checkboxes-filters">
+                                <!--1-->
+                                <div class="bz-checkbox mobile">
+                                    <div>{{t9n 'BZ_FULL_DAY'}}</div>
+                                    <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                        <div class="switch bz-small">
+                                            <input id="full-day" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                            <label for="full-day"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--2-->
+                                <div class="bz-checkbox mobile">
+                                    <div>{{ t9n 'BZ_PROJECT' }}</div>
+                                    <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                        <div class="switch bz-small">
+                                            <input id="project" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                            <label for="project"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--3-->
+                                <div class="bz-checkbox mobile">
+                                    <div>{{ t9n 'BZ_BY_PROFESSION' }}</div>
+                                    <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                        <div class="switch bz-small">
+                                            <input id="by-profession" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                            <label for="by-profession"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--4-->
+                                <div class="bz-checkbox mobile">
+                                    <div>{{ t9n 'BZ_WITHOUT_EXPERIENCE' }}</div>
+                                    <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                        <div class="switch bz-small">
+                                            <input id="without-experience" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                            <label for="without-experience"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--5-->
+                                <div class="bz-checkbox mobile">
+                                    <div>{{ t9n 'BZ_PART_TIME' }}</div>
+                                    <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                        <div class="switch bz-small">
+                                            <input id="part" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                            <label for="part"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--6-->
+                                <div class="bz-checkbox mobile">
+                                    <div>{{ t9n 'BZ_VOLUNTEER' }}</div>
+                                    <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                        <div class="switch bz-small">
+                                            <input id="volunteer" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                            <label for="volunteer"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--7-->
+                                <div class="bz-checkbox mobile">
+                                    <div>{{ t9n 'BZ_FREELANCE' }}</div>
+                                    <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                        <div class="switch bz-small">
+                                            <input id="freelance" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                            <label for="freelance"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--8-->
+                                <div class="bz-checkbox mobile">
+                                    <div>{{ t9n 'BZ_WORK_PROBATION' }}</div>
+                                    <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                        <div class="switch bz-small">
+                                            <input id="probation" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                            <label for="probation"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <div class="filter-wrapper">
+                        <div class="bz-checkboxes-filters">
+                            <div class="bz-checkbox mobile">
+                                <div>{{ t9n 'BZ_IS_PHOTO' }}</div>
+                                <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                    <div class="switch bz-small">
+                                        <input id="switch-is-photo" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                        <label for="switch-is-photo"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>                
+        </div>
+    </div>
+</template>
+
+<template name="searchFiltersTrainings">
+    <div class="bzSearchTmpl-trainings">
+        <div id="bz-search-trainings-box" class="list">
+            <!--old place a common filter-->
+            <div class="bz-additional-filters-search">
+                
+                <ul id="cd-primary-nav" class="cd-primary-nav">
+                    <li>
+                        <div class="filter-wrapper">{{> searchCommonFilters}}</div>
+                    </li>
+                    
+                    <!--<div class="bz-separate small"></div>-->
+                    
+                    <li>
+                        <div class="filter-wrapper">
+                            <p class="bz-filters-title">{{ t9n 'BZ_SETTINGS_CATEGORY' }}</p>
+                            <div class="bz-checkboxes-filters">
+                                <div class="bz-checkbox radio-f">
+                                    <input type="radio" name="section-learning" value="option-learning" id="filter-option-learning"><label for="filter-option-learning">{{ t9n 'SELECT_ONE_OPTION_LEARNING' }}</label>
+                                </div>
+                                
+                                <div class="bz-checkbox radio-f">
+                                    <input type="radio" name="section-learning" value="option-training" id="filter-option-training"><label for="filter-option-training">{{ t9n 'SELECT_ONE_OPTION_TRAINING' }}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="has-children">
+                        <a href="#" class="">{{ t9n 'BZ_CHOOSE_TYPE_TRAININGS' }} <i class="fa fa-angle-right"></i></a>
+
+                        <ul class="cd-secondary-nav is-hidden">
+                            <li class="go-back"><a href="#"><i class="fa fa-angle-left"></i> {{ t9n 'BUTTONS_BACK' }}</a></li>
+                            <li>
+                                <p class="bz-filters-section-title">{{ t9n 'BZ_CHOOSE_TYPE_TRAININGS_DESC' }}</p>
+                                <div class="bz-checkboxes-filters">
+                                    <!--1-->
+                                    <div class="bz-checkbox mobile">
+                                        <div>{{ t9n 'TRAININGS_SECTION_TRAININGS' }}</div>
+                                        <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                            <div class="switch bz-small">
+                                                <input id="training-trainings" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                                <label for="training-trainings"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--2-->
+                                    <div class="bz-checkbox mobile">
+                                        <div>{{ t9n 'TRAININGS_SECTION_MASTER' }}</div>
+                                        <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                            <div class="switch bz-small">
+                                                <input id="training-master-class" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                                <label for="training-master-class"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--3-->
+                                    <div class="bz-checkbox mobile">
+                                        <div>{{ t9n 'TRAININGS_SECTION_TUTORING' }}</div>
+                                        <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                            <div class="switch bz-small">
+                                                <input id="training-tutoring" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                                <label for="training-tutoring"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--4-->
+                                    <div class="bz-checkbox mobile">
+                                        <div>{{ t9n 'TRAININGS_SECTION_COURSES' }}</div>
+                                        <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                            <div class="switch bz-small">
+                                                <input id="training-courses" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                                <label for="training-courses"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--5-->
+                                    <div class="bz-checkbox mobile">
+                                        <div>{{ t9n 'TRAININGS_SECTION_SCHOOL' }}</div>
+                                        <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                            <div class="switch bz-small">
+                                                <input id="training-school" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                                <label for="training-school"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--6-->
+                                    <div class="bz-checkbox mobile">
+                                        <div>{{ t9n 'TRAININGS_SECTION_HIGH_SCHOOL' }}</div>
+                                        <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                            <div class="switch bz-small">
+                                                <input id="training-high-school" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                                <label for="training-high-school"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <div class="filter-wrapper">
+                            <div class="bz-checkboxes-filters">
+                                <div class="bz-checkbox mobile">
+                                    <div>{{ t9n 'BZ_IS_PHOTO' }}</div>
+                                    <div class="bz-checkbox-wrapper js-switch-wrapper">
+                                        <div class="switch bz-small">
+                                            <input id="switch-is-photo" type="checkbox" {{ getVisibilityVal }} class="js-switch-is-photo">
+                                            <label for="switch-is-photo"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul> <!-- primary-nav -->
             </div>
         </div>
     </div>
 </template>
+
+
+
+
+
+
+
+
+
+
