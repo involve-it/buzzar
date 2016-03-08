@@ -99,32 +99,30 @@ Template.onePostRowItemOwner.events({
   'click .js-switch-activity-input': function(e,v){
     if(v.data) {
       v.data.status = v.data.status || {};
-      var now, start, finish, target, duration, tsPause;
+      var now, start, finish, target, duration, tsPause,status;
       now = new Date().getTime();
       start = new Date(bz.cols.posts.findOne({_id: this._id}).timestamp).getTime();
       finish = new Date(bz.cols.posts.findOne({_id: this._id}).endDatePost).getTime();
       if (e.target.checked === false) {
-        v.data.status.visible = bz.const.posts.status.visibility.INVISIBLE;
+        status = bz.const.posts.status.visibility.INVISIBLE;
         tsPause=finish-now;
-        if(v.data) {
-          bz.cols.posts.update(v.data._id, {$set: {
+          bz.cols.posts.update({_id: this._id}, {$set: {
             'timePause':tsPause,
-            'status.visible': v.data.status.visible
+            'status.visible': status
           }
           });
-        }
       } else {
-        v.data.status.visible = bz.const.posts.status.visibility.VISIBLE;
-        if(v.data.timePause=='0'){
+        status = bz.const.posts.status.visibility.VISIBLE;
+        if(v.data.timePause <= 0){
 
           duration = finish - start;
           target = finish + duration;
           if(v.data) {
-            bz.cols.posts.update(v.data._id, {$set: {
+            bz.cols.posts.update({_id: this._id}, {$set: {
               'timestamp': now,
               'endDatePost': target,
               'timePause':duration,
-              'status.visible': v.data.status.visible
+              'status.visible': status
             }
             });
           }
@@ -135,19 +133,17 @@ Template.onePostRowItemOwner.events({
           target = now + tsPause;
           newTimeStamp=target-duration;
           if(v.data) {
-            bz.cols.posts.update(v.data._id, {$set: {
+            bz.cols.posts.update({_id: this._id}, {$set: {
               'timestamp': newTimeStamp,
               'endDatePost': target,
               'timePause':tsPause,
-              'status.visible': v.data.status.visible
+              'status.visible':status
             }
             });
           }
         }
       }
-      setTimeout(function(){
-        bz.cols.posts.update(v.data._id, {$set: {'status.visible': v.data.status.visible}})
-      }, 10);
+      setTimeout(function(){}, 10);
     }
   },
   'click .js-delete-post': function(e) {
@@ -275,7 +271,11 @@ Template.onePostRowItemOwner.helpers({
       duration = finish - start;
 
       /* left time */
-      var ms = finish - now;
+      if (bz.cols.posts.findOne({_id: this._id}).status.visible){
+        var ms = finish - now;
+      } else{
+        var ms =bz.cols.posts.findOne({_id: this._id}).timePause;
+      }
       days = Math.floor(ms / 86400000);
       hours = Math.floor((ms - (days * 86400000)) / 3600000);
       min = Math.floor((ms - (days * 86400000) - (hours * 3600000)) / 60000);
@@ -301,7 +301,7 @@ Template.onePostRowItemOwner.helpers({
         status = false;
 
         /* update the status on visible, null  */
-        bz.cols.posts.update(this._id, { $set: { status: {visible: null} , timePause: '0'} });
+        bz.cols.posts.update(this._id, { $set: { status: {visible: null} , timePause: 0} });
       }
       language = Session.get('bz.user.language');
       function endingOfTheWord(lang, number, title, titleEng) {
