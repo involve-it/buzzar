@@ -18,6 +18,8 @@ Template.bzAroundYou.helpers({
     });
     
     Session.set('bz.control.search.amount', ret && ret.length);
+
+    //console.info(ret);
     
     return ret;
     
@@ -166,7 +168,7 @@ function getSearchResultsFromSessionParameters(options = {}){
           return doc._getDistanceToCurrentLocationNumber();
         }).value();
       }
-      console.log('Around you posts amount: ' + ret.length);
+      //console.log('Around you posts amount: ' + ret.length);
   }
   return ret;
 }
