@@ -22,7 +22,7 @@
     position: relative;
     overflow-y: auto;
 
-    display: -ms-flexbox;
+    /*display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
 
@@ -31,7 +31,7 @@
 
     -ms-flex-direction: column;
     -webkit-flex-direction: column;
-    flex-direction: column;
+    flex-direction: column;*/
     
     margin: -16px -16px 0 -16px;
     padding: 16px;
@@ -191,7 +191,7 @@
     }
     
     .bz-user-inputs-messages-wrapper {
-      padding: 15px;
+      padding: 8px;
       .display-flex-box();
       
       .bz-user-inputs {
@@ -208,6 +208,7 @@
           .flex(1,0);
           
           textarea {
+            min-height: 36px;
             margin: 0;
             border: none;
             resize: none;
