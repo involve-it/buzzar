@@ -98,7 +98,8 @@ bz.bus.search.doSearchClient = (params, options)=> {
   ret = bz.cols.posts.find(dbQuery, options);
 
   return ret;
-}
+};
+
 bz.bus.search.doSearchServer = function (options, callback) {
   var searchedText = options.text;
   searchedText = searchedText && searchedText.trim();
@@ -150,6 +151,7 @@ function getLatLngBox(lat, lng, radius) {
     return null;
   }
 };
+
 function searchPostsReactive() {
   // this function will run on every page, tracking "bz.cols.posts.find()". Danger!
   Tracker.autorun(function () {
@@ -163,9 +165,10 @@ function searchPostsReactive() {
     });
   });
 }
+
 setSearchedText = function (text) {
   return Session.set('bz.control.search.searchedText', text);
-}
+};
 
 // HELPERS:
 function fillNearByPlacesFromLocationYelp(loc, radius) {
@@ -178,6 +181,7 @@ function fillNearByPlacesFromLocationYelp(loc, radius) {
    }, callbackNearbySearchYelp);*/
   callbackNearbySearchYelp(window.yelpRes.businesses, 'OK'); // stub, todo
 }
+
 function callbackNearbySearchYelp(results, status) {
   if (status === 'OK') {
     for (var i = 0; i < results.length; i++) {
@@ -188,6 +192,7 @@ function callbackNearbySearchYelp(results, status) {
   //Session.set('bz.control.search.places', bz.runtime.maps.places.find().fetch());
   //return bz.runtime.maps.places;
 }
+
 function fillNearByPlacesFromLocationGoogle(loc, radius) {
   var map = document.createElement('div');
   var service = new google.maps.places.PlacesService(map);
@@ -227,7 +232,9 @@ createLocationFromObject = function (obj) {
   var ret, toRemove,
     locName = obj.name, coords = obj.coords;
   // save to locations history collection
-
+  
+  //console.log('get 2');
+  
   if (locName && Meteor.userId()) {
     ret = {
       userId: Meteor.userId(),
@@ -236,11 +243,35 @@ createLocationFromObject = function (obj) {
       placeType: bz.const.locations.type.STATIC,
       public: false,
       timestamp: Date.now()
-    }
+    };
+    
     toRemove = bz.cols.locations.findOne({
       name: locName,
       userId: Meteor.userId()
     });
+    
+    if (toRemove) {
+      bz.cols.locations.remove(toRemove._id);
+    }
+
+    ret._id = bz.cols.locations.insert(ret);
+  } else if(locName) {
+
+    //console.log('get 3');
+    
+    /* without user sign in */
+    ret = {
+      name: locName,
+      coords: coords,
+      placeType: bz.const.locations.type.STATIC,
+      public: false,
+      timestamp: Date.now()
+    };
+    
+    toRemove = bz.cols.locations.findOne({
+      name: locName
+    });
+    
     if (toRemove) {
       bz.cols.locations.remove(toRemove._id);
     }
@@ -253,7 +284,8 @@ createLocationFromObject = function (obj) {
    }*/
   // 2. set sitewide current location:
   return ret;
-}
+};
+
 setLocationToSessionFromData = function (locName, data, sessionName) {
   var placeType;
   if (sessionName === bz.const.posts.location2) {
@@ -281,6 +313,9 @@ setLocationToSessionFromData = function (locName, data, sessionName) {
   } else if (data.isCurrentLocation) {
     // selected moving location type
     bz.help.maps.getCurrentLocation(function (loc) {
+      
+      console.log('loc 1');
+      
       if (placeType === bz.const.locations.type.DYNAMIC) {
         Session.set(sessionName, {
           coords: loc,
@@ -290,6 +325,9 @@ setLocationToSessionFromData = function (locName, data, sessionName) {
           public: false // private, user's place
         });
       } else {
+        
+        //console.log('loc 2');
+        
         bz.help.maps.getAddressFromCoords(loc).done(function (address) {
           var locObj = createLocationFromObject({
             name: address,
