@@ -5,6 +5,7 @@
 var Location = {
     processCurrentLocation: function(){
         //report location only if logged in
+      
         if (Meteor.userId()) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 var currentLocation = Session.get('currentLocation');
