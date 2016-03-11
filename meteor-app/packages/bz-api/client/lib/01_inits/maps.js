@@ -54,6 +54,7 @@ var Maps = {
         console.info('Пользователь запретил определять свое местоположение.');
       } else if(error.code == 2) {
         console.info('Географическая информация недоступна');
+        console.info(error);
       } else if(error.code == 3) {
         console.info('Во время запроса произошла неизвестная ошибка.');
       }
