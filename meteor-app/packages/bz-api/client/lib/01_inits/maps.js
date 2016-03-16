@@ -17,10 +17,6 @@ var Maps = {
   getCurrentLocation: function (callback) {
     var args = Array.prototype.slice.apply(arguments).slice(1);
     var that = this;
-    /*var loc = {  //  49 Geary Street, San Francisco, CA
-     lat: 37.787923,
-     lng: -122.404342
-     };*/
 
     /*var loc = {
      lat: 37.3213,
@@ -29,6 +25,7 @@ var Maps = {
      args.unshift(loc)
      callback.apply(that, args);
      return;*/
+    
     
     // check navigation
     if(navigator && navigator.geolocation) {

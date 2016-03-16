@@ -77,6 +77,7 @@ en = {
   MENU_SIGN_OUT: 'Sign out',
   MENU_SIGN_UP: 'Sign up',
   MENU_SIGNED_IN_AS: 'Signed in as ',
+  MENU_CHANGE_LANGUAGE: 'Select you language',
   
   getAllUsers: 'Get all system users',
   getContactUsers: 'Contacts found',

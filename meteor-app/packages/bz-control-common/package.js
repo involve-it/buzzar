@@ -53,6 +53,7 @@ Package.onUse(function (api) {
     'client/browser/upload-image.js',
     'client/browser/upload-image.less',
     'client/browser/users.html',
+    'client/browser/users.js'
 
   ], global.bzSettings.webBrowserArray);
   api.addFiles([
