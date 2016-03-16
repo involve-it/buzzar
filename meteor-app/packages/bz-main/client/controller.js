@@ -17,9 +17,11 @@ loggedInUserLazyLoad = function () {
           if (!initializing) {
             //console.log(doc);
             var userObj = Meteor.users.findOne(doc.userId);
-            bz.bus.chats.showMessageModal(doc, userObj, id);
+            if (Router.current().url.slice(6)!= doc.chatId) {
+              bz.bus.chats.showMessageModal(doc, userObj, id);
 
-            bz.bus.chats.showbzAlerMessage(doc, userObj, id);
+              bz.bus.chats.showbzAlerMessage(doc, userObj, id);
+            }
           }
         }
       }
