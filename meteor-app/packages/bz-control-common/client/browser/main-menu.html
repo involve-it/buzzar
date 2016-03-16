@@ -78,13 +78,14 @@
 <!--END MENU-->
 
 <template name="bzControlMenuHashes">
-  <ul class="off-canvas-list only-menu-left">
-    <li><label>{{ t9n 'MENU_HASHES_TITLE' }}</label></li>
-
-    {{#each getUserHashes }}
-      <li><a alt="{{ details.text }}" href="{{ getMenuLinkText }}">{{ getMenuHashName }}</a></li>
-    {{/each}}
-  </ul>
+    {{#if getUserHashes}}
+        <ul class="off-canvas-list only-menu-left">
+            <li><label>{{ t9n 'MENU_HASHES_TITLE' }}</label></li>
+            {{#each getUserHashes }}
+              <li><a alt="{{ details.text }}" href="{{ getMenuLinkText }}">{{ getMenuHashName }}</a></li>
+            {{/each}}
+        </ul>
+    {{/if}}
 </template>
 
 <template name="bzControlMenuHashesMainMenu">
@@ -122,7 +123,7 @@
 
 <template name="bzLeftMenuSelectLanguage">
     <div class="bz-left-menu-select-language only-menu-left">
-        <div class="title">Please, select you language</div>
+        <div class="title">{{ t9n 'MENU_CHANGE_LANGUAGE' }}</div>
         <div class="bz-menu-select-language">
             <ul class="bz-menu-switcher-language-list" data-bz-button-radio>
                 <li class="js-bz-button bz-button"><a class="en" data-lang="en" href="#">EN</a><div class="bz-lang-bottom-line"></div></li>

@@ -5,8 +5,8 @@ var defaultDistance = 5,
   defaultLimit = 50;
 
 Meteor.methods({
-  getCurrentLocation : function(a, b, c) {
-  },
+  /*getCurrentLocation : function(a, b, c) {
+  },*/
   'bz.user.setLanguage' : function(lang) {
     var ret, user;
 

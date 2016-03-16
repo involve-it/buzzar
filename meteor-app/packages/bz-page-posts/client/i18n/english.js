@@ -24,7 +24,7 @@ enI18n = {
   NEW_POST_IMPORT_FROM_WEB_OPTIONAL: 'optional',
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER: 'Original Post Url',
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER_TOOLTIP_TEXT: 'Add the URL of your ads from another resource, not to fill the information again. We will do this for you.',
-  NEW_POST_ADD_PHOTO_BTN: '+ Add Photo',
+  NEW_POST_ADD_PHOTO_BTN: 'Add Photo',
   NEW_POST_CHARACTERS_LEFT: 'character(s) left',
   NEW_POST_CREATE_NEW_POST: 'Create new Ad',
   NEW_POST_WHAT: 'What',

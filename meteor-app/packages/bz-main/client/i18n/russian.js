@@ -77,6 +77,7 @@ ru = {
   MENU_SIGN_OUT: 'Выход',
   MENU_SIGN_UP: 'Регистрация',
   MENU_SIGNED_IN_AS: 'Вы вошли как ',
+  MENU_CHANGE_LANGUAGE: 'Выберите язык',
 
   getAllUsers:         'Все пользователи системы',
   getContactUsers:     'Найденные контакты',
