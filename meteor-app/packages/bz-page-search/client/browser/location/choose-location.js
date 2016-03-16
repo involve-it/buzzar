@@ -87,6 +87,7 @@ Template.bzChooseLocationModal.events({
     // validateAbideView(v);
 
     var locName = $('.js-location-name-input.tt-input').val() || $('.js-location-name-input').val();
+    
     if(!locName){
 
     } else {

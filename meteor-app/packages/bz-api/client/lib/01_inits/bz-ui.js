@@ -3,6 +3,7 @@
  */
 bz.help.makeNamespace('bz.ui');
 
+var masDrop =[];
 /* BZ DROP TIPS */
 bz.ui.initDropTips = function () {
 
@@ -57,13 +58,16 @@ bz.ui.initDropTips = function () {
               var d2 = drop;
               d2.close();
             });
-
+            masDrop.push(drop);
             return drop;
 
           });
 
         };
-
+        if (masDrop.length>0){
+          _.each(masDrop, function(dropItem){dropItem.destroy();});
+          masDrop=[];
+        }
         return DropTooltip();
 
       }

@@ -20,6 +20,7 @@ SetUiLanguage = function(language){
     T9n.setLanguage(language);
     Session.set('bz.user.language', language);
     _SaveUserLanguage(language);
+    bz.ui.initDropTips();
   }
 }
 

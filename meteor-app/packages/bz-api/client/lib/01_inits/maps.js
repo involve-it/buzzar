@@ -29,18 +29,36 @@ var Maps = {
      args.unshift(loc)
      callback.apply(that, args);
      return;*/
-    navigator.geolocation.getCurrentPosition(function (a) {
-      //bz.runtime.maps.currentGeoposition = a;
-      var loc = {
-        lat: a.coords.latitude,
-        lng: a.coords.longitude
-      };
-      //console.log(a);
-      //bz.runtime.maps.loc = loc;
-      args.unshift(loc);
-      Session.set('bz.api.maps.recentLoc', loc);
-      callback.apply(that, args);
-    });
+    
+    // check navigation
+    if(navigator && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(geo_success, geo_error);
+    } else {
+      console.info('Геолакация не поддерживается.');
+    }
+    
+    function geo_success(a) {
+        //bz.runtime.maps.currentGeoposition = a;
+        var loc = {
+          lat: a.coords.latitude,
+          lng: a.coords.longitude
+        };
+        //bz.runtime.maps.loc = loc;
+        args.unshift(loc);
+        Session.set('bz.api.maps.recentLoc', loc);
+        callback.apply(that, args);
+    }
+    
+    function geo_error(error) {
+      if(error.code == 1) {
+        console.info('Пользователь запретил определять свое местоположение.');
+      } else if(error.code == 2) {
+        console.info('Географическая информация недоступна');
+        console.info(error);
+      } else if(error.code == 3) {
+        console.info('Во время запроса произошла неизвестная ошибка.');
+      }
+    }
   },
   initPlacesCollection: function () {
     if (!bz.runtime.maps.places && !bz.help.collectionExists('maps.places')) {

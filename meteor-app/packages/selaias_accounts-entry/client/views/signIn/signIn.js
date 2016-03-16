@@ -10,11 +10,11 @@ AccountsEntry.entrySignInHelpers = {
     var fields;
     fields = AccountsEntry.settings.passwordSignupFields;
     if (_.contains(['USERNAME_AND_EMAIL', 'USERNAME_AND_OPTIONAL_EMAIL'], fields)) {
-      return i18n("usernameOrEmail");
+      return T9n.get("usernameOrEmail");
     } else if (fields === "USERNAME_ONLY") {
-      return i18n("username");
+      return T9n.get("username");
     }
-    return i18n("email");
+    return T9n.get("email");
   },
   logo: function() {
     return AccountsEntry.settings.logo;

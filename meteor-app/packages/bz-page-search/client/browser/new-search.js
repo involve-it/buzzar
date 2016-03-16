@@ -285,7 +285,7 @@ Template.searchCommonFilters.onRendered(()=> {
   Tracker.autorun(function () {
     //default distance
     
-    var dist = Session.get('bz.control.search.distance'), sliderDist, ret = 20;
+    var dist = Session.get('bz.control.search.distance'), sliderDist;
     //(dist) ? Session.get('bz.control.search.distance') : Session.set('bz.control.search.distance', 20);
     
     if (dist) {
@@ -304,10 +304,13 @@ Template.searchCommonFilters.onRendered(()=> {
           sliderDist = 100;
           break;
       }
-      ret = sliderDist;
+      //ret = sliderDist;
       $('.js-distance-range-slider').foundation('slider', 'set_value', sliderDist);
     }
-    return ret;
+
+    //console.info('Distance: ' + Session.get('bz.control.search.distance'), 'RET: ' + ret);
+    
+    //return ret;
   });
 });
 Template.searchCommonFilters.helpers({
@@ -326,7 +329,7 @@ Template.searchCommonFilters.helpers({
           case '20':
             sliderDist = 67;
             break;
-          case bz.const.locations.MAXRADIUS:
+          case bz.const.locations.MAXRADIUS.toString():
             sliderDist = 100;
             break;
         }
@@ -342,8 +345,9 @@ Template.searchCommonFilters.helpers({
 Template.searchCommonFilters.events({
   'change.fndtn.slider .js-distance-range-slider': function (e, v) {
     var dist, slDist = $(e.target).attr('data-slider');
-    //console.log(slDist);
-    //todo:  @Slava: этот подход неправильный-возникает туча ивентов (если я веду от 1 мили до 20, то 5 миль тоже выставится по дороге). Change this!!
+    
+    //todo: этот подход неправильный-возникает туча ивентов (если я веду от 1 мили до 20, то 5 миль тоже выставится по дороге). Change this!!
+    
     if (slDist) {
       slDist = slDist.trim();
       switch (slDist) {

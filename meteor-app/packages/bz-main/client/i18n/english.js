@@ -114,6 +114,7 @@ en = {
   LOCATION_YOUR_MOST_RECENT_LOCATIONS: 'Your most recent locations: ',
   LOCATION_BUTTON_SET_LOCATION: 'Set',
   LOCATION_MY_CURRENT_LOCATION: 'My current location',
+  LOCATION_CLICK_TO_CHOSE_LOCATION:'Click to choose location',
   MY_LOCATION_TEXT: 'My Location',
 
   //Profile

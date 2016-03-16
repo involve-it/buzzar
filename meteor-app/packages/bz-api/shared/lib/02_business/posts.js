@@ -32,8 +32,13 @@ var helperFunctions = {
        }
       var coords= loc.obscuredCoords || loc.coords;
       distance =  bz.help.location.getDistance(currentLocation.latitude, currentLocation.longitude, coords.lat, coords.lng);
-      var user = Meteor.user(),
-          lang = user&&user.profile&&user.profile.language;
+      var user = Meteor.user(), lang;
+      
+      if(user) {
+        lang = user&&user.profile&&user.profile.language;
+      } else {
+        lang = Session.get('bz.user.language');
+      }
 
       if(!retNumberFormat) {
         if (lang === 'ru') {

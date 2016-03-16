@@ -142,7 +142,7 @@ body {
       -webkit-flex-grow: 1;
       flex-grow: 1;
       text-align: right;
-      padding: 14px 14px 14px 0;
+      padding: 17px 14px 17px 0;
 
       li {
         display: inline-block;
@@ -276,6 +276,7 @@ body {
     font-size: 30px;
     margin: 0;
     padding: 0 20px;
+    text-shadow: 0 1px 1px rgba(0,0,0, .15);
   }
 
   .bz-footer {

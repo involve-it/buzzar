@@ -99,51 +99,53 @@ Template.onePostRowItemOwner.events({
   'click .js-switch-activity-input': function(e,v){
     if(v.data) {
       v.data.status = v.data.status || {};
-      var now, start, finish, target, duration, tsPause,status;
+      var now, start, finish, target, duration, tsPause,status, obj;
       now = new Date().getTime();
-      start = new Date(bz.cols.posts.findOne({_id: this._id}).timestamp).getTime();
-      finish = new Date(bz.cols.posts.findOne({_id: this._id}).endDatePost).getTime();
+
+      start = new Date(v.data.timestamp).getTime();
+      finish = new Date(v.data.endDatePost).getTime();
       if (e.target.checked === false) {
         status = bz.const.posts.status.visibility.INVISIBLE;
         tsPause=finish-now;
-          bz.cols.posts.update({_id: this._id}, {$set: {
-            'timePause':tsPause,
-            'status.visible': status
-          }
-          });
+        obj={'timePause':tsPause,
+          'status.visible': status};
       } else {
         status = bz.const.posts.status.visibility.VISIBLE;
         if(v.data.timePause <= 0){
 
           duration = finish - start;
-          target = finish + duration;
+          target = now + duration;
           if(v.data) {
-            bz.cols.posts.update({_id: this._id}, {$set: {
+            obj={
               'timestamp': now,
               'endDatePost': target,
               'timePause':duration,
               'status.visible': status
-            }
-            });
+            };
           }
         }else{
           var newTimeStamp;
-          tsPause=new Date(bz.cols.posts.findOne({_id: this._id}).timePause).getTime();
+          tsPause=new Date(v.data.timePause).getTime();
           duration= finish - start;
           target = now + tsPause;
           newTimeStamp=target-duration;
           if(v.data) {
-            bz.cols.posts.update({_id: this._id}, {$set: {
+            obj = {
               'timestamp': newTimeStamp,
               'endDatePost': target,
               'timePause':tsPause,
               'status.visible':status
-            }
-            });
+            };
           }
         }
       }
-      setTimeout(function(){}, 10);
+      if (obj) {
+        _.defer(function () {
+          bz.cols.posts.update({_id: v.data._id}, {
+            $set: obj
+          });
+        });
+      }
     }
   },
   'click .js-delete-post': function(e) {
@@ -160,14 +162,13 @@ Template.onePostRowItemOwner.events({
     var now, start, finish, target, elapsed;
     
     now = new Date().getTime();
-    start = new Date(bz.cols.posts.findOne({_id: this._id}).timestamp).getTime(); 
-    finish = new Date(bz.cols.posts.findOne({_id: this._id}).endDatePost).getTime();
+    start = new Date(v.data.timestamp).getTime();
+    finish = new Date(v.data.endDatePost).getTime();
 
     elapsed = now - start;
     target = finish + elapsed;
     /* now    =>  timestamp   */
     /* target =>  endDatePost */
-    if(confirm('Вы уверены, что хотите сбросить срок активности вашего поста?')) {
       if(v.data) {
         bz.cols.posts.update(v.data._id, {$set: {
           'timestamp': now,
@@ -177,7 +178,6 @@ Template.onePostRowItemOwner.events({
         }
         });
       }
-    }
   }
 });
 Template.onePostRowItemOwner.helpers({
