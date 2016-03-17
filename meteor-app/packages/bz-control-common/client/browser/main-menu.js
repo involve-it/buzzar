@@ -48,7 +48,6 @@ Template.bzControlMenuHashesMainMenu.helpers({
   }
 });
 
-
 Template.bzInnerMenuLeft.helpers({
   getCurrentUserName: function(){
     return Meteor.user() && Meteor.user().username;
