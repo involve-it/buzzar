@@ -55,7 +55,7 @@ body {
     position: absolute;
     top: 18px;
     left: 20px;
-    z-index: 10000;
+    z-index: 11;
 
     .bz-icon {
       display: block;
@@ -225,7 +225,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 10;
     background-image: -webkit-linear-gradient(-35deg, $bg-header-color-1, $bg-header-color-2);
     background-image: linear-gradient(135deg, $bg-header-color-1, $bg-header-color-2);
     background-color: $bg-header-color-1;
@@ -284,6 +284,34 @@ body {
     color: $color-text-input-search-field;
     font-family: $font-family;
     
+    .bz-site-footer {
+      padding: 16px 0;
+    }
+    
+    .bz-flexible-footer {
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+
+      -ms-flex-pack: justify;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+    }
+    
+    .bz-utility-footer {
+      background-color: darken($bg-input-search-field, 2%);
+    }
+
+    .bz-utility-footer-nav {
+      padding: 10px 24px;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    
     a {
       font-weight: 400;
       color: darken($color-text-input-search-field, 20%);
@@ -311,9 +339,10 @@ body {
     
     .bz-logo-footer {
       text-transform: uppercase;
-      font-size: 35px;
+      font-size: 28px;
       font-weight: bold;
-      opacity: .9;
+      opacity: .5;
+      text-shadow: 0 1px 1px rgba(0,0,0, .2);
       @include  text-transition;
       
       &:hover {
@@ -322,18 +351,24 @@ body {
     }
     
     .bz-socila-buttons {
-      margin-top: 13px;
+      
       a {
         display: inline-block;
-        font-size: 18px;
+        font-size: 16px;
         text-align: center;
         height: 30px;
         width: 30px;
         line-height: 30px;
         border: 1px solid darken($color-text-input-search-field, 20%);
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        opacity: .85;
+        @include  text-transition;
 
         &:hover {
           color: $color-text-input-search-field;
+          opacity: 1;
         }
       }
       
@@ -341,7 +376,6 @@ body {
     }
 
     .bz-footer-menu {
-      margin-top: 20px;
       
       a {
         font-size: 14px;
@@ -985,11 +1019,19 @@ body {
 
 
     .bz-footer {
-      padding: 20px;
-      text-align: center;
+      padding: 0;
+      
+      .bz-flexible-footer {
+        display: block;
+        text-align: center;
+      }
+      
+      .bz-socila-buttons {
+        padding: 16px 0;
+      }
       
       .bz-language-picker-wrapper {
-        margin-top: 20px;
+        margin: 16px auto 0 auto;
       }
     }
     
@@ -1343,7 +1385,7 @@ body {
 
     
     .bz-footer {
-      padding: 80px 0;
+      padding: 0;
       
     }
 
@@ -1478,7 +1520,7 @@ body {
         }
       
       .bz-footer {
-        padding: 60px 0;
+        padding: 0;
       }
     }
 
