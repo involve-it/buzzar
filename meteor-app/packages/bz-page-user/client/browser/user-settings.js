@@ -33,9 +33,14 @@ Template.userSettings.helpers({
   },
   getFIO: function(){
     var details = bz.cols.profileDetails.findOne({userId: this._id, key:'firstName'});
-    var fio = details && details.value;
-    details = bz.cols.profileDetails.findOne({userId: this._id, key:'lastName'});
-    fio= fio +' ' + (details && details.value);
+    var details1 = bz.cols.profileDetails.findOne({userId: this._id, key:'lastName'});
+    var fio;
+    if (details.value){
+      fio=details.value;
+    }
+    if(details1.value){
+      fio=fio+' '+details1.value;
+    }
     return fio;
   },
   getPhoneStatus: function () {
