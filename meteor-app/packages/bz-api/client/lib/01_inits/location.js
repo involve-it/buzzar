@@ -41,6 +41,7 @@ var Location = {
 
 bz.help.makeNamespace('bz.help.location', Location);
 
+
 Meteor.startup(function(){
     bz.help.location.processCurrentLocation();
     document.addEventListener('resume', bz.help.location.processCurrentLocation, false);

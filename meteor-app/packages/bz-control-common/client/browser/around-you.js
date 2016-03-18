@@ -16,7 +16,6 @@ Template.bzAroundYou.helpers({
       cats: Session.get('bz.control.category-list.activeCategories'),
       text: Session.get('bz.control.search.searchedText')
     });
-    
     Session.set('bz.control.search.amount', ret && ret.length);
 
     //console.info(ret);
@@ -148,7 +147,7 @@ function getSearchResultsFromSessionParameters(options = {}){
     distSession = options.dist || Session.get('bz.control.search.distance') || [],
     activeCats = options.cats || Session.get('bz.control.category-list.activeCategories') || [];*/
   
-    if (['home', 'jobs', 'training', 'connect', 'trade', 'housing', 'events', 'services', 'help'].indexOf(Router.getCurrentRouteName()) > -1) {
+    if (['home', 'jobs', 'trainings', 'connect', 'trade', 'housing', 'events', 'services', 'help'].indexOf(Router.getCurrentRouteName()) > -1) {
 
       // add all-posts reactivity:
       bz.cols.posts.find({});

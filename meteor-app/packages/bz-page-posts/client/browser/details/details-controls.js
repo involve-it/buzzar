@@ -20,6 +20,7 @@ Template.bzPostDetails.helpers({
     return ret;
   },
   categoryType: function() {
+    //console.info(this);
     return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
   }
 });

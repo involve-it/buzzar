@@ -31,7 +31,7 @@ var Maps = {
     if(navigator && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(geo_success, geo_error);
     } else {
-      console.info('Геолакация не поддерживается.');
+      console.info('Geolocation is not supported.');
     }
     
     function geo_success(a) {
@@ -48,12 +48,11 @@ var Maps = {
     
     function geo_error(error) {
       if(error.code == 1) {
-        console.info('Пользователь запретил определять свое местоположение.');
+        console.info('User is banned location.');
       } else if(error.code == 2) {
-        console.info('Географическая информация недоступна');
-        console.info(error);
+        console.info('Geographic information is not available.');
       } else if(error.code == 3) {
-        console.info('Во время запроса произошла неизвестная ошибка.');
+        console.info('During request unknown error occurred.');
       }
     }
   },

@@ -7,13 +7,13 @@ var defaultRadius = 1,
     nearbyRadius = 0.5;
 
 Meteor.onConnection(function(connection){
-    //console.log('Connected: ' + connection.id);
+    //console.info('Connected: ' + connection.id);
     var connectionId = connection.id;
     connection.onClose(function(){
-        //console.log('Disconnected: ' + connectionId);
+        //console.info('Disconnected: ' + connectionId);
         var user = Meteor.users.findOne({'sessionIds': connectionId});
         if (user){
-            //console.log('Found userId: ' + user._id);
+            //console.info('Found userId: ' + user._id);
             bz.bus.proximityHandler.processUserDisconnect(user._id, connectionId);
         }
     });
