@@ -29,20 +29,21 @@ sendMessage = function (messageText, chat, friendUserId) {
 
   scrollMessages();
 
-}
+};
 scrollMessages = function () {
   var elem = document.getElementsByClassName("bz-messages-container");
   elem[0].scrollTop = elem[0].scrollHeight;
   //$('.messages-container').animate({"scrollTop": $('.messages-container')[0].scrollHeight}, "100");
   //this.$messages[0].scrollTop = this.$messages[0].scrollHeight;
-}
+};
+
 makeChatActive = function (chat) {
   //var chat = bz.cols.chats.findOne(chatId);
   if (chat && !chat.active) {
     //chat && (chat.active = true);
     bz.cols.chats.update(chat._id, {$set: {activated: true}});
   }
-}
+};
 createChatIfFirstMessage = function (userFrom, userTo) {
   //var usersArr = [userFrom, userTo];
   /*bz.cols.chats.remove({

@@ -9,9 +9,9 @@ Router.map(function () {
     layoutTemplate: 'mainLayoutHome',
     controller: 'baseController',
     //fastRender: true,
+    waitOn: function () {},
     data: function() {
       var path = this.route.path();
-      //console.log(path);
       return {
         pageOptions: {
           logoType: '/img/logo/logo-home-logotype.png',

@@ -3,8 +3,7 @@
  */
 
 Template.bzChatId.onRendered(function() {
-
-
+  
   var userAgent = navigator.userAgent;
   var ios = /AppleWebKit/.test(userAgent) && /Mobile\/\w+/.test(userAgent);
   var mobile = ios || /Android|webOS|BlackBerry|Opera Mini|Opera Mobi|IEMobile/i.test(userAgent);
@@ -15,7 +14,7 @@ Template.bzChatId.onRendered(function() {
         headerH = $('.bz-nav-bg-default').outerHeight(),
         chatHeader = $('.bz-user-owner-toolbar').outerHeight(),
         chatTextInput = $('.bz-user-inputs-messages').outerHeight(),
-        paddingBorder = (mobile) ? 1 : 41;
+        paddingBorder = (mobile && $(window).width() <= 640 ) ? 1 : 41;
     
     if(mobile) {
       $('.bz-footer').outerHeight(0).css('display','none');
@@ -50,6 +49,8 @@ Template.bzChatId.onRendered(function() {
       }).removeAttr('data-autoresize');
   });
 
+  scrollMessages();
+
 });
 
 
@@ -66,7 +67,7 @@ Template.bzChatId.created = function () {
 
 Template.bzChatId.rendered = function () {
 //todo: Don't forget turn on:
-// Trail();
+ //Trail();
     var that = this;
     scrollMessages();
     var lastCount = this.data.messages.count();

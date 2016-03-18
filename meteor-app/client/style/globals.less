@@ -459,6 +459,10 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
 
 .s-alert-success {
   background-color: #4cd964;
+  
+  &.bz-with-user {
+    background-color: rgba(255,255,255, .97);
+  }
 }
 
 .s-alert-info {
@@ -490,6 +494,25 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
       &:before,
       &:after {
         background-color: darken(rgb(255,255,255), 30%);
+      }
+    }
+  }
+  
+  /*with user*/
+  &.bz-with-user {
+    .s-alert-close {
+
+      &:before,
+      &:after {
+        background-color: rgb(92,92,92);
+      }
+
+      &:hover {
+
+        &:before,
+        &:after {
+          background-color: darken(rgb(92,92,92), 30%);
+        }
       }
     }
   }

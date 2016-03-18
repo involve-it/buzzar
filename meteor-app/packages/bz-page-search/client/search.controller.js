@@ -314,7 +314,7 @@ setLocationToSessionFromData = function (locName, data, sessionName) {
     // selected moving location type
     bz.help.maps.getCurrentLocation(function (loc) {
       
-      console.log('loc 1');
+      //console.log('loc 1');
       
       if (placeType === bz.const.locations.type.DYNAMIC) {
         Session.set(sessionName, {

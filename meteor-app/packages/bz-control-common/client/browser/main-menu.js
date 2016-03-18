@@ -7,7 +7,8 @@ Template.bzControlMenuHashes.onCreated(function(){
 
 Template.bzControlMenuHashes.helpers({
   getUserHashes: function(){
-    return bz.cols.hashes.find({userId: Meteor.userId()});
+    var ret = bz.cols.hashes.find({userId: Meteor.userId()});
+    return (ret.count() > 0) ? ret : '';
   },
   getMenuHashName: function(){
     var menuLinkText = '#' + this.details.text + ' @' + this.details.locName;
@@ -46,7 +47,6 @@ Template.bzControlMenuHashesMainMenu.helpers({
     //return encodeURIComponent(url);
   }
 });
-
 
 Template.bzInnerMenuLeft.helpers({
   getCurrentUserName: function(){

@@ -67,6 +67,7 @@ var helperFunctions = {
     } else {
       ret = retNumberFormat ? Number.MAX_VALUE : '';
     }
+    
     return ret;
   },
   getDistanceToCurrentLocationNumber: function(retNumberFormat){

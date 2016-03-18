@@ -28,7 +28,7 @@ bz.bus.proximityHandler = {
     },
     reportLocation: function(report){
         //console.log('Location reported for userId: ' + report.userId + ', sessionId: ' + report.sessionId + ', lat: ' + report.lat + ', lng: ' + report.lng);
-        var posts = bz.cols.posts.find({
+      var posts = bz.cols.posts.find({
             userId: report.userId
         }).fetch();
         //var filtered = bz.bus.proximityHandler.filterCircularPosts(posts, lat, lng, nearbyRadius);

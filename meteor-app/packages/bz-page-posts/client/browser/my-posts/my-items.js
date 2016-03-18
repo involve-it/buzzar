@@ -159,22 +159,21 @@ Template.onePostRowItemOwner.events({
     });
   },
   'click .js-reset-post': function(e, v) {
-    var now, start, finish, target, elapsed;
+    var now, start, finish, target, duration;
     
     now = new Date().getTime();
     start = new Date(v.data.timestamp).getTime();
     finish = new Date(v.data.endDatePost).getTime();
 
-    elapsed = now - start;
-    target = finish + elapsed;
+    duration = finish - start;
+    target = now + duration;
     /* now    =>  timestamp   */
     /* target =>  endDatePost */
       if(v.data) {
         bz.cols.posts.update(v.data._id, {$set: {
           'timestamp': now,
           'endDatePost': target,
-          'timePause': target-now,
-          'status.visible':bz.const.posts.status.visibility.VISIBLE
+          'status.visible': bz.const.posts.status.visibility.VISIBLE
         }
         });
       }
