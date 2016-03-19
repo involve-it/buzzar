@@ -94,6 +94,7 @@ bz.bus.search.doSearchClient = (params, options)=> {
   if (params.$where) {
     dbQuery['$where'] = params.$where;
   }
+  
   _.extend(dbQuery, params.query);
   ret = bz.cols.posts.find(dbQuery, options);
 

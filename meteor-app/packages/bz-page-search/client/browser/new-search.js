@@ -206,7 +206,7 @@ Template.bzNewControlSearch.helpers({
         //template: 'newPostFoundItem',
         /*header: '<h3 class="league-name">Posts found</h3>',*/
         templates: {
-          notFound: ['<div class="empty-message"><b>Not Found</b></div>']
+          notFound: ['<div class="empty-message"><span>Not Found</span></div>']
         },
         local: function () {
           //console.log(Session.get('bz.control.category-list.activeCategories'));
