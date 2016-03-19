@@ -25,8 +25,10 @@ sendMessage = function (messageText, chat, friendUserId) {
     seen: false
   });
 
-  chat.lastMessageTs = msgTs; // assign timestamp of the last message to the chat
-
+  bz.cols.chats.update({
+    _id: chat._id
+  },{$set:{lastMessageTs: msgTs}}
+  );
   scrollMessages();
 
 };
