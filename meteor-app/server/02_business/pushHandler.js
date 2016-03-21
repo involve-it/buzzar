@@ -48,8 +48,17 @@ Meteor.startup(function(){
         Push.send(notification);
       }
     },
-    registerToken: function(deviceId, token, userId){
-      console.log('registering deviceId: ' + deviceId + ', token: ' + token.apn || token.gcm);
+    registerTokenAndDeviceId: function(deviceId, token, userId){
+      //console.log('registering deviceId: ' + deviceId + ', token: ' + token.apn || token.gcm);
+      if (deviceId){
+        Meteor.users.update({}, {
+          $pull: {deviceIds: {$eq: deviceId}}
+        });
+        var user = Meteor.user();
+        user.deviceIds = user.deviceIds || [];
+        user.deviceIds.push(deviceId);
+        Meteor.users.update(userId, user);
+      }
       if (deviceId && token && Object.keys(token).length > 0) {
         bz.cols.bulkTokens.remove({deviceId: deviceId});
 
@@ -72,7 +81,7 @@ Meteor.startup(function(){
         if (bulkToken.token.apn) {
           existingUserToken = bz.cols.userTokens.findOne({'tokens.token.apn': bulkToken.token.apn});
           _.each(existingUserToken.tokens, function(t){
-            if (t.gcm !== bulkToken.token.gcm){
+            if (t.apn !== bulkToken.token.apn){
               tokens.push(t);
             }
           });

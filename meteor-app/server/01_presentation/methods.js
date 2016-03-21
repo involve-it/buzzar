@@ -115,8 +115,8 @@ Meteor.methods({
       return bz.bus.proximityHandler.processUserDisconnect(userId);
     }
   },
-  registerPushToken: function(deviceId, token, userId){
-    bz.bus.pushHandler.registerToken(deviceId, token, userId);
+  registerTokenAndDeviceId: function(deviceId, token, userId){
+    bz.bus.pushHandler.registerTokenAndDeviceId(deviceId, token, userId);
   },
   assignTokenToUser: function(deviceId, userId){
     bz.bus.pushHandler.assignTokenToUser(userId, deviceId);
