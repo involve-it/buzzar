@@ -123,8 +123,8 @@ bz.bus.proximityHandler = {
     getObscuredCoords: function(lat, lng, rad){
         var box= bz.bus.proximityHandler.getLatLngBox(lat, lng, rad);
         return {
-            lat: Math.random()*(box.lat2-box.lat1)+box.lat1,
-            lng:  Math.random()*(box.lng2-box.lng1)+box.lng1
+            lat: lat, // Math.random()*(box.lat2-box.lat1)+box.lat1,
+            lng: lng // Math.random()*(box.lng2-box.lng1)+box.lng1
         };
     },
     processLocationReport: function(posts, lat, lng){
