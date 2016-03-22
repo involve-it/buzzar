@@ -118,14 +118,12 @@ Template.bzNewControlSearch.events({
       clearBtn = v.$('.js-reset-field');
 
     clearBtn.css('visibility', 'hidden');
+    
+    //$(textInput).val('');
+    v.$('.typeahead').typeahead('val', '');
     Session.set('bz.control.search.searchedText', '');
-    /*НЕ ЗАБЫТЬ СДЕЛАТЬ ПРОВЕРКУ. ВДРУГ КНОПКА ДОСТУПНА ТОЛЬКО ДЛЯ ВВЕДЕННОГО ТЕКСТА А НЕ КНОПОК */
-
-    /*turn off the service buttons*/
-    //Session.set('bz.control.category-list.activeCategories', []);
-    /*erase input value*/
-    $(textInput).val('');
-
+    
+    
     /* СДЕЛАТЬ ЗАКРЫТИЕ ПАНЕЛИ ФИЛЬТРА */
   },
   'click .js-toggle-filters': function (e, v) {
@@ -134,7 +132,7 @@ Template.bzNewControlSearch.events({
     bz.ui.newSearchControl.open(e, v);
   },
   'click .js-search-btn': function (e, v) {
-    var text = $('.js-nearby-places.tt-input').val();
+    var text = v.$('.js-nearby-places.tt-input').val();
     if (text) {
       Session.set('bz.control.search.searchedText', text);
     }
@@ -218,26 +216,56 @@ Template.bzNewControlSearch.helpers({
           if (catList && catList.length > 0) {
             searchSelector.type = {$in: catList};
           }
-
+          
           Session.set('bz.control.search-selector', searchSelector);
-          var ret = _.unique(bz.cols.posts.find(searchSelector).fetch().map(function (item) {
+          
+          /**/
+          var loc = Session.get('currentLocation');
+          var radius = Session.get('bz.control.search.distance');
+          var box = getLatLngBox(loc.latitude, loc.longitude, radius);
+          
+          var res = bz.cols.posts.find({'details.locations': {
+            $elemMatch: {
+              'obscuredCoords.lat': {$gte: box.lat1, $lte: box.lat2},
+              'obscuredCoords.lng': {$gte: box.lng1, $lte: box.lng2}
+            }
+          }}).fetch();
+          /**/
+
+          //bz.cols.posts.find(searchSelector).fetch()
+          var ret = _.unique(res.map(function(item) {
+            
+            //console.info(item);
+            
             item.name = item.details.title;
             return item;
           }), function (item) {
             return item.name
           });
-          /*
-           var ret = bz.cols.posts.find(searchSelector).fetch().map(function (item) {
-           item.name = item.details.title;
-           return item;
-           });*/
+          
           return ret;
         }
       }];
-
+    
     return ret;
   }
 });
+
+
+function getLatLngBox(lat, lng, radius) {
+  if (lat && lng && radius) {
+    var dLat = (radius / bz.const.locations.earthRadius) / Math.PI * 180,
+        dLng = (radius / bz.const.locations.earthRadius / Math.cos(lat * Math.PI / 180)) / Math.PI * 180;
+    return {
+      lng1: lng - dLng,
+      lng2: lng + dLng,
+      lat1: lat - dLat,
+      lat2: lat + dLat
+    };
+  } else {
+    return null;
+  }
+}
 
 
 Template.bzNewControlSearch.helpers({

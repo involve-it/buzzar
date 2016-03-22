@@ -65,6 +65,7 @@ bz.bus.search.doSearchClient = (params, options)=> {
 
   if (loc && loc.coords && loc.coords.lat && loc.coords.lng) {
     box = getLatLngBox(loc.coords.lat, loc.coords.lng, radius);
+    
     if (box) {
       dbQuery['details.locations'] = {
         $elemMatch: {
