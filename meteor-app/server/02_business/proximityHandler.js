@@ -28,26 +28,39 @@ bz.bus.proximityHandler = {
     },
     reportLocation: function(report){
         //console.log('Location reported for userId: ' + report.userId + ', sessionId: ' + report.sessionId + ', lat: ' + report.lat + ', lng: ' + report.lng);
-      var posts = bz.cols.posts.find({
-            userId: report.userId
-        }).fetch();
-        //var filtered = bz.bus.proximityHandler.filterCircularPosts(posts, lat, lng, nearbyRadius);
-        //var ids = _.pluck(filtered, '_id');
-        //bz.cols.posts.update({'_id': {$in: ids}}, {$set: {presence: bz.const.posts.status.presence.NEAR}});
-        bz.bus.proximityHandler.processLocationReport(posts, report.lat, report.lng);
-
-        var user = Meteor.users.findOne({'_id': report.userId});
-        if (user && report.sessionId){
-            var setObj = {
-                online: true,
-                sessionIds: user.sessionIds || []
-            };
-            if (setObj.sessionIds.indexOf(report.sessionId) === -1){
-                setObj.sessionIds.push(report.sessionId);
+        var userId = report.userId, user;
+        if (!userId){
+            if (report.deviceId) {
+                user = Meteor.users.findOne({deviceIds: report.deviceId});
+                userId = user._id;
             }
-            Meteor.users.update({'_id': report.userId},{
-                $set: setObj
-            });
+        } else {
+            user = Meteor.users.findOne({'_id': report.userId});
+        }
+        if (user) {
+            var posts = bz.cols.posts.find({
+                userId: userId
+            }).fetch();
+            //var filtered = bz.bus.proximityHandler.filterCircularPosts(posts, lat, lng, nearbyRadius);
+            //var ids = _.pluck(filtered, '_id');
+            //bz.cols.posts.update({'_id': {$in: ids}}, {$set: {presence: bz.const.posts.status.presence.NEAR}});
+            bz.bus.proximityHandler.processLocationReport(posts, report.lat, report.lng);
+
+            if (user && report.sessionId) {
+                var setObj = {
+                    online: true,
+                    sessionIds: user.sessionIds || []
+                };
+                if (setObj.sessionIds.indexOf(report.sessionId) === -1) {
+                    setObj.sessionIds.push(report.sessionId);
+                }
+                Meteor.users.update({'_id': userId}, {
+                    $set: setObj
+                });
+            }
+        } else {
+            console.warn('user not found');
+            console.warn(report);
         }
     },
     //following function is not being used
@@ -110,8 +123,8 @@ bz.bus.proximityHandler = {
     getObscuredCoords: function(lat, lng, rad){
         var box= bz.bus.proximityHandler.getLatLngBox(lat, lng, rad);
         return {
-            lat: Math.random()*(box.lat2-box.lat1)+box.lat1,
-            lng:  Math.random()*(box.lng2-box.lng1)+box.lng1
+            lat: lat, // Math.random()*(box.lat2-box.lat1)+box.lat1,
+            lng: lng // Math.random()*(box.lng2-box.lng1)+box.lng1
         };
     },
     processLocationReport: function(posts, lat, lng){

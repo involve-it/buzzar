@@ -45,6 +45,7 @@ AccountsEntry.entrySignInEvents = {
 
       if !error
         bz.help.location.processCurrentLocation();
+        bz.mobile.processLogin();
 
       if error
         T9NHelper.accountsError error
