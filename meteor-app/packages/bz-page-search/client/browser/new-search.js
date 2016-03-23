@@ -145,21 +145,29 @@ Template.bzNewControlSearch.events({
     }
   },
   'typeahead:change .js-nearby-places': function (e, v, val) {
-    val = val && val.trim() || '';
-    Session.set('bz.control.search.searchedText', val);
+    //val = val && val.trim() || '';
+    //Session.set('bz.control.search.searchedText', val);
   },
   'typeahead:select .js-nearby-places': function (e, v, val) {
     val = val.name && val.name.trim() || '';
     Session.set('bz.control.search.searchedText', val);
+
+    bz.ui.newSearchControl.close(e);
+    
     /* $('.js-nearby-places').typeahead('close');
      $('.js-nearby-places').blur();*/
+  },
+  'keyup .js-nearby-places': function(e, v) {
+    var val = $($('.typeahead')[1]).val();
+    val = val && val.trim() || '';
+    //console.info(val);
+    Session.set('bz.control.search.searchedText', val);
   },
   'keydown .js-nearby-places': function (e, v, val) {
     if (e.keyCode === 13) {
       // enter bnt hit
       /*$('.js-nearby-places').typeahead('close');
        $('.js-nearby-places').blur();*/
-
       $('.js-search-btn').click();
     }
   }
@@ -224,18 +232,19 @@ Template.bzNewControlSearch.helpers({
           var radius = Session.get('bz.control.search.distance');
           var box = getLatLngBox(loc.latitude, loc.longitude, radius);
           
-          var res = bz.cols.posts.find({'details.locations': {
-            $elemMatch: {
-              'obscuredCoords.lat': {$gte: box.lat1, $lte: box.lat2},
-              'obscuredCoords.lng': {$gte: box.lng1, $lte: box.lng2}
-            }
-          }}).fetch();
+          var res = bz.cols.posts.find(
+              {'details.locations': {
+                  $elemMatch: {
+                    'obscuredCoords.lat': {$gte: box.lat1, $lte: box.lat2},
+                    'obscuredCoords.lng': {$gte: box.lng1, $lte: box.lng2}
+                  }},
+                'status.visible': bz.const.posts.status.visibility.VISIBLE
+              }
+          ).fetch();
           /**/
 
           //bz.cols.posts.find(searchSelector).fetch()
           var ret = _.unique(res.map(function(item) {
-            
-            //console.info(item);
             
             item.name = item.details.title;
             return item;
@@ -246,6 +255,8 @@ Template.bzNewControlSearch.helpers({
           return ret;
         }
       }];
+
+    
     
     return ret;
   }
@@ -372,9 +383,11 @@ Template.searchCommonFilters.helpers({
 
 Template.searchCommonFilters.events({
   'change.fndtn.slider .js-distance-range-slider': function (e, v) {
-    var dist, slDist = $(e.target).attr('data-slider');
+    var dist, textSearch, slDist = $(e.target).attr('data-slider');
     
     //todo: этот подход неправильный-возникает туча ивентов (если я веду от 1 мили до 20, то 5 миль тоже выставится по дороге). Change this!!
+
+    textSearch = Session.get('bz.control.search.searchedText');
     
     if (slDist) {
       slDist = slDist.trim();
@@ -397,6 +410,14 @@ Template.searchCommonFilters.events({
       }
       Session.set('bz.control.search.distance', dist);
     }
+
+    //typeahead - change result complete
+    if(textSearch) {
+      $('.typeahead').typeahead('val', '');
+      $('.typeahead').typeahead('val', textSearch );
+    }
+    
+    
   }
 });
 
