@@ -14,12 +14,16 @@ Template.bzHomePopular.helpers({
     ret = bz.bus.search.doSearchClient({
       loc: loc,
       activeCats: activeCats,
+      $where: function() {
+        //to show only visible
+        return this.status.visible !== null
+      },
       //radius: bz.const.search.AROUND_YOU_RADIUS,
       /*query: {
         'status.visible': {$exists: true}
       }*/
     }, {
-      limit: bz.const.search.POPULAR_LIMIT,
+      limit: bz.const.search.POPULAR_LIMIT
     }).fetch();
     ret = _(ret).chain().sortBy(function(item){
       return item.stats && item.stats.seenTotal  || 0;

@@ -65,6 +65,7 @@ bz.bus.search.doSearchClient = (params, options)=> {
 
   if (loc && loc.coords && loc.coords.lat && loc.coords.lng) {
     box = getLatLngBox(loc.coords.lat, loc.coords.lng, radius);
+    
     if (box) {
       dbQuery['details.locations'] = {
         $elemMatch: {
@@ -94,6 +95,7 @@ bz.bus.search.doSearchClient = (params, options)=> {
   if (params.$where) {
     dbQuery['$where'] = params.$where;
   }
+  
   _.extend(dbQuery, params.query);
   ret = bz.cols.posts.find(dbQuery, options);
 

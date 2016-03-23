@@ -16,7 +16,7 @@ Template.bzAroundYou.helpers({
       cats: Session.get('bz.control.category-list.activeCategories'),
       text: Session.get('bz.control.search.searchedText')
     });
-    
+        
     Session.set('bz.control.search.amount', ret && ret.length);
 
     //console.info(ret);
@@ -148,7 +148,7 @@ function getSearchResultsFromSessionParameters(options = {}){
     distSession = options.dist || Session.get('bz.control.search.distance') || [],
     activeCats = options.cats || Session.get('bz.control.category-list.activeCategories') || [];*/
   
-    if (['home', 'jobs', 'training', 'connect', 'trade', 'housing', 'events', 'services', 'help'].indexOf(Router.getCurrentRouteName()) > -1) {
+    if (['home', 'jobs', 'trainings', 'connect', 'trade', 'housing', 'events', 'services', 'help'].indexOf(Router.getCurrentRouteName()) > -1) {
 
       // add all-posts reactivity:
       bz.cols.posts.find({});
@@ -157,11 +157,16 @@ function getSearchResultsFromSessionParameters(options = {}){
           loc: loc,
           activeCats: activeCats,
           radius: distSession,
-          text: searchedText
+          text: searchedText,
+          $where: function() {
+            //to show only visible
+            return this.status.visible !== null
+          }
           //radius: bz.const.search.AROUND_YOU_RADIUS
         }, {
-          limit: bz.const.search.AROUND_YOU_LIMIT,
+          limit: bz.const.search.AROUND_YOU_LIMIT
         }).fetch();
+                
         ret = _(ret).chain().sortBy(function (item) {
           return item.stats && item.stats.seenTotal || 0;
         }).reverse().sortBy(function (doc) {

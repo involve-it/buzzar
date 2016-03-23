@@ -42,11 +42,11 @@
     {{/if}}
 
       {{#if details.duration }}
-      <div class="post-details">
-        <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-info-circle"></i> {{ t9n 'POST_DETAILS_LEFT' }}</div>
-        <div class="small-12 medium-8 large-8 bz-post-result columns"><p> 10 {{ t9n 'DAYS' }} </p></div>
-      </div>
-      {{/if }}
+          <div class="post-details">
+            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-info-circle"></i> {{ t9n 'POST_DETAILS_LEFT' }}</div>
+            <div class="small-12 medium-8 large-8 bz-post-result columns"><p> 10 {{ t9n 'DAYS' }} </p></div>
+          </div>
+      {{/if}}
 
         {{#if categoryType}}
           <div class="post-details">
@@ -63,6 +63,7 @@
                 <p>{{ _getDistanceToCurrentLocation }}</p>
             </div>
         </div>
+        
         <div class="post-details">
             <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-heart"></i> {{ t9n 'POST_DETAILS_LIKES' }}</div>
             <div class="small-12 medium-8 large-8 bz-post-result columns">

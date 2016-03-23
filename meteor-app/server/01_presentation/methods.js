@@ -33,7 +33,7 @@ Meteor.methods({
     return bz.bus.parseUrl(url);
   },
   addNewPost: function(postObject, currentLocation, connectionId) {
-    if(postObject){
+    if(postObject && (Meteor.users.find({_id: postObject.userId})).count()!=0){
       /*if (!postObject.presences && postObject.details && postObject.details.locations && Array.isArray(postObject.details.locations) && postObject.details.locations.length > 0){
         postObject.presences = {};
         var id;
@@ -115,8 +115,8 @@ Meteor.methods({
       return bz.bus.proximityHandler.processUserDisconnect(userId);
     }
   },
-  registerPushToken: function(deviceId, token, userId){
-    bz.bus.pushHandler.registerToken(deviceId, token, userId);
+  registerTokenAndDeviceId: function(deviceId, token, userId){
+    bz.bus.pushHandler.registerTokenAndDeviceId(deviceId, token, userId);
   },
   assignTokenToUser: function(deviceId, userId){
     bz.bus.pushHandler.assignTokenToUser(userId, deviceId);
@@ -268,7 +268,7 @@ Meteor.methods({
     _.each(attributes,function(attribute){
         attribute.userId=userId;
         bz.cols.profileDetails.update({userId:userId,key: attribute.key},
-          attribute,
+          {$set: attribute},
           {upsert: true});
     }
     )

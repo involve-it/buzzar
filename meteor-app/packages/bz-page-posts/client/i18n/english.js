@@ -141,7 +141,12 @@ enI18n = {
   TRAININGS_SECTION_SCHOOL:'School',
   TRAININGS_SECTION_HIGH_SCHOOL:'High school',
 
-  SELECT_LOCATION_TO_ADD: 'Select location to add'
+  SELECT_LOCATION_TO_ADD: 'Select location to add',
+
+  //post control buttons
+  RELOAD_POST_TIME: 'Reload your post',
+  EDIT_POST: 'Edit',
+  TRASH_POST: 'Trash'
 };
 var enAll = _.extend(bz.language.i18n.en, enI18n);
 T9n.map('en', enAll);

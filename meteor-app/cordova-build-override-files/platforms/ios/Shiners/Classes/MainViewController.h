@@ -28,10 +28,10 @@
 #import <Cordova/CDVViewController.h>
 #import <Cordova/CDVCommandDelegateImpl.h>
 #import <Cordova/CDVCommandQueue.h>
-#import <ObjectiveDDP/MeteorClient.h>
 #import <CoreLocation/CoreLocation.h>
+#import <ObjectiveDDP/MeteorClient.h>
 
-@interface MainViewController : CDVViewController <CLLocationManagerDelegate>
+@interface MainViewController : CDVViewController<CLLocationManagerDelegate>
 @property MeteorClient *meteorClient;
 @property CLLocationManager *locationManager;
 @end

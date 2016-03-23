@@ -29,6 +29,8 @@
 
 @implementation MainViewController
 
+NSString *deviceId;
+
 - (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -41,6 +43,28 @@
     return self;
 }
 
+-(NSString*)getDeviceId
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    static NSString* UUID_KEY = @"CDVUUID";
+    
+    NSString* app_uuid = [userDefaults stringForKey:UUID_KEY];
+    
+    if (app_uuid == nil) {
+        CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+        CFStringRef uuidString = CFUUIDCreateString(kCFAllocatorDefault, uuidRef);
+        
+        app_uuid = [NSString stringWithString:(__bridge NSString*)uuidString];
+        [userDefaults setObject:app_uuid forKey:UUID_KEY];
+        [userDefaults synchronize];
+        
+        CFRelease(uuidString);
+        CFRelease(uuidRef);
+    }
+    
+    return app_uuid;
+}
+
 - (id)init
 {
     self = [super init];
@@ -50,6 +74,7 @@
         // Uncomment to override the CDVCommandQueue used
         // _commandQueue = [[MainCommandQueue alloc] initWithViewController:self];
     }
+    
     return self;
 }
 
@@ -61,19 +86,9 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark View lifecycle
 
-- (void)viewWillAppear:(BOOL)animated
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
-    // View defaults to full size.  If you want to customize the view's size, or its subviews (e.g. webView),
-    // you can do so here.
-    
-    [self.meteorClient addObserver:self forKeyPath:@"websocketReady" options:NSKeyValueObservingOptionNew context:nil];
-
-    [super viewWillAppear:animated];
-}
-
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     if ([keyPath isEqualToString:@"websocketReady"] && self.meteorClient.websocketReady){
         NSLog(@"==================== Connected");
         // ----------------- Location Services ---------------
@@ -81,8 +96,8 @@
             self.locationManager = [[CLLocationManager alloc]init];
             
             self.locationManager.delegate = self;
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-            self.locationManager.distanceFilter = 200;
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+            self.locationManager.distanceFilter = 50;
             
             [self.locationManager startUpdatingLocation];
             NSLog(@"=============== Location services started");
@@ -93,18 +108,38 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     if (self.meteorClient.websocketReady){
+        NSString *deviceId = [self getDeviceId];
+        //[[[UIDevice currentDevice] identifierForVendor] UUIDString];
         CLLocation *location = [locations lastObject];
+        
         NSLog(@"Submitting location: %f, %f", location.coordinate.latitude, location.coordinate.longitude);
-        [self.meteorClient callMethodName:@"testNative" parameters:@[[NSNumber numberWithDouble:location.coordinate.latitude], [NSNumber numberWithDouble:location.coordinate.longitude]] responseCallback:^(NSDictionary *response, NSError *error) {
-            NSString *result = response[@"result"];
-            NSLog(@"Response: %@", result);
+        
+        NSDictionary *report = @{
+                                 @"deviceId": deviceId,
+                                 @"lat":[NSNumber numberWithDouble:location.coordinate.latitude],
+                                 @"lng":[NSNumber numberWithDouble:location.coordinate.longitude]
+                                 };
+        
+        [self.meteorClient callMethodName:@"reportLocation" parameters:@[report] responseCallback:^(NSDictionary *response, NSError *error) {
+            if (error){
+                NSLog(@"Location report error: %@", error);
+            } else {
+                NSLog(@"Location report successful");
+            }
         }];
     }
 }
 
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    NSLog(@"%@", error);
+#pragma mark View lifecycle
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // View defaults to full size.  If you want to customize the view's size, or its subviews (e.g. webView),
+    // you can do so here.
+
+    [self.meteorClient addObserver:self forKeyPath:@"websocketReady" options:NSKeyValueObservingOptionNew context:nil];
     
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidLoad

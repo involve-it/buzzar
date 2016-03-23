@@ -21,7 +21,7 @@ Template.aroundYouSmall.helpers({
     var ret, loc = Session.get('bz.control.search.location'),
       distSession = Session.get('bz.control.search.distance') || [],
       activeCats = Session.get('bz.control.category-list.activeCategories') || [];
-    if(['home', 'jobs', 'training', 'connect', 'trade', 'housing', 'events', 'services', 'help'].indexOf(Router.getCurrentRouteName()) > -1) {
+    if(['home', 'jobs', 'trainings', 'connect', 'trade', 'housing', 'events', 'services', 'help'].indexOf(Router.getCurrentRouteName()) > -1) {
       // add all-posts reactivity:
       bz.cols.posts.find({});
       if (loc && loc.coords) {
