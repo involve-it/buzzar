@@ -33,7 +33,7 @@ Meteor.methods({
     return bz.bus.parseUrl(url);
   },
   addNewPost: function(postObject, currentLocation, connectionId) {
-    if(postObject){
+    if(postObject && postObject.userId){
       /*if (!postObject.presences && postObject.details && postObject.details.locations && Array.isArray(postObject.details.locations) && postObject.details.locations.length > 0){
         postObject.presences = {};
         var id;
