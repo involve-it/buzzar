@@ -25,12 +25,13 @@
 
 Meteor.startup(function(){
   bz.bus.pushHandler = {
-    push: function(userIds, title, msg, payload){
+    push: function(userIds, title, msg, payload, badge){
+      badge = badge == null ? 1 : badge;
       var notification = {
             from:'Buzzar',
             title: title,
             text: msg,
-            badge: 1,
+            badge: badge,
             payload: payload
           };
       var tokens = [];
@@ -52,12 +53,14 @@ Meteor.startup(function(){
       //console.log('registering deviceId: ' + deviceId + ', token: ' + token.apn || token.gcm);
       if (deviceId){
         Meteor.users.update({}, {
-          $pull: {deviceIds: {$eq: deviceId}}
+          $pull: {deviceIds: deviceId}
         });
-        var user = Meteor.user();
-        user.deviceIds = user.deviceIds || [];
-        user.deviceIds.push(deviceId);
-        Meteor.users.update(userId, user);
+        if (userId) {
+          var user = Meteor.users.findOne(userId);
+          user.deviceIds = user.deviceIds || [];
+          user.deviceIds.push(deviceId);
+          Meteor.users.update(userId, user);
+        }
       }
       if (deviceId && token && Object.keys(token).length > 0) {
         bz.cols.bulkTokens.remove({deviceId: deviceId});
@@ -80,30 +83,35 @@ Meteor.startup(function(){
         var existingUserToken, tokens = [];
         if (bulkToken.token.apn) {
           existingUserToken = bz.cols.userTokens.findOne({'tokens.token.apn': bulkToken.token.apn});
-          _.each(existingUserToken.tokens, function(t){
-            if (t.apn !== bulkToken.token.apn){
-              tokens.push(t);
-            }
-          });
-          existingUserToken.tokens = tokens;
-          bz.cols.userTokens.update({_id: existingUserToken._id}, {
-            $set:{
-              tokens: tokens
-            }
-          });
+          if (existingUserToken) {
+            _.each(existingUserToken.tokens, function (t) {
+              if (t.apn !== bulkToken.token.apn) {
+                tokens.push(t);
+              }
+            });
+
+            existingUserToken.tokens = tokens;
+            bz.cols.userTokens.update({_id: existingUserToken._id}, {
+              $set: {
+                tokens: tokens
+              }
+            });
+          }
         } else if (bulkToken.token.gcm) {
           existingUserToken = bz.cols.userTokens.findOne({'tokens.token.gcm': bulkToken.token.gcm});
-          _.each(existingUserToken.tokens, function(t){
-            if (t.gcm !== bulkToken.token.gcm){
-              tokens.push(t);
-            }
-          });
-          existingUserToken.tokens = tokens;
-          bz.cols.userTokens.update({_id: existingUserToken._id}, {
-            $set:{
-              tokens: tokens
-            }
-          });
+          if (existingUserToken) {
+            _.each(existingUserToken.tokens, function (t) {
+              if (t.gcm !== bulkToken.token.gcm) {
+                tokens.push(t);
+              }
+            });
+            existingUserToken.tokens = tokens;
+            bz.cols.userTokens.update({_id: existingUserToken._id}, {
+              $set: {
+                tokens: tokens
+              }
+            });
+          }
         }
 
 
@@ -139,6 +147,11 @@ Meteor.startup(function(){
       if (userTokens){
         userTokens.tokens = _.filter(userTokens.tokens, function(bulkToken){return bulkToken.deviceId !== deviceId});
         bz.cols.userTokens.update({_id: userTokens._id}, userTokens);
+        var user = Meteor.users.find({_id: userId});
+        if (user && user.deviceIds && user.deviceIds.length > 0){
+          user.deviceIds = _.filter(user.deviceIds, function(dId){return dId !== deviceId;});
+          Meteor.users.update(userId, {$set: {deviceIds: user.deviceIds}});
+        }
       } else {
         console.log('WARNING: userTokens table does not contain a record with userId: ' + userId);
       }

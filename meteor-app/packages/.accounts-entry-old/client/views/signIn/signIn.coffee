@@ -44,7 +44,7 @@ AccountsEntry.entrySignInEvents = {
       Session.set 'talkingToServer', false
 
       if !error
-        bz.help.location.processCurrentLocation();
+        bz.help.location.startWatchingLocation();
         bz.mobile.processLogin();
 
       if error

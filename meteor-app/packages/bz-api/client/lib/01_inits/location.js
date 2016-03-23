@@ -1,16 +1,19 @@
 /**
  * Created by syurdor on 8/26/2015.
  */
+var watchId = -1;
 
 var Location = {
-    processCurrentLocation: function(){
+    startWatchingLocation: function(){
         //report location only if logged in
-      
         if (Meteor.userId()) {
-            navigator.geolocation.getCurrentPosition(function (position) {
+            if (watchId !== -1){
+                navigator.geolocation.clearWatch(watchId);
+            }
+            watchId = navigator.geolocation.watchPosition(function (position) {
                 var currentLocation = Session.get('currentLocation');
-                //TODO: remove 'true'
-                if (true || !currentLocation || currentLocation.accuracy != position.coords.accuracy || currentLocation.latitude != position.coords.latitude || currentLocation.longitude != position.coords.longitude) {
+
+                if (!currentLocation || currentLocation.accuracy != position.coords.accuracy || currentLocation.latitude != position.coords.latitude || currentLocation.longitude != position.coords.longitude) {
                     Session.set('currentLocation', {
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude,
@@ -26,13 +29,16 @@ var Location = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                         sessionId: Meteor.connection._lastSessionId
-                    }, function (err, posts) {
-                    });
+                    }, function (err, posts) { });
                 }
             });
         }
     },
     logOut: function(){
+        if (watchId !== -1){
+            navigator.geolocation.clearWatch(watchId);
+            watchId = -1;
+        }
         if (Meteor.userId()){
             Meteor.call('logOut', Meteor.userId());
         }
@@ -41,8 +47,7 @@ var Location = {
 
 bz.help.makeNamespace('bz.help.location', Location);
 
-
 Meteor.startup(function(){
-    bz.help.location.processCurrentLocation();
-    document.addEventListener('resume', bz.help.location.processCurrentLocation, false);
+    bz.help.location.startWatchingLocation();
+    document.addEventListener('resume', bz.help.location.startWatchingLocation, false);
 });

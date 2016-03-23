@@ -21,7 +21,7 @@ if (Meteor.isCordova){
             bz.mobile.token = token;
             setTimeout(function(){
                 Meteor.call('registerTokenAndDeviceId', device.uuid, token, Meteor.userId());
-            }, 1000);
+            }, 500);
         });
 
         Push.addListener('message', function(notification){
@@ -42,14 +42,13 @@ if (Meteor.isCordova){
                         Router.go('/post/' + notification.payload.id);
                         break;
                     case bz.const.push.type.post:
+                        Router.go('/post/' + notification.payload.id);
                         break;
                     default:
-                        console.log('Unknown payload type: ' + (payload.type || '(null)'));
+                        Router.go('/');
+                        break;
                 }
             }
-
-            //TODO: display notification
-            //open a corresponding view
         });
 
         Push.addListener('alert', function(notification) {

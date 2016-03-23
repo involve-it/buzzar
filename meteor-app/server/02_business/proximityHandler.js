@@ -32,12 +32,22 @@ bz.bus.proximityHandler = {
         if (!userId){
             if (report.deviceId) {
                 user = Meteor.users.findOne({deviceIds: report.deviceId});
-                userId = user._id;
+                if (user) {
+                    userId = user._id;
+                }
             }
         } else {
             user = Meteor.users.findOne({'_id': report.userId});
         }
         if (user) {
+            //if app closed, reports come from native code - send notification if there are nearby posts.
+            if (report.deviceId) {
+                var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
+                if (nearbyPosts && nearbyPosts.length > 0) {
+                    !bz.bus.proximityHandler.notifyNearbyPosts(userId, nearbyPosts);
+                }
+            }
+
             var posts = bz.cols.posts.find({
                 userId: userId
             }).fetch();
@@ -59,8 +69,26 @@ bz.bus.proximityHandler = {
                 });
             }
         } else {
-            console.warn('user not found');
-            console.warn(report);
+            console.log('user not found');
+            console.log(report);
+        }
+    },
+    notifyNearbyPosts: function(userId, posts){
+        if (posts) {
+            var filtered = _.filter(posts, function (post) {
+                return post.userId !== userId;
+            }), post;
+            if (filtered.length === 1) {
+                post = filtered[0];
+                bz.bus.pushHandler.push(userId, 'Activity around you', post.details.title, {
+                    type: bz.const.push.type.post,
+                    id: post._id
+                }, 0);
+            } else if (filtered.length > 1) {
+                bz.bus.pushHandler.push(userId, 'Activity around you', 'There are ' + filtered.length + 'posts around you. Check them out!', {
+                    type: bz.const.push.type.default
+                }, 0);
+            }
         }
     },
     //following function is not being used
@@ -160,8 +188,9 @@ bz.bus.proximityHandler = {
             }
         });
     },
-    getNearbyPosts: function(lat, lng){
-        var box = bz.bus.proximityHandler.getLatLngBox(lat, lng, defaultRadius);
+    getNearbyPosts: function(lat, lng, radius){
+        radius = radius || defaultRadius;
+        var box = bz.bus.proximityHandler.getLatLngBox(lat, lng, radius);
 
         //this is box-shaped filter for increased performance
         var posts =  bz.cols.posts.find({
@@ -174,7 +203,7 @@ bz.bus.proximityHandler = {
         }).fetch();
 
         //this if circular filter (as opposed to box-shaped above)
-        return bz.bus.proximityHandler.filterCircularPosts(posts, lat, lng, defaultRadius);
+        return bz.bus.proximityHandler.filterCircularPosts(posts, lat, lng, radius);
     },
     filterCircularPosts: function(posts, lat, lng, radius){
         var results = [],
