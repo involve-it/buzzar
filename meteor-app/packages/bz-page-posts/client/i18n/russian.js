@@ -141,7 +141,12 @@ ruI18n = {
   TRAININGS_SECTION_SCHOOL:'Школа',
   TRAININGS_SECTION_HIGH_SCHOOL:'ВУЗ',
 
-  SELECT_LOCATION_TO_ADD: 'Выберите место, чтобы добавить'
+  SELECT_LOCATION_TO_ADD: 'Выберите место, чтобы добавить',
+
+  //post control buttons
+  RELOAD_POST_TIME: 'Перезапустить пост',
+  EDIT_POST: 'Редактировать пост',
+  TRASH_POST: 'Удалить пост'
   
 };
 var ruAll = _.extend(bz.language.i18n.ru, ruI18n);

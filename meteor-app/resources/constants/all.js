@@ -49,3 +49,4 @@ bz.help.makeNamespace('bz.const.push.type');
 bz.const.push.type.chat = 'chat';
 bz.const.push.type.comment = 'comment';
 bz.const.push.type.post = 'post';
+bz.const.push.type.post = 'default';

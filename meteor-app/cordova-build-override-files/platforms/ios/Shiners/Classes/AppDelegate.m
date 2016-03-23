@@ -29,9 +29,6 @@
 #import "MainViewController.h"
 
 #import <Cordova/CDVPlugin.h>
-#import <ObjectiveDDP/ObjectiveDDP.h>
-#import <ObjectiveDDP/MeteorClient.h>
-#import <CoreLocation/CoreLocation.h>
 
 @implementation AppDelegate
 
@@ -80,18 +77,13 @@
 #else
         self.viewController = [[[MainViewController alloc] init] autorelease];
 #endif
-
-    // Set your app's start page by setting the <content src='foo.html' /> tag in config.xml.
-    // If necessary, uncomment the line below to override it.
-    // self.viewController.startPage = @"index.html";
-
-    // NOTE: To customize the view's frame size (which defaults to full screen), override
-    // [self.viewController viewWillAppear:] in your view controller.
     
     // -------------- Objective DDP code --------------------
-    ((MainViewController*)self.viewController).meteorClient =  [[MeteorClient alloc] initWithDDPVersion:@"1"];
+    ((MainViewController*)self.viewController).meteorClient =  [[MeteorClient alloc] initWithDDPVersion:@"pre2"];
     // Testing against a local ddp server (i.e. meteor server)
-    ObjectiveDDP *ddp = [[ObjectiveDDP alloc] initWithURLString:@"ws://localhost:3000/websocket" delegate:((MainViewController*)self.viewController).meteorClient];
+    ObjectiveDDP *ddp = [[ObjectiveDDP alloc] initWithURLString:@"ws://192.168.1.61:3000/websocket" delegate:((MainViewController*)self.viewController).meteorClient];
+    //ObjectiveDDP *ddp = [[ObjectiveDDP alloc] initWithURLString:@"ws://msg.webhop.org/websocket" delegate:((MainViewController*)self.viewController).meteorClient];
+    //ObjectiveDDP *ddp = [[ObjectiveDDP alloc] initWithURLString:@"ws://www.shiners.ru/websocket" delegate:((MainViewController*)self.viewController).meteorClient];
     ((MainViewController*)self.viewController).meteorClient.ddp = ddp;
     // Testing against a remote ddp server (i.e. meteor server hosted on meteor.com)
     //ddp = [[ObjectiveDDP alloc] initWithURLString:@"wss://<yoursubdomain>.meteor.com/websocket" delegate:mc];
@@ -101,15 +93,19 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportDisconnection) name:MeteorClientDidDisconnectNotification object:nil];
     // ------------------------------------------------------
 
+    // Set your app's start page by setting the <content src='foo.html' /> tag in config.xml.
+    // If necessary, uncomment the line below to override it.
+    // self.viewController.startPage = @"index.html";
+
+    // NOTE: To customize the view's frame size (which defaults to full screen), override
+    // [self.viewController viewWillAppear:] in your view controller.
 
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
 
-    
-    
-    
     return YES;
 }
+
 
 - (void)reportConnection {
     NSLog(@"================> connected to server!");
@@ -119,7 +115,6 @@
     NSLog(@"================> disconnected from server!");
 }
 
-
 // this happens while we are running ( in the background, or from within our own app )
 // only valid if meteor-app-Info.plist specifies a protocol to handle
 - (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation
@@ -127,8 +122,6 @@
     if (!url) {
         return NO;
     }
-
-    [self.viewController processOpenUrl:url];
 
     // all plugins will get the notification, and their handlers will be called
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CDVPluginHandleOpenURLNotification object:url]];
@@ -144,26 +137,33 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:CDVLocalNotification object:notification];
 }
 
-- (void)                                 application:(UIApplication*)application
-    didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
-{
-    // re-post ( broadcast )
-    NSString* token = [[[[deviceToken description]
-        stringByReplacingOccurrencesOfString:@"<" withString:@""]
-        stringByReplacingOccurrencesOfString:@">" withString:@""]
-        stringByReplacingOccurrencesOfString:@" " withString:@""];
+#ifndef DISABLE_PUSH_NOTIFICATIONS
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotification object:token];
-}
+    - (void)                                 application:(UIApplication*)application
+        didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+    {
+        // re-post ( broadcast )
+        NSString* token = [[[[deviceToken description]
+            stringByReplacingOccurrencesOfString:@"<" withString:@""]
+            stringByReplacingOccurrencesOfString:@">" withString:@""]
+            stringByReplacingOccurrencesOfString:@" " withString:@""];
 
-- (void)                                 application:(UIApplication*)application
-    didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
-{
-    // re-post ( broadcast )
-    [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotificationError object:error];
-}
+        [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotification object:token];
+    }
 
+    - (void)                                 application:(UIApplication*)application
+        didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+    {
+        // re-post ( broadcast )
+        [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotificationError object:error];
+    }
+#endif
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
+#else
+- (UIInterfaceOrientationMask)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
+#endif
 {
     // iPhone doesn't support upside down by default, while the iPad does.  Override to allow all orientations always, and let the root view controller decide what's allowed (the supported orientations mask gets intersected).
     NSUInteger supportedInterfaceOrientations = (1 << UIInterfaceOrientationPortrait) | (1 << UIInterfaceOrientationLandscapeLeft) | (1 << UIInterfaceOrientationLandscapeRight) | (1 << UIInterfaceOrientationPortraitUpsideDown);
@@ -174,9 +174,6 @@
 - (void)applicationDidReceiveMemoryWarning:(UIApplication*)application
 {
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    
 }
-
-
 
 @end
