@@ -268,7 +268,7 @@ Meteor.methods({
     _.each(attributes,function(attribute){
         attribute.userId=userId;
         bz.cols.profileDetails.update({userId:userId,key: attribute.key},
-          attribute,
+          {$set: attribute},
           {upsert: true});
     }
     )
