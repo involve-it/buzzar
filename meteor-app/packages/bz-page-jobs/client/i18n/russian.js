@@ -7,7 +7,7 @@ ruI18n = {
   headliner:           'Работа вокруг',
   MOST_POPULAR_TITLE: 'Популярные работы',
   AROUND_YOU_TITLE: 'Работа рядом',
-  SEARCH_LOOKING_FOR_TEXT: 'Искать в работах',
+  SEARCH_LOOKING_FOR_TEXT: 'Поиск работы',
 
 };
 var ruAll = _.extend(bz.language.i18n.ru, ruI18n);

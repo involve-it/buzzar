@@ -7,7 +7,7 @@ ruI18n = {
   headliner:           'События вокруг',
   MOST_POPULAR_TITLE: 'Популярные события',
   AROUND_YOU_TITLE: 'События рядом',
-  SEARCH_LOOKING_FOR_TEXT: 'Искать события',
+  SEARCH_LOOKING_FOR_TEXT: 'Поиск событий'
 
 };
 var ruAll = _.extend(bz.language.i18n.ru, ruI18n);

@@ -13,9 +13,12 @@ en = {
   SEND_MESSAGE: 'Send message',
   YES: 'Yes',
   NO: 'No',
-  ALL:'ALL',
-  LIVE:'Live',
   ACTIVE:'Active',
+  ACTIVE_HINT:'Posts that are in the active mode. They are seen by other users',
+  LIVE:'Live',
+  LIVE_HINT:'Posts with dynamic location, attached to a mobile device',
+  ALL:'ALL',
+  ALL_HINT:'All you have created posts',
   COMMENTS:'Comments',
   RATING: 'Rating',
   REVIEW_HELP_TEXT: 'Put your review here',
@@ -56,8 +59,8 @@ en = {
 
 
   //No posts around
-  NO_ITEMS_AROUND_YOU: 'You have no items around',
-  YOU_CAN_CREATE_POST: 'You could add an advertisement, so that other users can use it. To do this, click on the button below.',
+  NO_ITEMS_AROUND_YOU: 'No posts around you',
+  YOU_CAN_CREATE_POST: 'Create your post and other users can contact you!',
 
   BUTTONS_BACK: 'Back',
   
@@ -90,7 +93,8 @@ en = {
   left: 'Left',
   POST_STATUS: 'Post close',
   
-  POST_SWITCH_OFF_ON: 'Switch off the post. Previous publication of the advertisement is not displayed to other users. You can reactivate them in My posts in the "ALL" tab.',
+  POST_SWITCH_OFF_ON: 'Switch off the post. Previous publication of the advertisement is not displayed to other users.',
+  POST_SWITCH_OFF_OFF: 'Switch on the post. The announcement will be published on the website again.',
   
   //sitewise:
   siteTitleElement: 'instant post, bound to location',

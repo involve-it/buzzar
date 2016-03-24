@@ -41,19 +41,10 @@ Template.bzHomePopularItem.onCreated(function () {
 });
 
 Template.bzHomePopularItem.rendered = function () {
-
   /*init Rate*/
   $('.bz-rating').raty({
     starType: 'i'
   });
-
-  var lineH = $('.bz-content .post-item-text').css('line-height');
-  if (Number.parseInt(lineH) !== 'NaN') {
-    lineH = Number.parseInt(lineH);
-  } else {
-    lineH = 20;
-  }
-  $('.bz-content .post-item-text').css('max-height', lineH * 2);
 };
 
 Template.bzHomePopularItem.helpers({
@@ -80,6 +71,20 @@ Template.bzHomePopularItem.helpers({
     return '';
   }
 });
+
+
+Template.bzHomePopularItem.onRendered(function() {
+  var template = this, lineH, text;
+
+  text = template.$('.post-item-text');
+  lineH = text.height();
+
+  if (Number.parseInt(lineH) !== 'NaN') {
+    lineH = Number.parseInt(lineH);
+    (lineH > 20) ? text.addClass('bz-text-ellipsis') : '';
+  }
+});
+
 
 Template.bzHomePopularItem.events({
   'click .js-send-message-btn': function (e, v) {

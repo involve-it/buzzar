@@ -60,14 +60,6 @@ Template.bzAroundYouItem.rendered = function () {
   $('.bz-rating').raty({
     starType: 'i'
   });
-
-  var lineH = $('.bz-content .post-item-text').css('line-height');
-  if (Number.parseInt(lineH) !== 'NaN') {
-    lineH = Number.parseInt(lineH);
-  } else {
-    lineH = 20;
-  }
-  $('.bz-content .post-item-text').css('max-height', lineH * 2);
 };
 
 
@@ -75,8 +67,7 @@ Template.bzAroundYouItem.helpers({
   getPostOwner: function () {
     return Meteor.users.findOne(this.userId);
   },
-  getRank: function () {
-  },
+  getRank: function () {},
   getProgressBar: function () {
     debugger;
   },
@@ -99,6 +90,19 @@ Template.bzAroundYouItem.helpers({
     }
     return '';
   }
+});
+
+
+Template.bzAroundYouItem.onRendered(function() {
+  var template = this, lineH, text;
+  
+  text = template.$('.post-item-text');
+  lineH = text.height();
+  
+  if (Number.parseInt(lineH) !== 'NaN') {
+    lineH = Number.parseInt(lineH);
+    (lineH > 20) ? text.addClass('bz-text-ellipsis') : '';
+  }  
 });
 
 
