@@ -74,15 +74,17 @@ Template.bzHomePopularItem.helpers({
 
 
 Template.bzHomePopularItem.onRendered(function() {
-  var template = this, lineH, text;
+  var template = this, textH, text;
 
   text = template.$('.post-item-text');
-  lineH = text.height();
+  textH = text.css('line-height');
 
-  if (Number.parseInt(lineH) !== 'NaN') {
-    lineH = Number.parseInt(lineH);
-    (lineH > 20) ? text.addClass('bz-text-ellipsis') : '';
+  if (Number.parseInt(textH) !== 'NaN') {
+    textH = Number.parseInt(textH);
+  } else {
+    textH = 19;
   }
+  text.addClass('bz-text-ellipsis').css('max-height', textH * 2);
 });
 
 
