@@ -1385,5 +1385,63 @@ nav.left-off-canvas-menu {
   }
 }
 
+/* HTML EDITOR */
 
+.CodeMirror-sizer {
+  height: 100%;
+  > div {
+    height: 100%;
+    .CodeMirror-lines {
+      height: 100%;
+      > div {
+        height: 100%;
+        .CodeMirror-code {
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+pre.CodeMirror-line {}
+
+.CodeMirror {
+  font-family: "Roboto", sans-serif;
+}
+
+.uk-htmleditor-navbar {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+
+  .uk-htmleditor-navbar-flip {
+    .uk-htmleditor-navbar-nav {
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      /*-ms-flex-pack: justify;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;*/
+    }
+  }
+}
+
+.uk-htmleditor-navbar-nav {
+  li {
+    a {
+      padding: 0 15px;
+    }
+  }
+}
+
+.uk-htmleditor-fullscreen {
+  
+  .uk-htmleditor-content {
+    top: 80px !important;
+  }
+}
 
