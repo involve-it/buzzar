@@ -413,8 +413,8 @@ Template.searchCommonFilters.events({
 
     //typeahead - change result complete
     if(textSearch) {
-      $('.typeahead').typeahead('val', '');
-      $('.typeahead').typeahead('val', textSearch );
+      $('.typeahead.bz-form-control').typeahead('val', '');
+      $('.typeahead.bz-form-control').typeahead('val', textSearch );
     }
     
     

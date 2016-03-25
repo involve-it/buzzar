@@ -24,9 +24,9 @@
         <div>
             <div class="bz-posts-items-owner-post-menu">
                 <ul class="tabs bz-nav bz-horizontal bz-nav-side-b" data-tab="">
-                  <li class="tab-title active"><a id="activePosts" href="#activePosts" aria-selected="true" tabindex="0">{{t9n 'ACTIVE'}} <!--({{ getCountActivePosts }})--></a></li>
-                  <li class="tab-title"><a id="livePosts" href="#livePosts" aria-selected="false" tabindex="1">{{t9n 'LIVE'}} <!--({{ getCountLivePosts }})--></a></li>
-                  <li class="tab-title"><a id="active" href="#allPosts" aria-selected="false" tabindex="2"><b>{{t9n 'ALL'}}</b></a></li>
+                  <li class="tab-title active"><a id="activePosts" href="#activePosts" aria-selected="true" tabindex="0" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ACTIVE_HINT'}}">{{t9n 'ACTIVE'}} <!--({{ getCountActivePosts }})--></a></li>
+                  <li class="tab-title"><a id="livePosts" href="#livePosts" aria-selected="false" tabindex="1" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'LIVE_HINT'}}">{{t9n 'LIVE'}} <!--({{ getCountLivePosts }})--></a></li>
+                  <li class="tab-title"><a id="active" href="#allPosts" aria-selected="false" tabindex="2" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ALL_HINT'}}"><b>{{t9n 'ALL'}}</b></a></li>
                 </ul>
             </div>
                         
@@ -161,9 +161,8 @@
                 
                 <div class="bz-post-header bz-flex bz-flex-space-between">
                     <a href="/post/{{_id}}">{{details.title}}</a>
-
-
-                    <div class="bz-switch-activity-post" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'POST_SWITCH_OFF_ON'}}">
+                    
+                    <div class="bz-switch-activity-post" data-uk-tooltip="{delay:1500, animation:true}" title="{{#if isActive}} {{t9n 'POST_SWITCH_OFF_ON'}} {{else}} {{t9n 'POST_SWITCH_OFF_OFF'}} {{/if}}">
                         <div class="switch-wrapper js-switch-wrapper" >
                             <div class="switch bz-small">
                                 <input id="switch-activity-{{_id}}" type="checkbox" {{ getVisibilityVal }} class="js-switch-activity-input">
@@ -268,4 +267,3 @@
         <div class="price usd"> {{details.price}} <span class="bz-prefix"><i class="fa fa-usd"></i></span></div>
     {{/if}}
 </template>
-

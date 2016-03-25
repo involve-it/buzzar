@@ -179,7 +179,12 @@ Template.onePostRowItemOwner.events({
       }
   }
 });
+
+
 Template.onePostRowItemOwner.helpers({
+  isActive: function() {
+     return (this.status.visible) ? 1 : 0;
+  },
   getPhotoUrl: function () {
     var photo = bz.cols.posts.findOne({_id: this._id}),
         photoId = photo && photo.details.photos && photo.details.photos[0] || undefined;

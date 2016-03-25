@@ -7,7 +7,7 @@ ruI18n = {
   headliner: 'Жилье вокруг',
   MOST_POPULAR_TITLE: 'Популярное жилье',
   AROUND_YOU_TITLE: 'Жилье рядом',
-  SEARCH_LOOKING_FOR_TEXT: 'Искать жилье',
+  SEARCH_LOOKING_FOR_TEXT: 'Поиск жилья'
 
 };
 var ruAll = _.extend(bz.language.i18n.ru, ruI18n);

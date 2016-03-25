@@ -69,13 +69,13 @@ Template.aroundYouSmall.onRendered(function() {
 
 Template.bzAroundYouSmallItem.rendered = function() {
   
-  var lineH = $('.bz-content .post-item-text').css('line-height');
+  /*var lineH = $('.bz-content .post-item-text').css('line-height');
   if (Number.parseInt(lineH) !== 'NaN'){
     lineH = Number.parseInt(lineH);
   } else {
     lineH = 20;
   }
-  $('.bz-content .post-item-text').css('max-height', lineH * 2);
+  $('.bz-content .post-item-text').css('max-height', lineH * 2);*/
 };
 
 Template.bzAroundYouSmallItem.helpers({
