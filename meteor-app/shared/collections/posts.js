@@ -82,12 +82,13 @@ bz.cols.posts.before.insert(function (userId, doc) {
 
 
 //bz.cols.imagesData.remove({});
+/*
 if (Meteor.isServer) {
   if(bz.config.env === 'dev'){  // todo: this is non-secure!
     bz.cols.posts.allow({
-    /*  insert: function () {
+      insert: function () {
         return true;
-      },*/
+      },
       update: function(){
         return true;
       },
@@ -97,7 +98,7 @@ if (Meteor.isServer) {
     });
   }
 }
-
+*/
 if(Meteor.isClient){
   Meteor.subscribe('posts-all');
   Meteor.subscribe('posts-my');
