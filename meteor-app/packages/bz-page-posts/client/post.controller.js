@@ -44,11 +44,13 @@ staticLocationPanelClick = function (isSet) {
 userSeenAll;
 // this function calculates browser-specific hits
 runHitTracking = function (post, browserInfo) {
-  var userSeenTotal, userSeenToday, seenTotalPost, seenTodayPost;
-  userSeenTotal = Cookie.get('bz.posts.seenTotal.postId.' + post._id)
+  var userSeenTotal, userSeenToday, seenTotalPost, seenTodayPost, seenObj;
+  userSeenTotal = Cookie.get('bz.posts.seenTotal.postId.' + post._id);
   if (!userSeenTotal) {
     seenTotalPost = post.stats && post.stats.seenTotal || 0;
-    bz.cols.posts.update(post._id, {$set: {'stats.seenTotal': ++seenTotalPost}});
+    ++seenTotalPost;
+    seenObj = {'stats.seenTotal': seenTotalPost};
+    Meteor.call('seenPostUpdate',post._id,seenObj);
     //setCookie('bz.posts.seenTotal.postId.' + post._id, true);
     Cookie.set('bz.posts.seenTotal.postId.' + post._id, true);
     userSeenTotal = undefined;
@@ -59,7 +61,9 @@ runHitTracking = function (post, browserInfo) {
   userSeenToday = Cookie.get('bz.posts.seenToday.postId.' + post._id);
   if (!userSeenToday) {
     seenTodayPost = post.stats && post.stats.seenToday || 0;
-    bz.cols.posts.update(post._id, {$set: {'stats.seenToday': ++seenTodayPost}});
+    ++seenTodayPost;
+    seenObj = {'stats.seenToday': seenTodayPost};
+    Meteor.call('seenPostUpdate',post._id,seenObj);
     Cookie.set('bz.posts.seenToday.postId.' + post._id, true, {days: 1});
     userSeenToday = undefined;
   } else {
@@ -68,7 +72,9 @@ runHitTracking = function (post, browserInfo) {
   // set total loads (non-unique), WE DON'T USE THIS!:
   if (!userSeenAll) { // need to run only on-time on full load
     userSeenAll = !userSeenAll && post.stats && post.stats.seenAll || 0;
-    bz.cols.posts.update(post._id, {$set: {'stats.seenAll': ++userSeenAll}});
+    ++userSeenAll;
+    seenObj = {'stats.seenAll': userSeenAll};
+    Meteor.call('seenPostUpdate',post._id,seenObj);
   }
 };
 clearPostData = function () {
@@ -154,29 +160,32 @@ PostBelongsToUser = function (postOwnerId) {
   return ret;
 }
 LikePostByUser = function (postOwnerId) {
-  var ret = false,
+  var ret = false, like = false,
     curPost = bz.bus.posts.getCurrentPost(),
     userId = userId || Meteor.userId();
   if (curPost && userId && !PostBelongsToUser(postOwnerId)) {
     if (!PostIsLikedByCurrentUser()) {
-      bz.cols.posts.update(curPost._id, {$push: {'social.likes': {userId: userId, ts: Date.now()}}});
+      like =true;
     } else {
-      bz.cols.posts.update(curPost._id, {$pop: {'social.likes': {userId: userId}}});
+      like=false
     }
+    Meteor.call('likePostUpdate', curPost._id, userId, like);
   }
   return ret;
 }
 RatePostByUser = function (postOwnerId, rateInt) {
-  var ret = false,
+  var ret = false, rateObj,
     curPost = bz.bus.posts.getCurrentPost(),
     userId = userId || Meteor.userId();
   if (curPost && userId && !PostBelongsToUser(postOwnerId)) {
     if (!PostIsRatedByCurrentUser()) {
-      bz.cols.posts.update(curPost._id, {$push: {'social.rates': {userId: userId, ts: Date.now(), rating: rateInt}}});
+      rateObj = {'social.rates': {userId: userId, ts: Date.now(), rating: rateInt}};
+     // bz.cols.posts.update(curPost._id, {$push: {'social.rates': {userId: userId, ts: Date.now(), rating: rateInt}}});
     } else {
       //bz.cols.posts.update(curPost._id, { $pop:  { 'social.likes': { userId: userId, ts: Date.now() }}});
     }
   }
+  Meteor.call('ratingPostUpdate',curPost._id, rateObj);
   return ret;
 };
 GetPostRating = function (curPost) {
