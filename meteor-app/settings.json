@@ -1,6 +1,9 @@
 {
   "public": {
-    "a": 1
+    "a": 1,
+    "analyticsSettings": {
+      "Google Analytics" : {"trackingId": "UA-75768462-1"}
+    }
   },
   "kadira1": {
     "appId": "37PP463EjDbjukb8n",

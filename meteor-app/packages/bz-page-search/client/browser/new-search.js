@@ -91,7 +91,7 @@ Template.bzNewControlSearch.events({
   'click .js-item-category': function (e, v) {
     /* need update masonry here */
     var textInput = v.$('.bz-form-control')[1];
-    $(textInput).val(this.intName);
+    //$(textInput).val(this.intName);
 
     /* 1 */
     var clearBtn = $('.js-reset-field'),
