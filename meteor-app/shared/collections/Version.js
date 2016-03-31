@@ -1,3 +1,3 @@
 
 
-Version = new Meteor.Collection('version');
+Version = new Mongo.Collection('version');
