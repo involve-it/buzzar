@@ -5,6 +5,9 @@
   <nav class="left-off-canvas-menu">
     {{> bzInnerMenuLeft}}
   </nav>
+    
+  {{> appVersion}} 
+    
 </template>
 
 <template name="bzInnerMenuLeft">
@@ -132,4 +135,9 @@
             <div class="bz-menu-switcher-language-bar"></div>
         </div>
     </div>
+</template>
+
+
+<template name="appVersion">
+    {{version.commit}} - {{version.branch}} - {{version.timestamp}}
 </template>
