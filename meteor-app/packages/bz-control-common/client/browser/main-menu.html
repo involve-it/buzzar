@@ -5,9 +5,6 @@
   <nav class="left-off-canvas-menu">
     {{> bzInnerMenuLeft}}
   </nav>
-    
-  {{> appVersion}} 
-    
 </template>
 
 <template name="bzInnerMenuLeft">
@@ -70,6 +67,11 @@
   {{#if currentUser}}
     {{> bzControlMenuHashes }}
   {{/if}}
+
+    <div class="bz-version version-left-menu only-menu-left">
+        {{> bzVersion}}
+    </div>
+    
 </template>
 
 <template name="checkingUserMenu">
@@ -137,7 +139,3 @@
     </div>
 </template>
 
-
-<template name="appVersion">
-    {{version.commit}} {{version.branch}} {{version.timestamp}}
-</template>

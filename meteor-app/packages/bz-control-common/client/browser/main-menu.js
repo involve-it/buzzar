@@ -78,9 +78,3 @@ Template.bzInnerMenuLeft.events({
   }
 });
 
-
-Template.appVersion.helpers({
-  version:function(){
-    return Version.findOne();
-  }
-});
