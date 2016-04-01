@@ -63,6 +63,7 @@ ru = {
   //Buttons
   BUTTON_CHECK: 'Проверить',
   BUTTONS_BACK: 'Назад',
+  BUTTON_SHOW_MORE_POSTS: 'Показать еще посты',
 
   //Menu
   MENU_HOME_PAGE: 'Главная',

@@ -63,7 +63,9 @@ en = {
   YOU_CAN_CREATE_POST: 'Create your post and other users can contact you!',
 
   BUTTONS_BACK: 'Back',
-  
+
+  BUTTON_SHOW_MORE_POSTS: 'Show more posts',
+
   //Menu
   MENU_HOME_PAGE: 'Home',
   MENU_ABOUT_US: 'About us',

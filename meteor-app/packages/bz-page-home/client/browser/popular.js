@@ -3,34 +3,9 @@
  */
 Template.bzHomePopular.helpers({
   getPopularItems: function () {
-    /*var searchSelector = '';
-     var ret = bz.cols.posts.find({'status.visible': bz.const.posts.status.visibility.VISIBLE}, {limit:30});
-     return ret;*/
-    var ret, loc = Session.get('bz.control.search.location'),
-      activeCats = Session.get('bz.control.category-list.activeCategories') || [];
-
-    // add all-posts reactivity:
+    var ret;
     bz.cols.posts.find({});
-    ret = bz.bus.search.doSearchClient({
-      loc: loc,
-      activeCats: activeCats,
-      $where: function() {
-        //to show only visible
-        return this.status.visible !== null
-      },
-      //radius: bz.const.search.AROUND_YOU_RADIUS,
-      /*query: {
-        'status.visible': {$exists: true}
-      }*/
-    }, {
-      limit: bz.const.search.POPULAR_LIMIT
-    }).fetch();
-    ret = _(ret).chain().sortBy(function(item){
-      return item.stats && item.stats.seenTotal  || 0;
-    }).reverse().sortBy(function(doc) {
-      return doc._getDistanceToCurrentLocationNumber();
-    }).value();
-    console.log('Popular posts amount: ' + ret.length);
+    ret = bz.bus.search.searchePostsAroundAndPopular().popular;
     return ret;
   }
 });
