@@ -5,7 +5,7 @@
 //ONLY HOUSING PAGE
 ruI18n = {
   headliner:           'События вокруг',
-  MOST_POPULAR_TITLE: 'Популярные события',
+  MOST_POPULAR_TITLE: 'Другие популярные события',
   AROUND_YOU_TITLE: 'События рядом',
   SEARCH_LOOKING_FOR_TEXT: 'Поиск событий'
 

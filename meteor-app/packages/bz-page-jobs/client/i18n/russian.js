@@ -5,7 +5,7 @@
 ruI18n = {
   //home:
   headliner:           'Работа вокруг',
-  MOST_POPULAR_TITLE: 'Популярные работы',
+  MOST_POPULAR_TITLE: 'Другие популярные работы',
   AROUND_YOU_TITLE: 'Работа рядом',
   SEARCH_LOOKING_FOR_TEXT: 'Поиск работы',
 

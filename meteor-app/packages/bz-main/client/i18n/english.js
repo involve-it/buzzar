@@ -112,7 +112,7 @@ en = {
 
   // home page:
   headliner: 'instant post, bound to location',
-  MOST_POPULAR_TITLE: 'Most Popular',
+  MOST_POPULAR_TITLE: 'Another Popular',
   ABOUT_US_TITLE: 'About us',
   AROUND_YOU_TITLE: 'Buzz Around you',
 

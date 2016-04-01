@@ -5,7 +5,7 @@
 ruI18n = {
   //home:
   headliner: 'Обучение вокруг',
-  MOST_POPULAR_TITLE: 'Популярные',
+  MOST_POPULAR_TITLE: 'Другие популярные',
   AROUND_YOU_TITLE: 'Тренинги, обучение, инструкторы вокруг',
   SEARCH_LOOKING_FOR_TEXT: 'Поиск обучения'
 
