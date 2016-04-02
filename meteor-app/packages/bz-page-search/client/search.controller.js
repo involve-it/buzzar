@@ -67,7 +67,82 @@ Meteor.startup(function () {
     }
   });
 });
-
+bz.bus.search.showMorePosts=()=>{
+  var limit;
+  if (Session.get('bz.control.search.postCountLimit')){
+    limit=Session.get('bz.control.search.postCountLimit') + 15;
+    Session.set('bz.control.search.postCountLimit', limit)
+  }
+};
+bz.bus.search.searchePostsAroundAndPopular = () => {
+  var ret, aroundYouSmall, aroundYou, popular, ids=[], arrTypes, aroundYouLimit=15, aroundYouSmallQuery= {}, aroundYouQuery= {}, popularQuery= {}, box,loc, activeCats, radius, textSearch;
+  loc = Session.get('bz.control.search.location');
+  radius = Session.get('bz.control.search.distance') || [];
+  activeCats = Session.get('bz.control.category-list.activeCategories') || [];
+  textSearch = Session.get('bz.control.search.searchedText');
+  if (Session.get('bz.control.search.postCountLimit')){
+    aroundYouLimit = Session.get('bz.control.search.postCountLimit');
+  } else{
+    Session.set('bz.control.search.postCountLimit', aroundYouLimit)
+  }
+  if (loc && loc.coords && loc.coords.lat && loc.coords.lng) {
+    box = getLatLngBox(loc.coords.lat, loc.coords.lng, radius);
+    if (box) {
+      aroundYouSmallQuery['details.locations'] = {
+        $elemMatch: {
+          'obscuredCoords.lat': {$gte: box.lat1, $lte: box.lat2},
+          'obscuredCoords.lng': {$gte: box.lng1, $lte: box.lng2}
+        }
+      };
+      aroundYouQuery['details.locations'] = {
+        $elemMatch: {
+          'obscuredCoords.lat': {$gte: box.lat1, $lte: box.lat2},
+          'obscuredCoords.lng': {$gte: box.lng1, $lte: box.lng2}
+        }
+      }
+    }
+  }
+  if (activeCats && Array.isArray(activeCats) && activeCats.length > 0) {
+    aroundYouSmallQuery['type'] = {$in: activeCats};
+    aroundYouQuery['type'] = {$in: activeCats};
+    popularQuery['type'] = {$in: activeCats};
+  } else {
+    arrTypes = _.map(bz.cols.postAdTypes.find().fetch(), function (item) {
+      return item.name;
+    });
+    arrTypes.push(undefined);
+    arrTypes.push('');
+    aroundYouSmallQuery['type'] = {$in: arrTypes};
+    aroundYouQuery['type'] = {$in: arrTypes};
+    popularQuery['type'] = {$in: arrTypes}
+  }
+  aroundYouSmallQuery['$where'] = function(){return !!bz.help.posts.hasLivePresence.apply(this)};
+  aroundYouSmall= bz.cols.posts.find(aroundYouSmallQuery, {sort: {'stats.seenTotal': -1},limit: 10}).fetch();
+  ids.push(undefined);
+  ids.push('');
+  _.each(aroundYouSmall, function(post){ ids.push(post._id)});
+  if (textSearch) {
+    aroundYouQuery['$or'] = [
+      {'details.title': {$regex: `.*${textSearch}.*`}},
+      {'details.description': {$regex: `.*${textSearch}.*`}},
+      {'details.price': {$regex: `.*${textSearch}.*`}}
+    ]
+  }else{
+    aroundYouQuery['_id']={$nin: ids};
+  }
+  aroundYouQuery['$where'] = function(){return this.status.visible !== null};
+  aroundYou= bz.cols.posts.find(aroundYouQuery, {sort: {'stats.seenTotal': -1},limit: aroundYouLimit}).fetch();
+  _.each(aroundYou, function(post){ids.push(post._id)});
+  popularQuery['$where'] = function(){return this.status.visible !== null};
+  popularQuery['_id']={$nin: ids};
+  popular = bz.cols.posts.find(popularQuery,{sort: {'stats.seenTotal': -1},limit: bz.const.search.POPULAR_LIMIT}).fetch();
+  ret = {
+    aroundYouSmall: aroundYouSmall,
+    aroundYou: aroundYou,
+    popular: popular
+  };
+  return ret;
+};
 bz.bus.search.doSearchClient = (params, options)=> {
   var ret, arrTypes, box, dbQuery = {}, loc = params.loc, activeCats = params.activeCats, radius = params.radius, $where = params.$where, text = params.text;
 

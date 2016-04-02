@@ -5,7 +5,7 @@
 //ONLY HOUSING PAGE
 ruI18n = {
   headliner:           'Знакомства вокруг',
-  MOST_POPULAR_TITLE: 'Популярные знакомства',
+  MOST_POPULAR_TITLE: 'Другие популярные знакомства',
   AROUND_YOU_TITLE: 'Знакомства рядом',
   SEARCH_LOOKING_FOR_TEXT: 'Поиск знакомств'
 

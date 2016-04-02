@@ -5,7 +5,7 @@
 ruI18n = {
   //home:
   headliner: 'Покупки и продажи вокруг',
-  MOST_POPULAR_TITLE: 'Популярные',
+  MOST_POPULAR_TITLE: 'Другие популярные',
   AROUND_YOU_TITLE: 'Сделки - спрос и предложения рядом',
   SEARCH_LOOKING_FOR_TEXT: 'Поиск для покупок или продаж'
 };

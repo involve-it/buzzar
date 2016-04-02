@@ -63,6 +63,7 @@ ru = {
   //Buttons
   BUTTON_CHECK: 'Проверить',
   BUTTONS_BACK: 'Назад',
+  BUTTON_SHOW_MORE_POSTS: 'Показать еще посты',
 
   //Menu
   MENU_HOME_PAGE: 'Главная',
@@ -107,7 +108,7 @@ ru = {
   SEARCH_DISTANCE_EVERYWHERE: 'Везде',
   SEARCH_LOOKING_FOR_TEXT: 'Искать ЧТО, ГДЕ, КОГДА',
 
-  MOST_POPULAR_TITLE: 'Популярные',
+  MOST_POPULAR_TITLE: 'Другие популярные',
   ABOUT_US_TITLE: 'О нас',
 
   AROUND_YOU_TITLE: 'Срочное рядом',
