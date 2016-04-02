@@ -175,7 +175,8 @@ Meteor.methods({
     return ret;
   },
   setUserCurrentLocation: function (userId, coords) {
-    var name = T9n.get('MY_LOCATION_TEXT'), id;
+    //var name = Session.get('getAccurateAddress') || T9n.get('MY_LOCATION_TEXT'), id;
+    var name = Session.get('getAccurateAddress'), id;
     var existLoc = bz.cols.locations.findOne({name: name, userId: userId});
     if (existLoc) {
       //bz.cols.locations.remove(existLoc._id);
@@ -189,7 +190,8 @@ Meteor.methods({
     } else {
       id = bz.cols.locations.insert({
         userId: userId,
-        name: name,
+        name: name.name,
+        accurateAddress: name.accurateAddress,
         coords: coords,
         placeType: bz.const.locations.type.DYNAMIC
       });

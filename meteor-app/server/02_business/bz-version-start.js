@@ -30,9 +30,7 @@ var bzVersion = {
 
 
 var wrappedUpdate = Meteor.bindEnvironment(function(revId, key, value) {
-  var modifier = {
-    //timestamp : moment().format("DD-MM-YYYY HH:mm")
-  };
+  var modifier = {};
 
   modifier[key] = value;
 
@@ -43,7 +41,9 @@ var wrappedUpdate = Meteor.bindEnvironment(function(revId, key, value) {
 
 
 Meteor.startup(function() {
-  if (bz.cols.version.find().count() > 0) bz.cols.version.remove({});
+  if (bz.cols.version.find().count() > 0) {
+    bz.cols.version.remove({});
+  }
 
   var revId = bz.cols.version.insert({});
 

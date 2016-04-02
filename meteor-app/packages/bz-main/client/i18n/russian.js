@@ -117,6 +117,7 @@ ru = {
   LOCATION_YOUR_MOST_RECENT_LOCATIONS: 'Ваши последние места: ',
   LOCATION_BUTTON_SET_LOCATION: 'Установить',
   LOCATION_MY_CURRENT_LOCATION: 'Определить текущее местоположение',
+  LOCATION_MY_COMPUTATION_LOCATION: 'Определенный адрес: ',
   LOCATION_CLICK_TO_CHOSE_LOCATION:'Нажмите чтобы выбрать место',
   MY_LOCATION_TEXT: 'Мое Положение',
 

@@ -46,10 +46,14 @@ Template.bzDistance.events({
 
 
 Meteor.startup(function () {
+  
   bz.help.maps.getCurrentLocation(function (loc) {
+    var location = Session.get('getAccurateAddress'); // || T9n.get('MY_LOCATION_TEXT');
+    //console.info('3', location);
     Session.set('bz.control.search.location', {
       coords: loc,
-      name: T9n.get('MY_LOCATION_TEXT')
+      name: location.name,
+      accurateAddress: location.accurateAddress
     });
   });
 });

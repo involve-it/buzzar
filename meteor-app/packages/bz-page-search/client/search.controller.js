@@ -21,14 +21,22 @@ Meteor.startup(function () {
       latitude: loc.lat,
       longitude: loc.lng
     });
-    Session.set('bz.control.search.location', {
-      coords: loc,
-      placeType: bz.const.locations.type.STATIC,
-      name: T9n.get('MY_LOCATION_TEXT'),
-      userId: Meteor.userId(),
-      public: false // private, user's place
-
+    
+    Tracker.autorun(function () {
+      var computationAddress = Session.get('getAccurateAddress');
+      
+      if(computationAddress) {
+        Session.set('bz.control.search.location', {
+          coords: loc,
+          placeType: bz.const.locations.type.STATIC,
+          name: computationAddress.name,
+          accurateAddress: computationAddress.accurateAddress,
+          userId: Meteor.userId(),
+          public: false // private, user's place
+        });
+      }
     });
+    
   });
 
   if (!bz.cols.searchRt && !bz.help.collectionExists('bz.cols.searchRt')) {
@@ -231,32 +239,42 @@ function callbackNearbySearchGoogle(results, status, html_attributions, next_pag
 }
 
 createLocationFromObject = function (obj) {
+  
+  
   var ret, toRemove,
-    locName = obj.name, coords = obj.coords;
+    locName = obj.name, coords = obj.coords, currentAddress = obj.accurateAddress;
   // save to locations history collection
   
   //console.log('get 2');
   
   if (locName && Meteor.userId()) {
+    
     ret = {
       userId: Meteor.userId(),
       name: locName,
+      accurateAddress: currentAddress,
       coords: coords,
       placeType: bz.const.locations.type.STATIC,
       public: false,
       timestamp: Date.now()
     };
+
+    //console.info('ret', ret);
     
     toRemove = bz.cols.locations.findOne({
-      name: locName,
-      userId: Meteor.userId()
+        name: locName, userId: Meteor.userId()
+      /*$or: [
+        {accurateAddress: currentAddress, userId: Meteor.userId()},
+        {name: locName, userId: Meteor.userId()}
+      ]*/
     });
-    
+        
     if (toRemove) {
       bz.cols.locations.remove(toRemove._id);
     }
-
+    
     ret._id = bz.cols.locations.insert(ret);
+    
   } else if(locName) {
 
     //console.log('get 3');
@@ -264,6 +282,7 @@ createLocationFromObject = function (obj) {
     /* without user sign in */
     ret = {
       name: locName,
+      accurateAddress: currentAddress,
       coords: coords,
       placeType: bz.const.locations.type.STATIC,
       public: false,
@@ -272,12 +291,17 @@ createLocationFromObject = function (obj) {
     
     toRemove = bz.cols.locations.findOne({
       name: locName
+
+      /*$or: [
+        {accurateAddress: currentAddress},
+        {name: locName}
+      ]*/
     });
     
     if (toRemove) {
       bz.cols.locations.remove(toRemove._id);
     }
-
+    
     ret._id = bz.cols.locations.insert(ret);
   }
   //ret.resolve(true);
@@ -285,10 +309,15 @@ createLocationFromObject = function (obj) {
    ret.resolve(false);
    }*/
   // 2. set sitewide current location:
+  
   return ret;
 };
 
+
 setLocationToSessionFromData = function (locName, data, sessionName) {
+  
+  //console.info('+++');
+  
   var placeType;
   if (sessionName === bz.const.posts.location2) {
     placeType = bz.const.locations.type.STATIC;
@@ -313,28 +342,38 @@ setLocationToSessionFromData = function (locName, data, sessionName) {
       bz.help.logError('Location with id ' + locId + 'was not found!');
     }
   } else if (data.isCurrentLocation) {
+    
     // selected moving location type
     bz.help.maps.getCurrentLocation(function (loc) {
       
       //console.log('loc 1');
       
       if (placeType === bz.const.locations.type.DYNAMIC) {
+        //var location = Session.get('getAccurateAddress') || T9n.get('MY_LOCATION_TEXT');
+        var location = Session.get('getAccurateAddress'); //|| T9n.get('MY_LOCATION_TEXT');
+        
         Session.set(sessionName, {
           coords: loc,
           placeType: placeType,
-          name: T9n.get('MY_LOCATION_TEXT'),
+          name: location.name,
+          accurateAddress: location.accurateAddress,
           userId: Meteor.userId(),
           public: false // private, user's place
         });
       } else {
         
         //console.log('loc 2');
+        // set address in sessionName
         
-        bz.help.maps.getAddressFromCoords(loc).done(function (address) {
+        bz.help.maps.getAddressFromCoords(loc).done(function (address, accurateAddress) {
           var locObj = createLocationFromObject({
             name: address,
+            accurateAddress: accurateAddress,
             coords: loc
           });
+          
+          //console.info(locObj);
+          
           Session.set(sessionName, locObj);
         });
       }
@@ -348,9 +387,13 @@ setLocationToSessionFromData = function (locName, data, sessionName) {
           name: locName,
           coords: coords
         });
+        console.info('5.1');
         Session.set(sessionName, res);
       } else {
         bz.help.maps.getCurrentLocation(function (loc) {
+          
+          console.info('5.2');
+          
           res = createLocationFromObject({
             name: locName,
             coords: loc
@@ -360,4 +403,4 @@ setLocationToSessionFromData = function (locName, data, sessionName) {
       }
     });
   }
-}
+};
