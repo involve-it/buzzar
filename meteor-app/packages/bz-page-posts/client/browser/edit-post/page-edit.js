@@ -17,10 +17,14 @@ Template.pagePostsEdit.created = function () {
    }
    });*/
   clearPostData();
+  
+  console.info(this);
+  
   FillPostData(this.data);
 };
-Template.pagePostsEdit.helpers({
-});
+
+Template.pagePostsEdit.helpers({});
+
 Template.pagePostsEdit.events({
   'click .js-edit-post': function (e, v) {
     var res = true;

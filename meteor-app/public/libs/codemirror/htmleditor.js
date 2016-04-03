@@ -24,7 +24,7 @@
         defaults: {
             iframe       : false,
             mode         : 'split',
-            markdown     : false,
+            markdown     : true,
             autocomplete : true,
             height       : 500,
             maxsplitsize : 1000,

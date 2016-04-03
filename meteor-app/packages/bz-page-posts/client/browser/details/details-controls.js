@@ -93,13 +93,30 @@ Template.postDetailsDetailsCommon.events({
     //prompt('coords: ', coords);
     console.log('coords: ' + coords);
   }
-})
+});
+
+Meteor.startup(function () {
+  bz.ui.initMarked();
+});
+
+Template.postDetailsDetailsCommon.onRendered(function() {});
+
 Template.postDetailsDetailsCommon.helpers({
   getTitle: function () {
     return this.details.title;
   },
   getDescription: function () {
-    return this.details.description || '';
+    
+    /*
+    var markdownString = this.details.description, postText;
+    postText =  marked(markdownString, function (err, content) {
+      if (err) throw err;
+        return content;
+      });
+    return postText;
+    */
+    
+    return this.details.description;
   },
   getMyLocations: function () {
     return this.details.locations;

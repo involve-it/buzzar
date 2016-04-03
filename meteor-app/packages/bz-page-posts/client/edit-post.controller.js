@@ -79,7 +79,8 @@ SavePostFromView = function (v, data) {
         value: v.$('.js-charity-type-select').val()
       });
     }
-    descriptionFormatted = stripOutScriptTags(v.$('.js-post-description').val()) || undefined;
+    // old code stripOutScriptTags(v.$('.js-post-description').val())
+    descriptionFormatted = stripOutScriptTags(htmlditor.currentvalue) || undefined;
     // created timestamp:
     timestamp = Date.now();
     var newPost = {
