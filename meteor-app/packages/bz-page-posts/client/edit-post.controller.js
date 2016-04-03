@@ -84,7 +84,7 @@ SavePostFromView = function (v, data) {
     timestamp = Date.now();
     var newPost = {
       _id: data._id,
-      //userId: userId,
+      userId: data.userId,
       //type: DeterminePostTypeFromView(v),
       //type: v.$('.js-post-type-select').val(),
       details: {
@@ -128,7 +128,7 @@ SavePostFromView = function (v, data) {
     Router.go(`/post/${data._id}`);
 
     //$.when(locDef).then(function () {
-    Meteor.call('saveExistingPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
+    Meteor.call('saveExistingPost', newPost, currentLoc, Meteor.connection._lastSessionId, Meteor.userId(), function (err, res) {
       _.each(imagesArrayReactive.get(), function (imgItem) {
         if(!imgItem._id && !imgItem.isSaved) {
           imgItem.save().then(img=> {

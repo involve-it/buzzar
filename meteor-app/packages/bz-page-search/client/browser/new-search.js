@@ -91,7 +91,7 @@ Template.bzNewControlSearch.events({
   'click .js-item-category': function (e, v) {
     /* need update masonry here */
     var textInput = v.$('.bz-form-control')[1];
-    $(textInput).val(this.intName);
+    //$(textInput).val(this.intName);
 
     /* 1 */
     var clearBtn = $('.js-reset-field'),
@@ -413,8 +413,8 @@ Template.searchCommonFilters.events({
 
     //typeahead - change result complete
     if(textSearch) {
-      $('.typeahead').typeahead('val', '');
-      $('.typeahead').typeahead('val', textSearch );
+      $('.typeahead.bz-form-control').typeahead('val', '');
+      $('.typeahead.bz-form-control').typeahead('val', textSearch );
     }
     
     

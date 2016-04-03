@@ -68,7 +68,7 @@
   </div>
 
   <div class="message-loader">{{> sAlert template='sAlertCustom'}}</div>
-
+        
 </template>
 
 <!--layout for non-auth pages-->
@@ -280,9 +280,17 @@
 </template>
 
 
-
-
-
+<template name="bzVersion">
+    <div class="bz-version-wrapper">
+        {{#if gitRev 'tag'}}
+            <div class="bz-version-tag"> {{gitRev 'tag'}} </div>
+        {{/if}}
+        
+        {{#if gitRev 'timestamp'}}
+            <div class="bz-version-timestamp"> {{gitRev 'timestamp'}} </div>
+        {{/if}}
+    </div>
+</template>
 
 
 

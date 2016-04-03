@@ -141,9 +141,10 @@ Template.onePostRowItemOwner.events({
       }
       if (obj) {
         _.defer(function () {
-          bz.cols.posts.update({_id: v.data._id}, {
+         /* bz.cols.posts.update({_id: v.data._id}, {
             $set: obj
-          });
+          });*/
+          Meteor.call('timePostUpdate',v.data._id,obj);
         });
       }
     }
@@ -153,13 +154,12 @@ Template.onePostRowItemOwner.events({
     
     var currentPostId = this._id,
         content = this.details.description;
-
     bz.ui.modal(content, function() {
-      bz.cols.posts.remove(currentPostId);
+      Meteor.call('removePost', currentPostId, Meteor.userId());
     });
   },
   'click .js-reset-post': function(e, v) {
-    var now, start, finish, target, duration;
+    var now, start, finish, target, duration,obj;
     
     now = new Date().getTime();
     start = new Date(v.data.timestamp).getTime();
@@ -170,16 +170,21 @@ Template.onePostRowItemOwner.events({
     /* now    =>  timestamp   */
     /* target =>  endDatePost */
       if(v.data) {
-        bz.cols.posts.update(v.data._id, {$set: {
+        obj = {
           'timestamp': now,
           'endDatePost': target,
           'status.visible': bz.const.posts.status.visibility.VISIBLE
-        }
-        });
+        };
+        Meteor.call('timePostUpdate',v.data._id,obj);
       }
   }
 });
+
+
 Template.onePostRowItemOwner.helpers({
+  isActive: function() {
+     return (this.status.visible) ? 1 : 0;
+  },
   getPhotoUrl: function () {
     var photo = bz.cols.posts.findOne({_id: this._id}),
         photoId = photo && photo.details.photos && photo.details.photos[0] || undefined;
@@ -300,7 +305,8 @@ Template.onePostRowItemOwner.helpers({
         status = false;
 
         /* update the status on visible, null  */
-        bz.cols.posts.update(this._id, { $set: { status: {visible: null} , timePause: 0} });
+        var obj ={ status: {visible: null}, timePause: 0};
+        Meteor.call('timePostUpdate',this._id,obj);
       }
       language = Session.get('bz.user.language');
       function endingOfTheWord(lang, number, title, titleEng) {

@@ -53,21 +53,17 @@ Template.bzAroundYou.helpers({
   }
 });
 
-
+Template.bzAroundYou.events({
+  'click .js-show-more-posts-btn': function (e, v){
+    bz.bus.search.showMorePosts();
+  }
+});
 Template.bzAroundYouItem.rendered = function () {
 
   /*init Rate*/
   $('.bz-rating').raty({
     starType: 'i'
   });
-
-  var lineH = $('.bz-content .post-item-text').css('line-height');
-  if (Number.parseInt(lineH) !== 'NaN') {
-    lineH = Number.parseInt(lineH);
-  } else {
-    lineH = 20;
-  }
-  $('.bz-content .post-item-text').css('max-height', lineH * 2);
 };
 
 
@@ -75,8 +71,7 @@ Template.bzAroundYouItem.helpers({
   getPostOwner: function () {
     return Meteor.users.findOne(this.userId);
   },
-  getRank: function () {
-  },
+  getRank: function () {},
   getProgressBar: function () {
     debugger;
   },
@@ -99,6 +94,21 @@ Template.bzAroundYouItem.helpers({
     }
     return '';
   }
+});
+
+
+Template.bzAroundYouItem.onRendered(function() {
+  var template = this, textH, text;
+
+  text = template.$('.post-item-text');
+  textH = text.css('line-height');
+
+  if (Number.parseInt(textH) !== 'NaN') {
+    textH = Number.parseInt(textH);
+  } else {
+    textH = 19;
+  }
+  text.addClass('bz-text-ellipsis').css('max-height', textH * 2);
 });
 
 
@@ -139,41 +149,17 @@ function getLatLngBox(lat, lng, radius) {
 
 
 function getSearchResultsFromSessionParameters(options = {}){
-  var ret, loc = options.loc,
-    distSession = options.dist || [],
-    activeCats = options.cats || [],
-    searchedText = options.text;
-  /*
-  var ret, loc = options.loc || Session.get('bz.control.search.location'),
-    distSession = options.dist || Session.get('bz.control.search.distance') || [],
-    activeCats = options.cats || Session.get('bz.control.category-list.activeCategories') || [];*/
-  
-    if (['home', 'jobs', 'trainings', 'connect', 'trade', 'housing', 'events', 'services', 'help'].indexOf(Router.getCurrentRouteName()) > -1) {
-
-      // add all-posts reactivity:
-      bz.cols.posts.find({});
-      if (loc && loc.coords) {
-        ret = bz.bus.search.doSearchClient({
-          loc: loc,
-          activeCats: activeCats,
-          radius: distSession,
-          text: searchedText,
-          $where: function() {
-            //to show only visible
-            return this.status.visible !== null
-          }
-          //radius: bz.const.search.AROUND_YOU_RADIUS
-        }, {
-          limit: bz.const.search.AROUND_YOU_LIMIT
-        }).fetch();
-                
-        ret = _(ret).chain().sortBy(function (item) {
-          return item.stats && item.stats.seenTotal || 0;
-        }).reverse().sortBy(function (doc) {
-          return doc._getDistanceToCurrentLocationNumber();
-        }).value();
-      }
-      //console.log('Around you posts amount: ' + ret.length);
+  var ret;
+  bz.cols.posts.find({});
+  ret = bz.bus.search.searchePostsAroundAndPopular().aroundYou;
+  if (ret.length<Session.get('bz.control.search.postCountLimit')){
+    $('div.show-more-button a.js-show-more-posts-btn').addClass('disabled');
   }
+  else{
+    $('div.show-more-button a.js-show-more-posts-btn').removeClass('disabled');
+  }
+  ret = _(ret).chain().sortBy(function(doc) {
+    return doc._getDistanceToCurrentLocationNumber();
+  }).value();
   return ret;
 }

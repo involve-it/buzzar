@@ -6,6 +6,7 @@
  GoogleMaps.load();
  });
  }*/
+
 var Maps = {
   initLocation: function () {
     bz.help.makeNamespace('bz.runtime.maps');
@@ -34,12 +35,15 @@ var Maps = {
       console.info('Geolocation is not supported.');
     }
     
+    //console.info('2: getCurrentLocation');
+    
     function geo_success(a) {
         //bz.runtime.maps.currentGeoposition = a;
         var loc = {
           lat: a.coords.latitude,
           lng: a.coords.longitude
         };
+      
         //bz.runtime.maps.loc = loc;
         args.unshift(loc);
         Session.set('bz.api.maps.recentLoc', loc);
@@ -55,6 +59,8 @@ var Maps = {
         console.info('During request unknown error occurred.');
       }
     }
+    
+    
   },
   initPlacesCollection: function () {
     if (!bz.runtime.maps.places && !bz.help.collectionExists('maps.places')) {
@@ -75,6 +81,30 @@ var Maps = {
   },
   initGeocoding: function () {
     geocoder = new google.maps.Geocoder();
+    
+    var coords = Session.get('currentLocation'), loc, ret = {};
+    
+    if(coords) {
+      loc = {lat: coords.latitude, lng: coords.longitude};
+      bz.help.maps.getAddressFromCoords(loc).done(function (address, accurateAddress) {
+        ret = {
+          accurateAddress: accurateAddress,
+          name: address,
+          coords: loc
+        };
+        //console.info('4.0');
+        Session.set('getAccurateAddress', {
+          name: ret.name,
+          accurateAddress: ret.accurateAddress
+        });
+        /*Session.set('bz.control.search.location', {
+          coords: loc,
+          name: ret.name,
+          accurateAddress: ret.accurateAddress
+        });*/
+      });
+    }
+    
   },
   getCoordsFromAddress: function (address) {
     var ret = $.Deferred(), coords;
@@ -104,15 +134,19 @@ var Maps = {
     return ret;
   },
   getAddressFromCoords: function (coords) {
-    var ret = $.Deferred(), address;
+    var ret = $.Deferred(), address, accurateAddress;
     if (geocoder) {
       var latLng = {lat: parseFloat(coords.lat), lng: parseFloat(coords.lng)};
       geocoder.geocode({
         'location': latLng
       }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK && results[1]) {
+          accurateAddress = results[0].address_components[1].short_name;
           address = results[1].formatted_address;
-          ret.resolve(address);
+          
+          //console.info(results);
+          
+          ret.resolve(address, accurateAddress);
         } else {
           ret.resolve(undefined);
           bz.help.logError("bz.api.maps: ReverseGeocode was not successful for the following reason: " + status);

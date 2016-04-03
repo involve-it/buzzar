@@ -171,4 +171,13 @@ if(typeof Template !== 'undefined') {
     }
     return Spacebars.SafeString(ret);
   });
+
+  Template.registerHelper('postLimitDescription', function(limit) {
+    var postDescription;
+        
+    postDescription = this.details.description;
+    return (postDescription && postDescription.length > limit) ? postDescription.substring(0, limit - 3) + "..." : postDescription;
+  });
+  
+  
 }

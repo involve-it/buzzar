@@ -108,6 +108,7 @@ input.js-nearby-places:focus {
 }
 .button {
   white-space: nowrap; // no wrapping of buttons!
+  .border-radius(2px);
 }
 
 .bz-padding-top-x1 {padding-top: 15px;}
@@ -621,6 +622,36 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
 }
 
 /* END */
+
+
+/* BZ VERSION APP*/
+.bz-version {
+
+  &.version-left-menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .bz-version-wrapper {
+    text-align: center;
+    font-size: .8em;
+
+    .bz-version-tag,
+    .bz-version-timestamp {
+      color: rgba(0,0,0, .4);
+      text-shadow: 0 1px rgba(255,255,255, .1);
+    }
+    
+    .bz-version-timestamp {}
+  }
+}
+
+
+/* END bz version app*/
 
 
 /*4,5,6*/

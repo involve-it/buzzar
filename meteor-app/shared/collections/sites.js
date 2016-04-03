@@ -6,3 +6,4 @@ if(Meteor.isClient) {
   bz.cols.postAdTypes = new Mongo.Collection('siteTypes');
   Meteor.subscribe('siteTypes');
 }*/
+

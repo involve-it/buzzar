@@ -13,9 +13,12 @@ ru = {
   SEND_MESSAGE: 'Написать сообщение',
   YES: 'Да',
   NO: 'Нет',
-  ALL:'Все',
-  LIVE:'Живые',
   ACTIVE:'Активные',
+  ACTIVE_HINT:'Посты, находящиеся в активном режиме. Их видят другие пользователи',
+  LIVE:'Живые',
+  LIVE_HINT:'Посты с динамической локацией, привязаны к мобильному устройству',
+  ALL:'Все',
+  ALL_HINT:'Все созданные вами посты',
   COMMENTS:'Комментарии',
   RATING: 'Рейтинг',
   REVIEW_HELP_TEXT: 'Оставьте свой комментарий здесь',
@@ -36,9 +39,9 @@ ru = {
   BZ_DISTANCE: 'Дистанция',
   BZ_IS_PHOTO: 'Есть фото',
   BZ_SETTINGS_CATEGORY: 'Настройки категории',
-  BZ_ALL_CATEGORIES_JOBS: 'Все подкатегории',
-  BZ_LOOKING_FOR_JOBS: 'Ищу работу',
-  BZ_JOBS_OFFERED: 'Предлагаю работу',
+  BZ_ALL_CATEGORIES_JOBS: 'Показать все',
+  BZ_LOOKING_FOR_JOBS: 'Посты с поиском работы',
+  BZ_JOBS_OFFERED: 'Посты с предложениями работы',
   BZ_EMPLOYMENT_AND_WORK_SCHEDULE: 'Работа и график работы',
   BZ_EMPLOYMENT_AND_WORK_SCHEDULE_DESC: 'Работа и график работы',
   BZ_FULL_DAY: 'Полная занятость',
@@ -54,12 +57,13 @@ ru = {
 
 
   //No posts around
-  NO_ITEMS_AROUND_YOU: 'У вас нет постов рядом',
-  YOU_CAN_CREATE_POST: 'Вы могли бы добавить объявление, чтобы другие пользователи могли им воспользоваться. Для этого нажмите на кнопку ниже.',
+  NO_ITEMS_AROUND_YOU: 'Рядом с вами пока нет постов',
+  YOU_CAN_CREATE_POST: 'Создайте свое объявление, чтобы о вашем запросе узнали другие пользователи и могли с вами связаться!',
 
   //Buttons
   BUTTON_CHECK: 'Проверить',
   BUTTONS_BACK: 'Назад',
+  BUTTON_SHOW_MORE_POSTS: 'Показать еще посты',
 
   //Menu
   MENU_HOME_PAGE: 'Главная',
@@ -90,7 +94,8 @@ ru = {
   left:                'Осталось',
   POST_STATUS: 'Объявление закрыто',
 
-  POST_SWITCH_OFF_ON: 'Снять с показа. Снятые с публикации объявления не показываются другим пользователям. Вы можете их повторно активировать на странице Мои посты во вкладке «ВСЕ».',
+  POST_SWITCH_OFF_ON: 'Снять с показа. Снятые с публикации объявления не показываются другим пользователям.',
+  POST_SWITCH_OFF_OFF: 'Вернуть к показу. Объявление будет снова опубликовано на сайте.',
   
   headliner:           'Вокруг тебя',
   siteTitleElement: 'instant post, bound to location',
@@ -103,7 +108,7 @@ ru = {
   SEARCH_DISTANCE_EVERYWHERE: 'Везде',
   SEARCH_LOOKING_FOR_TEXT: 'Искать ЧТО, ГДЕ, КОГДА',
 
-  MOST_POPULAR_TITLE: 'Популярные',
+  MOST_POPULAR_TITLE: 'Другие популярные',
   ABOUT_US_TITLE: 'О нас',
 
   AROUND_YOU_TITLE: 'Срочное рядом',
@@ -113,6 +118,7 @@ ru = {
   LOCATION_YOUR_MOST_RECENT_LOCATIONS: 'Ваши последние места: ',
   LOCATION_BUTTON_SET_LOCATION: 'Установить',
   LOCATION_MY_CURRENT_LOCATION: 'Определить текущее местоположение',
+  LOCATION_MY_COMPUTATION_LOCATION: 'Определенный адрес: ',
   LOCATION_CLICK_TO_CHOSE_LOCATION:'Нажмите чтобы выбрать место',
   MY_LOCATION_TEXT: 'Мое Положение',
 

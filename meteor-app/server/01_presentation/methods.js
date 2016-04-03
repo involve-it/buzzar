@@ -62,9 +62,41 @@ Meteor.methods({
       //return 'EPzoQSGnGCSsPaQjm'
     }
   },
-  saveExistingPost: function(postObject, currentLocation, connectionId) {
+  seenPostUpdate: function(postId,seenObject){
+    if (postId && seenObject) {
+      bz.cols.posts.update(postId, {$set: seenObject});
+    }
+  },
+  likePostUpdate: function(postId,userId,like){
+    if (postId && userId){
+      if(like){
+        bz.cols.posts.update(postId, {$push: {'social.likes': {userId: userId, ts: Date.now()}}});
+      }else{
+        bz.cols.posts.update(postId, {$pop: {'social.likes': {userId: userId}}});
+      }
+    }
+  },
+  ratingPostUpdate: function(postId, ratingObject){
+    if (postId && ratingObject){
+      bz.cols.posts.update(postId, {$push: ratingObject})
+      }
+  },
+  timePostUpdate: function(postId, timeObj){
+    if (postId && timeObj){
+      bz.cols.posts.update(postId, {$set: timeObj});
+    }
+  },
+  removePost: function(postId, userId){
+    if (postId && userId) {
+      var post = bz.cols.posts.findOne(postId);
+      if (userId == post.userId) {
+        bz.cols.posts.remove(postId);
+      }
+    }
+  },
+  saveExistingPost: function(postObject, currentLocation, connectionId,userId) {
     var res, ret;
-    if(postObject && postObject._id){
+    if(postObject && postObject._id && (userId == postObject.userId)){
       /*if (!postObject.presences && postObject.details && postObject.details.locations && Array.isArray(postObject.details.locations) && postObject.details.locations.length > 0){
         postObject.presences = {};
         var id;
@@ -143,7 +175,8 @@ Meteor.methods({
     return ret;
   },
   setUserCurrentLocation: function (userId, coords) {
-    var name = T9n.get('MY_LOCATION_TEXT'), id;
+    //var name = Session.get('getAccurateAddress') || T9n.get('MY_LOCATION_TEXT'), id;
+    var name = Session.get('getAccurateAddress'), id;
     var existLoc = bz.cols.locations.findOne({name: name, userId: userId});
     if (existLoc) {
       //bz.cols.locations.remove(existLoc._id);
@@ -157,7 +190,8 @@ Meteor.methods({
     } else {
       id = bz.cols.locations.insert({
         userId: userId,
-        name: name,
+        name: name.name,
+        accurateAddress: name.accurateAddress,
         coords: coords,
         placeType: bz.const.locations.type.DYNAMIC
       });
