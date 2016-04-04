@@ -25,6 +25,9 @@ Package.onUse(function (api) {
     'meteoric:ionicons-sass',
     'meteoric:autoform-ionic',
     'fortawesome:fontawesome'*/
+      
+    /* -> turned off ionic style on the 82 line*/  
+      
     'angular-with-blaze',
     'driftyco:ionic'
   ], global.bzSettings.webCordovaArray);
@@ -80,11 +83,11 @@ Package.onUse(function (api) {
   ], global.bzSettings.webBrowserArray);
 
   api.addFiles([
-    'client/ionic/main-layout.html',
-    'client/ionic/main-layout.js',
-    'client/ionic/main-layout.less',
-    'client/ionic/style/app-ionic.less',
-    'client/ionic/style/app.scss'
+    //'client/ionic/main-layout.html',
+    //'client/ionic/main-layout.js',
+    //'client/ionic/main-layout.less',
+    //'client/ionic/style/app-ionic.less',
+    //'client/ionic/style/app.scss'
   ], global.bzSettings.webCordovaArray);
 });
 

@@ -20,7 +20,7 @@ Router.map(function () {
     },
     onBeforeAction: function () {
       var qs = this.params.query;
-      console.log(qs);
+      //console.log(qs);
       //setSearchTextFromQs(qs);
       //setSearchLocationFromQs(qs);
       setPackageLanguage();

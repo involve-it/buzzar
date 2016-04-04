@@ -9,7 +9,7 @@ Template.bzLinkLocationName.helpers({
   getCurrentLocationName: function(){
     var ret = Session.get('bz.control.search.location');
 
-    if(ret && ret.accurateAddress || ret.name) {
+    if(ret && ret.accurateAddress || ret && ret.name) {
        
       if(ret.accurateAddress) {
         return ret.accurateAddress;

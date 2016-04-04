@@ -79,11 +79,13 @@
             <ul class="none-list js-locations-list">
               <li><a data-iscurrentlocation="true" data-locationname="My Location"><i class="fa fa-map-marker"></i> {{ t9n 'LOCATION_MY_CURRENT_LOCATION' }}</a></li>
             </ul>
-
-            <ul class="none-list js-locations-list">
-                <li><div class="title">{{ t9n 'LOCATION_MY_COMPUTATION_LOCATION' }}</div></li>
-                <li><a> {{accurateAddress}} </a></li>
-            </ul>
+              
+            {{#if accurateAddress}}
+                <ul class="none-list js-locations-list">
+                    <li><div class="title">{{ t9n 'LOCATION_MY_COMPUTATION_LOCATION' }}</div></li>
+                    <li><a> {{accurateAddress}} </a></li>
+                </ul>
+            {{/if}}
               
             {{#if currentUser }}
               <ul class="none-list js-locations-list">
