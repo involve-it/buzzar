@@ -3,7 +3,13 @@
 // Variables exported by this module can be imported by other packages and
 // applications. See bz-groupon-tests.js for an example of importing.
 import settingsConst from './settings.json';
-var grouponPosts;
+var grouponPosts, grouponPostsCollection;
+
+Meteor.startup(() => {
+  bz.cols.grouponPosts = new Mongo.Collection('bz.groupon-posts');
+  grouponPostsCollection = bz.cols.grouponPosts;
+});
+
 class GrouponPosts {
   constructor(options) {
     debugger;
@@ -25,22 +31,43 @@ class GrouponPosts {
       });*/
     }
   }
+  static getPostFromJson(json) {
+    let ret = {
+      origObj: json,
+      details: {
+        title: json.announcementTitle,
+        description: json.highlightsHtml + json.pitchHtml,
+        photos: [
+          {
+            thumb: json.smallImageUrl,
+            image: json.largeImageUrl
+          }
+        ]
+      }
+    };
+
+
+
+    return ret;
+  }
 }
 if (Meteor.isServer) {
 
 
   Meteor.methods({
     'groupon-api-deals': function (loc) {
-
       debugger;
-      var url = `https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&lat=${ loc.latitude }&lng=${  loc.longitude }&radius=${ loc.accuracy }`;
-      HTTP.get(url, {}, function (error, response) {
-        debugger;
 
-        if (error) {
-          console.log(error);
-        } else {
-          console.log(response);
+      var post, url = `https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&lat=${ loc.latitude }&lng=${  loc.longitude }&radius=${ loc.accuracy }`;
+      Meteor.http.call('GET', url, {}, (err, res) => {
+        if (err) {
+
+        } else if (res) {
+          debugger;
+          res.data.deals.forEach((item) => {
+            post = GrouponPosts.getPostFromJson(item);
+            grouponPostsCollection.insert(post);
+          });
         }
       });
     }

@@ -13,5 +13,6 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.3');
   api.use(['ecmascript', 'session']);
+  api.use(['http'], 'server');
   api.mainModule('bz-groupon.js');
 });
