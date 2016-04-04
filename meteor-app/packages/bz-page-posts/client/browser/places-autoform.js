@@ -108,7 +108,7 @@ Template.postsPlacesAutoform.events({
 // HELPERS:
 
 function callbackNearbySearch(results, status) {
-  console.log('results: ', results);
+  //console.log('results: ', results);
   console.log('status: ', status);
   console.log('length: ', results.length);
   if (status === google.maps.places.PlacesServiceStatus.OK) {

@@ -10,7 +10,7 @@ Template.bzLinkLocationName.helpers({
     var ret = Session.get('bz.control.search.location');
 
     if(ret && ret.accurateAddress || ret && ret.name) {
-       
+      console.info('choose-location: ', ret);
       if(ret.accurateAddress) {
         return ret.accurateAddress;
       } else {
