@@ -80,7 +80,8 @@ Template.postDetailsCommon.events({
     var val = e.target.value || '';
     checkIfFieldIsChanged(v.data, 'title', val);
   }
-})
+});
+
 Template.postDetailsCommon.helpers({
   getTitle: function () {
     var ret = '';
@@ -101,6 +102,8 @@ Template.postDetailsCommon.helpers({
     return ret;
   }
 });
+
+
 var lastComputation;
 Template.postPhotoUpload.onRendered(()=> {
   var that = this;

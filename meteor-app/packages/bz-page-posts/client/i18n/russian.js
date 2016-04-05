@@ -83,8 +83,8 @@ ruI18n = {
   NEW_POST_BUDGET:'Бюджет',
   NEW_POST_PROVIDE:'Предоставляется',
   NEW_POST_NEED:'Требуется',
-  NEW_POST_ANONYMOUS_POST_TITLE:'Анономный пост',
-  NEW_POST_ANONYMOUS_POST:'Включить анономный пост',
+  NEW_POST_ANONYMOUS_POST_TITLE:'Анонимный пост',
+  NEW_POST_ANONYMOUS_POST:'Включить анонимный пост',
 
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Новое напоминание',

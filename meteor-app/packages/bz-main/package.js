@@ -82,13 +82,13 @@ Package.onUse(function (api) {
     'client/browser/main-layout.less'
   ], global.bzSettings.webBrowserArray);
 
-  api.addFiles([
-    //'client/ionic/main-layout.html',
-    //'client/ionic/main-layout.js',
-    //'client/ionic/main-layout.less',
-    //'client/ionic/style/app-ionic.less',
-    //'client/ionic/style/app.scss'
-  ], global.bzSettings.webCordovaArray);
+  /*api.addAssets([
+    'client/ionic/main-layout.html',
+    'client/ionic/main-layout.js',
+    'client/ionic/main-layout.less',
+    'client/ionic/style/app-ionic.less',
+    'client/ionic/style/app.scss'
+  ], global.bzSettings.webCordovaArray);*/
 });
 
 Package.onTest(function (api) {

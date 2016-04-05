@@ -123,18 +123,18 @@
     {{> postRatingInfo}}
       
     {{#each getMyLocations }}
-      <div class="post-location">
-        <i class="fa fa-map-marker"></i>
-          <span>
-            {{ name }}
-            {{#if $eq placeType 'bz.dynamic' }}
-              ({{ t9n 'POST_DETAILS_DYNAMIC' }})
-            {{else }}
-              ({{ t9n 'POST_DETAILS_STATIC' }})
-            {{/if}}
-        </span>
-        <a target="_blank" href="{{ getGoogleMapsHref }}" class="js-show-location-on-map">{{ t9n 'POST_DETAILS_VIEW_MAP' }}</a>
-      </div>
+        <div class="post-location">
+            <i class="fa fa-map-marker"></i>
+            <span>
+                {{ name }}
+                {{#if $eq placeType 'bz.dynamic' }}
+                    ({{ t9n 'POST_DETAILS_DYNAMIC' }})
+                {{else }}
+                    ({{ t9n 'POST_DETAILS_STATIC' }})
+                {{/if}}
+            </span>
+            <a target="_blank" href="{{ getGoogleMapsHref }}" class="js-show-location-on-map">{{ t9n 'POST_DETAILS_VIEW_MAP' }}</a>
+        </div>
     {{/each}}
   </div>
 

@@ -33,6 +33,7 @@ movingLocationPanelClick = function () {
     });
   }
 };
+
 staticLocationPanelClick = function (isSet) {
   var chosenLocation = Session.get(location2.sessionName);
   if (!chosenLocation || isSet) {
@@ -41,6 +42,7 @@ staticLocationPanelClick = function (isSet) {
     Template.bzLocationNameNewPost.showModal();
   }
 };
+
 userSeenAll;
 // this function calculates browser-specific hits
 runHitTracking = function (post, browserInfo) {
