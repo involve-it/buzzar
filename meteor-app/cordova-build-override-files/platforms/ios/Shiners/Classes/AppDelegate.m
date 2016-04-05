@@ -77,21 +77,6 @@
 #else
         self.viewController = [[[MainViewController alloc] init] autorelease];
 #endif
-    
-    // -------------- Objective DDP code --------------------
-    ((MainViewController*)self.viewController).meteorClient =  [[MeteorClient alloc] initWithDDPVersion:@"pre2"];
-    // Testing against a local ddp server (i.e. meteor server)
-    ObjectiveDDP *ddp = [[ObjectiveDDP alloc] initWithURLString:@"ws://192.168.1.61:3000/websocket" delegate:((MainViewController*)self.viewController).meteorClient];
-    //ObjectiveDDP *ddp = [[ObjectiveDDP alloc] initWithURLString:@"ws://msg.webhop.org/websocket" delegate:((MainViewController*)self.viewController).meteorClient];
-    //ObjectiveDDP *ddp = [[ObjectiveDDP alloc] initWithURLString:@"ws://www.shiners.ru/websocket" delegate:((MainViewController*)self.viewController).meteorClient];
-    ((MainViewController*)self.viewController).meteorClient.ddp = ddp;
-    // Testing against a remote ddp server (i.e. meteor server hosted on meteor.com)
-    //ddp = [[ObjectiveDDP alloc] initWithURLString:@"wss://<yoursubdomain>.meteor.com/websocket" delegate:mc];
-    [ddp connectWebSocket];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportConnection) name:MeteorClientDidConnectNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportDisconnection) name:MeteorClientDidDisconnectNotification object:nil];
-    // ------------------------------------------------------
 
     // Set your app's start page by setting the <content src='foo.html' /> tag in config.xml.
     // If necessary, uncomment the line below to override it.
@@ -102,17 +87,126 @@
 
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    
+    // -------------- Objective DDP code --------------------
+    self.meteorClient =  [[MeteorClient alloc] initWithDDPVersion:@"pre2"];
+    // Testing against a local ddp server (i.e. meteor server)
+    //ObjectiveDDP *ddp = [[ObjectiveDDP alloc] initWithURLString:@"ws://192.168.1.61:3000/websocket" delegate:self.meteorClient];
+    //ObjectiveDDP *ddp = [[ObjectiveDDP alloc] initWithURLString:@"ws://msg.webhop.org/websocket" delegate:self.meteorClient];
+    ObjectiveDDP *ddp = [[ObjectiveDDP alloc] initWithURLString:@"ws://www.shiners.ru/websocket" delegate:self.meteorClient];
+    self.meteorClient.ddp = ddp;
+    [self.meteorClient addObserver:self forKeyPath:@"websocketReady" options:NSKeyValueObservingOptionNew context:nil];
+    // Testing against a remote ddp server (i.e. meteor server hosted on meteor.com)
+    //ddp = [[ObjectiveDDP alloc] initWithURLString:@"wss://<yoursubdomain>.meteor.com/websocket" delegate:mc];
+    [ddp connectWebSocket];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportConnection) name:MeteorClientDidConnectNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportDisconnection) name:MeteorClientDidDisconnectNotification object:nil];
+    // ------------------------------------------------------
+    
+    [self initLocation];
 
     return YES;
 }
-
-
-- (void)reportConnection {
-    NSLog(@"================> connected to server!");
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"websocketReady"] && self.meteorClient.websocketReady){
+        if (self.lastLocation){
+            [self reportLocation:self.lastLocation];
+        }
+    }
 }
 
-- (void)reportDisconnection {
-    NSLog(@"================> disconnected from server!");
+-(void)reportLocation: (CLLocation *)location{
+    NSString *deviceId = [self getDeviceId];
+    NSString *oldDeviceId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    NSLog(@"device ID: cordova: %@, ios: %@", deviceId, oldDeviceId);
+    
+    NSLog(@"Submitting location: %f, %f", location.coordinate.latitude, location.coordinate.longitude);
+    
+    NSDictionary *report = @{
+                             @"deviceId": deviceId,
+                             @"lat":[NSNumber numberWithDouble:location.coordinate.latitude],
+                             @"lng":[NSNumber numberWithDouble:location.coordinate.longitude]
+                             };
+    
+    [self.meteorClient callMethodName:@"reportLocation" parameters:@[report] responseCallback:^(NSDictionary *response, NSError *error) {
+        if (error){
+            NSLog(@"Location report error: %@", error);
+        } else {
+            NSLog(@"Location report successful");
+        }
+    }];
+    self.lastLocation = nil;
+}
+
+-(void)didReceiveMessage:(NSDictionary *)message{
+    NSLog(@"message received");
+    NSLog(@"%@", message);
+}
+
+-(void)reportConnection{
+    NSLog(@"DDP connected");
+}
+
+-(void)reportDisconnection{
+    NSLog(@"DDP disconnected");
+}
+
+-(void)initLocation
+{
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
+    
+    [self.locationManager requestAlwaysAuthorization];
+    
+    [self.locationManager startMonitoringSignificantLocationChanges];
+}
+
+-(NSString*)getDeviceId
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    static NSString* UUID_KEY = @"CDVUUID";
+    
+    NSString* app_uuid = [userDefaults stringForKey:UUID_KEY];
+    
+    if (app_uuid == nil) {
+        CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+        CFStringRef uuidString = CFUUIDCreateString(kCFAllocatorDefault, uuidRef);
+        
+        app_uuid = [NSString stringWithString:(__bridge NSString*)uuidString];
+        [userDefaults setObject:app_uuid forKey:UUID_KEY];
+        [userDefaults synchronize];
+        
+        CFRelease(uuidString);
+        CFRelease(uuidRef);
+    }
+    
+    return app_uuid;
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
+{
+    CLLocation *location = [locations lastObject];
+ 
+    NSLog(@"Location reported");
+    NSLog(@"%@", location);
+    NSLog(@"latitude %+.6f, longitude %+.6f\n",
+          location.coordinate.latitude,
+          location.coordinate.longitude);
+    
+    if (self.meteorClient.websocketReady){
+        [self reportLocation:location];
+    } else {
+        self.lastLocation = location;
+    }
+    
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"Location error");
+    NSLog(@"%@", error);
 }
 
 // this happens while we are running ( in the background, or from within our own app )

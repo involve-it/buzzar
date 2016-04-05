@@ -18,26 +18,30 @@
  */
 
 //
-//  MainViewController.h
+//  AppDelegate.h
 //  meteor-app
 //
 //  Created by ___FULLUSERNAME___ on ___DATE___.
 //  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 #import <Cordova/CDVViewController.h>
-#import <Cordova/CDVCommandDelegateImpl.h>
-#import <Cordova/CDVCommandQueue.h>
 #import <CoreLocation/CoreLocation.h>
 #import <ObjectiveDDP/MeteorClient.h>
 
-@interface MainViewController : CDVViewController<CLLocationManagerDelegate>
-@property MeteorClient *meteorClient;
+@interface AppDelegate : NSObject <UIApplicationDelegate, CLLocationManagerDelegate>{}
+
+// invoke string is passed to your app on launch, this is only valid if you
+// edit meteor-app-Info.plist to add a protocol
+// a simple tutorial can be found here :
+// http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+
+@property (nonatomic, strong) IBOutlet UIWindow* window;
+@property (nonatomic, strong) IBOutlet CDVViewController* viewController;
 @property CLLocationManager *locationManager;
-@end
+@property MeteorClient *meteorClient;
+@property CLLocation *lastLocation;
 
-@interface MainCommandDelegate : CDVCommandDelegateImpl
-@end
-
-@interface MainCommandQueue : CDVCommandQueue
 @end

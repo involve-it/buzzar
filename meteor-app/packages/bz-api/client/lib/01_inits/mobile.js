@@ -11,6 +11,12 @@ bz.mobile.processLogin = function() {
 
 if (Meteor.isCordova){
     Meteor.startup(function(){
+        document.addEventListener("deviceready", function(){
+            if (Meteor.userId()){
+                Meteor.call('registerTokenAndDeviceId', device.uuid, bz.mobile.token, Meteor.userId(), function (error) { });
+            }
+        }, false);
+
         Tracker.autorun(function(){
             if (Meteor.userId()){
                 Meteor.call('assignTokenToUser', device.uuid, Meteor.userId());
