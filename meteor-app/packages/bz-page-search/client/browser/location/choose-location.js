@@ -17,8 +17,7 @@ Template.bzLinkLocationName.helpers({
         return ret.name;
       }
     } else {
-      //bz.ui.error('Your location is not defined, <br/> please <a onclick="$(\'.bz-link-lacation-name\').click()">set your location manually.</a>')
-      return 'Location is not defined';
+      return false;
     }
   }
 });

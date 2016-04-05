@@ -121,6 +121,7 @@ ru = {
   LOCATION_MY_COMPUTATION_LOCATION: 'Определенный адрес: ',
   LOCATION_CLICK_TO_CHOSE_LOCATION:'Нажмите чтобы выбрать место',
   MY_LOCATION_TEXT: 'Мое Положение',
+  LOCATION_IS_NOT_DEFINED: 'Местоположение не определено',
 
   //Profile
   PROFILE_USER_DETAILS :'Профиль пользователя',

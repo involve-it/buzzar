@@ -317,7 +317,9 @@ createLocationFromObject = function (obj) {
   
   
   var ret, toRemove,
-    locName = obj.name, coords = obj.coords, currentAddress = obj.accurateAddress;
+    locName = obj.name, coords = obj.coords; 
+  var currentAddress = obj.accurateAddress;
+  
   // save to locations history collection
   
   //console.log('get 2');

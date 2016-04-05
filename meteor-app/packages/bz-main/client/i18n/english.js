@@ -124,6 +124,7 @@ en = {
   LOCATION_MY_COMPUTATION_LOCATION: 'Specific location: ',
   LOCATION_CLICK_TO_CHOSE_LOCATION:'Click to choose location',
   MY_LOCATION_TEXT: 'My Location',
+  LOCATION_IS_NOT_DEFINED: 'Location is not defined',
 
   //Profile
   PROFILE_USER_DETAILS :'User profile details',
