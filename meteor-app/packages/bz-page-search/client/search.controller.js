@@ -143,6 +143,7 @@ bz.bus.search.searchePostsAroundAndPopular = () => {
   };
   return ret;
 };
+/*
 bz.bus.search.doSearchClient = (params, options)=> {
   var ret, arrTypes, box, dbQuery = {}, loc = params.loc, activeCats = params.activeCats, radius = params.radius, $where = params.$where, text = params.text;
 
@@ -184,7 +185,7 @@ bz.bus.search.doSearchClient = (params, options)=> {
 
   return ret;
 };
-
+*/
 bz.bus.search.doSearchServer = function (options, callback) {
   var searchedText = options.text;
   searchedText = searchedText && searchedText.trim();
