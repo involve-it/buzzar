@@ -220,7 +220,7 @@ Template.bzDatePickerModal.events({
     
     
     $('.js-date-picker-modal').foundation('reveal', 'close');
-    console.info('click APPLY', getSelectedDate);
+    //console.info('click APPLY', getSelectedDate);
   }
 });
 
