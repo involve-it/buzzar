@@ -56,6 +56,11 @@ en = {
   BZ_FREELANCE: 'Freelancer',
   BZ_CHOOSE_TYPE_TRAININGS: 'Select the type of training',
   BZ_CHOOSE_TYPE_TRAININGS_DESC: 'Select the type of training',
+  BZ_ACTION_DONE: 'Done',
+  
+  BZ_DURATION_START_SELECTED: 'Custom choice',
+  BZ_DURATION_CLICK_TO_CH_DATE: 'Click to select a date',
+  DATE_TOMORROW: 'Tomorrow',
 
 
   //No posts around

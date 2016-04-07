@@ -229,6 +229,8 @@
     </div>
   </div>
 </template>
+
+
 <template name="bzPostsDurationPicker">
   <div class="item-group">
     <div class="item item-divider">
@@ -241,7 +243,7 @@
         <div type="stacked" class="item item-input item-stacked-label">
           <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_DURATION' }}</div>
           <div class="small-12 medium-9 large-9 left">
-            <div>
+            <!--<div>
             {{#if isRussianLanguage}}
               <select name="repeat" class="js-post-select-duration">
                 <option value="oneDay">Один день</option>
@@ -250,10 +252,6 @@
                 <option value="twoWeek">Две недели</option>
                 <option value="month">Один месяц</option>
                 <option value="year">Один год</option>
-                <!--<option value="validSpecific">Post Valid Specific Time</option>
-                <option value="validTimeRange">Post Valid Time Range</option>
-                <option value="expirationTime">Expiration Time</option>
-                <option value="postRepeatingTime">Post Repeating Time</option>-->
               </select>
             {{else}}
               <select name="repeat" class="js-post-select-duration">
@@ -263,13 +261,35 @@
                 <option value="twoWeek">Two weeks</option>
                 <option value="month">One month</option>
                 <option value="year">One year</option>
-                <!--<option value="validSpecific">Post Valid Specific Time</option>
-                <option value="validTimeRange">Post Valid Time Range</option>
-                <option value="expirationTime">Expiration Time</option>
-                <option value="postRepeatingTime">Post Repeating Time</option>-->
               </select>
             {{/if}}
-            </div>
+            </div>-->
+
+              <div class="bz-datepicker">
+                  
+                  <div class="ui-date-picker action l input">
+                      <input class="js-duration-picker" type="text" value="" placeholder="{{t9n 'BZ_DURATION_CLICK_TO_CH_DATE'}}" aria-invalid="false">
+                      
+                      <div class="dropdown-duration-picker">
+                          <select class="prefix-duration-picker js-duration-select-picker" name="durationPicker" id="durationPicker" aria-invalid="false">
+                              <option value="" selected="selected"> {{ t9n 'BZ_DURATION_START_SELECTED'}} </option>
+                              <option value="oneDay">Один день</option>
+                              <option value="twoDay">Два дня</option>
+                              <option value="week">Неделю</option>
+                              <option value="twoWeek">Две недели</option>
+                              <option value="month">Один месяц</option>
+                              <option value="year">Один год</option>
+                              <option value="custom">Выбрать дату</option>
+                          </select>
+                      </div>
+                  </div>
+                  
+              </div>
+
+              <div class="reveal-modal bz-modal-transparent js-date-picker-modal" data-reveal aria-labelledby="datePickerTitle" aria-hidden="true" role="dialog">
+                {{> bzDatePickerModal this}}
+              </div>
+              
           </div>
         </div>
       </div>
@@ -283,3 +303,47 @@
             </div>-->
   </div>
 </template>
+
+
+<template name="bzDatePickerModal">
+    
+    <div class="bz-date-picker-modal">
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+        <div class="bz-date-picker-wrapper">
+            <div class="bz-date-picker-header">
+                <div class="bz-date-picker-box">
+                    <div class="header-toolbar-title">
+                        <h2 id="datePickerTitle" class="title">Выбор даты продолжительности поста</h2>
+                    </div>
+                    
+                    <div class="bz-date-picker-wrapper bg">
+                        <div id="bz-date-picker-box" class="bz-date-picker"></div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="bz-date-picker-content">
+                <div class="bz-date-picker-box">
+                    <a href="#" class="bz-date-picker-now js-bz-date-picker-now">{{ t9n 'DATE_TOMORROW' }}</a>
+                </div>
+            </div>
+            <div class="bz-date-picker-footer">
+                <div class="bz-date-picker-box">
+                    <div class="bz-date-picker-box-wrapper">
+                        <button class="js-cancel-btn secondary btn-default bz-small bz-button-done">{{ t9n 'CANCEL'}}</button>
+                        <button class="js-ok-btn btn-default bz-small bz-button-done">{{ t9n 'BZ_ACTION_DONE'}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</template>
+
+
+
+
+
+
+
