@@ -9,6 +9,7 @@ Meteor.startup(function () {
   // and keywords (defined by some online resources, e.g. dictionaries).
   // record is created: defined by us now, later - automatically with approval
   // 'related' is something that we could show along with this ... it should be generated with time and possibly go to other junction table
+ /*
   bz.cols.tags = new Mongo.Collection('tags');
   bz.cols.tags.remove({});
   bz.cols.tags.insert({
@@ -35,7 +36,7 @@ Meteor.startup(function () {
       'partner'
     ]
   });
-
+*/
   // HASH is what is presented to a user as a tag, group of tags or a named search,
   // it points to several TAGS in db (see tags array)
   // Hash means - it's subjective, fluid and talk-based.

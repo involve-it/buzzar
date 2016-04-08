@@ -140,6 +140,7 @@ Meteor.startup(function () {
   bz.cols.sites.insert({
     name: 'craigslist'
   });
+  /*
   bz.cols.tags.insert({
     name: 'youcaring'
   });
@@ -149,4 +150,5 @@ Meteor.startup(function () {
   bz.cols.tags.insert({
     name: 'monster'
   });
+  */
 });
