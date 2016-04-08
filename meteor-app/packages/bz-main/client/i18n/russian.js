@@ -54,6 +54,11 @@ ru = {
   BZ_FREELANCE: 'Фрилансер',
   BZ_CHOOSE_TYPE_TRAININGS: 'Выбрать тип тренинга',
   BZ_CHOOSE_TYPE_TRAININGS_DESC: 'Выбрать тип тренинга',
+  BZ_ACTION_DONE: 'Применить',
+
+  BZ_DURATION_START_SELECTED: 'На выбор ...',
+  BZ_DURATION_CLICK_TO_CH_DATE: 'Нажмите, чтобы выбрать дату',
+  DATE_TOMORROW: 'Завтра',
 
 
   //No posts around
