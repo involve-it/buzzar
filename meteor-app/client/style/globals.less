@@ -784,8 +784,10 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
         h2 {
           white-space: nowrap;
           overflow: hidden;
+          text-align: left;
           text-overflow: ellipsis;
           max-width: 80%;
+          margin-bottom: 10px;
           width: 100%;
           display: inline-block;
 
@@ -907,7 +909,6 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
               width: 45px;
               height: 40px;
               position: relative;
-              opacity: 1;
               z-index: 1;
 
               -webkit-transform: scale(1);
@@ -932,6 +933,15 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
               
               &.disabled {
                 color: @text-color-label;
+                
+                &.active {
+                  -webkit-transform: scale(1);
+                  -moz-transform: scale(1);
+                  -ms-transform: scale(1);
+                  -o-transform: scale(1);
+                  transform: scale(1);
+                }
+                
                 &.old {
                   color: @disabled-text;
                 }
@@ -961,7 +971,9 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
         
         &.datepicker-inline {
           //background-color: rgba(255,255,255, 1);
+          box-shadow: 0 5px 20px -5px rgba(0,0,0, .5);
           width: 320px;
+          padding: 0;
           margin: 0 auto;
 
           @media screen and  (max-width: 420px) {
@@ -977,32 +989,6 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
         }
       }
       
-      .bz-date-picker-shadow {
-        display: block;
-        position: absolute;
-        height: ~"calc(95% - 10px)";
-        width: 95%;
-        background-color: rgba(207,208,210, 1);
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
-        top: 15px;
-        right: -1px;
-        z-index: -1;
-      }
-      
-      .bz-date-picker-shadow-wrapper {
-        display: block;
-        position: absolute;
-        height: ~"calc(90% - 10px)";
-        width: 90%;
-        background-color: rgba(184,185,185, 1);
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
-        top: 23px;
-        right: -5px;
-        z-index: -2;
-      }
-
       @media screen and  (max-width: 420px) {
         padding: 0;
 

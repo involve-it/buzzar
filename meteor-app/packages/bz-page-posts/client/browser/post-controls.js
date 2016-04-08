@@ -70,7 +70,8 @@ Template.bzPostsDurationPicker.onRendered(function () {
   //event opened modal
   $(document).on('open.fndtn.reveal', '[data-reveal].js-date-picker-modal', function () {
     var modal = $(this);
-    //console.info('Modal opened');
+    
+    console.info('Modal opened');
   });
   
 });
@@ -126,8 +127,8 @@ Template.bzPostsDurationPicker.events({
     v.$('.js-duration-picker').val('');
     v.$('.js-duration-picker').removeData();
     
-    v.$('.js-date-picker-modal').foundation('reveal', 'open');
     v.$('.js-duration-select-picker option[value=""]').prop('selected',true);
+    v.$('.js-date-picker-modal').foundation('reveal', 'open');
   }
 });
 
@@ -142,21 +143,31 @@ Template.bzDatePickerModal.onRendered(function() {
       datePicker,
       nowDate = new Date(),
       now = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 1, 0, 0, 0, 0),
-      picker = tmpl.$('#bz-date-picker-box');
-    
+      picker = tmpl.$('#bz-date-picker-box'),
+      getBtnStatus;
+
+  getBtnStatus = function(datePicker, dateNow) {
+    return (datePicker < dateNow) ? true : false;
+  };
+  
   datePicker = picker.fdatepicker({
     onRender: function (date) {
       /* update selected date */
-      
       return date.valueOf() < now.valueOf() ? 'disabled' : '';
     }
   });
 
   /* set data at start */
   if(picker) {
-    picker.fdatepicker('update', now).data().datepicker.update();
-    picker.children().append("<span class='bz-date-picker-shadow'></span><span class='bz-date-picker-shadow-wrapper'></span>");
+    //picker.fdatepicker('update', now).data().datepicker.update();
   }
+  
+  if(getBtnStatus(datePicker.data().datepicker.date.valueOf(), now.valueOf())) {
+    tmpl.actionBtnDate = true;
+    tmpl.$('.js-ok-btn').addClass('disabled');
+  }
+  
+  //console.info(datePicker.data().datepicker.date);
 
   tmpl.datePickerSelectDate = nowDate;
 
@@ -166,6 +177,14 @@ Template.bzDatePickerModal.onRendered(function() {
 
     /* set selected date */
     tmpl.datePickerSelectDate = selectDate;
+
+    if(getBtnStatus(datePicker.data().datepicker.date.valueOf(), now.valueOf())) {
+      tmpl.actionBtnDate = true;
+      tmpl.$('.js-ok-btn').addClass('disabled');
+    } else {
+      tmpl.actionBtnDate = false;
+      tmpl.$('.js-ok-btn').removeClass('disabled');
+    }
     
     //console.info('change DATE', new Date(selectDate));
   }).data('datepicker');
@@ -199,14 +218,18 @@ Template.bzDatePickerModal.events({
     $('.js-date-picker-modal').foundation('reveal', 'close');
   },
   'click .js-ok-btn': function(e, v) {
+    /* button apply datepicker */
     e.preventDefault();
     
+    if(Template.instance().actionBtnDate) {
+      
+    }
     /* set selected date */
     let getSelectedDate = Template.instance().datePickerSelectDate,
         format,
         input = $('.js-duration-picker');
     
-    if(!getSelectedDate) console.error('Date is not selected');
+    if(!getSelectedDate) {console.error('Date is not selected')};
     
     /* format mm/dd/yyyy - en | dd/mm/yyyy - ru */
     ( Session.get('bz.user.language') === 'ru' ) ? format = getSelectedDate.toLocaleDateString('ru-RU', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : format = getSelectedDate.toLocaleDateString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
