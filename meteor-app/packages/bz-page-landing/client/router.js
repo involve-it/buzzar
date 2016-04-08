@@ -10,4 +10,8 @@ Router.map(function () {
     path: '/contacts',
     template: 'pageContactUs'
   });
+  this.route('AdminTags',{
+    path:'/page-admin-tags',
+    template: 'pageAdminTags'
+  });
 });

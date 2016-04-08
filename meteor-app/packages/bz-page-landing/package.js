@@ -27,6 +27,8 @@ Package.onUse(function(api) {
     'client/browser/page-about-us.html',
     'client/browser/page-contact-us.html',
     'client/browser/page-contact-us.js',
+    'client/browser/page-admin-tags.html',
+    'client/browser/page-admin-tags.js'
   ], global.bzSettings.webBrowserArray);
 
   api.use([
