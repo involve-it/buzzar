@@ -119,12 +119,15 @@ bz.ui.initCodeMirror = function (input, callback) {
 
 
 bz.ui.initMarked = function() {
-  toast(
-      '/libs/codemirror/marked.js',
-      function () {
-        return window.marked;
-      }
-  );
+  setTimeout(function () {
+    toast(
+        '/libs/codemirror/marked.js',
+        function () {
+          return window.marked;
+        }
+    );
+  })
+  
 };
 
 

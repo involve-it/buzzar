@@ -56,6 +56,11 @@ en = {
   BZ_FREELANCE: 'Freelancer',
   BZ_CHOOSE_TYPE_TRAININGS: 'Select the type of training',
   BZ_CHOOSE_TYPE_TRAININGS_DESC: 'Select the type of training',
+  BZ_ACTION_DONE: 'Done',
+  
+  BZ_DURATION_START_SELECTED: 'Custom choice',
+  BZ_DURATION_CLICK_TO_CH_DATE: 'Click to select a date',
+  DATE_TOMORROW: 'Tomorrow',
 
 
   //No posts around
@@ -124,6 +129,7 @@ en = {
   LOCATION_MY_COMPUTATION_LOCATION: 'Specific location: ',
   LOCATION_CLICK_TO_CHOSE_LOCATION:'Click to choose location',
   MY_LOCATION_TEXT: 'My Location',
+  LOCATION_IS_NOT_DEFINED: 'Location is not defined',
 
   //Profile
   PROFILE_USER_DETAILS :'User profile details',

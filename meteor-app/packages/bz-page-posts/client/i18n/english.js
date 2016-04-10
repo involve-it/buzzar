@@ -91,6 +91,8 @@ enI18n = {
   NEW_POST_BUDGET:'Budget',
   NEW_POST_PROVIDE:'Provide',
   NEW_POST_NEED:'Need',
+  NEW_POST_ANONYMOUS_POST_TITLE:'Anonymous post',
+  NEW_POST_ANONYMOUS_POST:'Enable anonymous post',
 
   //Post details
   POST_DETAILS_REVIEWS_FIRST: 'Your will be the first',

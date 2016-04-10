@@ -40,7 +40,7 @@ SavePostFromView = function (v, data) {
         if(imagesArrayReactive.curValue[i]){
           imagesArrayReactive.curValue[i].tempId = imgId;
         }
-        console.log(imgArrReact);
+        //console.log(imgArrReact);
         // let's set data on the client-side (temp for showing in site):
         bz.cols.images._collection.update(imgId, {
           $set: {
@@ -89,13 +89,12 @@ SavePostFromView = function (v, data) {
       //type: DeterminePostTypeFromView(v),
       //type: v.$('.js-post-type-select').val(),
       details: {
-
+        anonymousPost: v.$('.js-toggle-checked').prop("checked"),
         hashes: bz.runtime.newPost.hashes,
         //location: bz.runtime.newPost.location,
         locations: locationsArr,
         //radius: rad,
         //url: v.$('.js-original-url').val(),
-
         title: v.$('.js-post-title').val() || undefined,
         description: descriptionFormatted,
         price: v.$('.js-post-price').val(),

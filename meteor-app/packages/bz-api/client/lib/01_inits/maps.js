@@ -81,6 +81,8 @@ var Maps = {
   },
   initGeocoding: function () {
     geocoder = new google.maps.Geocoder();
+
+    //console.info('4.0 geocoder: ', geocoder);
     
     var coords = Session.get('currentLocation'), loc, ret = {};
     
@@ -92,7 +94,9 @@ var Maps = {
           name: address,
           coords: loc
         };
-        //console.info('4.0');
+        
+        //console.info('4.1 setGetAccurateAdress');
+        
         Session.set('getAccurateAddress', {
           name: ret.name,
           accurateAddress: ret.accurateAddress

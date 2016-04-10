@@ -54,6 +54,11 @@ ru = {
   BZ_FREELANCE: 'Фрилансер',
   BZ_CHOOSE_TYPE_TRAININGS: 'Выбрать тип тренинга',
   BZ_CHOOSE_TYPE_TRAININGS_DESC: 'Выбрать тип тренинга',
+  BZ_ACTION_DONE: 'Применить',
+
+  BZ_DURATION_START_SELECTED: 'На выбор ...',
+  BZ_DURATION_CLICK_TO_CH_DATE: 'Нажмите, чтобы выбрать дату',
+  DATE_TOMORROW: 'Завтра',
 
 
   //No posts around
@@ -121,6 +126,7 @@ ru = {
   LOCATION_MY_COMPUTATION_LOCATION: 'Определенный адрес: ',
   LOCATION_CLICK_TO_CHOSE_LOCATION:'Нажмите чтобы выбрать место',
   MY_LOCATION_TEXT: 'Мое Положение',
+  LOCATION_IS_NOT_DEFINED: 'Местоположение не определено',
 
   //Profile
   PROFILE_USER_DETAILS :'Профиль пользователя',

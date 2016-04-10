@@ -13,7 +13,7 @@
         {{#if getCurrentLocationName}}
             <span>{{ getCurrentLocationName }}</span> 
         {{else}}
-            <span>{{ getCurrentLocationName }}</span>
+            <span>{{ t9n 'LOCATION_IS_NOT_DEFINED' }}</span>
         {{/if}}
     </a>
 </template>
@@ -79,11 +79,15 @@
             <ul class="none-list js-locations-list">
               <li><a data-iscurrentlocation="true" data-locationname="My Location"><i class="fa fa-map-marker"></i> {{ t9n 'LOCATION_MY_CURRENT_LOCATION' }}</a></li>
             </ul>
-
-            <ul class="none-list js-locations-list">
-                <li><div class="title">{{ t9n 'LOCATION_MY_COMPUTATION_LOCATION' }}</div></li>
-                <li><a> {{accurateAddress}} </a></li>
-            </ul>
+              
+            {{#if accurateAddress}}
+                <div class="bz-my-accurateAddress">
+                    <ul class="none-list">
+                        <li><div class="title">{{ t9n 'LOCATION_MY_COMPUTATION_LOCATION' }}</div></li>
+                        <li><span> {{accurateAddress}} </span></li>
+                    </ul>
+                </div>
+            {{/if}}
               
             {{#if currentUser }}
               <ul class="none-list js-locations-list">

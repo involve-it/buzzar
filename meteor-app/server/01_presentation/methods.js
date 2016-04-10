@@ -303,9 +303,38 @@ Meteor.methods({
         attribute.userId=userId;
         bz.cols.profileDetails.update({userId:userId,key: attribute.key},
           {$set: attribute},
-          {upsert: true});
+          {upsert: true}
+        );
     }
     )
+  },
+  updateTag: function(tag, obj){
+    bz.cols.tags.update({_id: tag},
+      {$set: obj},
+      {upsert: true}
+    );
+    _.each(obj.related,function(item){
+      var target=bz.cols.tags.findOne({name: item});
+      if (target){
+        var coincidence=false;
+        _.each(target.related,function(nameRelated){
+          if (obj.name==nameRelated){
+            coincidence=true;
+          }
+        });
+        if (!coincidence){
+          if(target.related.length!=0 && target.related[0]!="") {
+            target.related.push(obj.name);
+          }else{
+            target.related[0] = obj.name;
+          }
+          bz.cols.tags.update({_id:target._id},{$set:{related: target.related}});
+        }
+      }
+    })
+  },
+  deleteTag: function(tag){
+    bz.cols.tags.remove(tag)
   }
 });
 

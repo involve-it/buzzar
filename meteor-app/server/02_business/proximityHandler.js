@@ -27,6 +27,9 @@ bz.bus.proximityHandler = {
         });
     },
     reportLocation: function(report){
+        if (report.deviceId) {
+            console.log(report);
+        }
         //console.log('Location reported for userId: ' + report.userId + ', sessionId: ' + report.sessionId + ', lat: ' + report.lat + ', lng: ' + report.lng);
         var userId = report.userId, user;
         if (!userId){
@@ -70,7 +73,6 @@ bz.bus.proximityHandler = {
             }
         } else {
             console.log('user not found');
-            console.log(report);
         }
     },
     notifyNearbyPosts: function(userId, posts){
@@ -199,6 +201,12 @@ bz.bus.proximityHandler = {
                     'coords.lat': {$gte: box.lat1, $lte: box.lat2},
                     'coords.lng': {$gte: box.lng1, $lte: box.lng2}
                 }
+            },
+            status:{
+                visible: 'visible'
+            },
+            endDatePost:{
+                $gte: new Date
             }
         }).fetch();
 

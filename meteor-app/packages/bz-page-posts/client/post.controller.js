@@ -33,6 +33,7 @@ movingLocationPanelClick = function () {
     });
   }
 };
+
 staticLocationPanelClick = function (isSet) {
   var chosenLocation = Session.get(location2.sessionName);
   if (!chosenLocation || isSet) {
@@ -41,6 +42,7 @@ staticLocationPanelClick = function (isSet) {
     Template.bzLocationNameNewPost.showModal();
   }
 };
+
 userSeenAll;
 // this function calculates browser-specific hits
 runHitTracking = function (post, browserInfo) {
@@ -256,8 +258,22 @@ DeterminePostTypeFromView = function(v) {
   return ret;
 }
 GetEndDatePost = function(v, start) {
-  var val = v.$('.js-post-select-duration').val(),
-    ret;
+  //var val = v.$('.js-post-select-duration').val(),
+  var val = '' /* передать значение*/,
+      ret, valuePicker;
+  
+  
+  var inputPicker = v.$('.js-duration-picker').data().selectDate,
+      selectPicker = v.$('.js-duration-select-picker').val();
+  
+  if(inputPicker) {
+    val = 'custom';
+    valuePicker = inputPicker;
+  } else {
+    val = selectPicker;
+  }
+  
+  
 
   switch (val) {
     case 'oneDay':
@@ -278,11 +294,15 @@ GetEndDatePost = function(v, start) {
     case 'year':
       ret = new Date(start.getFullYear() + 1, start.getMonth(), start.getDate(), start.getHours(), start.getMinutes());
       break;
+    case 'custom':
+      ret = new Date(valuePicker);
+      break;
     default:
       ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 14, start.getHours(), start.getMinutes());
       console.log('Default value: ', ret);
       break;
   }
+  
   return ret && ret.getTime();
 };
 

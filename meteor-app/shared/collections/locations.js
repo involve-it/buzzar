@@ -117,7 +117,7 @@ var locationsSchema = new SimpleSchema({
   },
   accurateAddress: {
     type: String,
-    optional: false,
+    optional: true,
     max: 500
   },
   coords: {

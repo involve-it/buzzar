@@ -125,7 +125,7 @@ CreateNewPostFromView = function (v) {
       type: DeterminePostTypeFromView(v),
       //type: v.$('.js-post-type-select').val(),
       details: {
-
+        anonymousPost: v.$('.js-toggle-checked').prop("checked"),
         hashes: bz.runtime.newPost.hashes,
         //location: bz.runtime.newPost.location,
         locations: locationsArr,

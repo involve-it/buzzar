@@ -63,14 +63,200 @@ Template.postHashesControl.events({
     });
   }
 });
+
+
 Template.bzPostsDurationPicker.onRendered(function () {
+  
+  //event opened modal
+  $(document).on('open.fndtn.reveal', '[data-reveal].js-date-picker-modal', function () {
+    var modal = $(this);
+    
+    console.info('Modal opened');
+  });
+  
 });
+
 Template.bzPostsDurationPicker.events({
-  'change .js-post-select-duration': function (e, v) {
+  'change .js-duration-select-picker': function(e, v) {
+    
+    let target = e.target,
+        value = target.value,
+        start = new Date(),
+        format, ret;
+    
+    if(value === 'custom') {
+      $('.js-date-picker-modal').foundation('reveal', 'open', {
+        animation: 'fadeAndPop',
+        animation_speed: 150
+      });
+
+      v.$('.js-duration-picker').val('');
+      v.$('.js-duration-picker').removeData();
+    } else {
+      v.$('.js-duration-picker').val('');
+      v.$('.js-duration-picker').removeData();
+      
+      /* устновить данные для input */
+      switch(value) {
+        case 'oneDay':
+          ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 1, start.getHours(), start.getMinutes()); break;
+        case 'twoDay':
+          ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 2, start.getHours(), start.getMinutes()); break;
+        case 'week':
+          ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 7, start.getHours(), start.getMinutes()); break;
+        case 'twoWeek':
+          ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 14, start.getHours(), start.getMinutes()); break;
+        case 'month':
+          ret = new Date(start.getFullYear(), start.getMonth() + 1, start.getDate(), start.getHours(), start.getMinutes()); break;
+        case 'year':
+          ret = new Date(start.getFullYear() + 1, start.getMonth(), start.getDate(), start.getHours(), start.getMinutes()); break;
+        default:
+          console.error('Error selected value'); break;
+      }
+      
+      if(ret) {
+        ( Session.get('bz.user.language') === 'ru' ) ? format = ret.toLocaleDateString('ru-RU', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : format = ret.toLocaleDateString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      }
+    }
+    v.$('.js-duration-picker').val(format);
+    //console.info(value);
+  },
+  'click .js-duration-picker': function(e, v) {
+    e.preventDefault();
+
+    v.$('.js-duration-picker').val('');
+    v.$('.js-duration-picker').removeData();
+    
+    v.$('.js-duration-select-picker option[value=""]').prop('selected',true);
+    v.$('.js-date-picker-modal').foundation('reveal', 'open');
   }
 });
-Template.postDetailsCommon.onCreated(function (a, b, c) {
+
+Template.bzPostsDurationPicker.helpers({});
+
+/* MODAL DATE PICKER */
+Template.bzDatePickerModal.onCreated(function() {});
+
+
+Template.bzDatePickerModal.onRendered(function() {
+  let tmpl = this,
+      datePicker,
+      nowDate = new Date(),
+      now = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 1, 0, 0, 0, 0),
+      picker = tmpl.$('#bz-date-picker-box'),
+      getBtnStatus;
+
+  getBtnStatus = function(datePicker, dateNow) {
+    return (datePicker < dateNow) ? true : false;
+  };
+  
+  datePicker = picker.fdatepicker({
+    onRender: function (date) {
+      /* update selected date */
+      return date.valueOf() < now.valueOf() ? 'disabled' : '';
+    }
+  });
+
+  /* set data at start */
+  if(picker) {
+    //picker.fdatepicker('update', now).data().datepicker.update();
+  }
+  
+  if(getBtnStatus(datePicker.data().datepicker.date.valueOf(), now.valueOf())) {
+    tmpl.actionBtnDate = true;
+    tmpl.$('.js-ok-btn').addClass('disabled');
+  }
+  
+  //console.info(datePicker.data().datepicker.date);
+
+  tmpl.datePickerSelectDate = nowDate;
+
+  datePicker.on('changeDate', function(e){
+    let nowDate = new Date(),
+        selectDate = e.date;
+
+    /* set selected date */
+    tmpl.datePickerSelectDate = selectDate;
+
+    if(getBtnStatus(datePicker.data().datepicker.date.valueOf(), now.valueOf())) {
+      tmpl.actionBtnDate = true;
+      tmpl.$('.js-ok-btn').addClass('disabled');
+    } else {
+      tmpl.actionBtnDate = false;
+      tmpl.$('.js-ok-btn').removeClass('disabled');
+    }
+    
+    //console.info('change DATE', new Date(selectDate));
+  }).data('datepicker');
+  
+  /* Show the datepicker */
+  datePicker.fdatepicker('show');
+  
 });
+
+
+Template.bzDatePickerModal.events({
+  'click .js-bz-date-picker-now': function (e, v) {
+    e.preventDefault();
+    let nowDate = new Date(),
+        tomorrow = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 1, 0, 0, 0, 0),
+        datepicker = v.$('#bz-date-picker-box');
+    
+    if (datepicker) {
+      datepicker.fdatepicker('update', tomorrow).data().datepicker.update();
+      
+      /* update selected date */
+      Template.instance().datePickerSelectDate = tomorrow;
+    } else {
+      throw new Error('Datepicker is not defined');
+    }
+    
+  },
+  'click .js-cancel-btn': function(e, v) {
+    e.preventDefault();
+    
+    $('.js-date-picker-modal').foundation('reveal', 'close');
+  },
+  'click .js-ok-btn': function(e, v) {
+    /* button apply datepicker */
+    e.preventDefault();
+    
+    if(Template.instance().actionBtnDate) {
+      
+    }
+    /* set selected date */
+    let getSelectedDate = Template.instance().datePickerSelectDate,
+        format,
+        input = $('.js-duration-picker');
+    
+    if(!getSelectedDate) {console.error('Date is not selected')};
+    
+    /* format mm/dd/yyyy - en | dd/mm/yyyy - ru */
+    ( Session.get('bz.user.language') === 'ru' ) ? format = getSelectedDate.toLocaleDateString('ru-RU', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : format = getSelectedDate.toLocaleDateString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    
+    if(format && getSelectedDate) {
+      input.val(format).data('selectDate', getSelectedDate);
+      $('.js-duration-select-picker option[value=""]').prop('selected',true);
+    } else {
+      input.attr('placeholder', 'format is not defined');
+    }
+    
+    
+    $('.js-date-picker-modal').foundation('reveal', 'close');
+    //console.info('click APPLY', getSelectedDate);
+  }
+});
+
+Template.bzDatePickerModal.helpers({});
+
+
+
+
+
+
+
+
+
 Template.postDetailsCommon.events({
   'change .js-post-description': function (e, v) {
     var val = e.target.value || '';
@@ -80,7 +266,8 @@ Template.postDetailsCommon.events({
     var val = e.target.value || '';
     checkIfFieldIsChanged(v.data, 'title', val);
   }
-})
+});
+
 Template.postDetailsCommon.helpers({
   getTitle: function () {
     var ret = '';
@@ -101,6 +288,8 @@ Template.postDetailsCommon.helpers({
     return ret;
   }
 });
+
+
 var lastComputation;
 Template.postPhotoUpload.onRendered(()=> {
   var that = this;

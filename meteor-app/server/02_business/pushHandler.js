@@ -57,9 +57,11 @@ Meteor.startup(function(){
         });
         if (userId) {
           var user = Meteor.users.findOne(userId);
-          user.deviceIds = user.deviceIds || [];
-          user.deviceIds.push(deviceId);
-          Meteor.users.update(userId, user);
+          if (user) {
+            user.deviceIds = user.deviceIds || [];
+            user.deviceIds.push(deviceId);
+            Meteor.users.update(userId, user);
+          }
         }
       }
       if (deviceId && token && Object.keys(token).length > 0) {
