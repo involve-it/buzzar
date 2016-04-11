@@ -147,6 +147,12 @@ enI18n = {
 
   //post control buttons
   RELOAD_POST_TIME: 'Reload your post',
+  RELOAD_POST_TIME_SUBTITLE: 'This action cannot be undone',
+  
+  RELOAD_POST_CONTENT: '@{subjectStart} @{postTitle} @{subjectEnd}',
+  RELOAD_POST_CONTENT_SUBJECT_START: 'To post',
+  RELOAD_POST_CONTENT_SUBJECT_END: 'will restart option activity on the one that was set when it was created.',
+  
   EDIT_POST: 'Edit',
   TRASH_POST: 'Trash'
 };

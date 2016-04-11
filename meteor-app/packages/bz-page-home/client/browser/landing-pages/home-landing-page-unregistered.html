@@ -1,0 +1,131 @@
+
+<template name="bzLandingPageUnregistered">
+    {{> bzUnregGreeting}}
+    
+    {{> bzUregUsefulAll}}
+    
+    {{> bzUregReadyMeeting}}
+        
+    {{> bzUregSocialLinks}}
+    
+    {{> bzUnregImportantToYou}}
+</template>
+
+
+<template name="bzUnregGreeting">
+    <div class="bzUnregGreeting">
+        <div class="panel-outside odd">
+            <div class="panel-outside-wrapper">
+                <h1 class="title greeting">Светлячки рады тебя приветствовать!</h1>
+                <p class="sub-heading">Мы познакомим тебя с людми, местами и событиями вокруг!<br />
+                    И не просто познакомим, а поможем использовать возможности интернета для живого общения!</p>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<template name="bzUregUsefulAll">
+    <div class="bzUregUsefulAll">
+        <div class="panel-outside sky">
+            <div class="panel-outside-wrapper">
+                <div class="bz-clouds"></div>
+                <h2 class="title">Полезно всем</h2>
+                <p class="sub-heading">Кто хочет получить приглашение на пикник, а не в группу?</p>
+                
+                <h3 class="title">Узнай лучше себя и других!</h3>
+                
+                {{> categoriesUsefulAll}}
+                
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<template name="bzUregReadyMeeting">
+    <div class="bzUregReadyMeeting">
+        <div class="panel-outside even">
+            <div class="panel-outside-wrapper">
+                <h2><small>Установили Светлячки и готовы к общению</small></h2>
+                <p>бла-бла-бла</p>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<template name="bzUregSocialLinks">
+    <div class="bzUregSocialLinks">
+        <div class="panel-outside odd">
+            <div class="panel-outside-wrapper">
+                <p>sicial links</p>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<template name="bzUnregImportantToYou">
+    <div class="bzUnregImportantToYou">
+        <div class="panel-outside even">
+            <div class="panel-outside-wrapper">
+                <h2>А что важно для тебя?</h2>
+        
+                <p>бла-бла-бла</p>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<!-- *** -->
+
+<template name="categoriesUsefulAll">
+    {{#if count getCategoriesUsefulAll}}
+        <section class="categoriesUsefulAll">
+            <div class="bz-useful-items">
+                <!--{{#each getCategoriesUsefulAll}}{{/each}}-->
+                <div class="bz-ui bz-useful-cards four">
+                    <div class="card">
+                        <div class="bz-card-caption">
+                            Любопытные
+                        </div>
+                        <div class="bz-image">
+                            <img src="/img/content/bz-cards-landing/card-curious.jpg">
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="bz-card-caption">
+                            Практичные
+                        </div>
+                        <div class="bz-image">
+                            <img src="/img/content/bz-cards-landing/card-practical.jpg">
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="bz-card-caption">
+                            Креативные
+                        </div>
+                        <div class="bz-image">
+                            <img src="/img/content/bz-cards-landing/card-creative.jpg">
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="bz-card-caption">
+                            Непоседы
+                        </div>
+                        <div class="bz-image">
+                            <img src="/img/content/bz-cards-landing/card-restless.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{else}}
+        <p>not items here</p>
+    {{/if}}
+</template>

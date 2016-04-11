@@ -159,7 +159,7 @@ Template.onePostRowItemOwner.events({
     });
   },
   'click .js-reset-post': function(e, v) {
-    var now, start, finish, target, duration,obj;
+    var now, start, finish, target, duration,obj, content;
     
     now = new Date().getTime();
     start = new Date(v.data.timestamp).getTime();
@@ -169,13 +169,27 @@ Template.onePostRowItemOwner.events({
     target = now + duration;
     /* now    =>  timestamp   */
     /* target =>  endDatePost */
+    
       if(v.data) {
         obj = {
           'timestamp': now,
           'endDatePost': target,
           'status.visible': bz.const.posts.status.visibility.VISIBLE
         };
-        Meteor.call('timePostUpdate',v.data._id,obj);
+        
+        content = {
+          postTitle: '<strong>' + this.details.title + '</strong>',
+          subjectStart: T9n.get('RELOAD_POST_CONTENT_SUBJECT_START'),
+          subjectEnd: T9n.get('RELOAD_POST_CONTENT_SUBJECT_END')  
+        };
+        
+        /*
+        * param @content - must be object
+        */
+        
+        bz.ui.modal.confirm(content, function() {
+          Meteor.call('timePostUpdate', v.data._id, obj);
+        });
       }
   }
 });

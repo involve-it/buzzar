@@ -763,6 +763,12 @@
           font-size: 55px;
           margin-right: 20px;
         }
+        
+        &.confirm {
+          i {
+            color: rgba(253, 175, 0, 1);
+          }
+        }
       }
 
       .bz-modal-header {
@@ -799,6 +805,16 @@
         width: 100%;
         display: inline-block;
       }
+      
+      &.without {
+        padding: 0 20px 16px;
+        
+        p {
+          white-space: normal;
+          text-overflow: clip;
+          max-width: 100%;
+        }
+      }
     }
     
     .confirmPostModal-buttons {
@@ -811,6 +827,11 @@
         &:last-child {
           margin-right: 0;
         }
+      }
+      
+      &.confirm {
+        padding: 12px 20px;
+        border-top: 1px solid rgba(180, 180, 180, 0.3);
       }
     }
   }

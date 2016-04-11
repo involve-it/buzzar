@@ -4,12 +4,16 @@
 
     <!-- search result on the home page -->
     <div class="container-background">
-        <div style="border-radius: 2px; border-top:1px solid #fff; background-color: #FFFFFF; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); ">
-            <!--{{> searchResults }}-->
-            {{> bzAroundYou}}
-            {{> bzHomePopular}}
-            {{ bzRenderTemplateI18n "bzAboutUsShort" }}
-        </div>
+        {{#if currentUser}}
+            <div style="border-radius: 2px; border-top:1px solid #fff; background-color: #FFFFFF; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); ">
+                <!--{{> searchResults }}-->
+                {{> bzAroundYou}}
+                {{> bzHomePopular}}
+                {{ bzRenderTemplateI18n "bzAboutUsShort" }}
+            </div>
+        {{else}}
+            {{> bzLandingPageUnregistered}}
+        {{/if}}
     </div>
 
 </template>
@@ -138,4 +142,3 @@
           </div>
         </div>
     </div>-->
-

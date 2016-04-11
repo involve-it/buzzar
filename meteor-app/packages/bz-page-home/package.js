@@ -38,10 +38,13 @@ Package.onUse(function (api) {
     'client/browser/page-home.html',
     'client/browser/page-home.js',
     'client/browser/page-home.less',
+    
+    'client/browser/landing-pages/home-landing-page-unregistered.html',
+    'client/browser/landing-pages/home-landing-page-unregistered.js',
+    'client/browser/landing-pages/home-landing-page-unregistered.less'
   ], global.bzSettings.webBrowserArray);
 
   api.addFiles([
-
     'client/ionic/around-you.html',
     'client/ionic/around-you.js',
     'client/ionic/around-you.less',

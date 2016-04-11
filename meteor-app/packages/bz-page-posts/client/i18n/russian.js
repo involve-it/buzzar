@@ -147,6 +147,12 @@ ruI18n = {
 
   //post control buttons
   RELOAD_POST_TIME: 'Перезапустить пост',
+  RELOAD_POST_TIME_SUBTITLE: 'Это действие необратимо',
+  
+  RELOAD_POST_CONTENT: '@{subjectStart} @{postTitle} @{subjectEnd}',
+  RELOAD_POST_CONTENT_SUBJECT_START: 'Для поста',
+  RELOAD_POST_CONTENT_SUBJECT_END: 'будет перезапущен параметр активности на тот, который был задан при его создании.',
+  
   EDIT_POST: 'Редактировать пост',
   TRASH_POST: 'Удалить пост'
   

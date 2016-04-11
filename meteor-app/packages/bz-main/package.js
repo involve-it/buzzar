@@ -83,7 +83,9 @@ Package.onUse(function (api) {
   ], global.bzSettings.webBrowserArray);
 
   
+  
   /*api.addAssets([
+  
     'client/ionic/main-layout.html',
     'client/ionic/main-layout.js',
     'client/ionic/main-layout.less',
