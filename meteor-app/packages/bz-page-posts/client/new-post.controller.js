@@ -119,7 +119,7 @@ CreateNewPostFromView = function (v) {
     timestamp = Date.now();
     endTimestamp = new Date(timestamp);
     // old code stripOutScriptTags(v.$('.js-post-description').val())
-    descriptionFormatted = stripOutScriptTags(htmlditor.currentvalue) || undefined;
+    descriptionFormatted = stripOutScriptTags(htmlditor.currentvalue) || stripOutScriptTags(v.$('.js-post-description').val()) || undefined;
     var newPost = {
       userId: userId,
       type: DeterminePostTypeFromView(v),
