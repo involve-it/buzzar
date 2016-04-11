@@ -60,7 +60,13 @@ Package.onUse(function (api) {
     'client/lib/animate/animate.css',
 
     'client/lib/rates/jquery.raty.css',
-    'client/lib/01_inits/mobile.js'
+    'client/lib/01_inits/mobile.js',
+
+    'client/lib/vendor/ui/dropdown.js',
+    'client/lib/vendor/ui/dropdown.css',
+    'client/lib/vendor/ui/transition.js',
+    'client/lib/vendor/ui/transition.css',
+
   ], 'client');
 
   api.addFiles([

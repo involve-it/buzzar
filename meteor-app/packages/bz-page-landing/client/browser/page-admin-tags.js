@@ -4,6 +4,11 @@
 Template.pageAdminTags.onCreated(function(){
   Meteor.subscribe('tags');
 });
+
+Template.pageAdminTags.onRendered(function() {
+  $('.ui.dropdown').dropdown();
+});
+
 Template.pageAdminTags.helpers({
   myCollection: function(){
     return bz.cols.tags.find().fetch();
@@ -15,6 +20,9 @@ Template.pageAdminTags.helpers({
       fields: ['name', 'keyWords','related', 'descriptionRU', 'descriptionEN']
     };
     return objSettings;
+  },
+  getTags: function(){
+    return bz.cols.tags.find().fetch();
   }
 });
 
