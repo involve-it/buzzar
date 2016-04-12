@@ -198,7 +198,15 @@ a, .uk-link, a:hover, .uk-link:hover {
 
 .item-details {
   margin-bottom: 16px;
-  overflow: hidden;
+  /*overflow: hidden;*/
+  &:before, &:after {
+    content: ' ';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
 }
 
 a, .uk-link, a:hover, .uk-link:hover {
