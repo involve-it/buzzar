@@ -367,3 +367,24 @@ function checkIfFieldIsChanged(data, fieldName, value) {
     }
   }
 }
+
+Template.postTagsSelect.onCreated(function(){
+  Meteor.subscribe('tags');
+});
+
+Template.postTagsSelect.onRendered(function() {
+  var self = this;
+  var arr = self.data.tags;
+
+  $('.ui.dropdown.post-tags').dropdown();
+
+  setTimeout(function() {
+    $('.ui.dropdown.post-tags').dropdown('set selected', arr);
+  },1000);
+
+});
+Template.postTagsSelect.helpers({
+  getTags: function(){
+    return bz.cols.tags.find().fetch();
+  }
+});

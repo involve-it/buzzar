@@ -18,7 +18,7 @@ Template.pagePostsEdit.created = function () {
    });*/
   clearPostData();
   
-  console.info(this);
+  //console.info(this);
   
   FillPostData(this.data);
 };
