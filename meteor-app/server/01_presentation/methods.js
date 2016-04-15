@@ -308,11 +308,22 @@ Meteor.methods({
     }
     )
   },
-  updateTag: function(tag, obj){
+  updateTag: function(tag, obj) {
+    var arrDiffTags, editTag;
+    editTag = bz.cols.tags.findOne({_id: tag});
     bz.cols.tags.update({_id: tag},
       {$set: obj},
       {upsert: true}
     );
+    if (editTag) {
+      arrDiffTags = _.difference(editTag.related, obj.related);
+      _.each(arrDiffTags, function (diffTag) {
+        bz.cols.tags.update({name: diffTag},
+          {
+            $pull: {related: editTag.name}
+          });
+      });
+    }
     _.each(obj.related,function(item){
       var target=bz.cols.tags.findOne({name: item});
       if (target){
@@ -322,18 +333,23 @@ Meteor.methods({
             coincidence=true;
           }
         });
-        if (!coincidence){
-          if(target.related.length!=0 && target.related[0]!="") {
-            target.related.push(obj.name);
-          }else{
-            target.related[0] = obj.name;
-          }
+        if ((!coincidence) && (obj.name!=target.name)){
+          target.related.push(obj.name);
           bz.cols.tags.update({_id:target._id},{$set:{related: target.related}});
+
         }
       }
     })
   },
   deleteTag: function(tag){
+    if (tag.related) {
+      _.each(tag.related, function (item) {
+        bz.cols.tags.update({name: item},
+          {
+            $pull: {related: tag.name}
+          });
+      });
+    }
     bz.cols.tags.remove(tag)
   }
 });

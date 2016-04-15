@@ -25,20 +25,12 @@
       <div class="item-details">
         <div class="small-12 medium-3 bz-input-label columns">Связанные теги</div>
         <div class="small-12 medium-9 large-10 bz-input-result columns">
-          <input class="tag-related" autocomplete="off" type="text" value="">
-
-          <!-- -->
-          <br />
-
-          <select name="tags" multiple="" class="ui fluid dropdown">
+          <select name="tags" multiple="" class="ui fluid dropdown tag-related">
             <option value="">Tags</option>
             {{#each getTags}}
               <option value="{{name}}">{{name}}</option>
             {{/each}}
           </select>
-
-          <!-- -->
-
         </div>
       </div>
       <div class="item-details">
