@@ -1,6 +1,7 @@
 
 Template.postsNewUrl.onCreated(function() {
   
+  //с прямой ссылок на парсер может не понадобиться
   bz.ui.initVkAPI();
   
 });
@@ -12,7 +13,7 @@ Template.postsNewUrl.onRendered(function() {
 
     VK.Api.call('wall.getById', {posts:'-43726747_87612'}, function(r) {
       if(r.response) {
-        console.info(r.response[0]);
+        //console.info(r.response[0]);
       }
     });
     
