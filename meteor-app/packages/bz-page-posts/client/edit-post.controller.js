@@ -88,6 +88,7 @@ SavePostFromView = function (v, data) {
       userId: data.userId,
       //type: DeterminePostTypeFromView(v),
       //type: v.$('.js-post-type-select').val(),
+      tags: v.$('.post-tags').find('select').val(),
       details: {
         anonymousPost: v.$('.js-toggle-checked').prop("checked"),
         hashes: bz.runtime.newPost.hashes,

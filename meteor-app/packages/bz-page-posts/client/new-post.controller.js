@@ -123,6 +123,7 @@ CreateNewPostFromView = function (v) {
     var newPost = {
       userId: userId,
       type: DeterminePostTypeFromView(v),
+      tags: v.$('.post-tags').find('select').val(),
       //type: v.$('.js-post-type-select').val(),
       details: {
         anonymousPost: v.$('.js-toggle-checked').prop("checked"),

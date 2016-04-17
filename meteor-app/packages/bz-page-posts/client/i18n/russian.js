@@ -6,7 +6,8 @@ ruI18n = {
   EDIT_POST_EDIT_BTN: 'Сохранить изменения',
   NEW_POST_SELECT_TYPE_TEXT: '--Выберите тип--',
   MORE:'больше',
-
+  NEW_POST_SELECT_TAG_TEXT:'--Добавте теги к своему посту--',
+  NEW_POST_SELECT_TAG:'Выбор тегов',
   //No Posts
   YOU_HAVE_NO_POSTS: 'У вас пока еще нет постов',
   PRESS_BUTTON_BELOW:'Чтобы создать новый пост нажмите кнопку ниже',

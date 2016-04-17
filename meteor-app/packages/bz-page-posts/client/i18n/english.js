@@ -7,7 +7,8 @@ enI18n = {
   EDIT_POST_EDIT_BTN: 'Save changes',
   NEW_POST_SELECT_TYPE_TEXT: '--Select type--',
   MORE:'more',
-
+  NEW_POST_SELECT_TAG_TEXT:'--Select tags--',
+  NEW_POST_SELECT_TAG:'Selecting tags',
   //No Posts
   YOU_HAVE_NO_POSTS: 'You have no posts yet',
   PRESS_BUTTON_BELOW:'Press button below',
