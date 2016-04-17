@@ -1,6 +1,16 @@
 Template.bzPostsNewFormAd.rendered = function () {
   Router.AddHooksToCheckFormSaved();
-}
+};
+
+
+Template.bzPostsNewFormAd.helpers({
+  getImagesArrayReactive: function() {
+    return {
+      imagesArr: imagesArrayReactive
+    }
+  }
+});
+
 
 Template.bzPostsNewFormMemo.rendered = function () {
 

@@ -12,7 +12,7 @@ ruI18n = {
   PRESS_BUTTON_BELOW:'Чтобы создать новый пост нажмите кнопку ниже',
   //New post
   NEW_POST_NEWTYPE_BEACON_TITLE: 'Выберите подходящий маячок',
-  NEW_POST_IMPORT_FROM_WEB: 'Взять из интернета',
+  NEW_POST_IMPORT_FROM_WEB: 'Импортировать из интернета',
   NEW_POST_IMPORT_FROM_WEB_OPTIONAL: 'необязательно',
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER: 'Url адрес объявления в интернете',
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER_TOOLTIP_TEXT: 'Добавьте адрес вашего объявления с другого ресурса, чтобы не заполнять информацию снова. Мы это сделаем за вас.',

@@ -86,11 +86,12 @@ bz.bus.parseHtml = function(html, url){
 };
 
 bz.bus.parseUrl = function(url){
-  var result;
+  var resultme;
   try {
     var response = Meteor.http.call("GET", url);
     if (response && response.statusCode === 200){
       result = bz.bus.parseHtml(response.content, url);
+      
       result.success = true;
     } else {
       result = {
@@ -103,8 +104,10 @@ bz.bus.parseUrl = function(url){
     };
     throw e;
   }
+
   return result;
 };
+
 
 function siteTypeDetector (url) {
   var ret = 'other';

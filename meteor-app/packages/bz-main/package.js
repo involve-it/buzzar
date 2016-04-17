@@ -81,8 +81,6 @@ Package.onUse(function (api) {
     'client/browser/main-layout.js',
     'client/browser/main-layout.less'
   ], global.bzSettings.webBrowserArray);
-
-  
   
   /*api.addAssets([
   

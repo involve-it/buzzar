@@ -206,7 +206,8 @@ BlobImageClass = class extends ImageClass {
       fileReader.readAsDataURL(blob);
     });
   }
-}
+};
+
 RandomImageClass = class extends ImageClass {
   constructor(options = {}) {
     var that, imgUrl, blob;

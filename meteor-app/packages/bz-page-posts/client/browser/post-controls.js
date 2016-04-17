@@ -252,9 +252,7 @@ Template.bzDatePickerModal.helpers({});
 
 
 
-
-
-
+Template.postDetailsCommon.onRendered(function() {});
 
 
 Template.postDetailsCommon.events({
@@ -265,8 +263,21 @@ Template.postDetailsCommon.events({
   'change .js-post-title': function (e, v) {
     var val = e.target.value || '';
     checkIfFieldIsChanged(v.data, 'title', val);
+  },
+  'keyup .js-post-title': function(e, v) {
+    var $input = v.$('.js-post-title'),
+        attrMax = $input.attr('maxlength'),
+        value = $input.val().length;
+    
+    v.$('.bz-count-characters').find('span')[0].innerHTML = attrMax - value;
+  },
+  'paste .js-post-title': function(e, v) {
+    v.$('.js-post-title').trigger('keyup');
   }
 });
+
+
+function maxLengthFields(el, attr) {}
 
 Template.postDetailsCommon.helpers({
   getTitle: function () {

@@ -32,6 +32,11 @@ Meteor.methods({
   parseUrl: function(url) {
     return bz.bus.parseUrl(url);
   },
+  parseVk: function(url) {
+    // if url == VK
+    return bz.bus.getTypeUrl(url);
+    //return bz.bus.parseUrlVk(url);
+  },
   addNewPost: function(postObject, currentLocation, connectionId) {
     if(postObject && (Meteor.users.find({_id: postObject.userId})).count()!=0){
       /*if (!postObject.presences && postObject.details && postObject.details.locations && Array.isArray(postObject.details.locations) && postObject.details.locations.length > 0){

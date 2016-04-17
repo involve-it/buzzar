@@ -131,5 +131,21 @@ bz.ui.initMarked = function() {
 };
 
 
+bz.ui.initVkAPI = function() {
+  setTimeout(function () {
+    toast(
+        '//vk.com/js/api/openapi.js',
+        function () {
+
+          VK.init({
+            //YOUR_APP_ID
+            apiId: 5413205
+          });
+          
+        }
+    );
+  })
+
+};
 
 
