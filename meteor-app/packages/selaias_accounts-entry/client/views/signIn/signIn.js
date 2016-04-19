@@ -42,7 +42,7 @@ AccountsEntry.entrySignInEvents = {
         sAlert.error('<div class="bz-msg-text">' + error.reason + '</div>', {effect: 'scale', html: true});
         //Alerts.add(error, 'danger')
       } else {
-        var location = Session.get('currentLocation');
+        /*var location = Session.get('currentLocation');
         if (location){
           Meteor.call('reportLocation', {
             userId: Meteor.userId(),
@@ -50,7 +50,10 @@ AccountsEntry.entrySignInEvents = {
             lng: location.longitude,
             sessionId: Meteor.connection._lastSessionId
           }, function (err, posts) { });
-        }
+        }*/
+
+        bz.help.location.startWatchingLocation();
+        bz.mobile.processLogin();
         
         if (Session.get('fromWhere') && Session.get('fromWhere') === '/sign-in' || Session.get('fromWhere') === '/forgot-password' || Session.get('fromWhere') === '/sign-up') {
           return Router.go('home');

@@ -181,7 +181,9 @@ Meteor.methods({
   },
   setUserCurrentLocation: function (userId, coords) {
     //var name = Session.get('getAccurateAddress') || T9n.get('MY_LOCATION_TEXT'), id;
-    var name = Session.get('getAccurateAddress'), id;
+    //TODO: removing due to errors: session is not available on server
+    var name = 'FIX_ME', id;
+        //Session.get('getAccurateAddress'), id;
     var existLoc = bz.cols.locations.findOne({name: name, userId: userId});
     if (existLoc) {
       //bz.cols.locations.remove(existLoc._id);
@@ -203,10 +205,6 @@ Meteor.methods({
     }
 
     return bz.cols.locations.findOne(id);
-  },
-  testNative: function(lat, lng){
-    //console.log('Coordinates updated: ' + lat + ', ' + lng);
-    return "Success";
   },
   search: function (query, options) {
     /*query = {

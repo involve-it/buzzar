@@ -20,6 +20,8 @@ Package.onUse(function (api) {
   api.use(['iron:router', 'iron:layout', 'selaias-local:accounts-entry', 'ecmascript'], global.bzSettings.webBrowserArrayWithServer);
   api.use('service-configuration', ['server']);
 
+  //api.use(['cordova:cordova-plugin-geolocation@2.1.0'], 'web.cordova');
+  
   //api.use('iron:layout', ['client', 'server']);
   api.use(['underscore', 'session']);
   api.use(['templating'], global.bzSettings.webBrowserArray);
