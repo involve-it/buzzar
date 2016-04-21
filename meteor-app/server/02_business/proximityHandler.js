@@ -198,8 +198,9 @@ bz.bus.proximityHandler = {
     },
     getNearbyPosts: function(lat, lng, radius){
         radius = radius || defaultRadius;
+        console.log('getNearbyPosts box: ' + lat + ', ' + lng);
         var box = bz.bus.proximityHandler.getLatLngBox(lat, lng, radius);
-        console.log('getNearbyPosts box: '); console.log(box);
+        console.log(box);
         //this is box-shaped filter for increased performance
         var posts =  bz.cols.posts.find({
             'details.locations': {
