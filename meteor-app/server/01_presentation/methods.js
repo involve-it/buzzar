@@ -197,7 +197,7 @@ Meteor.methods({
     } else {
       id = bz.cols.locations.insert({
         userId: userId,
-        name: name.name,
+        name: name,
         accurateAddress: name.accurateAddress,
         coords: coords,
         placeType: bz.const.locations.type.DYNAMIC

@@ -47,7 +47,7 @@ bz.bus.proximityHandler = {
             if (report.deviceId) {
                 var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
                 if (nearbyPosts && nearbyPosts.length > 0) {
-                    !bz.bus.proximityHandler.notifyNearbyPosts(userId, nearbyPosts);
+                    bz.bus.proximityHandler.notifyNearbyPosts(userId, nearbyPosts);
                 }
             }
 
@@ -82,11 +82,13 @@ bz.bus.proximityHandler = {
             }), post;
             if (filtered.length === 1) {
                 post = filtered[0];
+                console.log('Notifying single post: ' + post.details.title);
                 bz.bus.pushHandler.push(userId, 'Activity around you', post.details.title, {
                     type: bz.const.push.type.post,
                     id: post._id
                 }, 0);
             } else if (filtered.length > 1) {
+                console.log('Notifying multiple posts. Count: ' + filtered.length);
                 bz.bus.pushHandler.push(userId, 'Activity around you', 'There are ' + filtered.length + 'posts around you. Check them out!', {
                     type: bz.const.push.type.default
                 }, 0);

@@ -45,6 +45,8 @@ Meteor.startup(function(){
         });
       });
       if (tokens.length > 0) {
+        console.log('Pushing:');
+        console.log(tokens);
         notification.tokens = tokens;
         Push.send(notification);
       }
