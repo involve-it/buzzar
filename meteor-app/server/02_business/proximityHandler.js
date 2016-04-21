@@ -213,7 +213,7 @@ bz.bus.proximityHandler = {
                 visible: 'visible'
             },
             endDatePost:{
-                $gte: new Date
+                $gte: new Date().getTime()
             }
         }).fetch();
 
