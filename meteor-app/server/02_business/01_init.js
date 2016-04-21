@@ -56,7 +56,8 @@ Router.map(function() {
           bz.bus.proximityHandler.reportLocation({
             deviceId: requestData.deviceId,
             lat: requestData.lat,
-            lng: requestData.lng
+            lng: requestData.lng,
+            timestamp: new Date()
           });
         }
       }
