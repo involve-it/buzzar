@@ -51,6 +51,7 @@ Router.map(function() {
           //  require some security with data
           //  validate userId/uuid/etc (inside Meteor.call?)
 
+          requestData.timestamp = new Date();
           bz.cols.nativeLocationReports.insert(requestData);
 
           bz.bus.proximityHandler.reportLocation({
