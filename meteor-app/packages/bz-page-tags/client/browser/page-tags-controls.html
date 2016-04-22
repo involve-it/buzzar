@@ -1,0 +1,17 @@
+<template name="TagsFilter">
+  <div class="clearfix">
+    <div class="item-details">
+      <div class="item item-input item-select">
+       <!-- <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_SELECT_TAG' }} </div> -->
+        <div class="small-12 medium-9 large-9 left">
+          <select name="tags" multiple="" class="ui fluid dropdown post-tags">
+            <option value="">{{ t9n 'NEW_POST_SELECT_TAG_TEXT' }}</option>
+            {{#each getTags}}
+              <option value="{{name}}">{{name}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
