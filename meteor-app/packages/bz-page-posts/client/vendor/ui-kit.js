@@ -88,13 +88,15 @@ bz.ui.initCodeMirror = function (input, callback) {
         function () {
           var options = {
             height:200,
-            markdown:true,
-            toolbar: [ 'bold', 'italic', 'strike', 'link' ]
+            markdown:false,
+            mode: 'split',
+            maxsplitsize:600,
+            toolbar: [ 'bold', 'italic', 'strike', 'link', 'picture']
           };
-          
+
           htmlditor = UIkit.htmleditor(input, options);
           //callback && callback(htmleditor);
-          
+
           return window.markdown;
         }
       );

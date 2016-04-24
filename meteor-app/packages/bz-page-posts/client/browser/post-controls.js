@@ -293,6 +293,7 @@ Template.postDetailsCommon.helpers({
     var ret = '';
     if (this._id) {
       ret = this.details.description
+      ret = ret.replace(/<br\/>/gi, '\n');
     } else {
       Session.get('post-description')
     }
