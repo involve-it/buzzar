@@ -80,20 +80,27 @@ CreateNewPostFromView = function (v) {
       bz.cols.images._collection.update(imgId, { $set: {
         data: imgItem.data
       }});
-      if(!imgItem.thumbnail.data) {
-        imgItem.thumbnail.getBlob().then((url)=>{
-          imgItem.thumbnail.data = url;
-          bz.cols.images._collection.update(imgId, { $set: {
-            thumbnail: imgItem.thumbnail.data
-          }});
+      /*if(!imgItem.thumbnail.data) {
+        imgItem.thumbnail.getBlob().then((res, err)=>{
+          if (res.data && res.thumbnail) {
+            debugger;
+            console.log('thumbnail.name', res.thumbnail.name);
+            console.log('thumbnail.parentName', res.thumbnail.parentName);
+
+            res.thumbnail.data = res.data;
+            /!*bz.cols.images._collection.update(imgId, {
+              $set: {
+                thumbnail: res.thumbnail.data
+              }
+            });*!/
+          }
         });
       } else {
         bz.cols.images._collection.update(imgId, { $set: {
           thumbnail: imgItem.thumbnail.data
         }});
-      }
+      }*/
     });
-
     // set location:
     //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
     if (loc1 && location1.isSet) {
@@ -183,30 +190,43 @@ CreateNewPostFromView = function (v) {
 
     bz.runtime.changesNotSaved = false;
     Router.go('/posts/my');
-
-    //$.when(locDef).then(function () {
     Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
-      _.each(imagesArrayReactive.get(), function (imgItem) {
-        if(!imgItem._id && !imgItem.isSaved) {
-          imgItem.save().then(img=> {
-            id = bz.cols.images.update(imgItem.tempId, {$set: {data: img.src}});
-            imgItem.thumbnail.save().then(thumb=> {
-              bz.cols.images.update(imgItem.tempId, {$set: {thumbnail: thumb.src}});
-              bz.ui.alert(`Фотографии поста были созданы`);
-            }).catch(error=>{
-              bz.ui.error(`При создании фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
-            });
+        var imgArray = imagesArrayReactive.get();
+        if (!!imgArray.length) {
+            saveImage(imgArray.pop());
+        }
+        function saveImage(imgItem) {
+            if (!imgItem._id && !imgItem.isSaved) {
+                imgItem.save().then(img => {
+                    var imgItem = img;
+                    bz.cols.images.update(imgItem.tempId, {$set: {data: img.src}});
+                    imgItem.thumbnail.save().then(thumb => {
+                        bz.cols.images.update(imgItem.tempId, {$set: {thumbnail: thumb.src}});
+                        // bz.ui.alert(`Фотография поста (иконка + оригинал) была создана`);
+                        if (!!imgArray.length) {
+                            saveImage(imgArray.pop());
+                        }
+                     }).catch(error=>{
+                        bz.ui.error(`При создании фотографий поста (иконка) возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
+                     });
+                }).catch(error=> {
+                    bz.ui.error(`При создании фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
+                });
+            }
+        }
+      function saveCallback(img) {
+          bz.cols.images.update(imgItem.tempId, {$set: {data: img.src}});
+          imgItem.thumbnail.save().then(thumb=> {
+            bz.cols.images.update(imgItem.tempId, {$set: {thumbnail: thumb.src}});
+            bz.ui.alert(`Фотографии поста были созданы`);
           }).catch(error=>{
             bz.ui.error(`При создании фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
           });
-        }
-      });
+      }
       if (!err && res && res !== '') {
         bz.ui.alert(`Ваш <a href="/post/${res}">пост</a> успешно создан`);
-
         clearPostData();
         bz.runtime.newPost.postId = res;
-
       } else {
         bz.ui.alert(`При создании поста возникла проблема: ${err}`);
       }
