@@ -1,8 +1,7 @@
 /**
  * Created by arutu_000 on 12/23/2015.
  */
-
-
+import toast from 'pyrsmk-toast';
 
 /* BZ DROP TIPS */
 bz.ui.initUiKit = function () {
@@ -10,12 +9,8 @@ bz.ui.initUiKit = function () {
   setTimeout(function () {
 
     toast(
-      ['https://s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/tether.js', function () {
-        return window.Tether;
-      }],
-      ['http://github.hubspot.com/drop/dist/js/drop.js', function () {
-        return window.Drop;
-      }],
+      'https://s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/tether.js',
+      'http://github.hubspot.com/drop/dist/js/drop.js',
       function () {
 
         var _Drop, DropTooltip;
@@ -80,10 +75,10 @@ bz.ui.initCodeMirror = function (input, callback) {
       toast(
         '/libs/codemirror/codemirror.css',
         '/libs/codemirror/htmleditor.css',
-        ['/libs/codemirror/codemirror.js',
+        '/libs/codemirror/codemirror.js',
           function () {
             return CodeMirror;
-          }],
+          },
         '/libs/codemirror/mode/markdown.js',
         '/libs/codemirror/mode/overlay.js',
         '/libs/codemirror/mode/xml.js',

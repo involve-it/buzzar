@@ -6,6 +6,7 @@ Template.postsNewUrl.onCreated(function() {
   
 });
 
+/*
 Template.postsNewUrl.onRendered(function() {
 
   setTimeout(function() {
@@ -16,12 +17,13 @@ Template.postsNewUrl.onRendered(function() {
         //console.info(r.response[0]);
       }
     });
-    
+
   }, 1000);
   //необходим механиз, который будет следить за загрузкой
  
   
 });
+*/
 
 
 
