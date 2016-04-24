@@ -16,6 +16,7 @@ meteor-app/.idea/
 meteor-app/settings.json
 meteor-app/settings-development.json
 meteor-app/settings-production.json
+meteor-app/node_modules/
 
 docs/.*
 docs/~$.*
