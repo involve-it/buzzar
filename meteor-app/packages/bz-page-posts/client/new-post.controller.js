@@ -214,15 +214,6 @@ CreateNewPostFromView = function (v) {
                 });
             }
         }
-      function saveCallback(img) {
-          bz.cols.images.update(imgItem.tempId, {$set: {data: img.src}});
-          imgItem.thumbnail.save().then(thumb=> {
-            bz.cols.images.update(imgItem.tempId, {$set: {thumbnail: thumb.src}});
-            bz.ui.alert(`Фотографии поста были созданы`);
-          }).catch(error=>{
-            bz.ui.error(`При создании фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
-          });
-      }
       if (!err && res && res !== '') {
         bz.ui.alert(`Ваш <a href="/post/${res}">пост</a> успешно создан`);
         clearPostData();

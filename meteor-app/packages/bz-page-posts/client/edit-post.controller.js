@@ -47,7 +47,7 @@ SavePostFromView = function (v, data) {
             data: imgItem.data
           }
         });
-        if (!imgItem.thumbnail.data) {
+        /*if (!imgItem.thumbnail.data) {
           imgItem.thumbnail.getBlob().then((url)=> {
             imgItem.thumbnail.data = url;
             bz.cols.images._collection.update(imgId, {
@@ -62,7 +62,7 @@ SavePostFromView = function (v, data) {
               thumbnail: imgItem.thumbnail.data
             }
           });
-        }
+        }*/
       }
     });
     // set location:
@@ -129,24 +129,30 @@ SavePostFromView = function (v, data) {
     bz.runtime.changesNotSaved = false;
     Router.go(`/post/${data._id}`);
 
-    //$.when(locDef).then(function () {
     Meteor.call('saveExistingPost', newPost, currentLoc, Meteor.connection._lastSessionId, Meteor.userId(), function (err, res) {
-      _.each(imagesArrayReactive.get(), function (imgItem) {
-        if(!imgItem._id && !imgItem.isSaved) {
-          imgItem.save().then(img=> {
-            id = bz.cols.images.update(imgItem.tempId, {$set: {data: img.src}});
-            imgItem.thumbnail.save().then(thumb=> {
+      var imgArray = imagesArrayReactive.get();
+      if (!!imgArray.length) {
+        saveImage(imgArray.pop());
+      }
+      function saveImage(imgItem) {
+        if (!imgItem._id && !imgItem.isSaved) {
+          imgItem.save().then(img => {
+            var imgItem = img;
+            bz.cols.images.update(imgItem.tempId, {$set: {data: img.src}});
+            imgItem.thumbnail.save().then(thumb => {
               bz.cols.images.update(imgItem.tempId, {$set: {thumbnail: thumb.src}});
-              bz.ui.alert(`Фотографии поста были сохранены`);
+              // bz.ui.alert(`Фотография поста (иконка + оригинал) была создана`);
+              if (!!imgArray.length) {
+                saveImage(imgArray.pop());
+              }
             }).catch(error=>{
-              bz.ui.error(`При сохранении фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
+              bz.ui.error(`При создании фотографий поста (иконка) возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
             });
-          }).catch(error=>{
-            bz.ui.error(`При сохранении фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
+          }).catch(error=> {
+            bz.ui.error(`При создании фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
           });
         }
-      });
-
+      }
       if (!err && res) {
         bz.ui.alert(`Ваш <a href="/post/${res}">пост</a> сохранен`);
         //clearPostData();
