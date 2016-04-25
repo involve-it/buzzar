@@ -3,6 +3,7 @@
  */
 
 bz.cols.chats = new Mongo.Collection('bz.chats');
+Ground.Collection(bz.cols.chats);
 if (Meteor.isServer) {
   //bz.cols.chats.remove({});
 }
@@ -57,6 +58,7 @@ if (Meteor.isServer) {
 
 //messages
 bz.cols.messages = new Mongo.Collection('bz.messages');
+Ground.Collection(bz.cols.messages);
 if (Meteor.isServer) {
   //bz.cols.messages.remove({});
 }

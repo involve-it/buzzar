@@ -115,7 +115,6 @@ Template.postDetailsDetailsCommon.helpers({
       });
     return postText;
     */
-    
     return this.details.description;
   },
   getMyLocations: function () {

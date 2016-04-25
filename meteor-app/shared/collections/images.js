@@ -3,6 +3,7 @@
  */
 
 bz.cols.images = new Mongo.Collection('images');
+Ground.Collection(bz.cols.images);
 bz.cols.images.helpers({
   _getThumbnailUrl: function(){
     var image = this;

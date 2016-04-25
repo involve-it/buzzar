@@ -1,6 +1,8 @@
 /**
  * Created by arutu_000 on 12/23/2015.
  */
+import toast from 'pyrsmk-toast';
+
 bz.help.makeNamespace('bz.ui');
 
 var masDrop =[];
@@ -10,12 +12,9 @@ bz.ui.initDropTips = function () {
   setTimeout(function () {
 
     toast(
-      ['https://s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/tether.js', function () {
-        return window.Tether;
-      }],
-      ['http://github.hubspot.com/drop/dist/js/drop.js', function () {
-        return window.Drop;
-      }],
+      'https://s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/tether.js',
+      function(){},
+      'http://github.hubspot.com/drop/dist/js/drop.js',
       function () {
 
         var _Drop, DropTooltip;
@@ -78,6 +77,13 @@ bz.ui.initDropTips = function () {
 };
 
 /* BZ ALERT */
+/*(function initAlerts() {
+  toast(
+      'https://cdnjs.cloudflare.com/ajax/libs/jquery-noty/2.3.8/jquery.noty.min.js',
+      function () {
+        debugger;
+      });
+})();*/
 bz.ui.alert = function (message, obj) {
   obj = obj || {type: 'info'};
 
@@ -178,9 +184,9 @@ bz.ui.modal.confirm = function (content, onconfirm) {
   id = 'modal-' + Math.round(Math.random() * 100);
   onconfirm = $.isFunction(onconfirm) ? onconfirm : function () {
   };
-  
+
   (typeof content === 'object') ? args = content : content = '';
-  
+
   modalConfirmTemplate = '<div id="' + id + '" class="reveal-modal confirmPostModal" data-reveal aria-labelledby="modalConfirmTitle" aria-hidden="true" role="dialog"></div>';
 
   modalConfirm = [

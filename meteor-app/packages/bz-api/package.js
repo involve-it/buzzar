@@ -48,7 +48,6 @@ Package.onUse(function (api) {
   ], 'client');
   
   api.addFiles([
-    'client/lib/vendor/toast.js',
     'client/lib/01_inits/version.js',
 
     'client/lib/01_inits/accounts.js',

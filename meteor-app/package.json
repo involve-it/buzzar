@@ -1,0 +1,12 @@
+{
+  "name": "Shiners",
+  "scripts": {
+    "start": "meteor --settings settings.json",
+    "simulate": "meteor run ios --settings settings.json",
+    "ios": "meteor run ios-device --settings settings.json"
+  },
+  "dependencies": {
+    "noty": "^2.3.8",
+    "pyrsmk-toast": "^2.1.0"
+  }
+}

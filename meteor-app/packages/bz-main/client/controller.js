@@ -1,6 +1,8 @@
 /**
  * Created by Ashot on 9/21/15.
  */
+import toast from 'pyrsmk-toast';
+
 bz.help.makeNamespace('bz.runtime.help');
 
 loggedInUserLazyLoad = function () {
@@ -73,10 +75,10 @@ bz.ui.initSwiper = function() {
   
   function includeSwiper() {
     toast(
-        '/libs/idangerous-swiper.css',
-        ['/libs/idangerous-swiper.js', function () {
+        '/libs/idangerous-swiper.css', '/libs/idangerous-swiper.js',
+        /*['/libs/idangerous-swiper.js', function () {
           return window.Swiper;
-        }],
+        }],*/
         function () {
           var swiper;
           swiper = new Swiper('.swiper-container', {

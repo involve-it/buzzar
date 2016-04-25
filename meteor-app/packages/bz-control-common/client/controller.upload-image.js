@@ -372,7 +372,8 @@ ThumbnailImageClass = class extends ImageClass {
   }
 
   save() {
-    var that = this, uploader = ThumbnailImageClass.uploader = ThumbnailImageClass.uploader || new Slingshot.Upload('bzImagesDirective'),
+    ThumbnailImageClass.uploader = ThumbnailImageClass.uploader || new Slingshot.Upload('bzImagesDirective');
+    var that = this, uploader = ThumbnailImageClass.uploader,
       file = this, error = uploader.validate(file), blob = file.blob;
     return new Promise((resolve, reject)=> {
       if (error) {
@@ -418,11 +419,14 @@ ThumbnailImageClass = class extends ImageClass {
   }
 
   getBlob(blob) {
-    var blob = blob || this.blob;
+    var blob = blob || this.blob, that = this;
     return new Promise((resolve, reject)=> {
       var fileReader = new FileReader();
       fileReader.onload = function (res) {
-        resolve(fileReader.result);
+        resolve({
+          data: fileReader.result,
+          thumbnail: that
+        });
       }
       fileReader.readAsDataURL(blob);
     });
