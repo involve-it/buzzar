@@ -47,7 +47,7 @@ SavePostFromView = function (v, data) {
             data: imgItem.data
           }
         });
-        /*if (!imgItem.thumbnail.data) {
+        if (!imgItem.thumbnail.data) {
           imgItem.thumbnail.getBlob().then((url)=> {
             imgItem.thumbnail.data = url;
             bz.cols.images._collection.update(imgId, {
@@ -62,7 +62,7 @@ SavePostFromView = function (v, data) {
               thumbnail: imgItem.thumbnail.data
             }
           });
-        }*/
+        }
       }
     });
     // set location:

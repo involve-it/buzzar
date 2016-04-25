@@ -153,11 +153,6 @@ Template.uploadImageModal.events({
   'click .js-ok-btn': function (e, v) {
     $('.js-avatar-upload-modal').foundation('reveal', 'close');
     if (this.imagesArr) {
-      //doneCloseChooseImageDialog(this.sessionName, currentImageReactive.get());
-
-      console.info(this.imagesArr);
-      console.info(currentImageReactive.get());
-      
       doneCloseChooseImageDialog(this.imagesArr, currentImageReactive.get());
     }
   },

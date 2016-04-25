@@ -80,26 +80,22 @@ CreateNewPostFromView = function (v) {
       bz.cols.images._collection.update(imgId, { $set: {
         data: imgItem.data
       }});
-      /*if(!imgItem.thumbnail.data) {
+      if(!imgItem.thumbnail.data) {
         imgItem.thumbnail.getBlob().then((res, err)=>{
           if (res.data && res.thumbnail) {
-            debugger;
-            console.log('thumbnail.name', res.thumbnail.name);
-            console.log('thumbnail.parentName', res.thumbnail.parentName);
-
             res.thumbnail.data = res.data;
-            /!*bz.cols.images._collection.update(imgId, {
+            bz.cols.images._collection.update(imgId, {
               $set: {
                 thumbnail: res.thumbnail.data
               }
-            });*!/
+            });
           }
         });
       } else {
         bz.cols.images._collection.update(imgId, { $set: {
           thumbnail: imgItem.thumbnail.data
         }});
-      }*/
+      }
     });
     // set location:
     //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
