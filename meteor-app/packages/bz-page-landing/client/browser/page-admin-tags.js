@@ -17,7 +17,7 @@ Template.pageAdminTags.helpers({
     var objSettings;
     objSettings={
       rowsPerPage: 15,
-      fields: ['name', 'keyWords','related', 'descriptionRU', 'descriptionEN']
+      fields: ['name','category', 'keyWords','related' ]
     };
     return objSettings;
   },
@@ -32,9 +32,8 @@ Template.pageAdminTags.events({
     v.$('input.tag-id').val("");
     v.$('input.tag-name').val("");
     v.$('input.tag-keyWords').val("");
-    v.$('input.tag-descriptionRU').val("");
-    v.$('input.tag-descriptionEN').val("");
-    v.$('.tag-related').find('select').dropdown('clear')
+    v.$('.tag-related').find('select').dropdown('clear');
+    v.$('.js-tag-checked').prop("checked",false);
   },
 
   'click div.buttons a.js-tag-save-btn':function(event,v) {
@@ -49,8 +48,7 @@ Template.pageAdminTags.events({
       name:v.$('input.tag-name').val(),
       keyWords:arrKeyWords,
       related: arrRelated,
-      descriptionRU: v.$('input.tag-descriptionRU').val(),
-      descriptionEN: v.$('input.tag-descriptionEN').val()
+      category: v.$('.js-tag-checked').prop("checked")
     };
     var tagName=v.$('input.tag-name').val();
     if(!((v.$('input.tag-id').val()=="")&&(bz.cols.tags.findOne({name: tagName})))) {
@@ -84,8 +82,7 @@ Template.pageAdminTags.events({
     v.$('input.tag-id').val("");
     v.$('input.tag-name').val("");
     v.$('input.tag-keyWords').val("");
-    v.$('input.tag-descriptionRU').val("");
-    v.$('input.tag-descriptionEN').val("");
+    v.$('.js-tag-checked').prop("checked",false);
     v.$('.tag-related').find('select').dropdown('clear')
   },
 
@@ -96,15 +93,13 @@ Template.pageAdminTags.events({
       v.$('input.tag-id').val(tag._id);
       v.$('input.tag-name').val(tag.name);
       v.$('input.tag-keyWords').val(tag.keyWords);
-      v.$('input.tag-descriptionRU').val(tag.descriptionRU);
-      v.$('input.tag-descriptionEN').val(tag.descriptionEN);
+      v.$('.js-tag-checked').prop("checked",tag.category);
       v.$('.tag-related').find('select').dropdown('set selected',tag.related)
     } else {
       v.$('input.tag-id').val("");
       v.$('input.tag-name').val("");
       v.$('input.tag-keyWords').val("");
-      v.$('input.tag-descriptionRU').val("");
-      v.$('input.tag-descriptionEN').val("");
+      v.$('.js-tag-checked').prop("checked",false);
       v.$('.tag-related').find('select').dropdown('clear')
     }
   },
@@ -115,8 +110,11 @@ Template.pageAdminTags.events({
     v.$('input.tag-id').val(this._id);
     v.$('input.tag-name').val(this.name);
     v.$('input.tag-keyWords').val(this.keyWords);
-    v.$('input.tag-descriptionRU').val(this.descriptionRU);
-    v.$('input.tag-descriptionEN').val(this.descriptionEN);
+    if (this.category) {
+      v.$('.js-tag-checked').prop("checked", this.category);
+    }else{
+      v.$('.js-tag-checked').prop("checked",false);
+    }
     var arrSelectTags;
     arrSelectTags=this.related;
     setTimeout(function() {

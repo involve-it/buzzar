@@ -7,21 +7,31 @@
           <input class="tag-id disabled" autocomplete="off" type="text" value="">
         </div>
       </div>
+
       <div class="button-new-tag">
         <a class="button btn-default js-tag-new-btn">Новый тэг</a>
       </div>
+
       <div class="item-details">
         <div class="small-12 medium-3 bz-input-label columns">Название тега</div>
         <div class="small-12 medium-9 large-10 bz-input-result columns">
           <input class="tag-name" autocomplete="off" type="text" value="">
         </div>
       </div>
+
+      <div class="item-details">
+        <div class="small-12 medium-9 large-10 bz-input-result columns">
+          <input id="global-tag" type="checkbox" checked="{{checked}}" class="js-tag-checked"><label for="global-tag">Тег-категория</label>
+        </div>
+      </div>
+
       <div class="item-details">
         <div class="small-12 medium-3 bz-input-label columns">Ключевые слова</div>
         <div class="small-12 medium-9 large-10 bz-input-result columns">
           <input class="tag-keyWords" autocomplete="off" type="text" value="">
         </div>
       </div>
+
       <div class="item-details">
         <div class="small-12 medium-3 bz-input-label columns">Связанные теги</div>
         <div class="small-12 medium-9 large-10 bz-input-result columns">
@@ -31,18 +41,6 @@
               <option value="{{name}}">{{name}}</option>
             {{/each}}
           </select>
-        </div>
-      </div>
-      <div class="item-details">
-        <div class="small-12 medium-3 bz-input-label columns">Описание на русском</div>
-        <div class="small-12 medium-9 large-10 bz-input-result columns">
-          <input class="tag-descriptionRU" autocomplete="off" type="text" value="">
-        </div>
-      </div>
-      <div class="item-details">
-        <div class="small-12 medium-3 bz-input-label columns">Описание на английском</div>
-        <div class="small-12 medium-9 large-10 bz-input-result columns">
-          <input class="tag-descriptionEN" autocomplete="off" type="text" value="">
         </div>
       </div>
 
