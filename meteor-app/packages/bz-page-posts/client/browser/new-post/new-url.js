@@ -6,24 +6,24 @@ Template.postsNewUrl.onCreated(function() {
   
 });
 
-/*
+
 Template.postsNewUrl.onRendered(function() {
 
-  setTimeout(function() {
+  /*setTimeout(function() {
     //console.log(VK);
 
-    VK.Api.call('wall.getById', {posts:'-43726747_87612'}, function(r) {
+    VK.Api.call('wall.getById', {posts:'236268939_743'}, function(r) {
       if(r.response) {
-        //console.info(r.response[0]);
+        console.info(r.response[0]);
       }
     });
 
-  }, 1000);
+  }, 1000);*/
   //необходим механиз, который будет следить за загрузкой
  
   
 });
-*/
+
 
 
 

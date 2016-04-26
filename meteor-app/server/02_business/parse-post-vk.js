@@ -48,8 +48,9 @@ function getBzTypeSite(ret) {
 bz.bus.parseUrlVk = function(url) {
   
   var result = {}, data = {}, response, pattern, rx, parts, text, searchEl, indexFr;
-
-  pattern = "(([=wall-])\\d{0,}_\\d{0,})";
+//debugger;
+  //pattern = "(([=wall-])\\d{0,}_\\d{0,})";
+  pattern = "([^=wall]\\d{0,}_\\d{0,})";
   
   rx = new RegExp(pattern);
   parts = rx.exec(url);
@@ -66,7 +67,7 @@ bz.bus.parseUrlVk = function(url) {
     //response = Meteor.http.call("GET", 'https://api.vk.com/method/'+data.method+'?'+data.typeItem+'=-43726747_87397&v='+data.verAPI);
     response = Meteor.http.call("GET", 'https://api.vk.com/method/'+data.method+'?'+data.typeItem+'='+ data.postId +'&v='+data.verAPI);
     
-    if (response && response.statusCode === 200){
+    if (response && response.statusCode === 200) {
 
       //var obj = JSON.parse(response.content).response[0];
       //var obj = JSON.parse(JSON.stringify(response.content).replace(/\\n/g, "<br>"));
@@ -74,40 +75,54 @@ bz.bus.parseUrlVk = function(url) {
       //result.text = obj.text;
       
       var string = JSON.parse(response.content).response[0];
-      
-      if(string.text !== '') {
-        text = string.text;
-      } else if(string.copy_history[0]) {
-        string = string.copy_history[0];
-        text = string.text || '';
-      }
+//debugger;
 
-      if(text) {
-        var obj = JSON.stringify(text).replace(/\\n/g, "<br>");
-        searchEl = '<br><br>';
-        indexFr = obj.indexOf(searchEl);
+      if(typeof string === 'object') {
 
-        // Title and description text
-        if (indexFr !== -1){
-          result.title = String(obj.slice(1, indexFr));
-          result.text = String(obj.slice(indexFr + searchEl.length));
+        if (string.text === '') {
+          if(string.attachments.length > 0) {
+            //console.info('Photo attachments[array]', string.attachments);
+            result.images = string.attachments;
+          } else if(string.attachment.length > 0) {
+            //console.info('Photo attachment[photo]', string.attachment);
+            //result.images = string.attachment;
+          }
         } else {
-          result.title = String(obj);
-          result.text = String(obj);
+          
+          if(string.text !== '') {
+            text = string.text;
+          } else if(string.copy_history[0]) {
+            string = string.copy_history[0];
+            text = string.text;
+          }
+          
+          if(text) {
+            var obj = JSON.stringify(text).replace(/\\n/g, "<br>");
+            searchEl = '<br><br>';
+            indexFr = obj.indexOf(searchEl);
+
+            // Title and description text
+            if (indexFr !== -1){
+              result.title = String(obj.slice(1, indexFr));
+              result.text = String(obj.slice(indexFr + searchEl.length));
+            } else {
+              result.title = String(obj);
+              result.text = String(obj);
+            }
+          }
+          // Images[]
+          if(string.attachments.length > 0) {
+            //console.info('Photo attachments[array]', string.attachments);
+            result.images = string.attachments;
+          } else if(string.attachment.length > 0) {
+            //console.info('Photo attachment[photo]', string.attachment);
+            //result.images = string.attachment;
+          }
         }
+        
+        result.success = true;
+        
       }
-      
-      // Images[]
-      if(string.attachments.length > 0) {
-        //console.info('Photo attachments[array]', string.attachments);
-        result.images = string.attachments;
-      } else if(string.attachment.length > 0) {
-        //console.info('Photo attachment[photo]', string.attachment);
-        //result.images = string.attachment;
-      }
-      
-      //анализатор фото
-      result.success = true;
     } else {
       result.success = false;
     }
