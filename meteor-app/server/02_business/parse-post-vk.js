@@ -48,7 +48,7 @@ function getBzTypeSite(ret) {
 bz.bus.parseUrlVk = function(url) {
   
   var result = {}, data = {}, response, pattern, rx, parts, text, searchEl, indexFr;
-//debugger;
+  
   //pattern = "(([=wall-])\\d{0,}_\\d{0,})";
   pattern = "([^=wall]\\d{0,}_\\d{0,})";
   
@@ -75,7 +75,8 @@ bz.bus.parseUrlVk = function(url) {
       //result.text = obj.text;
       
       var string = JSON.parse(response.content).response[0];
-//debugger;
+
+      //debugger;
 
       if(typeof string === 'object') {
 
@@ -111,12 +112,14 @@ bz.bus.parseUrlVk = function(url) {
             }
           }
           // Images[]
-          if(string.attachments.length > 0) {
-            //console.info('Photo attachments[array]', string.attachments);
-            result.images = string.attachments;
-          } else if(string.attachment.length > 0) {
-            //console.info('Photo attachment[photo]', string.attachment);
-            //result.images = string.attachment;
+          if(string.attachments) {
+            if(string.attachments.length > 0) {
+              //console.info('Photo attachments[array]', string.attachments);
+              result.images = string.attachments;
+            } else if(string.attachment.length > 0) {
+              //console.info('Photo attachment[photo]', string.attachment);
+              //result.images = string.attachment;
+            }
           }
         }
         
