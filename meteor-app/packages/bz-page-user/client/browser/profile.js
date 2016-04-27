@@ -6,10 +6,19 @@ Template.profileSettings.onCreated(function() {
   Meteor.subscribe('profileDetails-my');
 });
 
+Template.profileSettings.onRendered(function() {
+  var self = this, check = self.$('#user-public-publications-police').prop('checked');
+  bz.cols.profileDetails.findOne({userId: Meteor.userId()})
+});
 
 
 Template.profileSettings.helpers({
-
+  isCheckOwnPosts: function() {
+    if(this._id) {
+      var ret = (this.profile.checkOwnPosts)? 'checked' : '';
+    }
+    return ret;
+  },
   setLanguage: function() {
     
     var curLang = Meteor.users.findOne({_id: Meteor.userId()});
@@ -79,6 +88,11 @@ Template.profileSettings.helpers({
   getTwitterUrlStatus: function(){
     var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'twitter'});
     return details && details.policy;
+  },
+  getUserProfileLink: function() {
+    // protocol / user/ user_id
+    var urlBase = Meteor.absoluteUrl();
+    return urlBase && urlBase + 'user/' + this._id;
   }
 
 });
@@ -87,40 +101,10 @@ Template.profileSettings.helpers({
 
 
 Template.profileSettings.events({
-    'click [data-action=share-profile]': function (event, template) {
-        IonActionSheet.show({
-            titleText: 'Share Profile',
-            buttons: [
-                { text: 'One' },
-                { text: 'Two' },
-                { text: 'Some text' }
-            ],
-            cancelText: 'Cancel',
-            buttonClicked: function(index) {
-                if (index === 0) {
-                    console.log('ONE!');
-                }
-                if (index === 1) {
-                    console.log('TWO!');
-                }
-                if (index === 2) {
-                    console.log('SOME TEXT');
-                }
-                return true;
-            }
-        });
-    },
-    'click [data-action=edit-avatar]': function (event, template) {
-        /*IonActionSheet.show({
-              titleText: 'Edit picture',
-              buttons: [
-                  { text: 'Photo Library' },
-                  { text: 'Take Photo' }
-              ],
-              cancelText: 'Cancel'
-          }
-        )*/
-    },
+  'mouseup .js-bz-profile-user-link-select': function(e, v) {
+    var $target = v.$(e.target); 
+    $target.select();
+  },
   'click div.btn-edit-account a.js-edit-btn':function(event,v){
 
     v.$('div.edit-fields-user input').removeClass('disabled');
@@ -130,7 +114,6 @@ Template.profileSettings.events({
     v.$('div.btn-edit-account a.js-cancel-btn').removeClass('disabled');
 
   },
-
   'click div.btn-edit-account a.js-done-btn':function(event, v){
 
     v.$('div.edit-fields-user input').addClass('disabled');
@@ -192,7 +175,6 @@ Template.profileSettings.events({
   'submit form': function (event){
     event.preventDefault();
   },
-
   'click div.btn-edit-account a.js-cancel-btn':function(event, v){
 
     v.$('div.edit-fields-user input').addClass('disabled');
@@ -213,5 +195,10 @@ Template.profileSettings.events({
     v.$('select.js-profile-vk-status').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'vk'}).policy);
     v.$('select.js-profile-twitter-status').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'twitter'}).policy);
     v.$('select.js-profile-facebook-status').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'facebook'}).policy);
+  },
+  'click #user-public-publications-police': function(e, v) {
+    var checkbox = v.$(e.target), toggle;
+    toggle = checkbox.prop('checked');
+    Meteor.call('updateCheckOwnPosts', toggle, function(error, result) {});
   }
 });

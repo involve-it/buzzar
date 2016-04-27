@@ -86,6 +86,27 @@
 
               <div class="bz-separate"></div>
 
+                <div class="item-details">
+                    <div class="small-12 bz-input-label columns">
+                        <div class="bz-user-profile-link">
+                            <div class="small-12 bz-input-label columns">Прямая ссылка на мой профиль</div>
+                            <div class="small-12 bz-input-result columns">
+                                <input class="bz-profile-user-link js-bz-profile-user-link-select" autocomplete="off" type="text" readonly="readonly" value="{{getUserProfileLink}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item-details">        
+                    <div class="small-12 bz-input-label columns">
+                        <div class="bz-user-profile-publications">
+                            <input id="user-public-publications-police" type="checkbox" {{isCheckOwnPosts}}>
+                            <label for="user-public-publications-police">Сделать мои публикации доступными для всех пользователей</label>
+                        </div>
+                    </div>
+                </div>
+                
+                
               <div class="item-details">
                 <div class="small-12 medium-6 large-6 bz-input-label columns">
                   <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_USER_PHONE_NUMBER' }}</div>
@@ -228,8 +249,6 @@
             </div>
 
             <div class="clearfix"></div>
-
-
           </div>
 
           <div class="clearfix"></div>

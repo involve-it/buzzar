@@ -354,6 +354,13 @@ Meteor.methods({
       });
     }
     bz.cols.tags.remove(tag)
+  },
+  updateCheckOwnPosts: function(toggle) {
+    var user = Meteor.userId();
+    Meteor.users.update({'_id': user}, {
+      $set: { 'profile.checkOwnPosts': toggle }},
+      {upsert: true}
+    );
   }
 });
 

@@ -152,6 +152,29 @@ Template.userSettings.helpers({
     {
       return details && details.value;
     }
+  },
+  getCheckboxUserProfile: function(checked) {
+    checked = (this.profile.checkOwnPosts)? 'checked' : '';
+    return checked;
+  }
+});
+
+
+Template.bzUserOwnPosts.helpers({
+  getPopularItems: function() {
+    var id = Router.current().params._id;
+    return id && bz.cols.posts.find({userId: Router.current().params._id, 'status.visible':'visible'}).fetch();
+  }
+});
+
+Template.bzUserOwnPostsItem.helpers({
+  getImgSrc: function () {
+    var ret, phId = this.details.photos && this.details.photos[0];
+    if (phId) {
+      ret = bz.cols.images.findOne(phId);
+      ret = ret && ret.data;
+    }
+    return ret;
   }
 });
 
