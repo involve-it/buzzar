@@ -107,7 +107,7 @@ Template.profileSettings.events({
   },
   'click div.btn-edit-account a.js-edit-btn':function(event,v){
 
-    v.$('div.edit-fields-user input').removeClass('disabled');
+    v.$('div.edit-fields-user input.user-settings').removeClass('disabled');
     v.$('div.edit-fields-user select').parent().removeClass('disabled');
     v.$(event.currentTarget).addClass('disabled');
     v.$('div.btn-edit-account a.js-done-btn').removeClass('disabled');
@@ -116,7 +116,7 @@ Template.profileSettings.events({
   },
   'click div.btn-edit-account a.js-done-btn':function(event, v){
 
-    v.$('div.edit-fields-user input').addClass('disabled');
+    v.$('div.edit-fields-user input.user-settings').addClass('disabled');
     v.$('div.edit-fields-user select').parent().addClass('disabled');
     v.$(event.currentTarget).addClass('disabled');
     v.$('div.btn-edit-account a.js-edit-btn').removeClass('disabled');
@@ -177,7 +177,7 @@ Template.profileSettings.events({
   },
   'click div.btn-edit-account a.js-cancel-btn':function(event, v){
 
-    v.$('div.edit-fields-user input').addClass('disabled');
+    v.$('div.edit-fields-user input.user-settings').addClass('disabled');
     v.$('div.edit-fields-user select').parent().addClass('disabled');
     v.$(event.currentTarget).addClass('disabled');
     v.$('div.btn-edit-account a.js-done-btn').addClass('disabled');
