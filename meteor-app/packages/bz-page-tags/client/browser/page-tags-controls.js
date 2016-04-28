@@ -17,20 +17,21 @@ Template.TagsFilter.helpers({
     bz.cols.tags.find({});
     var category_tag;
     category_tag=Session.get('bz.search.tag-category');
-    if(category_tag) {
-      console.info('1');
+    if(category_tag!='' && category_tag!="all" && category_tag) {
       $('.tags-related').find('select').dropdown('clear');
       return bz.cols.tags.find({related:category_tag}).fetch();
     }
     else{
-      console.info('2');
+      $('.tags-related').find('select').dropdown('clear');
       return bz.cols.tags.find().fetch();
     }
   }
 });
 Template.TagsFilter.events({
   'change div.tags-category select ':function(event,v) {
-    console.info(v.$('.tags-category').find('select').val());
     Session.set('bz.search.tag-category',v.$('.tags-category').find('select').val())
+  },
+  'change div.tags-related select ':function(event,v) {
+    Session.set('bz.search.tag-related',v.$('.tags-related').find('select').val());
   }
 });

@@ -75,11 +75,37 @@ bz.bus.search.showMorePosts=()=>{
   }
 };
 bz.bus.search.searchePostsAroundAndPopular = () => {
-  var ret, aroundYouSmall, aroundYou, popular, ids=[], arrTypes, aroundYouLimit=15, aroundYouSmallQuery= {}, aroundYouQuery= {}, popularQuery= {}, box,loc, activeCats, radius, textSearch;
+  var ret, aroundYouSmall, aroundYou, popular, ids=[], arrTags=[],tagCategory, arrTypes, aroundYouLimit=15, aroundYouSmallQuery= {}, aroundYouQuery= {}, popularQuery= {}, box,loc, activeCats, radius, textSearch;
   loc = Session.get('bz.control.search.location');
   radius = Session.get('bz.control.search.distance') || [];
   activeCats = Session.get('bz.control.category-list.activeCategories') || [];
   textSearch = Session.get('bz.control.search.searchedText');
+
+  //Test function to search for posts by tag
+  //only works on the page /tags
+  if (location.href.indexOf('/tags')!== -1){
+    tagCategory=Session.get('bz.search.tag-category');
+    arrTags=Session.get('bz.search.tag-related');
+    if(tagCategory && tagCategory!="all"){
+      if(arrTags!=[""] && arrTags && arrTags!=""){
+        arrTags.push(tagCategory);
+      }else{
+        arrTags=[];
+        arrTags.push(tagCategory);
+      }
+      aroundYouSmallQuery['tags']={$all: arrTags};
+      aroundYouQuery['tags']={$all: arrTags};
+      popularQuery['tags']={$all: arrTags};
+    }else{
+      if(arrTags!=[""] && arrTags && arrTags!=""){
+        aroundYouSmallQuery['tags']={$all: arrTags};
+        aroundYouQuery['tags']={$all: arrTags};
+        popularQuery['tags']={$all: arrTags};
+      }
+    }
+  }
+  //end test function
+
   if (Session.get('bz.control.search.postCountLimit')){
     aroundYouLimit = Session.get('bz.control.search.postCountLimit');
   } else{
