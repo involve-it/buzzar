@@ -148,6 +148,8 @@ ru = {
 
   //Another user profile details
   PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Личные данные',
+  PROFILE_DIRECT_LINK_TO_MY_PROFILE: 'Прямая ссылка на мой профиль',
+  PROFILE_MAKE_MY_PUBLICATION_AVAILABLE_TO_ALL_USERS: 'Сделать мои публикации доступными для всех пользователей', 
 
 
   //Profile - edit

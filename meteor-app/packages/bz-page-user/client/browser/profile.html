@@ -89,7 +89,7 @@
                 <div class="item-details">
                     <div class="small-12 bz-input-label columns">
                         <div class="bz-user-profile-link">
-                            <div class="small-12 bz-input-label columns">Прямая ссылка на мой профиль</div>
+                            <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_DIRECT_LINK_TO_MY_PROFILE' }}</div>
                             <div class="small-12 bz-input-result columns">
                                 <input class="bz-profile-user-link js-bz-profile-user-link-select" autocomplete="off" type="text" readonly="readonly" value="{{getUserProfileLink}}">
                             </div>
@@ -101,7 +101,7 @@
                     <div class="small-12 bz-input-label columns">
                         <div class="bz-user-profile-publications">
                             <input id="user-public-publications-police" type="checkbox" {{isCheckOwnPosts}}>
-                            <label for="user-public-publications-police">Сделать мои публикации доступными для всех пользователей</label>
+                            <label for="user-public-publications-police">{{ t9n 'PROFILE_MAKE_MY_PUBLICATION_AVAILABLE_TO_ALL_USERS' }}</label>
                         </div>
                     </div>
                 </div>
