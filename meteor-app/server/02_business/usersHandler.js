@@ -26,7 +26,7 @@ bz.bus.getUser = function(id, userID){
       imageUrl: userFind.profile.image.data(),
       language: userFind.language};
   }
-  ret={user,profileDetails,locations};
+  ret={user: user,profileDetails: profileDetails,locations: locations};
   return ret;
 };
 
