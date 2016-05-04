@@ -18,3 +18,23 @@ Template.categoriesUsefulAll.helpers({
     return 1;
   }
 });
+
+Template.bzUnregLandingPosts.helpers({
+  getPopularItems: function() {
+    var ret;
+    bz.cols.posts.find({});
+    ret = bz.bus.search.searchePostsAroundAndPopular().aroundYou;
+    return ret && ret.slice(0,4);
+  }
+});
+
+Template.UnregLandingPostsItem.helpers({
+  getImgSrc: function () {
+    var ret, phId = this.details.photos && this.details.photos[0];
+    if (phId) {
+      ret = bz.cols.images.findOne(phId);
+      ret = ret && ret.data;
+    }
+    return ret;
+  }
+});

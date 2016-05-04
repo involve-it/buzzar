@@ -95,14 +95,16 @@
   <div class="clearfix">
     <div class="item-details">
       <div class="item item-input item-select">
-        <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_SELECT_TYPE' }} </div>
+        <div class="small-12 medium-3 input-label left"><span class="field-required">*</span> {{ t9n 'NEW_POST_SELECT_TYPE' }} </div>
         <div class="small-12 medium-9 large-9 left">
-          <select class="js-ad-type-select">
-            <option value="" selected="selected"> {{ t9n 'NEW_POST_SELECT_TYPE_TEXT'}} </option>
+          <select class="js-ad-type-select" required>
+            <option value selected="selected"> {{ t9n 'NEW_POST_SELECT_TYPE_TEXT'}} </option>
             {{#each getSiteTypes }}
               <option value="{{ intName }}">{{ fullName }}</option>
             {{/each}}
           </select>
+            <!--Error-->
+            <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
         </div>
       </div>
     </div>
@@ -129,7 +131,6 @@
 
 <!--Forms for different types:-->
 <template name="postDetailsCommon">
-  <form data-abide>
     <div class="clearfix">
       <div class="item-details">
         <div class="item item-input bz-tool-tip" data-open-on="click" data-top-center="top center" data-theme="drop-theme-arrows-bounce-dark">
@@ -171,7 +172,6 @@
         </div>
       </div>
     </div>
-  </form>
 </template>
 
 <template name="postPhotoUpload">

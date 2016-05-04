@@ -20,7 +20,11 @@
             </div>
           </div>
 
-          {{> bzFooter}}
+            {{#if currentUser}}
+                {{> bzFooter}}
+            {{else}}
+                {{> bzUnregFooter}}
+            {{/if}}
         </div>
       </div>
 
@@ -53,8 +57,14 @@
         </div>
 
         <div class="bz-main">
-          {{> yield}}
-          {{> bzFooter}}
+            {{> yield}} <!-- => pageHome -->
+
+            {{#if currentUser}}
+                {{> bzFooter}}
+            {{else}}
+                {{> bzUnregFooter}}
+            {{/if}}
+            
         </div>
       </div>
         
