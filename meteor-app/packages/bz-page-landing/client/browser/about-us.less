@@ -1,0 +1,279 @@
+
+.aboutUsRu {
+
+  p {
+    color: rgb(63, 68, 82);
+  }
+
+  h1, h2, h3 {
+    margin: 0 0 20px 0;
+
+    &.selectedText {
+      display: inline-block;
+      background-color: #1ebcd2;
+      color: rgba(255,255,255, 1);
+      padding: 10px 15px;
+    }
+  }
+
+  h2.title {
+    font-family: "Roboto-light", "Roboto", sans-serif;
+    font-size: 37px;
+    line-height: 40px;
+    color: rgba(89,99,107, .95);
+    small {}
+  }
+
+  h3.title {
+    font-family: "Roboto", sans-serif;
+    font-size: 27px;
+    line-height: 30px;
+    color: rgba(89,99,107, .95);
+    font-weight: 300;
+  }
+
+  .sub-heading,
+  .sub-heading > p {
+    font-family: "Roboto-light", "Roboto", sans-serif;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 5px;
+    line-height: 28px;
+    color: rgba(89,99,107,.95);
+    text-shadow: 0 1px rgba(255,255,255, .5);
+  }
+
+  .sample-icon-greeting {
+    display: block;
+    height: 100px;
+    width: 100px;
+    margin: auto;
+    border-radius: 50%;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    &.how_works_1 {
+      background-image: url('/img/content/how-works/how_works_1.png');
+    }
+
+    &.how_works_2 {
+      background-image: url('/img/content/how-works/how_works_2.png');
+    }
+
+    &.how_works_3 {
+      background-image: url('/img/content/how-works/how_works_3.png');
+    }
+
+    &.usefull_1 {
+      background-image: url('/img/content/usefull/usefull_1.png');
+    }
+
+    &.usefull_2 {
+      background-image: url('/img/content/usefull/usefull_2.png');
+    }
+
+    &.usefull_3 {
+      background-image: url('/img/content/usefull/usefull_3.png');
+    }
+
+
+    &.darckred {
+      border: 2px solid darkred;
+    }
+    &.blue {
+      border: 2px solid darkblue;
+    }
+    &.orange {
+      border: 2px solid darkorange;
+    }
+  }
+}
+
+.bz-top-header {
+  margin-top: 25px;
+  
+  /* DESCRIPTION */
+  .bz-header-description {
+    margin-top: 15px;
+    
+    p {
+      font-size: 16px;
+      text-indent: 1em;
+    }
+  }
+  
+  
+}
+
+
+/* CONTENT CENTER */
+.bz-about-content {
+  margin-top: 25px;
+  
+  .bz-grid {
+    
+    .bz-sidebar {
+      
+      dl {
+        
+        dd {
+          font-size: 18px;
+          font-weight: 300;
+          padding: 7px 15px;
+          margin-bottom: 3px;
+          transition: background .15s;
+          
+          a {
+            display: inline-block;
+            width: 100%;
+          }
+          
+          &:hover {
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            background-color: rgba(0,0,0, .05);
+          }
+        }
+      }
+    }
+    
+    .bz-main {
+      
+      .bz-about-how-it-works {
+
+        .bz-about-how-it-works-wrapper {
+
+          .bz-three-items {
+
+            .bz-ui {
+              /**/
+              &.bz-three-cards {
+                margin-top: 0.875em;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                margin: -0.875em -0.5em;
+                -webkit-flex-wrap: wrap;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+
+                &.three {
+                  margin-left: -0.75em;
+                  margin-right: -0.75em;
+
+                  .card {
+                    width: ~"calc(33.3333% - 1.5em)";
+                    margin-left: 0.75em;
+                    margin-right: 0.75em;
+                  }
+                }
+
+                .card {
+                  display: -webkit-box;
+                  display: -webkit-flex;
+                  display: -ms-flexbox;
+                  display: flex;
+                  margin: 0.875em 0.5em;
+                  float: none;
+
+                  max-width: 100%;
+                  position: relative;
+                  display: -webkit-box;
+                  display: -webkit-flex;
+                  display: -ms-flexbox;
+                  display: flex;
+                  -webkit-box-orient: vertical;
+                  -webkit-box-direction: normal;
+                  -webkit-flex-direction: column;
+                  -ms-flex-direction: column;
+                  flex-direction: column;
+
+                  .bz-card-icon {
+
+                    i {
+                      font-size: 150px;
+                      text-align: center;
+                      display: block;
+
+                      &.bz-icon-dinamic {
+                        color: rgba(191,211,50, 1);
+                      }
+
+                      &.bz-icon-flag {
+                        color: rgba(190,47,39, 1);
+                      }
+                    }
+                  }
+
+                  .bz-card-caption {
+                    max-width: 100%;
+                    overflow: hidden;
+                    display: -ms-flexbox;
+                    display: -webkit-flex;
+                    display: flex;
+
+                    -ms-flex-pack: center;
+                    -webkit-justify-content: center;
+                    justify-content: center;
+
+                    -ms-flex-align: center;
+                    -webkit-align-items: center;
+                    align-items: center;
+
+                    font-size: 22px;
+                    font-weight: 300;
+                    color: rgb(63, 68, 82);
+
+                    position: static;
+                    background: none;
+                    width: auto;
+                    margin: 0 0;
+                    padding: 0.75em 1em;
+                    top: 0;
+                    left: 0;
+                    box-shadow: none;
+                    -webkit-transition: color 0.1s ease;
+                    transition: color 0.1s ease;
+
+                    text-align: center;
+
+                    .big {
+                      padding-right: 15px;
+                      font-size: 28px;
+                      font-weight: 700;
+                      display: inline-block;
+                    }
+                  }
+
+                  .bz-card-sub-caption {
+                    font-size: 18px;
+                    color: rgba(89,99,107, .95);;
+                  }
+
+                  .bz-card-text {
+                    font-size: 16px;
+                    color: #88858c;
+                  }
+
+                  .bz-showcase-box {
+                    margin: 0.875em 0 0 0;
+                    text-align: center;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      .bz-about-what-useful {}
+      .bz-about-who-are-we {}
+      .bz-about-help {}
+      .bz-about-support-us {}
+    }
+  }
+}

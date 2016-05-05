@@ -38,7 +38,7 @@ Template.postsNew.events({
     validatePostsNewPage(v).then((ret)=>{
       if(ret.res){
         !!ret.msg.length && bz.ui.alert(ret.msg.join('; '));
-        //CreateNewPostFromView(v);
+        CreateNewPostFromView(v);
       } else {
         bz.ui.error(ret.msg.join('; '));
       }
