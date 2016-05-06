@@ -5,7 +5,7 @@
 bz.bus.postsHandler = {
   getPost: function (requestedPostId) {
     var post,
-      postDb=bz.cols.posts.findOne({_id: requestedPostId})
+      postDb=bz.cols.posts.findOne({_id: requestedPostId});
     if (postDb){
       post={
         _id: postDb._id,
