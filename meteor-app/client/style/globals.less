@@ -227,7 +227,7 @@ a, .uk-link, a:hover, .uk-link:hover {
 
 .bz-text-align-right {text-align: right;}
 
-.bz-read-more {display:block; margin-bottom: 8px;}
+.bz-read-more {display:block; margin-bottom: 8px; &.inline {display: inline-block}}
 
 .bz-grid-block {margin: 0 -20px;}
 
@@ -1049,8 +1049,9 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
 */
 
 .bz-flex {
-  display: -ms-flexbox;
+  display: -webkit-box;
   display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 

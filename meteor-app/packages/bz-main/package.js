@@ -51,6 +51,7 @@ Package.onUse(function (api) {
     'client/browser/style/foundation/js/vendor/modernizr.js',
     'client/browser/style/foundation/js/foundation.js',
     'client/browser/style/foundation/js/foundation/foundation.magellan.js',
+    'client/browser/style/foundation/js/foundation/foundation.accordion.js',
     'client/browser/style/foundation/js/foundation-select.js',
     'client/browser/style/foundation/js/foundation/foundation.clearing.js',
     'client/browser/style/foundation/js/foundation/foundation.tooltip.js',
@@ -60,7 +61,7 @@ Package.onUse(function (api) {
       
     'client/browser/style/foundation/js/foundation/foundation.offcanvas.js',
     'client/browser/style/foundation/js/foundation/foundation.abide.js',
-    'client/browser/style/foundation/js/foundation/foundation.slider.js',
+    'client/browser/style/foundation/js/foundation/foundation.slider.js'
   ], global.bzSettings.webBrowserArray);
   api.addFiles([
     'client/browser/style/foundation/foundation-select.css',

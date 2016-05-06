@@ -4,7 +4,7 @@
 Router.map(function () {
   this.route('bz.aboutUs', {
     path: '/about-us',
-    template: 'pageAboutUs'
+    template: 'aboutUsRu'
   });
   this.route('contactUs', {
     path: '/contacts',

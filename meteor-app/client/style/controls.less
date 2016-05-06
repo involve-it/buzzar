@@ -648,15 +648,15 @@ textarea:-ms-input-placeholder {
 
 .bz-wrap-page {
   position: relative;
-  /*z-index: 999;*/
   height: 100%;
+  /*z-index: 999;*/
   /*background: #FFFFFF;*/
 }
 
 .bz-overflow-y-auto {
-  overflow-y: auto;
+ /* overflow-y: auto;
+  height: 100%;*/
   -webkit-overflow-scrolling: touch;
-  height: 100%;
 }
 
 nav.left-off-canvas-menu {
@@ -1511,3 +1511,31 @@ pre.CodeMirror-line {}
   }
 }
 
+
+/* ACCORDION */
+
+.accordion {
+
+  .accordion-navigation {
+    border-bottom: 1px solid rgba(0,0,0, .1);
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .accordion-navigation, dd {
+    > .content {
+      &.active {
+        background-color: #e3e3e3;
+      }
+    }
+  }
+
+  .accordion-navigation, dd {
+   &.active {
+     > a {
+       background-color: #e3e3e3;
+     }
+   }
+  }
+}
