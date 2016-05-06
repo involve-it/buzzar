@@ -3,9 +3,18 @@
  */
 bz.help.makeNamespace('bz.const.errors');
 bz.const.errors={
+  //for usersHandler
   users: {
     badProfileDetails: {errorId: 1},
-    badEmails: {errorId: 2},
+    badEmail: {errorId: 2},
     badImageUrl: {errorId: 3}
+  },
+  //for postsHandler
+  posts:{
+
+  },
+  //global errors
+  global:{
+    internalError:{errorId:999}
   }
 };

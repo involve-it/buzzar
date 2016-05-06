@@ -32,10 +32,8 @@ bz.bus.usersHandler = {
         return user;
     },
     editUser: function (requestProfileDetails, requestImageUrl, requestEmails, currentUserId) {
-        var profileDetails=[], emails=[], user,
+        var profileDetails=[], emails=[], user={},ret={},
             userDb = Meteor.users.findOne({_id: currentUserId});
-        var emaileRegEx =/[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}/i;
-        var imageUrlRegEx=/^(https:\/\/buzzar.s3-us-west-1.amazonaws.com\/v1.0\/public\/images\/)[A-Z0-9.-]+/i;
         if (Array.isArray(requestProfileDetails)) {
             _.each(requestProfileDetails, function (item) {
                 if (item.key) {
@@ -48,28 +46,28 @@ bz.bus.usersHandler = {
             });
         }else {
             //error
-            return {success:false, error: bz.const.errors.users.badProfileDetails.errorId}
+            ret = {success:false, error: bz.const.errors.users.badProfileDetails}
         }
         if (Array.isArray(requestEmails)) {
             _.each(requestEmails, function (item) {
-                if ( item && emaileRegEx.test(item)) {
+                if ( item && bz.const.RegExp.emaileRegEx.test(item)) {
                     emails.push({address: item.address});
                 }
                 else{
                     //error
-                    return {success:false, error: bz.const.errors.users.badEmails.errorId}
+                    ret = {success:false, error: bz.const.errors.users.badEmail}
                 }
             });
         }
         else{
             //error
-            return {success:false, error: bz.const.errors.users.badEmails.errorId}
+            ret = {success:false, error: bz.const.errors.users.badEmail}
         }
-        if (requestImageUrl && imageUrlRegEx.test(requestImageUrl)){
+        if (requestImageUrl && bz.const.RegExp.imageUrlRegEx.test(requestImageUrl)){
 
         }else{
             //error
-            return {success:false, error: bz.const.errors.users.badImageUrl.errorId}
+            ret = {success:false, error: bz.const.errors.users.badImageUrl}
         }
         if (userDb) {
             if(profileDetails.length>0){
@@ -91,8 +89,12 @@ bz.bus.usersHandler = {
                 }
                 Meteor.users.update({_id:currentUserId},{$set: user})
             }
-            return {success: true}
+            ret = {success: true}
+        }else{
+            //error
+            ret={success:false, error: bz.const.errors.global.internalError}
         }
+        return ret;
     },
     addUser: function (user) {
         var profile, userId;
