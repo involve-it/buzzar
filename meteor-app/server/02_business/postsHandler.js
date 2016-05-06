@@ -10,14 +10,14 @@ bz.bus.postsHandler = {
       post={
         _id: postDb._id,
         type: postDb.type,
-        tags: postDb.tags,
         details:{
           locations: postDb.details.locations,
           url: postDb.details.url,
           title: postDb.details.title,
           description: postDb.details.description,
           price: postDb.details.price,
-          photos: postDb.details.photos
+          photos: postDb.details.photos,
+          tags: postDb.details.tags
         },
         status: postDb.status,
         timestamp:postDb.timestamp,
