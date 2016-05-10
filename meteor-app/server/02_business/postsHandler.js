@@ -34,5 +34,6 @@ bz.bus.postsHandler = {
       post.comments=bz.bus.commentsHandler.getComments(postDb._id);
     }
     return post;
-  }
+  },
+
 };

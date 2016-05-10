@@ -4,7 +4,7 @@
 
 bz.bus.usersHandler = {
     getUser: function (requestedUserId, currentUserId) {
-        var user, profileDetails,
+        var user, profileDetails,ret={},
             userDb = Meteor.users.findOne({_id: requestedUserId});
         if (userDb) {
             user = {
@@ -28,46 +28,51 @@ bz.bus.usersHandler = {
                 });
             }
             user.profileDetails = profileDetails;
-        }
-        return user;
-    },
-    editUser: function (requestProfileDetails, requestImageUrl, requestEmails, currentUserId) {
-        var profileDetails=[], emails=[], user={},ret={},
-            userDb = Meteor.users.findOne({_id: currentUserId});
-        if (Array.isArray(requestProfileDetails)) {
-            _.each(requestProfileDetails, function (item) {
-                if (item.key) {
-                    profileDetails.push({
-                        key: item.key,
-                        value: item.value,
-                        policy: item.policy
-                    });
-                }
-            });
-        }else {
-            //error
-            ret = {success:false, error: bz.const.errors.users.badProfileDetails}
-        }
-        if (Array.isArray(requestEmails)) {
-            _.each(requestEmails, function (item) {
-                if ( item && bz.const.RegExp.emaileRegEx.test(item)) {
-                    emails.push({address: item.address});
-                }
-                else{
-                    //error
-                    ret = {success:false, error: bz.const.errors.users.badEmail}
-                }
-            });
-        }
-        else{
-            //error
-            ret = {success:false, error: bz.const.errors.users.badEmail}
-        }
-        if (requestImageUrl && bz.const.RegExp.imageUrlRegEx.test(requestImageUrl)){
-
+            ret={success:true,user: user};
         }else{
-            //error
-            ret = {success:false, error: bz.const.errors.users.badImageUrl}
+            ret={success:false, error: bz.const.errors.global.dataNotFound}
+        }
+        return ret;
+    },
+    editUser: function (requestData, currentUserId) {
+        var requestProfileDetails,requestImageUrl,requestEmail,profileDetails=[], email, user={},ret={},
+            profileDetailsKeys=["firstNme", "lastName", "city","phone","skype", "vk", "twitter", "facebook"],
+            userDb = Meteor.users.findOne({_id: currentUserId});
+        requestProfileDetails=requestData.profileDetails;
+        requestEmail=requestData.email;
+        requestImageUrl=requestData.imageUrl;
+        if (requestProfileDetails) {
+            if (Array.isArray(requestProfileDetails)) {
+                _.each(requestProfileDetails, function (item) {
+                    if (item.key && (item.key in profileDetailsKeys)) {
+                        profileDetails.push({
+                            key: item.key,
+                            value: item.value,
+                            policy: item.policy
+                        });
+                    }
+                });
+            } else {
+                //error
+                ret = {success: false, error: bz.const.errors.users.badProfileDetails}
+            }
+        }
+        if(requestEmail) {
+            if (bz.const.RegExp.emaileRegEx.test(requestEmail)) {
+                email = requestEmail;
+            }
+            else {
+                //error
+                ret = {success: false, error: bz.const.errors.users.badEmail}
+            }
+        }
+        if (requestImageUrl) {
+            if (bz.const.RegExp.imageUrlRegEx.test(requestImageUrl)) {
+
+            } else {
+                //error
+                ret = {success: false, error: bz.const.errors.users.badImageUrl}
+            }
         }
         if (userDb) {
             if(profileDetails.length>0){
@@ -78,14 +83,12 @@ bz.bus.usersHandler = {
                     );
                 })
             }
-            if(requestImageUrl || emails.length>0){
+            if(requestImageUrl || email){
                 if (requestImageUrl){
                     user.profile = {image:{ data: requestImageUrl}}
                 }
-                if (emails.length>0){
-                    _.each(emails, function (email) {
-                        user.emails={address:email.address};
-                    })
+                if (email){
+                    user.emails={address:email};
                 }
                 Meteor.users.update({_id:currentUserId},{$set: user})
             }
@@ -117,7 +120,7 @@ bz.bus.usersHandler = {
             }
             return {success: true}
         }catch(ex){
-            console.log(ex)
+            console.log(ex);
             throw new Meteor.Error(403, ex.message);
         }
     }

@@ -15,6 +15,7 @@ bz.const.errors={
   },
   //global errors
   global:{
+    dataNotFound:{errorId: 404},
     internalError:{errorId:999}
   }
 };

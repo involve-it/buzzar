@@ -6,8 +6,8 @@ Meteor.methods({
   getUser:function(userId) {
     return bz.bus.usersHandler.getUser(userId, Meteor.userId());
   },
-  editUser: function(profileDetails,imageUrl, emails){
-    return bz.bus.usersHandler.editUser(profileDetails,imageUrl, emails, Meteor.userId());
+  editUser: function(requestData){
+    return bz.bus.usersHandler.editUser(requestData, Meteor.userId());
   },
   addUser: function(user){
     return  bz.bus.usersHandler.addUser(user);
