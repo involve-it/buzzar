@@ -29,8 +29,15 @@ bz.bus.usersHandler = {
               arrProfileDetails = bz.cols.profileDetails.find({userId: requestedUserId, policy: 1}).map(function(profile){
                   return {
                       key: profile.key,
-                      value: profile.value
+                      value: profile.value,
+                      policy: profile.policy
                   };
+              });
+              _.each(arrProfileDetails,function(item){
+                profileDetails[item.key]={
+                  value: item.value,
+                  policy: item.policy
+                }
               });
             }
             user.profileDetails = profileDetails;
