@@ -7,41 +7,33 @@ bz.bus.usersHandler = {
         var user, arrProfileDetails,profileDetails={}, ret={},
             userDb = Meteor.users.findOne({_id: requestedUserId});
         if (userDb) {
-            user = {
-              _id: userDb._id,
-              createdAt: userDb.createdAt,
-              username: userDb.username,
-              online: userDb.online,
-              imageUrl: userDb.profile && userDb.profile.image && userDb.profile.image.data
-            };
-            if (requestedUserId === currentUserId) {
-              arrProfileDetails = bz.cols.profileDetails.find({userId: requestedUserId}).fetch();
-              _.each(arrProfileDetails,function(item){
-                profileDetails[item.key]={
-                  value: item.value,
-                  policy: item.policy
-                }
-              });
-              user.locations = bz.cols.locations.find({userId: requestedUserId}).fetch();
-              user.emails = userDb.emails;
-              user.language = userDb.profile && userDb.profile.language;
-            } else {
-              arrProfileDetails = bz.cols.profileDetails.find({userId: requestedUserId, policy: 1}).map(function(profile){
-                  return {
-                      key: profile.key,
-                      value: profile.value,
-                      policy: profile.policy
-                  };
-              });
-              _.each(arrProfileDetails,function(item){
-                profileDetails[item.key]={
-                  value: item.value,
-                  policy: item.policy
-                }
-              });
+          user = {
+            _id: userDb._id,
+            createdAt: userDb.createdAt,
+            username: userDb.username,
+            online: userDb.online,
+            image:{
+              imageUrl: userDb.profile && userDb.profile.image && userDb.profile.image.data,
+              thumbnail: userDb.profile && userDb.profile.image && userDb.profile.image.data && userDb.profile.image.thumbnail
             }
-            user.profileDetails = profileDetails;
-            ret={success:true, result: user};
+          };
+          if (requestedUserId === currentUserId) {
+            arrProfileDetails = bz.cols.profileDetails.find({userId: requestedUserId}).fetch();
+
+            user.locations = bz.cols.locations.find({userId: requestedUserId}).fetch();
+            user.emails = userDb.emails;
+            user.language = userDb.profile && userDb.profile.language;
+          } else {
+            arrProfileDetails = bz.cols.profileDetails.find({userId: requestedUserId, policy: "1"}).fetch();
+          }
+          _.each(arrProfileDetails,function(item){
+            profileDetails[item.key]={
+              value: item.value,
+              policy: item.policy
+            }
+          });
+          user.profileDetails = profileDetails;
+          ret={success:true, result: user};
         }else{
             ret={success:false, error: bz.const.errors.global.dataNotFound}
         }
@@ -97,7 +89,7 @@ bz.bus.usersHandler = {
             }
             if(requestImageUrl || email){
                 if (requestImageUrl){
-                    user.profile = {image:{ data: requestImageUrl}}
+                    user.profile = {image:{ data: requestImageUrl, thumbnail: null}}
                 }
                 if (email){
                     user.emails={address:email};
