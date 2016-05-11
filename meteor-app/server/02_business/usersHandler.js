@@ -28,7 +28,7 @@ bz.bus.usersHandler = {
                 });
             }
             user.profileDetails = profileDetails;
-            ret={success:true,user: user};
+            ret={success:true, result: user};
         }else{
             ret={success:false, error: bz.const.errors.global.dataNotFound}
         }
