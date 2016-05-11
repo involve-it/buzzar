@@ -4,28 +4,34 @@
 
 bz.bus.usersHandler = {
     getUser: function (requestedUserId, currentUserId) {
-        var user, profileDetails,ret={},
+        var user, arrProfileDetails,profileDetails={}, ret={},
             userDb = Meteor.users.findOne({_id: requestedUserId});
         if (userDb) {
             user = {
-                _id: userDb._id,
-                createdAt: userDb.createdAt,
-                username: userDb.username,
-                online: userDb.online,
-                imageUrl: userDb.profile && userDb.profile.image && userDb.profile.image.data
+              _id: userDb._id,
+              createdAt: userDb.createdAt,
+              username: userDb.username,
+              online: userDb.online,
+              imageUrl: userDb.profile && userDb.profile.image && userDb.profile.image.data
             };
             if (requestedUserId === currentUserId) {
-                profileDetails = bz.cols.profileDetails.find({userId: requestedUserId}).fetch();
-                user.locations = bz.cols.locations.find({userId: requestedUserId}).fetch();
-                user.emails = userDb.emails;
-                user.language = userDb.profile && userDb.profile.language;
+              arrProfileDetails = bz.cols.profileDetails.find({userId: requestedUserId}).fetch();
+              _.each(arrProfileDetails,function(item){
+                profileDetails[item.key]={
+                  value: item.value,
+                  policy: item.policy
+                }
+              });
+              user.locations = bz.cols.locations.find({userId: requestedUserId}).fetch();
+              user.emails = userDb.emails;
+              user.language = userDb.profile && userDb.profile.language;
             } else {
-                profileDetails = bz.cols.profileDetails.find({userId: requestedUserId, policy: 1}).map(function(profile){
-                    return {
-                        key: profile.key,
-                        value: profile.value
-                    };
-                });
+              arrProfileDetails = bz.cols.profileDetails.find({userId: requestedUserId, policy: 1}).map(function(profile){
+                  return {
+                      key: profile.key,
+                      value: profile.value
+                  };
+              });
             }
             user.profileDetails = profileDetails;
             ret={success:true, result: user};
@@ -36,7 +42,6 @@ bz.bus.usersHandler = {
     },
     editUser: function (requestData, currentUserId) {
         var requestProfileDetails,requestImageUrl,requestEmail,profileDetails=[], email, user={},ret={},
-            profileDetailsKeys=["firstNme", "lastName", "city","phone","skype", "vk", "twitter", "facebook"],
             userDb = Meteor.users.findOne({_id: currentUserId});
         requestProfileDetails=requestData.profileDetails;
         requestEmail=requestData.email;
@@ -44,7 +49,7 @@ bz.bus.usersHandler = {
         if (requestProfileDetails) {
             if (Array.isArray(requestProfileDetails)) {
                 _.each(requestProfileDetails, function (item) {
-                    if (item.key && (item.key in profileDetailsKeys)) {
+                    if (item.key && (item.key in bz.const.verification.profileDetailsKeys)) {
                         profileDetails.push({
                             key: item.key,
                             value: item.value,
