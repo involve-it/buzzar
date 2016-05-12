@@ -82,7 +82,7 @@ bz.bus.usersHandler = {
         if (userDb) {
             if(profileDetails.length>0){
                 _.each(profileDetails, function(profileDetail){
-                    bz.cols.profileDetails.update({userId:currentUserId,key: profileDetail.key},
+                    bz.cols.profileDetails.update({userId:currentUserId},
                       {$set: profileDetail},
                       {upsert: true}
                     );
