@@ -4,7 +4,7 @@
 
 bz.bus.usersHandler = {
     getUser: function (requestedUserId, currentUserId) {
-        var user, arrProfileDetails,profileDetails={}, ret={},
+        var user, arrProfileDetails,profileDetails=[], ret={},
             userDb = Meteor.users.findOne({_id: requestedUserId});
         if (userDb) {
           user = {
@@ -27,10 +27,11 @@ bz.bus.usersHandler = {
             arrProfileDetails = bz.cols.profileDetails.find({userId: requestedUserId, policy: "1"}).fetch();
           }
           _.each(arrProfileDetails,function(item){
-            profileDetails[item.key]={
+            profileDetails.push({
+              key: item.key,
               value: item.value,
               policy: item.policy
-            }
+            })
           });
           user.profileDetails = profileDetails;
           ret={success:true, result: user};
