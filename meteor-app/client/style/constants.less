@@ -48,6 +48,22 @@ p {
   transform: translate3d(-50%, -50%, 0);
 }
 
+/*links mixin*/
+.links(@link, @visited, @hover, @active) {
+  & {
+    color: @link;
+    &:visited {
+      color: @visited;
+    }
+    &:hover {
+      color: @hover;
+    }
+    &:active, &:focus {
+      color: @active;
+    }
+  }
+}
+
 .border-radius(@radius) {
   -webkit-border-radius: @radius;
   -moz-border-radius:    @radius;

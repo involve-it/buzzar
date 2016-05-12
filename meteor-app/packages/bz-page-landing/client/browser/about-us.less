@@ -281,7 +281,7 @@
       
       .bz-magellan-menu {
         background-color: rgba(255,255,255, 1);
-        
+        overflow: -moz-scrollbars-none;
         .bz-we-are-at-social {
           
           p {
@@ -297,6 +297,10 @@
               }
             }
           }
+        }
+        
+        &::-webkit-scrollbar {
+          display: none;
         }
       }
       
@@ -661,6 +665,10 @@
 
           .sub-nav {
             padding-left: 20px;
+          }
+          
+          .bz-we-are-at-social {
+            padding-right: 16px;
           }
         }
       }

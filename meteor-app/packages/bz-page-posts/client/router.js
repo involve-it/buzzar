@@ -27,7 +27,7 @@ Router.map(function () {
     onAfterAction: function () {
       var post = this.data();
       post && runHitTracking(post);
-      console.log('onAfterAction' + this.data());
+      console.log('onAfterAction', this.data());
     },
     onBeforeAction: function () {
       if (!this.data()) {

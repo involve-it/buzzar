@@ -39,7 +39,37 @@ Template.bzUserProfileBasic.rendered = function () {
     starType: 'i'
   });
 };
+
+Template.bzUserProfileBasic.onCreated(function() {
+  this.someUserData = new ReactiveVar(false);
+});
+
 Template.bzUserProfileBasic.helpers({
+  getUser: function() {
+    var userId = this._id, ins = Template.instance(), innerObj = {}, usegObj = {};
+    /*console.info(Router.current().params._id);
+    console.info(this._id);*/
+    if (ins.someUserData.get() === false) {
+      Meteor.call('getUser', userId, function(e, r){
+        if(e) {
+          //error
+        } else {
+          innerObj = r.result;
+
+          _.each(innerObj, function(value, key, list) {
+
+            if(key === 'image') {
+              usegObj['image'] = list.image
+            }
+
+          });
+          usegObj['username'] = innerObj.username;
+          ins.someUserData.set(usegObj);
+        }
+      });
+    }
+    return ins.someUserData.get();
+  },
   belongsToCurrentUser: function (e, v) {
     return this._id === Meteor.userId();
   },
@@ -48,6 +78,7 @@ Template.bzUserProfileBasic.helpers({
     return post && post._id;
   }
 });
+
 Template.bzUserProfileBasic.events({
   'click .js-send-message-btn': function (e, v) {
     /*var qs = {

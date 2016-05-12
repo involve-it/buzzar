@@ -131,7 +131,37 @@ Template.bzDropSelectLanguage.events({
 });
 
 
+Template.bzNavMe.onCreated(function() {
+  this.someUserData = new ReactiveVar(false);
+});
+
 Template.bzNavMe.helpers({
+  
+  getUser: function() {
+    var userId = Meteor.userId(), ins = Template.instance(), innerObj = {}, usegObj = {};
+    if (ins.someUserData.get() === false) {
+      Meteor.call('getUser', userId, function(e, r){
+        if(e) {
+          //error
+        } else {
+          innerObj = r.result;
+
+          _.each(innerObj, function(value, key, list) {
+
+            if(key === 'image') {
+              usegObj['image'] = list.image
+            }
+            
+          });
+          usegObj['username'] = innerObj.username;
+          ins.someUserData.set(usegObj);
+        }
+      });
+    }
+    return ins.someUserData.get();
+  }
+  /* OLD CODE */
+  /*,
   getUserAvatar: function(){
     var ret = '/img/content/avatars/avatar-no.png';
     var user = Meteor.user();
@@ -143,15 +173,8 @@ Template.bzNavMe.helpers({
   username: function() {
     var user = Meteor.users.findOne({_id: Meteor.userId()} );
     return user && user.username;
-  }
+  }*/
 });
-
-
-/*Template.bzNavMe.events({
-  'click .js-sign-out': function(e, v) {
-    Session.set('fromWhere', null);
-  }
-});*/
 
 
 Template.bzLeftMenuSelectLanguage.onRendered(function() {

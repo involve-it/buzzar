@@ -13,15 +13,19 @@
 
            <div class="bz-status-wrapper">
                <div class="user-avatar">
-                   {{> avatarThumbnail image=profile.image}}
+                   <div class="bz-avatar" style="background-image: url({{getUser.image.imageUrl}})"></div>
+                   
+                   <!-- OLD CODE -->
+                   <!-- {{> avatarThumbnail image=profile.image}}-->
+                   
                </div>
                {{> bzAvatarUserStatus}}
            </div>
 
           <div class="user-info">
-            <div class="user-name capitalize"> {{ username }} </div>
-            <div class="user-fio"> {{getFIO}}</div>
-            <div class="user-location"> {{getCity}}</div>
+            <div class="user-name capitalize">{{getUser.username}} </div>
+            <div class="user-fio">{{getUser.firstName.value}} {{getUser.lastName.value}}</div>
+            <div class="user-location"> {{getUser.city.value}}</div>
 
           </div>
 
@@ -53,17 +57,17 @@
               </div>
             </div>
             -->
-            {{#if $eq getPhoneStatus  "1" }}
+            {{#if $eq getUser.phone.policy  "1" }}
               <div class="item-details">
                 <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_PHONE' }}</div>
-                <div class="small-12 medium-10 large-10 bz-input-result columns"><p>{{getPhoneNumber}} </p></div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p>{{getUser.phone.value}} </p></div>
               </div>
             {{/if}}
 
-            {{#if $eq getSkypeStatus  "1" }}
+            {{#if $eq getUser.skype.policy  "1" }}
               <div class="item-details">
                 <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_SKYPE' }}</div>
-                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getSkype}} </p></div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getUser.skype.value}} </p></div>
               </div>
             {{/if}}
 
@@ -72,29 +76,29 @@
 
           <div class="clearfix"></div>
 
-          {{#if $eq getVKStatus  "1" }}
+          {{#if $eq getUser.vk.policy  "1" }}
             <div class="user-item overflow">
               <div class="item-details">
                 <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_VK'}}</div>
-                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getVK}}</p></div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getUser.vk.value}}</p></div>
               </div>
             </div>
           {{/if}}
 
-          {{#if $eq getFaceBookStatus  "1" }}
+          {{#if $eq getUser.facebook.policy  "1" }}
             <div class="user-item overflow">
               <div class="item-details">
                 <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_FACEBOOK_URL'}}</div>
-                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getFacebook }} </p></div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getUser.facebook.value }} </p></div>
               </div>
             </div>
           {{/if}}
 
-          {{#if $eq getTwitterStatus  "1" }}
+          {{#if $eq getUser.twitter.policy  "1" }}
             <div class="user-item overflow">
               <div class="item-details">
                 <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_TWITTER'}}</div>
-                <div class="small-12 medium-10 large-10 bz-input-result columns"><p>{{getTwitter}}</p></div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p>{{getUser.twitter.value}}</p></div>
               </div>
             </div>
           {{/if}}
@@ -168,9 +172,6 @@
                     <p class="post-item-text">
                         {{{ postLimitDescription 65 }}}
                     </p>
-                    <div class="bz-text-align-right">
-                        <a class="bz-read-more" href="/post/{{_id}}">{{ t9n 'READ_MORE'}}</a>
-                    </div>
                     {{> postProgressBar}}
                 </div>
                 <div class="bz-item-footer">

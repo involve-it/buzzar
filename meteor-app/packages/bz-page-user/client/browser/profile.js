@@ -2,8 +2,9 @@
  * Created by douson on 09.07.15.
  */
 Template.profileSettings.onCreated(function() {
-  Meteor.subscribe('users', Router.current().params._id);
-  Meteor.subscribe('profileDetails-my');
+  //Meteor.subscribe('users', Router.current().params._id);
+
+  this.someUserData = new ReactiveVar(false);
 });
 
 Template.profileSettings.onRendered(function() {
@@ -29,15 +30,40 @@ Template.profileSettings.helpers({
     ]
     
   },
-
+  /* NEW CODE */
+  getUser: function() {
+    var userId = Meteor.userId(), ins = Template.instance(), innerObj = {}, usegObj = {};
+    if (ins.someUserData.get() === false) {
+      Meteor.call('getUser', userId, function(e, r){
+        if(e) {
+          //error
+        } else {
+          innerObj = r.result;
+          
+          _.each(innerObj.profileDetails, function(item) {
+            usegObj[item.key] = {
+              value:  item.value,
+              policy: item.policy
+            };
+          });
+          
+          usegObj['username'] = innerObj.username;
+          //console.info(usegObj);
+          ins.someUserData.set(usegObj);
+        }
+      });
+    }
+    return ins.someUserData.get();
+  },
+  /* OLD CODE */
   getPostsCount: function(){
     return bz.cols.posts.find({userId: Meteor.userId()}).count();
   },
   getReviewsCount: function(){
     return bz.cols.reviews.find({userId: Meteor.userId()}).count();
   },
-
-  getFirstName: function(){
+  
+  /*getFirstName: function(){
     var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'firstName'});
     return details && details.value;
   },
@@ -88,7 +114,8 @@ Template.profileSettings.helpers({
   getTwitterUrlStatus: function(){
     var details = bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'twitter'});
     return details && details.policy;
-  },
+  },*/
+  
   getUserProfileLink: function() {
     // protocol / user/ user_id
     var urlBase = Meteor.absoluteUrl();
@@ -162,7 +189,17 @@ Template.profileSettings.events({
         policy:  v.$('select.js-profile-facebook-status').val()
       }
     ];
-   Meteor.call('updateProfileDetails', this._id, attributes, function(err){
+    
+    Meteor.call('editUser', {profileDetails: attributes}, function(e, r) {
+      if (e){
+        //error
+        console.info(e);
+      } else {
+        console.info(r);
+      }
+    });
+    
+   /*Meteor.call('updateProfileDetails', this._id, attributes, function(err){
      if (err){
 
      }
@@ -170,7 +207,7 @@ Template.profileSettings.events({
      {
 
      }
-   });
+   });*/
   },
   'submit form': function (event){
     event.preventDefault();

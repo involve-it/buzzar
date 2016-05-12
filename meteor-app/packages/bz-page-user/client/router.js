@@ -8,7 +8,9 @@ Router.map(function () {
     controller: 'requireLoginController',
     waitOn: function () {
       return [
-        Meteor.subscribe('users')
+        //Meteor.subscribe('users')
+        /* OLD CODE */
+        //Meteor.subscribe('profileDetails-my')
       ]
     },
     data: function () {
@@ -34,6 +36,8 @@ Router.map(function () {
     waitOn: function () {
       //var user = Meteor.users.findOne({_id: Meteor.userId()});
       return [
+        /* OLD CODE */
+        //Meteor.subscribe('profileDetails-another'),
         Meteor.subscribe('users'),
         Meteor.subscribe('bz.chats.my', Meteor.userId())
       ]

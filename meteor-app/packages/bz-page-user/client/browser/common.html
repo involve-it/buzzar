@@ -20,7 +20,9 @@
     <div class="bz-padding-10 overflow">
       <div class="bz-user-badge">
         <a href="/user/{{_id}}">
-          {{> avatarThumbnail image=profile.image }}
+            <div class="bz-avatar" style="background-image: url({{#if getUser.image.imageUrl}} {{getUser.image.imageUrl}} {{else}} '/img/content/avatars/avatar-no.png' {{/if}})"></div>
+          <!-- OLD CODE -->
+          <!--{{> avatarThumbnail image=profile.image }}-->
         </a>
         {{> bzAvatarUserStatus}}
       </div>
@@ -28,7 +30,7 @@
         <div class="bz-user-date">
             <div class="bz-user-date-status">
                 <a href="/user/{{_id}}">
-                    <div class="bz-user-date-username">{{ username }}</div>
+                    <div class="bz-user-date-username">{{getUser.username}}</div>
                 </a>
             
             {{#if belongsToCurrentUser }}
@@ -38,15 +40,6 @@
             {{/if}}
             
             </div>
-            
-            <!--<div class="">
-            {{#if isOnline }}
-            [[Online]]
-            {{else }}
-            [[offline]]
-            {{/if}}
-            </div>-->
-            <!--<div class="bz-rating"></div>-->
         </div>
 
       <div class="bz-send-message">
