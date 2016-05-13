@@ -15,7 +15,8 @@ bz.bus.postsHandler = {
           url: postDb.details.url,
           title: postDb.details.title,
           description: postDb.details.description,
-          price: postDb.details.price
+          price: postDb.details.price,
+          other: postDb.details.other
         },
         status: postDb.status,
         timestamp:postDb.timestamp,
@@ -42,7 +43,7 @@ bz.bus.postsHandler = {
 
       }
       if (!postDb.details.anonymousPost) {
-        post.user = bz.bus.usersHandler.getUser(postDb.userId, Meteor.userId()).result;
+        post.user = bz.bus.usersHandler.getUser(postDb.userId, Meteor.userId());
       }
       post.comments=bz.bus.commentsHandler.getComments(postDb._id);
       ret={success:true, result:post}
@@ -59,8 +60,7 @@ bz.bus.postsHandler = {
     type=requestPage.type;
     take= requestPage.take;
     skip=requestPage.skip;
-    //sort
-    option={skip: skip, limit: take};
+    option={sort:{timestamp:-1},skip: skip, limit: take};
     if (type=='all'){
       arrIdPosts=bz.cols.posts.find({userId: currentUserId},option).fetch();
     }else if(type=='active'){
@@ -83,6 +83,7 @@ bz.bus.postsHandler = {
     }
     ret={success:true, result:posts};
     return ret;
-  }
+  },
+
 
 };
