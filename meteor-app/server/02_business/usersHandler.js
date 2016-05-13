@@ -36,7 +36,9 @@ bz.bus.usersHandler = {
           user.profileDetails = profileDetails;
           ret={success:true, result: user};
         }else{
-            ret={success:false, error: bz.const.errors.global.dataNotFound}
+          //error
+          ret={success:false, error: bz.const.errors.global.dataNotFound};
+          return ret;
         }
         return ret;
     },
@@ -49,7 +51,7 @@ bz.bus.usersHandler = {
         if (requestProfileDetails) {
             if (Array.isArray(requestProfileDetails)) {
                 _.each(requestProfileDetails, function (item) {
-                    if (item.key && (item.key in bz.const.verification.profileDetailsKeys)) {
+                    if (item.key && (bz.const.verification.profileDetailsKeys.indexOf(item.key)!==-1)) {
                         profileDetails.push({
                             key: item.key,
                             value: item.value,
@@ -58,8 +60,9 @@ bz.bus.usersHandler = {
                     }
                 });
             } else {
-                //error
-                ret = {success: false, error: bz.const.errors.users.badProfileDetails}
+              //error
+              ret = {success: false, error: bz.const.errors.users.badProfileDetails};
+              return ret;
             }
         }
         if(requestEmail) {
@@ -67,22 +70,24 @@ bz.bus.usersHandler = {
                 email = requestEmail;
             }
             else {
-                //error
-                ret = {success: false, error: bz.const.errors.users.badEmail}
+              //error
+              ret = {success: false, error: bz.const.errors.users.badEmail};
+              return ret;
             }
         }
         if (requestImageUrl) {
             if (bz.const.RegExp.imageUrlRegEx.test(requestImageUrl)) {
 
             } else {
-                //error
-                ret = {success: false, error: bz.const.errors.users.badImageUrl}
+              //error
+              ret = {success: false, error: bz.const.errors.users.badImageUrl};
+              return ret;
             }
         }
         if (userDb) {
             if(profileDetails.length>0){
                 _.each(profileDetails, function(profileDetail){
-                    bz.cols.profileDetails.update({userId:currentUserId},
+                    bz.cols.profileDetails.update({userId:currentUserId, key: profileDetail.key},
                       {$set: profileDetail},
                       {upsert: true}
                     );
@@ -99,8 +104,9 @@ bz.bus.usersHandler = {
             }
             ret = {success: true}
         }else{
-            //error
-            ret={success:false, error: bz.const.errors.global.internalError}
+          //error
+          ret={success:false, error: bz.const.errors.global.internalError};
+          return ret;
         }
         return ret;
     },

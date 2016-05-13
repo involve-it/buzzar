@@ -11,7 +11,8 @@ bz.const.errors={
   },
   //for postsHandler
   posts:{
-
+    badRequestTypePost:{errorId: 4},
+    badRequestPageNumber:{errorId: 5}
   },
   //global errors
   global:{
