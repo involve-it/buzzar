@@ -148,6 +148,7 @@ Template.profileSettings.events({
     v.$(event.currentTarget).addClass('disabled');
     v.$('div.btn-edit-account a.js-edit-btn').removeClass('disabled');
     v.$('div.btn-edit-account a.js-cancel-btn').addClass('disabled');
+    
     var attributes = [{
       key: 'firstName',
       value: v.$('input.bz-profile-first-name').val(),
@@ -192,13 +193,13 @@ Template.profileSettings.events({
     
     Meteor.call('editUser', {profileDetails: attributes}, function(e, r) {
       if (e){
-        //error
-        console.info(e);
+        // Error
       } else {
-        console.info(r);
+        bz.ui.alert('Profile has been saved', {type:'success', timeout: 2000})
       }
     });
     
+    /* OLD CODE */
    /*Meteor.call('updateProfileDetails', this._id, attributes, function(err){
      if (err){
 
@@ -208,6 +209,7 @@ Template.profileSettings.events({
 
      }
    });*/
+    
   },
   'submit form': function (event){
     event.preventDefault();

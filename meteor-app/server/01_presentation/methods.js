@@ -303,6 +303,7 @@ Meteor.methods({
   console: function(){
     debugger;
   },
+  /* OLD CODE */
   updateProfileDetails: function(userId, attributes){
     _.each(attributes,function(attribute){
         attribute.userId=userId;
