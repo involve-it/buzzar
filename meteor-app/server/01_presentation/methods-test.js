@@ -17,8 +17,8 @@ Meteor.methods({
   getPost: function(postId){
     return bz.bus.postsHandler.getPost(postId);
   },
-  getMyPosts: function(){
-    return 0;
+  getMyPosts: function(requestPage){
+    return bz.bus.postsHandler.getMyPosts(requestPage, Meteor.userId());
   },
   getNearbyPostsTest: function(){
     return 0;
@@ -26,8 +26,8 @@ Meteor.methods({
   getPopularPosts: function(){
     return 0;
   },
-  addPost: function(){
-    return 0;
+  addPost: function(requset){
+    return bz.bus.postsHandler.getMyPosts(requset, Meteor.userId());;
   },
   editPostTest: function(){
     return 0;

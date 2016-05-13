@@ -4,7 +4,7 @@
 
 bz.bus.postsHandler = {
   getPost: function (requestedPostId) {
-    var post, locations=[], photos=[],photo,ret={};
+    var post, locations=[], photos=[],photo,ret={},
       postDb=bz.cols.posts.findOne({_id: requestedPostId});
     if (postDb){
       post={
@@ -20,11 +20,8 @@ bz.bus.postsHandler = {
         status: postDb.status,
         timestamp:postDb.timestamp,
         endDate:postDb.endDate,
-        stats: {
-          seenToday: postDb.stats.seenToday,
-          seenTotal: postDb.stats.seenTotal
-        },
-        social:postDb.social
+        social:postDb.social,
+        stats:  postDb.stats
       };
       _.each(postDb.details.locations, function(item){
         locations.push({coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
@@ -50,9 +47,42 @@ bz.bus.postsHandler = {
       post.comments=bz.bus.commentsHandler.getComments(postDb._id);
       ret={success:true, result:post}
     }else{
-      ret={success:false, error: bz.const.errors.global.dataNotFound}
+      //error
+      ret={success:false, error: bz.const.errors.global.dataNotFound};
+      return ret;
     }
     return ret;
   },
+
+  getMyPosts: function(requestPage, currentUserId){
+    var ret={},type,take,skip,arrIdPosts=[], posts=[],option={};
+    type=requestPage.type;
+    take= requestPage.take;
+    skip=requestPage.skip;
+    //sort
+    option={skip: skip, limit: take};
+    if (type=='all'){
+      arrIdPosts=bz.cols.posts.find({userId: currentUserId},option).fetch();
+    }else if(type=='active'){
+      arrIdPosts=bz.cols.posts.find({userId: currentUserId, 'status.visible': bz.const.posts.status.visibility.VISIBLE},option).fetch();
+    }else if(type=='live'){
+      arrIdPosts=bz.cols.posts.find({userId: currentUserId, 'status.visible': bz.const.posts.status.visibility.VISIBLE, presences:'close'},option).fetch();
+    }else{
+      //error
+      ret={success:false, error: bz.const.errors.posts.badRequestTypePost};
+      return ret;
+    }
+    if (arrIdPosts.length>0) {
+      _.each(arrIdPosts, function (item) {
+        posts.push(bz.bus.postsHandler.getPost(item._id));
+      });
+    }else{
+      //error
+      ret={success:false, error: bz.const.errors.posts.badRequestPageNumber};
+      return ret;
+    }
+    ret={success:true, result:posts};
+    return ret;
+  }
 
 };
