@@ -77,7 +77,7 @@ bz.bus.postsHandler = {
         posts.push(bz.bus.postsHandler.getPost(item._id));
       });
     }else{
-      //error
+      //error переделать
       ret={success:false, error: bz.const.errors.posts.badRequestPageNumber};
       return ret;
     }
@@ -85,5 +85,110 @@ bz.bus.postsHandler = {
     return ret;
   },
 
+  addPost: function(request, currentUserId){
+    var ret={},post, newPost, postData, validate;
+    postData=request.requestPost;
+    if(postData){
+      validate=bz.bus.postsHandler.validatePost(postData);
+      if (validate.success){
+        newPost={
+          userId: currentUserId,
+          type: postData.type,
+          tags: postData.tags,
+          details: {
+            anonymousPost: postData.details.anonymousPost,
+            locations: postData.details.locations,
+            url: postData.details.url,
+            title: postData.details.title,
+            description: postData.details.description,
+            price: postData.details.price,
+            photos: postData.details.photos,
+            other: postData.details.other
+          },
+          status: {
+            visible: bz.const.posts.status.visibility.VISIBLE
+          },
+          timestamp: postData.timestamp,
+          endDatePost: postData.endDatePost
+        };
+        if (postData.type=='jobs'){
+          newPost.jobsDetails={
+            seniority: postData.jobsDetails.seniority,
+            gender: postData.jobsDetails.gender,
+            contacts: postData.jobsDetails.contacts,
+            attachment: postData.jobsDetails.attachment,
+            typeCategory: postData.jobsDetails.typeCategory,
+            jobsType: postData.jobsDetails.jobsType,
+            payMethod: postData.jobsDetails.payMethod};
+        }else if(postData.type=='trainings') {
+          newPost.trainingsDetails = {
+            sectionLearning: postData.trainingsDetails.sectionLearning,
+            typeCategory: postData.trainingsDetails.typeCategory
+          };
+        }
+        post=bz.cols.posts.insert(newPost);
+        ret={success: true, result: post._id};
+      }else{
+        //error not valid
+        ret={success:false,error: validate};
+      }
+    }else {
+      //error
+      ret={success:false,error: bz.const.errors.posts.badRequestPostData};
+    }
+
+    return ret;
+  },
+  validatePost:function(post){
+    var ret={};
+    if (post.details) {
+      //validate tittle
+      if (post.details.title) {
+        if (true) {
+          //need add dictionary with foul language
+          ret={success:true};
+        } else {
+          //error foul language
+          ret={success:false, error: bz.const.errors.posts.foulLanguageInTittle};
+        }
+      }else{
+        //error empty tittle
+        ret={success:false, error: bz.const.errors.posts.emptyTittle};
+      }
+      //validate description
+      if (post.details.description) {
+        if (true) {
+          //need add dictionary with foul language
+          ret={success:true};
+        } else {
+          //error foul language
+          ret={success:false, error: bz.const.errors.posts.foulLanguageInDescription};
+        }
+      } else {
+        //error empty description
+        ret={success:false, error: bz.const.errors.posts.emptyDescription};
+      }
+      //validate url
+      //validate locations
+      if (post.details.locations){
+        ret={success:true};
+      }else{
+        ret={success:false, error: bz.const.errors.posts.emptyPostLocations};
+      }
+      //validate photo
+    }else{
+      //error empty details
+      ret={success:false, error: bz.const.errors.posts.emptyDetails};
+    }
+    if(!post.timestamp){
+      //error
+      ret={success:false, error: bz.const.errors.posts.emptyTimestamp};
+    }
+    if (!post.endDatePost){
+      //error
+      ret={success:false, error: bz.const.errors.posts.emptyEndDatePost};
+    }
+    return ret;
+  },
 
 };

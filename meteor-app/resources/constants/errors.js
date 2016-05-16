@@ -12,7 +12,16 @@ bz.const.errors={
   //for postsHandler
   posts:{
     badRequestTypePost:{errorId: 4},
-    badRequestPageNumber:{errorId: 5}
+    badRequestPageNumber:{errorId: 5},
+    badRequestPostData:{errorId: 6},
+    foulLanguageInTittle:{errorId: 7},
+    emptyTittle:{errorId:8},
+    foulLanguageInDescription:{errorId: 9},
+    emptyDescription:{errorId:10},
+    emptyDetails:{errorId:11},
+    emptyPostLocations:{errorId:12},
+    emptyTimestamp:{errorId:13},
+    emptyEndDatePost:{errorId:14}
   },
   //global errors
   global:{
