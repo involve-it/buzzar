@@ -159,7 +159,7 @@ bz.bus.search.searchePostsAroundAndPopular = () => {
   aroundYouQuery['$where'] = function(){return this.status.visible !== null};
   aroundYou= bz.cols.posts.find(aroundYouQuery, {sort: {'stats.seenTotal': -1},limit: aroundYouLimit}).fetch();
   _.each(aroundYou, function(post){ids.push(post._id)});
-  popularQuery['$where'] = function(){return this.status.visible !== null};
+  popularQuery['$where'] = function(){return (this.status) ? this.status.visible !== null : false};
   popularQuery['_id']={$nin: ids};
   popular = bz.cols.posts.find(popularQuery,{sort: {'stats.seenTotal': -1},limit: bz.const.search.POPULAR_LIMIT}).fetch();
   ret = {
