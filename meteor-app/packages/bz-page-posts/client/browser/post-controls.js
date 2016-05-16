@@ -304,14 +304,15 @@ Template.postDetailsCommon.helpers({
 
 var lastComputation;
 Template.postPhotoUpload.onRendered(()=> {
-  var that = this;
+  var that = this, key = true;
   
   lastComputation && lastComputation.stop();
   that.$('.js-post-photo-upload-preview-holder').empty();
   setTimeout(()=> {
     Tracker.autorun((computation)=> {
       lastComputation = computation;
-      var holder$ = that.$('.js-post-photo-upload-preview-holder'), imgArr, ret, previewHolder = that.$('.js-post-photo-upload-preview-holder');
+      var holder$ = that.$('.js-post-photo-upload-preview-holder'), imgArr, ret,
+          previewHolder = that.$('.js-post-photo-upload-preview-holder');
       if (holder$ && holder$[0]) {
         imgArr = imagesArrayReactive.get(), ret;
         if (!imgArr || !Array.isArray(imgArr)) {
@@ -333,9 +334,11 @@ Template.postPhotoUpload.onRendered(()=> {
           Blaze.renderWithData(Template.bzPostPhotoUploadImagePreview, img, holder$[0]);
         });
         
-        if(previewHolder && previewHolder.children().length === 1) {
-          $(document).foundation('clearing', 'reflow');
+        if(key && previewHolder && previewHolder.children().length === 1) {
+          $(document).foundation();
+          key = false;
         }
+        
       }
     });
   }, 1000);
@@ -361,24 +364,27 @@ Template.postPhotoUpload.events({
   },
   'click .js-plus-img': function (e, v) {
     $('.js-avatar-upload-modal').foundation('reveal', 'open');
-  }
-});
-
-Template.bzPostPhotoUploadImagePreview.events({
-  'click .js-remove-preview-photo': function (e, v) {
-    e.preventDefault();
+  },
+  'click li .js-remove-preview-photo': function (e, v) {
     e.stopPropagation();
-    
+    e.preventDefault();
+
     var name = v.data.name,
         arr = imagesArrayReactive.get();
-    
+
     var ind = arr.findIndex(x => x.name === name);
     arr.splice(ind, 1);
     imagesArrayReactive.set(arr);
-    
+
     return false;
   }
 });
+
+Template.bzPostPhotoUploadImagePreview.onRendered(function() {
+  
+  
+});
+
 
 function checkIfFieldIsChanged(data, fieldName, value) {
   if (data && fieldName && value !== undefined && value !== null) {
