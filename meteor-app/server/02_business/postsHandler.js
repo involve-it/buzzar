@@ -20,7 +20,7 @@ bz.bus.postsHandler = {
         },
         status: postDb.status,
         timestamp:postDb.timestamp,
-        endDate:postDb.endDate,
+        endDatePost:postDb.endDatePost,
         social:postDb.social,
         stats:  postDb.stats
       };
@@ -66,7 +66,7 @@ bz.bus.postsHandler = {
     }else if(type=='active'){
       arrIdPosts=bz.cols.posts.find({userId: currentUserId, 'status.visible': bz.const.posts.status.visibility.VISIBLE},option).fetch();
     }else if(type=='live'){
-      arrIdPosts=bz.cols.posts.find({userId: currentUserId, 'status.visible': bz.const.posts.status.visibility.VISIBLE, presences:'close'},option).fetch();
+      arrIdPosts=bz.cols.posts.find({userId: currentUserId, 'status.visible': bz.const.posts.status.visibility.VISIBLE, presences:{$ne: {}}},option).fetch();
     }else{
       //error
       ret={success:false, error: bz.const.errors.posts.badRequestTypePost};
@@ -77,8 +77,7 @@ bz.bus.postsHandler = {
         posts.push(bz.bus.postsHandler.getPost(item._id));
       });
     }else{
-      //error переделать
-      ret={success:false, error: bz.const.errors.posts.badRequestPageNumber};
+      ret={success:true, result: []};
       return ret;
     }
     ret={success:true, result:posts};
@@ -142,18 +141,18 @@ bz.bus.postsHandler = {
   validatePost:function(post){
     var ret={};
     if (post.details) {
-      //validate tittle
+      //validate title
       if (post.details.title) {
         if (true) {
           //need add dictionary with foul language
           ret={success:true};
         } else {
           //error foul language
-          ret={success:false, error: bz.const.errors.posts.foulLanguageInTittle};
+          ret={success:false, error: bz.const.errors.posts.foulLanguageInTitle};
         }
       }else{
-        //error empty tittle
-        ret={success:false, error: bz.const.errors.posts.emptyTittle};
+        //error empty title
+        ret={success:false, error: bz.const.errors.posts.emptyTitle};
       }
       //validate description
       if (post.details.description) {
@@ -190,5 +189,73 @@ bz.bus.postsHandler = {
     }
     return ret;
   },
+  editPost: function(request, currentUserId){
+    var now, ret={},postDb, updatePost, postData, validate,update;
+    postData=request.requestPost;
+    now = Date.now();
+    if(postData){
+      if(postData._id){
+        postDb=bz.cols.posts.findOne(postData._id);
+        if (postDb){
+          if(postDb.userId===currentUserId){
+            validate=bz.bus.postsHandler.validatePost(postData);
+            if (validate.success){
+              updatePost={
+                tags: postData.tags,
+                details: {
+                  anonymousPost: postData.details.anonymousPost,
+                  locations: postData.details.locations,
+                  title: postData.details.title,
+                  description: postData.details.description,
+                  price: postData.details.price,
+                  photos: postData.details.photos,
+                  other: postData.details.other
+                },
+                lastEditedTs: now
+              };
+              if (postData.type=='jobs'){
+                updatePost.jobsDetails={
+                  seniority: postData.jobsDetails.seniority,
+                  gender: postData.jobsDetails.gender,
+                  contacts: postData.jobsDetails.contacts,
+                  attachment: postData.jobsDetails.attachment,
+                  typeCategory: postData.jobsDetails.typeCategory,
+                  jobsType: postData.jobsDetails.jobsType,
+                  payMethod: postData.jobsDetails.payMethod};
+              }else if(postData.type=='trainings') {
+                updatePost.trainingsDetails = {
+                  sectionLearning: postData.trainingsDetails.sectionLearning,
+                  typeCategory: postData.trainingsDetails.typeCategory
+                };
+              }
+              update=bz.cols.posts.update({_id:postData._id},{ $set : updatePost });
+              if (update===1){
+                ret={success:true, result: postDb._id}
+              }else{
+                //error write in DB
+                ret={success:false, error: bz.const.errors.global.errorWriteInDb}
+              }
+            }else{
+              //error not valid
+              ret={success:false,error: validate};
+            }
+          }else{
+            //error
+            ret={success:false,error:bz.const.errors.posts.userNotAuthor};
+          }
+        }else{
+          //error
+          ret={success:false,error: bz.const.errors.global.dataNotFound};
+        }
+      }else{
+        //error
+        ret={success:false,error: bz.const.errors.posts.notSpecifiedIdPost};
+      }
+    }else{
+      //error
+      ret={success:false,error: bz.const.errors.posts.badRequestPostData};
+    }
+    return ret;
+  }
 
 };

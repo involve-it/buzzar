@@ -14,18 +14,21 @@ bz.const.errors={
     badRequestTypePost:{errorId: 4},
     badRequestPageNumber:{errorId: 5},
     badRequestPostData:{errorId: 6},
-    foulLanguageInTittle:{errorId: 7},
-    emptyTittle:{errorId:8},
+    foulLanguageInTitle:{errorId: 7},
+    emptyTitle:{errorId:8},
     foulLanguageInDescription:{errorId: 9},
     emptyDescription:{errorId:10},
     emptyDetails:{errorId:11},
     emptyPostLocations:{errorId:12},
     emptyTimestamp:{errorId:13},
-    emptyEndDatePost:{errorId:14}
+    emptyEndDatePost:{errorId:14},
+    userNotAuthor:{errorId:15},
+    notSpecifiedIdPost:{errorId:16}
   },
   //global errors
   global:{
     dataNotFound:{errorId: 404},
+    errorWriteInDb:{errorId:998},
     internalError:{errorId:999}
   }
 };
