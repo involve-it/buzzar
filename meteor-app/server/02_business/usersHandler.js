@@ -5,7 +5,7 @@
 bz.bus.usersHandler = {
     getUser: function (requestedUserId, currentUserId) {
         var user, arrProfileDetails,profileDetails=[], ret={},
-            userDb = Meteor.users.findOne({_id: requestedUserId});
+            userDb = bz.bus.usersHandler.userDbQuery([requestedUserId]).result;
         if (userDb) {
           user = {
             _id: userDb._id,
@@ -134,5 +134,15 @@ bz.bus.usersHandler = {
             console.log(ex);
             throw new Meteor.Error(403, ex.message);
         }
+    },
+  userDbQuery: function (usersId){
+    var ret={},users;
+    if (usersId.length===1){
+      users=Meteor.users.findOne(usersId[0]);
+    }else{
+      users=Meteor.users.find({_id:{$in: usersId}});
     }
+    ret={result: users};
+    return ret;
+  }
 };
