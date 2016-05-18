@@ -4,7 +4,7 @@
 
 bz.bus.postsHandler = {
   getPost: function (requestedPostId) {
-    var post, locations=[], photos=[],photo,ret={},
+    var post, ret={},
       postDb=bz.cols.posts.findOne({_id: requestedPostId});
     if (postDb){
       post=bz.bus.postsHandler.buildPostObject(postDb);
@@ -12,7 +12,6 @@ bz.bus.postsHandler = {
     }else{
       //error
       ret={success:false, error: bz.const.errors.global.dataNotFound};
-      return ret;
     }
     return ret;
   },
@@ -263,6 +262,24 @@ bz.bus.postsHandler = {
     }
     post.comments=bz.bus.commentsHandler.getComments(postDb._id);
     ret = post;
+    return ret;
+  },
+
+  deletePost: function(requestedPostId, currentUserId){
+    var ret={},
+      postDb=bz.cols.posts.findOne({_id: requestedPostId});
+    if(postDb){
+      if(postDb.userId===currentUserId){
+        bz.cols.posts.remove(requestedPostId);
+      }else{
+        //error
+        ret={success:false,error:bz.const.errors.posts.userNotAuthor};
+      }
+    }else{
+      //error
+      ret={success:false, error: bz.const.errors.global.dataNotFound};
+    }
+    ret={success:true};
     return ret;
   }
 
