@@ -7,46 +7,8 @@ bz.bus.postsHandler = {
     var post, locations=[], photos=[],photo,ret={},
       postDb=bz.cols.posts.findOne({_id: requestedPostId});
     if (postDb){
-      post={
-        _id: postDb._id,
-        type: postDb.type,
-        tags: postDb.tags,
-        details:{
-          url: postDb.details.url,
-          title: postDb.details.title,
-          description: postDb.details.description,
-          price: postDb.details.price,
-          other: postDb.details.other
-        },
-        status: postDb.status,
-        timestamp:postDb.timestamp,
-        endDatePost:postDb.endDatePost,
-        social:postDb.social,
-        stats:  postDb.stats
-      };
-      _.each(postDb.details.locations, function(item){
-        locations.push({coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
-      });
-      _.each(postDb.details.photos,function(item){
-        photo=bz.cols.images.findOne({_id: item});
-        if(photo) {
-          photos.push({data: photo.data, thumbnail: photo.thumbnail});
-        }
-      });
-      post.details.locations = locations;
-      post.details.photos = photos;
-      if(postDb.type=='jobs'){
-        post.jobsDetails = postDb.jobsDetails;
-      }else if (postDb.type=='trainings'){
-        post.trainingsDetails=postDb.trainingsDetails;
-      }else{
-
-      }
-      if (!postDb.details.anonymousPost) {
-        post.user = bz.bus.usersHandler.getUser(postDb.userId, Meteor.userId());
-      }
-      post.comments=bz.bus.commentsHandler.getComments(postDb._id);
-      ret={success:true, result:post}
+      post=bz.bus.postsHandler.buildPostObject(postDb);
+      ret={success:true, result:post};
     }else{
       //error
       ret={success:false, error: bz.const.errors.global.dataNotFound};
@@ -72,9 +34,10 @@ bz.bus.postsHandler = {
       ret={success:false, error: bz.const.errors.posts.badRequestTypePost};
       return ret;
     }
+    //переделать
     if (arrIdPosts.length>0) {
       _.each(arrIdPosts, function (item) {
-        posts.push(bz.bus.postsHandler.getPost(item._id));
+        posts.push(bz.bus.postsHandler.getPost(item._id).result);
       });
     }else{
       ret={success:true, result: []};
@@ -255,6 +218,51 @@ bz.bus.postsHandler = {
       //error
       ret={success:false,error: bz.const.errors.posts.badRequestPostData};
     }
+    return ret;
+  },
+
+  buildPostObject: function(postDb){
+    var post, ret={}, locations=[], photos=[],photo;
+    post={
+      _id: postDb._id,
+      type: postDb.type,
+      tags: postDb.tags,
+      details:{
+        url: postDb.details.url,
+        title: postDb.details.title,
+        description: postDb.details.description,
+        price: postDb.details.price,
+        other: postDb.details.other
+      },
+      status: postDb.status,
+      timestamp:postDb.timestamp,
+      endDatePost:postDb.endDatePost,
+      social:postDb.social,
+      stats:  postDb.stats
+    };
+    _.each(postDb.details.locations, function(item){
+      locations.push({coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
+    });
+    _.each(postDb.details.photos,function(item){
+      photo=bz.cols.images.findOne({_id: item});
+      if(photo) {
+        photos.push({data: photo.data, thumbnail: photo.thumbnail});
+      }
+    });
+    post.details.locations = locations;
+    post.details.photos = photos;
+    if(postDb.type=='jobs'){
+      post.jobsDetails = postDb.jobsDetails;
+    }else if (postDb.type=='trainings'){
+      post.trainingsDetails=postDb.trainingsDetails;
+    }else{
+
+    }
+    if (!postDb.details.anonymousPost) {
+      post.user = bz.bus.usersHandler.getUser(postDb.userId, Meteor.userId());
+    }
+    post.comments=bz.bus.commentsHandler.getComments(postDb._id);
+    ret = post;
     return ret;
   }
 
