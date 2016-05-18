@@ -33,7 +33,7 @@ Meteor.methods({
     return bz.bus.postsHandler.editPost(requset, Meteor.userId());
   },
   deletePost: function(request){
-    return bz.bus.postsHandler.deletePostL(request, Meteor.userId());
+    return bz.bus.postsHandler.deletePost(request, Meteor.userId());
   },
 
   //comments

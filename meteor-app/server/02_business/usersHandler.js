@@ -4,36 +4,10 @@
 
 bz.bus.usersHandler = {
     getUser: function (requestedUserId, currentUserId) {
-        var user, arrProfileDetails,profileDetails=[], ret={},
-            userDb = bz.bus.usersHandler.userDbQuery([requestedUserId]).result;
+        var user, ret={},
+            userDb = bz.bus.usersHandler.userDbQuery([requestedUserId]);
         if (userDb) {
-          user = {
-            _id: userDb._id,
-            createdAt: userDb.createdAt,
-            username: userDb.username,
-            online: userDb.online,
-            image:{
-              imageUrl: userDb.profile && userDb.profile.image && userDb.profile.image.data,
-              thumbnail: userDb.profile && userDb.profile.image && userDb.profile.image.data && userDb.profile.image.thumbnail
-            }
-          };
-          if (requestedUserId === currentUserId) {
-            arrProfileDetails = bz.cols.profileDetails.find({userId: requestedUserId}).fetch();
-
-            user.locations = bz.cols.locations.find({userId: requestedUserId}).fetch();
-            user.emails = userDb.emails;
-            user.language = userDb.profile && userDb.profile.language;
-          } else {
-            arrProfileDetails = bz.cols.profileDetails.find({userId: requestedUserId, policy: "1"}).fetch();
-          }
-          _.each(arrProfileDetails,function(item){
-            profileDetails.push({
-              key: item.key,
-              value: item.value,
-              policy: item.policy
-            })
-          });
-          user.profileDetails = profileDetails;
+          user=bz.bus.usersHandler.buildUserObject(userDb)[0];
           ret={success:true, result: user};
         }else{
           //error
@@ -136,13 +110,52 @@ bz.bus.usersHandler = {
         }
     },
   userDbQuery: function (usersId){
-    var ret={},users;
-    if (usersId.length===1){
-      users=Meteor.users.findOne(usersId[0]);
-    }else{
-      users=Meteor.users.find({_id:{$in: usersId}});
-    }
-    ret={result: users};
+    var ret={},users,profileDetails;
+    users=Meteor.users.find({_id:{$in: usersId}}).fetch();
+    profileDetails=bz.bus.usersHandler.profileDetailsDbQuery(usersId);
+    ret={users: users, profileDetails: profileDetails};
+    return ret;
+  },
+  profileDetailsDbQuery: function(userIds){
+    var ret,profileDetails;
+    profileDetails=bz.cols.profileDetails.find({userId: {$in: userIds}}).fetch();
+    ret=profileDetails;
+    return ret;
+  },
+  buildUserObject: function(data){
+    var ret={},users, usersRet=[], user, arrProfileDetails,profileDetails=[],tempArrprofileDetails,
+      currentUserId=Meteor.userId();
+    users=data.users;
+    arrProfileDetails=data.profileDetails;
+    _.each(users,function(userDb){
+      profileDetails=[];
+      tempArrprofileDetails=[];
+      user = {
+        _id: userDb._id,
+        createdAt: userDb.createdAt,
+        username: userDb.username,
+        online: userDb.online,
+        image:{
+          imageUrl: userDb.profile && userDb.profile.image && userDb.profile.image.data,
+          thumbnail: userDb.profile && userDb.profile.image && userDb.profile.image.data && userDb.profile.image.thumbnail
+        }
+      };
+      if (userDb._id === currentUserId) {
+        tempArrprofileDetails=_.filter(arrProfileDetails,function(item){return item.userId==userDb._id});
+      }else{
+        tempArrprofileDetails=_.filter(arrProfileDetails,function(item){return item.userId==userDb._id && item.policy=="1"});
+      }
+      _.each(tempArrprofileDetails,function(item){
+        profileDetails.push({
+          key: item.key,
+          value: item.value,
+          policy: item.policy
+        })
+      });
+      user.profileDetails = profileDetails;
+      usersRet.push(user);
+    });
+    ret=usersRet;
     return ret;
   }
 };
