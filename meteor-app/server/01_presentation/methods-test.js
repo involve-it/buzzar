@@ -27,13 +27,13 @@ Meteor.methods({
     return 0;
   },
   addPost: function(requset){
-    return bz.bus.postsHandler.getMyPosts(requset, Meteor.userId());;
+    return bz.bus.postsHandler.addPost(requset, Meteor.userId());
   },
-  editPostTest: function(){
-    return 0;
+  editPostTest: function(requset){
+    return bz.bus.postsHandler.editPost(requset, Meteor.userId());
   },
-  deletePost: function(){
-    return 0;
+  deletePost: function(request){
+    return bz.bus.postsHandler.deletePost(request, Meteor.userId());
   },
 
   //comments

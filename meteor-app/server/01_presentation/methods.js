@@ -93,6 +93,7 @@ Meteor.methods({
       bz.cols.posts.update(postId, {$set: timeObj});
     }
   },
+  /* OLD CODE */
   removePost: function(postId, userId){
     if (postId && userId) {
       var post = bz.cols.posts.findOne(postId);
