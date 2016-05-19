@@ -233,6 +233,7 @@ bz.bus.postsHandler = {
         price: postDb.details.price,
         other: postDb.details.other
       },
+      presences: postDb.presences,
       status: postDb.status,
       timestamp:postDb.timestamp,
       endDatePost:postDb.endDatePost,
