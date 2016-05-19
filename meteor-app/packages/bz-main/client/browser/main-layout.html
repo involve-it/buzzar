@@ -41,6 +41,8 @@
 </template>
 
 
+
+<!--***************************-->
 <template name="mainLayoutHome">
   <div class="off-canvas-wrap" data-offcanvas>
     <div class="inner-wrap">
@@ -290,7 +292,6 @@
 {{/if}}    
 </template>
 
-
 <template name="bzVersion">
     <div class="bz-version-wrapper">
         {{#if gitRev 'tag'}}
@@ -303,6 +304,88 @@
     </div>
 </template>
 
+
+
+
+<!--***************************************************** NEW  *****************************************************-->
+
+<template name="mainLayoutHome00">
+
+    <div id="bz-body-wrapper" class="mm-page mm-slideout">
+        <div id="bz-header">
+            <div class="bz-header-wrapper">
+                <!--**-->
+                <div class="bz-navbar">
+                    <div class="bz-logo">
+                        {{> bzMeteorLogo }}
+                    </div>
+
+                    <div class="bz-location-name show-for-medium-up">
+                        {{> bzLinkLocationName}}
+                    </div>
+
+                    <div class="bz-header-menu">
+                        {{> bzInnerMenuLeft}}
+                    </div>
+
+                    <div class="bz-group-menu-btn">
+                        <div class="bz-header-button">
+                            <div class="show-for-small-only margin-small-right left">{{> bzLinkLocationName}}</div>
+                            <div class="left">{{ bzRenderTemplateI18n "createNewButton" }}</div>
+                        </div>
+
+                        {{> bzNavMe}}
+
+                        {{> bzDropSelectLanguage}}
+
+                    </div>
+                </div>
+                <!--**-->
+            </div>
+        </div>
+        
+        <div id="bz-content">
+
+            <!--{{> yield}}-->
+            
+        </div>
+        
+        <div id="bz-footer">
+            {{#if currentUser}}
+                {{> bzFooter}}
+            {{else}}
+                {{> bzUnregFooter}}
+            {{/if}}
+        </div>
+
+        <!--MENU PANEL-->
+        {{> bzMenuLeftNew}}
+       
+        
+        <!-- close the off-canvas menu -->
+        <a class="exit-off-canvas"></a>
+    </div>
+
+    <!-- open the off-canvas menu -->
+    <a id="bz-open-toggle-menu" class="bz-open-off-canvas mm-slideout"><span></span></a>
+    
+</template>
+
+
+<template name="bzMenuLeftNew">
+    <nav id="bz-menu">
+        {{> bzMenuLeftWrapper }}    
+    </nav>
+</template>
+
+
+
+
+<template name="bzMenuLeftWrapper">
+    <aside class="bz-menu-wrapper" >
+        {{> bzInnerMenuLeft}}
+    </aside>
+</template>
 
 
 

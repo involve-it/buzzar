@@ -23,35 +23,55 @@
        
         <div>
             <div class="bz-posts-items-owner-post-menu">
-                <ul class="tabs bz-nav bz-horizontal bz-nav-side-b" data-tab="">
-                  <li class="tab-title active"><a id="activePosts" href="#activePosts" aria-selected="true" tabindex="0" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ACTIVE_HINT'}}">{{t9n 'ACTIVE'}} <!--({{ getCountActivePosts }})--></a></li>
-                  <li class="tab-title"><a id="livePosts" href="#livePosts" aria-selected="false" tabindex="1" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'LIVE_HINT'}}">{{t9n 'LIVE'}} <!--({{ getCountLivePosts }})--></a></li>
+                <!-- OLD CODE -->
+                <!--<ul class="tabs bz-nav bz-horizontal bz-nav-side-b" data-tab="">
+                  <li class="tab-title active"><a id="activePosts" href="#activePosts" aria-selected="true" tabindex="0" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ACTIVE_HINT'}}">{{t9n 'ACTIVE'}} &lt;!&ndash;({{ getCountActivePosts }})&ndash;&gt;</a></li>
+                  <li class="tab-title"><a id="livePosts" href="#livePosts" aria-selected="false" tabindex="1" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'LIVE_HINT'}}">{{t9n 'LIVE'}} &lt;!&ndash;({{ getCountLivePosts }})&ndash;&gt;</a></li>
                   <li class="tab-title"><a id="active" href="#allPosts" aria-selected="false" tabindex="2" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ALL_HINT'}}"><b>{{t9n 'ALL'}}</b></a></li>
+                </ul>-->
+
+                <ul class="tabs bz-nav bz-horizontal bz-nav-side-b nav-pills">
+                    <li data-template="active" role="presentation" class="tab-title active"><a  id="activePosts" href="#" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ACTIVE_HINT'}}">{{t9n 'ACTIVE'}}</a></li>
+                    <li data-template="live" role="presentation" class="tab-title"><a id="livePosts" href="#" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'LIVE_HINT'}}">{{t9n 'LIVE'}}</a></li>
+                    <li data-template="all" role="presentation" class="tab-title"><a id="active" href="#" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ALL_HINT'}}"><b>{{t9n 'ALL'}}</b></a></li>
                 </ul>
             </div>
-                        
+            
+            <!--{{> Template.dynamic template="content" data=getMyPosts}}-->
+
+            <hr>
+            
             <div class="tabs-content">
               <div class="content active" id="activePosts" aria-hidden="false">
                 <div class="tabs-content-wrapper">
+                    
                   {{#each activePosts}}
                     {{> onePostRowItemOwner}}
                   {{/each}}
+                    
+                    
                 </div>
                 {{> bzPaginationPosts }}
               </div>
                 <div class="content" id="livePosts" aria-hidden="true">
                     <div class="tabs-content-wrapper">
+                        
                         {{#each livePosts}}
                             {{> onePostRowItemOwner}}
                         {{/each}}
+                        
                     </div>
                     {{> bzPaginationPosts }}
                 </div>
               <div class="content" id="allPosts" aria-hidden="true">
                 <div class="tabs-content-wrapper">
+
+                    <!--{{getMyPosts 'all'}}-->
+                    
                   {{#each allPosts}}
                     {{> onePostRowItemOwner}}
                   {{/each}}
+                    
                 </div>
                 {{> bzPaginationPosts }}
               </div>
@@ -240,6 +260,7 @@
     
 </template>
 
+
 <template name="noPosts">
 
   <div class="bz-wrapper-no-message">
@@ -266,4 +287,40 @@
     {{else}}
         <div class="price usd"> {{details.price}} <span class="bz-prefix"><i class="fa fa-usd"></i></span></div>
     {{/if}}
+</template>
+
+
+<template name="content">
+    
+    <ul class="list-group type-{{this.postType}}">
+        
+        {{#if this.items}}
+        
+            {{#each this.items}}
+                {{> onePostRowItemOwner}}
+            {{/each}}
+
+        {{else}}
+
+            {{> loader}} 
+        
+        {{/if}}
+        
+    </ul>
+</template>
+
+
+<template name="loader">
+    <svg class="loader" version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+  <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+    <animateTransform attributeType="xml"
+      attributeName="transform"
+      type="rotate"
+      from="0 25 25"
+      to="360 25 25"
+      dur="0.6s"
+      repeatCount="indefinite"/>
+    </path>
+  </svg>
 </template>

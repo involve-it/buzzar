@@ -58,7 +58,10 @@ Package.onUse(function (api) {
 	  'client/browser/style/foundation/js/foundation/foundation.dropdown.js',
     'client/browser/style/foundation/js/foundation/foundation.tab.js',
       
-      
+    'client/browser/style/bz-menu/jquery.mmenu.min.js',
+    'client/browser/style/bz-menu/jquery.mmenu.css',
+    'client/browser/style/bz-menu/custom_mmenu.less',
+    
     'client/browser/style/foundation/js/foundation/foundation.offcanvas.js',
     'client/browser/style/foundation/js/foundation/foundation.abide.js',
     'client/browser/style/foundation/js/foundation/foundation.slider.js'
