@@ -236,12 +236,14 @@ bz.bus.postsHandler = {
       presences: postDb.presences,
       status: postDb.status,
       timestamp:postDb.timestamp,
+      timePause: postDb.timePause,
       endDatePost:postDb.endDatePost,
       social:postDb.social,
-      stats:  postDb.stats
+      stats:  postDb.stats,
+      lastEditedTs:postDb.lastEditedTs
     };
     _.each(postDb.details.locations, function(item){
-      locations.push({coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
+      locations.push({_id:item._id, coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
     });
     _.each(postDb.details.photos,function(item){
       photo=bz.cols.images.findOne({_id: item});
