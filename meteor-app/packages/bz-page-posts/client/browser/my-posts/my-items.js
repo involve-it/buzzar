@@ -15,20 +15,22 @@ Template.onePostRowItemSearch.rendered = function() {
   });
 };
 
-Template.myItems.onRendered(function () {
-  $(document).foundation();
-});
-
 Template.myItems.onCreated( function() {
   this.currentTab = new ReactiveVar( "active" );
   this.getMyPostsData = new ReactiveVar(false);
+});
+
+Template.myItems.onRendered(function () {
+  $(document).foundation();
 });
 
 Template.myItems.helpers({
   hasPosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId()}).fetch();
     return posts.length !== 0;
-  },
+  }
+  /*OLD CODE*/
+  /*,
   allPosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId()});
     return posts;
@@ -45,25 +47,8 @@ Template.myItems.helpers({
       return ret;
     });
     return ret;
-  },
-  getCountActivePosts: function() {
-    //var postsCount = bz.cols.posts.find({userId: Meteor.userId()}).count();
-    //return postsCount || '0';
-  },
-  getCountLivePosts: function() {
-    //var postsCount;
-    //return postsCount || '0';
-  }
+  }*/
 });
-
-
-
-
-
-
-
-
-
 
 Template.myItems.helpers({
   tab: function() {
@@ -72,23 +57,23 @@ Template.myItems.helpers({
   getMyPosts: function(type) {
     var tab = Template.instance().currentTab.get(), ins = Template.instance();
     
-    //console.info('TYPE: ', tab, 'POSTDATA: ', ins.getMyPostsData.get());
-
     if (ins.getMyPostsData.get() === false) {
 
       Meteor.call('getMyPosts', {type:tab}, function(e, r) {
         if(e) {
           //error
         } else if(r.success) {
-          //console.info(r);
           ins.getMyPostsData.set(r.result);
+
+          /*$( ".list-group" ).fadeIn( 'slow' );*/
+          
         } else {
           bz.ui.alert('Error ID: ' + r.error.errorId, {type:'error', timeout: 2000});
         }
       });
 
     }
-    console.info(ins.getMyPostsData.get());
+    //console.info(ins.getMyPostsData.get());
     return {postType: tab, items: ins.getMyPostsData.get()};
   }
 });
@@ -100,6 +85,7 @@ Template.myItems.events({
     
     if(type.get() !== currentTab.data("template")) {
       v.getMyPostsData.set(false);
+      /*$( ".list-group" ).fadeOut( 'slow' );*/
       currentTab.addClass( "active" );
       $( ".nav-pills li" ).not( currentTab ).removeClass( "active" );
       type.set( currentTab.data( "template" ) );
