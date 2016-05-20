@@ -3,7 +3,10 @@
         <div class="bz-post-details">
             {{> bzPostDetails }}
                         
-            {{> bzUserProfileBasic getUserObj}}
+            {{> bzUserProfileBasic this.user.result}}
+            
+            <!--OLD CODE-->
+            <!--{{> bzUserProfileBasic getUserObj}}-->
             
             <div class="bz-separate"></div>
 

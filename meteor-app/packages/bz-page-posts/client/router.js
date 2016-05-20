@@ -16,12 +16,30 @@ Router.map(function () {
     path: '/post/:_id',
     template: 'postsPageDetails',
     data: function () {
-      var ret;
+      /* OLD CODE */
+      /*var ret;
       ret = bz.cols.posts.findOne({_id: this.params._id});
       if (ret) {
         Meteor.subscribe('bz.users.all')
       }
-      return ret;
+      return ret;*/
+      
+      var postId = this.params._id;
+      Meteor.call('getPost', postId, function(e, r) {
+        
+        if(r.success && r.result) {
+
+          r.result.hasLivePresence = bz.help.posts.hasLivePresence.apply(r.result);
+          r.result.getDistanceToCurrentLocation = bz.help.posts.getDistanceToCurrentLocation.apply(r.result);
+          Session.set('getPost', r.result);
+          
+        } else {
+          bz.ui.alert('Error ID: ' + r.error.errorId, {type:'error', timeout: 2000});
+        }
+      });
+      
+      return Session.get('getPost');
+      
     },
     //controller: 'requireLoginController',
     onAfterAction: function () {
@@ -30,9 +48,9 @@ Router.map(function () {
       console.log('onAfterAction', this.data());
     },
     onBeforeAction: function () {
-      if (!this.data()) {
+     /* if (!this.data()) {
         Router.go('/page-not-found');
-      }
+      }*/
       this.next();
     }
   });

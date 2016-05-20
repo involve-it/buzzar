@@ -32,27 +32,21 @@
         </div>
       </div>
 
-    {{#if _hasLivePresence=live _hasLivePresence=away}}
-        <div class="post-details">
-            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-street-view"></i> {{ t9n 'POST_DETAILS_STATUS' }}</div>
-            <div class="small-12 medium-8 large-8 bz-post-result columns">
-                <p> {{> bzPostsPostPresence this}} </p>
+        {{#if hasLivePresence }}
+            <div class="post-details">
+                <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-street-view"></i> {{ t9n 'POST_DETAILS_STATUS' }}</div>
+                <div class="small-12 medium-8 large-8 bz-post-result columns">
+                    <p> {{> bzPostsPostPresenceGlobal this}} </p>
+                </div>
             </div>
-        </div>
-    {{/if}}
+        {{/if}}
 
-      {{#if details.duration }}
-          <div class="post-details">
-            <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-info-circle"></i> {{ t9n 'POST_DETAILS_LEFT' }}</div>
-            <div class="small-12 medium-8 large-8 bz-post-result columns"><p> 10 {{ t9n 'DAYS' }} </p></div>
-          </div>
-      {{/if}}
-
-        {{#if categoryType}}
+        
+        {{#if type }}
           <div class="post-details">
             <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-list-alt"></i> {{ t9n 'POST_DETAILS_TYPE' }}</div>
             <div class="small-12 medium-8 large-8 bz-post-result columns">
-                <div class="button bz-btn-category type-category-{{categoryType}}">{{categoryType}}</div>
+                <div class="button bz-btn-category type-category-{{type}}">{{type}}</div>
             </div>
           </div>
         {{/if}}
@@ -60,14 +54,14 @@
         <div class="post-details">
             <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-location-arrow"></i> {{ t9n 'POST_DETAILS_DISTANCE' }}</div>
             <div class="small-12 medium-8 large-8 bz-post-result columns">
-                <p>{{ _getDistanceToCurrentLocation }}</p>
+                <p>{{ getDistanceToCurrentLocation }}</p>
             </div>
         </div>
         
         <div class="post-details">
             <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-heart"></i> {{ t9n 'POST_DETAILS_LIKES' }}</div>
             <div class="small-12 medium-8 large-8 bz-post-result columns">
-                <p>{{ _getLikesAmount }}</p>
+                <p>{{ postLikes }}</p>
             </div>
         </div>
       
@@ -85,8 +79,6 @@
       <!--<div class="bz-separate"></div>-->
         
     </div>
-
-
   </div>
 
   <div class="clearfix"></div>
@@ -119,10 +111,10 @@
 <template name="postDetailsDetailsCommon">
 
   <div class="item-divider">
-    <h2 class="title space-1">{{ getTitle }}</h2>
+    <h2 class="title space-1">{{ details.title }}</h2>
     {{> postRatingInfo}}
       
-    {{#each getMyLocations }}
+    {{#each details.locations }}
         <div class="post-location">
             <i class="fa fa-map-marker"></i>
             <span>
@@ -140,7 +132,7 @@
 
   <div class="post-item overflow">
     <div class="post-details">
-      <div class="bz-post-description"><p> {{{ getDescription }}} </p></div>
+      <div class="bz-post-description"><p> {{{ details.description }}} </p></div>
      </div>
   </div>
 
@@ -259,14 +251,9 @@
 
 <template name="postDetailsPhoto">
   <div class="photos">
-    <!--{{#if getPhotoUrl}}-->
       <div class="single-photo cover-img js-main-photo-large" style="background-image: url('{{ getMainPhoto }}')"></div>
-    <!--{{else}}-->
-      <!--<div class="single-photo cover-img"-->
-           <!--style="background-color: #efefef; background-image: url('{{ getMainImage }}')"></div>-->
-    <!--{{/if}}-->
-
-        {{#if moreThanOnePhotos }}
+        
+      {{#if moreThanOnePhotos }}
             <ul class="clearing-thumbs js-clearing-thumbs" data-clearing>
                 {{#each getPhotos }}
                     <li>

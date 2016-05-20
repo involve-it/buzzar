@@ -1,11 +1,7 @@
 /**
  * Created by Ashot on 9/26/15.
  */
-Template.bzControlReviews.onCreated(function(){
-});
-Template.bzControlReviews.events({
 
-});
 Template.bzControlReviews.helpers({
   getReviews: function(){
     return bz.cols.reviews.find({type: 'postType', entityId: this.postId}, { sort: { dateTime: 1}});
@@ -15,6 +11,7 @@ Template.bzControlReviews.helpers({
     return counts || '';
   }
 });
+
 Template.bzControlReviewItem.events({
   'click .js-delete-comment': function(e, v){
     if(Meteor.userId() === v.data.userId){
@@ -22,6 +19,7 @@ Template.bzControlReviewItem.events({
     }
   }
 });
+
 Template.bzControlReviewItem.helpers({
   getTime: function(){
     var d = new Date(this.dateTime);
@@ -35,12 +33,15 @@ Template.bzControlReviewItem.helpers({
     return Meteor.userId() === this.userId;
   }
 });
+
 Template.bzControlAddReview.onCreated(function(){
   //this.data.postId = this.data.toString();
 });
+
 Template.bzControlAddReview.onRendered(function(){
   $('.js-rating-select').foundationSelect();
 });
+
 Template.bzControlAddReview.events({
   'click .js-post-btn': function(e, v){
 
@@ -83,7 +84,5 @@ Template.bzControlAddReview.events({
       });
 
     }
-
-
   }
-})
+});
