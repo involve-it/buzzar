@@ -12,12 +12,8 @@
 
             <!--Reviews-->
             <div class="bz-post-reviews">
-                <div class="bz-post-review">
-                    {{> bzControlReviews postId = _id}}
-                </div>
-                <div class="bz-post-leave-review">
-                    {{> bzControlAddReview postId = _id}}
-                </div>
+                {{> bzControlReviews postId = _id}}
+                {{> bzControlAddReview postId = _id}}
             </div>
         </div>
     </div>

@@ -2,14 +2,44 @@
  * Created by Ashot on 9/26/15.
  */
 
+Template.bzControlReviews.onCreated(function() {
+  this.getCommentsData = new ReactiveVar(false);
+});
+
 Template.bzControlReviews.helpers({
-  getReviews: function(){
+  getComments: function() {
+    var request = {}, ins = Template.instance();
+    request.postId = this.postId;
+    
+    if(request && this.postId) {
+      
+      if (ins.getCommentsData.get() === false) {
+        
+        Meteor.call('getComments', request, function(e, r) {
+          if(e) {
+            //error
+          } else if(r.success && r.result) {
+            ins.getCommentsData.set(r.result);
+          } else {
+            bz.ui.alert('Error ID: ' + r.error.errorId, {type:'error', timeout: 2000});
+          }
+        });
+        
+      }
+      
+    }
+    //console.info(ins.getCommentsData.get());
+    return ins.getCommentsData.get();
+  }
+  
+  /* OLD CODE */
+  /*getReviews: function(){
     return bz.cols.reviews.find({type: 'postType', entityId: this.postId}, { sort: { dateTime: 1}});
   },
   getCountsReviews: function() {
     var counts = bz.cols.reviews.find({type: 'postType', entityId: this.postId}).count();
     return counts || '';
-  }
+  }*/
 });
 
 Template.bzControlReviewItem.events({
@@ -22,16 +52,18 @@ Template.bzControlReviewItem.events({
 
 Template.bzControlReviewItem.helpers({
   getTime: function(){
-    var d = new Date(this.dateTime);
-    return d.toLocaleString();
+    var date = new Date(this.dateTime);
+    return date && date.toLocaleString();
   },
+  isUserCommentOwner: function(e, v){
+    return Meteor.userId() === this.user._id;
+  }
+  /* OLD CODE */
+  /*
   getProfileImage: function(){
     var user = Meteor.users.findOne(this.userId);
     return user && user._getAvatarImage();
-  },
-  isUserCommentOwner: function(e, v){
-    return Meteor.userId() === this.userId;
-  }
+  }*/
 });
 
 Template.bzControlAddReview.onCreated(function(){
