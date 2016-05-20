@@ -18,32 +18,28 @@ bz.bus.postsHandler = {
   },
 
   getMyPosts: function(requestPage, currentUserId){
-    var ret={},type,take,skip,arrIdPosts=[], posts=[],option;
+    var ret={},type,take,skip,arrPosts=[], posts=[],option;
     type=requestPage.type;
     take= requestPage.take;
     skip=requestPage.skip;
     option={sort:{timestamp:-1},skip: skip, limit: take};
     if (type=='all'){
-      arrIdPosts=bz.cols.posts.find({userId: currentUserId},option).fetch();
+      arrPosts=bz.cols.posts.find({userId: currentUserId},option).fetch();
     }else if(type=='active'){
-      arrIdPosts=bz.cols.posts.find({userId: currentUserId, 'status.visible': bz.const.posts.status.visibility.VISIBLE},option).fetch();
+      arrPosts=bz.cols.posts.find({userId: currentUserId, 'status.visible': bz.const.posts.status.visibility.VISIBLE},option).fetch();
     }else if(type=='live'){
-      arrIdPosts=bz.cols.posts.find({userId: currentUserId, 'status.visible': bz.const.posts.status.visibility.VISIBLE, presences:{$ne: {}}},option).fetch();
+      arrPosts=bz.cols.posts.find({userId: currentUserId, 'status.visible': bz.const.posts.status.visibility.VISIBLE, presences:{$ne: {}}},option).fetch();
     }else{
       //error
       ret={success:false, error: bz.const.errors.posts.badRequestTypePost};
       return ret;
     }
-    //переделать
-    if (arrIdPosts.length>0) {
-      _.each(arrIdPosts, function (item) {
-        posts.push(bz.bus.postsHandler.getPost(item._id).result);
-      });
+    if (arrPosts.length>0) {
+      posts=bz.bus.postsHandler.buildPostObject({posts:arrPosts});
+      ret={success:true, result:posts};
     }else{
       ret={success:true, result: []};
-      return ret;
     }
-    ret={success:true, result:posts};
     return ret;
   },
 
@@ -222,10 +218,15 @@ bz.bus.postsHandler = {
   },
 
   buildPostObject: function(data){
-    var post,posts,postsRet=[], ret={}, locations=[],arrPhoto, photos=[],photo, comments;
+    var post,posts,postsRet=[], ret={}, locations=[],arrPhoto, photos, comments;
     posts=data.posts;
     comments=data.comments;
-    //arrPhoto=
+    arrPhoto=_.map(posts,function(post){return post.details.photos}).reduce(function(a, b) {
+      return a.concat(b);
+    });
+    if (arrPhoto.length>0) {
+      photos = bz.bus.imagesHandler.getPhotos(arrPhoto);
+    }
     _.each(posts,function(postDb){
       post={
         _id: postDb._id,
@@ -250,14 +251,8 @@ bz.bus.postsHandler = {
       _.each(postDb.details.locations, function(item){
         locations.push({_id:item._id, coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
       });
-      _.each(postDb.details.photos,function(item){
-        photo=bz.cols.images.findOne({_id: item});
-        if(photo) {
-          photos.push({data: photo.data, thumbnail: photo.thumbnail});
-        }
-      });
       post.details.locations = locations;
-      post.details.photos = photos;
+      post.details.photos = _.filter(photos,function(photo){return postDb.details.photos.indexOf(photo._id)!==-1});
       if(postDb.type=='jobs'){
         post.jobsDetails = postDb.jobsDetails;
       }else if (postDb.type=='trainings'){
