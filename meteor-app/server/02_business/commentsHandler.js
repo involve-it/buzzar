@@ -12,6 +12,8 @@ bz.bus.commentsHandler = {
       comments=bz.cols.reviews.find({entityId: postId}, option).fetch();
       if(comments.length>0) {
         commentsRet = bz.bus.commentsHandler.buildComment(comments);
+      }else{
+        commentsRet=[];
       }
       ret={success:true, result: commentsRet};
     }else{

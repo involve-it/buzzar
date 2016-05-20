@@ -265,6 +265,8 @@ bz.bus.postsHandler = {
       }
       if (comments && comments.length>0) {
         post.comments = comments;
+      }else{
+        post.comments=[];
       }
       postsRet.push(post)
     });
