@@ -37,7 +37,7 @@ Template.myItems.helpers({
   },
   activePosts: function () {
     var posts = bz.cols.posts.find({userId: Meteor.userId(), 'status.visible': bz.const.posts.status.visibility.VISIBLE});
-    console.info(posts.fetch());
+    //console.info(posts.fetch());
     return posts;
   },
   livePosts: function () {
@@ -46,6 +46,7 @@ Template.myItems.helpers({
       var ret = !!item._hasLivePresence();
       return ret;
     });
+    console.info(ret);
     return ret;
   }*/
 });
@@ -56,22 +57,22 @@ Template.myItems.helpers({
   },
   getMyPosts: function(type) {
     var tab = Template.instance().currentTab.get(), ins = Template.instance();
-    
-    if (ins.getMyPostsData.get() === false) {
 
+    if (ins.getMyPostsData.get() === false) {
       Meteor.call('getMyPosts', {type:tab}, function(e, r) {
         if(e) {
           //error
-        } else if(r.success) {
+        } else if(r.success && r.result) {
           ins.getMyPostsData.set(r.result);
-
-          /*$( ".list-group" ).fadeIn( 'slow' );*/
+          
+          _.each(r.result, function(post){
+            post.hasLivePresence = bz.help.posts.hasLivePresence.apply(post);
+          });
           
         } else {
           bz.ui.alert('Error ID: ' + r.error.errorId, {type:'error', timeout: 2000});
         }
       });
-
     }
     //console.info(ins.getMyPostsData.get());
     return {postType: tab, items: ins.getMyPostsData.get()};

@@ -1,3 +1,4 @@
+
 <template name="bzControlReviews">
   <h3 class="title-review">{{ getCountsReviews }} {{ t9n 'COMMENTS' }}</h3>
   <div class="bz-reviews-list">
@@ -11,11 +12,7 @@
   <div class="bz-post-content">
 
     <div class="bz-review-avatar">
-      <!--{{ profileImage }}-->
-      <!--<a href="#" class="bz-user-avatar">
-          <img src="/img/content/avatars/avatar-no.png" width="60" height="60" alt="avatar">
-      </a>-->
-
+        
       <div class="bz-user-avatar">
         {{#if getProfileImage }}
           <a href="/user/{{ user._id }}">
