@@ -4,11 +4,12 @@
 
 bz.bus.postsHandler = {
   getPost: function (requestedPostId) {
-    var post, ret={},
+    var post, ret={}, comments,
       postDb=bz.cols.posts.findOne({_id: requestedPostId});
     if (postDb){
-      post=bz.bus.postsHandler.buildPostObject(postDb);
-      ret={success:true, result:post};
+      comments=bz.bus.commentsHandler.getComments({postId:requestedPostId, take: 5, skip: 0});
+      post=bz.bus.postsHandler.buildPostObject({posts:[postDb], comments: comments.result});
+      ret={success:true, result:post[0]};
     }else{
       //error
       ret={success:false, error: bz.const.errors.global.dataNotFound};
@@ -17,7 +18,7 @@ bz.bus.postsHandler = {
   },
 
   getMyPosts: function(requestPage, currentUserId){
-    var ret={},type,take,skip,arrIdPosts=[], posts=[],option={};
+    var ret={},type,take,skip,arrIdPosts=[], posts=[],option;
     type=requestPage.type;
     take= requestPage.take;
     skip=requestPage.skip;
@@ -220,51 +221,59 @@ bz.bus.postsHandler = {
     return ret;
   },
 
-  buildPostObject: function(postDb){
-    var post, ret={}, locations=[], photos=[],photo;
-    post={
-      _id: postDb._id,
-      type: postDb.type,
-      tags: postDb.tags,
-      details:{
-        url: postDb.details.url,
-        title: postDb.details.title,
-        description: postDb.details.description,
-        price: postDb.details.price,
-        other: postDb.details.other
-      },
-      presences: postDb.presences,
-      status: postDb.status,
-      timestamp:postDb.timestamp,
-      timePause: postDb.timePause,
-      endDatePost:postDb.endDatePost,
-      social:postDb.social,
-      stats:  postDb.stats,
-      lastEditedTs:postDb.lastEditedTs
-    };
-    _.each(postDb.details.locations, function(item){
-      locations.push({_id:item._id, coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
-    });
-    _.each(postDb.details.photos,function(item){
-      photo=bz.cols.images.findOne({_id: item});
-      if(photo) {
-        photos.push({data: photo.data, thumbnail: photo.thumbnail});
-      }
-    });
-    post.details.locations = locations;
-    post.details.photos = photos;
-    if(postDb.type=='jobs'){
-      post.jobsDetails = postDb.jobsDetails;
-    }else if (postDb.type=='trainings'){
-      post.trainingsDetails=postDb.trainingsDetails;
-    }else{
+  buildPostObject: function(data){
+    var post,posts,postsRet=[], ret={}, locations=[],arrPhoto, photos=[],photo, comments;
+    posts=data.posts;
+    comments=data.comments;
+    //arrPhoto=
+    _.each(posts,function(postDb){
+      post={
+        _id: postDb._id,
+        type: postDb.type,
+        tags: postDb.tags,
+        details:{
+          url: postDb.details.url,
+          title: postDb.details.title,
+          description: postDb.details.description,
+          price: postDb.details.price,
+          other: postDb.details.other
+        },
+        presences: postDb.presences,
+        status: postDb.status,
+        timestamp:postDb.timestamp,
+        timePause: postDb.timePause,
+        endDatePost:postDb.endDatePost,
+        social:postDb.social,
+        stats:  postDb.stats,
+        lastEditedTs:postDb.lastEditedTs
+      };
+      _.each(postDb.details.locations, function(item){
+        locations.push({_id:item._id, coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
+      });
+      _.each(postDb.details.photos,function(item){
+        photo=bz.cols.images.findOne({_id: item});
+        if(photo) {
+          photos.push({data: photo.data, thumbnail: photo.thumbnail});
+        }
+      });
+      post.details.locations = locations;
+      post.details.photos = photos;
+      if(postDb.type=='jobs'){
+        post.jobsDetails = postDb.jobsDetails;
+      }else if (postDb.type=='trainings'){
+        post.trainingsDetails=postDb.trainingsDetails;
+      }else{
 
-    }
-    if (!postDb.details.anonymousPost) {
-      post.user = bz.bus.usersHandler.getUser(postDb.userId, Meteor.userId());
-    }
-    post.comments=bz.bus.commentsHandler.getComments(postDb._id);
-    ret = post;
+      }
+      if (!postDb.details.anonymousPost) {
+        post.user = bz.bus.usersHandler.getUser(postDb.userId, Meteor.userId());
+      }
+      if (comments && comments.length>0) {
+        post.comments = comments;
+      }
+      postsRet.push(post)
+    });
+    ret = postsRet;
     return ret;
   },
 
