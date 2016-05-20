@@ -37,8 +37,8 @@ Meteor.methods({
   },
 
   //comments
-  getComments: function(postId){
-    return 0;
+  getComments: function(request){
+    return bz.bus.commentsHandler.getComments(request);
   },
   addComment: function(postId){
     return 0;
