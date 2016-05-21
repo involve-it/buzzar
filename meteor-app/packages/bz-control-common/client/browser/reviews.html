@@ -2,7 +2,7 @@
 <template name="bzControlReviews">
     {{#if getComments.length}}
         <div class="bz-post-review">
-            <h3 class="title-review">{{ getComments.length }} {{ t9n 'COMMENTS' }}</h3>
+            <h3 class="title-review">{{ getComments.length }} {{ t9n 'COMMENTS' }} (page 1 of 1)</h3>
             <div class="bz-reviews-list">
                 
                 {{#each getComments}}
@@ -17,7 +17,7 @@
             </div>
         </div>
     {{else}}
-        {{> loader}}
+        {{>loader}}
     {{/if}}
 </template>
 

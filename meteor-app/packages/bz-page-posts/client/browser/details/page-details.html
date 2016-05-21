@@ -13,6 +13,11 @@
             <!--Reviews-->
             <div class="bz-post-reviews">
                 {{> bzControlReviews postId = _id}}
+                
+                <div class="bz-box-load-more-comments disabled">
+                    <div class="bz-box-load-more-comments-wrapper">LOAD MORE COMMENTS</div>
+                </div>
+                
                 {{> bzControlAddReview postId = _id}}
             </div>
         </div>

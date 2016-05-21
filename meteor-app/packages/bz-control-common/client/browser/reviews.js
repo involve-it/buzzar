@@ -16,6 +16,9 @@ Template.bzControlReviews.helpers({
       if (ins.getCommentsData.get() === false) {
         
         Meteor.call('getComments', request, function(e, r) {
+          
+          console.info(r);
+          
           if(e) {
             //error
           } else if(r.success && r.result) {
@@ -28,7 +31,7 @@ Template.bzControlReviews.helpers({
       }
       
     }
-    //console.info(ins.getCommentsData.get());
+    console.info(ins.getCommentsData.get());
     return ins.getCommentsData.get();
   }
   
