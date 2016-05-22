@@ -2,6 +2,8 @@
  * Created by Ashot on 9/26/15.
  */
 
+//LocalCommentsCollections = new Mongo.Collection(null);
+
 Template.bzControlReviews.onCreated(function() {
   this.getCommentsData = new ReactiveVar(false);
 });
@@ -18,6 +20,7 @@ Template.bzControlReviews.helpers({
         Meteor.call('getComments', request, function(e, r) {
           
           console.info(r);
+          //LocalCommentsCollections.insert(r.result);
           
           if(e) {
             //error
@@ -31,7 +34,8 @@ Template.bzControlReviews.helpers({
       }
       
     }
-    console.info(ins.getCommentsData.get());
+    //console.info(ins.getCommentsData.get());
+    //console.info(LocalCommentsCollections.find({}));
     return ins.getCommentsData.get();
   }
   
