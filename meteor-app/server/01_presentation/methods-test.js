@@ -40,10 +40,10 @@ Meteor.methods({
   getComments: function(request){
     return bz.bus.commentsHandler.getComments(request);
   },
-  addComment: function(postId){
-    return 0;
+  addComment: function(request){
+    return bz.bus.commentsHandler.addComment(request, Meteor.userId());
   },
-  deleteComment: function(postId){
-    return 0;
+  deleteComment: function(commentId){
+    return bz.bus.commentsHandler.deleteComment(commentId,Meteor.userId());
   }
 });
