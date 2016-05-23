@@ -25,6 +25,13 @@ bz.const.errors={
     userNotAuthor:{errorId:15},
     notSpecifiedIdPost:{errorId:16}
   },
+  //for commentsHandler
+  comments:{
+    userNotAuthor:{errorId:17},
+    textWithFoulLanguage:{errorId: 18},
+    emptyCommentText:{errorId: 19},
+    commentedPostNotFound:{errorId:20}
+  },
   //global errors
   global:{
     dataNotFound:{errorId: 404},
