@@ -3,11 +3,13 @@
 
   p {
     color: rgb(63, 68, 82);
+    font-size: 18px;
+    font-family: "Roboto-light", "Roboto", sans-serif;
   }
   
   h2.title {
     font-family: "Roboto-light", "Roboto", sans-serif;
-    font-size: 37px;
+    font-size: 46px;
     line-height: 40px;
     color: rgba(89,99,107, .95);
     small {}
@@ -15,16 +17,16 @@
 
   h3.title {
     font-family: "Roboto", sans-serif;
-    font-size: 27px;
+    font-size: 36px;
     line-height: 30px;
     color: rgba(89,99,107, 1);
-    font-weight: 300;
+    font-weight: 400;
   }
   
   h4.title {
     font-family: "Roboto", sans-serif;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 22px;
+    line-height: 26px;
     color: rgba(89,99,107, 1);
   }
 
@@ -33,8 +35,8 @@
 
     &.selectedText {
       display: inline-block;
-      background-color: #1ebcd2;
-      color: rgba(255,255,255, 1);
+      background-color: rgba(30, 180, 210, .15);
+      color: rgba(8, 143, 188, 1);
       padding: 10px 15px;
     }
   }
@@ -48,6 +50,10 @@
     line-height: 28px;
     color: rgba(89,99,107,.95);
     text-shadow: 0 1px rgba(255,255,255, .5);
+  }
+  
+  .row-bottom {
+    margin-bottom: 25px;
   }
 
   .bz-three-items {
@@ -161,7 +167,7 @@
           }
 
           .bz-card-text {
-            font-size: 16px;
+            font-size: 18px;
             color: #88858c;
           }
 
@@ -262,7 +268,6 @@
     margin-top: 15px;
     
     p {
-      font-size: 16px;
       text-indent: 1em;
     }
   }
@@ -292,8 +297,11 @@
           }
           ul {
             li {
+              margin-left: 14px;
+              
               i {
                 font-size: 22px;
+                color: rgba(89,99,107,1);
               }
             }
           }
@@ -341,7 +349,8 @@
       .bz-about-how-it-works {
 
         .bz-about-how-it-works-wrapper {
-          margin-bottom: 25px;
+          margin-bottom: 45px;
+          overflow: hidden;
 
           /*three*/
         }
@@ -370,12 +379,15 @@
                 
                 .bz-card-icon {
                   margin: 15px auto;
+                  min-width: 100px;
+                  
                   .bz-img-card-icon {
                     background-repeat: no-repeat;
                     background-size: contain;
                     background-position: center center;
                     width: 100px;
                     height: 100px;
+                    margin: auto;
 
                     &.bz-img-dinamic-post {
                       background-image: url("/img/content/posts/d-post.png");
@@ -404,12 +416,12 @@
                     }
                     
                     .bz-card-sub-caption {
-                      font-size: 16px;
-                      padding: 15px 0;
+                      font-size: 20px;
+                      padding: 15px 0 10px 0;
                     }
                     
                     .bz-card-text {
-                      font-size: 15px;
+                      font-size: 18px;
                       font-family: "Roboto-light", "Roboto", sans-serif;
                     }
                   }
@@ -451,12 +463,12 @@
                     .sample-icon-sq {
 
                       .bz-card-sub-caption {
-                        font-size: 16px;
-                        padding: 15px 0;
+                        font-size: 20px;
+                        padding: 15px 0 10px 0;
                       }
 
                       .bz-card-text {
-                        font-size: 15px;
+                        font-size: 18px;
                         font-family: "Roboto-light", "Roboto", sans-serif;
                       }
                     }
@@ -587,23 +599,23 @@
   .aboutUsRu {
 
     h2.title {
-      font-size: 30px;
+      font-size: 32px;
       line-height: 37px;
     }
 
     h3.title {
-      font-size: 22px;
+      font-size: 26px;
       line-height: 30px;
     }
 
     h4.title {
-      font-size: 18px;
+      font-size: 20px;
       line-height: 24px;
     }
 
     .sub-heading,
     .sub-heading > p {
-      font-size: 20px;
+      font-size: 22px;
       line-height: 28px;
     }
 
@@ -718,7 +730,11 @@
               }
               
               .bz-card-caption {
-                margin-left: 25px;
+                font-size: 22px;
+                .big {
+                  margin-left: 16px;
+                  font-size: 22px;
+                }
               }
             }
           }
@@ -732,6 +748,8 @@
             &.bz-three-cards {
               .card {
                 .bz-card-icon {
+                  min-width: 70px !important;
+                  
                   .bz-img-card-icon {
                     height: 70px !important;
                     width: 70px !important;
@@ -748,6 +766,10 @@
                       -webkit-justify-content: flex-start;
                       justify-content: flex-start;
                     }
+                    
+                    .bz-card-sub-caption {}
+                    
+                    .bz-card-text {}
                   }
                 }
               }
@@ -761,17 +783,29 @@
             &.bz-three-cards {
               
               .card {
+                -ms-flex-direction: column;
+                -webkit-flex-direction: column;
+                flex-direction: column;
+                margin-bottom: 40px;
                 
                 &.bz-reverse {
-                  -ms-flex-direction: row-reverse;
-                  -webkit-flex-direction: row-reverse;
-                  flex-direction: row-reverse;
-
+                  
                   -ms-flex-pack: end;
                   -webkit-justify-content: flex-end;
                   justify-content: flex-end;
                   
                   padding: 6px 0;
+                }
+                
+                .bz-card-caption {
+                  margin-bottom: 25px;
+                }
+                
+                .bz-showcase-box {
+                  .sample-icon-greeting {
+                    height: 250px;
+                    width: 250px;
+                  }
                 }
               }
             }
@@ -789,9 +823,50 @@
 @media only screen and (max-width: 414px) {
   
   .aboutUsRu {
+    p {
+      font-size: 16px;
+    }
     
     .bz-about-content {
 
+      .bz-grid {
+        .bz-mains {
+          padding: 0;
+          
+          .bz-three-items {
+            .bz-ui {
+              &.bz-three-cards {
+                margin: 0 !important;
+                
+                .card {
+                  margin: 0;
+
+                  .bz-showcase-box {
+                    .sample-icon-sq {
+                      .bz-card-sub-caption {
+                        font-size: 18px !important;
+                      }
+                      .bz-card-text {
+                        font-size: 16px !important;
+                      }
+                    }
+                  }
+                  
+                  .bz-card-caption {
+                    font-size: 18px;
+                    -ms-flex-align: center;
+                    -webkit-align-items: center;
+                    align-items: center;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      
+      
       .bzAboutMaps {
         
         .bz-word-map {

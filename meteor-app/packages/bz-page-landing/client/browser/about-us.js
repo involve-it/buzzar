@@ -58,3 +58,50 @@ Template.bzAboutHowItWorks.onRendered(function() {
   
   
 });
+
+
+Template.bzAboutHowItWorks.events({
+  'click .bz-read-more a': function(e, t) {
+    
+    $(e.target).closest('.bz-next-text').find('.bz-text-more').toggle('fast', function() {
+      $(this).closest('.bz-next-text').find('.bz-read-more').hide();
+    });
+
+    var tar = $(e.target).closest('.bz-next-text');
+    if(tar.attr('data-hidden') === 'false') {
+      tar.attr('data-hidden', true);
+    } else {
+      tar.attr('data-hidden', false);
+    }
+    
+  }
+});
+
+Template.bzAboutWhatUseful.events({
+  'click .bz-read-more a': function(e, t) {
+    
+    $(e.target).closest('.bz-next-text').find('.bz-text-more').toggle('fast', function() {
+      $(this).closest('.bz-next-text').find('.bz-read-more').hide();
+    });
+
+    var tar = $(e.target).closest('.bz-next-text');
+    if(tar.attr('data-hidden') === 'false') {
+      tar.attr('data-hidden', true);
+    } else {
+      tar.attr('data-hidden', false);
+    }
+    
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
