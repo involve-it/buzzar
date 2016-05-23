@@ -62,8 +62,8 @@ bz.bus.commentsHandler = {
             text: commentText
           };
           commentAdd=bz.cols.reviews.insert(comment);
-          if (commentAdd===1) {
-            ret = {success: true, result: commentAdd._id};
+          if (commentAdd) {
+            ret = {success: true, result: commentAdd};
           }else{
             //error write in DB
             ret={success:false, error: bz.const.errors.global.errorWriteInDb};
@@ -91,7 +91,7 @@ bz.bus.commentsHandler = {
         ret={success:true};
       }else {
         //error
-        ret = {success: false, error: bz.const.errors.comments.userNotAuthor};
+        ret = {success: false, error: bz.const.errors.global.userNotAuthor};
       }
     }else{
       //error
