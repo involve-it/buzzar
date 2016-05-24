@@ -1,7 +1,7 @@
 
 Template.bzAboutHowItWorks.onRendered(function() {
 
-  $(document).foundation({
+  /*$(document).foundation({
     "magellan-expedition": {
       active_class: 'active', // specify the class used for active sections
       threshold: 0, // how many pixels until the magellan bar sticks, 0 = auto
@@ -10,56 +10,11 @@ Template.bzAboutHowItWorks.onRendered(function() {
       fixed_top: 0, // top distance in pixels assigend to the fixed element on scroll
       offset_by_height: true // whether to offset the destination by the expedition height. Usually you want this to be true, unless your expedition is on the side.
     }
-  });
+  });*/
   
   
   /* module Sticky */
   $('.ui.sticky').sticky({context: '#context'});
-  
-  
-  /*var equalHeight = function(container) {
-
-    var currentTallest = 0,
-        currentRowStart = 0,
-        rowDivs = [],
-        $el,
-        topPosition = 0;
-    
-    $(container).each(function() {
-      
-      $el = $(this);
-      $($el).height('auto');
-      topPosition = $el.position().top;
-
-      if (currentRowStart != topPosition) {
-        for (var currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
-          rowDivs[currentDiv].height(currentTallest);
-        }
-        rowDivs.length = 0; // empty the array
-        currentRowStart = topPosition;
-        currentTallest = $el.height();
-        rowDivs.push($el);
-      } else {
-        rowDivs.push($el);
-        currentTallest = (currentTallest < $el.height()) ? ($el.height()) : (currentTallest);
-      }
-      
-      for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
-        rowDivs[currentDiv].height(currentTallest);
-      }
-    })
-  };*/
-
-  
-    /*$(window).load(function() {
-      equalHeight('.bz-random-target .bz-three-cards  .card');
-    });
-
-
-    $(window).resize(function(){
-      equalHeight('.bz-random-target .bz-three-cards  .card');
-    });*/
-
   
   
 });
@@ -75,9 +30,13 @@ Template.bzAboutHowItWorks.events({
     var tar = $(e.target).closest('.bz-next-text');
     if(tar.attr('data-hidden') === 'false') {
       tar.attr('data-hidden', true);
+      $('.ui.sticky').sticky('refresh');
     } else {
       tar.attr('data-hidden', false);
+      $('.ui.sticky').sticky('refresh');
     }
+
+    recalculatesSticky();
     
   }
 });
@@ -95,12 +54,18 @@ Template.bzAboutWhatUseful.events({
     } else {
       tar.attr('data-hidden', false);
     }
+
+    recalculatesSticky();
     
   }
 });
 
 
-
+function recalculatesSticky() {
+  setTimeout(function() {
+    $('.ui.sticky').sticky('refresh');
+  }, 1000)
+}
 
 
 
