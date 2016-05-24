@@ -50,7 +50,8 @@ Package.onUse(function (api) {
   api.addFiles([
     'client/browser/style/foundation/js/vendor/modernizr.js',
     'client/browser/style/foundation/js/foundation.js',
-    'client/browser/style/foundation/js/foundation/foundation.magellan.js',
+    //'client/browser/style/foundation/js/foundation/foundation.magellan.js',
+    'client/browser/style/foundation/js/foundation/foundation.equalizer.js',
     'client/browser/style/foundation/js/foundation/foundation.accordion.js',
     'client/browser/style/foundation/js/foundation-select.js',
     'client/browser/style/foundation/js/foundation/foundation.clearing.js',
@@ -61,6 +62,10 @@ Package.onUse(function (api) {
     'client/browser/style/bz-menu/jquery.mmenu.min.js',
     'client/browser/style/bz-menu/jquery.mmenu.css',
     'client/browser/style/bz-menu/custom_mmenu.less',
+
+    /* while included only on the about-us page */
+    'client/browser/style/bz-sticky/sticky.min.js',
+    'client/browser/style/bz-sticky/sticky.min.css',
     
     'client/browser/style/foundation/js/foundation/foundation.offcanvas.js',
     'client/browser/style/foundation/js/foundation/foundation.abide.js',

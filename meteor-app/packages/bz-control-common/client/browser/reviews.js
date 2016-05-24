@@ -51,9 +51,30 @@ Template.bzControlReviews.helpers({
 
 Template.bzControlReviewItem.events({
   'click .js-delete-comment': function(e, v){
-    if(Meteor.userId() === v.data.userId){
+
+    var request = this._id;
+    
+    Meteor.call('deleteComment', request, function(e, r) {
+
+      if(e) {
+        //error
+      } else if(r.success) {
+        // true
+      } else {
+        var errorId = r.error.errorId;
+        //TODO: Add error handler
+      }
+      
+      console.info(r);
+    });
+    
+    /* OLD CODE */
+    /*if(Meteor.userId() === v.data.userId){
       bz.cols.reviews.remove(v.data._id);
-    }
+    }*/
+    
+    
+    
   }
 });
 
@@ -84,15 +105,26 @@ Template.bzControlAddReview.onRendered(function(){
 Template.bzControlAddReview.events({
   'click .js-post-btn': function(e, v){
 
-    var text = $('.js-post-text-input').val(),
+    var request = {}, userId = Meteor.userId();
+    request.postId = this.postId;
+    request.comment = $('.js-post-text-input').val().trim();
+    
+    Meteor.call('addComment', request, function(e, r) {
+      // return - _id
+    });
+   
+    
+    /* OLD CODE */
+   /*
+   var text = $('.js-post-text-input').val(),
         userId = Meteor.userId(),
         postId = this.postId,
         rating = $('.js-rating-select').val();
     if(!userId){
       // todo: after login the process should be continued
-      /*var loginFunc = accountsClientOrServer.onLogin(function(){
+      /!*var loginFunc = accountsClientOrServer.onLogin(function(){
 
-      });*/
+      });*!/
       if(confirm('please login to leave comments')){
         Router.signIn(true);
       }
@@ -123,5 +155,7 @@ Template.bzControlAddReview.events({
       });
 
     }
+    */
+    
   }
 });

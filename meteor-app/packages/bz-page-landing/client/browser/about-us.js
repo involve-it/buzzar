@@ -12,7 +12,12 @@ Template.bzAboutHowItWorks.onRendered(function() {
     }
   });
   
-  var equalHeight = function(container) {
+  
+  /* module Sticky */
+  $('.ui.sticky').sticky({context: '#context'});
+  
+  
+  /*var equalHeight = function(container) {
 
     var currentTallest = 0,
         currentRowStart = 0,
@@ -43,17 +48,17 @@ Template.bzAboutHowItWorks.onRendered(function() {
         rowDivs[currentDiv].height(currentTallest);
       }
     })
-  };
+  };*/
 
   
-    $(window).load(function() {
+    /*$(window).load(function() {
       equalHeight('.bz-random-target .bz-three-cards  .card');
     });
 
 
     $(window).resize(function(){
       equalHeight('.bz-random-target .bz-three-cards  .card');
-    });
+    });*/
 
   
   

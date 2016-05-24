@@ -186,7 +186,14 @@ CreateNewPostFromView = function (v) {
 
     bz.runtime.changesNotSaved = false;
     Router.go('/posts/my');
-    Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
+    var req = {};
+    req.requestPost = newPost;
+    
+    Meteor.call('addPost', req, function(e, r) {
+      console.info(r);
+    });
+    
+    /*Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
         var imgArray = imagesArrayReactive.get();
         if (!!imgArray.length) {
             saveImage(imgArray.pop());
@@ -217,6 +224,6 @@ CreateNewPostFromView = function (v) {
       } else {
         bz.ui.alert(`При создании поста возникла проблема: ${err}`);
       }
-    });
+    });*/
   }
 };

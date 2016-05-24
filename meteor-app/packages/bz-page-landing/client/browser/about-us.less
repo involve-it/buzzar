@@ -281,13 +281,20 @@
   margin-top: 25px;
   
   .bz-grid {
+    position: relative;
     
     .bz-sidebar {
+
+      /*&.ui.sticky.fixed + div {
+        margin-top: 25px;
+      }*/
       
       .bz-magellan-menu {
         background-color: rgba(255,255,255, 1);
         overflow: -moz-scrollbars-none;
+        
         .bz-we-are-at-social {
+          margin-top: 15px;
           
           p {
             font-size: 18px;
@@ -296,11 +303,15 @@
             margin-bottom: 5px;
           }
           ul {
+            margin: 0;
             li {
-              margin-left: 14px;
-              
+              margin-left: 0;
+              margin-right: 20px;
+              &:last-child {
+                margin-right: 0;
+              }
               i {
-                font-size: 22px;
+                font-size: 30px;
                 color: rgba(89,99,107,1);
               }
             }
@@ -656,13 +667,17 @@
             display: inline-block;
             overflow: hidden;
             margin: 0;
+
+            &.bz-we-are-at-social {
+              margin-top: 0;
+              margin-left: 15px;
+            }
           }
         }
 
         .bz-we-are-at-social {
-          p {
-            display: none;
-          }
+          
+          p {display: none;}
           ul {
             margin: 0 0 0 25px;
             display: -webkit-box;
