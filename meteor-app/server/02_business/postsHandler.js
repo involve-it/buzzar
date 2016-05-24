@@ -3,6 +3,17 @@
  */
 
 bz.bus.postsHandler = {
+  searchPosts: function(request){
+    var ret,query, lat,lng,radius,skip,take;
+    query=request.query;
+    lat=request.lat;
+    lng=request.lng;
+    radius=request.radius;
+    skip=request.skip;
+    take=request.take;
+
+    return ret;
+  },
   getPost: function (requestedPostId) {
     var post, ret={}, comments,
       postDb=bz.cols.posts.findOne({_id: requestedPostId});
@@ -88,7 +99,7 @@ bz.bus.postsHandler = {
         ret={success: true, result: post._id};
       }else{
         //error not valid
-        ret={success:false,error: validate};
+        ret={success:false,error: validate.error};
       }
     }else {
       //error
@@ -188,7 +199,7 @@ bz.bus.postsHandler = {
                 };
               }
               update=bz.cols.posts.update({_id:postData._id},{ $set : updatePost });
-              if (update===1){
+              if (update){
                 ret={success:true, result: postDb._id}
               }else{
                 //error write in DB
@@ -200,7 +211,7 @@ bz.bus.postsHandler = {
             }
           }else{
             //error
-            ret={success:false,error:bz.const.errors.posts.userNotAuthor};
+            ret={success:false,error:bz.const.errors.global.userNotAuthor};
           }
         }else{
           //error
@@ -280,15 +291,15 @@ bz.bus.postsHandler = {
     if(postDb){
       if(postDb.userId===currentUserId){
         bz.cols.posts.remove(requestedPostId);
+        ret={success:true};
       }else{
         //error
-        ret={success:false,error:bz.const.errors.posts.userNotAuthor};
+        ret={success:false,error:bz.const.errors.global.userNotAuthor};
       }
     }else{
       //error
       ret={success:false, error: bz.const.errors.global.dataNotFound};
     }
-    ret={success:true};
     return ret;
   }
 

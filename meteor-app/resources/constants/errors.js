@@ -22,19 +22,22 @@ bz.const.errors={
     emptyPostLocations:{errorId:12},
     emptyTimestamp:{errorId:13},
     emptyEndDatePost:{errorId:14},
-    userNotAuthor:{errorId:15},
     notSpecifiedIdPost:{errorId:16}
   },
   //for commentsHandler
   comments:{
-    userNotAuthor:{errorId:17},
     textWithFoulLanguage:{errorId: 18},
     emptyCommentText:{errorId: 19},
     commentedPostNotFound:{errorId:20}
   },
+  //for imagesHandler
+  images:{
+    badImageUrl:{errorId:21},
+  },
   //global errors
   global:{
     dataNotFound:{errorId: 404},
+    userNotAuthor:{errorId: 997},
     errorWriteInDb:{errorId:998},
     internalError:{errorId:999}
   }
