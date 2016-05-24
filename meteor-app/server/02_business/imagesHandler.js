@@ -17,7 +17,7 @@ bz.bus.imagesHandler = {
     if (bz.const.RegExp.imageUrlRegEx.test(url)) {
       image=bz.cols.images.find({$or:[{data:url},{thumbnail: url}]});
       if(image){
-        if(image.userId===Meteor.userId){
+        if(image.userId===Meteor.userId()){
           bz.cols.images.remove({_id: image._id});
           ret={success:true};
           //также необходимо удаление с s3
