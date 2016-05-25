@@ -2,8 +2,17 @@
     <div class="main-content">
         <div class="bz-post-details">
             {{> bzPostDetails }}
+
+            <div class="bz-user-card">
+                <div class="bz-padding-10 overflow">
+                    {{#if this.user.success}}
+                        {{> bzUserProfileBasic this.user.result}}
+                    {{/if}}
                         
-            {{> bzUserProfileBasic this.user.result}}
+                    {{> bzSocialButtons }}
+                </div>
+            </div>
+            
             
             <!--OLD CODE-->
             <!--{{> bzUserProfileBasic getUserObj}}-->
