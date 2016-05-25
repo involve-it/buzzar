@@ -1,17 +1,24 @@
 
-Template.bzAboutHowItWorks.onRendered(function() {
+Template.aboutUsRu.events({
+  'click a[href*="#"]:not([href="#"])':function(e, v) {
+    
+    /* smooth scroll */
+    
+    /*if (location.pathname.replace(/^\//,'') == e.target.pathname.replace(/^\//,'') && location.hostname == e.target.hostname) {
+      var target = $(e.target.hash);
+      target = target.length ? target : $('[name=' + e.target.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }*/
+    
+  }
+});
 
-  /*$(document).foundation({
-    "magellan-expedition": {
-      active_class: 'active', // specify the class used for active sections
-      threshold: 0, // how many pixels until the magellan bar sticks, 0 = auto
-      destination_threshold: 0, // pixels from the top of destination for it to be considered active
-      throttle_delay: 50, // calculation throttling to increase framerate
-      fixed_top: 0, // top distance in pixels assigend to the fixed element on scroll
-      offset_by_height: true // whether to offset the destination by the expedition height. Usually you want this to be true, unless your expedition is on the side.
-    }
-  });*/
-  
+Template.bzAboutHowItWorks.onRendered(function() {
   
   /* module Sticky */
   $('.ui.sticky').sticky({context: '#context'});
