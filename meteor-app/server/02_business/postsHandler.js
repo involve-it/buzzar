@@ -4,22 +4,68 @@
 
 bz.bus.postsHandler = {
   searchPosts: function(request){
-    var ret,query, lat,lng,radius,skip,take;
+    var ret,query, lat,lng,radius,skip,take, postsQuery={},posts,arrTypes=[], activeCats,box,postsRet,postsSort, coords, loc;
     query=request.query;
     lat=request.lat;
     lng=request.lng;
     radius=request.radius;
     skip=request.skip;
     take=request.take;
+    activeCats=request.activeCats;
+    if (lat && lng && radius) {
+      box = getLatLngBox(lat, lng, radius);
+      if (box) {
+        postsQuery['details.locations'] = {
+          $elemMatch: {
+            'obscuredCoords.lat': {$gte: box.lat1, $lte: box.lat2},
+            'obscuredCoords.lng': {$gte: box.lng1, $lte: box.lng2}
+          }
+        };
+      }
+    }else{
 
+    }
+    if (activeCats && Array.isArray(activeCats) && activeCats.length > 0) {
+      postsQuery['type'] = {$in: activeCats};
+    } else {
+      arrTypes = _.map(bz.cols.postAdTypes.find().fetch(), function (item) {
+        return item.name;
+      });
+      arrTypes.push(undefined);
+      arrTypes.push('');
+      postsQuery['type'] = {$in: arrTypes};
+    }
+    postsQuery['$or'] = [
+      {'details.title': {$regex: query}},
+      {'details.description': {$regex: query}},
+      {'details.price': {$regex: query}}
+    ];
+    postsQuery['$where'] = function(){return this.status.visible !== null};
+    posts= bz.cols.posts.find(postsQuery).fetch();
+    if (lat && lng) {
+      _.each(posts, function (post) {
+        if (post.details && post.details.locations && Array.isArray(post.details.locations) && post.details.locations.length > 0) {
+          loc = _.find(post.details.locations, function (l) {
+            return l.placeType === bz.const.locations.type.DYNAMIC
+          });
+          if (!loc) {
+            loc = post.details.locations[0];
+          }
+          coords = loc.obscuredCoords || loc.coords;
+          post.distance = bz.help.location.getDistance(lat, lng, coords.lat, coords.lng);
+        }
+      });
+      postsSort=posts.sort(function(a,b){return a.distance-b.distance});
+    }
+    postsRet=bz.bus.postsHandler.buildPostObject({posts:postsSort});
+    ret={success:true, result:postsRet};
     return ret;
   },
   getPost: function (requestedPostId) {
-    var post, ret={}, comments,
+    var post, ret={},
       postDb=bz.cols.posts.findOne({_id: requestedPostId});
     if (postDb){
-      comments=bz.bus.commentsHandler.getComments({postId:requestedPostId, take: 5, skip: 0});
-      post=bz.bus.postsHandler.buildPostObject({posts:[postDb], comments: comments.result});
+      post=bz.bus.postsHandler.buildPostObject({posts:[postDb]});
       ret={success:true, result:post[0]};
     }else{
       //error
@@ -55,7 +101,7 @@ bz.bus.postsHandler = {
   },
 
   addPost: function(request, currentUserId){
-    var ret={},post, newPost, postData, validate;
+    var ret={},post, newPost, postData, validate, locations=[],loc;
     postData=request.requestPost;
     if(postData){
       validate=bz.bus.postsHandler.validatePost(postData);
@@ -66,7 +112,6 @@ bz.bus.postsHandler = {
           tags: postData.tags,
           details: {
             anonymousPost: postData.details.anonymousPost,
-            locations: postData.details.locations,
             url: postData.details.url,
             title: postData.details.title,
             description: postData.details.description,
@@ -95,8 +140,30 @@ bz.bus.postsHandler = {
             typeCategory: postData.trainingsDetails.typeCategory
           };
         }
+        if (postData.details && postData.details.locations) {
+          _.each(postData.details.locations, function(location){
+            if (location.placeType === bz.const.locations.type.DYNAMIC){
+              location.obscuredCoords = bz.bus.proximityHandler.getObscuredCoords(location.coords.lat, location.coords.lng, 0.1);
+            }
+          });
+          _.each(postData.details.locations, function(location){
+            loc ={
+              userId: location.userId,
+              name:location.name,
+              accurateAddress:location.accurateAddress,
+              coords:location.coords,
+              placeType:location.placeType,
+              public:location.public,
+              _id:location._id,
+              obscuredCoords: location.obscuredCoords
+            };
+            locations.push(loc)
+          });
+          newPost.details.locations=locations;
+        }
+
         post=bz.cols.posts.insert(newPost);
-        ret={success: true, result: post._id};
+        ret={success: true, result: post};
       }else{
         //error not valid
         ret={success:false,error: validate.error};
@@ -229,9 +296,8 @@ bz.bus.postsHandler = {
   },
 
   buildPostObject: function(data){
-    var post,posts,postsRet=[], ret={}, locations=[],arrPhoto, photos, comments;
+    var post,posts,postsRet=[], ret={}, locations=[],arrPhoto, photos;
     posts=data.posts;
-    comments=data.comments;
     arrPhoto=_.map(posts,function(post){return post.details.photos}).reduce(function(a, b) {
       return a.concat(b);
     });
@@ -239,6 +305,7 @@ bz.bus.postsHandler = {
       photos = bz.bus.imagesHandler.getPhotos(arrPhoto);
     }
     _.each(posts,function(postDb){
+      locations=[];
       post={
         _id: postDb._id,
         type: postDb.type,
@@ -273,11 +340,6 @@ bz.bus.postsHandler = {
       }
       if (!postDb.details.anonymousPost) {
         post.user = bz.bus.usersHandler.getUser(postDb.userId, Meteor.userId());
-      }
-      if (comments && comments.length>0) {
-        post.comments = comments;
-      }else{
-        post.comments=[];
       }
       postsRet.push(post)
     });
