@@ -128,8 +128,60 @@ SavePostFromView = function (v, data) {
 
     bz.runtime.changesNotSaved = false;
     Router.go(`/post/${data._id}`);
+    
+    
+    
+    Meteor.call('editPost', newPost, function(e, r) {
+      var result = {},
+          imgArray = imagesArrayReactive.get();
+      
+      console.info('DATA: ', r);
+      
+      (!e)? result = r : result = e;
+      
+      if(result && result.error) {
+        console.error('editPOST ERROR n: ', result.error);
+      } else {
+        
+        if (!!imgArray.length) {
+          saveImage(imgArray.pop());
+        }
 
-    Meteor.call('saveExistingPost', newPost, currentLoc, Meteor.connection._lastSessionId, Meteor.userId(), function (err, res) {
+        function saveImage(imgItem) {
+          if (!imgItem._id && !imgItem.isSaved) {
+            imgItem.save().then(img => {
+              var imgItem = img;
+              bz.cols.images.update(imgItem.tempId, {$set: {data: img.src}});
+              imgItem.thumbnail.save().then(thumb => {
+                bz.cols.images.update(imgItem.tempId, {$set: {thumbnail: thumb.src}});
+                // bz.ui.alert(`Фотография поста (иконка + оригинал) была создана`);
+                if (!!imgArray.length) {
+                  saveImage(imgArray.pop());
+                }
+              }).catch(error=>{
+                bz.ui.error(`При создании фотографий поста (иконка) возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
+              });
+            }).catch(error=> {
+              bz.ui.error(`При создании фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
+            });
+          }
+        }
+
+        if (!e && result) {
+          bz.ui.alert(`Ваш <a href="/post/${result}">пост</a> сохранен`);
+          //clearPostData();
+          //bz.runtime.newPost.postId = res;
+        } else if(e) {
+          bz.ui.error(`При сохранении поста возникла проблема: ${result}`);
+        }
+        
+      }
+      
+      
+    });
+    
+
+    /*Meteor.call('saveExistingPost', newPost, currentLoc, Meteor.connection._lastSessionId, Meteor.userId(), function (err, res) {
       var imgArray = imagesArrayReactive.get();
       if (!!imgArray.length) {
         saveImage(imgArray.pop());
@@ -160,7 +212,13 @@ SavePostFromView = function (v, data) {
       } else if(err) {
         bz.ui.error(`При сохранении поста возникла проблема: ${err}`);
       }
-    });
+    });*/
+    
+    
+    
+    
+    
+    
   }
 };
 

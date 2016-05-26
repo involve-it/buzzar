@@ -53,7 +53,7 @@
         <p><a href="/chat/{{chatId}}" class="js-go-to-msg-link" data-id="{{ _id }}">{{ messageText }}</a></p>
         {{#if user }}
             <p>From:</p>
-            {{> bzUserProfileBasic this.user.result}}
+            {{> bzUserProfileBasic this.user}}
             <!--{{> bzUserProfileBasic user}}-->
         {{/if}}
         <a class="close-reveal-modal" aria-label="Close">&#215;</a>

@@ -224,7 +224,6 @@ CreateNewPostFromView = function (v) {
         bz.ui.alert(`При создании поста возникла проблема: ${e}`);
       }
       
-      console.info(r);
     });
     
     /* OLD CODE */

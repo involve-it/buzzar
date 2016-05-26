@@ -223,7 +223,7 @@ bz.bus.postsHandler = {
       ret={success:false, error: bz.const.errors.posts.emptyDetails};
       return ret;
     }
-    if(!post.timestamp){
+    /*if(!post.timestamp){
       //error
       ret={success:false, error: bz.const.errors.posts.emptyTimestamp};
       return ret;
@@ -232,7 +232,7 @@ bz.bus.postsHandler = {
       //error
       ret={success:false, error: bz.const.errors.posts.emptyEndDatePost};
       return ret;
-    }
+    }*/
     return ret;
   },
   editPost: function(request, currentUserId){

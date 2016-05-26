@@ -34,7 +34,6 @@ Template.postsNew.helpers({
 Template.postsNew.events({
   'click .js-create-post': function (e, v) {
     e.preventDefault();
-
     
     var res = true;
     validatePostsNewPage(v).then((ret)=>{
@@ -50,7 +49,6 @@ Template.postsNew.events({
     e.preventDefault();
   }
 });
-
 
 // HELPERS:
 function validatePostsNewPage (v){

@@ -5,8 +5,8 @@
 
             <div class="bz-user-card">
                 <div class="bz-padding-10 overflow">
-                    {{#if this.user.success}}
-                        {{> bzUserProfileBasic this.user.result}}
+                    {{#if this.user}}
+                        {{> bzUserProfileBasic this.user}}
                     {{/if}}
                         
                     {{> bzSocialButtons }}

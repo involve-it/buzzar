@@ -255,8 +255,25 @@ Template.bzNewControlSearch.helpers({
           return ret;
         }
       }];
-
     
+    
+    /* NEW CODE, NOT A TESTS */
+
+    var request = {
+      query: 'Пост',
+      lat:Session.get('currentLocation').latitude,
+      lng:Session.get('currentLocation').longitude,
+      radius:Session.get('bz.control.search.distance'),
+      activeCats:Session.get('bz.control.category-list.activeCategories')
+    };
+
+    Meteor.call('searchPosts', request, function(e, r) {
+      var res;
+      (!e) ? res = r: res = e;
+      console.info(res);
+    });
+    
+    /*********/
     
     return ret;
   }
@@ -320,6 +337,7 @@ Template.categoryListButtons.events({
   }
 });
 
+
 Template.searchCommonFilters.onRendered(()=> {
   Tracker.autorun(function () {
     //default distance
@@ -352,6 +370,8 @@ Template.searchCommonFilters.onRendered(()=> {
     //return ret;
   });
 });
+
+
 Template.searchCommonFilters.helpers({
   getDistanceFromSession: function () {
     //Tracker.autorun(function () {
@@ -437,8 +457,6 @@ Template.searchFiltersTrainings.events({
     //v.$('#bz-search-trainings-box').toggle();    
   }
 });
-
-
 
 
 Template.searchFiltersJobs.events({

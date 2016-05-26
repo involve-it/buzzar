@@ -32,7 +32,7 @@ Meteor.methods({
   addPost: function(requset){
     return bz.bus.postsHandler.addPost(requset, Meteor.userId());
   },
-  editPostTest: function(requset){
+  editPost: function(requset){
     return bz.bus.postsHandler.editPost(requset, Meteor.userId());
   },
   deletePost: function(request){
