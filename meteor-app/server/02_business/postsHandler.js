@@ -102,7 +102,7 @@ bz.bus.postsHandler = {
 
   addPost: function(request, currentUserId){
     var ret={},post, newPost, postData, validate, locations=[],loc;
-    postData=request.requestPost;
+    postData=request;
     if(postData){
       validate=bz.bus.postsHandler.validatePost(postData);
       if (validate.success){
@@ -228,7 +228,7 @@ bz.bus.postsHandler = {
   },
   editPost: function(request, currentUserId){
     var now, ret={},postDb, updatePost, postData, validate,update;
-    postData=request.requestPost;
+    postData=request;
     now = Date.now();
     if(postData){
       if(postData._id){
