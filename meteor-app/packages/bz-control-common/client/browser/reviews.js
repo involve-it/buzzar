@@ -34,8 +34,6 @@ Template.bzControlReviews.helpers({
       }
       
     }
-    //console.info(ins.getCommentsData.get());
-    //console.info(LocalCommentsCollections.find({}));
     return ins.getCommentsData.get();
   }
   
