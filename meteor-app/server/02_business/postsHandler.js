@@ -13,7 +13,7 @@ bz.bus.postsHandler = {
     take=request.take;
     activeCats=request.activeCats;
     if (lat && lng && radius) {
-      box = bz.bus.locationsHandler.getLatLngBox(lat, lng, radius);
+      box = bz.bus.proximityHandler.getLatLngBox(lat, lng, radius);
       if (box) {
         postsQuery['details.locations'] = {
           $elemMatch: {
@@ -329,58 +329,123 @@ bz.bus.postsHandler = {
   buildPostObject: function(data){
     var post,posts,postsRet=[], ret={}, locations=[],arrPhoto, photos,usersIds, arrUsers, users;
     posts=data.posts;
-    usersIds=_.map(posts,function(post){return post.userId});
-    arrUsers=bz.bus.usersHandler.userDbQuery(usersIds);
-    users=bz.bus.usersHandler.buildUserObject(arrUsers);
-    arrPhoto=_.map(posts,function(post){return post.details.photos}).reduce(function(a, b) {
-      return a.concat(b);
-    });
-    if (arrPhoto.length>0) {
-      photos = bz.bus.imagesHandler.getPhotos(arrPhoto);
-    }
-    _.each(posts,function(postDb){
-      locations=[];
-      post={
-        _id: postDb._id,
-        type: postDb.type,
-        tags: postDb.tags,
-        details:{
-          url: postDb.details.url,
-          title: postDb.details.title,
-          description: postDb.details.description,
-          price: postDb.details.price,
-          other: postDb.details.other
-        },
-        presences: postDb.presences,
-        status: postDb.status,
-        timestamp:postDb.timestamp,
-        timePause: postDb.timePause,
-        endDatePost:postDb.endDatePost,
-        social:postDb.social,
-        stats:  postDb.stats,
-        lastEditedTs:postDb.lastEditedTs
-      };
-      _.each(postDb.details.locations, function(item){
-        locations.push({_id:item._id, coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
+    if (posts && posts.length>0) {
+      usersIds = _.map(posts, function (post) {
+        return post.userId
       });
-      post.details.locations = locations;
-      post.details.photos = _.filter(photos,function(photo){return postDb.details.photos.indexOf(photo._id)!==-1});
-      if(postDb.type=='jobs'){
-        post.jobsDetails = postDb.jobsDetails;
-      }else if (postDb.type=='trainings'){
-        post.trainingsDetails=postDb.trainingsDetails;
-      }else{
+      arrUsers = bz.bus.usersHandler.userDbQuery(usersIds);
+      users = bz.bus.usersHandler.buildUserObject(arrUsers);
+      arrPhoto = _.map(posts, function (post) {
+        return post.details.photos
+      }).reduce(function (a, b) {
+        return a.concat(b);
+      });
+      if (arrPhoto.length > 0) {
+        photos = bz.bus.imagesHandler.getPhotos(arrPhoto);
+      }
+      _.each(posts, function (postDb) {
+        locations = [];
+        post = {
+          _id: postDb._id,
+          type: postDb.type,
+          tags: postDb.tags,
+          details: {
+            url: postDb.details.url,
+            title: postDb.details.title,
+            description: postDb.details.description,
+            price: postDb.details.price,
+            other: postDb.details.other
+          },
+          presences: postDb.presences,
+          status: postDb.status,
+          timestamp: postDb.timestamp,
+          timePause: postDb.timePause,
+          endDatePost: postDb.endDatePost,
+          social: postDb.social,
+          stats: postDb.stats,
+          lastEditedTs: postDb.lastEditedTs
+        };
+        _.each(postDb.details.locations, function (item) {
+          locations.push({_id: item._id, coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
+        });
+        post.details.locations = locations;
+        post.details.photos = _.filter(photos, function (photo) {
+          return postDb.details.photos.indexOf(photo._id) !== -1
+        });
+        if (postDb.type == 'jobs') {
+          post.jobsDetails = postDb.jobsDetails;
+        } else if (postDb.type == 'trainings') {
+          post.trainingsDetails = postDb.trainingsDetails;
+        } else {
 
-      }
-      if (!postDb.details.anonymousPost) {
-        post.user = _.filter(users, function(user){return user._id===postDb.userId})[0];
-      }
-      postsRet.push(post)
-    });
-    ret = postsRet;
+        }
+        if (!postDb.details.anonymousPost) {
+          post.user = _.filter(users, function (user) {
+            return user._id === postDb.userId
+          })[0];
+        }
+        postsRet.push(post)
+      });
+      ret = postsRet;
+    }
     return ret;
   },
+  getNearbyPosts: function(request){
+    var ret, lat,lng,radius,skip,take, postsQuery={},posts,arrTypes=[], activeCats,box,postsRet,postsSort, coords, loc;
+    lat=request.lat;
+    lng=request.lng;
+    radius=request.radius;
+    skip=request.skip;
+    take=request.take;
+    activeCats=request.activeCats;
+    if (lat && lng && radius) {
+      box = bz.bus.proximityHandler.getLatLngBox(lat, lng, radius);
+      if (box) {
+        postsQuery['details.locations'] = {
+          $elemMatch: {
+            'obscuredCoords.lat': {$gte: box.lat1, $lte: box.lat2},
+            'obscuredCoords.lng': {$gte: box.lng1, $lte: box.lng2}
+          }
+        };
+      }
+    }else{
 
+    }
+    if (activeCats && Array.isArray(activeCats) && activeCats.length > 0) {
+      postsQuery['type'] = {$in: activeCats};
+    } else {
+      arrTypes = _.map(bz.cols.postAdTypes.find().fetch(), function (item) {
+        return item.name;
+      });
+      arrTypes.push(undefined);
+      arrTypes.push('');
+      postsQuery['type'] = {$in: arrTypes};
+    }
+    postsQuery['$where'] = function(){return this.status.visible !== null};
+    posts= bz.cols.posts.find(postsQuery).fetch();
+    if (lat && lng) {
+      _.each(posts, function (post) {
+        if (post.details && post.details.locations && Array.isArray(post.details.locations) && post.details.locations.length > 0) {
+          loc = _.find(post.details.locations, function (l) {
+            return l.placeType === bz.const.locations.type.DYNAMIC
+          });
+          if (!loc) {
+            loc = post.details.locations[0];
+          }
+          coords = loc.obscuredCoords || loc.coords;
+          post.distance = bz.help.location.getDistance(lat, lng, coords.lat, coords.lng);
+        }
+      });
+      postsSort=posts.sort(function(a,b){return a.distance-b.distance});
+    }
+    postsRet=bz.bus.postsHandler.buildPostObject({posts:postsSort});
+    ret={success:true, result:postsRet};
+    return ret;
+  },
+  getPopularPosts: function(){
+    var ret;
+    return ret;
+  },
   deletePost: function(requestedPostId, currentUserId){
     var ret={},
       postDb=bz.cols.posts.findOne({_id: requestedPostId});
@@ -398,5 +463,4 @@ bz.bus.postsHandler = {
     }
     return ret;
   }
-
 };
