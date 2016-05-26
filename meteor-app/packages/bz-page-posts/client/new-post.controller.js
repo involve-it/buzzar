@@ -189,10 +189,7 @@ CreateNewPostFromView = function (v) {
     bz.runtime.changesNotSaved = false;
     Router.go('/posts/my');
     
-    var req = {};
-    req.requestPost = newPost;
-    
-    Meteor.call('addPost', req, function(e, r) {
+    Meteor.call('addPost', newPost, function(e, r) {
       
       var imgArray = imagesArrayReactive.get();
       if (!!imgArray.length) {
