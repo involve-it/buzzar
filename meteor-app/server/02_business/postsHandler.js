@@ -13,7 +13,7 @@ bz.bus.postsHandler = {
     take=request.take;
     activeCats=request.activeCats;
     if (lat && lng && radius) {
-      box = getLatLngBox(lat, lng, radius);
+      box = bz.bus.locationsHandler.getLatLngBox(lat, lng, radius);
       if (box) {
         postsQuery['details.locations'] = {
           $elemMatch: {
@@ -186,10 +186,12 @@ bz.bus.postsHandler = {
         } else {
           //error foul language
           ret={success:false, error: bz.const.errors.posts.foulLanguageInTitle};
+          return ret;
         }
       }else{
         //error empty title
         ret={success:false, error: bz.const.errors.posts.emptyTitle};
+        return ret;
       }
       //validate description
       if (post.details.description) {
@@ -199,35 +201,42 @@ bz.bus.postsHandler = {
         } else {
           //error foul language
           ret={success:false, error: bz.const.errors.posts.foulLanguageInDescription};
+          return ret;
         }
       } else {
         //error empty description
         ret={success:false, error: bz.const.errors.posts.emptyDescription};
+        return ret;
       }
       //validate url
       //validate locations
       if (post.details.locations){
         ret={success:true};
       }else{
+        //error
         ret={success:false, error: bz.const.errors.posts.emptyPostLocations};
+        return ret;
       }
       //validate photo
     }else{
       //error empty details
       ret={success:false, error: bz.const.errors.posts.emptyDetails};
+      return ret;
     }
     if(!post.timestamp){
       //error
       ret={success:false, error: bz.const.errors.posts.emptyTimestamp};
+      return ret;
     }
     if (!post.endDatePost){
       //error
       ret={success:false, error: bz.const.errors.posts.emptyEndDatePost};
+      return ret;
     }
     return ret;
   },
   editPost: function(request, currentUserId){
-    var now, ret={},postDb, updatePost, postData, validate,update;
+    var now, ret={},postDb, updatePost, postData, validate,update, locations=[],loc;
     postData=request;
     now = Date.now();
     if(postData){
@@ -241,7 +250,6 @@ bz.bus.postsHandler = {
                 tags: postData.tags,
                 details: {
                   anonymousPost: postData.details.anonymousPost,
-                  locations: postData.details.locations,
                   title: postData.details.title,
                   description: postData.details.description,
                   price: postData.details.price,
@@ -265,6 +273,29 @@ bz.bus.postsHandler = {
                   typeCategory: postData.trainingsDetails.typeCategory
                 };
               }
+
+              if (postData.details && postData.details.locations) {
+                _.each(postData.details.locations, function(location){
+                  if (location.placeType === bz.const.locations.type.DYNAMIC){
+                    location.obscuredCoords = bz.bus.proximityHandler.getObscuredCoords(location.coords.lat, location.coords.lng, 0.1);
+                  }
+                });
+                _.each(postData.details.locations, function(location){
+                  loc ={
+                    userId: location.userId,
+                    name:location.name,
+                    accurateAddress:location.accurateAddress,
+                    coords:location.coords,
+                    placeType:location.placeType,
+                    public:location.public,
+                    _id:location._id,
+                    obscuredCoords: location.obscuredCoords
+                  };
+                  locations.push(loc)
+                });
+                updatePost.details.locations=locations;
+              }
+
               update=bz.cols.posts.update({_id:postData._id},{ $set : updatePost });
               if (update){
                 ret={success:true, result: postDb._id}
@@ -296,8 +327,11 @@ bz.bus.postsHandler = {
   },
 
   buildPostObject: function(data){
-    var post,posts,postsRet=[], ret={}, locations=[],arrPhoto, photos;
+    var post,posts,postsRet=[], ret={}, locations=[],arrPhoto, photos,usersIds, arrUsers, users;
     posts=data.posts;
+    usersIds=_.map(posts,function(post){return post.userId});
+    arrUsers=bz.bus.usersHandler.userDbQuery(usersIds);
+    users=bz.bus.usersHandler.buildUserObject(arrUsers);
     arrPhoto=_.map(posts,function(post){return post.details.photos}).reduce(function(a, b) {
       return a.concat(b);
     });
@@ -339,7 +373,7 @@ bz.bus.postsHandler = {
 
       }
       if (!postDb.details.anonymousPost) {
-        post.user = bz.bus.usersHandler.getUser(postDb.userId, Meteor.userId());
+        post.user = _.filter(users, function(user){return user._id===postDb.userId})[0];
       }
       postsRet.push(post)
     });
