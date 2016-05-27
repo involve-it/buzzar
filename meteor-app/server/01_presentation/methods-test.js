@@ -23,11 +23,11 @@ Meteor.methods({
   getMyPosts: function(requestPage){
     return bz.bus.postsHandler.getMyPosts(requestPage, Meteor.userId());
   },
-  getNearbyPostsTest: function(){
-    return 0;
+  getNearbyPostsTest: function(request){
+    return bz.bus.postsHandler.getNearbyPosts(request);
   },
-  getPopularPosts: function(){
-    return 0;
+  getPopularPosts: function(request){
+    return bz.bus.postsHandler.getPopularPosts(request);
   },
   addPost: function(requset){
     return bz.bus.postsHandler.addPost(requset, Meteor.userId());
