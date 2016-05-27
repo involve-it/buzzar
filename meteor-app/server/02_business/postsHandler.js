@@ -369,9 +369,11 @@ bz.bus.postsHandler = {
           locations.push({_id: item._id, coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
         });
         post.details.locations = locations;
-        post.details.photos = _.filter(photos, function (photo) {
-          return postDb.details.photos.indexOf(photo._id) !== -1
-        });
+        if(postDb.details.photos) {
+          post.details.photos = _.filter(photos, function (photo) {
+            return postDb.details.photos.indexOf(photo._id) !== -1
+          });
+        }
         if (postDb.type == 'jobs') {
           post.jobsDetails = postDb.jobsDetails;
         } else if (postDb.type == 'trainings') {
@@ -442,7 +444,7 @@ bz.bus.postsHandler = {
     ret={success:true, result:postsRet};
     return ret;
   },
-  getPopularPosts: function(){
+  getPopularPosts: function(request){
     var ret, lat,lng,radius,skip,take, postsQuery={},posts,arrTypes=[], activeCats,box,option,postsRet,postsSort, coords, loc;
     lat=request.lat;
     lng=request.lng;
@@ -450,6 +452,7 @@ bz.bus.postsHandler = {
     skip=request.skip;
     take=request.take;
     activeCats=request.activeCats;
+    option={sort: {'stats.seenTotal': -1},skip: skip,limit: take};
     if (lat && lng && radius) {
       box = bz.bus.proximityHandler.getLatLngBox(lat, lng, radius);
       if (box) {
@@ -474,8 +477,9 @@ bz.bus.postsHandler = {
       postsQuery['type'] = {$in: arrTypes};
     }
     postsQuery['status'] ={visible: bz.const.posts.status.visibility.VISIBLE};
-    posts = bz.cols.posts.find(popularQuery,option);
-
+    posts = bz.cols.posts.find(postsQuery,option).fetch();
+    postsRet=bz.bus.postsHandler.buildPostObject({posts:posts});
+    ret={success:true, result:postsRet};
     return ret;
   },
   deletePost: function(requestedPostId, currentUserId){
