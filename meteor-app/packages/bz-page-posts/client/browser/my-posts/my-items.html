@@ -270,14 +270,14 @@
 
 <template name="myPostsItems">
     <div class="bz-my-posts-items">
-        {{#if this.items}}
+        {{#if this.items.length}}
             <ul class="list-group type-{{this.postType}}">
                 {{#each this.items}}
                     {{> onePostRowItemOwner}}
                 {{/each}}
             </ul>
         {{else}}
-            {{> loader}}
+            {{> noPosts}}
         {{/if}}
     </div>
 </template>

@@ -260,7 +260,7 @@ Template.bzNewControlSearch.helpers({
     /* NEW CODE, NOT A TESTS */
 
     var request = {
-      query: 'Пост',
+      query: 'пос',
       lat:Session.get('currentLocation').latitude,
       lng:Session.get('currentLocation').longitude,
       radius:Session.get('bz.control.search.distance'),
