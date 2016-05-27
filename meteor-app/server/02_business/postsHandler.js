@@ -40,7 +40,7 @@ bz.bus.postsHandler = {
       {'details.description': {$regex: query}},
       {'details.price': {$regex: query}}
     ];
-    postsQuery['$where'] = function(){return this.status.visible !== null};
+    postsQuery['status'] ={visible: bz.const.posts.status.visibility.VISIBLE};
     posts= bz.cols.posts.find(postsQuery).fetch();
     if (lat && lng) {
       _.each(posts, function (post) {
@@ -421,7 +421,7 @@ bz.bus.postsHandler = {
       arrTypes.push('');
       postsQuery['type'] = {$in: arrTypes};
     }
-    postsQuery['$where'] = function(){return this.status.visible !== null};
+    postsQuery['status'] ={visible: bz.const.posts.status.visibility.VISIBLE};
     posts= bz.cols.posts.find(postsQuery).fetch();
     if (lat && lng) {
       _.each(posts, function (post) {
@@ -443,7 +443,39 @@ bz.bus.postsHandler = {
     return ret;
   },
   getPopularPosts: function(){
-    var ret;
+    var ret, lat,lng,radius,skip,take, postsQuery={},posts,arrTypes=[], activeCats,box,option,postsRet,postsSort, coords, loc;
+    lat=request.lat;
+    lng=request.lng;
+    radius=request.radius;
+    skip=request.skip;
+    take=request.take;
+    activeCats=request.activeCats;
+    if (lat && lng && radius) {
+      box = bz.bus.proximityHandler.getLatLngBox(lat, lng, radius);
+      if (box) {
+        postsQuery['details.locations'] = {
+          $elemMatch: {
+            'obscuredCoords.lat': {$gte: box.lat1, $lte: box.lat2},
+            'obscuredCoords.lng': {$gte: box.lng1, $lte: box.lng2}
+          }
+        };
+      }
+    }else{
+
+    }
+    if (activeCats && Array.isArray(activeCats) && activeCats.length > 0) {
+      postsQuery['type'] = {$in: activeCats};
+    } else {
+      arrTypes = _.map(bz.cols.postAdTypes.find().fetch(), function (item) {
+        return item.name;
+      });
+      arrTypes.push(undefined);
+      arrTypes.push('');
+      postsQuery['type'] = {$in: arrTypes};
+    }
+    postsQuery['status'] ={visible: bz.const.posts.status.visibility.VISIBLE};
+    posts = bz.cols.posts.find(popularQuery,option);
+
     return ret;
   },
   deletePost: function(requestedPostId, currentUserId){
