@@ -49,7 +49,7 @@ SavePostFromView = function (v, data) {
         });
         if (!imgItem.thumbnail.data) {
           imgItem.thumbnail.getBlob().then((url)=> {
-            imgItem.thumbnail.data = url;
+            imgItem.thumbnail.data = url.data;
             bz.cols.images._collection.update(imgId, {
               $set: {
                 thumbnail: imgItem.thumbnail.data
@@ -146,7 +146,7 @@ SavePostFromView = function (v, data) {
         if (!!imgArray.length) {
           saveImage(imgArray.pop());
         }
-
+        
         function saveImage(imgItem) {
           if (!imgItem._id && !imgItem.isSaved) {
             imgItem.save().then(img => {
