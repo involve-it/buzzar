@@ -8,12 +8,17 @@ bz.bus.messagesChatsHandler = {
     if(currentUser){
       chat=bz.cols.chats.findOne(chatId);
       if(chat){
-        chatRet=bz.bus.messagesChatsHandler.buildChatsObject([chat], currentUser);
-        if(chatRet.success) {
-          ret={success: true, result: chatRet.result[0]};
+        if(chat.users.indexOf(currentUser)!==-1) {
+          chatRet = bz.bus.messagesChatsHandler.buildChatsObject([chat], currentUser);
+          if (chatRet.success) {
+            ret = {success: true, result: chatRet.result[0]};
+          } else {
+            //error
+            ret = {success: false, result: chatRet.error};
+          }
         }else{
           //error
-          ret={success: false, result: chatRet.error};
+          ret={success:false, error: bz.const.errors.messagesChats.userNotMemberThisChat};
         }
       }else{
         //error

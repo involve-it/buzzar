@@ -37,7 +37,8 @@ bz.const.errors={
   //for messagesChatsHandler
   messagesChats:{
     lastMessageCountNotEqualChatsCount:{errorId: 22},
-    noOtherUsers:{errorId:23}
+    noOtherUsers:{errorId:23},
+    userNotMemberThisChat:{errorId:24}
   },
   //global errors
   global:{
