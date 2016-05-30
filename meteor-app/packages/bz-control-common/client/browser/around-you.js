@@ -24,6 +24,9 @@ Template.bzAroundYou.helpers({
     
     ret = (inputSearchText) ? searchPosts(inputSearchText, currentLocation, radius, activeCats) : nearbyPosts(currentLocation, radius, activeCats) ;
     
+    
+    
+    
     function searchPosts(text, loc, radius, activeCats) {
       var request = {};
 
