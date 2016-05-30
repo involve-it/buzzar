@@ -5,6 +5,7 @@ Template.onePostRowItemOwner.onRendered(function () {});
 
 Template.myItems.onCreated(function () {
   //return Meteor.subscribe('posts-images');
+  this.currentTab = new ReactiveVar( "active" );
   this.getMyPostsData = new ReactiveVar(false);
 });
 
@@ -14,11 +15,6 @@ Template.onePostRowItemSearch.rendered = function() {
     starType: 'i'
   });
 };
-
-Template.myItems.onCreated( function() {
-  this.currentTab = new ReactiveVar( "active" );
-  this.getMyPostsData = new ReactiveVar(false);
-});
 
 Template.myItems.onRendered(function () {
   $(document).foundation();
