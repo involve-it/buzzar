@@ -3,10 +3,15 @@
  */
 Template.bzHomePopular.helpers({
   getPopularItems: function () {
-    var ret;
+    
+    /* OLD CODE */
+    /*var ret;
     bz.cols.posts.find({});
     ret = bz.bus.search.searchePostsAroundAndPopular().popular;
-    return ret;
+    return ret;*/
+    
+    
+    
   }
 });
 

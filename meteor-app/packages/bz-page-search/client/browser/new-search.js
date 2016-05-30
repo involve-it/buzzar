@@ -215,6 +215,7 @@ Template.bzNewControlSearch.helpers({
           notFound: ['<div class="empty-message"><span>Not Found</span></div>']
         },
         local: function () {
+          
           //console.log(Session.get('bz.control.category-list.activeCategories'));
           var searchSelector = {
               'status.visible': bz.const.posts.status.visibility.VISIBLE
@@ -242,8 +243,7 @@ Template.bzNewControlSearch.helpers({
               }
           ).fetch();
           /**/
-
-          //bz.cols.posts.find(searchSelector).fetch()
+          
           var ret = _.unique(res.map(function(item) {
             
             item.name = item.details.title;
@@ -257,23 +257,7 @@ Template.bzNewControlSearch.helpers({
       }];
     
     
-    /* NEW CODE, NOT A TESTS */
-
-    var request = {
-      query: 'пос',
-      lat:Session.get('currentLocation').latitude,
-      lng:Session.get('currentLocation').longitude,
-      radius:Session.get('bz.control.search.distance'),
-      activeCats:Session.get('bz.control.category-list.activeCategories')
-    };
-
-    Meteor.call('searchPosts', request, function(e, r) {
-      var res;
-      (!e) ? res = r: res = e;
-      console.info(res);
-    });
     
-    /*********/
     
     return ret;
   }
