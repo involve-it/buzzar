@@ -32,11 +32,17 @@ bz.const.errors={
   },
   //for imagesHandler
   images:{
-    badImageUrl:{errorId:21},
+    badImageUrl:{errorId:21}
+  },
+  //for messagesChatsHandler
+  messagesChats:{
+    lastMessageCountNotEqualChatsCount:{errorId: 22},
+    noOtherUsers:{errorId:23}
   },
   //global errors
   global:{
     dataNotFound:{errorId: 404},
+    notLogged:{errorId:996},
     userNotAuthor:{errorId: 997},
     errorWriteInDb:{errorId:998},
     internalError:{errorId:999}

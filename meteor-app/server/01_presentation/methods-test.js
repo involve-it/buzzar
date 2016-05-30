@@ -59,6 +59,9 @@ Meteor.methods({
   },
 
   //messagesChats
+  getChat: function(chatId){
+    return bz.bus.messagesChatsHandler.getChat(chatId);
+  },
   getChats: function(request){
     return bz.bus.messagesChatsHandler.getChats(request);
   }
