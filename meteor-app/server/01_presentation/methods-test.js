@@ -56,5 +56,10 @@ Meteor.methods({
   },
   deleteImage: function(url){
     return bz.bus.imagesHandler.deleteImage(url);
+  },
+
+  //messagesChats
+  getChats: function(request){
+    return bz.bus.messagesChatsHandler.getChats(request);
   }
 });
