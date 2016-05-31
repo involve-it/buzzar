@@ -26,7 +26,7 @@ bz.bus.messagesChatsHandler = {
       }
     }else{
       //error not logged
-      ret={success: false, error: bz.const.errors.global.notLogged}
+      ret={success: false, error: bz.const.errors.global.notLogged};
     }
     return ret;
   },
@@ -51,7 +51,7 @@ bz.bus.messagesChatsHandler = {
       }
     }else{
       //error not logged
-      ret={success: false, error: bz.const.errors.global.notLogged}
+      ret={success: false, error: bz.const.errors.global.notLogged};
     }
     return ret;
   },
@@ -99,14 +99,14 @@ bz.bus.messagesChatsHandler = {
           ret = {success: true, result: chatsRet};
         }else{
           //error
-          ret={success:false, error: bz.const.errors.messagesChats.lastMessageCountNotEqualChatsCount}
+          ret={success:false, error: bz.const.errors.messagesChats.lastMessageCountNotEqualChatsCount};
         }
       }else{
         //error
         ret={success: false, error: bz.const.errors.messagesChats.noOtherUsers};
       }
     }else{
-      ret={success:true, result:[]}
+      ret={success:true, result:[]};
     }
     return ret;
   },
@@ -147,7 +147,86 @@ bz.bus.messagesChatsHandler = {
       }
     }else{
       //error not logged
-      ret={success: false, error: bz.const.errors.global.notLogged}
+      ret={success: false, error: bz.const.errors.global.notLogged};
+    }
+    return ret;
+  },
+  addMessage: function(request){
+    var ret,chat, chatId, currentUser, toUser, message,messageId,keyMessage,text, toUserId, type, validate, now;
+    now=Date.now();
+    text=request.message;
+    type=request.type;
+    keyMessage="own-message";
+    currentUser=Meteor.userId();
+    toUserId=request.destinationUserId;
+    toUser=Meteor.users.findOne({_id: toUserId});
+    if(currentUser){
+      if(toUser){
+        validate=bz.bus.messagesChatsHandler.validate(text);
+        if(validate.success){
+          chat=bz.cols.chats.findOne({users:{$all:[currentUser,toUserId]}});
+          if(chat) {
+            chatId=chat._id;
+          }else{
+            chat={
+              userId: currentUser,
+              users:[currentUser,toUserId],
+              timeBegin:now,
+              lastMessageTs: now,
+              activated: true
+            };
+            chatId=bz.cols.chats.insert(chat);
+          }
+          if(chatId){
+            message={
+              userId:currentUser,
+              toUserId: toUserId,
+              chatId: chatId,
+              text: text,
+              timestamp: now,
+              keyMessage: keyMessage,
+              type: type,
+              seen: false
+            };
+            messageId=bz.cols.messages.insert(message);
+            bz.cols.chats.update({_id: chatId},{$set: {lastMessageTs: now}});
+            if (messageId){
+              ret={success: true, result:messageId};
+            }else{
+              //error
+              ret={success: false, error:bz.const.errors.global.errorWriteInDb};
+            }
+          }else{
+            //error
+            ret={success: false, error:bz.const.errors.messagesChats.chatNotFoundOrNotCreated};
+          }
+        }
+        else{
+          //error
+          ret={success: false, error: validate.error};
+        }
+      }else{
+        //error
+        ret={success: false, error: bz.const.errors.messagesChats.destinationUserNotFound};
+      }
+    }else{
+      //error not logged
+      ret={success: false, error: bz.const.errors.global.notLogged};
+    }
+    return ret;
+  },
+  validate: function(messageText){
+    var ret;
+    if(messageText){
+      if(true){
+        ret={success: true};
+      }else{
+        //error foul language detected
+        ret={success: false, error: bz.const.errors.messagesChats.foulLanguageInMessage};
+      }
+    }else{
+      //error
+      ret={success: false,error: bz.const.errors.messagesChats.emptyTextMessage};
     }
     return ret;
   }
