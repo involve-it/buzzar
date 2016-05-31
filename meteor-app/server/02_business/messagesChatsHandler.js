@@ -109,5 +109,46 @@ bz.bus.messagesChatsHandler = {
       ret={success:true, result:[]}
     }
     return ret;
+  },
+  getMessages: function(request){
+    var messages,arrMessages,ret, take,skip,chatId,chat, currentUser, option;
+    skip=request.skip;
+    take=request.take;
+    chatId=request.chatId;
+    currentUser=Meteor.userId();
+    chat=bz.cols.chats.findOne({_id: chatId});
+    option={sort:{timestamp:-1},skip: skip, limit: take};
+    if (currentUser){
+      if(chat){
+        if(chat.users.indexOf(currentUser)!==-1){
+          arrMessages=bz.cols.messages.find({chatId:chatId},option).fetch();
+          messages=_.map(arrMessages, function(message){
+            var ret;
+            ret={
+              _id: message._id,
+              chatId: message.chatId,
+              userId: message.userId,
+              toUserId: message.toUserId,
+              text: message.text,
+              timestamp: message.timestamp,
+              keyMessage: message.keyMessage,
+              seen: message.seen
+            };
+            return ret;
+          });
+          ret={success: true, result: messages};
+        }else{
+          //error
+          ret={success:false, error: bz.const.errors.messagesChats.userNotMemberThisChat};
+        }
+      }else{
+        // error chat not found
+        ret={success:false, error: bz.const.errors.global.dataNotFound};
+      }
+    }else{
+      //error not logged
+      ret={success: false, error: bz.const.errors.global.notLogged}
+    }
+    return ret;
   }
 };
