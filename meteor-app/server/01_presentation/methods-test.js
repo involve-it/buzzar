@@ -59,7 +59,16 @@ Meteor.methods({
   },
 
   //messagesChats
+  getChat: function(chatId){
+    return bz.bus.messagesChatsHandler.getChat(chatId);
+  },
   getChats: function(request){
     return bz.bus.messagesChatsHandler.getChats(request);
+  },
+  getMessages: function(request){
+    return bz.bus.messagesChatsHandler.getMessages(request);
+  },
+  addMessage: function(request){
+    return bz.bus.messagesChatsHandler.addMessage(request);
   }
 });
