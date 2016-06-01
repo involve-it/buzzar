@@ -4,7 +4,7 @@
 
 Template.bzAroundYou.onCreated(function() {
   this.getSearchData = new ReactiveVar(false);
-  this.getNearByData = new ReactiveVar(false);
+  //this.getNearByData = new ReactiveVar(false);
 });
 
 Template.bzAroundYou.onRendered(function () {
@@ -12,6 +12,9 @@ Template.bzAroundYou.onRendered(function () {
 });
 
 Template.bzAroundYou.helpers({
+  getData: function() {
+    return Template.instance().getSearchData.get();
+  },
   getAroundItems: function () {
     var ret,
         ins = Template.instance(),
@@ -21,16 +24,15 @@ Template.bzAroundYou.helpers({
         activeCats = Session.get('bz.control.category-list.activeCategories'),
         searchAmount;
     
+    //var throttle = _.throttle(function(){console.log('called')}, 10000);
     
     ret = (inputSearchText) ? searchPosts(inputSearchText, currentLocation, radius, activeCats) : nearbyPosts(currentLocation, radius, activeCats) ;
     
-    
-    
-    
     function searchPosts(text, loc, radius, activeCats) {
       var request = {};
+        
 
-      console.info('DATA: ', ins.getSearchData.get());
+      //console.info('DATA: ', ins.getSearchData.get());
       
       request = {
         query: text,
@@ -40,17 +42,22 @@ Template.bzAroundYou.helpers({
         activeCats: activeCats
       };
 
-      if (ins.getSearchData.get() === false) {
+      //if (ins.getSearchData.get() === false) {
         Meteor.call('searchPosts', request, function(e, r) {
           var res;
-          console.info('Зашли в метод');          
-          (!e) ? res = r: res = e;
+          //console.info('Зашли в метод');          
+          res = (!e) ? r : e;
+
+          if (res.error) {
+            bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+            return;
+          }
 
           if(res.success && res.result) {
             searchAmount = res.result.length;
-            ins.getSearchData.set(res.result);
-            console.info('Вернувшийся результат: ', res.result);
-            console.info('Данные из метода: ', ins.getSearchData.get());
+            (res.result.length > 0) ? ins.getSearchData.set(res.result) : ins.getSearchData.set([]);
+            //console.info('Вернувшийся результат: ', res.result);
+            //console.info('Данные из метода: ', ins.getSearchData.get());
             Session.set('bz.control.search.amount', searchAmount);
           } else {
             bz.ui.alert('Error ID: ' + res.error.errorId, {type:'error', timeout: 2000});
@@ -58,9 +65,10 @@ Template.bzAroundYou.helpers({
           
           
         });
-      }
-      
-      return ins.getSearchData.get();
+      //}
+
+      console.log('searchPosts');
+      return ins.getSearchData;
     }
     
     
@@ -74,7 +82,7 @@ Template.bzAroundYou.helpers({
         activeCats: activeCats
       };
 
-      if (ins.getNearByData.get() === false) {
+      /*if (ins.getNearByData.get() === false) {*/
         Meteor.call('getNearbyPostsTest', request, function (e, r) {
           var res;
   
@@ -87,33 +95,25 @@ Template.bzAroundYou.helpers({
   
           if (res.success && res.result) {
             
-            ins.getNearByData.set(res.result);
-            console.info('Данные из метода nearbyPosts: ', ins.getNearByData.get());
+            //ins.getNearByData.set(res.result);
+            (res.result.length > 0) ? ins.getSearchData.set(res.result) : ins.getSearchData.set([]);
+            //console.info('Данные из метода nearbyPosts: ', ins.getNearByData.get());
   
           } else {
             bz.ui.alert('Error ID: ' + res.error.errorId, {type: 'error', timeout: 2000});
           }
   
         });
-    }
-    
+    /*}*/
+      console.log('nearbyPosts');
       //return console.log('nearbyPosts');
+      return ins.getSearchData;
     }
     
-    //console.info('RET', ret);
     //return ret;
-
-  
     
     
-    
-    
-    
-    
-    
-    
-    
-    ret = getSearchResultsFromSessionParameters({
+    /*ret = getSearchResultsFromSessionParameters({
       loc: Session.get('bz.control.search.location'),
       dist: Session.get('bz.control.search.distance'),
       cats: Session.get('bz.control.category-list.activeCategories'),
@@ -122,7 +122,7 @@ Template.bzAroundYou.helpers({
         
     Session.set('bz.control.search.amount', ret && ret.length);
     
-    return ret;
+    return ret;*/
     
     /* OLD CODE */
     /*var ret, loc = Session.get('bz.control.search.location'),

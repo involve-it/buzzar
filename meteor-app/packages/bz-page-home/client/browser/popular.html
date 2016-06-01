@@ -1,21 +1,22 @@
 <template name="bzHomePopular">
-  {{#if getPopularItems.length}}
-  <div class="clearfix"></div>
-    <section class="bz-container-body">
-      <div class="bz-most-popular">
-        <div class="bz-items">
-          <div class="row">
-            <h2 class="title">{{t9n 'MOST_POPULAR_TITLE'}}</h2>
-            <div class="">
-              {{#each getPopularItems}}
-                {{> bzHomePopularItem}}
-              {{/each}}
+    {{#if getPopularItems}}{{/if}}
+    {{#if getData}}
+        <div class="clearfix"></div>
+        <section class="bz-container-body">
+          <div class="bz-most-popular">
+            <div class="bz-items">
+              <div class="row">
+                <h2 class="title">{{t9n 'MOST_POPULAR_TITLE'}}</h2>
+                <div class="">
+                  {{#each getData}}
+                    {{> bzHomePopularItem}}
+                  {{/each}}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  {{/if}}
+        </section>
+    {{/if}}
 </template>
 
 <template name="bzHomePopularItem">

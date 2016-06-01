@@ -1,7 +1,14 @@
 /**
  * Created by root on 9/15/15.
  */
+Template.bzHomePopular.onCreated(function() {
+  this.getPopularData = new ReactiveVar(false);
+});
+
 Template.bzHomePopular.helpers({
+  getData: function() {
+    return Template.instance().getPopularData.get();
+  },
   getPopularItems: function () {
     
     /* OLD CODE */
@@ -21,8 +28,8 @@ Template.bzHomePopular.helpers({
           radius: radius,
           activeCats: activeCats
         };
-
-    ret = ReactiveMethod.call('getPopularPosts', request, function(e, r) {
+    
+    Meteor.call('getPopularPosts', request, function(e, r) {
       var res;
       res = (!e) ? r : e;
 
@@ -32,12 +39,11 @@ Template.bzHomePopular.helpers({
       }
 
       if (res.success && res.result) {
-        console.info('Данные из метода getPopularPosts: ', res.result);
+        (res.result.length > 0) ? ins.getPopularData.set(res.result) : ins.getPopularData.set([]);
+        //console.info('Данные из метода getPopularPosts: ', res.result);
       }
     });
     
-    console.info('RET: ', ret);    
-    return ret;
     
   }
 });
