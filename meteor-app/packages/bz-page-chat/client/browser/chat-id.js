@@ -59,10 +59,11 @@ Template.bzChatId.onDestroyed(function() {
 });
 
 
-Template.bzChatId.created = function () {
+Template.bzChatId.onCreated(function() {
+  //this.getMessagesData = new ReactiveVar(false);
   currentUser = Meteor.user();
   //friendUserId = Router.current().params.userId;
-};
+});
 
 
 Template.bzChatId.rendered = function () {
@@ -70,7 +71,7 @@ Template.bzChatId.rendered = function () {
  //Trail();
     var that = this;
     scrollMessages();
-    var lastCount = this.data.messages.count();
+    //var lastCount = this.data.messages.count();
     Deps.autorun(function() {
         /*var newCount = that.data.messages.count();
         if(newCount > lastCount) {
@@ -88,50 +89,171 @@ Template.bzChatId.events({
         if($.trim(messageText) === "") {
             return false;
         }
-        if(messageText != '') {
-          sendMessage.call(this, messageText, this.chat, this.user._id);
+        if(messageText !== '') {
+          
+          /* OLD CODE */
+          //sendMessage.call(this, messageText, this.chat, this.user._id);
+          
+          var request = {
+            destinationUserId: Session.get('userOtherParty')._id,
+            message: messageText,
+            type: ''
+          };
+          
+          Meteor.call('addMessage', request, function(e, r) {
+
+            var res;
+            res = (!e) ? r : e;
+
+            if (res.error && res.message) {
+              bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+              return;
+            }
+
+            if (!res.success && !res.result) {
+              bz.ui.alert('Error ID: ' + res.error.errorId, {type:'error', timeout: 2000});
+            }
+
+          });
+          
           v.$('#message-input').val('');
         }//end if
     }
   },
   'keydown #message-input': function(e, v) {
+    var messageText = v.$('#message-input').val();
+    
+    if(e.which === 13) {
+      e.preventDefault();
+      //console.log("you pressed enter");
 
-      if(e.which === 13) {
-          e.preventDefault();
-          //console.log("you pressed enter");
-          var messageText = v.$('#message-input').val();
-          if($.trim(messageText) === "") {
-              return false;
+      if($.trim(messageText) === "") return false;
+      
+      if(messageText !== '') {
+        var request = {
+          destinationUserId: Session.get('userOtherParty')._id,
+          message: messageText,
+          type: ''
+        };
+        
+        /* OLD CODE */
+        //sendMessage.call(this, messageText, this.chat, this.user._id);
+        
+        Meteor.call('addMessage', request, function(e, r) {
+
+          var res;
+          res = (!e) ? r : e;
+
+          if (res.error && res.message) {
+            bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+            return;
           }
-          if(messageText != '') {
-            sendMessage.call(this, messageText, this.chat, this.user._id);
-            v.$('#message-input').val('');
+
+          if (!res.success && !res.result) {
+            bz.ui.alert('Error ID: ' + res.error.errorId, {type:'error', timeout: 2000});  
           }
+          
+        });
+        
+        /* clear value */
+        v.$('#message-input').val('');
       }
+    }
+
+    Meteor.setTimeout(function() {
+      var messageText = $.trim(v.$('#message-input').val());
+      (messageText.length > 0) ? v.buttonStateDisabled.set(false) : v.buttonStateDisabled.set(true);
+    }, 100);
+    
   }
 });
 
+
+Template.bzChatId.onCreated(function() {
+  this.buttonStateDisabled = new ReactiveVar(true);
+});
+
 Template.bzChatId.helpers({
+  buttonStateDisabled: function() {
+    return Template.instance().buttonStateDisabled.get();
+  },
   getMessages: function (a, b) {
-    var messages = this.messages
-    return messages;
+    /*var ins = Template.instance(),
+        chatID = Router.current() && Router.current().params.chatId,
+        request = {chatId: chatID};
+    
+    
+    console.info('getMessage OLD ', this);
+
+
+    Meteor.call('getMessages', request, function(e, r) {
+      
+      var res;
+      res = (!e) ? r : e;
+
+      if (res.error && res.message) {
+        bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+        return;
+      }
+
+      if (res.success && res.result) {
+        (res.result.length > 0) ? ins.getMessagesData.set(res.result.reverse()) : ins.getMessagesData.set([]);
+        console.info('Данные из метода getMessage[s]: ', ins.getMessagesData.get());
+      } else {
+        bz.ui.alert('Error ID: ' + res.error.errorId, {type:'error', timeout: 2000});
+      }
+      
+    });*/
+    
+    /* OLD CODE */
+    /*var messages = this.messages
+    return messages;*/
   }    
 });
 
-
+Template.bzMessageToolbar.onCreated(function() {
+  this.getFriendUserData = new ReactiveVar(false);
+});
 
 Template.bzMessageToolbar.helpers({
   getFriendUserName: function() {
-    var friendUserName = this.user.username,
+    var ins = Template.instance(), chatId = Router.current().params.chatId;
+    
+    if (ins.getFriendUserData.get() === false) {
+      Meteor.call('getChat', chatId, function(e, r) {
+        
+        var res;
+        res = (!e) ? r : e;
+        
+        if (res.error && res.message) {
+          bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+          return;
+        }
+  
+        if (res.success && res.result) {
+          Session.set('userOtherParty', res.result.otherParty[0]);
+          ins.getFriendUserData.set(res.result.otherParty[0]);
+        } else {
+          bz.ui.alert('Error ID: ' + res.result.errorId, {type:'error', timeout: 2000});
+        }
+        
+      });
+
+    }
+    
+    return ins.getFriendUserData.get();
+    
+    /* OLD CODE */
+    /*var friendUserName = this.user.username,
         partEmail;
     if(friendUserName) {
       return friendUserName;
     } else {
       partEmail = this.user.emails[0].address;
       return partEmail.split('@')[0];
-    }
+    }*/
   },
   getFriendAvatarUrl: function(){
-      return this.user.profile && this.user.profile.image && this.user.profile.image.data || "/img/content/avatars/avatar-no.png";
+      //return this.user.profile && this.user.profile.image && this.user.profile.image.data || "/img/content/avatars/avatar-no.png";
   }
 });
