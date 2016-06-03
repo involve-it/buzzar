@@ -179,6 +179,7 @@ ru = {
   IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE: 'Загрузить новый профиль изображения',
   IMAGE_SELECT_CHOOSE_IMAGE: 'Выбрать картинку',
   IMAGE_PHOTO_LIBRARY_IS_NOT_AVAILABLE:'Фото библиотека недоступна.',
+  IMAGE_PHOTO_INDEX_NOT_FOUND: 'Индекс фотографии не найден.',
 
   //chats
   CHATS_LAST_MESSAGE: 'Последнее сообщение',

@@ -92,7 +92,7 @@ Template.bzChatId.events({
         if(messageText !== '') {
           
           /* OLD CODE */
-          //sendMessage.call(this, messageText, this.chat, this.user._id);
+          //sendMessage.call(this, messageT]ext, this.chat, this.user._id);
           
           var request = {
             destinationUserId: Session.get('userOtherParty')._id,
