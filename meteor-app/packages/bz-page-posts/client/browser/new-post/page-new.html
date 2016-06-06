@@ -1,9 +1,9 @@
 <template name="postsNew">
-    <form>
+    <form data-abide>
         <!--{{> postsNewForm }}-->
         <div class="js-new-post-placeholder"></div>
         {{#if isNotGenericForm }}
-            <div class="margin-top-20px">
+            <div class="bz-create-post-btn">
                 <button class="button btn-default js-create-post">{{ t9n 'NEW_POST_CREATE_BTN' }}</button>
             </div>
         {{/if}}

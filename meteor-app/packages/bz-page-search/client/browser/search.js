@@ -45,13 +45,34 @@ Template.bzDistance.events({
 });
 
 
+
+
 Meteor.startup(function () {
+  
   bz.help.maps.getCurrentLocation(function (loc) {
-    Session.set('bz.control.search.location', {
-      coords: loc,
-      name: T9n.get('MY_LOCATION_TEXT')
-    });
+    
+    var getAccurateAddress = Session.get('getAccurateAddress'); // || T9n.get('MY_LOCATION_TEXT');
+    //console.info('3 - start up - getLocation:  ', getAccurateAddress);
+    
+    if(getAccurateAddress) {
+      
+      Session.set('bz.control.search.location', {
+        coords: loc,
+        name: getAccurateAddress.name,
+        accurateAddress: getAccurateAddress.accurateAddress
+      });
+      
+    } else {
+      
+      Session.set('bz.control.search.location', {
+        coords: loc,
+        //name: getAccurateAddress.name,
+      });
+      
+    }
+    
   });
+  
 });
 
 

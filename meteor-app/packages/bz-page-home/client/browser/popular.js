@@ -1,37 +1,53 @@
 /**
  * Created by root on 9/15/15.
  */
-Template.bzHomePopular.helpers({
-  getPopularItems: function () {
-    /*var searchSelector = '';
-     var ret = bz.cols.posts.find({'status.visible': bz.const.posts.status.visibility.VISIBLE}, {limit:30});
-     return ret;*/
-    var ret, loc = Session.get('bz.control.search.location'),
-      activeCats = Session.get('bz.control.category-list.activeCategories') || [];
+Template.bzHomePopular.onCreated(function() {
+  this.getPopularData = new ReactiveVar(false);
+});
 
-    // add all-posts reactivity:
+Template.bzHomePopular.helpers({
+  getData: function() {
+    return Template.instance().getPopularData.get();
+  },
+  getPopularItems: function () {
+    
+    /* OLD CODE */
+    /*var ret;
     bz.cols.posts.find({});
-    ret = bz.bus.search.doSearchClient({
-      loc: loc,
-      activeCats: activeCats,
-      $where: function() {
-        //to show only visible
-        return this.status.visible !== null
-      },
-      //radius: bz.const.search.AROUND_YOU_RADIUS,
-      /*query: {
-        'status.visible': {$exists: true}
-      }*/
-    }, {
-      limit: bz.const.search.POPULAR_LIMIT
-    }).fetch();
-    ret = _(ret).chain().sortBy(function(item){
-      return item.stats && item.stats.seenTotal  || 0;
-    }).reverse().sortBy(function(doc) {
-      return doc._getDistanceToCurrentLocationNumber();
-    }).value();
-    console.log('Popular posts amount: ' + ret.length);
-    return ret;
+    ret = bz.bus.search.searchePostsAroundAndPopular().popular;
+    return ret;*/
+
+    var ret,
+        ins = Template.instance(),
+        currentLocation = Session.get('currentLocation'),
+        radius = Session.get('bz.control.search.distance'),
+        activeCats = Session.get('bz.control.category-list.activeCategories'),
+        request = {
+          lat: currentLocation.latitude,
+          lng: currentLocation.longitude,
+          radius: radius,
+          activeCats: activeCats
+        };
+    
+    Meteor.call('getPopularPosts', request, function(e, r) {
+      var res;
+      res = (!e) ? r : e;
+
+      if (res.error) {
+        bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+        return;
+      }
+
+      if (res.success && res.result) {
+        (res.result.length > 0) ? ins.getPopularData.set(res.result) : ins.getPopularData.set([]);
+        //console.info('Данные из метода getPopularPosts: ', res.result);
+      } else {
+        bz.ui.alert('Error ID: ' + res.error.errorId, {type:'error', timeout: 2000});
+      }
+      
+    });
+    
+    
   }
 });
 
@@ -41,19 +57,10 @@ Template.bzHomePopularItem.onCreated(function () {
 });
 
 Template.bzHomePopularItem.rendered = function () {
-
   /*init Rate*/
   $('.bz-rating').raty({
     starType: 'i'
   });
-
-  var lineH = $('.bz-content .post-item-text').css('line-height');
-  if (Number.parseInt(lineH) !== 'NaN') {
-    lineH = Number.parseInt(lineH);
-  } else {
-    lineH = 20;
-  }
-  $('.bz-content .post-item-text').css('max-height', lineH * 2);
 };
 
 Template.bzHomePopularItem.helpers({
@@ -80,6 +87,22 @@ Template.bzHomePopularItem.helpers({
     return '';
   }
 });
+
+
+Template.bzHomePopularItem.onRendered(function() {
+  var template = this, textH, text;
+
+  text = template.$('.post-item-text');
+  textH = text.css('line-height');
+
+  if (Number.parseInt(textH) !== 'NaN') {
+    textH = Number.parseInt(textH);
+  } else {
+    textH = 19;
+  }
+  text.addClass('bz-text-ellipsis').css('max-height', textH * 2);
+});
+
 
 Template.bzHomePopularItem.events({
   'click .js-send-message-btn': function (e, v) {

@@ -128,6 +128,7 @@ Template.uploadImageModal.events({
     if (randomImgUrl) {
       bz.ui.spinnerAdd('.js-preview-wrapper');
       $('.js-preview').animate({opacity: 0}, 150);
+      
       new RandomImageClass({
         url: randomImgUrl,
         img: $('.js-preview')[0]
@@ -152,7 +153,6 @@ Template.uploadImageModal.events({
   'click .js-ok-btn': function (e, v) {
     $('.js-avatar-upload-modal').foundation('reveal', 'close');
     if (this.imagesArr) {
-      //doneCloseChooseImageDialog(this.sessionName, currentImageReactive.get());
       doneCloseChooseImageDialog(this.imagesArr, currentImageReactive.get());
     }
   },

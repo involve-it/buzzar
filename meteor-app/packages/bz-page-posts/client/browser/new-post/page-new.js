@@ -1,11 +1,17 @@
 var data = bz.help.makeNamespace('bz.runtime.newPost');
+
+
 Template.postsNew.rendered = function () {
   TrackNewPostTypeChange('js-new-post-placeholder');
+  /*var view = this,
+      input = view.$('.js-post-description');
+  
   setTimeout(function(){
     // let's lazy-load code mirror plugin:
     bz.ui.initCodeMirror($('.js-post-description'));
-  }, 100);
+  }, 100);*/
 };
+
 
 Template.postsNew.created = function () {
   this.data ? _.extend(this.data, data) : _.extend({}, data);
@@ -27,8 +33,9 @@ Template.postsNew.helpers({
 });
 Template.postsNew.events({
   'click .js-create-post': function (e, v) {
-    var res = true;
     e.preventDefault();
+    
+    var res = true;
     validatePostsNewPage(v).then((ret)=>{
       if(ret.res){
         !!ret.msg.length && bz.ui.alert(ret.msg.join('; '));
@@ -42,7 +49,6 @@ Template.postsNew.events({
     e.preventDefault();
   }
 });
-
 
 // HELPERS:
 function validatePostsNewPage (v){
@@ -68,6 +74,9 @@ function validatePostsNewPage (v){
       });
     });
     $('form[data-abide]').on('invalid.fndtn.abide', function () {
+
+      var invalid_fields = $(this).find('[data-invalid]');
+      
       // Handle the submission of the form
       if (Session.get("bz.user.language")=='ru'){
         msg.push('Некоторые поля не прошли проверку');

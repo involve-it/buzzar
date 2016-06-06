@@ -23,61 +23,64 @@
        
         <div>
             <div class="bz-posts-items-owner-post-menu">
-                <ul class="tabs bz-nav bz-horizontal bz-nav-side-b" data-tab="">
-                  <li class="tab-title active"><a id="activePosts" href="#activePosts" aria-selected="true" tabindex="0">{{t9n 'ACTIVE'}} <!--({{ getCountActivePosts }})--></a></li>
-                  <li class="tab-title"><a id="livePosts" href="#livePosts" aria-selected="false" tabindex="1">{{t9n 'LIVE'}} <!--({{ getCountLivePosts }})--></a></li>
-                  <li class="tab-title"><a id="active" href="#allPosts" aria-selected="false" tabindex="2"><b>{{t9n 'ALL'}}</b></a></li>
+                <!-- OLD CODE -->
+                <!--<ul class="tabs bz-nav bz-horizontal bz-nav-side-b" data-tab="">
+                  <li class="tab-title active"><a id="activePosts" href="#activePosts" aria-selected="true" tabindex="0" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ACTIVE_HINT'}}">{{t9n 'ACTIVE'}} &lt;!&ndash;({{ getCountActivePosts }})&ndash;&gt;</a></li>
+                  <li class="tab-title"><a id="livePosts" href="#livePosts" aria-selected="false" tabindex="1" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'LIVE_HINT'}}">{{t9n 'LIVE'}} &lt;!&ndash;({{ getCountLivePosts }})&ndash;&gt;</a></li>
+                  <li class="tab-title"><a id="active" href="#allPosts" aria-selected="false" tabindex="2" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ALL_HINT'}}"><b>{{t9n 'ALL'}}</b></a></li>
+                </ul>-->
+
+                <ul class="tabs bz-nav bz-horizontal bz-nav-side-b nav-pills">
+                    <li data-template="active" role="presentation" class="tab-title active"><a  id="activePosts" href="#" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ACTIVE_HINT'}}">{{t9n 'ACTIVE'}}</a></li>
+                    <li data-template="live" role="presentation" class="tab-title"><a id="livePosts" href="#" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'LIVE_HINT'}}">{{t9n 'LIVE'}}</a></li>
+                    <li data-template="all" role="presentation" class="tab-title"><a id="active" href="#" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ALL_HINT'}}"><b>{{t9n 'ALL'}}</b></a></li>
                 </ul>
             </div>
-                        
-            <div class="tabs-content">
+            
+            {{> Template.dynamic template="myPostsItems" data=getMyPosts}}
+            
+            <!--OLD CODE-->
+            <!--<div class="tabs-content">
               <div class="content active" id="activePosts" aria-hidden="false">
                 <div class="tabs-content-wrapper">
+                    
                   {{#each activePosts}}
                     {{> onePostRowItemOwner}}
                   {{/each}}
+                    
+                    
                 </div>
                 {{> bzPaginationPosts }}
               </div>
                 <div class="content" id="livePosts" aria-hidden="true">
                     <div class="tabs-content-wrapper">
+                        
                         {{#each livePosts}}
                             {{> onePostRowItemOwner}}
                         {{/each}}
+                        
                     </div>
                     {{> bzPaginationPosts }}
                 </div>
               <div class="content" id="allPosts" aria-hidden="true">
                 <div class="tabs-content-wrapper">
+                    
                   {{#each allPosts}}
                     {{> onePostRowItemOwner}}
                   {{/each}}
+                    
                 </div>
                 {{> bzPaginationPosts }}
               </div>
-            </div>
+            </div>-->
+            
         </div>
-    
-    
-        
-    
-    
-    
-    
     
     
 
       <!--</div>-->
-
-      <div class="clearfix"></div>
-
-
-      <!--<div class="item item-divider item-active">
-                {{t9n 'inactive'}}
-            </div>
-            {{#each inactivePosts}}
-        {{> onePostRowItem}}
-      {{/each}}-->
+        
+        
     {{else}}
       {{> noPosts}}
     {{/if}}
@@ -146,8 +149,7 @@
 
   <div class="item">
       
-    <!--<a href="/post/{{_id}}" class=" {{#if _hasLivePresence }} bz-post-live {{else}} bz-post-away {{/if}} ">-->
-        <div class="bz-post-wrapper {{#if _hasLivePresence }} bz-post-live {{else}} bz-post-away {{/if}} {{#if getPostOff}}bz-post-off{{/if}} ">
+        <div class="bz-post-wrapper {{#if hasLivePresence }} bz-post-live {{else}} bz-post-away {{/if}} {{#if getPostOff}}bz-post-off{{/if}} ">
             <div class="photo">
                 <div class="photo-wrapper">
 
@@ -161,9 +163,8 @@
                 
                 <div class="bz-post-header bz-flex bz-flex-space-between">
                     <a href="/post/{{_id}}">{{details.title}}</a>
-
-
-                    <div class="bz-switch-activity-post" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'POST_SWITCH_OFF_ON'}}">
+                    
+                    <div class="bz-switch-activity-post" data-uk-tooltip="{delay:1500, animation:true}" title="{{#if isActive}} {{t9n 'POST_SWITCH_OFF_ON'}} {{else}} {{t9n 'POST_SWITCH_OFF_OFF'}} {{/if}}">
                         <div class="switch-wrapper js-switch-wrapper" >
                             <div class="switch bz-small">
                                 <input id="switch-activity-{{_id}}" type="checkbox" {{ getVisibilityVal }} class="js-switch-activity-input">
@@ -206,7 +207,7 @@
 
                     <div class="bz-services">
                         <div class="bz-services-wrapper">
-                            {{> bzPostsPostPresence this}}
+                            {{> bzPostsPostPresenceGlobal this}}
                         </div>
                     </div>
 
@@ -242,7 +243,6 @@
 </template>
 
 <template name="noPosts">
-
   <div class="bz-wrapper-no-message">
     <div class="bz-flex-box">
 
@@ -254,11 +254,10 @@
       <div class="subtitle-message">{{t9n 'PRESS_BUTTON_BELOW'}}</div>
 
       <div class="bz-padding-top-x2">
-        <a href="/posts/new?type=ad" class="button alert">{{t9n 'NEW_POST'}}</a>
+        <a href="/posts/new" class="button alert">{{t9n 'NEW_POST'}}</a>
       </div>
     </div>
   </div>
-
 </template>
 
 <template name="chooseCurrency">
@@ -269,3 +268,22 @@
     {{/if}}
 </template>
 
+<template name="myPostsItems">
+    <div class="bz-my-posts-items">
+        {{#if this.items.length}}
+            <ul class="list-group type-{{this.postType}}">
+                {{#each this.items}}
+                    {{> onePostRowItemOwner}}
+                {{/each}}
+            </ul>
+        {{else}}
+            {{> noPosts}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="loader">
+    <div class="bz-loader">
+        <div class="loader-img"></div>
+    </div>
+</template>

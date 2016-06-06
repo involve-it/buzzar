@@ -1,16 +1,12 @@
 /**
  * Created by syurdor on 8/26/2015.
  */
-var watchId = -1;
 
 var Location = {
     startWatchingLocation: function(){
         //report location only if logged in
         if (Meteor.userId()) {
-            if (watchId !== -1){
-                navigator.geolocation.clearWatch(watchId);
-            }
-            watchId = navigator.geolocation.watchPosition(function (position) {
+            navigator.geolocation.getCurrentPosition(function (position) {
                 var currentLocation = Session.get('currentLocation');
 
                 if (!currentLocation || currentLocation.accuracy != position.coords.accuracy || currentLocation.latitude != position.coords.latitude || currentLocation.longitude != position.coords.longitude) {
@@ -35,10 +31,6 @@ var Location = {
         }
     },
     logOut: function(){
-        if (watchId !== -1){
-            navigator.geolocation.clearWatch(watchId);
-            watchId = -1;
-        }
         if (Meteor.userId()){
             Meteor.call('logOut', Meteor.userId());
         }

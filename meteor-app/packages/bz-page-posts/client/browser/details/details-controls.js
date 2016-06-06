@@ -19,10 +19,15 @@ Template.bzPostDetails.helpers({
     }
     return ret;
   },
-  categoryType: function() {
+  postLikes: function() {
+    return this.social && this.social.likes && this.social.likes.length || '-';
+  }
+  
+  /* OLD CODE */
+  /*categoryType: function() {
     //console.info(this);
     return bz.cols.posts.find({_id: this._id}).fetch()[0].type;
-  }
+  }*/
 });
 
 
@@ -89,33 +94,53 @@ Template.postDetailsHashesControl.helpers({
 Template.postDetailsDetailsCommon.events({
   'click .js-show-location-on-map': function(e, v){
     // show modal with map here:
-    var coords = this.obscuredCoords.lat + ', ' + this.obscuredCoords.lng;
+    var coords = this.coords.lat + ', ' + this.coords.lng;
     //prompt('coords: ', coords);
     console.log('coords: ' + coords);
   }
-})
+});
+
+Meteor.startup(function () {
+  bz.ui.initMarked();
+});
+
+/* OLD CODE */
+/*Template.postDetailsDetailsCommon.onCreated(function () {
+  this.getPostData = new ReactiveVar(false);
+});*/
+
 Template.postDetailsDetailsCommon.helpers({
+  getGoogleMapsHref: function(){
+    var lat = this.coords.lat, lon = this.coords.lng;
+    return `http://maps.google.com/maps?z=12&t=m&q=loc:${ lat }+${ lon }`;
+  }
+  
+  /* OLD CODE */
+  /*getPost: function() {
+    var ins = Template.instance(), postId = Router.current().params._id;
+    
+    if (ins.getPostData.get() === false) {
+      Meteor.call('getPost', postId, function(e, r) {
+        if(r.success && r.result) {
+          ins.getPostData.set(r.result);
+        }
+      });
+    }
+
+    return ins.getPostData.get();
+  },
   getTitle: function () {
     return this.details.title;
   },
   getDescription: function () {
-    return this.details.description || '';
+    return this.details.description;
   },
   getMyLocations: function () {
     return this.details.locations;
-  },
-  getGoogleMapsHref: function(){
-    //http://maps.google.com/maps?z=12&t=m&q=loc:38.9419+-78.3020
-    var lat = this.obscuredCoords.lat, lon = this.obscuredCoords.lng;
-    return `http://maps.google.com/maps?z=12&t=m&q=loc:${ lat }+${ lon }`;
-  }
+  }*/
+  
 });
-//$('.backdrop.visible.active .popup .popup-title').text().toLowerCase()
 
-
-Template.postDetailsPhoto.onCreated(function () {
-
-});
 Template.postDetailsPhoto.onRendered(function () {
   if (this.data.details.photos) {
     Session.set('postDetailsImgSrc', this.data.details.photos[0]);
@@ -123,6 +148,7 @@ Template.postDetailsPhoto.onRendered(function () {
   $(document).foundation();
   $(document).foundation('clearing', 'reflow');
 });
+
 Template.postDetailsPhoto.events({
   'click .js-main-photo-large': function(e, v){
     v.$('.js-clearing-thumbs li:first-child a').click();
@@ -186,12 +212,8 @@ Template.postDetailsPhoto.helpers({
  $('.js-post-details-categorized').empty();
  Blaze.renderWithData(Template['postDetails' + name], v.data, $('.js-post-details-categorized')[0]);
  }*/
+
 function setPostDetailsTemplate(name, v) {
   $('.js-post-details-categorized').empty();
   Blaze.renderWithData(Template['postDetailsDetails' + name], v.data, $('.js-post-details-categorized')[0]);
 }
-// set new image to db:
-Meteor.startup(function () {
-});
-
-Template.bzAroundYouItem.helpers({});

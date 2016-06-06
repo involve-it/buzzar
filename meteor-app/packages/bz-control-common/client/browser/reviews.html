@@ -1,61 +1,66 @@
+
 <template name="bzControlReviews">
-  <h3 class="title-review">{{ getCountsReviews }} {{ t9n 'COMMENTS' }}</h3>
-  <div class="bz-reviews-list">
-    {{#each getReviews }}
-      {{> bzControlReviewItem }}
-    {{/each}}
-  </div>
+    {{#if getComments}}
+        <div class="bz-post-review">
+            <h3 class="title-review">{{ getComments.length }} {{ t9n 'COMMENTS' }} (page 1 of 1)</h3>
+            <div class="bz-reviews-list">
+                
+                {{#each getComments}}
+                    {{> bzControlReviewItem }}
+                {{/each}}
+    
+                <!-- OLD CODE -->
+                <!--
+                {{#each getReviews }}
+                    {{> bzControlReviewItem }}
+                {{/each}}-->
+            </div>
+        </div>
+    {{/if}}
 </template>
 
+
 <template name="bzControlReviewItem">
-  <div class="bz-post-content">
-
+<div class="bz-post-content">
     <div class="bz-review-avatar">
-      <!--{{ profileImage }}-->
-      <!--<a href="#" class="bz-user-avatar">
-          <img src="/img/content/avatars/avatar-no.png" width="60" height="60" alt="avatar">
-      </a>-->
-
-      <div class="bz-user-avatar">
-        {{#if getProfileImage }}
-          <a href="/user/{{ user._id }}">
-            <div class="bz-avatar" style="background-image: url({{ getProfileImage }})"></div>
-          </a>
-        {{else}}
-          <div class="bz-avatar" style="background-image: url('/img/content/avatars/avatar-no.png')"></div>
-        {{/if}}
-      </div>
-
+        <div class="bz-user-avatar">
+            {{#if user}}
+                <a href="/user/{{ user._id }}">
+                    <div class="bz-avatar" style="background-image: url({{ user.image.imageUrl }})"></div>
+                </a>
+            {{else}}
+                <div class="bz-avatar" style="background-image: url('/img/content/avatars/avatar-no.png')"></div>
+            {{/if}}
+        </div>
     </div>
 
     <div class="bz-review-post-body">
-      <div class="bz-review-post-body-header">
-        <div class="bz-review-post-inline">
+        <div class="bz-review-post-body-header">
+            <div class="bz-review-post-inline">
                 <span class="bz-author bz-publisher-anchor-color">
                     <a href="/user/{{ user._id }}">{{user.username}}</a>
                 </span>
+            </div>
+        
+            <div class="bz-post-meta">
+                <span class="bz-bullet bz-time-ago-bullet">•</span>{{timestampToTime dateTime}} <!--{{ getTime }}-->
+            </div>
         </div>
-
-        <div class="bz-post-meta">
-          <span class="bz-bullet bz-time-ago-bullet">•</span>
-          {{ getTime }}
+    
+        <div class="bz-review-post-body-inner">
+            <div class="bz-review-post-message">
+                {{ text }}
+            </div>
         </div>
-      </div>
-
-      <div class="bz-review-post-body-inner">
-        <div class="bz-review-post-message">
-          {{ text }}
-        </div>
-      </div>
-      {{#if isUserCommentOwner}}
-        <a class="js-delete-comment" href="#"><span><i class="fa fa-trash-o"></i></span></a>
-      {{/if}}
+        {{#if isUserCommentOwner}}
+            <a class="js-delete-comment" href="#"><span><i class="fa fa-trash-o"></i></span></a>
+        {{/if}}
     </div>
-
-  </div>
+</div>
 </template>
 
 <template name="bzControlAddReview">
+    <div class="bz-post-leave-review">
   <form data-abide="ajax">
     <textarea required rows="4" cols="50" class="js-post-text-input" placeholder={{ t9n 'REVIEW_HELP_TEXT' }}></textarea>
     <div class="bz-control-reviews">
@@ -70,4 +75,5 @@
       <button class="button btn-default bz-small js-post-btn">{{ t9n 'SUBMIT' }}</button>
     </div>
   </form>
+    </div>
 </template>

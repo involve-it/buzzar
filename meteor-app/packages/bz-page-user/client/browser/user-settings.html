@@ -13,15 +13,19 @@
 
            <div class="bz-status-wrapper">
                <div class="user-avatar">
-                   {{> avatarThumbnail image=profile.image}}
+                   <div class="bz-avatar" style="background-image: url({{getUser.image.imageUrl}})"></div>
+                   
+                   <!-- OLD CODE -->
+                   <!-- {{> avatarThumbnail image=profile.image}}-->
+                   
                </div>
                {{> bzAvatarUserStatus}}
            </div>
 
           <div class="user-info">
-            <div class="user-name capitalize"> {{ username }} </div>
-            <div class="user-fio"> {{getFIO}}</div>
-            <div class="user-location"> {{getCity}}</div>
+            <div class="user-name capitalize">{{getUser.username}} </div>
+            <div class="user-fio">{{getUser.firstName.value}} {{getUser.lastName.value}}</div>
+            <div class="user-location"> {{getUser.city.value}}</div>
 
           </div>
 
@@ -53,17 +57,17 @@
               </div>
             </div>
             -->
-            {{#if $eq getPhoneStatus  "1" }}
+            {{#if $eq getUser.phone.policy  "1" }}
               <div class="item-details">
                 <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_PHONE' }}</div>
-                <div class="small-12 medium-10 large-10 bz-input-result columns"><p>{{getPhoneNumber}} </p></div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p>{{getUser.phone.value}} </p></div>
               </div>
             {{/if}}
 
-            {{#if $eq getSkypeStatus  "1" }}
+            {{#if $eq getUser.skype.policy  "1" }}
               <div class="item-details">
                 <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_SKYPE' }}</div>
-                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getSkype}} </p></div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getUser.skype.value}} </p></div>
               </div>
             {{/if}}
 
@@ -72,29 +76,29 @@
 
           <div class="clearfix"></div>
 
-          {{#if $eq getVKStatus  "1" }}
+          {{#if $eq getUser.vk.policy  "1" }}
             <div class="user-item overflow">
               <div class="item-details">
                 <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_VK'}}</div>
-                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getVK}}</p></div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getUser.vk.value}}</p></div>
               </div>
             </div>
           {{/if}}
 
-          {{#if $eq getFaceBookStatus  "1" }}
+          {{#if $eq getUser.facebook.policy  "1" }}
             <div class="user-item overflow">
               <div class="item-details">
                 <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_FACEBOOK_URL'}}</div>
-                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getFacebook }} </p></div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p> {{getUser.facebook.value }} </p></div>
               </div>
             </div>
           {{/if}}
 
-          {{#if $eq getTwitterStatus  "1" }}
+          {{#if $eq getUser.twitter.policy  "1" }}
             <div class="user-item overflow">
               <div class="item-details">
                 <div class="small-12 medium-2 bz-input-label columns">{{ t9n 'PROFILE_USER_TWITTER'}}</div>
-                <div class="small-12 medium-10 large-10 bz-input-result columns"><p>{{getTwitter}}</p></div>
+                <div class="small-12 medium-10 large-10 bz-input-result columns"><p>{{getUser.twitter.value}}</p></div>
               </div>
             </div>
           {{/if}}
@@ -102,14 +106,100 @@
 
         <div class="clearfix"></div>
         <div class="bz-separate"></div>
-
-        <div style="display: none">ТУТ МОГУТ БЫТЬ ОТЗЫВЫ или ДРУГАЯ ВАЖНАЯ ИНФОРМАЦИЯ КОТОРАЯ ВАЖНА ПРОСМАТРИВАЮЩИМ ПРОФИЛЬ</div>
-        <p style="display: none">Скажем, тут могут находится другие posts пользователя</p>
-
-
+          
+        {{#if getCheckboxUserProfile checked}}
+            {{> bzUserOwnPosts}}
+        {{/if}}
+          
       </div>
     </div>
   </div>
 
 </template>
 
+<!--*********************-->
+
+<template name="bzUserOwnPosts">
+    
+    {{#if getPopularItems.length}}
+        <div class="clearfix"></div>
+        <section class="bzUserOwnPosts">
+            <div class="bz-most-popular">
+                <div class="bz-items">
+                    <div class="row">
+                        <div class="">
+                            {{#each getPopularItems}}
+                                {{> bzUserOwnPostsItem}}
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{/if}}
+</template>
+
+<template name="bzUserOwnPostsItem">
+    <div class="bz-item-wrapper small-12 medium-4 large-3 columns left">
+        <div class="bz-item {{#if _hasLivePresence }} bz-post-live {{else}} bz-post-away {{/if}}">
+            <div class="bz-side-b">
+                <div class="bz-photo bz-overlay-hover">
+                    <a href="/post/{{_id}}">
+                        {{#if getImgSrc}}
+                            <div class="bz-background-image-cover"
+                                 style="background-image: url('{{ getImgSrc }}')"></div>
+                        {{else}}
+                            <div class="bz-background-image-cover"
+                                 style="background-image: url('/img/content/no-photo.png')"></div>
+                        {{/if}}
+                        <div class="bz-post-info">
+                            <!--<div class="bz-distance"><i class="fa fa-location-arrow"></i> 30 km</div>-->
+                            <div class="bz-flex">
+                                {{> bzPostsPostPresence this}}
+                                {{> bzPostsPostDistance this}}
+                            </div>
+
+                            <!--<a class="bz-position-cover" href="#"></a>-->
+                        </div>
+                    </a>
+
+                </div>
+
+                <div class="bz-content">
+                    <a href="/post/{{_id}}">
+                        <h4 class="bz-title">{{details.title}}</h4>
+                    </a>
+                    <p class="post-item-text">
+                        {{{ postLimitDescription 65 }}}
+                    </p>
+                    {{> postProgressBar}}
+                </div>
+                <div class="bz-item-footer">
+                    <!--{{#if details.price}}
+                <div class="bz-price">{{details.price}} <span class="bz-prefix">$</span></div>
+            {{/if}}-->
+                    {{> bzAdCategoryButton }}
+                    <div class="bz-sent-text">
+                        <a class="js-send-message-btn {{ disableOwnPost }}">{{ t9n 'SEND_MESSAGE' }}</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<!--
+<template name="postProgressBar1">
+    {{#if getPostProgressBar}}
+        <div class="bz-progress bz-item-progress">
+            <div class="bz-progress-wrapper">
+                &lt;!&ndash;square radius round&ndash;&gt;
+                <div class="progress small-12 square bz-bar-{{getPostProgressBar.barClass}}">
+                    <span class="meter" style="width: {{ getPostProgressBar.percent }}%"></span>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+</template>-->

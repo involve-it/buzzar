@@ -81,11 +81,15 @@ CreateNewPostFromView = function (v) {
         data: imgItem.data
       }});
       if(!imgItem.thumbnail.data) {
-        imgItem.thumbnail.getBlob().then((url)=>{
-          imgItem.thumbnail.data = url;
-          bz.cols.images._collection.update(imgId, { $set: {
-            thumbnail: imgItem.thumbnail.data
-          }});
+        imgItem.thumbnail.getBlob().then((res, err)=>{
+          if (res.data && res.thumbnail) {
+            res.thumbnail.data = res.data;
+            bz.cols.images._collection.update(imgId, {
+              $set: {
+                thumbnail: res.thumbnail.data
+              }
+            });
+          }
         });
       } else {
         bz.cols.images._collection.update(imgId, { $set: {
@@ -93,7 +97,6 @@ CreateNewPostFromView = function (v) {
         }});
       }
     });
-
     // set location:
     //if (bz.runtime.newPost.location && bz.runtime.newPost.location.current) {
     if (loc1 && location1.isSet) {
@@ -118,13 +121,17 @@ CreateNewPostFromView = function (v) {
     // created timestamp:
     timestamp = Date.now();
     endTimestamp = new Date(timestamp);
-    descriptionFormatted = stripOutScriptTags(v.$('.js-post-description').val()) || undefined;
+    // old code stripOutScriptTags(v.$('.js-post-description').val())
+    descriptionFormatted = stripOutScriptTags(htmlditor.currentvalue) || stripOutScriptTags(v.$('.js-post-description').val()) || undefined;
+    descriptionFormatted = descriptionFormatted && descriptionFormatted.replace(/\n/gi, '<br/>');
+    
     var newPost = {
       userId: userId,
       type: DeterminePostTypeFromView(v),
+      tags: v.$('.post-tags').find('select').val(),
       //type: v.$('.js-post-type-select').val(),
       details: {
-
+        anonymousPost: v.$('.js-toggle-checked').prop("checked"),
         hashes: bz.runtime.newPost.hashes,
         //location: bz.runtime.newPost.location,
         locations: locationsArr,
@@ -165,7 +172,8 @@ CreateNewPostFromView = function (v) {
 
     };
 
-    var currentLoc = Session.get('currentLocation');
+    /* OLD CODE */
+    /*var currentLoc = Session.get('currentLocation');
     if (currentLoc) {
       currentLoc = {
         lat: currentLoc.latitude,
@@ -176,37 +184,80 @@ CreateNewPostFromView = function (v) {
       if (currentLoc) {
         currentLoc = currentLoc.coords;
       }
-    }
+    }*/
 
     bz.runtime.changesNotSaved = false;
     Router.go('/posts/my');
+    
+    Meteor.call('addPost', newPost, function(e, r) {
+      
+      var imgArray = imagesArrayReactive.get();
+      if (!!imgArray.length) {
+        saveImage(imgArray.pop());
+      }
 
-    //$.when(locDef).then(function () {
-    Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
-      _.each(imagesArrayReactive.get(), function (imgItem) {
-        if(!imgItem._id && !imgItem.isSaved) {
-          imgItem.save().then(img=> {
-            id = bz.cols.images.update(imgItem.tempId, {$set: {data: img.src}});
-            imgItem.thumbnail.save().then(thumb=> {
+      function saveImage(imgItem) {
+        if (!imgItem._id && !imgItem.isSaved) {
+          imgItem.save().then(img => {
+            var imgItem = img;
+            bz.cols.images.update(imgItem.tempId, {$set: {data: img.src}});
+            imgItem.thumbnail.save().then(thumb => {
               bz.cols.images.update(imgItem.tempId, {$set: {thumbnail: thumb.src}});
-              bz.ui.alert(`Фотографии поста были созданы`);
+              // bz.ui.alert(`Фотография поста (иконка + оригинал) была создана`);
+              if (!!imgArray.length) {
+                saveImage(imgArray.pop());
+              }
             }).catch(error=>{
-              bz.ui.error(`При создании фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
+              bz.ui.error(`При создании фотографий поста (иконка) возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
             });
-          }).catch(error=>{
+          }).catch(error=> {
             bz.ui.error(`При создании фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
           });
         }
-      });
+      }
+
+      if (!e && r && r !== '') {
+        bz.ui.alert(`Ваш <a href="/post/${r}">пост</a> успешно создан`);
+        clearPostData();
+        bz.runtime.newPost.postId = r;
+      } else {
+        bz.ui.alert(`При создании поста возникла проблема: ${e}`);
+      }
+      
+    });
+    
+    /* OLD CODE */
+    /*Meteor.call('addNewPost', newPost, currentLoc, Meteor.connection._lastSessionId, function (err, res) {
+        var imgArray = imagesArrayReactive.get();
+        if (!!imgArray.length) {
+            saveImage(imgArray.pop());
+        }
+        function saveImage(imgItem) {
+            if (!imgItem._id && !imgItem.isSaved) {
+                imgItem.save().then(img => {
+                    var imgItem = img;
+                    bz.cols.images.update(imgItem.tempId, {$set: {data: img.src}});
+                    imgItem.thumbnail.save().then(thumb => {
+                        bz.cols.images.update(imgItem.tempId, {$set: {thumbnail: thumb.src}});
+                        // bz.ui.alert(`Фотография поста (иконка + оригинал) была создана`);
+                        if (!!imgArray.length) {
+                            saveImage(imgArray.pop());
+                        }
+                     }).catch(error=>{
+                        bz.ui.error(`При создании фотографий поста (иконка) возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
+                     });
+                }).catch(error=> {
+                    bz.ui.error(`При создании фотографий поста возникла проблема: ${error.message}. Попробуйте сохранять по одной фотографии.`);
+                });
+            }
+        }
       if (!err && res && res !== '') {
         bz.ui.alert(`Ваш <a href="/post/${res}">пост</a> успешно создан`);
-
         clearPostData();
         bz.runtime.newPost.postId = res;
-
       } else {
         bz.ui.alert(`При создании поста возникла проблема: ${err}`);
       }
-    });
+    });*/
   }
 };

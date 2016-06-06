@@ -6,16 +6,18 @@
     </div>
 </template>
 
+
 <template name="bzLinkLocationName">
     <a class="bz-link-lacation-name" href="#" data-reveal-id="choose-locations-global">
         <i class="fa fa-map-marker {{ notDefinedLocationClass }}"></i> 
         {{#if getCurrentLocationName}}
             <span>{{ getCurrentLocationName }}</span> 
         {{else}}
-            <span>{{ getCurrentLocationName }}</span>
+            <span>{{ t9n 'LOCATION_IS_NOT_DEFINED' }}</span>
         {{/if}}
     </a>
 </template>
+
 
 <template name="bzLocationNameNewPost">
   <div class="bz-location-name">
@@ -34,6 +36,7 @@
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 </template>
+
 
 <template name="bzChooseLocationModal">
   <div class="bz-choose-location-control">
@@ -76,6 +79,16 @@
             <ul class="none-list js-locations-list">
               <li><a data-iscurrentlocation="true" data-locationname="My Location"><i class="fa fa-map-marker"></i> {{ t9n 'LOCATION_MY_CURRENT_LOCATION' }}</a></li>
             </ul>
+              
+            {{#if accurateAddress}}
+                <div class="bz-my-accurateAddress">
+                    <ul class="none-list">
+                        <li><div class="title">{{ t9n 'LOCATION_MY_COMPUTATION_LOCATION' }}</div></li>
+                        <li><span> {{accurateAddress}} </span></li>
+                    </ul>
+                </div>
+            {{/if}}
+              
             {{#if currentUser }}
               <ul class="none-list js-locations-list">
                   <li><div class="title">{{ t9n 'LOCATION_YOUR_MOST_RECENT_LOCATIONS' }}</div></li>

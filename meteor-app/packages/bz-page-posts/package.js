@@ -13,7 +13,7 @@ Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
   api.use(['underscore', 'iron:router', 'iron:layout', 'mongo', 'reactive-var', 'tracker', 'ecmascript', 'dburles:collection-helpers',
-    'arutune:bz-main'
+    'arutune:bz-main', 'ground:db'
   ], ['client', 'server']);
   api.use(['percolate:synced-cron'
   ], 'server');
@@ -45,7 +45,7 @@ Package.onUse(function (api) {
     'client/browser/post-controls.html',
     'client/browser/post-controls.less',
     'client/browser/post-controls.js',
-
+      
     'client/browser/details/details-controls.html',
     'client/browser/details/details-controls.less',
     'client/browser/details/details-controls.js',
@@ -79,6 +79,9 @@ Package.onUse(function (api) {
     'client/browser/new-post/page-new.html',
     'client/browser/new-post/page-new.js',
 
+    'client/browser/new-post/anonymous-post.html',
+    'client/browser/new-post/anonymous-post.js',
+    'client/browser/new-post/anonymous-post.less',
 
     'client/browser/places-autoform.less',
     'client/browser/places-autoform.html',

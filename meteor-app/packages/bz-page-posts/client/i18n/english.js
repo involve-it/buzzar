@@ -7,7 +7,8 @@ enI18n = {
   EDIT_POST_EDIT_BTN: 'Save changes',
   NEW_POST_SELECT_TYPE_TEXT: '--Select type--',
   MORE:'more',
-
+  NEW_POST_SELECT_TAG_TEXT:'--Select tags--',
+  NEW_POST_SELECT_TAG:'Selecting tags',
   //No Posts
   YOU_HAVE_NO_POSTS: 'You have no posts yet',
   PRESS_BUTTON_BELOW:'Press button below',
@@ -19,7 +20,7 @@ enI18n = {
   NEW_MEMO_WHERE_MUTED: 'With settings determine where in your reminder will become active.',
   NEW_MEMO_CHOOSE_TIME_LIMIT: 'Choose due date for the memo',
   //New post
-  NEW_POST_NEWTYPE_BEACON_TITLE: 'Choose the appropriate beacon',
+  NEW_POST_NEWTYPE_BEACON_TITLE: 'Choose the appropriate Shiner',
   NEW_POST_IMPORT_FROM_WEB: 'Import from Web',
   NEW_POST_IMPORT_FROM_WEB_OPTIONAL: 'optional',
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER: 'Original Post Url',
@@ -91,6 +92,8 @@ enI18n = {
   NEW_POST_BUDGET:'Budget',
   NEW_POST_PROVIDE:'Provide',
   NEW_POST_NEED:'Need',
+  NEW_POST_ANONYMOUS_POST_TITLE:'Anonymous post',
+  NEW_POST_ANONYMOUS_POST:'Enable anonymous post',
 
   //Post details
   POST_DETAILS_REVIEWS_FIRST: 'Your will be the first',
@@ -145,6 +148,12 @@ enI18n = {
 
   //post control buttons
   RELOAD_POST_TIME: 'Reload your post',
+  RELOAD_POST_TIME_SUBTITLE: 'This action cannot be undone',
+  
+  RELOAD_POST_CONTENT: '@{subjectStart} @{postTitle} @{subjectEnd}',
+  RELOAD_POST_CONTENT_SUBJECT_START: 'To post',
+  RELOAD_POST_CONTENT_SUBJECT_END: 'will restart option activity on the one that was set when it was created.',
+  
   EDIT_POST: 'Edit',
   TRASH_POST: 'Trash'
 };

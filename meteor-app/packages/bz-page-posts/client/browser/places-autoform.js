@@ -60,6 +60,9 @@ Template.postsPlacesAutoform.helpers({
     bz.runtime.newPost.location.mapsPlaceId = mapsPlaceId;
     // make it look selected:
     $('.js-location-nearby').addClass('selected');
+  },
+  anonymousPostChecked: function() {
+    return ( Session.get('anonymousPostChecked') ) ? 'disabled' : '';
   }
 });
 Template.postsPlacesAutoform.events({
@@ -84,9 +87,11 @@ Template.postsPlacesAutoform.events({
         return false;
       } else {
         var panel = $(e.currentTarget).closest('.panel');
-        panel.toggleClass('callout');
         
-        if (panel.hasClass('js-moving-location-panel')) {
+        
+        if (panel.hasClass('js-moving-location-panel') && !Session.get('anonymousPostChecked')) {
+          panel.toggleClass('callout');
+          
           if (panel.hasClass('callout')) {
             location1.isSet = true;
             movingLocationPanelClick();
@@ -94,6 +99,8 @@ Template.postsPlacesAutoform.events({
             location1.isSet = false;
           }
         } else if (panel.hasClass('js-fixed-location-panel')) {
+          panel.toggleClass('callout');
+          
           if (panel.hasClass('callout')) {
             location2.isSet = true;
             staticLocationPanelClick(true);
@@ -108,7 +115,7 @@ Template.postsPlacesAutoform.events({
 // HELPERS:
 
 function callbackNearbySearch(results, status) {
-  console.log('results: ', results);
+  //console.log('results: ', results);
   console.log('status: ', status);
   console.log('length: ', results.length);
   if (status === google.maps.places.PlacesServiceStatus.OK) {

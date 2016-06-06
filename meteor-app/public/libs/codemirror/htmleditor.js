@@ -24,12 +24,12 @@
         defaults: {
             iframe       : false,
             mode         : 'split',
-            markdown     : false,
+            markdown     : true,
             autocomplete : true,
             height       : 500,
             maxsplitsize : 1000,
             codemirror   : { mode: 'htmlmixed', lineWrapping: true, dragDrop: false, autoCloseTags: true, matchTags: true, autoCloseBrackets: true, matchBrackets: true, indentUnit: 4, indentWithTabs: false, tabSize: 4, hintOptions: {completionSingle:false} },
-            toolbar      : [ 'bold', 'italic', 'strike', 'link', 'image', 'blockquote', 'listUl', 'listOl' ],
+            toolbar      : [ 'bold', 'italic', 'strike', 'link', '/image/', '/blockquote/', '/listUl/', '/listOl/' ],
             lblPreview   : 'Preview',
             lblCodeview  : 'HTML',
             lblMarkedview: 'Markdown'

@@ -1,6 +1,8 @@
 /**
  * Created by arutu_000 on 12/23/2015.
  */
+import toast from 'pyrsmk-toast';
+
 bz.help.makeNamespace('bz.ui');
 
 var masDrop =[];
@@ -10,12 +12,9 @@ bz.ui.initDropTips = function () {
   setTimeout(function () {
 
     toast(
-      ['https://s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/tether.js', function () {
-        return window.Tether;
-      }],
-      ['http://github.hubspot.com/drop/dist/js/drop.js', function () {
-        return window.Drop;
-      }],
+      'https://s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/tether.js',
+      function(){},
+      'http://github.hubspot.com/drop/dist/js/drop.js',
       function () {
 
         var _Drop, DropTooltip;
@@ -78,6 +77,13 @@ bz.ui.initDropTips = function () {
 };
 
 /* BZ ALERT */
+/*(function initAlerts() {
+  toast(
+      'https://cdnjs.cloudflare.com/ajax/libs/jquery-noty/2.3.8/jquery.noty.min.js',
+      function () {
+        debugger;
+      });
+})();*/
 bz.ui.alert = function (message, obj) {
   obj = obj || {type: 'info'};
 
@@ -166,6 +172,44 @@ bz.ui.modal = function (content, onconfirm) {
   /*return modal;*/
 
 };
+
+
+bz.ui.modal.confirm = function (content, onconfirm) {
+
+  "use strict";
+
+  var body, modal, modalConfirmTemplate, modalConfirm, id, args = {};
+
+  if (!body) body = $('body');
+  id = 'modal-' + Math.round(Math.random() * 100);
+  onconfirm = $.isFunction(onconfirm) ? onconfirm : function () {
+  };
+
+  (typeof content === 'object') ? args = content : content = '';
+
+  modalConfirmTemplate = '<div id="' + id + '" class="reveal-modal confirmPostModal" data-reveal aria-labelledby="modalConfirmTitle" aria-hidden="true" role="dialog"></div>';
+
+  modalConfirm = [
+    '<div class="confirmPostModal-wrapper bz-flex bz-flex-center bz-flex-column"><div class="confirmPostModal-header bz-flex bz-flex-middle"><div class="bz-warning-icon confirm bz-flex-grow-0"><i class="fa fa-exclamation-triangle"></i></div>',
+    '<div class="bz-modal-header bz-flex-grow-1"><h1 id="modalConfirmTitle" class="title">'+ T9n.get('RELOAD_POST_TIME') + '</h1><p class="sub-title">'+ T9n.get('RELOAD_POST_TIME_SUBTITLE') +'</p></div></div>',
+    '<div class="confirmPostModal-content without"><p>' + String(T9n.get('RELOAD_POST_CONTENT', true, args)) + '</p></div>',
+    '<div class="confirmPostModal-buttons confirm bz-flex bz-flex-right bz-flex-middle"><a class="button bz-small secondary js-close-modal">Cancel</a><a class="button bz-small alert js-modal-ok">OK</a></div></div>'
+  ].join('');
+
+  modal = $(modalConfirmTemplate).appendTo('body');
+  $(modalConfirm).appendTo('.confirmPostModal');
+  $(modal).foundation('reveal', 'open');
+
+  modal.find(".js-modal-ok, .js-close-modal").on("click", function () {
+    if ($(this).is('.js-modal-ok')) onconfirm();
+    modal.foundation('reveal', 'close');
+    modal.remove();
+  });
+
+  /*return modal;*/
+
+};
+
 
 //  foundation:
 

@@ -6,13 +6,14 @@ ruI18n = {
   EDIT_POST_EDIT_BTN: 'Сохранить изменения',
   NEW_POST_SELECT_TYPE_TEXT: '--Выберите тип--',
   MORE:'больше',
-
+  NEW_POST_SELECT_TAG_TEXT:'--Добавте теги к своему посту--',
+  NEW_POST_SELECT_TAG:'Выбор тегов',
   //No Posts
   YOU_HAVE_NO_POSTS: 'У вас пока еще нет постов',
   PRESS_BUTTON_BELOW:'Чтобы создать новый пост нажмите кнопку ниже',
   //New post
-  NEW_POST_NEWTYPE_BEACON_TITLE: 'Выберите подходящий маячок',
-  NEW_POST_IMPORT_FROM_WEB: 'Взять из интернета',
+  NEW_POST_NEWTYPE_BEACON_TITLE: 'Выберите подходящий Светлячок',
+  NEW_POST_IMPORT_FROM_WEB: 'Импортировать из интернета',
   NEW_POST_IMPORT_FROM_WEB_OPTIONAL: 'необязательно',
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER: 'Url адрес объявления в интернете',
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER_TOOLTIP_TEXT: 'Добавьте адрес вашего объявления с другого ресурса, чтобы не заполнять информацию снова. Мы это сделаем за вас.',
@@ -83,6 +84,8 @@ ruI18n = {
   NEW_POST_BUDGET:'Бюджет',
   NEW_POST_PROVIDE:'Предоставляется',
   NEW_POST_NEED:'Требуется',
+  NEW_POST_ANONYMOUS_POST_TITLE:'Анонимный пост',
+  NEW_POST_ANONYMOUS_POST:'Включить анонимный пост',
 
   //New Memo
   NEW_MEMO_CREATE_NEW_MEMO: 'Новое напоминание',
@@ -121,8 +124,8 @@ ruI18n = {
   SELECT_ONE_OPTION:'Выберите один из вариантов',
   SELECT_ONE_OPTION_WORK: 'Ищу работу',
   SELECT_ONE_OPTION_JOBS:'Предлагаю работу',
-  SELECT_ONE_OPTION_LEARNING:'Ищу обучение',
-  SELECT_ONE_OPTION_TRAINING:'Предлагаю обучение',
+  SELECT_ONE_OPTION_LEARNING:'Посты с поиском обучения',
+  SELECT_ONE_OPTION_TRAINING:'Посты с предложениями обучения',
   EMPLOYMENT_AND_WORK_SCHEDULE_SELECTED_VARIANTS:'Можно выбрать несколько вариантов',
   EMPLOYMENT_AND_WORK_SCHEDULE_CONSTANT:'Постоянная',
   EMPLOYMENT_AND_WORK_SCHEDULE_PROJECT_temporary: 'Проектная/Временная работа',
@@ -145,6 +148,12 @@ ruI18n = {
 
   //post control buttons
   RELOAD_POST_TIME: 'Перезапустить пост',
+  RELOAD_POST_TIME_SUBTITLE: 'Это действие необратимо',
+  
+  RELOAD_POST_CONTENT: '@{subjectStart} @{postTitle} @{subjectEnd}',
+  RELOAD_POST_CONTENT_SUBJECT_START: 'Для поста',
+  RELOAD_POST_CONTENT_SUBJECT_END: 'будет перезапущен параметр активности на тот, который был задан при его создании.',
+  
   EDIT_POST: 'Редактировать пост',
   TRASH_POST: 'Удалить пост'
   

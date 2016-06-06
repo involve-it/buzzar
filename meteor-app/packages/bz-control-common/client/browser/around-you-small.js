@@ -18,40 +18,12 @@ function getLatLngBox (lat, lng, radius){
 
 Template.aroundYouSmall.helpers({
   getAroundItems: function() {
-    var ret, loc = Session.get('bz.control.search.location'),
-      distSession = Session.get('bz.control.search.distance') || [],
-      activeCats = Session.get('bz.control.category-list.activeCategories') || [];
-    if(['home', 'jobs', 'trainings', 'connect', 'trade', 'housing', 'events', 'services', 'help'].indexOf(Router.getCurrentRouteName()) > -1) {
-      // add all-posts reactivity:
-      bz.cols.posts.find({});
-      if (loc && loc.coords) {
-        ret = bz.bus.search.doSearchClient({
-          loc: loc,
-          activeCats: activeCats,
-          radius: distSession,
-          $where: function() {
-            //debugger;
-            //return this._hasLivePresence();
-            return !!bz.help.posts.hasLivePresence.apply(this);
-          },
-          /*query: {
-            'status.visible': {$exists: true}
-          }*/
-          //radius: bz.const.search.AROUND_YOU_RADIUS
-        }, {
-          //limit: 20,
-          limit: bz.const.search.AROUND_YOU_LIMIT,
-          //sort: {'stats.seenAll': -1, }
-        }).fetch();
-        ret = _(ret).chain().sortBy(function(item){
-          return item.stats && item.stats.seenTotal  || 0;
-        }).reverse().sortBy(function(doc) {
-          return doc._getDistanceToCurrentLocationNumber();
-        }).value();
-      }
-    }
-    //console.log('Around you gallery posts amount: ' + ret.length);
-    /*debugger;*/
+    var ret;
+    bz.cols.posts.find({});
+    ret = bz.bus.search.searchePostsAroundAndPopular().aroundYouSmall;
+    ret = _(ret).chain().sortBy(function(doc) {
+      return doc._getDistanceToCurrentLocationNumber();
+    }).value();
     return ret;
   }
 });
@@ -69,13 +41,13 @@ Template.aroundYouSmall.onRendered(function() {
 
 Template.bzAroundYouSmallItem.rendered = function() {
   
-  var lineH = $('.bz-content .post-item-text').css('line-height');
+  /*var lineH = $('.bz-content .post-item-text').css('line-height');
   if (Number.parseInt(lineH) !== 'NaN'){
     lineH = Number.parseInt(lineH);
   } else {
     lineH = 20;
   }
-  $('.bz-content .post-item-text').css('max-height', lineH * 2);
+  $('.bz-content .post-item-text').css('max-height', lineH * 2);*/
 };
 
 Template.bzAroundYouSmallItem.helpers({

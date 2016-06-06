@@ -4,10 +4,14 @@
 Router.map(function () {
   this.route('bz.aboutUs', {
     path: '/about-us',
-    template: 'pageAboutUs'
+    template: 'aboutUsRu'
   });
   this.route('contactUs', {
     path: '/contacts',
     template: 'pageContactUs'
+  });
+  this.route('AdminTags',{
+    path:'/page-admin-tags',
+    template: 'pageAdminTags'
   });
 });

@@ -2,15 +2,118 @@
  * Created by root on 9/15/15.
  */
 
+Template.bzAroundYou.onCreated(function() {
+  this.getSearchData = new ReactiveVar(false);
+  //this.getNearByData = new ReactiveVar(false);
+});
+
 Template.bzAroundYou.onRendered(function () {
   Meteor.startup(function () {});
 });
-      
 
 Template.bzAroundYou.helpers({
+  getData: function() {
+    return Template.instance().getSearchData.get();
+  },
   getAroundItems: function () {
-    var ret;
-    ret = getSearchResultsFromSessionParameters({
+    var ret,
+        ins = Template.instance(),
+        inputSearchText = Session.get('bz.control.search.searchedText'),
+        currentLocation = Session.get('currentLocation'),
+        radius = Session.get('bz.control.search.distance'),
+        activeCats = Session.get('bz.control.category-list.activeCategories'),
+        searchAmount;
+    
+    //var throttle = _.throttle(function(){console.log('called')}, 10000);
+    
+    ret = (inputSearchText) ? searchPosts(inputSearchText, currentLocation, radius, activeCats) : nearbyPosts(currentLocation, radius, activeCats) ;
+    
+    function searchPosts(text, loc, radius, activeCats) {
+      var request = {};
+        
+
+      //console.info('DATA: ', ins.getSearchData.get());
+      
+      request = {
+        query: text,
+        lat: loc.latitude,
+        lng: loc.longitude,
+        radius: radius,
+        activeCats: activeCats
+      };
+
+      //if (ins.getSearchData.get() === false) {
+        Meteor.call('searchPosts', request, function(e, r) {
+          var res;
+          //console.info('Зашли в метод');          
+          res = (!e) ? r : e;
+
+          if (res.error) {
+            bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+            return;
+          }
+
+          if(res.success && res.result) {
+            searchAmount = res.result.length;
+            (res.result.length > 0) ? ins.getSearchData.set(res.result) : ins.getSearchData.set([]);
+            //console.info('Вернувшийся результат: ', res.result);
+            //console.info('Данные из метода: ', ins.getSearchData.get());
+            Session.set('bz.control.search.amount', searchAmount);
+          } else {
+            bz.ui.alert('Error ID: ' + res.error.errorId, {type:'error', timeout: 2000});
+          }
+          
+          
+        });
+      //}
+
+      console.log('searchPosts');
+      return ins.getSearchData;
+    }
+    
+    
+    function nearbyPosts(loc, radius, activeCats) {
+      var request = {};
+
+      request = {
+        lat: loc.latitude,
+        lng: loc.longitude,
+        radius: radius,
+        activeCats: activeCats
+      };
+
+      /*if (ins.getNearByData.get() === false) {*/
+        Meteor.call('getNearbyPostsTest', request, function (e, r) {
+          var res;
+  
+          res = (!e) ? r : e;
+  
+          if (res.error) {
+            bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+            return;
+          }
+  
+          if (res.success && res.result) {
+            
+            //ins.getNearByData.set(res.result);
+            (res.result.length > 0) ? ins.getSearchData.set(res.result) : ins.getSearchData.set([]);
+            //console.info('Данные из метода nearbyPosts: ', ins.getNearByData.get());
+  
+          } else {
+            bz.ui.alert('Error ID: ' + res.error.errorId, {type: 'error', timeout: 2000});
+          }
+  
+        });
+    /*}*/
+      console.log('nearbyPosts');
+      //return console.log('nearbyPosts');
+      return ins.getSearchData;
+    }
+    
+    //return ret;
+    
+    
+    /*ret = getSearchResultsFromSessionParameters({
       loc: Session.get('bz.control.search.location'),
       dist: Session.get('bz.control.search.distance'),
       cats: Session.get('bz.control.category-list.activeCategories'),
@@ -18,11 +121,10 @@ Template.bzAroundYou.helpers({
     });
         
     Session.set('bz.control.search.amount', ret && ret.length);
-
-    //console.info(ret);
     
-    return ret;
+    return ret;*/
     
+    /* OLD CODE */
     /*var ret, loc = Session.get('bz.control.search.location'),
      distSession = Session.get('bz.control.search.distance') || [],
      activeCats = Session.get('bz.control.category-list.activeCategories') || [];
@@ -53,21 +155,17 @@ Template.bzAroundYou.helpers({
   }
 });
 
-
+Template.bzAroundYou.events({
+  'click .js-show-more-posts-btn': function (e, v){
+    bz.bus.search.showMorePosts();
+  }
+});
 Template.bzAroundYouItem.rendered = function () {
 
   /*init Rate*/
   $('.bz-rating').raty({
     starType: 'i'
   });
-
-  var lineH = $('.bz-content .post-item-text').css('line-height');
-  if (Number.parseInt(lineH) !== 'NaN') {
-    lineH = Number.parseInt(lineH);
-  } else {
-    lineH = 20;
-  }
-  $('.bz-content .post-item-text').css('max-height', lineH * 2);
 };
 
 
@@ -75,8 +173,7 @@ Template.bzAroundYouItem.helpers({
   getPostOwner: function () {
     return Meteor.users.findOne(this.userId);
   },
-  getRank: function () {
-  },
+  getRank: function () {},
   getProgressBar: function () {
     debugger;
   },
@@ -99,6 +196,21 @@ Template.bzAroundYouItem.helpers({
     }
     return '';
   }
+});
+
+
+Template.bzAroundYouItem.onRendered(function() {
+  var template = this, textH, text;
+
+  text = template.$('.post-item-text');
+  textH = text.css('line-height');
+
+  if (Number.parseInt(textH) !== 'NaN') {
+    textH = Number.parseInt(textH);
+  } else {
+    textH = 19;
+  }
+  text.addClass('bz-text-ellipsis').css('max-height', textH * 2);
 });
 
 
@@ -139,41 +251,17 @@ function getLatLngBox(lat, lng, radius) {
 
 
 function getSearchResultsFromSessionParameters(options = {}){
-  var ret, loc = options.loc,
-    distSession = options.dist || [],
-    activeCats = options.cats || [],
-    searchedText = options.text;
-  /*
-  var ret, loc = options.loc || Session.get('bz.control.search.location'),
-    distSession = options.dist || Session.get('bz.control.search.distance') || [],
-    activeCats = options.cats || Session.get('bz.control.category-list.activeCategories') || [];*/
-  
-    if (['home', 'jobs', 'trainings', 'connect', 'trade', 'housing', 'events', 'services', 'help'].indexOf(Router.getCurrentRouteName()) > -1) {
-
-      // add all-posts reactivity:
-      bz.cols.posts.find({});
-      if (loc && loc.coords) {
-        ret = bz.bus.search.doSearchClient({
-          loc: loc,
-          activeCats: activeCats,
-          radius: distSession,
-          text: searchedText,
-          $where: function() {
-            //to show only visible
-            return this.status.visible !== null
-          }
-          //radius: bz.const.search.AROUND_YOU_RADIUS
-        }, {
-          limit: bz.const.search.AROUND_YOU_LIMIT
-        }).fetch();
-                
-        ret = _(ret).chain().sortBy(function (item) {
-          return item.stats && item.stats.seenTotal || 0;
-        }).reverse().sortBy(function (doc) {
-          return doc._getDistanceToCurrentLocationNumber();
-        }).value();
-      }
-      //console.log('Around you posts amount: ' + ret.length);
+  var ret;
+  bz.cols.posts.find({});
+  ret = bz.bus.search.searchePostsAroundAndPopular().aroundYou;
+  if (ret.length<Session.get('bz.control.search.postCountLimit')){
+    $('div.show-more-button a.js-show-more-posts-btn').addClass('disabled');
   }
+  else{
+    $('div.show-more-button a.js-show-more-posts-btn').removeClass('disabled');
+  }
+  ret = _(ret).chain().sortBy(function(doc) {
+    return doc._getDistanceToCurrentLocationNumber();
+  }).value();
   return ret;
 }

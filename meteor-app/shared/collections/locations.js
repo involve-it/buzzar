@@ -3,12 +3,12 @@
  */
 
 bz.cols.locations = new Mongo.Collection('bz.locations');
+Ground.Collection(bz.cols.locations);
 if(Meteor.isServer){
   //bz.cols.locations.remove({});
 }
 
-bz.cols.locations.before.insert(function (userId, doc) {
-});
+bz.cols.locations.before.insert(function (userId, doc) {});
 
 //bz.cols.imagesData.remove({});
 if (Meteor.isServer) {
@@ -84,7 +84,7 @@ bz.cols.locations.insertFromGoogleObject = function(googleObj) {
     public: true, // let's assume this is a public place, since it's from google
     origObj: googleObj
   }
-  ret._id = bz.cols.locations.insert(ret);
+  //ret._id = bz.cols.locations.insert(ret);
   return ret;
 }
 
@@ -114,6 +114,11 @@ var locationsSchema = new SimpleSchema({
   name: {
     type: String,
     optional: false,
+    max: 500
+  },
+  accurateAddress: {
+    type: String,
+    optional: true,
     max: 500
   },
   coords: {

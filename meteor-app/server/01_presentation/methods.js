@@ -32,16 +32,23 @@ Meteor.methods({
   parseUrl: function(url) {
     return bz.bus.parseUrl(url);
   },
-  addNewPost: function(postObject, currentLocation, connectionId) {
+  parseVk: function(url) {
+    // if url == VK
+    return bz.bus.getTypeUrl(url);
+    //return bz.bus.parseUrlVk(url);
+  },
+
+  /* OLD CODE */
+  /*addNewPost: function(postObject, currentLocation, connectionId) {
     if(postObject && (Meteor.users.find({_id: postObject.userId})).count()!=0){
-      /*if (!postObject.presences && postObject.details && postObject.details.locations && Array.isArray(postObject.details.locations) && postObject.details.locations.length > 0){
+      /!*if (!postObject.presences && postObject.details && postObject.details.locations && Array.isArray(postObject.details.locations) && postObject.details.locations.length > 0){
         postObject.presences = {};
         var id;
         _.each(postObject.details.locations, function(loc){
           id = loc._id || bz.const.locations.type.DYNAMIC;
           postObject.presences[id] = bz.const.posts.status.presence.NEAR;
         });
-      }*/
+      }*!/
       if (postObject.details && postObject.details.locations) {
         _.each(postObject.details.locations, function(location){
           if (location.placeType === bz.const.locations.type.DYNAMIC){
@@ -59,12 +66,44 @@ Meteor.methods({
         });
       }
       return post;
-      //return 'EPzoQSGnGCSsPaQjm'
+    }
+  },*/
+  seenPostUpdate: function(postId,seenObject){
+    if (postId && seenObject) {
+      bz.cols.posts.update(postId, {$set: seenObject});
     }
   },
-  saveExistingPost: function(postObject, currentLocation, connectionId) {
+  likePostUpdate: function(postId,userId,like){
+    if (postId && userId){
+      if(like){
+        bz.cols.posts.update(postId, {$push: {'social.likes': {userId: userId, ts: Date.now()}}});
+      }else{
+        bz.cols.posts.update(postId, {$pop: {'social.likes': {userId: userId}}});
+      }
+    }
+  },
+  ratingPostUpdate: function(postId, ratingObject){
+    if (postId && ratingObject){
+      bz.cols.posts.update(postId, {$push: ratingObject})
+      }
+  },
+  timePostUpdate: function(postId, timeObj){
+    if (postId && timeObj){
+      bz.cols.posts.update(postId, {$set: timeObj});
+    }
+  },
+  /* OLD CODE */
+  removePost: function(postId, userId){
+    if (postId && userId) {
+      var post = bz.cols.posts.findOne(postId);
+      if (userId == post.userId) {
+        bz.cols.posts.remove(postId);
+      }
+    }
+  },
+  saveExistingPost: function(postObject, currentLocation, connectionId,userId) {
     var res, ret;
-    if(postObject && postObject._id){
+    if(postObject && postObject._id && (userId == postObject.userId)){
       /*if (!postObject.presences && postObject.details && postObject.details.locations && Array.isArray(postObject.details.locations) && postObject.details.locations.length > 0){
         postObject.presences = {};
         var id;
@@ -143,7 +182,10 @@ Meteor.methods({
     return ret;
   },
   setUserCurrentLocation: function (userId, coords) {
-    var name = T9n.get('MY_LOCATION_TEXT'), id;
+    //var name = Session.get('getAccurateAddress') || T9n.get('MY_LOCATION_TEXT'), id;
+    //TODO: removing due to errors: session is not available on server
+    var name = 'FIX_ME', id;
+        //Session.get('getAccurateAddress'), id;
     var existLoc = bz.cols.locations.findOne({name: name, userId: userId});
     if (existLoc) {
       //bz.cols.locations.remove(existLoc._id);
@@ -158,16 +200,13 @@ Meteor.methods({
       id = bz.cols.locations.insert({
         userId: userId,
         name: name,
+        accurateAddress: name.accurateAddress,
         coords: coords,
         placeType: bz.const.locations.type.DYNAMIC
       });
     }
 
     return bz.cols.locations.findOne(id);
-  },
-  testNative: function(lat, lng){
-    //console.log('Coordinates updated: ' + lat + ', ' + lng);
-    return "Success";
   },
   search: function (query, options) {
     /*query = {
@@ -264,14 +303,67 @@ Meteor.methods({
   console: function(){
     debugger;
   },
+  /* OLD CODE */
   updateProfileDetails: function(userId, attributes){
     _.each(attributes,function(attribute){
         attribute.userId=userId;
         bz.cols.profileDetails.update({userId:userId,key: attribute.key},
           {$set: attribute},
-          {upsert: true});
+          {upsert: true}
+        );
     }
     )
+  },
+  updateTag: function(tag, obj) {
+    var arrDiffTags, editTag;
+    editTag = bz.cols.tags.findOne({_id: tag});
+    bz.cols.tags.update({_id: tag},
+      {$set: obj},
+      {upsert: true}
+    );
+    if (editTag) {
+      arrDiffTags = _.difference(editTag.related, obj.related);
+      _.each(arrDiffTags, function (diffTag) {
+        bz.cols.tags.update({name: diffTag},
+          {
+            $pull: {related: editTag.name}
+          });
+      });
+    }
+    _.each(obj.related,function(item){
+      var target=bz.cols.tags.findOne({name: item});
+      if (target){
+        var coincidence=false;
+        _.each(target.related,function(nameRelated){
+          if (obj.name==nameRelated){
+            coincidence=true;
+          }
+        });
+        if ((!coincidence) && (obj.name!=target.name)){
+          target.related.push(obj.name);
+          bz.cols.tags.update({_id:target._id},{$set:{related: target.related}});
+
+        }
+      }
+    })
+  },
+  deleteTag: function(tag){
+    if (tag.related) {
+      _.each(tag.related, function (item) {
+        bz.cols.tags.update({name: item},
+          {
+            $pull: {related: tag.name}
+          });
+      });
+    }
+    bz.cols.tags.remove(tag)
+  },
+  updateCheckOwnPosts: function(toggle) {
+    var user = Meteor.userId();
+    Meteor.users.update({'_id': user}, {
+      $set: { 'profile.checkOwnPosts': toggle }},
+      {upsert: true}
+    );
   }
 });
 

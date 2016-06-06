@@ -4,10 +4,12 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.meteor/local" />
       <excludeFolder url="file://$MODULE_DIR$/meteor-app/..meteor" />
+      <excludeFolder url="file://$MODULE_DIR$/meteor-app/.cordova-build-override/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/meteor-app/.demeteorized" />
       <excludeFolder url="file://$MODULE_DIR$/meteor-app/.meteor" />
       <excludeFolder url="file://$MODULE_DIR$/meteor-app/cordova-build-override-files/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/meteor-app/cordova-build-override/.platforms-other" />
+      <excludeFolder url="file://$MODULE_DIR$/meteor-app/packages/bz-page-posts/client/ionic" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

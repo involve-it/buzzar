@@ -20,6 +20,8 @@ Package.onUse(function (api) {
   api.use(['iron:router', 'iron:layout', 'selaias-local:accounts-entry', 'ecmascript'], global.bzSettings.webBrowserArrayWithServer);
   api.use('service-configuration', ['server']);
 
+  //api.use(['cordova:cordova-plugin-geolocation@2.1.0'], 'web.cordova');
+  
   //api.use('iron:layout', ['client', 'server']);
   api.use(['underscore', 'session']);
   api.use(['templating'], global.bzSettings.webBrowserArray);
@@ -46,7 +48,7 @@ Package.onUse(function (api) {
   ], 'client');
   
   api.addFiles([
-    'client/lib/vendor/toast.js',
+    'client/lib/01_inits/version.js',
 
     'client/lib/01_inits/accounts.js',
     'client/lib/01_inits/bz-js.js',
@@ -59,7 +61,13 @@ Package.onUse(function (api) {
     'client/lib/animate/animate.css',
 
     'client/lib/rates/jquery.raty.css',
-    'client/lib/01_inits/mobile.js'
+    'client/lib/01_inits/mobile.js',
+
+    'client/lib/vendor/ui/dropdown.js',
+    'client/lib/vendor/ui/dropdown.css',
+    'client/lib/vendor/ui/transition.js',
+    'client/lib/vendor/ui/transition.css',
+
   ], 'client');
 
   api.addFiles([

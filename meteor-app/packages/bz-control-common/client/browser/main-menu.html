@@ -12,12 +12,12 @@
       {{#if currentUser}}
           <div class="user-area-box clearfix">
               <a href="/profile" class="user-area-avatar">
-                  <div class="bz-avatar" style="background-image: url({{ getUserAvatar }})"></div>
+                  <div class="bz-avatar" style="background-image: url({{#if getUser.image.imageUrl}} {{getUser.image.imageUrl}} {{else}} '/img/content/avatars/avatar-no.png' {{/if}})"></div>
                   {{> bzAvatarUserStatus currentStatusUser}}
               </a>
         
               <div class="user-area-side">
-                <a href="/profile" class="user-area-user-name"> {{ getCurrentUserName }} </a>
+                <a href="/profile" class="user-area-user-name"> {{ getUser.username }} </a>
                 <button class="button transparent btn-drop" role="expand-menu-trigger"><i class="fa fa-chevron-down"></i>
                 </button>
               </div>
@@ -52,14 +52,14 @@
 
   <ul class="off-canvas-list">
     <li><label>{{ t9n 'MENU_MAIN_PAGES_TITLE' }}</label></li>
-    <li class="{{isActiveRoute 'home'}}"><a href="{{pathFor 'home'}}">{{ t9n 'MENU_HOME_PAGE' }}</a></li>
+    <li class="link-menu {{isActiveRoute 'home'}}"><a href="{{pathFor 'home'}}">{{ t9n 'MENU_HOME_PAGE' }}</a></li>
 
     {{#if currentUser}}
       {{> checkingUserMenu}}
     {{/if}}
 
     <!--<li class="{{isActiveRoute 'bz.map'}}"><a href="{{pathFor 'bz.map'}}">{{ t9n 'MENU_MAP' }}</a></li>-->
-    <li class="{{isActiveRoute 'bz.aboutUs'}}"><a href="{{pathFor 'bz.aboutUs'}}">{{ t9n 'MENU_ABOUT_US' }}</a></li>
+    <li class="link-menu {{isActiveRoute 'bz.aboutUs'}}"><a href="{{pathFor 'bz.aboutUs'}}">{{ t9n 'MENU_ABOUT_US' }}</a></li>
   </ul>
 
     {{> bzLeftMenuSelectLanguage}}
@@ -67,11 +67,17 @@
   {{#if currentUser}}
     {{> bzControlMenuHashes }}
   {{/if}}
+
+    
+    <div class="bz-version version-left-menu only-menu-left">
+        {{> bzVersion}}
+    </div>
+    
 </template>
 
 <template name="checkingUserMenu">
-  <li class="{{isActiveRoute 'postsMy'}}"><a href="{{pathFor 'postsMy'}}">{{ t9n 'MENU_MY_POSTS' }}</a></li>
-  <li class="{{isActiveRoute 'chats.my'}}"><a href="/chats/my">{{ t9n 'MENU_MY_MESSAGES' }}</a></li>
+  <li class="link-menu {{isActiveRoute 'postsMy'}}"><a href="{{pathFor 'postsMy'}}">{{ t9n 'MENU_MY_POSTS' }}</a></li>
+  <li class="link-menu {{isActiveRoute 'chats.my'}}"><a href="/chats/my">{{ t9n 'MENU_MY_MESSAGES' }}</a></li>
  {{> bzControlMenuHashesMainMenu }}
 </template>
 
@@ -107,13 +113,13 @@
 <template name="bzSignOutListMenu">
   {{#if currentUser }}
     <li class="log-out">
-      <a class="item item-icon-left" href="/sign-out">
+      <a class="link-menu item item-icon-left" href="/sign-out">
         <i class="fa fa-sign-out"></i><span>{{ t9n 'MENU_SIGN_OUT' }}</span>
       </a>
     </li>
   {{else}}
     <li class="log-out">
-      <a class="item item-icon-left" href="/sign-in">
+      <a class="link-menu item item-icon-left" href="/sign-in">
         <i class="fa fa-sign-in"></i><span>{{ t9n 'MENU_SIGN_IN' }}</span>
       </a>
     </li>
@@ -133,3 +139,4 @@
         </div>
     </div>
 </template>
+

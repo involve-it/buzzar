@@ -7,6 +7,7 @@ if(typeof Template !== 'undefined') {
   Template.registerHelper('isDevEnv', function (postIn) {
     return bz.config.env === 'dev';
   });
+  
   Template.registerHelper('getDistanceToPost', function (postIn) {
     var ret, post = postIn || this,
       x, y, xcur, ycur, curLoc, dist;
@@ -48,6 +49,13 @@ if(typeof Template !== 'undefined') {
     }
     return ret;
   });
+
+  /* TEST fn hasLivePresences global helper */
+  Template.registerHelper('pl', function(posts) {
+    var ret = !!bz.help.posts.hasLivePresence.apply(posts);
+    return ret;
+  });
+  
 
   Template.registerHelper('getPostProgressBar', function() {
     var duration, status, percent, finish, start, now, days, hours, min, barClass, elapsed, titleDays, titleHours, titleMinutes, language, unit;
@@ -171,4 +179,13 @@ if(typeof Template !== 'undefined') {
     }
     return Spacebars.SafeString(ret);
   });
+
+  Template.registerHelper('postLimitDescription', function(limit) {
+    var postDescription;
+        
+    postDescription = this.details.description;
+    return (postDescription && postDescription.length > limit) ? postDescription.substring(0, limit - 3) + "..." : postDescription;
+  });
+  
+  
 }

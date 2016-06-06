@@ -13,7 +13,7 @@ Package.describe({
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use(['iron:router', 'iron:layout', 'ecmascript', 'underscore'], ['client', 'server']);
+  api.use(['iron:router', 'iron:layout', 'reactive-var', 'ecmascript', 'underscore'], ['client', 'server']);
 
   api.use('templating', 'client');
   api.use('less', 'client');
@@ -38,10 +38,13 @@ Package.onUse(function (api) {
     'client/browser/page-home.html',
     'client/browser/page-home.js',
     'client/browser/page-home.less',
+    
+    'client/browser/landing-pages/home-landing-page-unregistered.html',
+    'client/browser/landing-pages/home-landing-page-unregistered.js',
+    'client/browser/landing-pages/home-landing-page-unregistered.less'
   ], global.bzSettings.webBrowserArray);
 
   api.addFiles([
-
     'client/ionic/around-you.html',
     'client/ionic/around-you.js',
     'client/ionic/around-you.less',

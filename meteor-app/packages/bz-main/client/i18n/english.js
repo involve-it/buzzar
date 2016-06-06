@@ -13,9 +13,12 @@ en = {
   SEND_MESSAGE: 'Send message',
   YES: 'Yes',
   NO: 'No',
-  ALL:'ALL',
-  LIVE:'Live',
   ACTIVE:'Active',
+  ACTIVE_HINT:'Posts that are in the active mode. They are seen by other users',
+  LIVE:'Live',
+  LIVE_HINT:'Posts with dynamic location, attached to a mobile device',
+  ALL:'ALL',
+  ALL_HINT:'All you have created posts',
   COMMENTS:'Comments',
   RATING: 'Rating',
   REVIEW_HELP_TEXT: 'Put your review here',
@@ -53,14 +56,21 @@ en = {
   BZ_FREELANCE: 'Freelancer',
   BZ_CHOOSE_TYPE_TRAININGS: 'Select the type of training',
   BZ_CHOOSE_TYPE_TRAININGS_DESC: 'Select the type of training',
+  BZ_ACTION_DONE: 'Done',
+  
+  BZ_DURATION_START_SELECTED: 'Custom choice',
+  BZ_DURATION_CLICK_TO_CH_DATE: 'Click to select a date',
+  DATE_TOMORROW: 'Tomorrow',
 
 
   //No posts around
-  NO_ITEMS_AROUND_YOU: 'You have no items around',
-  YOU_CAN_CREATE_POST: 'You could add an advertisement, so that other users can use it. To do this, click on the button below.',
+  NO_ITEMS_AROUND_YOU: 'No posts around you',
+  YOU_CAN_CREATE_POST: 'Create your post and other users can contact you!',
 
   BUTTONS_BACK: 'Back',
-  
+
+  BUTTON_SHOW_MORE_POSTS: 'Show more posts',
+
   //Menu
   MENU_HOME_PAGE: 'Home',
   MENU_ABOUT_US: 'About us',
@@ -90,7 +100,8 @@ en = {
   left: 'Left',
   POST_STATUS: 'Post close',
   
-  POST_SWITCH_OFF_ON: 'Switch off the post. Previous publication of the advertisement is not displayed to other users. You can reactivate them in My posts in the "ALL" tab.',
+  POST_SWITCH_OFF_ON: 'Switch off the post. Previous publication of the advertisement is not displayed to other users.',
+  POST_SWITCH_OFF_OFF: 'Switch on the post. The announcement will be published on the website again.',
   
   //sitewise:
   siteTitleElement: 'instant post, bound to location',
@@ -106,7 +117,7 @@ en = {
 
   // home page:
   headliner: 'instant post, bound to location',
-  MOST_POPULAR_TITLE: 'Most Popular',
+  MOST_POPULAR_TITLE: 'Another Popular',
   ABOUT_US_TITLE: 'About us',
   AROUND_YOU_TITLE: 'Buzz Around you',
 
@@ -115,8 +126,10 @@ en = {
   LOCATION_YOUR_MOST_RECENT_LOCATIONS: 'Your most recent locations: ',
   LOCATION_BUTTON_SET_LOCATION: 'Set',
   LOCATION_MY_CURRENT_LOCATION: 'My current location',
+  LOCATION_MY_COMPUTATION_LOCATION: 'Specific location: ',
   LOCATION_CLICK_TO_CHOSE_LOCATION:'Click to choose location',
   MY_LOCATION_TEXT: 'My Location',
+  LOCATION_IS_NOT_DEFINED: 'Location is not defined',
 
   //Profile
   PROFILE_USER_DETAILS :'User profile details',
@@ -138,6 +151,8 @@ en = {
 
   //Another user profile details
   PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Personal data',
+  PROFILE_DIRECT_LINK_TO_MY_PROFILE: 'Direct link to my profile',
+  PROFILE_MAKE_MY_PUBLICATION_AVAILABLE_TO_ALL_USERS: 'Make my publication available to all users',
 
   //Profile - edit
   PROFILE_EDIT_USER_AVATAR: 'Edit user avatar',
@@ -166,6 +181,7 @@ en = {
   IMAGE_SELECT_CHOOSE_IMAGE: 'Choose image',
   COMMON_IMAGE_GET_RANDOM: 'Get random image',
   IMAGE_PHOTO_LIBRARY_IS_NOT_AVAILABLE:'Photo Library is not available.',
+  IMAGE_PHOTO_INDEX_NOT_FOUND: 'Image index does not found.',
 
   //chats
   CHATS_LAST_MESSAGE: 'Last message',
@@ -190,7 +206,16 @@ en = {
   SIGN_VALID_USERNAME:'A valid username is required',
   SIGN_VALID_EMAIL: 'A valid email address is required',
   SIGN_VALID_PASSWORD:'Your password must match the requirements',
-  SIGN_VALID_USERNAME_OR_EMAIL:'A valid email address or username is required'
+  SIGN_VALID_USERNAME_OR_EMAIL:'A valid email address or username is required',
+
+
+  /*PAGE ABOUT US*/
+  HEADER: {
+    'PARAG_1': 'Darkness is the absence of light. Knowledge is the light. Knowledge about who is around us, what languages they speak, how they live, what is offered and what we believe. And we believe this knowledge will make the world around brighter and clearer.',
+    'PARAG_2': 'But Shiners are not just for the sake of curiosity. They serve us as live ads around. You install Shiners and your ad gets a new source of views - people who are nearby! Imagine a virtual card, but you don’t wear it in your wallet but in your mobile phone. And this card is being seen by not only selected users but all those who are next to you! We can be searched in Google and other social networks as well. That’s why your ad turns to separate web page being shown the entire Internet if desired.',
+    'PARAG_3': 'There is a number of Shiners around us. If some of them are not shining, it is simply a matter of time!',
+    'PARAG_4': 'SHINERS GLAD TO WELCOME YOU! We will introduce you to the people, places and events around! Use the Internet for live meetings!'
+  },
 };
 T9n.map('en', en);
 bz.help.makeNamespace('bz.language.i18n.en', en);

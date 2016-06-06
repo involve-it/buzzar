@@ -151,11 +151,15 @@ AccountsEntry.entrySignUpEvents = {
               if (error) {
                 sAlert.error('<div class="bz-msg-text">' + error.reason + '</div>', {effect: 'scale', html: true});
                 Alerts.add(error.reason, 'danger');
-              } else if (Session.get('fromWhere')) {
-                Router.go(Session.get('fromWhere'));
-                Session.set('fromWhere', null);
               } else {
-                Router.go(AccountsEntry.settings.dashboardRoute);
+                bz.help.location.startWatchingLocation();
+                bz.mobile.processLogin();
+                if (Session.get('fromWhere')) {
+                  Router.go(Session.get('fromWhere'));
+                  Session.set('fromWhere', null);
+                } else {
+                  Router.go(AccountsEntry.settings.dashboardRoute);
+                }
               }
             });
           }

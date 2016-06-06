@@ -33,6 +33,7 @@ movingLocationPanelClick = function () {
     });
   }
 };
+
 staticLocationPanelClick = function (isSet) {
   var chosenLocation = Session.get(location2.sessionName);
   if (!chosenLocation || isSet) {
@@ -41,14 +42,17 @@ staticLocationPanelClick = function (isSet) {
     Template.bzLocationNameNewPost.showModal();
   }
 };
+
 userSeenAll;
 // this function calculates browser-specific hits
 runHitTracking = function (post, browserInfo) {
-  var userSeenTotal, userSeenToday, seenTotalPost, seenTodayPost;
-  userSeenTotal = Cookie.get('bz.posts.seenTotal.postId.' + post._id)
+  var userSeenTotal, userSeenToday, seenTotalPost, seenTodayPost, seenObj;
+  userSeenTotal = Cookie.get('bz.posts.seenTotal.postId.' + post._id);
   if (!userSeenTotal) {
     seenTotalPost = post.stats && post.stats.seenTotal || 0;
-    bz.cols.posts.update(post._id, {$set: {'stats.seenTotal': ++seenTotalPost}});
+    ++seenTotalPost;
+    seenObj = {'stats.seenTotal': seenTotalPost};
+    Meteor.call('seenPostUpdate',post._id,seenObj);
     //setCookie('bz.posts.seenTotal.postId.' + post._id, true);
     Cookie.set('bz.posts.seenTotal.postId.' + post._id, true);
     userSeenTotal = undefined;
@@ -59,7 +63,9 @@ runHitTracking = function (post, browserInfo) {
   userSeenToday = Cookie.get('bz.posts.seenToday.postId.' + post._id);
   if (!userSeenToday) {
     seenTodayPost = post.stats && post.stats.seenToday || 0;
-    bz.cols.posts.update(post._id, {$set: {'stats.seenToday': ++seenTodayPost}});
+    ++seenTodayPost;
+    seenObj = {'stats.seenToday': seenTodayPost};
+    Meteor.call('seenPostUpdate',post._id,seenObj);
     Cookie.set('bz.posts.seenToday.postId.' + post._id, true, {days: 1});
     userSeenToday = undefined;
   } else {
@@ -68,7 +74,9 @@ runHitTracking = function (post, browserInfo) {
   // set total loads (non-unique), WE DON'T USE THIS!:
   if (!userSeenAll) { // need to run only on-time on full load
     userSeenAll = !userSeenAll && post.stats && post.stats.seenAll || 0;
-    bz.cols.posts.update(post._id, {$set: {'stats.seenAll': ++userSeenAll}});
+    ++userSeenAll;
+    seenObj = {'stats.seenAll': userSeenAll};
+    Meteor.call('seenPostUpdate',post._id,seenObj);
   }
 };
 clearPostData = function () {
@@ -154,29 +162,32 @@ PostBelongsToUser = function (postOwnerId) {
   return ret;
 }
 LikePostByUser = function (postOwnerId) {
-  var ret = false,
+  var ret = false, like = false,
     curPost = bz.bus.posts.getCurrentPost(),
     userId = userId || Meteor.userId();
   if (curPost && userId && !PostBelongsToUser(postOwnerId)) {
     if (!PostIsLikedByCurrentUser()) {
-      bz.cols.posts.update(curPost._id, {$push: {'social.likes': {userId: userId, ts: Date.now()}}});
+      like =true;
     } else {
-      bz.cols.posts.update(curPost._id, {$pop: {'social.likes': {userId: userId}}});
+      like=false
     }
+    Meteor.call('likePostUpdate', curPost._id, userId, like);
   }
   return ret;
 }
 RatePostByUser = function (postOwnerId, rateInt) {
-  var ret = false,
+  var ret = false, rateObj,
     curPost = bz.bus.posts.getCurrentPost(),
     userId = userId || Meteor.userId();
   if (curPost && userId && !PostBelongsToUser(postOwnerId)) {
     if (!PostIsRatedByCurrentUser()) {
-      bz.cols.posts.update(curPost._id, {$push: {'social.rates': {userId: userId, ts: Date.now(), rating: rateInt}}});
+      rateObj = {'social.rates': {userId: userId, ts: Date.now(), rating: rateInt}};
+     // bz.cols.posts.update(curPost._id, {$push: {'social.rates': {userId: userId, ts: Date.now(), rating: rateInt}}});
     } else {
       //bz.cols.posts.update(curPost._id, { $pop:  { 'social.likes': { userId: userId, ts: Date.now() }}});
     }
   }
+  Meteor.call('ratingPostUpdate',curPost._id, rateObj);
   return ret;
 };
 GetPostRating = function (curPost) {
@@ -219,6 +230,7 @@ GetValueJobsSingleData = function(v, selector) {
   }
   return ret;
 };
+
 GetValueJobsMultiData = function(v, selector) {
   var selectedOptions = [];
   v.$(selector).find('.selected').each(function() {
@@ -226,6 +238,7 @@ GetValueJobsMultiData = function(v, selector) {
   });
   return selectedOptions;
 };
+
 GetValuePayMethod = function(v, selector) {
   var ret,
       selectElement = v.$(selector).find('[aria-checked="true"]');
@@ -235,6 +248,7 @@ GetValuePayMethod = function(v, selector) {
   }
   return ret;
 };
+
 DeterminePostTypeFromView = function(v) {
   //newPostType
   //v.$('.js-post-type-select').val()
@@ -245,10 +259,25 @@ DeterminePostTypeFromView = function(v) {
     ret = v.$('.js-memo-type-select').val();
   }
   return ret;
-}
+};
+
 GetEndDatePost = function(v, start) {
-  var val = v.$('.js-post-select-duration').val(),
-    ret;
+  //var val = v.$('.js-post-select-duration').val(),
+  var val = '' /* передать значение*/,
+      ret, valuePicker;
+  
+  
+  var inputPicker = v.$('.js-duration-picker').data().selectDate,
+      selectPicker = v.$('.js-duration-select-picker').val();
+  
+  if(inputPicker) {
+    val = 'custom';
+    valuePicker = inputPicker;
+  } else {
+    val = selectPicker;
+  }
+  
+  
 
   switch (val) {
     case 'oneDay':
@@ -269,11 +298,15 @@ GetEndDatePost = function(v, start) {
     case 'year':
       ret = new Date(start.getFullYear() + 1, start.getMonth(), start.getDate(), start.getHours(), start.getMinutes());
       break;
+    case 'custom':
+      ret = new Date(valuePicker);
+      break;
     default:
       ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 14, start.getHours(), start.getMinutes());
       console.log('Default value: ', ret);
       break;
   }
+  
   return ret && ret.getTime();
 };
 

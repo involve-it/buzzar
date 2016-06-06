@@ -45,40 +45,54 @@ Meteor.startup(function(){
         });
       });
       if (tokens.length > 0) {
+        console.log('Pushing:');
+        console.log(tokens);
         notification.tokens = tokens;
         Push.send(notification);
       }
     },
     registerTokenAndDeviceId: function(deviceId, token, userId){
       //console.log('registering deviceId: ' + deviceId + ', token: ' + token.apn || token.gcm);
-      if (deviceId){
+      if (deviceId) {
         Meteor.users.update({}, {
           $pull: {deviceIds: deviceId}
         });
         if (userId) {
           var user = Meteor.users.findOne(userId);
-          user.deviceIds = user.deviceIds || [];
-          user.deviceIds.push(deviceId);
-          Meteor.users.update(userId, user);
+          if (user) {
+            user.deviceIds = user.deviceIds || [];
+            user.deviceIds.push(deviceId);
+            Meteor.users.update(userId, user);
+          }
         }
-      }
-      if (deviceId && token && Object.keys(token).length > 0) {
-        bz.cols.bulkTokens.remove({deviceId: deviceId});
 
-        bz.cols.bulkTokens.insert({
-          deviceId: deviceId,
-          token: token,
-          timestamp: new Date()
-        });
-      }
-      if (userId){
-        bz.bus.pushHandler.assignTokenToUser(userId, deviceId);
+        if (token && Object.keys(token).length > 0) {
+          bz.cols.bulkTokens.remove({deviceId: deviceId});
+
+          /*bz.cols.bulkTokens.insert({
+            deviceId: deviceId,
+            token: token,
+            timestamp: new Date()
+          });*/
+        }
+        if (userId) {
+          bz.bus.pushHandler.assignTokenToUser(userId, deviceId, token);
+        }
       }
     },
     //called on log in
-    assignTokenToUser: function(userId, deviceId){
-      var userTokens = bz.cols.userTokens.findOne({userId: userId});
-      var bulkToken = bz.cols.bulkTokens.findOne({deviceId: deviceId});
+    assignTokenToUser: function(userId, deviceId, token){
+      var userTokens = bz.cols.userTokens.findOne({userId: userId}), bulkToken;
+      if (token){
+        //console.log('1');
+        bulkToken = {
+          deviceId: deviceId,
+          token: token
+        }
+      } else {
+        //console.log('2');
+        bulkToken = bz.cols.bulkTokens.findOne({deviceId: deviceId});
+      }
       if (bulkToken) {
         var existingUserToken, tokens = [];
         if (bulkToken.token.apn) {

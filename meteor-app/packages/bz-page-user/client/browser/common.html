@@ -15,50 +15,36 @@
 </template>
 
 <template name="bzUserProfileBasic">
-
-  <div class="bz-user-card">
-    <div class="bz-padding-10 overflow">
-      <div class="bz-user-badge">
-        <a href="/user/{{_id}}">
-          {{> avatarThumbnail image=profile.image }}
-        </a>
-        {{> bzAvatarUserStatus}}
-      </div>
-
+    {{#if getUser}}
+        <div class="bz-user-badge">
+            <a href="/user/{{_id}}">
+                <div class="bz-avatar" style="background-image: url({{#if getUser.image.imageUrl}} {{getUser.image.imageUrl}} {{else}} '/img/content/avatars/avatar-no.png' {{/if}})"></div>
+                <!-- OLD CODE -->
+                <!--{{> avatarThumbnail image=profile.image }}-->
+            </a>
+            
+            {{> bzAvatarUserStatus}}
+            
+        </div>
+        
         <div class="bz-user-date">
             <div class="bz-user-date-status">
                 <a href="/user/{{_id}}">
-                    <div class="bz-user-date-username">{{ username }}</div>
+                    <div class="bz-user-date-username">{{getUser.username}}</div>
                 </a>
             
-            {{#if belongsToCurrentUser }}
-                <a class="bz-post-action-link" href="/posts/{{ getCurrentPostId }}/edit" title="Edit">
-                    <i class="fa fa-pencil-square"></i>
-                </a>
-            {{/if}}
-            
+                {{#if belongsToCurrentUser }}
+                    <a class="bz-post-action-link" href="/posts/{{ getCurrentPostId }}/edit" title="Edit">
+                        <i class="fa fa-pencil-square"></i>
+                    </a>
+                {{/if}}
+                
             </div>
-            
-            <!--<div class="">
-            {{#if isOnline }}
-            [[Online]]
-            {{else }}
-            [[offline]]
-            {{/if}}
-            </div>-->
-            <!--<div class="bz-rating"></div>-->
         </div>
-
-      <div class="bz-send-message">
-        <button class="js-send-message-btn bz-small">{{ t9n 'SEND_MESSAGE' }}</button>
-      </div>
-
-      {{> bzSocialButtons }}
-        
-    </div>
-
-  </div>
-
-
+    
+        <div class="bz-send-message">
+            <button class="js-send-message-btn bz-small">{{ t9n 'SEND_MESSAGE' }}</button>
+        </div>
+    {{/if}}
 </template>
 

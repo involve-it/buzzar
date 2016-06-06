@@ -3,16 +3,23 @@
  */
 App.accessRule('*');
 
+App.info({
+  id: 'org.buzzar.app',
+  name: 'Shiners',
+  description: 'Live posts bound to location',
+  website: 'http://www.shiners.ru'
+});
+
 App.icons({
   // iOS
-  'iphone': 'resources/icons/ios/icon-60x60.png',
+  //'iphone': 'resources/icons/ios/icon-60x60.png',
   'iphone_2x': 'resources/icons/ios/icon-60x60@2x.png',
   'iphone_3x': 'resources/icons/ios/icon-60x60@3x.png',
   'ipad': 'resources/icons/ios/icon-76x76.png',
   'ipad_2x': 'resources/icons/ios/icon-76x76@2x.png',
 
   // Android
-  'android_ldpi': 'resources/icons/android/icon-36x36.png',
+  //'android_ldpi': 'resources/icons/android/icon-36x36.png',
   'android_mdpi': 'resources/icons/android/icon-48x48.png',
   'android_hdpi': 'resources/icons/android/icon-72x72.png',
   'android_xhdpi': 'resources/icons/android/icon-96x96.png'
@@ -20,7 +27,7 @@ App.icons({
 
 App.launchScreens({
   // iOS
-  'iphone': 'resources/splash/ios/splash-320x480.png',
+  //'iphone': 'resources/splash/ios/splash-320x480.png',
   'iphone_2x': 'resources/splash/ios/splash-320x480@2x.png',
   'iphone5': 'resources/splash/ios/splash-320x568@2x.png',
   'iphone6': 'resources/splash/ios/splash-375x667@2x.png',
@@ -33,8 +40,8 @@ App.launchScreens({
   'ipad_landscape_2x': 'resources/splash/ios/splash-1024x768@2x.png',
 
   // Android
-  'android_ldpi_portrait': 'resources/splash/android/splash-200x320.png',
-  'android_ldpi_landscape': 'resources/splash/android/splash-320x200.png',
+  //'android_ldpi_portrait': 'resources/splash/android/splash-200x320.png',
+  //'android_ldpi_landscape': 'resources/splash/android/splash-320x200.png',
   'android_mdpi_portrait': 'resources/splash/android/splash-320x480.png',
   'android_mdpi_landscape': 'resources/splash/android/splash-480x320.png',
   'android_hdpi_portrait': 'resources/splash/android/splash-480x800.png',

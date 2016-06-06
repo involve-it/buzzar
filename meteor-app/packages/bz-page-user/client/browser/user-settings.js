@@ -3,8 +3,9 @@
  */
 
 Template.userSettings.onCreated(function () {
-  Meteor.subscribe('profileDetails-another');
+  this.anotherUserData = new ReactiveVar(false);
 });
+
 Template.userSettings.onRendered(function () {
   if(Meteor.userId() === this.data._id) {
     $('.js-send-message-btn').addClass('disabled');
@@ -12,18 +13,43 @@ Template.userSettings.onRendered(function () {
 });
 
 Template.userSettings.helpers({
-  userName: function () {
-    // username of logged in user
-    return this.username;
+  /* NEW CODE */
+  getUser: function() {
+    var userId = this._id, ins = Template.instance(), innerObj = {}, usegObj = {};
+    if (ins.anotherUserData.get() === false) {
+      Meteor.call('getUser', userId, function(e, r){
+        if(e) {
+          //error
+        } else {
+          innerObj = r.result;
+
+          _.each(innerObj, function(value, key, list) {
+            
+            if(key === 'image') {
+              usegObj['image'] = list.image
+            }
+            
+            if(key === 'profileDetails') {
+              _.each(list.profileDetails, function(item) {
+                usegObj[item.key] = {
+                  value:  item.value,
+                  policy: item.policy
+                };
+              });
+            }
+
+          });
+          usegObj['username'] = innerObj.username;
+          //console.info(usegObj);
+          ins.anotherUserData.set(usegObj);
+        }
+      });
+    }
+    return ins.anotherUserData.get();
   },
   getIdProfile: function () {
     //console.log('ID профайла пользователя ' + this._id);
     return Meteor.absoluteUrl() + 'user/' + this._id;
-  },
-
-  getCity: function(){
-    var details = bz.cols.profileDetails.findOne({userId: this._id, key:'city'});
-    return details && details.value;
   },
   getPostsCount: function(){
     return bz.cols.posts.find({userId: this._id}).count();
@@ -31,6 +57,12 @@ Template.userSettings.helpers({
   getReviewsCount: function(){
     return bz.cols.reviews.find({userId: this._id}).count();
   },
+
+  /* OLD CODE */
+  /* TODO: old code
+  userName: function () {
+   return this.username;
+   },
   getFIO: function(){
     var details = bz.cols.profileDetails.findOne({userId: this._id, key:'firstName'});
     var details1 = bz.cols.profileDetails.findOne({userId: this._id, key:'lastName'});
@@ -42,6 +74,10 @@ Template.userSettings.helpers({
       fio=fio+' '+details1.value;
     }
     return fio;
+  },
+  getCity: function(){
+    var details = bz.cols.profileDetails.findOne({userId: this._id, key:'city'});
+    return details && details.value;
   },
   getPhoneStatus: function () {
     var details = bz.cols.profileDetails.findOne({userId: this._id, key:'phone'});
@@ -152,6 +188,31 @@ Template.userSettings.helpers({
     {
       return details && details.value;
     }
+  },*/
+  
+  
+  getCheckboxUserProfile: function(checked) {
+    checked = (this.profile.checkOwnPosts)? 'checked' : '';
+    return checked;
+  }
+});
+
+
+Template.bzUserOwnPosts.helpers({
+  getPopularItems: function() {
+    var id = Router.current().params._id;
+    return id && bz.cols.posts.find({userId: Router.current().params._id, 'status.visible':'visible'}).fetch();
+  }
+});
+
+Template.bzUserOwnPostsItem.helpers({
+  getImgSrc: function () {
+    var ret, phId = this.details.photos && this.details.photos[0];
+    if (phId) {
+      ret = bz.cols.images.findOne(phId);
+      ret = ret && ret.data;
+    }
+    return ret;
   }
 });
 

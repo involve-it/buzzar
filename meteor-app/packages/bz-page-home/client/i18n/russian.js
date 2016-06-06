@@ -5,9 +5,9 @@
 ruI18n = {
   //home:
   headliner: 'Возможности вокруг',
-  MOST_POPULAR_TITLE: 'Популярные',
+  MOST_POPULAR_TITLE: 'Другие популярные',
   AROUND_YOU_TITLE: 'Возможности рядом',
-  SEARCH_LOOKING_FOR_TEXT: 'Искать вокруг',
+  SEARCH_LOOKING_FOR_TEXT: 'Поиск вокруг',
   FIND_ANYTHING_AROUND_YOU: 'найти что-нибудь вокруг вас',
 };
 var ruAll = _.extend(bz.language.i18n.ru, ruI18n);

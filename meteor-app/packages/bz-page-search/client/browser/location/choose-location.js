@@ -8,11 +8,16 @@ Template.bzLinkLocationName.helpers({
   },
   getCurrentLocationName: function(){
     var ret = Session.get('bz.control.search.location');
-    if(ret && ret.name) {
-      return ret.name;
+
+    if(ret && ret.accurateAddress || ret && ret.name) {
+      //console.info('choose-location: ', ret);
+      if(ret.accurateAddress) {
+        return ret.accurateAddress;
+      } else {
+        return ret.name;
+      }
     } else {
-      //bz.ui.error('Your location is not defined, <br/> please <a onclick="$(\'.bz-link-lacation-name\').click()">set your location manually.</a>')
-      return 'Location is not defined';
+      return false;
     }
   }
 });
@@ -197,7 +202,9 @@ Template.bzChooseLocationModal.helpers({
     }
     return ret;
   },
-  getPopularPlacesAround: function () {
-
-  }
+  accurateAddress: function() {
+    var ret =  Session.get('getAccurateAddress');
+    return ret && ret.name;
+  },
+  getPopularPlacesAround: function () {}
 });

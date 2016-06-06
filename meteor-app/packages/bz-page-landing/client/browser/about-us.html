@@ -1,3 +1,130 @@
+<template name="aboutUsRu">
+    <div class="aboutUsRu">
+    <div class="main-content">
+        
+        <div class="bz-top-header">
+            <div class="bz-header-description">
+                <p>{{t9n 'HEADER.PARAG_1'}}</p>
+                <p>{{t9n 'HEADER.PARAG_2'}}</p>
+                <p>{{t9n 'HEADER.PARAG_3'}}</p>
+                <p></p>
+            </div>
+            <!--<div class="bz-header-description">
+                <p>{{t9n 'HEADER.PARAG_4'}}</p>
+            </div>-->
+        </div><!-- END TOP-HEADER -->
+        
+        <div class="bz-about-content">
+            <div class="bz-grid row">
+                <div class="ui sticky bz-sidebar large-4 columns">
+                    <div class="bz-magellan-menu" >
+                        <dl class="sub-nav">
+                            <dd><a href="#howItWorks">Как это работает?</a></dd>
+                            <dd><a href="#whatUsefull">Чем мы полезны?</a></dd>
+                            <dd><a href="#help">Помощь</a></dd>
+                            <dd><a href="#Qfaq">Частые вопросы</a></dd>
+                            <dd><a href="#supportUs">Поддержи нас</a></dd>
+                            <dd class="bz-we-are-at-social">
+                                <p>Мы в соц.сетях</p>
+                                <ul class="inline-list">
+                                    <li class="bz-fb"><i class="fa fa-facebook-official" aria-hidden="true"></i></li>
+                                    <li class="bz-in"><i class="fa fa-instagram" aria-hidden="true"></i></li>
+                                    <li class="bz-vk"><i class="fa fa-vk" aria-hidden="true"></i></li>
+                                    <li class="bz-tw"><i class="fa fa-twitter" aria-hidden="true"></i></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        
+                    </div>
+                </div>
+    
+                <div id="context" class="bz-mains large-8 columns">
+                    {{> bzAboutHowItWorks}}
+                    {{> bzAboutWhatUseful}}
+                    <!--{{> bzAboutWhoWeAre}}-->
+                    {{> bzAboutHelp}}
+                    {{> bzAboutSupportUs}}
+                </div>
+            </div>
+            {{> bzAboutMaps}}
+        </div>
+        
+        
+        <div style="display: none">
+        <h3 class="title">
+            Светлячки - это данные о происходящем вокруг в реальном времени и пространстве. Светлячки интерактивны, к тому же вы их создаете сами!
+        </h3>
+
+        <div>
+            <p>
+                <b>Что такое СВЕТЛЯЧКИ?</b>
+            </p>
+            <p>
+                Это "живое" пространство твоих возможностей! Мгновенные встречи в нужный момент с нужными
+                людьми, онлайн-информация о происходящем вокруг, новые возможности для творчества, реализации и коммуникации.
+                Общение, работа и учеба, услуги и предложения, интересные места и события в данный момент поблизости!
+            </p>
+            <p>
+                <b>Установив <u>Светлячок</u>, вы сможете: </b>
+            </p>
+            <ul type="capitalize">
+                <li>Немедленно общаться по интересующему вопросу</li>
+                <li>Найти работу/учебу/услугу в шаговой доступности от дома</li>
+                <li>Расширить свою аудиторию, если у вас есть любимое дело</li>
+                <li>Создавать вокруг себя актуальное пространство</li>
+                <li>Знакомиться с интересными людьми, единомышленниками</li>
+            </ul>
+            <p>
+                <b>Как это работает? - очень просто! Вы можете заявить о себе, </b>
+            </p>
+
+            <a href="/posts/new?type=ad" class="button alert">Создав свой пост</a>
+
+            <!--
+	  
+			<div class="bz-style-soft-background bz-dynamic bz-panel-overlay panel padding bz-tool-tip"  data-top-center="top right" data-theme="drop-theme-arrows-bounce-dark">
+			  <i class="bz-icon bz-icon-dinamic"></i>
+			  <div class="title uppercase">Динамический пост</div>
+			  <p>Движется вместе с тобой</p>
+			</div>
+	  
+			<h2><b>и/или </b></h2>
+	  
+			<div class="bz-style-soft-background bz-static bz-panel-overlay panel padding bz-tool-tip"  data-top-center="top right" data-theme="drop-theme-arrows-bounce-dark">
+			  <i class="bz-icon bz-icon-flag"></i>
+			  <div class="title uppercase">Статический пост</div>
+			  <p>Привязан к заданой тобой местности</p>
+			</div>
+	  -->
+            
+            
+            <p>
+                <b>Характер поста: </b>
+            </p>
+            <p> <a href="/jobs">Найти/предложить работу</a></p>
+            <p><a href="/trainings">Найти/предложить обучение</a></p>
+            <p><a href="/housing">Найти/предложить жилье</a></p>
+            <p><a href="/trade">Продать/купить/обменять</a></p>
+            <p><a href="/services">Предложить/найти/услуги</a></p>
+            <p><a href="/help">Найти/осуществить помощь</a></p>
+            <p><a href="/home">Дать объявление</a></p>
+            <p><a href="/events">Рассказать о событии</a></p>
+            <p><a href="/connect">Найти компанию, друга или организовать встречу</a></p>
+        </div>
+
+        </div>
+    </div>
+
+    <div style="display: none">
+        <div class="text-center bz-padding-top-x1">
+            <a class="button btn-default" href="/contacts">{{ t9n 'CONTACT_US' }}</a>
+        </div>
+    </div>
+        
+    </div>
+</template>
+
+
 
 <template name="aboutUs">
   <div class="main-content">
@@ -26,6 +153,10 @@
       we have our sophisticated Karma algorithm, phone# verification and other means to rank real posts' credibility.
       </p>-->
 
+        
+        
+        
+        
       <p>
         <b>The Problem</b>
       </p>
@@ -69,73 +200,6 @@
         Get out of your device. Meet real people. Share live emotions and communication. Enjoy your life.
       </li>
     </ul>
-  </div>
-  <div class="text-center bz-padding-top-x1">
-    <a class="button btn-default" href="/contacts">{{ t9n 'CONTACT_US' }}</a>
-  </div>
-</template>
-
-
-<template name="aboutUsRu">
-  <div class="main-content">
-    <h3 class="title">
-      Светлячки - это данные о происходящем вокруг в реальном времени и пространстве. Светлячки интерактивны, к тому же вы их создаете сами!
-    </h3>
-
-    <div>
-      <p>
-        <b>Что такое СВЕТЛЯЧКИ?</b>
-      </p>
-      <p>
-        Это "живое" пространство твоих возможностей! Мгновенные встречи в нужный момент с нужными
-        людьми, онлайн-информация о происходящем вокруг, новые возможности для творчества, реализации и коммуникации.
-        Общение, работа и учеба, услуги и предложения, интересные места и события в данный момент поблизости!
-      </p>
-      <p>
-        <b>Установив <u>Светлячок</u>, вы сможете: </b>
-      </p>
-      <ul type="capitalize">
-        <li>Немедленно общаться по интересующему вопросу</li>
-        <li>Найти работу/учебу/услугу в шаговой доступности от дома</li>
-        <li>Расширить свою аудиторию, если у вас есть любимое дело</li>
-        <li>Создавать вокруг себя актуальное пространство</li>
-        <li>Знакомиться с интересными людьми, единомышленниками</li>
-      </ul>
-      <p>
-        <b>Как это работает? - очень просто! Вы можете заявить о себе, </b>
-      </p>
-
-      <a href="/posts/new?type=ad" class="button alert">Создав свой пост</a>
-
-      <!--
-
-      <div class="bz-style-soft-background bz-dynamic bz-panel-overlay panel padding bz-tool-tip"  data-top-center="top right" data-theme="drop-theme-arrows-bounce-dark">
-        <i class="bz-icon bz-icon-dinamic"></i>
-        <div class="title uppercase">Динамический пост</div>
-        <p>Движется вместе с тобой</p>
-      </div>
-
-      <h2><b>и/или </b></h2>
-
-      <div class="bz-style-soft-background bz-static bz-panel-overlay panel padding bz-tool-tip"  data-top-center="top right" data-theme="drop-theme-arrows-bounce-dark">
-        <i class="bz-icon bz-icon-flag"></i>
-        <div class="title uppercase">Статический пост</div>
-        <p>Привязан к заданой тобой местности</p>
-      </div>
--->
-      <p>
-        <b>Характер поста: </b>
-      </p>
-      <p> <a href="/jobs">Найти/предложить работу</a></p>
-      <p><a href="/trainings">Найти/предложить обучение</a></p>
-      <p><a href="/housing">Найти/предложить жилье</a></p>
-      <p><a href="/trade">Продать/купить/обменять</a></p>
-      <p><a href="/services">Предложить/найти/услуги</a></p>
-      <p><a href="/help">Найти/осуществить помощь</a></p>
-      <p><a href="/home">Дать объявление</a></p>
-      <p><a href="/events">Рассказать о событии</a></p>
-      <p><a href="/connect">Найти компанию, друга или организовать встречу</a></p>
-    </div>
   </div>
   <div class="text-center bz-padding-top-x1">
     <a class="button btn-default" href="/contacts">{{ t9n 'CONTACT_US' }}</a>
@@ -210,3 +274,347 @@
 </template>
 
 
+<!-- start inner templates -->
+<template name="bzAboutHowItWorks">
+    <div class="bz-about-how-it-works">
+        <h3 class="title" id="howItWorks">Как это работает?</h3>
+
+        <div class="bz-about-how-it-works-wrapper">
+        <div class="bz-three-items bz-it-works">
+            <div class="bz-ui bz-three-cards three">
+                <div class="card">
+                    <div class="bz-showcase-box">
+                        <span class="sample-icon-greeting how_works_1"></span>
+                    </div>
+                    <div class="bz-card-caption"><span class="big">1.</span> Создай свой пост</div>
+                </div>
+                <div class="card">
+                    <div class="bz-showcase-box">
+                        <span class="sample-icon-greeting how_works_2"></span>
+                    </div>
+                    <div class="bz-card-caption"><span class="big">2.</span> Ты находишь - Тебя находят</div>
+                </div>
+                <div class="card">
+                    <div class="bz-showcase-box">
+                        <span class="sample-icon-greeting how_works_3"></span>
+                    </div>
+                    <div class="bz-card-caption"><span class="big">3.</span> Договаривайся - встречайся</div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row row-bottom">
+            <div class="small-12 medium-12 large-6 columns">
+                <h4 class="title">Нам интересно все!</h4>
+                <div class="bz-text">
+                    <p>Установи Светлячок на любые сферы своих интересов. То, что важно для тебя, может быть важным и ценным для других. Продаешь ли ты платье или ищещь работу, предлагаешь курсы по йоге или ищещь компанию для вечеринки - расскажи об этом, и мы найдем тебе единомышленников, покупателей, собеседников рядом с тобой!</p>
+                </div>
+            </div>
+            <div class="small-12 medium-12 large-6 columns">
+                <h4 class="title">Как искать информацию</h4>
+                <div class="bz-text">
+                    <p>Например, ты освободился после работы в центре Москвы. Посмотри Светлячки и узнай, что происходит рядом прямо сейчас. Какие люди вокруг? Сколько новых возможностей? Может пойти на выставку за углом? На йогу через дорогу? Или задать пару вопросов мужчине, который совсем рядом и продает свой автомобиль. А ты давно хотел именно такой.</p>
+                    <p class="bz-next-text" data-hidden="false"><span class="bz-text-more">Абсолютно также вы можете найти новых знакомых, чтобы вместе пообедать или отправиться на прогулку.
+Воспользуйся поиском по категориям. В каждом разделе можно увидеть Светлячков, которые сейчас рядом, и другие популярные посты по каждой теме.
+Ищи любую информацию в нашей «умной строке». Если еще нет поста по твоему запросу, установи свой Светлячок, чтобы о нем узнали другие пользователи.
+</span> <span class="bz-read-more inline"><a href="#">{{#unless readMore}}Читать дальше{{else}}Свернуть{{/unless}}</a></span></p>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="title uppercase selectedText">Попробуй для разных целей разные посты</h4>
+
+        <div class="bz-three-items bz-random-target">
+            <div class="bz-ui bz-three-cards three"  data-equalizer>
+                <div class="card">
+                    <div class="bz-card-icon"><div class="bz-img-card-icon bz-img-dinamic-post"></div></div>
+                    <div class="bz-showcase-box wide" data-equalizer-watch>
+                                <span class="sample-icon-sq darckred">
+                                    <div class="bz-card-caption orange uppercase">"Динамический пост"</div>
+                                    <div class="bz-card-sub-caption">Движется вместе с тобой.</div>
+                                    <div class="bz-card-text">Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям
+                                        вокруг тебя. Используй Светлячок как повод для знакомства и реально встречи.</div>
+                                </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="bz-card-icon"><div class="bz-img-card-icon bz-img-static-post"></div></div>
+                    <div class="bz-showcase-box wide" data-equalizer-watch>
+                                <span class="sample-icon-sq darckred">
+                                    <div class="bz-card-caption orange uppercase">"Статический пост"</div>
+                                    <div class="bz-card-sub-caption">Привязан к заданной тобой местности.</div>
+                                    <div class="bz-card-text">Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост.</div>
+                                </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="bz-card-icon"><div class="bz-img-card-icon bz-img-quick-post"></div></div>
+                    <div class="bz-showcase-box wide" data-equalizer-watch>
+                                <span class="sample-icon-sq darckred">
+                                    <div class="bz-card-caption orange uppercase">"Одним нажатием"</div>
+                                    <div class="bz-card-sub-caption">Быстрое создание поста</div>
+                                    <div class="bz-card-text">Если у тебя есть пост Вконтакте - просто размести ссылку на него и получи готовый Светлячок! Это удобно - не тратить время на создание поста. Несколько кликов и вся важная информация будет освещаться Светлячками!</div>
+                                </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{> bzSetFireFly}}
+        
+    </div>
+</template>
+
+<template name="bzAboutWhatUseful">
+    <div class="bz-about-what-useful">
+        <h3 class="title" id="whatUsefull">Чем мы полезны?</h3>
+        
+        <div class="bg-usefull show-for-large-up"></div>
+        
+        <div class="bz-three-items bz-what-useful">
+            <div class="bz-ui bz-three-cards three">
+                <div class="card bz-reverse hide-for-large-up">
+                    <div class="bz-card-caption">Один сервис для всех ресурсов</div>
+                    <div class="bz-showcase-box">
+                        <span class="sample-icon-greeting usefull_1"></span>
+                    </div>
+                </div>
+                <div class="card bz-reverse hide-for-large-up">
+                    <div class="bz-card-caption">Живые объявления поблизости</div>
+                    <div class="bz-showcase-box">
+                        <span class="sample-icon-greeting usefull_2"></span>
+                    </div>
+                </div>
+                <div class="card bz-reverse hide-for-large-up">
+                    <div class="bz-card-caption">Быстрые встречи и контакты</div>
+                    <div class="bz-showcase-box">
+                        <span class="sample-icon-greeting usefull_3"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bz-three-items bz-what-useful-description">
+            <div class="bz-ui bz-three-cards three">
+                <div class="card">
+                    <div class="bz-showcase-box wide">
+                        <span class="sample-icon-sq darckred">
+                            <div class="bz-card-sub-caption">Кто мы</div>
+                            <div class="bz-card-text"><p>Мы - группа энтузиастов, которые сами давно мечтали о подобном ресурсе! Который позволит быстро и удобно узнавать о происходящем вокруг и чувствовать себя как везде дома. Мы помним время бумажных объявлений, которые с интересом читали в детстве на улице, узнавая о том, сколько чего интересного рядом.</p>
+                                <div class="bz-next-text">
+                                    <span class="bz-text-more">
+                                        <p>Мы хотели использовать возможности сети для установки быстрых живых контактов - мобильных встреч, в нужное время, в нужном месте.</p>
+                                        <p>Наш замысел - чтобы каждый мог осветить Светлячками пространство вокруг себя, создавая тем самым новые возможности для себя и любого желающего.</p>
+                                    </span>
+                                    <span class="bz-read-more inline"><a href="#">Читать дальше</a></span>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="bz-showcase-box wide">
+                        <span class="sample-icon-sq darckred">
+                            <div class="bz-card-sub-caption">Безопасность</div>
+                            <div class="bz-card-text"><p>Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет! Вы сами формируете актуальное для вас пространство. Координаты на местности явялются размытыми.</p></div>
+                        </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="bz-showcase-box wide">
+                        <span class="sample-icon-sq darckred">
+                            <div class="bz-card-sub-caption">Правила</div>
+                            <div class="bz-card-text"><p>При регистрации на «Cветлячках» Пользователь соглашается с настоящими правилами и принимает на себя указанные в них права и обязанности, связанных размещением поста.</p>
+                                <div class="bz-next-text">
+                                    <span class="bz-text-more">
+                                        <p>Общие правила</p>
+                                        <ol>
+                                            <li>Заголовок, описание, фотографии, видео поста должны быть связанными по смыслу и соответствовать категории, в которую размещается пост.</li>
+                                            <li>Запрещается публиковать посты:
+                                                <ul class="square">
+                                                    <li>противоречащие действующему законодательству, нарушающие этические нормы; содержащие дискриминацию по полу, национальности, вероисповеданию; любые неполиткорректные выражения</li>
+                                                    <li>содержащие нецензурные выражения, публичные оскорбления, ненормативную лексику;</li>
+                                                    <li>эротического характера, интимных услуг;</li>
+                                                    <li>заведомо ложную информацию, информацию об отсутствующем товаре, непредоставляемой услуге, анонимные либо с недействительными адресами и телефонами;</li>
+                                                    <li>о товарах, приобретенных незаконных путем, рекламу финансовых «пирамид» и других сомнительных способов получения дохода.</li>
+                                                </ul>
+                                            </li>
+                                            <li>Запрещается загружать фотографии:
+                                                <ul class="square">
+                                                    <li>низкого качества (размытые, содержащие артефакты)</li>
+                                                    <li>содержащие материалы, запрещенные законодательством РФ</li>
+                                                    <li>содержащие изображения половых органов</li>
+                                                </ul>
+                                            </li>
+                                            <li>Пользователь может иметь только одну регистрацию (учетную запись) на сайте. Не регистрируйтесь повторно на другой e-mail.</li>
+                                            <li>Если Ваше предложение более не актуально, то удалите пост</li>
+                                            <li>Администрация оставляет за собой право:
+                                                <ul class="square">
+                                                    <li>изменять и дополнять Правила публикации без предварительного предупреждения;</li>
+                                                    <li>в случае возникновения подозрений в нарушении правил, администрация может заблокировать анкету пользователя до выяснения обстоятельств. При этом пользователь получит соответствующее уведомление.</li>
+                                                    <li>редактировать и удалять любой пользовательский контент, включая фотографии, записи в блогах и на стенах, комментарии и т.д</li>
+                                                </ul>
+                                            </li>
+                                        </ol>
+                                        <p>Если у вас остались еще вопросы обратитесь в службу поддержки.</p>
+                                    </span>
+                                    <span class="bz-read-more inline"><a href="#">Читать дальше</a></span>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</template>
+
+<!--<template name="bzAboutWhoWeAre">
+    <div class="bz-about-who-are-we">
+        <h3 class="title"  data-magellan-destination="whoWeAre">Кто мы?</h3>
+        <a name="whoWeAre"></a>
+        
+    </div>
+</template>-->
+
+<template name="bzAboutHelp">
+    <div class="bz-about-help">
+        <h3 class="title"  id="help">Помощь</h3>
+        
+        <div id="bz-form-application-help" class="bz-form-container">
+            <div class="bz-form-nav-wrapper">
+                <div class="bz-app-header">
+                    Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!
+                </div>
+            </div>
+            <div class="bz-form-wrapper">
+                <form class="bz-ui-form">
+                    <div class="bz-ui-textarea">
+                        <textarea name="bz-about-form-help" id="bz-about-form-help" cols="20" rows="5"></textarea>
+                    </div>
+                    <div class="bz-ui-form-action-button">
+                        <div class="bz-form-captcha">
+                            CAPTCHA
+                        </div>
+                        <div class="bz-form-button">
+                            <button class="button btn-default js-send-request">Отправить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="bz-faq-help">
+            <div class="sub-heading" id="Qfaq">
+                <p>Частые вопросы</p>
+            </div>
+            <ul class="accordion" data-accordion>
+                <li class="accordion-navigation">
+                    <a href="#panel1a">Чем Светлячки мне полезны?</a>
+                    <div id="panel1a" class="content">
+                        <p>Очень часто нам не хватает информации о том, что находится в непосредственной близости от нас. Для всех, кто не безразличен к происходящему по-соседству мы создали Светлячки. Светлячки — это удобный инструмент с приятным интерфейсом, который поможет тебе пролить свет на то, что рядом c тобой и поделиться с миром актуальной для тебя информацией.</p>
+                        <p>Ищешь работу — светлячки покажут тебе вакансии рядом с твоим домом. Освободился после трудового дня— светлячки подскажут, где можно отлично провести время в непосредственной близости от твоей работы.</p>
+                        <p>Ты также узнаешь, что твоя соседка продает дорожный холодильник, который тебе как раз нужен, а приятная девушка в автобусе рядом с тобой увлекается шахматами. Отличный повод для знакомства, правда? И если ты не знаешь с кем поехать на рыбалку в выходные — установи светлячок и найди единомышленников. Будь активен, открыт миру, устанавливай Светлячки, смотри события рядом с тобой — знакомься, общайся, развивайся.</p>
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#panel2a">Какой пост создать?</a>
+                    <div id="panel2a" class="content">
+                        <p>Посты бы на Светлячках бывают: Статические и динамические.</p>
+                        <p>Если твое объявление привязано к определенному месту — то ты можешь создать статический пост.</p>
+                        <p>Например, ты продвигаешь свой салон красоты, или йогастудию, или сдаешь квартиру.</p>
+                        <p>Или просто хочешь, чтобы объявление было привязано не к тебе лично, а к месту. (например,к твоему дому). Такое объявление хорошо, если ты продвигаешь событие или место.</p>
+                        <p>Если же ты продаешь что-то, оказываешь услуги, нуждаешься в помощи или ищешь единомышленников – то есть хочешь использовать свое объявление как повод для общения и быстрой встречи, то тебе лучше установить динамическое объявление, которое будет перемещаться вместе с тобой.</p>
+                        <p>Установи динамический светлячок, и где бы ты не был, люди будут знать о твоем объявлении и задавать тебе вопросы.</p>
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#panel3a">Есть ли подписка на рассылку?</a>
+                    <div id="panel3a" class="content">
+                        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#panel4a">Чем вы можете помочь?</a>
+                    <div id="panel4a" class="content">
+                        <p>Если у тебя есть что-то, что для тебя актуально: ты оказываешь услуги, продаешь что-то, ищешь работу и т.п. — мы поможем тебе добиться своей цели быстро и эффективно, привлекя людей, которые рядом с тобой.</p>
+                        <p>Установи светлячок — и об актуальном для тебя узнают те, кто рядом.</p>
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#panel5a">Размещаете ли рекламу?</a>
+                    <div id="panel5a" class="content">
+                        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#panel6a">Как найти в соц.сетях?</a>
+                    <div id="panel6a" class="content">
+                        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#panel7a">Какими могут быть материалы для публикаций?</a>
+                    <div id="panel7a" class="content">
+                        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#panel8a">Как можно сотрудничать?</a>
+                    <div id="panel8a" class="content">
+                        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#panel9a">Чем полезно сотрудничество с вами?</a>
+                    <div id="panel9a" class="content">
+                        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+</template>
+
+<template name="bzAboutSupportUs">
+    <div class="bz-about-support-us">
+        <h3 class="title"  id="supportUs">Поддержать нас</h3>
+        
+        <div class="bz-about-support-us-description">
+            <p>Если у вас возникло желание каким-то образом поучаствовать в жизни проекта ...</p> 
+        </div>
+
+        <div class="sub-heading">
+            <p>С кем мы сотрудничаем?</p>
+        </div>
+        
+        <div class="bz-company-partnership">
+            <p>Многие замечательные люди и сервисы видят в нашем партнерства долгосрочные перспективы. И освещают на Светлячках свою информацию.</p>
+            
+            <p>Присоединяйтесь, будем рады!</p>
+        </div>
+
+        {{> bzSetFireFly}}
+        
+        
+    </div>
+</template>
+
+
+<template name="bzSetFireFly">
+    <div class="bzSetFireFly">
+        <div class="bz-set-firefly">
+            <a class="button alert bz-icon-set-firefly" href="#"><i class="fa fa-plus" aria-hidden="true"></i> Установи свой светлячок</a>
+        </div>
+    </div>
+</template>
+
+<template name="bzAboutMaps">
+    <div class="bzAboutMaps">
+        <div class="bz-word-map"></div>
+    </div>
+</template>
