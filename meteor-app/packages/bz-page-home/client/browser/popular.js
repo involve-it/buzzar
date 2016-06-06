@@ -41,7 +41,10 @@ Template.bzHomePopular.helpers({
       if (res.success && res.result) {
         (res.result.length > 0) ? ins.getPopularData.set(res.result) : ins.getPopularData.set([]);
         //console.info('Данные из метода getPopularPosts: ', res.result);
+      } else {
+        bz.ui.alert('Error ID: ' + res.error.errorId, {type:'error', timeout: 2000});
       }
+      
     });
     
     

@@ -20,7 +20,7 @@ enI18n = {
   NEW_MEMO_WHERE_MUTED: 'With settings determine where in your reminder will become active.',
   NEW_MEMO_CHOOSE_TIME_LIMIT: 'Choose due date for the memo',
   //New post
-  NEW_POST_NEWTYPE_BEACON_TITLE: 'Choose the appropriate beacon',
+  NEW_POST_NEWTYPE_BEACON_TITLE: 'Choose the appropriate Shiner',
   NEW_POST_IMPORT_FROM_WEB: 'Import from Web',
   NEW_POST_IMPORT_FROM_WEB_OPTIONAL: 'optional',
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER: 'Original Post Url',
