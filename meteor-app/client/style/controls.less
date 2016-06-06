@@ -648,15 +648,15 @@ textarea:-ms-input-placeholder {
 
 .bz-wrap-page {
   position: relative;
-  /*z-index: 999;*/
   height: 100%;
+  /*z-index: 999;*/
   /*background: #FFFFFF;*/
 }
 
 .bz-overflow-y-auto {
-  overflow-y: auto;
+ /* overflow-y: auto;
+  height: 100%;*/
   -webkit-overflow-scrolling: touch;
-  height: 100%;
 }
 
 nav.left-off-canvas-menu {
@@ -992,6 +992,30 @@ nav.left-off-canvas-menu {
 * BZ TABS content
 **/
 
+.bz-my-posts-items {
+  margin-top: 25px;
+  
+  .list-group {
+    margin: 0;
+    /*display: none;*/
+  }
+}
+
+/* posts loader */
+.bz-loader {
+  /*display: none;*/
+  
+  .loader-img {
+    background-image: url('/img/content/loader/dots.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 200px;
+    -webkit-filter: grayscale(100%) brightness(500%) brightness(70%);
+    filter: grayscale(100%) brightness(500%) brightness(70%);
+  }
+}
+
 .tabs-content { 
   margin: 0;
   .content {
@@ -1121,9 +1145,13 @@ nav.left-off-canvas-menu {
 
 /* Wish list */
 
+.bz-user-date + .bz-wish-list,
+.bz-send-message + .bz-wish-list {
+  margin-left: 15px;
+} 
+
 .bz-wish-list {
   margin-top: 3px;
-  margin-left: 15px;
   float: left;
 
   .bz-wish-list-title {
@@ -1508,6 +1536,35 @@ pre.CodeMirror-line {}
   
   .uk-htmleditor-content {
     top: 80px !important;
+  }
+}
+
+
+/* ACCORDION */
+
+.accordion {
+
+  .accordion-navigation {
+    border-bottom: 1px solid rgba(0,0,0, .1);
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .accordion-navigation, dd {
+    > .content {
+      &.active {
+        background-color: #e3e3e3;
+      }
+    }
+  }
+
+  .accordion-navigation, dd {
+   &.active {
+     > a {
+       background-color: #e3e3e3;
+     }
+   }
   }
 }
 

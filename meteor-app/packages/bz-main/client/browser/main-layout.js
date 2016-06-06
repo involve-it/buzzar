@@ -3,6 +3,59 @@
  */
 bz.help.maps.initLocation();
 
+
+Template.mainLayoutHome.onRendered(function() {
+  var API, $menu = $("#bz-menu");
+
+  $menu.mmenu({
+    // options
+    "navbar": {
+      "add": false
+    },
+    "extensions": [
+      "menuShadow"
+    ]
+  }, {
+    // configuration
+    offCanvas: {
+      pageSelector: "#bz-body-wrapper",
+      classNames: {
+        selected: "active"
+      }
+    }
+  });
+
+  API = $menu.data( "mmenu" );
+
+  /* open menu */
+  $(".bz-open-off-canvas").click(function() {
+    API.open();
+  });
+
+  var links = $menu.find('.link-menu > a');
+  links.on('click', function(e) {
+    API.close();
+  });
+  
+  window.menu = $menu
+  
+});
+
+Template.bzMenuLeftWrapper.events({
+  'click .clickb': function(e, t) {
+    //e.preventDefault();
+    console.info('click');
+  },
+  'click .clickd': function(e, t) {
+    //e.preventDefault();
+    console.info('click');
+  }
+});
+
+
+
+
+
 Meteor.startup(function() {
   //$('body').attr('data-uk-observe', '1');
 });
@@ -131,7 +184,37 @@ Template.bzDropSelectLanguage.events({
 });
 
 
+Template.bzNavMe.onCreated(function() {
+  this.someUserData = new ReactiveVar(false);
+});
+
 Template.bzNavMe.helpers({
+  
+  getUser: function() {
+    var userId = Meteor.userId(), ins = Template.instance(), innerObj = {}, usegObj = {};
+    if (ins.someUserData.get() === false) {
+      Meteor.call('getUser', userId, function(e, r){
+        if(e) {
+          //error
+        } else {
+          innerObj = r.result;
+
+          _.each(innerObj, function(value, key, list) {
+
+            if(key === 'image') {
+              usegObj['image'] = list.image
+            }
+            
+          });
+          usegObj['username'] = innerObj.username;
+          ins.someUserData.set(usegObj);
+        }
+      });
+    }
+    return ins.someUserData.get();
+  }
+  /* OLD CODE */
+  /*,
   getUserAvatar: function(){
     var ret = '/img/content/avatars/avatar-no.png';
     var user = Meteor.user();
@@ -143,15 +226,8 @@ Template.bzNavMe.helpers({
   username: function() {
     var user = Meteor.users.findOne({_id: Meteor.userId()} );
     return user && user.username;
-  }
+  }*/
 });
-
-
-/*Template.bzNavMe.events({
-  'click .js-sign-out': function(e, v) {
-    Session.set('fromWhere', null);
-  }
-});*/
 
 
 Template.bzLeftMenuSelectLanguage.onRendered(function() {

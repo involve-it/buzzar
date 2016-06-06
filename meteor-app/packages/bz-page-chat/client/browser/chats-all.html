@@ -1,19 +1,15 @@
 <template name="bzChatsMy">
-
-  {{#if getChats}}
-
-    {{> bzChatsToolbar}}
-
-    {{#each getChats}}
-      {{> bzChatItem }}
-    {{/each}}
-
-  {{else}}
-
-    {{> noChats}}
-
-  {{/if}}
-
+    {{#if getChats}}{{/if}}
+    
+    <!-- getData from template instance -->    
+    {{#if getData}}
+        {{> bzChatsToolbar}}
+        {{#each getData}}
+            {{> bzChatItem }}
+        {{/each}}
+    {{else}}
+        {{> noChats}}
+    {{/if}}
 </template>
 
 <template name="bzChatItem">

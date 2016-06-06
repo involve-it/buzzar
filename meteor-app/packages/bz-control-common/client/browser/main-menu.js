@@ -48,8 +48,35 @@ Template.bzControlMenuHashesMainMenu.helpers({
   }
 });
 
+Template.bzInnerMenuLeft.onCreated(function() {
+  this.someUserData = new ReactiveVar(false);
+});
+
 Template.bzInnerMenuLeft.helpers({
-  getCurrentUserName: function(){
+  getUser: function() {
+    var userId = Meteor.userId(), ins = Template.instance(), innerObj = {}, usegObj = {};
+    if (ins.someUserData.get() === false) {
+      Meteor.call('getUser', userId, function(e, r){
+        if(e) {
+          //error
+        } else {
+          innerObj = r.result;
+
+          _.each(innerObj, function(value, key, list) {
+
+            if(key === 'image') {
+              usegObj['image'] = list.image
+            }
+
+          });
+          usegObj['username'] = innerObj.username;
+          ins.someUserData.set(usegObj);
+        }
+      });
+    }
+    return ins.someUserData.get();
+  }
+  /*getCurrentUserName: function(){
     return Meteor.user() && Meteor.user().username;
   },
   getUserAvatar: function(){
@@ -59,8 +86,9 @@ Template.bzInnerMenuLeft.helpers({
       ret = user._getAvatarImage();
     }
     return ret;
-  }
-})
+  }*/
+});
+
 Template.bzInnerMenuLeft.events({
   'click .btn-drop': function(e) {
     e.preventDefault();

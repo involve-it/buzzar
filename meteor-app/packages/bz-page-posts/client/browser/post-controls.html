@@ -95,14 +95,16 @@
   <div class="clearfix">
     <div class="item-details">
       <div class="item item-input item-select">
-        <div class="small-12 medium-3 input-label left">{{ t9n 'NEW_POST_SELECT_TYPE' }} </div>
+        <div class="small-12 medium-3 input-label left"><span class="field-required">*</span> {{ t9n 'NEW_POST_SELECT_TYPE' }} </div>
         <div class="small-12 medium-9 large-9 left">
-          <select class="js-ad-type-select">
-            <option value="" selected="selected"> {{ t9n 'NEW_POST_SELECT_TYPE_TEXT'}} </option>
+          <select class="js-ad-type-select" required>
+            <option value selected="selected"> {{ t9n 'NEW_POST_SELECT_TYPE_TEXT'}} </option>
             {{#each getSiteTypes }}
               <option value="{{ intName }}">{{ fullName }}</option>
             {{/each}}
           </select>
+            <!--Error-->
+            <div class="bz-hint-errr-message"><small class="error">{{ t9n 'ERROR_INVALID_FIELD' }}</small></div>
         </div>
       </div>
     </div>
@@ -129,7 +131,6 @@
 
 <!--Forms for different types:-->
 <template name="postDetailsCommon">
-  <form data-abide>
     <div class="clearfix">
       <div class="item-details">
         <div class="item item-input bz-tool-tip" data-open-on="click" data-top-center="top center" data-theme="drop-theme-arrows-bounce-dark">
@@ -171,45 +172,34 @@
         </div>
       </div>
     </div>
-  </form>
 </template>
 
 <template name="postPhotoUpload">
-  <div class="post-photo-upload">
-    <!--<div class="image-holder js-image-holder js-get-picture" style="background-image:url('/img/content/avatars/avatar-no.png');"></div>-->
-    <div class="bz-owner-photo-wrap">
-      <div class="img-avatar js-edit-avatar">
-        <ul class="clearing-thumbs clearing-feature" data-clearing>
-          <!--<li class="clearing-featured-img">
-            <a href="http://localhost:3000/img/content/avatars/avatar-no.png" onclick="return false;">
-              <img src="http://localhost:3000/img/content/avatars/avatar-no.png" style="height: 50px;">
-            </a>
-          </li>-->
-          <a class="js-plus-img bz-post-controls-plus-img">
-            <!--<img src="/img/plus-button.png"/>-->
-            <div class="bz-post-add-photos">
-              <i class="fa fa-picture-o"></i>
-
-              <p class="text-center">{{ t9n 'NEW_POST_ADD_PHOTO_BTN' }}</p>
+    <div class="post-photo-upload">
+        <div class="bz-owner-photo-wrap">
+            <div class="img-avatar js-edit-avatar">
+                <ul class="bz-box-thumbs">
+                    <a class="js-plus-img bz-post-controls-plus-img">
+                        <div class="bz-post-add-photos">
+                            <i class="fa fa-picture-o"></i>
+                            <p class="text-center">{{ t9n 'NEW_POST_ADD_PHOTO_BTN' }}</p>
+                        </div>
+                    </a>
+                                        
+                    <li>
+                        <ul class="clearing-thumbs clearing-feature js-post-photo-upload-preview-holder" data-clearing></ul>
+                    </li>
+                    
+                    <!-- OLD CODE -->
+                    <!--<span class="js-post-photo-upload-preview-holder"></span>-->
+                </ul>
+                
             </div>
-          </a>
-          <!--{{#each getPostImages }}
-            {{> bzPostPhotoUploadImagePreview }}
-          {{/each }}-->
-          <span class="js-post-photo-upload-preview-holder"></span>
-        </ul>
-        <!--<img src="{{ getImageSrc }}" width="60" height="60">-->
-      </div>
+        </div>
     </div>
-
-    <!--<a class="js-get-picture button">get pic</a>
-    <br/>
-    <a class="js-get-picture-lib button">get pic lib</a>-->
-  </div>
-
-  <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    {{> uploadImageModal getImagesArrayReactive }}
-  </div>
+    <div class="reveal-modal js-avatar-upload-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        {{> uploadImageModal getImagesArrayReactive }}
+    </div>
 </template>
 
 

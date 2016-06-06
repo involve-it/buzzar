@@ -1,12 +1,53 @@
 /**
  * Created by root on 9/15/15.
  */
+Template.bzHomePopular.onCreated(function() {
+  this.getPopularData = new ReactiveVar(false);
+});
+
 Template.bzHomePopular.helpers({
+  getData: function() {
+    return Template.instance().getPopularData.get();
+  },
   getPopularItems: function () {
-    var ret;
+    
+    /* OLD CODE */
+    /*var ret;
     bz.cols.posts.find({});
     ret = bz.bus.search.searchePostsAroundAndPopular().popular;
-    return ret;
+    return ret;*/
+
+    var ret,
+        ins = Template.instance(),
+        currentLocation = Session.get('currentLocation'),
+        radius = Session.get('bz.control.search.distance'),
+        activeCats = Session.get('bz.control.category-list.activeCategories'),
+        request = {
+          lat: currentLocation.latitude,
+          lng: currentLocation.longitude,
+          radius: radius,
+          activeCats: activeCats
+        };
+    
+    Meteor.call('getPopularPosts', request, function(e, r) {
+      var res;
+      res = (!e) ? r : e;
+
+      if (res.error) {
+        bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+        return;
+      }
+
+      if (res.success && res.result) {
+        (res.result.length > 0) ? ins.getPopularData.set(res.result) : ins.getPopularData.set([]);
+        //console.info('Данные из метода getPopularPosts: ', res.result);
+      } else {
+        bz.ui.alert('Error ID: ' + res.error.errorId, {type:'error', timeout: 2000});
+      }
+      
+    });
+    
+    
   }
 });
 

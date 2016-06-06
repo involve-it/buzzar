@@ -215,6 +215,7 @@ Template.bzNewControlSearch.helpers({
           notFound: ['<div class="empty-message"><span>Not Found</span></div>']
         },
         local: function () {
+          
           //console.log(Session.get('bz.control.category-list.activeCategories'));
           var searchSelector = {
               'status.visible': bz.const.posts.status.visibility.VISIBLE
@@ -242,8 +243,7 @@ Template.bzNewControlSearch.helpers({
               }
           ).fetch();
           /**/
-
-          //bz.cols.posts.find(searchSelector).fetch()
+          
           var ret = _.unique(res.map(function(item) {
             
             item.name = item.details.title;
@@ -255,7 +255,8 @@ Template.bzNewControlSearch.helpers({
           return ret;
         }
       }];
-
+    
+    
     
     
     return ret;
@@ -320,6 +321,7 @@ Template.categoryListButtons.events({
   }
 });
 
+
 Template.searchCommonFilters.onRendered(()=> {
   Tracker.autorun(function () {
     //default distance
@@ -352,6 +354,8 @@ Template.searchCommonFilters.onRendered(()=> {
     //return ret;
   });
 });
+
+
 Template.searchCommonFilters.helpers({
   getDistanceFromSession: function () {
     //Tracker.autorun(function () {
@@ -437,8 +441,6 @@ Template.searchFiltersTrainings.events({
     //v.$('#bz-search-trainings-box').toggle();    
   }
 });
-
-
 
 
 Template.searchFiltersJobs.events({

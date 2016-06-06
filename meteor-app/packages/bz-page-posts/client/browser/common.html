@@ -14,6 +14,22 @@
     </div>
 </template>
 
+<!-- TEST CODE -->
+<template name="bzPostsPostPresenceGlobal">
+    <div class="bz-post-presence">
+        {{#if hasLivePresence}}
+            <a title="address: {{ hasLivePresence.name }}, lat: {{ hasLivePresence.coords.lat }}, lng: {{ hasLivePresence.coords.lng }}">
+                <div class="bz-i-wrapper">
+                    <i class="bz-icon bz-icon-dinamic"></i>
+                </div>
+            </a>
+        {{else }}
+            <div class="bz-i-wrapper">
+                <i class="bz-icon bz-icon-flag"></i>
+            </div>
+        {{/if}}
+    </div>
+</template>
 
 <template name="bzPostsPostDistance">
     <div class="bz-post-distance">

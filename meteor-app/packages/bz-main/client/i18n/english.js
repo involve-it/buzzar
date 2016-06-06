@@ -151,6 +151,8 @@ en = {
 
   //Another user profile details
   PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Personal data',
+  PROFILE_DIRECT_LINK_TO_MY_PROFILE: 'Direct link to my profile',
+  PROFILE_MAKE_MY_PUBLICATION_AVAILABLE_TO_ALL_USERS: 'Make my publication available to all users',
 
   //Profile - edit
   PROFILE_EDIT_USER_AVATAR: 'Edit user avatar',
@@ -179,6 +181,7 @@ en = {
   IMAGE_SELECT_CHOOSE_IMAGE: 'Choose image',
   COMMON_IMAGE_GET_RANDOM: 'Get random image',
   IMAGE_PHOTO_LIBRARY_IS_NOT_AVAILABLE:'Photo Library is not available.',
+  IMAGE_PHOTO_INDEX_NOT_FOUND: 'Image index does not found.',
 
   //chats
   CHATS_LAST_MESSAGE: 'Last message',
@@ -203,7 +206,16 @@ en = {
   SIGN_VALID_USERNAME:'A valid username is required',
   SIGN_VALID_EMAIL: 'A valid email address is required',
   SIGN_VALID_PASSWORD:'Your password must match the requirements',
-  SIGN_VALID_USERNAME_OR_EMAIL:'A valid email address or username is required'
+  SIGN_VALID_USERNAME_OR_EMAIL:'A valid email address or username is required',
+
+
+  /*PAGE ABOUT US*/
+  HEADER: {
+    'PARAG_1': 'Darkness is the absence of light. Knowledge is the light. Knowledge about who is around us, what languages they speak, how they live, what is offered and what we believe. And we believe this knowledge will make the world around brighter and clearer.',
+    'PARAG_2': 'But Shiners are not just for the sake of curiosity. They serve us as live ads around. You install Shiners and your ad gets a new source of views - people who are nearby! Imagine a virtual card, but you don’t wear it in your wallet but in your mobile phone. And this card is being seen by not only selected users but all those who are next to you! We can be searched in Google and other social networks as well. That’s why your ad turns to separate web page being shown the entire Internet if desired.',
+    'PARAG_3': 'There is a number of Shiners around us. If some of them are not shining, it is simply a matter of time!',
+    'PARAG_4': 'SHINERS GLAD TO WELCOME YOU! We will introduce you to the people, places and events around! Use the Internet for live meetings!'
+  },
 };
 T9n.map('en', en);
 bz.help.makeNamespace('bz.language.i18n.en', en);

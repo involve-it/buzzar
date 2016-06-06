@@ -230,6 +230,7 @@ GetValueJobsSingleData = function(v, selector) {
   }
   return ret;
 };
+
 GetValueJobsMultiData = function(v, selector) {
   var selectedOptions = [];
   v.$(selector).find('.selected').each(function() {
@@ -237,6 +238,7 @@ GetValueJobsMultiData = function(v, selector) {
   });
   return selectedOptions;
 };
+
 GetValuePayMethod = function(v, selector) {
   var ret,
       selectElement = v.$(selector).find('[aria-checked="true"]');
@@ -246,6 +248,7 @@ GetValuePayMethod = function(v, selector) {
   }
   return ret;
 };
+
 DeterminePostTypeFromView = function(v) {
   //newPostType
   //v.$('.js-post-type-select').val()
@@ -256,7 +259,8 @@ DeterminePostTypeFromView = function(v) {
     ret = v.$('.js-memo-type-select').val();
   }
   return ret;
-}
+};
+
 GetEndDatePost = function(v, start) {
   //var val = v.$('.js-post-select-duration').val(),
   var val = '' /* передать значение*/,

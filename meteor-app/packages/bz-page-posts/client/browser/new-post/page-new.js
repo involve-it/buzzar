@@ -33,8 +33,9 @@ Template.postsNew.helpers({
 });
 Template.postsNew.events({
   'click .js-create-post': function (e, v) {
-    var res = true;
     e.preventDefault();
+    
+    var res = true;
     validatePostsNewPage(v).then((ret)=>{
       if(ret.res){
         !!ret.msg.length && bz.ui.alert(ret.msg.join('; '));
@@ -48,7 +49,6 @@ Template.postsNew.events({
     e.preventDefault();
   }
 });
-
 
 // HELPERS:
 function validatePostsNewPage (v){
@@ -74,6 +74,9 @@ function validatePostsNewPage (v){
       });
     });
     $('form[data-abide]').on('invalid.fndtn.abide', function () {
+
+      var invalid_fields = $(this).find('[data-invalid]');
+      
       // Handle the submission of the form
       if (Session.get("bz.user.language")=='ru'){
         msg.push('Некоторые поля не прошли проверку');

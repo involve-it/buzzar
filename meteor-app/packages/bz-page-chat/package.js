@@ -13,7 +13,7 @@ Package.describe({
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use(['iron:router', 'iron:layout', 'ecmascript'], ['client', 'server']);
+  api.use(['iron:router', 'reactive-var', 'iron:layout', 'ecmascript'], ['client', 'server']);
   api.use('templating', 'client');
   api.use('less', 'client');
   //api.use('alethes:pages');

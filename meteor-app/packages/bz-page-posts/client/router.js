@@ -3,6 +3,7 @@
  */
 var requireLoginController = bz.router.requireLoginController;
 // POSTS:
+
 Router.map(function () {
   this.route('posts', {
     path: '/posts',
@@ -15,24 +16,65 @@ Router.map(function () {
   this.route('posts.details', {
     path: '/post/:_id',
     template: 'postsPageDetails',
+    waitOn: function() {
+      if(this.data()) return;
+      
+      var dep = new Deps.Dependency;
+      var ready = false;
+      var handle = {
+        ready: function() {
+          dep.depend();
+          return ready;
+        }
+      };
+      
+      var self = this, postId = this.params._id;
+      
+      Meteor.call('getPost', postId, function(e, r) {
+        
+        if(r.success && r.result) {
+
+          r.result.hasLivePresence = bz.help.posts.hasLivePresence.apply(r.result);
+          r.result.getDistanceToCurrentLocation = bz.help.posts.getDistanceToCurrentLocation.apply(r.result);
+
+          self.result = r.result;
+          
+        } else {
+          bz.ui.alert('Error ID: ' + r.error.errorId, {type:'error', timeout: 2000});
+        }
+
+        ready = true;
+        dep.changed();
+        
+      });
+      
+      return handle;
+    },
+    result: null,
     data: function () {
-      var ret;
+      
+      /* OLD CODE */
+      /*var ret;
       ret = bz.cols.posts.findOne({_id: this.params._id});
       if (ret) {
         Meteor.subscribe('bz.users.all')
       }
-      return ret;
+      return ret;*/
+      
+      return this.result;
     },
     //controller: 'requireLoginController',
     onAfterAction: function () {
       var post = this.data();
       post && runHitTracking(post);
-      console.log('onAfterAction' + this.data());
+      
+      console.log('onAfterAction', this.data());
     },
     onBeforeAction: function () {
-      if (!this.data()) {
+      /*if (!this.data()) {
         Router.go('/page-not-found');
-      }
+      }*/
+      
       this.next();
     }
   });
