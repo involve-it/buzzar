@@ -44,6 +44,12 @@ bz.const.errors={
     foulLanguageInMessage:{errorId:27},
     chatNotFoundOrNotCreated:{errorId:28}
   },
+  //for locationsHandler
+  locations:{
+    invalidPlaceType:{errorId:29},
+    invalidName:{errorId:30},
+    invalidCoords:{errorId:31}
+  },
   //global errors
   global:{
     dataNotFound:{errorId: 404},
