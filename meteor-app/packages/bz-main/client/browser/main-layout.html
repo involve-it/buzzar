@@ -1,4 +1,148 @@
+
+<!--***************************************************** NEW  *****************************************************-->
+
+<template name="mainLayoutHome">
+
+    <div id="bz-body-wrapper" class="mm-page mm-slideout">
+        <div id="bz-header" class="bz-header-position">
+            <div class="bz-header-wrapper">
+                <!--**-->
+                {{> bzNavBar}}
+                <!--**-->
+            </div>
+        </div>
+
+        <div id="bz-content">
+
+            {{> yield}}
+
+        </div>
+
+        <div id="bz-footer">
+            {{#if currentUser}}
+                {{> bzFooter}}
+            {{else}}
+                {{> bzUnregFooter}}
+            {{/if}}
+        </div>
+
+        <!--MENU PANEL-->
+        <nav id="bz-menu">
+            {{> bzMenuLeftWrapper }}
+        </nav>
+
+
+        <!-- close the off-canvas menu -->
+        <a class="exit-off-canvas"></a>
+    </div>
+
+    <!-- open the off-canvas menu -->
+    <!--<a id="bz-open-toggle-menu" class="bz-open-off-canvas mm-slideout"><span></span></a>-->
+
+</template>
+
 <template name="mainLayout">
+    <div id="bz-body-wrapper" class="mm-page mm-slideout">
+        <div id="bz-header">
+            <div class="bz-header-wrapper">
+                <!--**-->
+                {{> bzNavBar}}
+                <!--**-->
+            </div>
+        </div>
+
+        <div id="bz-content">
+
+            <div class="bz-block-light">
+                <div class="bz-container-body">
+                    {{> yield}}
+                </div>
+            </div>
+
+        </div>
+
+        <div id="bz-footer">
+            {{#if currentUser}}
+                {{> bzFooter}}
+            {{else}}
+                {{> bzUnregFooter}}
+            {{/if}}
+        </div>
+
+        <!--MENU PANEL-->
+        <nav id="bz-menu">
+            {{> bzMenuLeftWrapper }}
+        </nav>
+
+
+        <!-- close the off-canvas menu -->
+        <a class="exit-off-canvas"></a>
+    </div>
+
+    <!-- open the off-canvas menu -->
+    <!--<a id="bz-open-toggle-menu" class="bz-open-off-canvas mm-slideout"><span></span></a>-->
+</template>
+
+<!--** NEW TMPL non-auth pages **-->
+<template name="basicLayout">
+
+    <div id="bz-body-wrapper" class="mm-page mm-slideout">
+
+        <div id="bz-content">
+            {{> yield}}
+        </div>
+
+        <!--MENU PANEL-->
+        {{> bzMenuLeftNew}}
+
+
+        <!-- close the off-canvas menu -->
+        <a class="exit-off-canvas"></a>
+    </div>
+
+    <!-- open the off-canvas menu -->
+    <a id="bz-open-toggle-menu" class="bz-open-off-canvas mm-slideout"><span></span></a>
+
+</template>
+<!--** END non-auth pages **-->
+
+<template name="bzNavBar">
+
+    <a id="bz-open-toggle-menu" class="bz-open-off-canvas"><span></span></a>
+    
+    <nav class="bz-navbar">
+        <div class="bz-logo">
+            {{> bzMeteorLogo }}
+        </div>
+
+        <div class="bz-location-name show-for-medium-up">
+            {{> bzLinkLocationName}}
+        </div>
+
+        <div class="bz-header-menu">
+            {{> bzInnerMenuLeft}}
+        </div>
+
+        <div class="bz-group-menu-btn">
+            <div class="bz-header-button">
+                <div class="show-for-small-only margin-small-right left">{{> bzLinkLocationName}}</div>
+                <div class="left">{{ bzRenderTemplateI18n "createNewButton" }}</div>
+            </div>
+
+            {{> bzNavMe}}
+
+            {{> bzDropSelectLanguage}}
+
+        </div>
+    </nav>
+    <!-- navEND -->
+
+    {{> bzLocationName}}
+</template>
+
+<!--***************************************************** END NEW  *****************************************************-->
+
+<template name="mainLayout00">
   <div class="off-canvas-wrap" data-offcanvas>
     <div class="inner-wrap">
       <!-- Off Canvas Menu -->
@@ -41,9 +185,8 @@
 </template>
 
 
-
-<!--***************************-->
-<template name="mainLayoutHome">
+<!--********** OLD CODE prefix 00 *****************-->
+<template name="mainLayoutHome00">
   <div class="off-canvas-wrap" data-offcanvas>
     <div class="inner-wrap">
 
@@ -83,9 +226,8 @@
         
 </template>
 
-
 <!--layout for non-auth pages-->
-<template name="basicLayout">
+<template name="basicLayout00">
 
   <div class="off-canvas-wrap" data-offcanvas>
     <div class="inner-wrap">
@@ -113,7 +255,7 @@
   </div>
 </template>
 
-<template name="bzNavBar">
+<template name="bzNavBar00">
   <div class="bz-nav-bg-default">
     <div class="bz-nav-bg-wrapper">
         <nav id="bz-navbar" class="">
@@ -305,81 +447,11 @@
 </template>
 
 
-
-
-<!--***************************************************** NEW  *****************************************************-->
-
-<template name="mainLayoutHome00">
-
-    <div id="bz-body-wrapper" class="mm-page mm-slideout">
-        <div id="bz-header">
-            <div class="bz-header-wrapper">
-                <!--**-->
-                <div class="bz-navbar">
-                    <div class="bz-logo">
-                        {{> bzMeteorLogo }}
-                    </div>
-
-                    <div class="bz-location-name show-for-medium-up">
-                        {{> bzLinkLocationName}}
-                    </div>
-
-                    <div class="bz-header-menu">
-                        {{> bzInnerMenuLeft}}
-                    </div>
-
-                    <div class="bz-group-menu-btn">
-                        <div class="bz-header-button">
-                            <div class="show-for-small-only margin-small-right left">{{> bzLinkLocationName}}</div>
-                            <div class="left">{{ bzRenderTemplateI18n "createNewButton" }}</div>
-                        </div>
-
-                        {{> bzNavMe}}
-
-                        {{> bzDropSelectLanguage}}
-
-                    </div>
-                </div>
-                <!--**-->
-            </div>
-        </div>
-        
-        <div id="bz-content">
-
-            <!--{{> yield}}-->
-            
-        </div>
-        
-        <div id="bz-footer">
-            {{#if currentUser}}
-                {{> bzFooter}}
-            {{else}}
-                {{> bzUnregFooter}}
-            {{/if}}
-        </div>
-
-        <!--MENU PANEL-->
-        {{> bzMenuLeftNew}}
-       
-        
-        <!-- close the off-canvas menu -->
-        <a class="exit-off-canvas"></a>
-    </div>
-
-    <!-- open the off-canvas menu -->
-    <a id="bz-open-toggle-menu" class="bz-open-off-canvas mm-slideout"><span></span></a>
-    
-</template>
-
-
 <template name="bzMenuLeftNew">
     <nav id="bz-menu">
         {{> bzMenuLeftWrapper }}    
     </nav>
 </template>
-
-
-
 
 <template name="bzMenuLeftWrapper">
     <aside class="bz-menu-wrapper" >

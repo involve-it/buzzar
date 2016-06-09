@@ -1550,10 +1550,45 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
         }
       }
     }
+
+    /* HEADER POSITION under CONTENT BLOCK */
+    &.bz-header-position {
+      background-color: rgba(0,0,0,.2);
+      background-image: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 11;
+    }
   }
 
   #bz-content {
     flex: 1 0 auto;
+    
+    /* APP TITLE + LOGO */
+    .bz-header-top {
+      margin-bottom: 16px;
+    }
+
+    .bz-header-logo {
+      display: block;
+      height: 60px;
+      width: 60px;
+      margin: 0 auto;
+    }
+
+    .bz-header-title {
+      text-align: center;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      font-weight: 300;
+      font-size: 30px;
+      margin: 0;
+      padding: 0 20px;
+      text-shadow: 0 1px 1px rgba(0,0,0, .15);
+    }
   }
   
   #bz-footer {
@@ -1661,9 +1696,149 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
     }
     
   }
+  
+  /* max-width 640px, mobile-only styles, use when QAing mobile issues */
+  @media only screen and (max-width: 40em) {
+    
+    #bz-header {
+      min-height: 52px;
+      
+      .bz-header-wrapper {
+        padding: 0;
+        
+        .bz-navbar {
+          padding: 10px 0 !important;
+          min-height: 52px;
 
+          .bz-logo {
+            font-size: 25px;
+            margin-left: 55px;
 
-  @media only screen and (min-width: 40.0625em) {}
+            .bz-logo-wrapper {
+              .bz-log-logotype {}
+            }
+          }
+
+          .bz-location-name {
+            position: absolute;
+            top: 12px;
+            left: auto;
+            right: 129px;
+
+            a {
+              display: block;
+              -webkit-border-radius:2px;
+              -moz-border-radius:2px;
+              border-radius:2px;
+              padding: 5px 13px;
+              margin-right: 15px;
+              color: rgba(255,255,255, .8);
+              background-color: rgba(0,0,0, .2);
+
+              i {
+                font-size: 16px;
+              }
+            }
+
+            span {
+              display: none;
+            }
+          }
+
+          .bz-link-lacation-name {
+            -webkit-border-radius:2px;
+            -moz-border-radius:2px;
+            border-radius:2px;
+            background-color: rgba(0,0,0, .2);
+            color: rgba(255,255,255, .8);
+            font-size: .8rem;
+
+            span {
+              display: none;
+            }
+          }
+
+          .bz-group-menu-btn {
+            float: right;
+            padding: 0;
+
+            .bz-header-button {
+              margin: 0 10px 0 0;
+
+              a {
+                display: block;
+                padding: 10px 15px;
+                line-height: 11px;
+              }
+            }
+
+            .bz-select-language {
+              display: none;
+            }
+
+          }
+        }
+      }
+      
+    } /*header*/
+    
+    #bz-content {
+
+      .bz-slideshow {
+
+        .bz-slideshow-content {
+
+          .bz-header {
+
+            .bz-header-top {
+              margin-bottom: 0;
+
+              .bz-header-logo {
+                display: none;
+                /*height: 30px;
+                width: 30px;*/
+              }
+
+              .bz-header-title {
+                font-size: 23px;
+                margin-bottom: 15px;
+              }
+            } 
+          }
+        }
+      }
+      
+    }
+    
+    #bz-footer {
+      
+      .bz-footer {
+        padding: 0;
+        
+        .bz-site-footer {
+          padding: 0;
+        }
+
+        .bz-flexible-footer {
+          display: block;
+          text-align: center;
+        }
+
+        .bz-socila-buttons {
+          padding: 5px 0;
+        }
+
+        .bz-language-picker-wrapper {
+          margin: 12px auto 12px auto;
+        }
+      }
+    } /*footer*/
+    
+  }
+  
+  @media only screen and (min-width: 40.0625em) {
+    
+  }
   
   @media only screen and (max-width: 64em) and (min-width: 40.0625em) {
 
@@ -1708,6 +1883,16 @@ body:not(.shepherd-active) .off-canvas-wrap .inner-wrap > * {
 
 #bz-open-toggle-menu {
 
+  @media only screen and (max-width: 40em) {
+    width: 55px;
+    left: 0;
+    top: 4px;
+    
+    &:before, &:after, span {
+      left: 13px;
+    }
+  }
+  
   /* General menu from 641px and more */
   @media only screen and (min-width: 40.0625em) {
     display: none;
