@@ -70,5 +70,10 @@ Meteor.methods({
   },
   addMessage: function(request){
     return bz.bus.messagesChatsHandler.addMessage(request);
+  },
+
+  //locations
+  addLocation: function(request){
+    return bz.bus.locationsHandler.addLocation(request);
   }
 });
