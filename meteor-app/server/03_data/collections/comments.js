@@ -1,15 +1,14 @@
 /**
  * Created by xvolkx48 on 02.06.2016.
  */
-Meteor.publish('comments', function(request){
-  var ret,post, postId, time, newComments, fields, currentUser;
+Meteor.publish('comments', function(postId){
+  var ret,post, time, newComments, fields;
   fields={
     _id: 1,
     text: 1,
     userId: 1,
     dateTime: 1
   };
-  postId=request.postId;
   time= Date.now()-5000;
   post= bz.cols.posts.findOne({_id:postId});
   if(post){
