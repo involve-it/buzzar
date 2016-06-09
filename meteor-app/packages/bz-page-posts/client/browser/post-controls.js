@@ -369,13 +369,18 @@ Template.postPhotoUpload.events({
     e.stopPropagation();
     e.preventDefault();
 
-    var name = v.data.name,
+    //var name = v.data.name,
+    var name = $(e.target.closest('a.remove-preview-photo')).attr('data-name'),
         arr = imagesArrayReactive.get();
 
     var ind = arr.findIndex(x => x.name === name);
-    arr.splice(ind, 1);
-    imagesArrayReactive.set(arr);
-
+    if(ind !== -1) {
+      arr.splice(ind, 1);
+      imagesArrayReactive.set(arr);
+    } else {
+      bz.ui.alert(T9n.get('IMAGE_PHOTO_INDEX_NOT_FOUND'), {type: 'error', timeout: 2000});
+    }
+    
     return false;
   }
 });

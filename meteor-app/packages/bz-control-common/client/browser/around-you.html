@@ -1,13 +1,14 @@
 
 <template name="bzAroundYou">
-  {{#if getAroundItems.length}}
+  {{#if getAroundItems}}{{/if}}
+  {{#if getData}}
     <!--bz-container-body-->
     <section id="bz-around-you" class="">
       <div class="bz-around-you">
         <div class="bz-items">
           <div class="bz-isotope-grid">
             <!--<h2 class="title">{{ t9n 'AROUND_YOU_TITLE' }}</h2>-->
-            {{#each getAroundItems}}
+            {{#each getData}}
               {{> bzAroundYouItem}}
             {{/each}}
           </div>

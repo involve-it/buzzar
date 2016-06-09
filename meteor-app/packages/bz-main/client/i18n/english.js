@@ -181,6 +181,7 @@ en = {
   IMAGE_SELECT_CHOOSE_IMAGE: 'Choose image',
   COMMON_IMAGE_GET_RANDOM: 'Get random image',
   IMAGE_PHOTO_LIBRARY_IS_NOT_AVAILABLE:'Photo Library is not available.',
+  IMAGE_PHOTO_INDEX_NOT_FOUND: 'Image index does not found.',
 
   //chats
   CHATS_LAST_MESSAGE: 'Last message',

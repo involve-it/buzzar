@@ -12,7 +12,7 @@ ruI18n = {
   YOU_HAVE_NO_POSTS: 'У вас пока еще нет постов',
   PRESS_BUTTON_BELOW:'Чтобы создать новый пост нажмите кнопку ниже',
   //New post
-  NEW_POST_NEWTYPE_BEACON_TITLE: 'Выберите подходящий маячок',
+  NEW_POST_NEWTYPE_BEACON_TITLE: 'Выберите подходящий Светлячок',
   NEW_POST_IMPORT_FROM_WEB: 'Импортировать из интернета',
   NEW_POST_IMPORT_FROM_WEB_OPTIONAL: 'необязательно',
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER: 'Url адрес объявления в интернете',
