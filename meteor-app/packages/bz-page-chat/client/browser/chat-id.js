@@ -11,16 +11,16 @@ Template.bzChatId.onRendered(function() {
   
   function resizeWinChat() {
     var $win = $(window).height(),
-        headerH = $('.bz-nav-bg-default').outerHeight(),
+        headerH = $('#bz-header').outerHeight(),
         chatHeader = $('.bz-user-owner-toolbar').outerHeight(),
         chatTextInput = $('.bz-user-inputs-messages').outerHeight(),
         paddingBorder = (mobile && $(window).width() <= 640 ) ? 1 : 41;
     
     if(mobile) {
-      $('.bz-footer').outerHeight(0).css('display','none');
+      $('#bz-footer').outerHeight(0).css('display','none');
       var footerH = 0;
     } else {
-      var footerH = $('.bz-footer').outerHeight();
+      var footerH = $('#bz-footer').outerHeight();
     }
     
     $('.bz-messages-container').css('height', ( $win - headerH - footerH - chatHeader - chatTextInput - paddingBorder) );

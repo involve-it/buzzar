@@ -1,6 +1,21 @@
 /**
  * Created by root on 9/23/15.
  */
+
+Template.bzLinkLocationName.onRendered(function() {
+  
+  Meteor.setTimeout(function() {
+    $(document).on('opened.fndtn.reveal', '[data-reveal]', function () {
+      $('body').css('overflow', 'hidden')
+    });
+
+    $(document).on('closed.fndtn.reveal', '[data-reveal]', function () {
+      $('body').css('overflow', '')
+    });
+  }, 1000);
+  
+});
+
 Template.bzLinkLocationName.helpers({
   notDefinedLocationClass: function(){
     var ret = Session.get('bz.control.search.location');

@@ -3,76 +3,57 @@
  */
 bz.help.maps.initLocation();
 
-
-Template.mainLayoutHome.onRendered(function() {
-  var API, $menu = $("#bz-menu");
-
-  $menu.mmenu({
-    // options
-    "navbar": {
-      "add": false
-    },
-    "extensions": [
-      "menuShadow"
-    ]
-  }, {
-    // configuration
-    offCanvas: {
-      pageSelector: "#bz-body-wrapper",
-      classNames: {
-        selected: "active"
-      }
-    }
-  });
-
-  API = $menu.data( "mmenu" );
-
-  /* open menu */
-  $(".bz-open-off-canvas").click(function() {
-    API.open();
-  });
-
-  var links = $menu.find('.link-menu > a');
-  links.on('click', function(e) {
-    API.close();
-  });
-  
-  window.menu = $menu
-  
-});
-
-Template.bzMenuLeftWrapper.events({
-  'click .clickb': function(e, t) {
-    //e.preventDefault();
-    console.info('click');
-  },
-  'click .clickd': function(e, t) {
-    //e.preventDefault();
-    console.info('click');
-  }
-});
-
-
-
-
-
-Meteor.startup(function() {
-  //$('body').attr('data-uk-observe', '1');
-});
-
-Template.mainLayoutHome.onCreated(function() {});
-
-Template.mainLayout.rendered = function () {
+Template.mainLayout.onRendered(function() {
+  InitMmenuOffCanvas();
   InitFoundationOffCanvas();
   layoutRenderedLazyLoad();
+
   //UIkit.$html.trigger('changed.uk.dom');
-};
+});
+
+
 
 Template.mainLayoutHome.rendered = function () {
   InitFoundationOffCanvas();
   layoutRenderedLazyLoad();
   //UIkit.$html.trigger('changed.uk.dom');
 };
+
+Template.mainLayoutHome.onRendered(function() {
+    InitMmenuOffCanvas();
+});
+
+Template.basicLayout.onRendered(function() {
+  InitMmenuOffCanvas();
+});
+
+Template.bzNavBar.events({
+  'click .bz-open-off-canvas': function(e, v) {
+    e.preventDefault();
+    var menu = $("#bz-menu"), 
+        API,
+        menuOpening = $(document).find('.mm-opening');
+    
+    if(menu && !!menuOpening) {
+      API = menu.data('mmenu');
+      API.open();
+    }
+  }
+});
+
+Template.basicLayout.events({
+  'click .bz-open-off-canvas': function(e, v) {
+    e.preventDefault();
+    var menu = $("#bz-menu"),
+        API,
+        menuOpening = $(document).find('.mm-opening');
+
+    if(menu && !!menuOpening) {
+      API = menu.data('mmenu');
+      API.open();
+    }
+  }
+});
 
 Template.bzChangeLanguage.rendered = function () {
   var langProm;

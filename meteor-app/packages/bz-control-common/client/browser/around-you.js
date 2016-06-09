@@ -26,7 +26,11 @@ Template.bzAroundYou.helpers({
     
     //var throttle = _.throttle(function(){console.log('called')}, 10000);
     
-    ret = (inputSearchText) ? searchPosts(inputSearchText, currentLocation, radius, activeCats) : nearbyPosts(currentLocation, radius, activeCats) ;
+    if(currentLocation) {
+      ret = (inputSearchText) ? searchPosts(inputSearchText, currentLocation, radius, activeCats) : nearbyPosts(currentLocation, radius, activeCats) ;
+    }
+    
+    
     
     function searchPosts(text, loc, radius, activeCats) {
       var request = {};
@@ -105,7 +109,7 @@ Template.bzAroundYou.helpers({
   
         });
     /*}*/
-      console.log('nearbyPosts');
+      //console.log('nearbyPosts');
       //return console.log('nearbyPosts');
       return ins.getSearchData;
     }
