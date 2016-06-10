@@ -13,7 +13,9 @@ Router.map(function () {
     path: '/chat/:chatId',
     template: 'bzChatId',
     controller: 'requireLoginController',
-
+    subscriptions: function() {
+      // return [];
+    },
     waitOn: function () {
       if(this.data()) return;
 
@@ -50,6 +52,8 @@ Router.map(function () {
         
       });
 
+      
+      
       return handle;
       
       /* OLD CODE */

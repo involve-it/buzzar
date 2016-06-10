@@ -2,23 +2,36 @@
  * Created by xvolkx48 on 02.06.2016.
  */
 Meteor.publish('comments', function(postId){
-  var ret,post, time, newComments, fields;
+  check(postId, String);
+  
+  var post, time, fields, ret, newComments;
   fields={
     _id: 1,
     text: 1,
     userId: 1,
     dateTime: 1
   };
-  time= Date.now()-5000;
-  post= bz.cols.posts.findOne({_id:postId});
-  if(post){
-    newComments=bz.cols.reviews.find({entityId:postId, dateTime: {$gte: time}},{fields: fields});
+  
+  time = Date.now()- 5000;
+  post = bz.cols.posts.findOne({_id:postId});
+  
+  /*if(post){
+    newComments = bz.cols.reviews.find({entityId:postId, dateTime: {$gte: time}},{fields: fields});
     ret=newComments;
   }else{
     ret=[];
   }
-  return ret;
+  return ret;*/
+
+  if(post){
+    return bz.cols.reviews.find({entityId:postId, dateTime: {$gte: time}},{fields: fields});
+  }
+
+  return this.ready();
+  
 });
+
+/* USEGE to Notification */
 Meteor.publish('comments-my', function(){
   var ret, currentUser, time, postsMy, newComments, fields;
   fields={

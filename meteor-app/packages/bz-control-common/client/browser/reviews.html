@@ -1,21 +1,34 @@
 
 <template name="bzControlReviews">
-    {{#if getComments}}
-        <div class="bz-post-review">
-            <h3 class="title-review">{{ getComments.length }} {{ t9n 'COMMENTS' }} (page 1 of 1)</h3>
-            <div class="bz-reviews-list">
-                
-                {{#each getComments}}
-                    {{> bzControlReviewItem }}
-                {{/each}}
+    {{#if Template.subscriptionsReady}}
+        
+        
     
-                <!-- OLD CODE -->
-                <!--
-                {{#each getReviews }}
-                    {{> bzControlReviewItem }}
-                {{/each}}-->
+        {{#if getComments}}
+            <div class="bz-post-review">
+                <!--<h3 class="title-review">{{ getComments.length }} {{ t9n 'COMMENTS' }} (page 1 of 1)</h3>-->
+                <div class="bz-reviews-list">
+
+                    {{#with subCom}} 
+                        {{#each this}}
+                            {{> bzControlReviewItem }}
+                        {{/each}}
+                    {{/with}}
+                    
+                    {{#each getComments}}
+                        {{> bzControlReviewItem }}
+                    {{/each}}
+        
+                    <!-- OLD CODE -->
+                    <!--
+                    {{#each getReviews }}
+                        {{> bzControlReviewItem }}
+                    {{/each}}-->
+                </div>
             </div>
-        </div>
+        {{/if}}
+    {{else}}
+        {{> loader}}
     {{/if}}
 </template>
 
@@ -63,20 +76,24 @@
 </template>
 
 <template name="bzControlAddReview">
-    <div class="bz-post-leave-review">
-  <form data-abide="ajax">
-    <textarea required rows="4" cols="50" class="js-post-text-input" placeholder={{ t9n 'REVIEW_HELP_TEXT' }}></textarea>
-    <div class="bz-control-reviews">
-      <!--<select id="single-bsg-pilot" class="js-rating-select" data-prompt={{ t9n 'CHOOSE_RATING' }}> //todo:
-      Post-Processing Selection Post Rating
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>-->
-      <button class="button btn-default bz-small js-post-btn">{{ t9n 'SUBMIT' }}</button>
+    <div class="bz-post-review-info">
+        <h3 class="title-review">{{ getCommentsCount }} {{ t9n 'COMMENTS' }} (page 1 of 1)</h3>
     </div>
-  </form>
+    
+    <div class="bz-post-leave-review">
+        <form data-abide="ajax">
+            <textarea id="review-input" required rows="3" cols="50" class="js-post-text-input" placeholder={{ t9n 'REVIEW_HELP_TEXT' }}></textarea>
+            <div class="bz-control-reviews">
+                <!--<select id="single-bsg-pilot" class="js-rating-select" data-prompt={{ t9n 'CHOOSE_RATING' }}> //todo:
+                Post-Processing Selection Post Rating
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                </select>-->
+                <button class="button btn-default bz-small js-post-btn" disabled={{buttonStateDisabled}}>{{ t9n 'SUBMIT' }}</button>
+            </div>
+        </form>
     </div>
 </template>
