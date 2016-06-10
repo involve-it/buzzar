@@ -49,6 +49,9 @@ Meteor.methods({
   deleteComment: function(commentId){
     return bz.bus.commentsHandler.deleteComment(commentId,Meteor.userId());
   },
+  getCommentsCount: function(postId){
+    return bz.bus.commentsHandler.getCommentsCount(postId);
+  },
 
   //images
   addImage: function(request){
