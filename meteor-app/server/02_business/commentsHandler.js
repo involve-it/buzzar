@@ -22,6 +22,18 @@ bz.bus.commentsHandler = {
     }
     return ret;
   },
+  getCommentsCount: function(postId){
+    var ret, post, count;
+    post=bz.cols.posts.findOne({_id:postId});
+    if(post){
+      count=bz.cols.reviews.find({entityId:postId}).count();
+      ret={success:true, result:count};
+    }else{
+      //error
+      ret={success:false, error: bz.const.errors.global.dataNotFound};
+    }
+    return ret;
+  },
   buildComment: function(comments){
     var ret,comment, users,usersId,arrUser, arrComments=[];
     if(comments){
