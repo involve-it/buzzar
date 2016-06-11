@@ -152,7 +152,7 @@ ruI18n = {
   
   RELOAD_POST_CONTENT: '@{subjectStart} @{postTitle} @{subjectEnd}',
   RELOAD_POST_CONTENT_SUBJECT_START: 'Для поста',
-  RELOAD_POST_CONTENT_SUBJECT_END: 'будет перезапущен параметр активности на тот, который был задан при его создании.',
+  RELOAD_POST_CONTENT_SUBJECT_END: 'будет перезапущен со сроком действия, указанным при создании.',
   
   EDIT_POST: 'Редактировать пост',
   TRASH_POST: 'Удалить пост'
