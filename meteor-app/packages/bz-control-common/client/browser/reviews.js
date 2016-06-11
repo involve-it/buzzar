@@ -5,21 +5,66 @@
 //LocalCommentsCollections = new Mongo.Collection(null);
 
 Template.bzControlReviews.onCreated(function() {
-  this.getCommentsData = new ReactiveVar(false);
+  var instance = this;
+  instance.getCommentsData = new ReactiveVar(false);
+  
+  instance.subscribe('comments', Router.current().params._id, function() {
+    //console.info('Data of comments is ready.', this);
+    console.info('Data of comments: ', bz.cols.reviews.find({}).fetch());
+  });
+  
+});
+
+Template.bzControlReviews.onRendered(function() {
+  var self = this;
 });
 
 Template.bzControlReviews.helpers({
+  subCom: function() {
+    
+    var arrayCommentsSubscribe = bz.cols.reviews.find({}).fetch();
+    
+    if(arrayCommentsSubscribe.length) {
+      _.map(arrayCommentsSubscribe, function(item) {
+        var userId = item.userId;
+        
+        Meteor.call('getUser', userId, function(e, r){
+          
+          var res, user;
+          res = (!e) ? r : e;
+
+          if (res.error) {
+            bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+            return;
+          }
+
+          if (res.success && res.result) {
+            user = {
+              _id: res.result._id,
+              image: res.result.image,
+              username: res.result.username
+            };
+
+            item.user = user;
+          }
+
+        });
+        
+      });
+      
+    }
+    
+    console.info("Данные перед return", arrayCommentsSubscribe);
+    return arrayCommentsSubscribe.reverse();
+  },
   getComments: function() {
     var request = {}, ins = Template.instance();
     request.postId = this.postId;
     
     if(request && this.postId) {
-      
       if (ins.getCommentsData.get() === false) {
-        
         Meteor.call('getComments', request, function(e, r) {
-          
-          console.info(r);
+          //console.info(r);
           //LocalCommentsCollections.insert(r.result);
           
           if(e) {
@@ -30,9 +75,7 @@ Template.bzControlReviews.helpers({
             bz.ui.alert('Error ID: ' + r.error.errorId, {type:'error', timeout: 2000});
           }
         });
-        
       }
-      
     }
     return ins.getCommentsData.get();
   }
@@ -70,9 +113,6 @@ Template.bzControlReviewItem.events({
     /*if(Meteor.userId() === v.data.userId){
       bz.cols.reviews.remove(v.data._id);
     }*/
-    
-    
-    
   }
 });
 
@@ -94,21 +134,50 @@ Template.bzControlReviewItem.helpers({
 
 Template.bzControlAddReview.onCreated(function(){
   //this.data.postId = this.data.toString();
+  var instance = this;
+  instance.buttonStateDisabled = new ReactiveVar(true);
 });
 
 Template.bzControlAddReview.onRendered(function(){
   $('.js-rating-select').foundationSelect();
 });
 
+Template.bzControlAddReview.helpers({
+  buttonStateDisabled: function() {
+    return Template.instance().buttonStateDisabled.get();
+  },
+  getCommentsCount: function() {
+    return '000';
+  }
+});
+
 Template.bzControlAddReview.events({
+  'keydown #review-input': function(e, v) {
+
+    Meteor.setTimeout(function() {
+      var messageText = $.trim(v.$('#review-input').val());
+      (messageText.length > 0) ? v.buttonStateDisabled.set(false) : v.buttonStateDisabled.set(true);
+    }, 100);
+    
+  },
   'click .js-post-btn': function(e, v){
 
-    var request = {}, userId = Meteor.userId();
+    var request = {},
+        userId = Meteor.userId(),
+        textarea = $(e.target).closest('.bz-post-leave-review').find('.js-post-text-input');
+    
     request.postId = this.postId;
     request.comment = $('.js-post-text-input').val().trim();
     
     Meteor.call('addComment', request, function(e, r) {
-      // return - _id
+      var res;
+      res = (!e) ? r : e;
+      
+      if(res.success && res.result) {
+        textarea.val('');
+        v.buttonStateDisabled.set(true);
+      }
+      
     });
    
     

@@ -21,32 +21,41 @@ Template.bzHomePopular.helpers({
         ins = Template.instance(),
         currentLocation = Session.get('currentLocation'),
         radius = Session.get('bz.control.search.distance'),
-        activeCats = Session.get('bz.control.category-list.activeCategories'),
-        request = {
-          lat: currentLocation.latitude,
-          lng: currentLocation.longitude,
-          radius: radius,
-          activeCats: activeCats
-        };
+        activeCats = Session.get('bz.control.category-list.activeCategories');
+        
+    if(currentLocation) {
+      popularPosts(currentLocation, radius, activeCats);
+    }
     
-    Meteor.call('getPopularPosts', request, function(e, r) {
-      var res;
-      res = (!e) ? r : e;
-
-      if (res.error) {
-        bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
-        return;
-      }
-
-      if (res.success && res.result) {
-        (res.result.length > 0) ? ins.getPopularData.set(res.result) : ins.getPopularData.set([]);
-        //console.info('Данные из метода getPopularPosts: ', res.result);
-      } else {
-        bz.ui.alert('Error ID: ' + res.error.errorId, {type:'error', timeout: 2000});
-      }
+    function popularPosts(currentLocation, radius, activeCats) {
+      var request = {};
       
-    });
-    
+      request = {
+        lat: currentLocation.latitude,
+        lng: currentLocation.longitude,
+        radius: radius,
+        activeCats: activeCats
+      };
+      
+      Meteor.call('getPopularPosts', request, function(e, r) {
+        var res;
+        res = (!e) ? r : e;
+
+        if (res.error) {
+          bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+          return;
+        }
+
+        if (res.success && res.result) {
+          (res.result.length > 0) ? ins.getPopularData.set(res.result) : ins.getPopularData.set([]);
+          //console.info('Данные из метода getPopularPosts: ', res.result);
+        } else {
+          bz.ui.alert('Error ID: ' + res.error.errorId, {type:'error', timeout: 2000});
+        }
+
+      });
+      
+    }
     
   }
 });

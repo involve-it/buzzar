@@ -231,26 +231,29 @@ Template.bzNewControlSearch.helpers({
           /**/
           var loc = Session.get('currentLocation');
           var radius = Session.get('bz.control.search.distance');
-          var box = getLatLngBox(loc.latitude, loc.longitude, radius);
           
-          var res = bz.cols.posts.find(
-              {'details.locations': {
+          if(loc) {
+            var box = getLatLngBox(loc.latitude, loc.longitude, radius);
+
+            var res = bz.cols.posts.find(
+                {'details.locations': {
                   $elemMatch: {
                     'obscuredCoords.lat': {$gte: box.lat1, $lte: box.lat2},
                     'obscuredCoords.lng': {$gte: box.lng1, $lte: box.lng2}
                   }},
-                'status.visible': bz.const.posts.status.visibility.VISIBLE
-              }
-          ).fetch();
-          /**/
-          
-          var ret = _.unique(res.map(function(item) {
-            
-            item.name = item.details.title;
-            return item;
-          }), function (item) {
-            return item.name
-          });
+                  'status.visible': bz.const.posts.status.visibility.VISIBLE
+                }
+            ).fetch();
+            /**/
+
+            var ret = _.unique(res.map(function(item) {
+
+              item.name = item.details.title;
+              return item;
+            }), function (item) {
+              return item.name
+            });
+          }
           
           return ret;
         }
