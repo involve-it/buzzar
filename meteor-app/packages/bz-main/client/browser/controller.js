@@ -11,3 +11,29 @@ InitFoundationOffCanvas = function() {
     }
   });
 };
+
+InitMmenuOffCanvas = function() {
+  var $menu = $("#bz-menu");
+  //var API = $menu.data( "mmenu" );
+
+  $menu.mmenu({
+    // options
+    "navbar": {
+      "add": false
+    },
+    "extensions": [
+      "menuShadow"
+    ]
+  }, {
+    // configuration
+    offCanvas: {
+      pageSelector: "#bz-body-wrapper",
+      classNames: {
+        selected: "active"
+      }
+    }
+  });
+};
+  
+  
+

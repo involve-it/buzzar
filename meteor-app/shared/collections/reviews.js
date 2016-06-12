@@ -96,11 +96,14 @@ if (Meteor.isServer) {
     });
   }
 }
+
 if (Meteor.isServer) {
-  Meteor.publish('bz.reviews.all', function(){
+  /* OLD CODE */
+  /*Meteor.publish('bz.reviews.all', function(){
     return bz.cols.reviews.find();
-  })
+  })*/
 }
+
 // reviews schema:
 /*
 if (Meteor.isServer && false) {

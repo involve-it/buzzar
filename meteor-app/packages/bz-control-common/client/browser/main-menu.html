@@ -10,13 +10,13 @@
 <template name="bzInnerMenuLeft">
   <div class="user-area" role="user-expand-menu">
       {{#if currentUser}}
-          <div class="user-area-box clearfix">
+          <div class="user-area-box clearfix link-menu">
               <a href="/profile" class="user-area-avatar">
                   <div class="bz-avatar" style="background-image: url({{#if getUser.image.imageUrl}} {{getUser.image.imageUrl}} {{else}} '/img/content/avatars/avatar-no.png' {{/if}})"></div>
                   {{> bzAvatarUserStatus currentStatusUser}}
               </a>
         
-              <div class="user-area-side">
+              <div class="user-area-side link-menu">
                 <a href="/profile" class="user-area-user-name"> {{ getUser.username }} </a>
                 <button class="button transparent btn-drop" role="expand-menu-trigger"><i class="fa fa-chevron-down"></i>
                 </button>
@@ -24,15 +24,27 @@
         </div>
       
         <div class="user-area-menu clearfix">
-          <ul class="off-canvas-list" role="expand-menu-dropdown">
-            {{> bzSignOutListMenu}}
-          </ul>            
+            <ul class="off-canvas-list" role="expand-menu-dropdown">
+              {{#if currentUser }}
+                  <li class="log-out link-menu">
+                      <a class="item item-icon-left" href="/sign-out">
+                          <i class="fa fa-sign-out"></i><span>{{ t9n 'MENU_SIGN_OUT' }}</span>
+                      </a>
+                  </li>
+              {{else}}
+                  <li class="log-out link-menu">
+                      <a class="item item-icon-left" href="/sign-in">
+                          <i class="fa fa-sign-in"></i><span>{{ t9n 'MENU_SIGN_IN' }}</span>
+                      </a>
+                  </li>
+              {{/if}}
+            </ul>            
         </div>
           
       {{else}}
     
           <div class="clearfix">
-              <div class="bz-logo-sign-in text-center">
+              <div class="bz-logo-sign-in text-center link-menu">
                   <div class="bz-logo">{{ t9n 'APP_NAME' }}</div>
                   
                   <a class="" href="/sign-in">
@@ -110,22 +122,7 @@
   {{/if}}
 </template>
 
-<template name="bzSignOutListMenu">
-  {{#if currentUser }}
-    <li class="log-out">
-      <a class="link-menu item item-icon-left" href="/sign-out">
-        <i class="fa fa-sign-out"></i><span>{{ t9n 'MENU_SIGN_OUT' }}</span>
-      </a>
-    </li>
-  {{else}}
-    <li class="log-out">
-      <a class="link-menu item item-icon-left" href="/sign-in">
-        <i class="fa fa-sign-in"></i><span>{{ t9n 'MENU_SIGN_IN' }}</span>
-      </a>
-    </li>
-  {{/if}}
-</template>
-
+<!--<template name="bzSignOutListMenu"></template>-->
 
 <template name="bzLeftMenuSelectLanguage">
     <div class="bz-left-menu-select-language only-menu-left">

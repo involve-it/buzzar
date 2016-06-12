@@ -248,13 +248,17 @@
   .bz-post-reviews {
     
         
-    .bz-post-review {
+    .bz-post-review-info {
+      
       .title-review {
         font-size: 22px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         font-family: "Roboto-light", "Roboto", sans-serif;
         color: lighten(@text-color-label, 10%);
       }
+    }
+    
+    .bz-post-review {
       
       .bz-reviews-list {
         
@@ -310,6 +314,7 @@
               width: 100%;
               overflow: hidden;
               .bz-review-post-message {
+                font-size: 14px;
                 color: rgb(63, 68, 82);
                 line-height: 21px;
               }
@@ -318,6 +323,10 @@
             .bz-review-post-body-footer {
               margin: 4px 0 0;
               color: lighten(@text-color-label, 10%);
+            }
+
+            .bz-review-post-icon-footer {
+              font-size: 14px;
             }
           }
         }
@@ -341,12 +350,18 @@
     
     .bz-post-leave-review {
       .border-radius(2px);
-      padding: 15px;
-      margin: 0 -16px -16px -16px;
-      background-color: #F5F5F5;
+      padding: 0;
+      margin-bottom: 25px;
+      //background-color: #F5F5F5;
 
       textarea {
         .border-radius(2px);
+        border: 2px solid rgba(222,222,222, .9);
+        
+        &:focus, &:active {
+          border:2px solid  rgba(190, 190, 190, .9);
+          outline: none;
+        }
       }
       
       .bz-control-reviews {

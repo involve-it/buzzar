@@ -103,6 +103,15 @@ Template.bzInnerMenuLeft.events({
       $("[role='user-expand-menu']").addClass("user-panel-expand");
       $("[role='expand-menu-dropdown']").parent().height(menuHeight);
     }
+  },
+  'click .link-menu > a': function(e, v) {
+    var menu = $("#bz-menu"),
+        API;
+
+    if(menu) {
+      API = menu.data('mmenu');
+      API.close();
+    }
   }
 });
 

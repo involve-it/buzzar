@@ -49,6 +49,9 @@ Meteor.methods({
   deleteComment: function(commentId){
     return bz.bus.commentsHandler.deleteComment(commentId,Meteor.userId());
   },
+  getCommentsCount: function(postId){
+    return bz.bus.commentsHandler.getCommentsCount(postId);
+  },
 
   //images
   addImage: function(request){
@@ -70,5 +73,10 @@ Meteor.methods({
   },
   addMessage: function(request){
     return bz.bus.messagesChatsHandler.addMessage(request);
+  },
+
+  //locations
+  addLocation: function(request){
+    return bz.bus.locationsHandler.addLocation(request);
   }
 });
