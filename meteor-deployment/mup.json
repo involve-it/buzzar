@@ -27,15 +27,15 @@
   "enableUploadProgressBar": true,
 
   // Application name (No spaces)
-  "appName": "buzzar",
+  "appName": "Shiners",
 
   // Location of app (local directory)
   "app": "~/projects/buzzar/meteor-app",
 
   // Configure environment
   "env": {
-    "PORT":80,
-    "ROOT_URL": "http://www.shiners.ru"
+    "PORT": 443,
+    "ROOT_URL": "https://shiners.mobi"
     //"MONGO_URL":"mongodb://localhost:27017/buzzar"
   },
 
@@ -43,7 +43,9 @@
   // before mup checks that, it will wait for no. of seconds configured below
   "deployCheckWaitTime": 120,
   "ssl": {
-    "pem": "~/projects/buzzar/meteor-app/private/shiners_ru.pem"
-    //"backendPort": 80
+    //"certificate": "./bundle.crt",
+    //"key": "./ssl.key",
+    "pem": "./ssl.pem",
+    "backendPort": 443
   }
 }

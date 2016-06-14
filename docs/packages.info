@@ -16,3 +16,5 @@ bz.ui.error('Your location is not defined, please set your location manually: <a
 
 to set settings in js:
 https://github.com/fourquet/meteor-package-settings
+
+meteor add force-ssl (for redirects)
