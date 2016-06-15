@@ -76,7 +76,7 @@ bz.bus.messagesChatsHandler = {
         arrUsers = bz.bus.usersHandler.userDbQuery(users);
         users = bz.bus.usersHandler.buildUserObject(arrUsers);
         lastMessages = bz.cols.messages.find({chatId: {$in: chatsId}, timestamp: {$in: lastMessageTs}}).fetch();
-        if (lastMessages && lastMessages.length===chats.length) {
+       // if (lastMessages && lastMessages.length===chats.length) {
           _.each(chats, function (item) {
             chat = {
               _id: item._id,
@@ -97,10 +97,10 @@ bz.bus.messagesChatsHandler = {
             chatsRet.push(chat);
           });
           ret = {success: true, result: chatsRet};
-        }else{
+        /*}else{
           //error
           ret={success:false, error: bz.const.errors.messagesChats.lastMessageCountNotEqualChatsCount};
-        }
+        }*/
       }else{
         //error
         ret={success: false, error: bz.const.errors.messagesChats.noOtherUsers};
