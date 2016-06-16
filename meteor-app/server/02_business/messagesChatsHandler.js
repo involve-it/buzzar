@@ -215,6 +215,55 @@ bz.bus.messagesChatsHandler = {
     }
     return ret;
   },
+  deleteMessages: function(messagesId){
+    var ret, messages, currentUser;
+    currentUser=Meteor.userId();
+    if(messagesId && Array.isArray(messagesId)&& messagesId.length>0){
+      if(currentUser){
+        messages=bz.cols.messages.find({_id:{ $in:messagesId},userId: currentUser}).fetch();
+        if(messages && messages.length>0){
+          bz.cols.messages.remove({_id:{ $in:messagesId},userId: currentUser});
+          ret={success: true}
+        }else{
+          //error
+          ret={success: false, error: bz.const.errors.global.dataNotFound};
+        }
+      }else{
+        //error not logged
+        ret={success: false, error: bz.const.errors.global.notLogged};
+      }
+    }else{
+      //error
+      ret={success: false, error: bz.const.errors.messagesChats.badInputIds};
+    }
+    return ret;
+  },
+  deleteChats: function(chatsId){
+    var ret,currentUser,chats;
+    currentUser=Meteor.userId();
+    if(chatsId && Array.isArray(chatsId)&& chatsId.length>0) {
+      if (currentUser) {
+        chats=_.map(bz.cols.chats.find({_id:{$in:chatsId},users:currentUser}).fetch(), function(item){
+          return item._id;
+        });
+        if(chats && chats.length>0){
+          bz.cols.messages.remove({chatId:{$in:chats}});
+          bz.cols.chats.remove({_id:{$in:chats}});
+          ret={success: true};
+        }else{
+          //error
+          ret={success: false, error: bz.const.errors.global.dataNotFound};
+        }
+      } else {
+        //error not logged
+        ret = {success: false, error: bz.const.errors.global.notLogged};
+      }
+    }else{
+      //error
+      ret={success: false, error: bz.const.errors.messagesChats.badInputIds};
+    }
+    return ret;
+  },
   validate: function(messageText){
     var ret;
     if(messageText){

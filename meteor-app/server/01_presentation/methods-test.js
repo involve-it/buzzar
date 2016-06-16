@@ -74,6 +74,12 @@ Meteor.methods({
   addMessage: function(request){
     return bz.bus.messagesChatsHandler.addMessage(request);
   },
+  deleteMessages: function(request){
+    return bz.bus.messagesChatsHandler.deleteMessages(request);
+  },
+  deleteChats: function(request){
+    return bz.bus.messagesChatsHandler.deleteChats(request);
+  },
 
   //locations
   addLocation: function(request){
