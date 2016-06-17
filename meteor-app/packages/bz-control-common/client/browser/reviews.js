@@ -8,10 +8,12 @@ Template.bzControlReviews.onCreated(function() {
   var instance = this;
   instance.getCommentsData = new ReactiveVar(false);
   
-  instance.subscribe('comments', Router.current().params._id, function() {
+  /*instance.subscribe('comments', Router.current().params._id, function() {
     //console.info('Data of comments is ready.', this);
     console.info('Data of comments: ', bz.cols.reviews.find({}).fetch());
-  });
+  });*/
+
+  instance.subscribe('aggregateOne', Router.current().params._id);
   
 });
 
@@ -21,38 +23,42 @@ Template.bzControlReviews.onRendered(function() {
 
 Template.bzControlReviews.helpers({
   subCom: function() {
+
+
+    
+    
+    
     
     var arrayCommentsSubscribe = bz.cols.reviews.find({}).fetch();
     
-    if(arrayCommentsSubscribe.length) {
+    /*if(arrayCommentsSubscribe.length) {
       _.map(arrayCommentsSubscribe, function(item) {
         var userId = item.userId;
         
+        
+        
         Meteor.call('getUser', userId, function(e, r){
-          
           var res, user;
           res = (!e) ? r : e;
-
           if (res.error) {
             bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
             return;
           }
-
           if (res.success && res.result) {
             user = {
               _id: res.result._id,
               image: res.result.image,
               username: res.result.username
             };
-
             item.user = user;
           }
-
         });
+        
+        
         
       });
       
-    }
+    }*/
     
     console.info("Данные перед return", arrayCommentsSubscribe);
     return arrayCommentsSubscribe.reverse();
