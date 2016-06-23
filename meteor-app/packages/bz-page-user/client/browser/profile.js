@@ -215,25 +215,81 @@ Template.profileSettings.events({
     event.preventDefault();
   },
   'click div.btn-edit-account a.js-cancel-btn':function(event, v){
+    var userId = Meteor.userId(),
+        innerObj = {},
+        usegObj = {};
 
+    Meteor.call('getUser', userId, function(e, r){
+
+      var res;
+      res = (!e) ? r : e;
+
+      if (res.error) {
+        bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+        return;
+      }
+
+      if(res.success && res.result) {
+        innerObj = res.result;
+
+        _.each(innerObj.profileDetails, function(item) {
+          usegObj[item.key] = {
+            value:  item.value,
+            policy: item.policy
+          };
+        });
+
+        //First name
+        v.$('input.bz-profile-first-name').val(usegObj.firstName.value);
+        
+        //Last name
+        v.$('input.bz-profile-last-name').val(usegObj.lastName.value);
+        
+        //City
+        v.$('input.bz-profile-city').val(usegObj.city.value);
+
+        //Phone number
+        v.$('input.bz-profile-phone-number').val(usegObj.phone.value);
+        
+        //Skype
+        v.$('input.bz-profile-skype').val(usegObj.skype.value);
+
+        //VK
+        v.$('input.bz-profile-vk-url').val(usegObj.vk.value);
+
+        //Twitter
+        v.$('input.bz-profile-twitter-url').val(usegObj.twitter.value);
+
+        //Facebook
+        v.$('input.bz-profile-facebook-url').val(usegObj.facebook.value);
+
+        //Policy phone
+        v.$('select.js-profile-phone-status').val(usegObj.phone.policy);
+
+        //Policy skype
+        v.$('select.js-profile-skype-status').val(usegObj.skype.policy);
+
+        //Policy vk
+        v.$('select.js-profile-vk-status').val(usegObj.vk.policy);
+
+        //Policy twitter
+        v.$('select.js-profile-twitter-status').val(usegObj.twitter.policy);
+
+        //Policy facebook
+        v.$('select.js-profile-facebook-status').val(usegObj.facebook.policy);
+        
+        //console.info(v.$('input.bz-profile-last-name').val());
+        //console.info(usegObj);
+      }
+      
+    });
+    
     v.$('div.edit-fields-user input.user-settings').addClass('disabled');
     v.$('div.edit-fields-user select').parent().addClass('disabled');
     v.$(event.currentTarget).addClass('disabled');
     v.$('div.btn-edit-account a.js-done-btn').addClass('disabled');
     v.$('div.btn-edit-account a.js-edit-btn').removeClass('disabled');
-    v.$('input.bz-profile-first-name').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'firstName'}).value);
-    v.$('input.bz-profile-last-name').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'lastName'}).value);
-    v.$('input.bz-profile-city').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'city'}).value);
-    v.$('input.bz-profile-phone-number').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'phone'}).value);
-    v.$('input.bz-profile-skype').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'skype'}).value);
-    v.$('input.bz-profile-vk-url').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'vk'}).value);
-    v.$('input.bz-profile-twitter-url').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'twitter'}).value);
-    v.$('input.bz-profile-facebook-url').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'facebook'}).value);
-    v.$('select.js-profile-phone-status').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'phone'}).policy);
-    v.$('select.js-profile-skype-status').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'skype'}).policy);
-    v.$('select.js-profile-vk-status').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'vk'}).policy);
-    v.$('select.js-profile-twitter-status').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'twitter'}).policy);
-    v.$('select.js-profile-facebook-status').val(bz.cols.profileDetails.findOne({userId: Meteor.userId(), key:'facebook'}).policy);
+    
   },
   'click #user-public-publications-police': function(e, v) {
     var checkbox = v.$(e.target), toggle;

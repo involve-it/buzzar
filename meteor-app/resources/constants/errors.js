@@ -42,13 +42,14 @@ bz.const.errors={
     destinationUserNotFound:{errorId:25},
     emptyTextMessage:{errorId:26},
     foulLanguageInMessage:{errorId:27},
-    chatNotFoundOrNotCreated:{errorId:28}
+    chatNotFoundOrNotCreated:{errorId:28},
+    badInputIds:{errorId:29}
   },
   //for locationsHandler
   locations:{
-    invalidPlaceType:{errorId:29},
-    invalidName:{errorId:30},
-    invalidCoords:{errorId:31}
+    invalidPlaceType:{errorId:30},
+    invalidName:{errorId:31},
+    invalidCoords:{errorId:32}
   },
   //global errors
   global:{
