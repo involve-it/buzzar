@@ -27,7 +27,7 @@
   "enableUploadProgressBar": true,
 
   // Application name (No spaces)
-  "appName": "Shiners",
+  "appName": "buzzar",
 
   // Location of app (local directory)
   "app": "~/projects/buzzar/meteor-app",
@@ -45,7 +45,7 @@
   "ssl": {
     //"certificate": "./bundle.crt",
     //"key": "./ssl.key",
-    "pem": "./ssl.pem",
+    "pem": "./ssl/shiners.mobi/bundle.pem",
     "backendPort": 443
   }
 }
