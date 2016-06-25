@@ -13,7 +13,7 @@ Template.bzControlReviews.onCreated(function() {
     console.info('Data of comments: ', bz.cols.reviews.find({}).fetch());
   });*/
 
-  instance.subscribe('aggregateOne', Router.current().params._id);
+  instance.subscribe('comments', Router.current().params._id);
   
 });
 
@@ -23,12 +23,6 @@ Template.bzControlReviews.onRendered(function() {
 
 Template.bzControlReviews.helpers({
   subCom: function() {
-
-
-    
-    
-    
-    
     var arrayCommentsSubscribe = bz.cols.reviews.find({}).fetch();
     
     /*if(arrayCommentsSubscribe.length) {
@@ -60,7 +54,7 @@ Template.bzControlReviews.helpers({
       
     }*/
     
-    console.info("Данные перед return", arrayCommentsSubscribe);
+    //console.info("DATA BEFORE RETURN", arrayCommentsSubscribe);
     return arrayCommentsSubscribe.reverse();
   },
   getComments: function() {
@@ -99,20 +93,30 @@ Template.bzControlReviews.helpers({
 Template.bzControlReviewItem.events({
   'click .js-delete-comment': function(e, v){
 
-    var request = this._id;
+    var request = this._id, event = e;
     
     Meteor.call('deleteComment', request, function(e, r) {
 
-      if(e) {
-        //error
-      } else if(r.success) {
-        // true
-      } else {
-        var errorId = r.error.errorId;
-        //TODO: Add error handler
+
+      var res, target, item;
+      res = (!e) ? r : e;
+
+      if (res.error && res.errorType) {
+        bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+        return;
       }
+
+      if (res.success) {
+        target = event.currentTarget;
+        if(target) {
+          item = target.closest('.bz-post-content');
+          item.remove();
+        }
+      } else {
+        bz.ui.alert('Error ID: ' + res.error.errorId, {type:'error', timeout: 2000});
+      }
+
       
-      console.info(r);
     });
     
     /* OLD CODE */
@@ -153,7 +157,7 @@ Template.bzControlAddReview.helpers({
     return Template.instance().buttonStateDisabled.get();
   },
   getCommentsCount: function() {
-    return '000';
+    return '';
   }
 });
 

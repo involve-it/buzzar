@@ -1,7 +1,9 @@
 /**
  * Created by xvolkx48 on 02.06.2016.
  */
-Meteor.publish('comments', function(postId){
+
+/* OLD CODE */
+/*Meteor.publish('comments', function(postId){
   check(postId, String);
   
   var post, time, fields, ret, newComments;
@@ -15,13 +17,13 @@ Meteor.publish('comments', function(postId){
   time = Date.now()- 5000;
   post = bz.cols.posts.findOne({_id:postId});
   
-  /*if(post){
+  /!*if(post){
     newComments = bz.cols.reviews.find({entityId:postId, dateTime: {$gte: time}},{fields: fields});
     ret=newComments;
   }else{
     ret=[];
   }
-  return ret;*/
+  return ret;*!/
 
   if(post){
     return [
@@ -32,7 +34,7 @@ Meteor.publish('comments', function(postId){
 
   return this.ready();
   
-});
+});*/
 
 /* USEGE to Notification */
 Meteor.publish('comments-my', function(){
@@ -58,7 +60,7 @@ Meteor.publish('comments-my', function(){
 });
 
 
-Meteor.publish('aggregateOne', function(postId) {
+Meteor.publish('comments', function(postId) {
   //check(postId, String);
   
   var subscribe = this,
