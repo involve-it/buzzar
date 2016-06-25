@@ -24,7 +24,10 @@ Meteor.publish('comments', function(postId){
   return ret;*/
 
   if(post){
-    return bz.cols.reviews.find({entityId:postId, dateTime: {$gte: time}},{fields: fields});
+    return [
+        bz.cols.reviews.find({entityId:postId, dateTime: {$gte: time}},{fields: fields}),
+        Meteor.users.find({_id: 'ZiEnFPeDzfxE3xmfN'})
+    ]
   }
 
   return this.ready();
@@ -52,4 +55,54 @@ Meteor.publish('comments-my', function(){
     ret=[];
   }
   return ret;
+});
+
+
+Meteor.publish('aggregateOne', function(postId) {
+  //check(postId, String);
+  
+  var subscribe = this,
+      reviewsFields = {},
+      handler = [],
+      time = Date.now()- 5000,
+      comments = null;
+
+  reviewsFields = {_id:1, text:1, dateTime:1, userId:1};
+
+  function publishUserData(userId){
+    var user = {}, userDoc, userFields = {_id:1, username:1, profile:1};
+    userDoc = Meteor.users.findOne({_id:userId}, {fields: userFields});
+    //handler[userId] = Meteor.Collection._publishCursor(userCursor, subscribe, 'users');
+    //console.log('Inside publishUserData, for the current user (Id=' + userId + ') comment count is: ', Meteor.users.find({_id:userId}, {fields: userFields}).fetch());
+    
+    //Create new user object
+    user._id = userDoc._id;
+    user.username = userDoc.username;
+    user.image = userDoc.profile.image;
+    
+    return user;
+  }
+
+  comments = bz.cols.reviews.find({entityId:postId, dateTime: {$gte: time}}, {fields: reviewsFields}).observeChanges({
+    added: function(id, comment) {
+      
+      comment.user = publishUserData(comment.userId);
+      subscribe.added('bz.reviews', id, comment);
+    },
+    
+    changed: function(id, fields) {
+      subscribe.changed('bz.reviews', id, fields);
+    },
+
+    removed: function(id) {
+      //handler[id] && handler[id].stop();
+      subscribe.removed('bz.reviews', id);
+    }
+  });
+
+  subscribe.ready();
+
+
+  subscribe.onStop(function() { comments.stop(); });
+  
 });

@@ -134,7 +134,7 @@ en = {
   //Profile
   PROFILE_USER_DETAILS :'User profile details',
   PROFILE_PERSONAL_SETTINGS :'Your personal settings',
-  PROFILE_EDIT_PROFILE: 'Edit your profile',
+  PROFILE_EDIT_PROFILE: 'Edit profile',
   PROFILE_ADDITIONAL_LINKS: 'Your external link',
   PROFILE_FACEBOOK_URL: 'Facebook',
   PROFILE_USER_LANGUAGE: 'Language',
@@ -156,7 +156,7 @@ en = {
 
   //Profile - edit
   PROFILE_EDIT_USER_AVATAR: 'Edit user avatar',
-  PROFILE_EDIT_PERSONAL_SETTINGS: 'Edit your personal settings',
+  PROFILE_EDIT_PERSONAL_SETTINGS: 'Edit personal settings',
   PROFILE_SAVE_AND_UPDATE: 'Save',
   PROFILE_USERNAME: 'Username',
   PROFILE_USER_FIRST_NAME: 'First name',

@@ -76,7 +76,7 @@ bz.bus.messagesChatsHandler = {
         arrUsers = bz.bus.usersHandler.userDbQuery(users);
         users = bz.bus.usersHandler.buildUserObject(arrUsers);
         lastMessages = bz.cols.messages.find({chatId: {$in: chatsId}, timestamp: {$in: lastMessageTs}}).fetch();
-        if (lastMessages && lastMessages.length===chats.length) {
+       // if (lastMessages && lastMessages.length===chats.length) {
           _.each(chats, function (item) {
             chat = {
               _id: item._id,
@@ -97,10 +97,10 @@ bz.bus.messagesChatsHandler = {
             chatsRet.push(chat);
           });
           ret = {success: true, result: chatsRet};
-        }else{
+        /*}else{
           //error
           ret={success:false, error: bz.const.errors.messagesChats.lastMessageCountNotEqualChatsCount};
-        }
+        }*/
       }else{
         //error
         ret={success: false, error: bz.const.errors.messagesChats.noOtherUsers};
@@ -212,6 +212,55 @@ bz.bus.messagesChatsHandler = {
     }else{
       //error not logged
       ret={success: false, error: bz.const.errors.global.notLogged};
+    }
+    return ret;
+  },
+  deleteMessages: function(messagesId){
+    var ret, messages, currentUser;
+    currentUser=Meteor.userId();
+    if(messagesId && Array.isArray(messagesId)&& messagesId.length>0){
+      if(currentUser){
+        messages=bz.cols.messages.find({_id:{ $in:messagesId},userId: currentUser}).fetch();
+        if(messages && messages.length>0){
+          bz.cols.messages.remove({_id:{ $in:messagesId},userId: currentUser});
+          ret={success: true}
+        }else{
+          //error
+          ret={success: false, error: bz.const.errors.global.dataNotFound};
+        }
+      }else{
+        //error not logged
+        ret={success: false, error: bz.const.errors.global.notLogged};
+      }
+    }else{
+      //error
+      ret={success: false, error: bz.const.errors.messagesChats.badInputIds};
+    }
+    return ret;
+  },
+  deleteChats: function(chatsId){
+    var ret,currentUser,chats;
+    currentUser=Meteor.userId();
+    if(chatsId && Array.isArray(chatsId)&& chatsId.length>0) {
+      if (currentUser) {
+        chats=_.map(bz.cols.chats.find({_id:{$in:chatsId},users:currentUser}).fetch(), function(item){
+          return item._id;
+        });
+        if(chats && chats.length>0){
+          bz.cols.messages.remove({chatId:{$in:chats}});
+          bz.cols.chats.remove({_id:{$in:chats}});
+          ret={success: true};
+        }else{
+          //error
+          ret={success: false, error: bz.const.errors.global.dataNotFound};
+        }
+      } else {
+        //error not logged
+        ret = {success: false, error: bz.const.errors.global.notLogged};
+      }
+    }else{
+      //error
+      ret={success: false, error: bz.const.errors.messagesChats.badInputIds};
     }
     return ret;
   },

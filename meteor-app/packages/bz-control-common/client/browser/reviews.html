@@ -39,7 +39,7 @@
         <div class="bz-user-avatar">
             {{#if user}}
                 <a href="/user/{{ user._id }}">
-                    <div class="bz-avatar" style="background-image: url({{ user.image.imageUrl }})"></div>
+                    <div class="bz-avatar" style="background-image: url({{#if user.image.imageUrl}} {{ user.image.imageUrl }} {{else}} {{ user.image.data }} {{/if}})"></div>
                 </a>
             {{else}}
                 <div class="bz-avatar" style="background-image: url('/img/content/avatars/avatar-no.png')"></div>
