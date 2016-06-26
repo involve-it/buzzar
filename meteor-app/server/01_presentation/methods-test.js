@@ -84,5 +84,8 @@ Meteor.methods({
   //locations
   addLocation: function(request){
     return bz.bus.locationsHandler.addLocation(request);
+  },
+  reportLocationTest: function(report){
+    return bz.bus.locationsHandler.reportLocation(report)
   }
 });
