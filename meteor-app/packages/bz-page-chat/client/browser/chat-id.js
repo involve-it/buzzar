@@ -2,6 +2,19 @@
  * Created by ashot on 5/20/15.
  */
 
+Template.bzChatId.onCreated(function() {
+  var instance = this;
+  //this.getMessagesData = new ReactiveVar(false);
+  //friendUserId = Router.current().params.userId;
+  currentUser = Meteor.user();
+
+  instance.buttonStateDisabled = new ReactiveVar(true);
+  
+  //here init subscribe messages-new
+  instance.subscribe('messages-new', function() {})
+  
+});
+
 Template.bzChatId.onRendered(function() {
   
   var userAgent = navigator.userAgent;
@@ -53,18 +66,9 @@ Template.bzChatId.onRendered(function() {
 
 });
 
-
 Template.bzChatId.onDestroyed(function() {
   $(window).off('resize');
 });
-
-
-Template.bzChatId.onCreated(function() {
-  //this.getMessagesData = new ReactiveVar(false);
-  currentUser = Meteor.user();
-  //friendUserId = Router.current().params.userId;
-});
-
 
 Template.bzChatId.rendered = function () {
 //todo: Don't forget turn on:
@@ -117,6 +121,7 @@ Template.bzChatId.events({
           });
           
           v.$('#message-input').val('');
+          
         }//end if
     }
   },
@@ -168,15 +173,23 @@ Template.bzChatId.events({
   }
 });
 
-
-Template.bzChatId.onCreated(function() {
-  this.buttonStateDisabled = new ReactiveVar(true);
-});
-
 Template.bzChatId.helpers({
   buttonStateDisabled: function() {
     return Template.instance().buttonStateDisabled.get();
   },
+
+  getSubscribeNewMessages: function() {
+    var arrayNewMessagesSubscribe = bz.cols.messages.find({}).fetch();
+    
+    console.info("ДАННЫЕ NewMessagesSubscribe: ", arrayNewMessagesSubscribe);
+
+    Meteor.setTimeout(function() {
+      scrollMessages();
+    }, 0);
+    
+    return arrayNewMessagesSubscribe;
+  },
+  
   getMessages: function (a, b) {
     /*var ins = Template.instance(),
         chatID = Router.current() && Router.current().params.chatId,
@@ -256,4 +269,8 @@ Template.bzMessageToolbar.helpers({
   getFriendAvatarUrl: function(){
       //return this.user.profile && this.user.profile.image && this.user.profile.image.data || "/img/content/avatars/avatar-no.png";
   }
+});
+
+Template.bzMessageToolbar.onDestroyed(function() {
+ delete Session.keys['userOtherParty'];
 });
