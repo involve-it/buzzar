@@ -181,7 +181,7 @@ Template.bzChatId.helpers({
   getSubscribeNewMessages: function() {
     var arrayNewMessagesSubscribe = bz.cols.messages.find({}).fetch();
     
-    console.info("ДАННЫЕ NewMessagesSubscribe: ", arrayNewMessagesSubscribe);
+    //console.info("ДАННЫЕ NewMessagesSubscribe: ", arrayNewMessagesSubscribe);
 
     Meteor.setTimeout(function() {
       scrollMessages();
