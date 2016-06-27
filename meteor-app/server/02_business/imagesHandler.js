@@ -4,6 +4,7 @@
 bz.bus.imagesHandler = {
   getPhotos: function(photosId){
     var ret, arrPhoto;
+    check(photosId, [String]);
     arrPhoto=bz.cols.images.find({_id: {$in: photosId}}).fetch();
     ret=arrPhoto;
     return ret;
@@ -14,6 +15,7 @@ bz.bus.imagesHandler = {
   },
   deleteImage: function(url){
     var ret, image;
+    check(url, String);
     if (bz.const.RegExp.imageUrlRegEx.test(url)) {
       image=bz.cols.images.find({$or:[{data:url},{thumbnail: url}]});
       if(image){

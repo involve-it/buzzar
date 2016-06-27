@@ -13,7 +13,7 @@ Meteor.publish('messages-new', function(){
     keyMessage: 1,
     seen:1
   };
-  currentUser=this.userId();
+  currentUser=this.userId;
   time= Date.now()-5000;
   if (currentUser){
     messages= bz.cols.messages.find({$or: [{userId:currentUser}, {toUserId:currentUser}], timestamp: {$gte: time}},{fields: fields});
