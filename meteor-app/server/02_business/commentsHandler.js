@@ -4,9 +4,17 @@
 bz.bus.commentsHandler = {
   getComments: function (request) {
     var ret={}, postId,take,skip, option, comments,commentsRet, users;
+    check(request,{
+      postId: String,
+      take: Match.Maybe(Number),
+      skip: Match.Maybe(Number)
+    });
     postId=request.postId;
     if(postId){
       take=request.take;
+      if(take){
+        take++;
+      }
       skip=request.skip;
       option={ sort:{dateTime:-1},skip: skip, limit: take};
       comments=bz.cols.reviews.find({entityId: postId}, option).fetch();
@@ -24,6 +32,7 @@ bz.bus.commentsHandler = {
   },
   getCommentsCount: function(postId){
     var ret, post, count;
+    check(postId, String);
     post=bz.cols.posts.findOne({_id:postId});
     if(post){
       count=bz.cols.reviews.find({entityId:postId}).count();
@@ -59,6 +68,11 @@ bz.bus.commentsHandler = {
   },
   addComment: function(request, currentUserId){
     var ret,commentText, postId, now, post, comment, commentAdd;
+    check(currentUserId, String);
+    check(request,{
+      comment:String,
+      postId: String
+    });
     now=Date.now();
     commentText=request.comment;
     postId=request.postId;
@@ -96,6 +110,8 @@ bz.bus.commentsHandler = {
   },
   deleteComment: function(commentId, currentUserId){
     var ret, comment;
+    check(commentId, String);
+    check(currentUserId, String);
     comment=bz.cols.reviews.findOne({_id: commentId});
     if(comment){
       if(comment.userId===currentUserId){
