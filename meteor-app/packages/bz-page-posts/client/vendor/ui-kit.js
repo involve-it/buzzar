@@ -10,7 +10,7 @@ bz.ui.initUiKit = function () {
 
     toast(
       'https://s3-us-west-1.amazonaws.com/buzzar/v0.5/public/vendor/shepherd/tether.js',
-      'http://github.hubspot.com/drop/dist/js/drop.js',
+      '/libs/js/drop.js',
       function () {
 
         var _Drop, DropTooltip;
