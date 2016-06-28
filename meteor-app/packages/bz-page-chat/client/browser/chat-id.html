@@ -6,9 +6,17 @@
         {{> bzMessageToolbar }}
         
         <div class="bz-messages-container">
+            
             {{#each this}}
                 {{> chatMessage }}
             {{/each}}
+            
+            {{#with getSubscribeNewMessages}}
+                {{#each this}}
+                    {{> chatMessage }}
+                {{/each}}
+            {{/with}}
+            
         </div>
         
         <div class="bz-user-inputs-messages">

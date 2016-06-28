@@ -5,11 +5,11 @@
 Template.bzLinkLocationName.onRendered(function() {
   
   Meteor.setTimeout(function() {
-    $(document).on('opened.fndtn.reveal', '[data-reveal]', function () {
+    $(document).on('open.fndtn.reveal', '[data-reveal]', function () {
       $('body').css('overflow', 'hidden')
     });
 
-    $(document).on('closed.fndtn.reveal', '[data-reveal]', function () {
+    $(document).on('close.fndtn.reveal', '[data-reveal]', function () {
       $('body').css('overflow', '')
     });
   }, 1000);
