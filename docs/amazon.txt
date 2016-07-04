@@ -15,3 +15,9 @@
     }
   ]
 }
+
+arn:aws:s3:::shiners/*/public/*
+
+Cognito:
+Pool Id us-east-1_ckxes1C2W
+Pool ARN arn:aws:cognito-idp:us-east-1:333889846695:userpool/us-east-1_ckxes1C2W
