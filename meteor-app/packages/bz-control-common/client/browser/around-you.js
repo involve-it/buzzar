@@ -70,8 +70,9 @@ Template.bzAroundYou.helpers({
           
         });
       //}
-
+      /*CONSOLE CLEAR
       console.log('searchPosts');
+      */
       return ins.getSearchData;
     }
     

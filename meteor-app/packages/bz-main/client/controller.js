@@ -13,7 +13,9 @@ loggedInUserLazyLoad = function () {
     var initializing = true;
     bz.cols.messages && bz.cols.messages.find({toUserId: userId, seen: false}).observeChanges({
       added: function (id, doc) {
+        /*CONSOLE CLEAR
         console.log(id);
+        */
         if (Meteor.userId() === doc.toUserId) {
 
           if (!initializing) {

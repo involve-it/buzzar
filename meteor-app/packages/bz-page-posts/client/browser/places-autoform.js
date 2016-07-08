@@ -116,8 +116,10 @@ Template.postsPlacesAutoform.events({
 
 function callbackNearbySearch(results, status) {
   //console.log('results: ', results);
+  /*CONSOLE CLEAR
   console.log('status: ', status);
   console.log('length: ', results.length);
+  */
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
       bz.runtime.maps.places._collection.insert(results[i]);

@@ -134,9 +134,9 @@ SavePostFromView = function (v, data) {
     Meteor.call('editPost', newPost, function(e, r) {
       var result = {},
           imgArray = imagesArrayReactive.get();
-      
+      /*CONSOLE CLEAR
       console.info('DATA: ', r);
-      
+      */
       (!e)? result = r : result = e;
       
       if(result && result.error) {

@@ -96,7 +96,9 @@ Template.postDetailsDetailsCommon.events({
     // show modal with map here:
     var coords = this.coords.lat + ', ' + this.coords.lng;
     //prompt('coords: ', coords);
+    /*CONSOLE CLEAR
     console.log('coords: ' + coords);
+  */
   }
 });
 
