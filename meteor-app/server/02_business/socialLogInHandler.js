@@ -3,7 +3,7 @@
  */
 bz.bus.socialLogInHandler={
   socialLogIn: function(request){
-    var user,ret,email, name, social_id, platform, profile;
+    var user,ret,email, name, social_id, platform, profile, password;
     check(request,{
       email: Match.Maybe(String),
       name: String,
@@ -14,21 +14,24 @@ bz.bus.socialLogInHandler={
     name=request.name;
     social_id= request.id;
     platform=request.platform;
-    user=Meteor.users.findOne({SSO_id: social_id});
+    password=_.guid();
+    user=Meteor.users.findOne({social_id: social_id});
     if(!user) {
       //create account
       profile = AccountsEntry.settings.defaultProfile || {};
       user = Accounts.createUser({
         email: email,
+        password: password,
         social_id: social_id,
         profile:_.extend(profile,{
           platform: platform,
           name:name
         })
       });
-      if(user){
-        ret={success:true, result: user}
-      }
+      ret={success:true, result: password};
+    }else{
+      Meteor.users.update({social_id: social_id},{$set: {password: password}});
+      ret={success:true, result: password};
     }
     return ret;
   }
