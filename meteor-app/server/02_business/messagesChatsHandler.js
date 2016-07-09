@@ -4,6 +4,7 @@
 bz.bus.messagesChatsHandler = {
   getChat: function(chatId){
     var ret, currentUser, chat, chatRet;
+    check(chatId, String);
     currentUser=Meteor.userId();
     if(currentUser){
       chat=bz.cols.chats.findOne(chatId);
@@ -32,8 +33,15 @@ bz.bus.messagesChatsHandler = {
   },
   getChats: function(request){
     var ret, skip,take,chats,arrChats,option, currentUser;
+    check(request,{
+      take: Match.Maybe(Number),
+      skip: Match.Maybe(Number)
+    });
     skip=request.skip;
     take=request.take;
+    if (take){
+      take++;
+    }
     currentUser=Meteor.userId();
     option={sort:{lastMessageTs:-1},skip: skip, limit: take};
     if (currentUser){
@@ -112,8 +120,16 @@ bz.bus.messagesChatsHandler = {
   },
   getMessages: function(request){
     var messages,arrMessages,ret, take,skip,chatId,chat, currentUser, option;
+    check(request,{
+      chatId: String,
+      take: Match.Maybe(Number),
+      skip: Match.Maybe(Number)
+    });
     skip=request.skip;
     take=request.take;
+    if (take){
+      take++;
+    }
     chatId=request.chatId;
     currentUser=Meteor.userId();
     chat=bz.cols.chats.findOne({_id: chatId});
@@ -153,6 +169,11 @@ bz.bus.messagesChatsHandler = {
   },
   addMessage: function(request){
     var ret,chat, chatId, currentUser, toUser, message,messageId,keyMessage,text, toUserId, type, validate, now;
+    check(request,{
+      message: String,
+      type: Match.Maybe(String),
+      destinationUserId: String
+    });
     now=Date.now();
     text=request.message;
     type=request.type;
@@ -217,6 +238,7 @@ bz.bus.messagesChatsHandler = {
   },
   deleteMessages: function(messagesId){
     var ret, messages, currentUser;
+    check(messagesId,[String]);
     currentUser=Meteor.userId();
     if(messagesId && Array.isArray(messagesId)&& messagesId.length>0){
       if(currentUser){
@@ -240,6 +262,7 @@ bz.bus.messagesChatsHandler = {
   },
   deleteChats: function(chatsId){
     var ret,currentUser,chats;
+    check(chatsId,[String]);
     currentUser=Meteor.userId();
     if(chatsId && Array.isArray(chatsId)&& chatsId.length>0) {
       if (currentUser) {

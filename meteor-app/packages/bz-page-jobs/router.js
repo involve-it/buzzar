@@ -10,7 +10,9 @@ Router.map(function () {
     fastRender: true,
     data: function() {
       var path = this.route.path();
+      /*CONSOLE CLEAR
       console.log(path);
+      */
       return {
         pageOptions: {
           logoType: '/img/logo/logo-home-logotype.png',

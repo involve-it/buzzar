@@ -161,12 +161,16 @@ BlobImageClass = class extends ImageClass {
     return new Promise((resolve, reject)=> {
       blob.name = file.name;
       if (error) {
+        /*CONSOLE CLEAR
         console.error(error);
+        */
         reject(error);
       } else {
         uploader.send(blob, (error1, downloadUrl)=> {
           if (error1) {
+            /*CONSOLE CLEAR
             console.error(error1);
+            */
             if (error1 && error1.error === 'Upload denied') {
               switch (error1.reason) {
                 case 'File exceeds allowed size of 5 MB':
@@ -193,7 +197,9 @@ BlobImageClass = class extends ImageClass {
   }
 
   toObject() {
+  /*CONSOLE CLEAR
     console.log('toObject');
+  */
   }
 
   _getDataUriFromBlobPromise(blob) {
@@ -235,12 +241,16 @@ RandomImageClass = class extends ImageClass {
     return new Promise((resolve, reject)=> {
       error = uploader.validate(file);
       if (error) {
+        /*CONSOLE CLEAR
         console.error(error);
+        */
         reject(error);
       } else {
         uploader.send(blob, (error1, downloadUrl)=> {
           if (error1) {
+            /*CONSOLE CLEAR
             console.error(error1);
+            */
             if (error1 && error1.error === 'Upload denied') {
               switch (error1.reason) {
                 case 'File exceeds allowed size of 5 MB':
@@ -295,12 +305,16 @@ UrlImageClass = class extends ImageClass {
       blob.name = file.name;
       error = uploader.validate(file);
       if (error) {
+        /*CONSOLE CLEAR
         console.error(error);
+        */
         reject(error);
       } else {
         uploader.send(blob, (error1, downloadUrl)=> {
           if (error1) {
+            /*CONSOLE CLEAR
             console.error(error1);
+            */
             if (error1 && error1.error === 'Upload denied') {
               switch (error1.reason) {
                 case 'File exceeds allowed size of 5 MB':
@@ -377,16 +391,22 @@ ThumbnailImageClass = class extends ImageClass {
       file = this, error = uploader.validate(file), blob = file.blob;
     return new Promise((resolve, reject)=> {
       if (error) {
+        /*CONSOLE CLEAR
         console.error(error);
+      */
       }
       blob.name = file.name;
       if (error) {
+        /*CONSOLE CLEAR
         console.error(error);
+        */
         reject(error);
       } else {
         uploader.send(blob, (error1, downloadUrl)=> {
           if (error1) {
+            /*CONSOLE CLEAR
             console.error(error1);
+            */
             if (error1 && error1.error === 'Upload denied') {
               switch (error1.reason) {
                 case 'File exceeds allowed size of 5 MB':
