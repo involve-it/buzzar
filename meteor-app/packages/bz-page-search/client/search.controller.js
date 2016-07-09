@@ -491,13 +491,15 @@ setLocationToSessionFromData = function (locName, data, sessionName) {
           name: locName,
           coords: coords
         });
+        /*CONSOLE CLEAR
         console.info('5.1');
+        */
         Session.set(sessionName, res);
       } else {
         bz.help.maps.getCurrentLocation(function (loc) {
-          
+          /*CONSOLE CLEAR
           console.info('5.2');
-          
+          */
           res = createLocationFromObject({
             name: locName,
             coords: loc

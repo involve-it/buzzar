@@ -4,7 +4,10 @@
 const SESSION_NAME = 'bz.common.uploadImageSrc';
 
 Template.uploadImageModal.onDestroyed(function () {
+/*CONSOLE CLEAR
   console.log('uploadImageModal destroyed');
+*/
+
 });
 Template.uploadImageModal.onRendered(function () {
   setTimeout(function () {

@@ -34,7 +34,9 @@
     margin: 0 0 20px 0;
 
     &.selectedText {
-      display: inline-block;
+      //display: inline-block;
+      display: block;
+      text-align: center;
       background-color: rgba(30, 180, 210, .15);
       color: rgba(8, 143, 188, 1);
       padding: 10px 15px;
@@ -57,7 +59,8 @@
   }
 
   .bz-three-items {
-
+    
+    
     .bz-ui {
       /**/
       &.bz-three-cards {
@@ -71,6 +74,17 @@
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
 
+        &.two {
+          margin-left: -0.75em;
+          margin-right: -0.75em;
+
+          .card {
+            width: ~"calc(49.85% - 1.5em)";
+            margin-left: 0.75em;
+            margin-right: 0.75em;
+          }
+        }
+        
         &.three {
           margin-left: -0.75em;
           margin-right: -0.75em;
@@ -283,11 +297,20 @@
   .bz-grid {
     position: relative;
     
+    &.row {
+      width: 100%;
+      max-width: none;
+    }
+    
     .bz-sidebar {
 
       /*&.ui.sticky.fixed + div {
         margin-top: 25px;
       }*/
+      
+      &.ui {
+        margin-right: -2px;
+      }
       
       .bz-magellan-menu {
         background-color: rgba(255,255,255, 1);
@@ -297,7 +320,7 @@
           margin-top: 15px;
           
           p {
-            font-size: 18px;
+            font-size: 16px;
             text-align: left;
             color: #59636b;
             margin-bottom: 5px;
@@ -311,8 +334,15 @@
                 margin-right: 0;
               }
               i {
-                font-size: 30px;
+                font-size: 37px;
                 color: rgba(89,99,107,1);
+                
+                &.fa-facebook-official {
+                  color: rgba(59,89,152, 1);
+                }
+                &.fa-vk {
+                  color: rgba(80, 114, 152, 1);
+                }
               }
             }
           }
@@ -357,12 +387,25 @@
     
     .bz-mains {
       
+      > div {
+        margin-bottom: 50px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      
+      /*.bz-about-how-it-works,
+      .bz-about-what-useful,
+      .bz-about-who-are-we,
+      .bz-about-help,
+      .bz-about-support-us {}*/
+      
       .bz-about-how-it-works {
 
         .bz-about-how-it-works-wrapper {
-          margin-bottom: 45px;
+          margin-bottom: 25px;
           overflow: hidden;
-
+          
           /*three*/
         }
 
@@ -371,10 +414,11 @@
         }
         
         .bz-three-items {
+          margin-bottom: 25px;
           
           /*How it works*/
           &.bz-it-works {
-            margin-top: 30px;
+            /*margin-top: 30px;*/
           }
           
           /*Random target, random posts*/
@@ -459,7 +503,7 @@
 
           /*what useful*/
           &.bz-what-useful {
-            margin-top: 30px;
+            /*margin-top: 30px;*/
           }
 
           &.bz-what-useful-description {

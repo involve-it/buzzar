@@ -34,7 +34,9 @@ Template.postsNewUrl.events({
       v.$('.js-post-details-link').click();
       //v.$('.js-scan-url').click();
     } else {
+      /*CONSOLE CLEAR
       console.log('keydown');
+      */
       if(isUrl(url)) {
         v.$('.js-post-details-link').removeClass('disabled');
       }
@@ -100,7 +102,9 @@ Template.postsNewUrl.events({
         
         //Images
         if(result && result.images.length > 0) {
-          console.info('Есть фото: ', result.images.length > 0);          
+          /*CONSOLE CLEAR
+          console.info('Есть фото: ', result.images.length > 0);
+        */
         }
         
         
@@ -112,11 +116,11 @@ Template.postsNewUrl.events({
 
         //doneCloseChooseImageDialog(bb, attachments)
         
-        
+        /*CONSOLE CLEAR
         console.info('DATA TEMPLATE: ', self.data);
         console.info('result: ', result);
         console.info('img: ', attachments);
-
+        */
         
       } else {
         bz.ui.error('Что-то пошло не так! Пожалуйста, ознакомьтесь с одной из возможных проблем. --ссылка на раздел справки--');

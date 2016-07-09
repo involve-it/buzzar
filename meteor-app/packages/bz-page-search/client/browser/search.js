@@ -24,7 +24,9 @@ Template.bzDistance.rendered = function () {
 Template.bzDistance.events({
   'change #selectDis': function (e) {
     var $this = $(this);
+    /*CONSOLE CLEAR
     console.log($this);
+  */
   },
   'click #select-selectDis li': function(e) {
     var target = $(e.target);
@@ -33,7 +35,9 @@ Template.bzDistance.events({
     }
 
     var ret = target.text();
+    /*CONSOLE CLEAR
     console.log(ret);
+    */
   },
   'click #select-selectDis11 li': function(e, v){
     var distStr = e.target.dataset.value,
