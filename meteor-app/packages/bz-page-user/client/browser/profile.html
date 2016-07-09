@@ -90,7 +90,8 @@
                         <div class="bz-user-profile-link">
                             <div class="small-12 bz-input-label columns">{{ t9n 'PROFILE_DIRECT_LINK_TO_MY_PROFILE' }}</div>
                             <div class="small-12 bz-input-result columns">
-                                <input class="bz-profile-user-link js-bz-profile-user-link-select" autocomplete="off" type="text" readonly="readonly" value="{{getUserProfileLink}}">
+                                <!--<input class="bz-profile-user-link js-bz-profile-user-link-select" autocomplete="off" type="text" readonly="readonly" value="{{getUserProfileLink}}">-->
+                                <a class="bz-profile-user-link js-bz-profile-user-link-select" title="{{ t9n 'PROFILE_DIRECT_LINK_TO_MY_PROFILE' }}" href="{{getUserProfileLink}}">{{getUserProfileLink}}</a>
                             </div>
                         </div>
                     </div>
