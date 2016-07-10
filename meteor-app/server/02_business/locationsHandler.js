@@ -4,6 +4,12 @@
 bz.bus.locationsHandler = {
   addLocation: function(request){
     var ret, coords, placeType,name, public,currentUser,location, locId;
+    check(request,{
+      public: Boolean,
+      Coords:{lat:Number, lng: Number},
+      placeType:String,
+      name: String
+    });
     currentUser=Meteor.userId();
     public=request.public;
     coords=request.Coords;
@@ -40,6 +46,25 @@ bz.bus.locationsHandler = {
         ret={success: false, error: bz.const.errors.locations.invalidCoords};
       }
     }else{
+      //error not logged
+      ret={success: false, error: bz.const.errors.global.notLogged};
+    }
+    return ret;
+  },
+
+  reportLocation: function(report){
+    var posts, currentUserId, ret;
+    check(report,{lat: Number,lng: Number});
+    currentUserId = Meteor.userId();
+    if (currentUserId){
+      posts = bz.cols.posts.find({userId: currentUserId}).fetch();
+      if (posts) {
+        bz.bus.proximityHandler.processLocationReport(posts, report.lat, report.lng);
+        ret={success: true}
+      }else{
+        ret={success: true}
+      }
+    } else {
       //error not logged
       ret={success: false, error: bz.const.errors.global.notLogged};
     }

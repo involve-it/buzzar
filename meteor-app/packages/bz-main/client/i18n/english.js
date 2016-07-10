@@ -211,10 +211,11 @@ en = {
 
   /*PAGE ABOUT US*/
   HEADER: {
-    'PARAG_1': 'Darkness is the absence of light. Knowledge is the light. Knowledge about who is around us, what languages they speak, how they live, what is offered and what we believe. And we believe this knowledge will make the world around brighter and clearer.',
-    'PARAG_2': 'But Shiners are not just for the sake of curiosity. They serve us as live ads around. You install Shiners and your ad gets a new source of views - people who are nearby! Imagine a virtual card, but you don’t wear it in your wallet but in your mobile phone. And this card is being seen by not only selected users but all those who are next to you! We can be searched in Google and other social networks as well. That’s why your ad turns to separate web page being shown the entire Internet if desired.',
-    'PARAG_3': 'There is a number of Shiners around us. If some of them are not shining, it is simply a matter of time!',
-    'PARAG_4': 'SHINERS GLAD TO WELCOME YOU! We will introduce you to the people, places and events around! Use the Internet for live meetings!'
+    /* why */ 'PARAG_1': 'Knowledge is light. Knowledge about who is around us, what languages they speak, how they live, what they offer and what they believe in. Knowledge, that can let people meet instantly and with no boundaries. Knowledge, that will make World brighter and better, because it will give opportunities - and this is what progress is about!',
+    /* how */ 'PARAG_2': ' Today\'s mobile geolocation technologies offer us a unique way of exchanging information with people around us - whatever is important and requires an immediate live meeting can be "attached" to real places and people and constantly emit bites of data.. like fireflies emit lights - not too far, just enough to be seen around.',
+    // 'PARAG_2': 'But Shiners are not just for the sake of curiosity. They serve us as live ads around. You install Shiners and your ad gets a new source of views - people who are nearby! Imagine a virtual card, but you don’t wear it in your wallet but in your mobile phone. And this card is being seen by not only selected users but all those who are next to you! We can be searched in Google and other social networks as well. That’s why your ad turns to separate web page being shown the entire Internet if desired.',
+    'PARAG_3': 'Imagine a virtual business card, but unlike the business card, you carry it in your cell phone, and it is visible to everyone around you.',
+    // 'PARAG_4': 'SHINERS GLAD TO WELCOME YOU! We will introduce you to the people, places and events around! Use the Internet for live meetings!'
   },
 };
 T9n.map('en', en);

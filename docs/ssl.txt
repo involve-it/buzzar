@@ -1,0 +1,55 @@
+ssh root@188.225.37.147
+3RqjPogt
+
+work with this dir:
+/root/ssl
+
+running mupx deploy from here:
+ssh webuser@msg.webhop.org
+S!ren
+~/projects/_mup/buzzar/
+(see mup.json)
+
+
+
+sudo iptables-save -c
+
+
+port is open (tried port 443, no ssl, then open from browser shiners.mobi:443, works)
+
+try:
+curl https://shiners.mobi
+res:
+curl: (7) Failed to connect to shiners.mobi port 443: Connection refused
+nc -vz 188.225.37.147 443
+nc: connect to 188.225.37.147 port 443 (tcp) failed: Connection refused
+lsof -i :443
+COMMAND  PID USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+exe     6505 root    5u  IPv6 1644287      0t0  TCP *:https (LISTEN)
+
+nmap -p443 188.225.37.147
+Starting Nmap 6.40 ( http://nmap.org ) at 2016-06-26 04:49 UTC
+Nmap scan report for . (188.225.37.147)
+Host is up.
+PORT    STATE    SERVICE
+443/tcp filtered https
+
+
+try:
+ps aux
+res:
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root      6505  0.0  0.2 184468 11532 ?        Sl   04:45   0:00 docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 443 -container-ip 172.17.0.4 -container-port 443
+
+if nothing helps try stud explicitly:
+http://alexnj.com/blog/configuring-a-positivessl-certificate-with-stud/
+
+* checking crt+key:
+openssl x509 -noout -modulus -in bundle.crt | openssl md5; openssl rsa -noout -modulus -in server.key | openssl md5
+
+
+FINAL working version
+has problems (see https://www.ssllabs.com/ssltest/analyze.html?d=shiners.mobi)
+
+-OpenSSL Padding Oracle vuln.(CVE-2016-2107), https://blog.cloudflare.com/yet-another-padding-oracle-in-openssl-cbc-ciphersuites/
+-This server's certificate chain is incomplete. Grade capped to B.

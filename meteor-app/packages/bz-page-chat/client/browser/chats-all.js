@@ -152,6 +152,7 @@ Template.chatMessage.helpers({
    }
 });
 
-Template.chatMessage.onDestroyed(function() {
+/* OLD CODE */
+/*Template.chatMessage.onDestroyed(function() {
   delete Session.keys['userOtherParty'];
-});
+});*/

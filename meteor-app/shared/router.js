@@ -37,9 +37,11 @@ Router.map(function () {
 Meteor.startup(function () {
   baseController = RouteController.extend({
     onStop: function () {
+      /*CONSOLE CLEAR
       console.log('baseController - route stopped: ' + new Date());
+      */
       //bz.ui.spinnerAdd('body', true);
-    },
+    }
     /*onAfterAction: function () {
       bz.ui.spinnerRemove('body', true);
     }*/

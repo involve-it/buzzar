@@ -4,9 +4,9 @@
         
         <div class="bz-top-header">
             <div class="bz-header-description">
+                <h4 class="title">Единственный сервис, предлагающий живое присутсвие!</h4>
                 <p>{{t9n 'HEADER.PARAG_1'}}</p>
                 <p>{{t9n 'HEADER.PARAG_2'}}</p>
-                <p>{{t9n 'HEADER.PARAG_3'}}</p>
                 <p></p>
             </div>
             <!--<div class="bz-header-description">
@@ -16,7 +16,7 @@
         
         <div class="bz-about-content">
             <div class="bz-grid row">
-                <div class="ui sticky bz-sidebar large-4 columns">
+                <div class="ui sticky bz-sidebar large-3 columns">
                     <div class="bz-magellan-menu" >
                         <dl class="sub-nav">
                             <dd><a href="#howItWorks">Как это работает?</a></dd>
@@ -27,10 +27,11 @@
                             <dd class="bz-we-are-at-social">
                                 <p>Мы в соц.сетях</p>
                                 <ul class="inline-list">
-                                    <li class="bz-fb"><i class="fa fa-facebook-official" aria-hidden="true"></i></li>
-                                    <li class="bz-in"><i class="fa fa-instagram" aria-hidden="true"></i></li>
-                                    <li class="bz-vk"><i class="fa fa-vk" aria-hidden="true"></i></li>
-                                    <li class="bz-tw"><i class="fa fa-twitter" aria-hidden="true"></i></li>
+                                    <!--/ habrahabr.ru/post/282880/ don't use target="_blank" /-->
+                                    <li class="bz-fb"><a href="//facebook.com/shinersapp"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                                    <li class="bz-vk"><a href="//vk.com/shinersnews"><i class="fa fa-vk" aria-hidden="true"></i></a></li>
+                                    <!--<li class="bz-in"><i class="fa fa-instagram" aria-hidden="true"></i></li>-->
+                                    <!--<li class="bz-tw"><i class="fa fa-twitter" aria-hidden="true"></i></li>-->
                                 </ul>
                             </dd>
                         </dl>
@@ -38,7 +39,7 @@
                     </div>
                 </div>
     
-                <div id="context" class="bz-mains large-8 columns">
+                <div id="context" class="bz-mains large-9 columns">
                     {{> bzAboutHowItWorks}}
                     {{> bzAboutWhatUseful}}
                     <!--{{> bzAboutWhoWeAre}}-->
@@ -282,49 +283,78 @@
         <div class="bz-about-how-it-works-wrapper">
         <div class="bz-three-items bz-it-works">
             <div class="bz-ui bz-three-cards three">
+                <div class="" style="padding: 15px;">
+                    <p>{{t9n 'HEADER.PARAG_3'}}</p>
+                </div>
                 <div class="card">
                     <div class="bz-showcase-box">
                         <span class="sample-icon-greeting how_works_1"></span>
                     </div>
-                    <div class="bz-card-caption"><span class="big">1.</span> Создай свой пост</div>
+                    <div class="bz-card-caption"><span class="big">1.</span> <a href="#">Создай свой пост</a></div>
                 </div>
                 <div class="card">
                     <div class="bz-showcase-box">
                         <span class="sample-icon-greeting how_works_2"></span>
                     </div>
-                    <div class="bz-card-caption"><span class="big">2.</span> Ты находишь - Тебя находят</div>
+                    <div class="bz-card-caption"><span class="big">2.</span> <a href="#">Ты находишь - Тебя находят</a></div>
                 </div>
                 <div class="card">
                     <div class="bz-showcase-box">
                         <span class="sample-icon-greeting how_works_3"></span>
                     </div>
-                    <div class="bz-card-caption"><span class="big">3.</span> Договаривайся - встречайся</div>
+                    <div class="bz-card-caption"><span class="big">3.</span> <a href="#">Договаривайся - встречайся</a></div>
                 </div>
             </div>
         </div>
         </div>
 
-        <div class="row row-bottom">
+       <!-- <div class="row row-bottom">
             <div class="small-12 medium-12 large-6 columns">
-                <h4 class="title">Единственный сервис, предлагающий живое присутсвие!</h4>
+                <h4 class="title"></h4>
                 <div class="bz-text">
                     <p>Установи Светлячок на любые сферы интересов: частное объявление, реклама услуги, ссылку на страничку или пост в ВК - т.е. на причину, по который ты бы хотел встретиться незамедлительно - и о твоем намерении незамедлительно узнают люди вокруг!
                         Продаешь ли ты платье или ищещь работу, предлагаешь курсы по йоге или ищещь компанию для вечеринки - расскажи об этом, и мы поможем тебе найти единомышленников, покупателей, собеседников рядом!</p>
                 </div>
             </div>
-            <div class="small-12 medium-12 large-6 columns">
-                <h4 class="title">Как искать информацию</h4>
-                <div class="bz-text">
-                    <p>Светлячки - это поисковая система по людям вокруг. Достаточно открыть приложение или сайт и увидеть тех, кто рядом и что они предлагают, либо искать по ключевым словам в "умной строке".</p>
-                    <p class="bz-next-text" data-hidden="false"><span class="bz-text-more">Также, можно воспользоваться поиском по категориям и тэгам. В каждом разделе можно увидеть Светлячков, которые сейчас рядом, и другие популярные посты по каждой теме.
-                    </span> <span class="bz-read-more inline"><a href="#">{{#unless readMore}}Читать дальше{{else}}Свернуть{{/unless}}</a></span></p>
+        </div>-->
+
+
+
+        <div class="bz-about-what-useful">
+            <h3 class="title" id="whatUsefull">Чем мы полезны?</h3>
+
+            <div class="bg-usefull show-for-large-up"></div>
+
+            <div class="bz-three-items bz-what-useful">
+                <div class="bz-ui bz-three-cards three">
+                    <div class="card bz-reverse hide-for-large-up">
+                        <div class="bz-card-caption">Один сервис для всех ресурсов</div>
+                        <div class="bz-showcase-box">
+                            <span class="sample-icon-greeting usefull_1"></span>
+                        </div>
+                    </div>
+                    <div class="card bz-reverse hide-for-large-up">
+                        <div class="bz-card-caption">Живые объявления поблизости</div>
+                        <div class="bz-showcase-box">
+                            <span class="sample-icon-greeting usefull_2"></span>
+                        </div>
+                    </div>
+                    <div class="card bz-reverse hide-for-large-up">
+                        <div class="bz-card-caption">Быстрые встречи и контакты</div>
+                        <div class="bz-showcase-box">
+                            <span class="sample-icon-greeting usefull_3"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <h4 class="title uppercase selectedText">Типы локаций постов</h4>
+        
+        
+        
+        <h4 class="title uppercase selectedText">Типы постов по содержанию</h4>
 
         <div class="bz-three-items bz-random-target">
-            <div class="bz-ui bz-three-cards three"  data-equalizer>
+            <div class="bz-ui bz-three-cards two"  data-equalizer>
                 <div class="card">
                     <div class="bz-card-icon"><div class="bz-img-card-icon bz-img-quick-post"></div></div>
                     <div class="bz-showcase-box wide" data-equalizer-watch>
@@ -350,7 +380,7 @@
         <h4 class="title uppercase selectedText">Типы локаций постов</h4>
 
         <div class="bz-three-items bz-random-target">
-            <div class="bz-ui bz-three-cards three"  data-equalizer>
+            <div class="bz-ui bz-three-cards two"  data-equalizer>
                 <div class="card">
                     <div class="bz-card-icon"><div class="bz-img-card-icon bz-img-dinamic-post"></div></div>
                     <div class="bz-showcase-box wide" data-equalizer-watch>
@@ -383,7 +413,7 @@
 
 <template name="bzAboutWhatUseful">
     <div class="bz-about-what-useful">
-        <h3 class="title" id="whatUsefull">Чем мы полезны?</h3>
+        <!--<h3 class="title" id="whatUsefull">Чем мы полезны?</h3>
         
         <div class="bg-usefull show-for-large-up"></div>
         
@@ -408,7 +438,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <div class="bz-three-items bz-what-useful-description">
             <div class="bz-ui bz-three-cards three">
@@ -416,14 +446,16 @@
                     <div class="bz-showcase-box wide">
                         <span class="sample-icon-sq darckred">
                             <div class="bz-card-sub-caption">Кто мы</div>
-                            <div class="bz-card-text"><p>Мы - группа энтузиастов, которые сами давно мечтали о подобном ресурсе! Который позволит быстро и удобно узнавать о происходящем вокруг и чувствовать себя как везде дома. Мы помним время бумажных объявлений, которые с интересом читали в детстве на улице, узнавая о том, сколько чего интересного рядом.</p>
+                            <div class="bz-card-text"><p>Мы - группа энтузиастов, которые сами давно мечтали о подобном ресурсе! Который позволит быстро и удобно <span class="bz-read-more inline"><a href="/">Читать дальше</a></span></p> 
+                                
+                                <!--<p>узнавать о происходящем вокруг и чувствовать себя как везде дома. Мы помним время бумажных объявлений, которые с интересом читали в детстве на улице, узнавая о том, сколько чего интересного рядом.</p>
                                 <div class="bz-next-text">
                                     <span class="bz-text-more">
                                         <p>Мы хотели использовать возможности сети для установки быстрых живых контактов - мобильных встреч, в нужное время, в нужном месте.</p>
                                         <p>Наш замысел - чтобы каждый мог осветить Светлячками пространство вокруг себя, создавая тем самым новые возможности для себя и любого желающего.</p>
                                     </span>
                                     <span class="bz-read-more inline"><a href="#">Читать дальше</a></span>
-                                </div>
+                                </div>-->
                             </div>
                         </span>
                     </div>
@@ -432,7 +464,9 @@
                     <div class="bz-showcase-box wide">
                         <span class="sample-icon-sq darckred">
                             <div class="bz-card-sub-caption">Безопасность</div>
-                            <div class="bz-card-text"><p>Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет! Вы сами формируете актуальное для вас пространство. Координаты на местности явялются размытыми.</p></div>
+                            <div class="bz-card-text"><p>Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет! <span class="bz-read-more inline"><a href="/">Читать дальше</a></span></p>
+                                <!--<p>Вы сами формируете актуальное для вас пространство. Координаты на местности явялются размытыми.</p>-->
+                            </div>
                         </span>
                     </div>
                 </div>
@@ -440,7 +474,8 @@
                     <div class="bz-showcase-box wide">
                         <span class="sample-icon-sq darckred">
                             <div class="bz-card-sub-caption">Правила</div>
-                            <div class="bz-card-text"><p>При регистрации на «Cветлячках» Пользователь соглашается с настоящими правилами и принимает на себя указанные в них права и обязанности, связанных размещением поста.</p>
+                            <div class="bz-card-text"><p>При регистрации на «Cветлячках» Пользователь соглашается с настоящими правилами и принимает на себя <span class="bz-read-more inline"><a href="/">Читать дальше</a></span></p>
+                                <!--<p>указанные в них права и обязанности, связанных размещением поста.</p>
                                 <div class="bz-next-text">
                                     <span class="bz-text-more">
                                         <p>Общие правила</p>
@@ -475,7 +510,7 @@
                                         <p>Если у вас остались еще вопросы обратитесь в службу поддержки.</p>
                                     </span>
                                     <span class="bz-read-more inline"><a href="#">Читать дальше</a></span>
-                                </div>
+                                </div>-->
                             </div>
                         </span>
                     </div>
@@ -496,7 +531,7 @@
 
 <template name="bzAboutHelp">
     <div class="bz-about-help">
-        <h3 class="title"  id="help">Помощь</h3>
+        <h3 class="title" id="help">Связаться с нами</h3>
         
         <div id="bz-form-application-help" class="bz-form-container">
             <div class="bz-form-nav-wrapper">
@@ -546,9 +581,10 @@
                     </div>
                 </li>
                 <li class="accordion-navigation">
-                    <a href="#panel3a">Есть ли подписка на рассылку?</a>
+                    <a href="#panel3a">Как искать информацию?</a>
                     <div id="panel3a" class="content">
-                        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <p>Светлячки - это поисковая система по людям вокруг. Достаточно открыть приложение или сайт и увидеть тех, кто рядом и что они предлагают, либо искать по ключевым словам в "умной строке".</p>
+                        <p>Также, можно воспользоваться поиском по категориям и тэгам. В каждом разделе можно увидеть Светлячков, которые сейчас рядом, и другие популярные посты по каждой теме.</p>
                     </div>
                 </li>
                 <li class="accordion-navigation">
@@ -559,9 +595,11 @@
                     </div>
                 </li>
                 <li class="accordion-navigation">
-                    <a href="#panel5a">Размещаете ли рекламу?</a>
+                    <a href="#panel5a">Какие сферы интересов?</a>
                     <div id="panel5a" class="content">
-                        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <p>Установи Светлячок на любые сферы интересов: частное объявление, реклама услуги, ссылку на страничку или пост в ВК - т.е. на причину, по который ты бы хотел встретиться незамедлительно - и о твоем намерении незамедлительно узнают люди вокруг!
+                            Продаешь ли ты платье или ищещь работу, предлагаешь курсы по йоге или ищещь компанию для вечеринки - расскажи об этом, и мы поможем тебе найти единомышленников, покупателей, собеседников рядом!
+                        </p>
                     </div>
                 </li>
                 <li class="accordion-navigation">
@@ -618,11 +656,10 @@
     </div>
 </template>
 
-
 <template name="bzSetFireFly">
     <div class="bzSetFireFly">
         <div class="bz-set-firefly">
-            <a class="button alert bz-icon-set-firefly" href="#"><i class="fa fa-plus" aria-hidden="true"></i> Установи свой светлячок</a>
+            <a class="button alert bz-icon-set-firefly" href="/posts/new"><i class="fa fa-plus" aria-hidden="true"></i> Установи свой светлячок</a>
         </div>
     </div>
 </template>

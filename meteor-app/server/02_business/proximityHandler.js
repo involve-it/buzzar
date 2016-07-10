@@ -26,6 +26,7 @@ bz.bus.proximityHandler = {
             return userId === socket._meteorSession.userId;
         });
     },
+    /*OLD CODE*/
     reportLocation: function(report){
         if (report.deviceId) {
             console.log(report);

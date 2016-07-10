@@ -12,6 +12,9 @@ Meteor.methods({
   addUser: function(user){
     return  bz.bus.usersHandler.addUser(user);
   },
+  socialLogIn: function(request){
+    return bz.bus.socialLogInHandler.socialLogIn(request);
+  },
 
   //posts
   searchPosts: function(request){
@@ -84,5 +87,8 @@ Meteor.methods({
   //locations
   addLocation: function(request){
     return bz.bus.locationsHandler.addLocation(request);
+  },
+  reportLocationTest: function(report){
+    return bz.bus.locationsHandler.reportLocation(report)
   }
 });
