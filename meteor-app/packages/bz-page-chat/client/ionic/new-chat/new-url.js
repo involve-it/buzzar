@@ -7,7 +7,9 @@ Template.postsNewUrl.events({
       v.$('.js-post-details-link').click();
       //v.$('.js-scan-url').click();
     } else {
+      /*CONSOLE CLEAR
       console.log('keydown');
+      */
       if(isUrl(url)) {
         v.$('.js-post-details-link').removeClass('disabled');
       }

@@ -38,13 +38,19 @@ Template.userSettings.events({
             cancelText: 'Cancel',
             buttonClicked: function(index) {
                 if (index === 0) {
+                    /*CONSOLE CLEAR
                     console.log('ONE!');
+                    */
                 }
                 if (index === 1) {
+                    /*
                     console.log('TWO!');
+                    */
                 }
                 if (index === 2) {
+                    /*CONSOLE CLEAR
                     console.log('SOME TEXT');
+                    */
                 }
                 return true;
             }

@@ -276,8 +276,8 @@ GetEndDatePost = function(v, start) {
   } else {
     val = selectPicker;
   }
-  
-  
+
+
 
   switch (val) {
     case 'oneDay':
@@ -303,10 +303,12 @@ GetEndDatePost = function(v, start) {
       break;
     default:
       ret = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 14, start.getHours(), start.getMinutes());
+      /*CONSOLE CLEAR
       console.log('Default value: ', ret);
+      */
       break;
   }
-  
+
   return ret && ret.getTime();
 };
 

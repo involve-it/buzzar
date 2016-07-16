@@ -173,7 +173,9 @@ Template.googleMapControl.onCreated(function () {
   });
 });
 Template.googleMapControl.onDestroyed(function () {
+  /*CONSOLE CLEAR
   console.log('googleMapControl.onDestroyed');
+*/
 });
 
 // HELPERS:

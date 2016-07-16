@@ -105,7 +105,7 @@ Template.bzNewControlSearch.events({
     },
     'keyup .bz-form-control': function (e, v) {
         /* 1 */
-        var textInput = v.$('.bz-form-control')[1],
+        var textInput = v.$('.bz-form-control')[1] || v.$('.bz-form-control')[0],
             clearBtn = v.$('.js-reset-field'),
             style = ($(textInput).val().length) ? 'visible' : 'hidden';
 

@@ -21,6 +21,35 @@ AccountsEntry.entrySignInHelpers = {
   },
   isUsernameOnly: function() {
     return AccountsEntry.settings.passwordSignupFields === 'USERNAME_ONLY';
+  },
+  SocialSignIn: function(userData){
+    Meteor.call('socialLogIn', userData, function(e, r){
+      var res;
+      if(e) {
+        //error
+      } else {
+        Meteor.loginWithPassword(userData.email, r.result, function(error) {
+          Session.set('password', null);
+          if (error) {
+            sAlert.error('<div class="bz-msg-text">' + error.reason + '</div>', {effect: 'scale', html: true});
+            //Alerts.add(error, 'danger')
+          } else {
+            bz.help.location.startWatchingLocation();
+            bz.mobile.processLogin();
+
+            if (Session.get('fromWhere') && Session.get('fromWhere') === '/sign-in' || Session.get('fromWhere') === '/forgot-password' || Session.get('fromWhere') === '/sign-up') {
+              return Router.go('home');
+              Session.set('fromWhere', null);
+            } else if (Session.get('fromWhere')) {
+              Router.go(Session.get('fromWhere'));
+              Session.set('fromWhere', null);
+            } else {
+              Router.go(AccountsEntry.settings.dashboardRoute);
+            }
+          }
+        });
+      }
+    });
   }
 };
 

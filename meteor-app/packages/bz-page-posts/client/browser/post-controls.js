@@ -70,8 +70,9 @@ Template.bzPostsDurationPicker.onRendered(function () {
   //event opened modal
   $(document).on('open.fndtn.reveal', '[data-reveal].js-date-picker-modal', function () {
     var modal = $(this);
-    
+  /*CONSOLE CLEAR
     console.info('Modal opened');
+  */
   });
   
 });

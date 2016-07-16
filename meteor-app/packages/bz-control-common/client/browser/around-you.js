@@ -70,8 +70,9 @@ Template.bzAroundYou.helpers({
           
         });
       //}
-
+      /*CONSOLE CLEAR
       console.log('searchPosts');
+      */
       return ins.getSearchData;
     }
     
@@ -87,7 +88,7 @@ Template.bzAroundYou.helpers({
       };
 
       /*if (ins.getNearByData.get() === false) {*/
-        Meteor.call('getNearbyPostsTest', request, function (e, r) {
+      Meteor.call('getNearbyPostsTest', request, function (e, r) {
           var res;
   
           res = (!e) ? r : e;
@@ -162,6 +163,13 @@ Template.bzAroundYou.helpers({
 Template.bzAroundYou.events({
   'click .js-show-more-posts-btn': function (e, v){
     bz.bus.search.showMorePosts();
+  },
+  'click .js-try-to-set-location': function(e, v) {
+    $('.js-link-location-name').click();
+  },
+  'click .js-try-to-reset-search': function(e, v) {
+    $('.typeahead').typeahead('val', ''); // searched text
+    Session.set('bz.control.search.searchedText', '');
   }
 });
 Template.bzAroundYouItem.rendered = function () {
