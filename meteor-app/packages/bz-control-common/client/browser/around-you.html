@@ -133,10 +133,17 @@
             </a>
             <br/>
             <br/>
-            <a class="js-try-to-set-location">{{ t9n 'TRY_TO_SET_LOCATION'}}</a>
-            <br/>
-            <br/>
-            <a class="js-try-to-set-location">{{ t9n 'TRY_TO_RESET_SEARCH'}}</a>
+            <div class="bz-location-name" style="position: static; top: auto; left: auto;">
+                <a class="js-try-to-set-location bz-link-lacation-name" style="color: #5ab1ce;">
+                    <i class="fa fa-map-marker bz-fa-location-not-defined"></i>
+                    <span style="border-bottom-color: #5ab1ce;">{{ t9n 'TRY_TO_SET_LOCATION'}}</span>
+                </a>
+                <br/>
+                <br/>
+                <a class="js-try-to-reset-search" style="color: #5ab1ce;">
+                    <span style="border-bottom-color: #5ab1ce;">{{ t9n 'TRY_TO_RESET_SEARCH'}}</span>
+                </a>
+            </div>
         </div>
     </div>
 </template>

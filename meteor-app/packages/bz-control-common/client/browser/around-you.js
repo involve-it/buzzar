@@ -169,6 +169,7 @@ Template.bzAroundYou.events({
   },
   'click .js-try-to-reset-search': function(e, v) {
     $('.typeahead').typeahead('val', ''); // searched text
+    Session.set('bz.control.search.searchedText', '');
   }
 });
 Template.bzAroundYouItem.rendered = function () {
