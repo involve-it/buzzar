@@ -325,7 +325,7 @@ Template.categoryListButtons.events({
 });
 
 
-Template.searchCommonFilters.onRendered(()=> {
+Template.bzRangeSlider.onRendered(()=> {
     Tracker.autorun(function () {
         //default distance
 
@@ -356,10 +356,13 @@ Template.searchCommonFilters.onRendered(()=> {
 
         //return ret;
     });
+})
+Template.searchCommonFilters.onRendered(()=> {
+
 });
 
 
-Template.searchCommonFilters.helpers({
+Template.bzRangeSlider.helpers({
     getDistanceFromSession: function () {
         //Tracker.autorun(function () {
         var dist = Session.get('bz.control.search.distance'), sliderDist, ret = 20;
@@ -385,6 +388,10 @@ Template.searchCommonFilters.helpers({
         return ret;
         //});
     }
+});
+
+Template.searchCommonFilters.helpers({
+
 });
 
 
