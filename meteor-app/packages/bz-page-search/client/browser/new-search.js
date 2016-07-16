@@ -356,10 +356,10 @@ Template.bzRangeSlider.onRendered(()=> {
 
         //return ret;
     });
-})
-Template.searchCommonFilters.onRendered(()=> {
-
 });
+
+
+Template.searchCommonFilters.onRendered(()=> {});
 
 
 Template.bzRangeSlider.helpers({
@@ -390,13 +390,11 @@ Template.bzRangeSlider.helpers({
     }
 });
 
-Template.searchCommonFilters.helpers({
-
-});
+Template.searchCommonFilters.helpers({});
 
 
-Template.searchCommonFilters.events({
-    'change.fndtn.slider .js-distance-range-slider': function (e, v) {
+Template.bzRangeSlider.events({
+    'change.fndtn.slider [data-slider]': function (e, v) {
         var dist, textSearch, slDist = $(e.target).attr('data-slider');
 
         //todo: этот подход неправильный-возникает туча ивентов (если я веду от 1 мили до 20, то 5 миль тоже выставится по дороге). Change this!!
