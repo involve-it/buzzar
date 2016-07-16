@@ -90,7 +90,7 @@ Template.bzNewControlSearch.events({
     },
     'click .js-item-category': function (e, v) {
         /* need update masonry here */
-        var textInput = v.$('.bz-form-control')[1] || v.$('.bz-form-control')[0];
+        var textInput = v.$('.bz-form-control')[1];
         //$(textInput).val(this.intName);
 
         /* 1 */
@@ -114,7 +114,7 @@ Template.bzNewControlSearch.events({
     },
     'click .js-reset-field': function (e, v) {
         /* 1 */
-        var textInput = v.$('.bz-form-control')[1] || v.$('.bz-form-control')[0],
+        var textInput = v.$('.bz-form-control')[1],
             clearBtn = v.$('.js-reset-field');
 
         clearBtn.css('visibility', 'hidden');
