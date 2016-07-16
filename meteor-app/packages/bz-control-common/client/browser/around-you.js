@@ -166,6 +166,10 @@ Template.bzAroundYou.events({
   },
   'click .js-try-to-set-location': function(e, v) {
     $('.js-link-location-name').click();
+  },
+  'click .js-try-to-reset-search': function(e, v) {
+    // $('.js-nearby-places').val(''); // searched text
+    $('.typeahead').typeahead('val', '');
   }
 });
 Template.bzAroundYouItem.rendered = function () {
