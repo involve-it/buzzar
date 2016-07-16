@@ -24,7 +24,6 @@ var helperFunctions = {
     return loc;
   },
   getDistanceToCurrentLocation: function(retNumberFormat){
-    // debugger;
     var currentLocation = typeof Session !== 'undefined' && Session.get('currentLocation'), ret, loc, distance, num;
     if (currentLocation && this.details && this.details.locations && Array.isArray(this.details.locations) && this.details.locations.length > 0){
       loc = _.find(this.details.locations, function(l){ return l.placeType === bz.const.locations.type.DYNAMIC});
@@ -71,6 +70,7 @@ var helperFunctions = {
     return ret;
   },
   getDistanceToCurrentLocationNumber: function(retNumberFormat, curLocation){
+
     var currentLocation = curLocation || typeof Session !== 'undefined' && Session.get('bz.control.search.location'), ret, loc, distance, num;
     if(currentLocation){
       currentLocation = currentLocation.coords;
