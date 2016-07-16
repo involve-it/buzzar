@@ -168,8 +168,7 @@ Template.bzAroundYou.events({
     $('.js-link-location-name').click();
   },
   'click .js-try-to-reset-search': function(e, v) {
-    // $('.js-nearby-places').val(''); // searched text
-    $('.typeahead').typeahead('val', '');
+    $('.typeahead').typeahead('val', ''); // searched text
   }
 });
 Template.bzAroundYouItem.rendered = function () {
