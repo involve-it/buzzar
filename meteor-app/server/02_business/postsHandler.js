@@ -393,13 +393,36 @@ bz.bus.postsHandler = {
     return ret;
   },
   getNearbyPosts: function(request){
-    var ret, lat,lng,radius,skip,take, postsQuery={},posts,arrTypes=[], activeCats,box,postsRet,postsSort, coords, loc;
+    var ret, lat, lng, radius, skip, take, postsQuery={}, posts, arrTypes=[], activeCats, box, postsRet, postsSort, coords, loc,
+        curLocation,
+        serverLimit = 20, options, optionsForArray;
     lat=request.lat;
     lng=request.lng;
-    radius=request.radius;
+    radius=undefined; //request.radius;
     skip=request.skip;
-    take=request.take;
+    take=request.take || serverLimit;
     activeCats=request.activeCats;
+    // curLocation = request.curLocation;
+    if(lat && lng) {
+      curLocation = {
+        coords: {
+          lat: lat,
+          lng: lng
+        }
+      }
+    }
+    options = {
+      sort: { 'stats.seenTotal': -1 },
+      skip: skip,
+      limit: take
+    };
+    optionsForArray = {
+      sort: function(a, b) {
+        var diff = bz.help.posts.getDistanceToCurrentLocationNumber.call(a, undefined, curLocation)
+            - bz.help.posts.getDistanceToCurrentLocationNumber.call(b, undefined, curLocation);
+        return diff;
+      }
+    };
     if (lat && lng && radius) {
       box = bz.bus.proximityHandler.getLatLngBox(lat, lng, radius);
       if (box) {
@@ -423,9 +446,9 @@ bz.bus.postsHandler = {
       arrTypes.push('');
       postsQuery['type'] = {$in: arrTypes};
     }
-    postsQuery['status'] ={visible: bz.const.posts.status.visibility.VISIBLE};
-    posts= bz.cols.posts.find(postsQuery).fetch();
-    if (lat && lng) {
+    postsQuery['status'] = { visible:  bz.const.posts.status.visibility.VISIBLE };
+    posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort);
+    /*if (lat && lng) {
       _.each(posts, function (post) {
         if (post.details && post.details.locations && Array.isArray(post.details.locations) && post.details.locations.length > 0) {
           loc = _.find(post.details.locations, function (l) {
@@ -438,21 +461,32 @@ bz.bus.postsHandler = {
           post.distance = bz.help.location.getDistance(lat, lng, coords.lat, coords.lng);
         }
       });
-      postsSort=posts.sort(function(a,b){return a.distance-b.distance});
-    }
-    postsRet=bz.bus.postsHandler.buildPostObject({posts:postsSort});
-    ret={success:true, result:postsRet};
+      postsSort=posts;/!*.sort(function(a,b) {
+        debugger;
+        return a.distance-b.distance;
+      });*!/
+    }*/
+    postsRet = bz.bus.postsHandler.buildPostObject({ posts:posts });
+    ret = { success:true, result:postsRet };
     return ret;
   },
   getPopularPosts: function(request){
-    var ret, lat,lng,radius,skip,take, postsQuery={},posts,arrTypes=[], activeCats,box,option,postsRet,postsSort, coords, loc;
+    var ret, lat, lng, radius, skip, take, postsQuery={}, posts, arrTypes=[], activeCats, box, options, postsRet,
+        //postsSort, coords, loc,
+        curLocation, sortObj = { 'stats.seenTotal': -1 },
+        serverLimit = 20;
     lat=request.lat;
     lng=request.lng;
     radius=request.radius;
     skip=request.skip;
-    take=request.take;
+    take = request.take || serverLimit;
     activeCats=request.activeCats;
-    option={sort: {'stats.seenTotal': -1},skip: skip,limit: take};
+
+    options = {
+        sort: sortObj,
+        skip: skip,
+        limit: take
+    };
     if (lat && lng && radius) {
       box = bz.bus.proximityHandler.getLatLngBox(lat, lng, radius);
       if (box) {
@@ -467,19 +501,19 @@ bz.bus.postsHandler = {
 
     }
     if (activeCats && Array.isArray(activeCats) && activeCats.length > 0) {
-      postsQuery['type'] = {$in: activeCats};
+      postsQuery['type'] = { $in: activeCats };
     } else {
       arrTypes = _.map(bz.cols.postAdTypes.find().fetch(), function (item) {
         return item.name;
       });
       arrTypes.push(undefined);
       arrTypes.push('');
-      postsQuery['type'] = {$in: arrTypes};
+      postsQuery['type'] = { $in: arrTypes };
     }
-    postsQuery['status'] ={visible: bz.const.posts.status.visibility.VISIBLE};
-    posts = bz.cols.posts.find(postsQuery,option).fetch();
-    postsRet=bz.bus.postsHandler.buildPostObject({posts:posts});
-    ret={success:true, result:postsRet};
+    postsQuery['status'] ={ visible: bz.const.posts.status.visibility.VISIBLE };
+    posts = bz.cols.posts.find(postsQuery, options).fetch();
+    postsRet = bz.bus.postsHandler.buildPostObject({ posts:posts });
+    ret={ success:true, result:postsRet };
     return ret;
   },
   deletePost: function(requestedPostId, currentUserId){

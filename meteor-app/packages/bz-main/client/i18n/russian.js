@@ -65,7 +65,8 @@ ru = {
   //No posts around
   NO_ITEMS_AROUND_YOU: 'Рядом с вами пока нет постов',
   YOU_CAN_CREATE_POST: 'Создайте свое объявление, чтобы о вашем запросе узнали другие пользователи и могли с вами связаться!',
-
+  TRY_TO_SET_LOCATION: 'Задать местоположение еще раз.',
+  TRY_TO_RESET_SEARCH: 'Сбросить поисковые фильтры.',
   //Buttons
   BUTTON_CHECK: 'Проверить',
   BUTTONS_BACK: 'Назад',
@@ -114,7 +115,7 @@ ru = {
   SEARCH_DISTANCE_EVERYWHERE: 'Везде',
   SEARCH_LOOKING_FOR_TEXT: 'Искать ЧТО, ГДЕ, КОГДА',
 
-  MOST_POPULAR_TITLE: 'Другие популярные',
+  MOST_POPULAR_TITLE: 'Самые популярные',
   ABOUT_US_TITLE: 'О нас',
 
   AROUND_YOU_TITLE: 'Срочное рядом',

@@ -88,7 +88,7 @@ Template.bzAroundYou.helpers({
       };
 
       /*if (ins.getNearByData.get() === false) {*/
-        Meteor.call('getNearbyPostsTest', request, function (e, r) {
+      Meteor.call('getNearbyPostsTest', request, function (e, r) {
           var res;
   
           res = (!e) ? r : e;
@@ -163,6 +163,9 @@ Template.bzAroundYou.helpers({
 Template.bzAroundYou.events({
   'click .js-show-more-posts-btn': function (e, v){
     bz.bus.search.showMorePosts();
+  },
+  'click .js-try-to-set-location': function(e, v) {
+    $('.js-link-location-name').click();
   }
 });
 Template.bzAroundYouItem.rendered = function () {

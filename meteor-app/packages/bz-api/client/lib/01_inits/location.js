@@ -34,6 +34,12 @@ var Location = {
         if (Meteor.userId()){
             Meteor.call('logOut', Meteor.userId());
         }
+    },
+    setCurrentLocationSession(lat, lng) {
+        Session.set('currentLocation', {
+            latitude: lat,
+            longitude: lng
+        });
     }
 };
 
