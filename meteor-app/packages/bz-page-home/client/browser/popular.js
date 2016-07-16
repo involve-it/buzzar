@@ -46,6 +46,9 @@ Template.bzHomePopular.helpers({
         }
 
         if (res.success && res.result) {
+          _.each(res.result, p => {
+            Object.assign(p, bz.cols.posts.bzHelpers);
+          });
           (res.result.length > 0) ? ins.getPopularData.set(res.result) : ins.getPopularData.set([]);
           //console.info('Данные из метода getPopularPosts: ', res.result);
         } else {

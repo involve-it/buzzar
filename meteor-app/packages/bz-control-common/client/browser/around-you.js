@@ -58,6 +58,9 @@ Template.bzAroundYou.helpers({
           }
 
           if(res.success && res.result) {
+            _.each(res.result, p => {
+              Object.assign(p, bz.cols.posts.bzHelpers);
+            });
             searchAmount = res.result.length;
             (res.result.length > 0) ? ins.getSearchData.set(res.result) : ins.getSearchData.set([]);
             //console.info('Вернувшийся результат: ', res.result);
@@ -99,7 +102,9 @@ Template.bzAroundYou.helpers({
           }
   
           if (res.success && res.result) {
-            
+            _.each(res.result, p => {
+              Object.assign(p, bz.cols.posts.bzHelpers);
+            });
             //ins.getNearByData.set(res.result);
             (res.result.length > 0) ? ins.getSearchData.set(res.result) : ins.getSearchData.set([]);
             //console.info('Данные из метода nearbyPosts: ', ins.getNearByData.get());
@@ -173,7 +178,6 @@ Template.bzAroundYou.events({
   }
 });
 Template.bzAroundYouItem.rendered = function () {
-
   /*init Rate*/
   $('.bz-rating').raty({
     starType: 'i'

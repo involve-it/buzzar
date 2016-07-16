@@ -107,7 +107,6 @@ Template.bzChooseLocationModal.events({
     // validateAbideView(v);
 
     var locName = $('.js-location-name-input.tt-input').val() || $('.js-location-name-input').val();
-    debugger;
 
     if(!locName){
 
@@ -116,7 +115,6 @@ Template.bzChooseLocationModal.events({
       prom && prom.done((res1) => {
         // set session.currentLocation too, just in case!
         if (res1 && res1.coords) {
-          debugger;
           bz.help.location.setCurrentLocationSession(res1.coords.lat, res1.coords.lng);
         }
       });

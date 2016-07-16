@@ -34,7 +34,7 @@ ru = {
   CHECK_ALL: 'Выбрать все',
   TODAY:'сегодня',
   DAYS:'дней',
-  searchLocationText:'Название места или адресс',
+  searchLocationText:'Название места или адрес',
 
   BZ_RESULTS_FOUND: 'Найдено результатов',
   BZ_DISTANCE: 'Дистанция',
@@ -205,9 +205,9 @@ ru = {
   PLEASE_SIGN_IN:'Пожалуйста',
   confirmPassword:'Подтвердите пароль',
   SIGN_VALID_USERNAME:'Введите корректное имя пользователя',
-  SIGN_VALID_EMAIL: 'Введите корректный адресс почты',
+  SIGN_VALID_EMAIL: 'Введите корректный адрес почты',
   SIGN_VALID_PASSWORD:'Ваш пароль должен соответствовать требованиям',
-  SIGN_VALID_USERNAME_OR_EMAIL:'Введите корректное имя пользователя или адресс почты',
+  SIGN_VALID_USERNAME_OR_EMAIL:'Введите корректное имя пользователя или адрес почты',
   
   
   
