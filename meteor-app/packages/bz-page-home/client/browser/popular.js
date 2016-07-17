@@ -23,11 +23,11 @@ Template.bzHomePopular.helpers({
         radius = Session.get('bz.control.search.distance'),
         activeCats = Session.get('bz.control.category-list.activeCategories');
         
-    if(currentLocation) {
+    // if(currentLocation) {
       popularPosts(currentLocation, radius, activeCats);
-    }
+    // }
     
-    function popularPosts(currentLocation, radius, activeCats) {
+    function popularPosts(currentLocation = {}, radius, activeCats) {
       var request = {};
       
       request = {
@@ -36,7 +36,6 @@ Template.bzHomePopular.helpers({
         radius: radius,
         activeCats: activeCats
       };
-      
       Meteor.call('getPopularPosts', request, function(e, r) {
         var res;
         res = (!e) ? r : e;
@@ -47,16 +46,16 @@ Template.bzHomePopular.helpers({
         }
 
         if (res.success && res.result) {
+          _.each(res.result, p => {
+            Object.assign(p, bz.cols.posts.bzHelpers);
+          });
           (res.result.length > 0) ? ins.getPopularData.set(res.result) : ins.getPopularData.set([]);
           //console.info('Данные из метода getPopularPosts: ', res.result);
         } else {
           bz.ui.alert('Error ID: ' + res.error.errorId, {type:'error', timeout: 2000});
         }
-
       });
-      
     }
-    
   }
 });
 

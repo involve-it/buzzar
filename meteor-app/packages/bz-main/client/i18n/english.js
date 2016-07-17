@@ -66,7 +66,8 @@ en = {
   //No posts around
   NO_ITEMS_AROUND_YOU: 'No posts around you',
   YOU_CAN_CREATE_POST: 'Create your post and other users can contact you!',
-
+  TRY_TO_SET_LOCATION: 'Try to set location again.',
+  TRY_TO_RESET_SEARCH: 'Reset search filters',
   BUTTONS_BACK: 'Back',
 
   BUTTON_SHOW_MORE_POSTS: 'Show more posts',

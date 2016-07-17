@@ -21,10 +21,16 @@ Meteor.onConnection(function(connection){
 
 bz.bus.proximityHandler = {
     isUserOnline: function(userId){
-        var sockets = Meteor.default_server.stream_server.open_sockets;
+        /*var sockets = Meteor.default_server.stream_server.open_sockets;
         return _.any(sockets,function(socket){
             return userId === socket._meteorSession.userId;
-        });
+        });*/
+        var user = Meteor.users.findOne({ 'status.online': true,  _id: userId});
+        console.log('---------user status.online:-----------------');
+
+        console.log(!!user);
+        console.log('-----------------------------------');
+        return !!user;
     },
     /*OLD CODE*/
     reportLocation: function(report){

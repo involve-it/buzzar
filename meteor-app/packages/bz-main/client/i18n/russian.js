@@ -34,7 +34,7 @@ ru = {
   CHECK_ALL: 'Выбрать все',
   TODAY:'сегодня',
   DAYS:'дней',
-  searchLocationText:'Название места или адресс',
+  searchLocationText:'Название места или адрес',
 
   BZ_RESULTS_FOUND: 'Найдено результатов',
   BZ_DISTANCE: 'Дистанция',
@@ -65,7 +65,8 @@ ru = {
   //No posts around
   NO_ITEMS_AROUND_YOU: 'Рядом с вами пока нет постов',
   YOU_CAN_CREATE_POST: 'Создайте свое объявление, чтобы о вашем запросе узнали другие пользователи и могли с вами связаться!',
-
+  TRY_TO_SET_LOCATION: 'Задать местоположение еще раз.',
+  TRY_TO_RESET_SEARCH: 'Сбросить поисковые фильтры.',
   //Buttons
   BUTTON_CHECK: 'Проверить',
   BUTTONS_BACK: 'Назад',
@@ -114,7 +115,7 @@ ru = {
   SEARCH_DISTANCE_EVERYWHERE: 'Везде',
   SEARCH_LOOKING_FOR_TEXT: 'Искать ЧТО, ГДЕ, КОГДА',
 
-  MOST_POPULAR_TITLE: 'Другие популярные',
+  MOST_POPULAR_TITLE: 'Самые популярные',
   ABOUT_US_TITLE: 'О нас',
 
   AROUND_YOU_TITLE: 'Срочное рядом',
@@ -204,9 +205,9 @@ ru = {
   PLEASE_SIGN_IN:'Пожалуйста',
   confirmPassword:'Подтвердите пароль',
   SIGN_VALID_USERNAME:'Введите корректное имя пользователя',
-  SIGN_VALID_EMAIL: 'Введите корректный адресс почты',
+  SIGN_VALID_EMAIL: 'Введите корректный адрес почты',
   SIGN_VALID_PASSWORD:'Ваш пароль должен соответствовать требованиям',
-  SIGN_VALID_USERNAME_OR_EMAIL:'Введите корректное имя пользователя или адресс почты',
+  SIGN_VALID_USERNAME_OR_EMAIL:'Введите корректное имя пользователя или адрес почты',
   
   
   

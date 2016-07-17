@@ -58,6 +58,9 @@ Template.bzAroundYou.helpers({
           }
 
           if(res.success && res.result) {
+            _.each(res.result, p => {
+              Object.assign(p, bz.cols.posts.bzHelpers);
+            });
             searchAmount = res.result.length;
             (res.result.length > 0) ? ins.getSearchData.set(res.result) : ins.getSearchData.set([]);
             //console.info('Вернувшийся результат: ', res.result);
@@ -88,7 +91,7 @@ Template.bzAroundYou.helpers({
       };
 
       /*if (ins.getNearByData.get() === false) {*/
-        Meteor.call('getNearbyPostsTest', request, function (e, r) {
+      Meteor.call('getNearbyPostsTest', request, function (e, r) {
           var res;
   
           res = (!e) ? r : e;
@@ -99,7 +102,9 @@ Template.bzAroundYou.helpers({
           }
   
           if (res.success && res.result) {
-            
+            _.each(res.result, p => {
+              Object.assign(p, bz.cols.posts.bzHelpers);
+            });
             //ins.getNearByData.set(res.result);
             (res.result.length > 0) ? ins.getSearchData.set(res.result) : ins.getSearchData.set([]);
             //console.info('Данные из метода nearbyPosts: ', ins.getNearByData.get());
@@ -163,10 +168,16 @@ Template.bzAroundYou.helpers({
 Template.bzAroundYou.events({
   'click .js-show-more-posts-btn': function (e, v){
     bz.bus.search.showMorePosts();
+  },
+  'click .js-try-to-set-location': function(e, v) {
+    $('.js-link-location-name').click();
+  },
+  'click .js-try-to-reset-search': function(e, v) {
+    $('.typeahead').typeahead('val', ''); // searched text
+    Session.set('bz.control.search.searchedText', '');
   }
 });
 Template.bzAroundYouItem.rendered = function () {
-
   /*init Rate*/
   $('.bz-rating').raty({
     starType: 'i'

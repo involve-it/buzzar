@@ -87,30 +87,35 @@
     <div class="bzSearchTmpl-common">
         <div class="list">
             <div class="item item-divider">{{ t9n 'BZ_DISTANCE' }}</div>
-
-            <div class="item">
-                <div class="bz-range-slider">
-                    <div class="js-distance-range-slider range-slider bz-range-slider-wrapper" data-slider data-options="step: 33; initial: {{ getDistanceFromSession }}; start: 1;">
-                        <span class="range-slider-handle" role="slider" tabindex="0"></span>
-                        <span class="range-slider-active-segment"></span>
-                        <input type="hidden">
-                    </div>
-                    <span class="bz-range-grid">
-                        <span class="bz-range-grid-grid-pol w-start"></span>
-                        <span class="bz-range-grid-grid-text w-start">1 mile</span>
-                        <span class="bz-range-grid-grid-pol w2"></span>
-                        <span class="bz-range-grid-grid-text w2">5 miles</span>
-                        <span class="bz-range-grid-grid-pol w3"></span>
-                        <span class="bz-range-grid-grid-text w3">20 miles</span>
-                        <span class="bz-range-grid-grid-pol w-finish"></span>
-                        <span class="bz-range-grid-grid-text w-finish">Everywhere</span>
-                    </span>
-                </div>
-            </div>            
+            <div class="item"></div>
         </div>
     </div>
 </template>
 
+<template name="bzRangeSlider">
+    <div class="bz-range-slider">
+        <div class="range-slider bz-range-slider-wrapper" data-slider data-options="step: 33; initial: {{ getDistanceFromSession }}; start: 1;">
+            <span class="range-slider-handle" role="slider" tabindex="0"></span>
+            <span class="range-slider-active-segment"></span>
+            <input type="hidden">
+        </div>
+        
+        <span class="bz-range-grid">
+            <span class="bz-range-grid-grid-pol w-start"></span>
+            <span class="bz-range-grid-grid-text w-start">1 mile</span>
+            <span class="bz-range-grid-grid-pol w2"></span>
+            <span class="bz-range-grid-grid-text w2">5 miles</span>
+            <span class="bz-range-grid-grid-pol w3"></span>
+            <span class="bz-range-grid-grid-text w3">20 miles</span>
+            <span class="bz-range-grid-grid-pol w-finish"></span>
+            <span class="bz-range-grid-grid-text w-finish">Everywhere</span>
+        </span>
+    </div>
+
+
+   
+    
+</template>
 
 <template name="searchFiltersJobs">
     <div class="bzSearchTmpl-jobs">

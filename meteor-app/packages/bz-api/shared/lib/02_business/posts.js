@@ -24,7 +24,7 @@ var helperFunctions = {
     return loc;
   },
   getDistanceToCurrentLocation: function(retNumberFormat){
-    var currentLocation = Session.get('currentLocation'), ret, loc, distance, num;
+    var currentLocation = typeof Session !== 'undefined' && Session.get('currentLocation'), ret, loc, distance, num;
     if (currentLocation && this.details && this.details.locations && Array.isArray(this.details.locations) && this.details.locations.length > 0){
       loc = _.find(this.details.locations, function(l){ return l.placeType === bz.const.locations.type.DYNAMIC});
       if (!loc){
@@ -37,7 +37,7 @@ var helperFunctions = {
       if(user) {
         lang = user&&user.profile&&user.profile.language;
       } else {
-        lang = Session.get('bz.user.language');
+        lang = typeof Session !== 'undefined' && Session.get('bz.user.language') || 'ru';
       }
 
       if(!retNumberFormat) {
@@ -67,11 +67,11 @@ var helperFunctions = {
     } else {
       ret = retNumberFormat ? Number.MAX_VALUE : '';
     }
-    
     return ret;
   },
-  getDistanceToCurrentLocationNumber: function(retNumberFormat){
-    var currentLocation = Session.get('bz.control.search.location'), ret, loc, distance, num;
+  getDistanceToCurrentLocationNumber: function(retNumberFormat, curLocation){
+
+    var currentLocation = curLocation || typeof Session !== 'undefined' && Session.get('bz.control.search.location'), ret, loc, distance, num;
     if(currentLocation){
       currentLocation = currentLocation.coords;
     }
@@ -83,7 +83,7 @@ var helperFunctions = {
       var coords= loc.obscuredCoords || loc.coords;
       distance =  bz.help.location.getDistance(currentLocation.lat, currentLocation.lng, coords.lat, coords.lng);
       var user = Meteor.user(),
-        lang = user&&user.profile&&user.profile.language;
+        lang = user && user.profile && user.profile.language || 'ru';
 
         if (lang === 'ru') {
           distance = distance * 1.60934;

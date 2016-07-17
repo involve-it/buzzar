@@ -105,7 +105,7 @@ Template.bzNewControlSearch.events({
     },
     'keyup .bz-form-control': function (e, v) {
         /* 1 */
-        var textInput = v.$('.bz-form-control')[1],
+        var textInput = v.$('.bz-form-control')[1] || v.$('.bz-form-control')[0],
             clearBtn = v.$('.js-reset-field'),
             style = ($(textInput).val().length) ? 'visible' : 'hidden';
 
@@ -325,7 +325,7 @@ Template.categoryListButtons.events({
 });
 
 
-Template.searchCommonFilters.onRendered(()=> {
+Template.bzRangeSlider.onRendered(()=> {
     Tracker.autorun(function () {
         //default distance
 
@@ -359,7 +359,10 @@ Template.searchCommonFilters.onRendered(()=> {
 });
 
 
-Template.searchCommonFilters.helpers({
+Template.searchCommonFilters.onRendered(()=> {});
+
+
+Template.bzRangeSlider.helpers({
     getDistanceFromSession: function () {
         //Tracker.autorun(function () {
         var dist = Session.get('bz.control.search.distance'), sliderDist, ret = 20;
@@ -387,9 +390,11 @@ Template.searchCommonFilters.helpers({
     }
 });
 
+Template.searchCommonFilters.helpers({});
 
-Template.searchCommonFilters.events({
-    'change.fndtn.slider .js-distance-range-slider': function (e, v) {
+
+Template.bzRangeSlider.events({
+    'change.fndtn.slider [data-slider]': function (e, v) {
         var dist, textSearch, slDist = $(e.target).attr('data-slider');
 
         //todo: этот подход неправильный-возникает туча ивентов (если я веду от 1 мили до 20, то 5 миль тоже выставится по дороге). Change this!!

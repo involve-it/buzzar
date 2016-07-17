@@ -107,11 +107,17 @@ Template.bzChooseLocationModal.events({
     // validateAbideView(v);
 
     var locName = $('.js-location-name-input.tt-input').val() || $('.js-location-name-input').val();
-    
+
     if(!locName){
 
     } else {
-      setLocationToSessionFromData(locName, v.data, this.sessionName);
+      var prom = setLocationToSessionFromData(locName, v.data, this.sessionName);
+      prom && prom.done((res1) => {
+        // set session.currentLocation too, just in case!
+        if (res1 && res1.coords) {
+          bz.help.location.setCurrentLocationSession(res1.coords.lat, res1.coords.lng);
+        }
+      });
       if (this.sessionName === 'bz.control.search.location') {
         searchModalView && Blaze.remove(searchModalView);
         $('.js-global-location').foundation('reveal', 'close');
@@ -149,7 +155,7 @@ Template.bzChooseLocationModal.events({
     }
     v.data.selectedPlace = placeObj;
 
-    Session.set('bz.control.search.searchedText', textName);
+    //Session.set('bz.control.search.searchedText', textName); // what the f is this for??? dunno)
     $('.js-nearby-places').typeahead('close');
     $('.js-nearby-places').blur();
   }
