@@ -154,7 +154,13 @@ Meteor.methods({
       return bz.bus.proximityHandler.processUserDisconnect(userId);
     }
   },
-  registerTokenAndDeviceId: function(deviceId, token, userId){
+  registerPushToken: function(request){
+    return bz.bus.pushHandler.registerPushToken(request.deviceId, request.userId, request.token, request.platform);
+  },
+  unregisterPushToken: function(request){
+    return bz.bus.pushHandler.unregisterPushToken(request.deviceId, request.userId, request.platform);
+  },
+  /*registerTokenAndDeviceId: function(deviceId, token, userId){
     bz.bus.pushHandler.registerTokenAndDeviceId(deviceId, token, userId);
   },
   assignTokenToUser: function(deviceId, userId){
@@ -162,7 +168,7 @@ Meteor.methods({
   },
   unassignTokenFromUser: function(deviceId, userId){
     bz.bus.pushHandler.unassignTokenFromUser(userId, deviceId);
-  },
+  },*/
   sendMessageContactUs: function(msg, userId){
     // send email here:
     var emailOptions = {
