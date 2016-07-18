@@ -193,10 +193,7 @@ RatePostByUser = function (postOwnerId, rateInt) {
 GetPostRating = function (curPost) {
   var ret,
     userId = Meteor.userId(),
-    postObj = curPost || bz.bus.posts.getCurrentPost(),
-    foundPost = bz.cols.posts.findOne({
-      _id: postObj._id
-    });
+    foundPost = curPost || bz.bus.posts.getCurrentPost();
   var sum = 0, rating;
   if (foundPost && foundPost.social && foundPost.social.rates) {
     _.each(foundPost.social.rates, function (item) {
@@ -214,7 +211,7 @@ bz.help.makeNamespace('bz.bus.posts', {
   getCurrentPost: function () {
     var ret, postId = Router.current() && Router.current().params._id;
     if (postId) {
-      ret = bz.cols.posts.findOne(postId);
+      ret = bz.cols.posts.findOne(postId) || Session.get('bz.posts.current');     // very temp solution - post is not cursor!!
     }
     return ret;
   }

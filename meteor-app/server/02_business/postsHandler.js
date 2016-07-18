@@ -143,7 +143,7 @@ bz.bus.postsHandler = {
         if (postData.details && postData.details.locations) {
           _.each(postData.details.locations, function(location){
             if (location.placeType === bz.const.locations.type.DYNAMIC){
-              location.obscuredCoords = bz.bus.proximityHandler.getObscuredCoords(location.coords.lat, location.coords.lng, 0.1);
+              location.obscuredCoords = bz.bus.proximityHandler.getObscuredCoords(location.coords, 0.1);
             }
           });
           _.each(postData.details.locations, function(location){
@@ -155,7 +155,7 @@ bz.bus.postsHandler = {
               placeType:location.placeType,
               public:location.public,
               _id:location._id,
-              obscuredCoords: location.obscuredCoords
+              obscuredCoords: bz.bus.proximityHandler.getObscuredCoords(location.coords, 0.1)
             };
             locations.push(loc)
           });
@@ -277,7 +277,7 @@ bz.bus.postsHandler = {
               if (postData.details && postData.details.locations) {
                 _.each(postData.details.locations, function(location){
                   if (location.placeType === bz.const.locations.type.DYNAMIC){
-                    location.obscuredCoords = bz.bus.proximityHandler.getObscuredCoords(location.coords.lat, location.coords.lng, 0.1);
+                    location.obscuredCoords = bz.bus.proximityHandler.getObscuredCoords(location.coords, 0.1);
                   }
                 });
                 _.each(postData.details.locations, function(location){
@@ -289,7 +289,7 @@ bz.bus.postsHandler = {
                     placeType:location.placeType,
                     public:location.public,
                     _id:location._id,
-                    obscuredCoords: location.obscuredCoords
+                    obscuredCoords: bz.bus.proximityHandler.getObscuredCoords(location.coords, 0.1)
                   };
                   locations.push(loc)
                 });
@@ -329,7 +329,9 @@ bz.bus.postsHandler = {
     var locations = [], postDb = _post, post = _post;
     // obscure locations:
     _.each(postDb.details.locations, function (item) {
-      locations.push({_id: item._id, coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
+      locations.push({_id: item._id,
+        coords: item.obscuredCoords,
+        name: item.name, placeType: item.placeType});
     });
     post.details.locations = locations;
     // return photos as array of urls instead of ids:
@@ -390,8 +392,11 @@ bz.bus.postsHandler = {
           lastEditedTs: postDb.lastEditedTs
         };
         _.each(postDb.details.locations, function (item) {
-          locations.push({_id: item._id, coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
+          locations.push({_id: item._id,
+            coords: bz.bus.proximityHandler.getObscuredCoords(item.coords, 0.1),
+            name: item.name, placeType: item.placeType});
         });
+
         post.details.locations = locations;
         if(postDb.details.photos) {
           post.details.photos = _.filter(photos, function (photo) {
@@ -495,8 +500,8 @@ bz.bus.postsHandler = {
         return a.distance-b.distance;
       });*!/
     }*/
-    // postsRet = bz.bus.postsHandler.buildPostsObject({ posts:posts });
-    postsRet = posts;
+    postsRet = bz.bus.postsHandler.buildPostsObject({ posts:posts });
+    //postsRet = posts;
     ret = { success:true, result:postsRet };
     return ret;
   },
@@ -542,8 +547,8 @@ bz.bus.postsHandler = {
     }
     postsQuery['status'] ={ visible: bz.const.posts.status.visibility.VISIBLE };
     posts = bz.cols.posts.find(postsQuery, options).fetch();
-    // postsRet = bz.bus.postsHandler.buildPostsObject({ posts:posts });
-    postsRet = posts;
+    postsRet = bz.bus.postsHandler.buildPostsObject({ posts:posts });
+    //postsRet = posts;
     ret={ success:true, result:postsRet };
     return ret;
   },
