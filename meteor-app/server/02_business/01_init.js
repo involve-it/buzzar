@@ -16,22 +16,6 @@ Meteor.startup(function () {
 });
 
 Router.map(function() {
-  // REST(ish) API
-  // Cordova background/foreground can post GPS data HERE
-  //
-  // POST data should be in this format
-  //   {
-  //     location: {
-  //       latitude: Number,
-  //       longitude: Number,
-  //       accuracy: Match.Optional(Number),
-  //       speed: Match.Optional(Number),
-  //       recorded_at: Match.Optional(String)
-  //     },
-  //     userId: Match.Optional(String),
-  //     uuid: Match.Optional(String),
-  //     device: Match.Optional(String)
-  //   }
   this.route('GeolocationRoute', {
     path: 'api/geolocation',
     where: 'server',
@@ -41,7 +25,7 @@ Router.map(function() {
       // Data from a POST request
       if (requestMethod === 'POST') {
         var requestData = this.request.body;
-        if (requestData && requestData.deviceId && requestData.lat && requestData.lng) {
+        if (requestData && requestData.lat && requestData.lng && requestData.userId) {
 
           // log stuff
           //console.log('GeolocationBG post: ' + requestMethod);
@@ -52,12 +36,16 @@ Router.map(function() {
           //  validate userId/uuid/etc (inside Meteor.call?)
 
           requestData.timestamp = new Date();
+          //todo: remove
           bz.cols.nativeLocationReports.insert(requestData);
+          console.log(requestData);
 
           bz.bus.proximityHandler.reportLocation({
             deviceId: requestData.deviceId,
+            userId: requestData.userId,
             lat: requestData.lat,
-            lng: requestData.lng
+            lng: requestData.lng,
+            background: true
           });
         }
       }

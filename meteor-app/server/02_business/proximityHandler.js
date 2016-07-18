@@ -34,54 +34,42 @@ bz.bus.proximityHandler = {
     },
     /*OLD CODE*/
     reportLocation: function(report){
-        if (report.deviceId) {
-            console.log(report);
-        }
-        //console.log('Location reported for userId: ' + report.userId + ', sessionId: ' + report.sessionId + ', lat: ' + report.lat + ', lng: ' + report.lng);
-        var userId = report.userId, user;
-        if (!userId){
-            if (report.deviceId) {
-                user = Meteor.users.findOne({deviceIds: report.deviceId});
-                if (user) {
-                    userId = user._id;
+        if (report.userId && report.lat && report.lng){
+            var userId = report.userId, user = Meteor.users.findOne({'_id': userId});
+            if (user) {
+                //if app closed, reports come from native code - send notification if there are nearby posts.
+                if (report.background) {
+                    console.log('trying to send notification about nearby posts');
+                    var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
+                    console.log(nearbyPosts);
+                    if (nearbyPosts && nearbyPosts.length > 0) {
+                        bz.bus.proximityHandler.notifyNearbyPosts(userId, nearbyPosts);
+                    }
                 }
-            }
-        } else {
-            user = Meteor.users.findOne({'_id': report.userId});
-        }
-        if (user) {
-            //if app closed, reports come from native code - send notification if there are nearby posts.
-            if (report.deviceId) {
-                console.log('trying to send notification about nearby posts');
-                var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
-                console.log(nearbyPosts);
-                if (nearbyPosts && nearbyPosts.length > 0) {
-                    bz.bus.proximityHandler.notifyNearbyPosts(userId, nearbyPosts);
-                }
-            }
 
-            var posts = bz.cols.posts.find({
-                userId: userId
-            }).fetch();
-            //var filtered = bz.bus.proximityHandler.filterCircularPosts(posts, lat, lng, nearbyRadius);
-            //var ids = _.pluck(filtered, '_id');
-            //bz.cols.posts.update({'_id': {$in: ids}}, {$set: {presence: bz.const.posts.status.presence.NEAR}});
-            bz.bus.proximityHandler.processLocationReport(posts, report.lat, report.lng);
+                var posts = bz.cols.posts.find({
+                    userId: userId
+                }).fetch();
+                //var filtered = bz.bus.proximityHandler.filterCircularPosts(posts, lat, lng, nearbyRadius);
+                //var ids = _.pluck(filtered, '_id');
+                //bz.cols.posts.update({'_id': {$in: ids}}, {$set: {presence: bz.const.posts.status.presence.NEAR}});
+                bz.bus.proximityHandler.processLocationReport(posts, report.lat, report.lng);
 
-            if (user && report.sessionId) {
-                var setObj = {
-                    online: true,
-                    sessionIds: user.sessionIds || []
-                };
-                if (setObj.sessionIds.indexOf(report.sessionId) === -1) {
-                    setObj.sessionIds.push(report.sessionId);
-                }
-                Meteor.users.update({'_id': userId}, {
-                    $set: setObj
-                });
+                /*if (user && report.sessionId) {
+                    var setObj = {
+                        online: true,
+                        sessionIds: user.sessionIds || []
+                    };
+                    if (setObj.sessionIds.indexOf(report.sessionId) === -1) {
+                        setObj.sessionIds.push(report.sessionId);
+                    }
+                    Meteor.users.update({'_id': userId}, {
+                        $set: setObj
+                    });
+                }*/
+            } else {
+                console.log('user not found');
             }
-        } else {
-            console.log('user not found');
         }
     },
     notifyNearbyPosts: function(userId, posts){
@@ -89,8 +77,6 @@ bz.bus.proximityHandler = {
             var filtered = _.filter(posts, function (post) {
                 return post.userId !== userId;
             }), post;
-            console.log('filtered');
-            console.log(filtered);
             if (filtered.length === 1) {
                 post = filtered[0];
                 console.log('Notifying single post: ' + post.details.title);

@@ -25,31 +25,69 @@
 
 Meteor.startup(function(){
   bz.bus.pushHandler = {
-    push: function(userIds, title, msg, payload, badge){
-      badge = badge == null ? 1 : badge;
+    push: function(userId, title, msg, payload, badge){
+      Push.debug = true;
+      badge = badge == null ? 0 : badge;
       var notification = {
-            from:'Buzzar',
+            from: 'Shiners',
             title: title,
             text: msg,
             badge: badge,
-            payload: payload
+            payload: payload,
+            query: {
+              userId: userId
+            }
           };
-      var tokens = [];
-      if (!Array.isArray(userIds)) {
+
+      /*if (!Array.isArray(userIds)) {
         userIds = [userIds];
       }
-      var userTokens = bz.cols.userTokens.find({userId: {$in: userIds}}).fetch();
-      _.each(userTokens, function(e){
-        _.each(e.tokens, function(bulkToken){
-          tokens.push(bulkToken.token);
-        });
+
+      var users = Meteor.users.find({_id: {$in: userIds}}).fetch(), tokens = [];
+      _.each(users, function(user){
+        if (user.tokens){
+          tokens = tokens.concat(_.pluck(user.tokens, 'token'));
+        }
       });
+
       if (tokens.length > 0) {
-        console.log('Pushing:');
-        console.log(tokens);
         notification.tokens = tokens;
         Push.send(notification);
+      }*/
+      Push.send(notification);
+    },
+    registerPushToken: function(deviceId, userId, token, platform){
+      if (deviceId && userId && token && userId === Meteor.userId()){
+        var user = Meteor.user();
+        !user.tokens && (user.tokens = []);
+        if (bz.const.verification.pushPlatforms.indexOf(platform) !== -1){
+
+          Meteor.users.update({_id: {$ne: userId}}, {$pull: {tokens: {deviceId: deviceId}}});
+
+          if (!_.find(user.tokens, function(t){return t.deviceId === deviceId})) {
+            var tokenObj = {
+              deviceId: deviceId,
+              token: {}
+            };
+            tokenObj.token[platform] = token;
+            user.tokens.push(tokenObj);
+            Meteor.users.update(user._id, user);
+          }
+          return {success: true};
+        }
       }
+
+      return {success: false};
+    },
+    unregisterPushToken: function(deviceId, userId, platform){
+      if (deviceId && userId && userId === Meteor.userId() && bz.const.verification.pushPlatforms.indexOf(platform) !== -1) {
+        var user = Meteor.user();
+        user.tokens && (user.tokens = _.filter(user.tokens, function(t){return t.deviceId !== deviceId || !t.token[platform] }));
+        Meteor.users.update(user._id, user);
+        return {success: true};
+      }
+
+      return {success: false};
     },
     registerTokenAndDeviceId: function(deviceId, token, userId){
       //console.log('registering deviceId: ' + deviceId + ', token: ' + token.apn || token.gcm);
