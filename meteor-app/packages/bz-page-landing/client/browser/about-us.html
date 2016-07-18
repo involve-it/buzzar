@@ -4,7 +4,7 @@
         
         <div class="bz-top-header">
             <div class="bz-header-description">
-                <h4 class="title">Единственный сервис, предлагающий живое присутсвие!</h4>
+                <h4 class="title">{{t9n 'HEADER.TITLE'}}</h4>
                 <p>{{t9n 'HEADER.PARAG_1'}}</p>
                 <p>{{t9n 'HEADER.PARAG_2'}}</p>
                 <p></p>
@@ -19,11 +19,10 @@
                 <div class="ui sticky bz-sidebar large-3 columns">
                     <div class="bz-magellan-menu" >
                         <dl class="sub-nav">
-                            <dd><a href="#howItWorks">Как это работает?</a></dd>
-                            <dd><a href="#whatUsefull">Чем мы полезны?</a></dd>
-                            <dd><a href="#help">Помощь</a></dd>
-                            <dd><a href="#Qfaq">Частые вопросы</a></dd>
-                            <dd><a href="#supportUs">Поддержи нас</a></dd>
+                            <dd><a href="#howItWorks">{{t9n 'HOW_DOES_IT_WORK.TITLE'}}</a></dd>
+                            <dd><a href="#whatUsefull">{{ t9n 'WHY_WE_ARE_HELPFUL.TITLE' }}</a></dd>
+                            <dd><a href="#help">{{ t9n 'CONTACT_WITH_US.TITLE' }}</a></dd>
+                            <dd><a href="#Qfaq">{{ t9n 'FAQ.TITLE' }}</a></dd>
                             <dd class="bz-we-are-at-social">
                                 <p>Мы в соц.сетях</p>
                                 <ul class="inline-list">
@@ -44,75 +43,9 @@
                     {{> bzAboutWhatUseful}}
                     <!--{{> bzAboutWhoWeAre}}-->
                     {{> bzAboutHelp}}
-                    {{> bzAboutSupportUs}}
                 </div>
             </div>
             {{> bzAboutMaps}}
-        </div>
-        
-        
-        <div style="display: none">
-        <h3 class="title">
-            Светлячки - это данные о происходящем вокруг в реальном времени и пространстве. Светлячки интерактивны, к тому же вы их создаете сами!
-        </h3>
-
-        <div>
-            <p>
-                <b>Что такое СВЕТЛЯЧКИ?</b>
-            </p>
-            <p>
-                Это "живое" пространство твоих возможностей! Мгновенные встречи в нужный момент с нужными
-                людьми, онлайн-информация о происходящем вокруг, новые возможности для творчества, реализации и коммуникации.
-                Общение, работа и учеба, услуги и предложения, интересные места и события в данный момент поблизости!
-            </p>
-            <p>
-                <b>Установив <u>Светлячок</u>, вы сможете: </b>
-            </p>
-            <ul type="capitalize">
-                <li>Немедленно общаться по интересующему вопросу</li>
-                <li>Найти работу/учебу/услугу в шаговой доступности от дома</li>
-                <li>Расширить свою аудиторию, если у вас есть любимое дело</li>
-                <li>Создавать вокруг себя актуальное пространство</li>
-                <li>Знакомиться с интересными людьми, единомышленниками</li>
-            </ul>
-            <p>
-                <b>Как это работает? - очень просто! Вы можете заявить о себе, </b>
-            </p>
-
-            <a href="/posts/new?type=ad" class="button alert">Создав свой пост</a>
-
-            <!--
-	  
-			<div class="bz-style-soft-background bz-dynamic bz-panel-overlay panel padding bz-tool-tip"  data-top-center="top right" data-theme="drop-theme-arrows-bounce-dark">
-			  <i class="bz-icon bz-icon-dinamic"></i>
-			  <div class="title uppercase">Динамический пост</div>
-			  <p>Движется вместе с тобой</p>
-			</div>
-	  
-			<h2><b>и/или </b></h2>
-	  
-			<div class="bz-style-soft-background bz-static bz-panel-overlay panel padding bz-tool-tip"  data-top-center="top right" data-theme="drop-theme-arrows-bounce-dark">
-			  <i class="bz-icon bz-icon-flag"></i>
-			  <div class="title uppercase">Статический пост</div>
-			  <p>Привязан к заданой тобой местности</p>
-			</div>
-	  -->
-            
-            
-            <p>
-                <b>Характер поста: </b>
-            </p>
-            <p> <a href="/jobs">Найти/предложить работу</a></p>
-            <p><a href="/trainings">Найти/предложить обучение</a></p>
-            <p><a href="/housing">Найти/предложить жилье</a></p>
-            <p><a href="/trade">Продать/купить/обменять</a></p>
-            <p><a href="/services">Предложить/найти/услуги</a></p>
-            <p><a href="/help">Найти/осуществить помощь</a></p>
-            <p><a href="/home">Дать объявление</a></p>
-            <p><a href="/events">Рассказать о событии</a></p>
-            <p><a href="/connect">Найти компанию, друга или организовать встречу</a></p>
-        </div>
-
         </div>
     </div>
 
@@ -124,7 +57,6 @@
         
     </div>
 </template>
-
 
 
 <template name="aboutUs">
@@ -206,8 +138,6 @@
     <a class="button btn-default" href="/contacts">{{ t9n 'CONTACT_US' }}</a>
   </div>
 </template>
-
-
 <template name="bzAboutUsShort">
     <section id="bz-bottom-a" class="bz-gray-background">
         <div class="bz-container-body bz-about-us">
@@ -247,7 +177,6 @@
         </div>
     </section>
 </template>
-
 <template name="bzAboutUsShortRu">
     <section id="bz-bottom-a" class="bz-gray-background">
         <div class="bz-container-body bz-about-us">
@@ -278,51 +207,49 @@
 <!-- start inner templates -->
 <template name="bzAboutHowItWorks">
     <div class="bz-about-how-it-works">
-        <h3 class="title" id="howItWorks">Как это работает?</h3>
 
+        <h3 class="title">Что Где Когда</h3>
+        <p>Каждое объявление состоит из 3х компонентов: </p>
+        <div class="bz-header-description-ad-list">
+            <p><strong>Что</strong> - Само объявление. Предмет встречи.</p>
+            <p><strong>Где</strong> - Геолокация (<a href="#typeOfPostLocation">статическая</a> / <a href="#typeOfPostLocation">динамическая</a>). Доступность человека для общения здесь.</p>
+            <p><strong>Когда</strong> - Живое присутствие (<a href="#">live</a> / <a href="#">away</a>). Доступность человека для общения сейчас.</p>
+        </div>
+        
+        <h3 class="title" id="howItWorks">{{t9n 'HOW_DOES_IT_WORK.TITLE'}}</h3>
         <div class="bz-about-how-it-works-wrapper">
         <div class="bz-three-items bz-it-works">
             <div class="bz-ui bz-three-cards three">
                 <div class="" style="padding: 15px;">
-                    <p>{{t9n 'HEADER.PARAG_3'}}</p>
+                    <p>{{t9n 'HOW_DOES_IT_WORK.PARAG_1'}}</p>
                 </div>
                 <div class="card">
                     <div class="bz-showcase-box">
                         <span class="sample-icon-greeting how_works_1"></span>
                     </div>
-                    <div class="bz-card-caption"><span class="big">1.</span> <a href="#">Создай свой пост</a></div>
+                    <div class="bz-card-caption"><span class="big">1.</span> <a href="#">{{ t9n 'HOW_DOES_IT_WORK.CREATE_POST' }}</a></div>
                 </div>
                 <div class="card">
                     <div class="bz-showcase-box">
                         <span class="sample-icon-greeting how_works_2"></span>
                     </div>
-                    <div class="bz-card-caption"><span class="big">2.</span> <a href="#">Ты находишь - Тебя находят</a></div>
+                    <div class="bz-card-caption"><span class="big">2.</span> <a href="#">{{ t9n 'HOW_DOES_IT_WORK.YOU_FIND' }}</a></div>
                 </div>
                 <div class="card">
                     <div class="bz-showcase-box">
                         <span class="sample-icon-greeting how_works_3"></span>
                     </div>
-                    <div class="bz-card-caption"><span class="big">3.</span> <a href="#">Договаривайся - встречайся</a></div>
+                    <div class="bz-card-caption"><span class="big">3.</span> <a href="#">{{ t9n 'HOW_DOES_IT_WORK.MEETING' }}</a></div>
                 </div>
             </div>
         </div>
         </div>
-
-       <!-- <div class="row row-bottom">
-            <div class="small-12 medium-12 large-6 columns">
-                <h4 class="title"></h4>
-                <div class="bz-text">
-                    <p>Установи Светлячок на любые сферы интересов: частное объявление, реклама услуги, ссылку на страничку или пост в ВК - т.е. на причину, по который ты бы хотел встретиться незамедлительно - и о твоем намерении незамедлительно узнают люди вокруг!
-                        Продаешь ли ты платье или ищещь работу, предлагаешь курсы по йоге или ищещь компанию для вечеринки - расскажи об этом, и мы поможем тебе найти единомышленников, покупателей, собеседников рядом!</p>
-                </div>
-            </div>
-        </div>-->
-
-
+        
 
         <div class="bz-about-what-useful">
-            <h3 class="title" id="whatUsefull">Чем мы полезны?</h3>
-
+            <h3 class="title" id="whatUsefull">{{ t9n 'WHY_WE_ARE_HELPFUL.TITLE' }}</h3>
+            <p>{{ t9n 'WHY_WE_ARE_HELPFUL.PARAG_1' }}</p>
+            
             <div class="bg-usefull show-for-large-up"></div>
 
             <div class="bz-three-items bz-what-useful">
@@ -351,33 +278,33 @@
         
         
         
-        <h4 class="title uppercase selectedText">Типы постов по содержанию</h4>
+        <h3 class="title">{{ t9n 'WHY_WE_ARE_HELPFUL.TYPES_OF_POSTS_ACCORDING' }}</h3>
 
         <div class="bz-three-items bz-random-target">
-            <div class="bz-ui bz-three-cards two"  data-equalizer>
+            <div class="bz-ui bz-three-cards two" data-equalizer>
                 <div class="card">
                     <div class="bz-card-icon"><div class="bz-img-card-icon bz-img-quick-post"></div></div>
                     <div class="bz-showcase-box wide" data-equalizer-watch>
                                 <span class="sample-icon-sq darckred">
-                                    <div class="bz-card-caption orange uppercase">Объявление</div>
-                                    <div class="bz-card-sub-caption">Полноценная страница в интеренете.</div>
-                                    <div class="bz-card-text">Введи данные, необходимые для полноценного объявления и получи страницу в интернете поста, привязанную к месту и твоей "доступности". </div>
+                                    <div class="bz-card-caption orange uppercase">{{ t9n 'WHY_WE_ARE_HELPFUL.ADVERTISEMENT' }}</div>
+                                    <div class="bz-card-sub-caption">{{ t9n 'WHY_WE_ARE_HELPFUL.ADVERTISEMENT_T1' }}</div>
+                                    <div class="bz-card-text">{{ t9n 'WHY_WE_ARE_HELPFUL.ADVERTISEMENT_CONTENT' }}</div>
                                 </span>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="bz-card-icon"><div class="bz-img-card-icon bz-img-quick-post"></div></div>
+                    <div class="bz-card-icon"><div class="bz-img-card-icon bz-img-quick-link"></div></div>
                     <div class="bz-showcase-box wide" data-equalizer-watch>
                                 <span class="sample-icon-sq darckred">
-                                    <div class="bz-card-caption orange uppercase">Ссылка</div>
-                                    <div class="bz-card-sub-caption">Быстрое создание поста одним нажатием!</div>
-                                    <div class="bz-card-text">Если у тебя уже есть адрес в интернете, дающий всю необходимую информацию - просто используй эту ссылку и получи готовый Светлячок! Это удобно - не тратить время на создание объявления. Несколько кликов и вся важная информация будет освещаться Светлячками!</div>
+                                    <div class="bz-card-caption orange uppercase">{{ t9n 'WHY_WE_ARE_HELPFUL.LINK' }}</div>
+                                    <div class="bz-card-sub-caption">{{ t9n 'WHY_WE_ARE_HELPFUL.LINK_T1' }}</div>
+                                    <div class="bz-card-text">{{ t9n 'WHY_WE_ARE_HELPFUL.LINK_CONTENT' }}</div>
                                 </span>
                     </div>
                 </div>
             </div>
         </div>
-        <h4 class="title uppercase selectedText">Типы локаций постов</h4>
+        <h3 class="title" id="typeOfPostLocation">{{ t9n 'WHY_WE_ARE_HELPFUL.TYPES_OF_POSTS_LOCATION' }}</h3>
 
         <div class="bz-three-items bz-random-target">
             <div class="bz-ui bz-three-cards two"  data-equalizer>
@@ -385,10 +312,9 @@
                     <div class="bz-card-icon"><div class="bz-img-card-icon bz-img-dinamic-post"></div></div>
                     <div class="bz-showcase-box wide" data-equalizer-watch>
                                 <span class="sample-icon-sq darckred">
-                                    <div class="bz-card-caption orange uppercase">"Динамический пост"</div>
-                                    <div class="bz-card-sub-caption">Движется вместе с тобой.</div>
-                                    <div class="bz-card-text">Носи его в своем кармане - установи светлячок один раз и он будет перемещаться вместе с тобой, показывая твое объявление людям
-                                        вокруг. Используй Светлячок как повод для знакомства и реально встречи. Светлячок будет "включен" всегда!</div>
+                                    <div class="bz-card-caption orange uppercase">"{{ t9n 'WHY_WE_ARE_HELPFUL.DYNAMIC' }}"</div>
+                                    <div class="bz-card-sub-caption">{{ t9n 'WHY_WE_ARE_HELPFUL.DYNAMIC_T1' }}</div>
+                                    <div class="bz-card-text">{{ t9n 'WHY_WE_ARE_HELPFUL.DYNAMIC_CONTENT' }}</div>
                                 </span>
                     </div>
                 </div>
@@ -396,9 +322,9 @@
                     <div class="bz-card-icon"><div class="bz-img-card-icon bz-img-static-post"></div></div>
                     <div class="bz-showcase-box wide" data-equalizer-watch>
                                 <span class="sample-icon-sq darckred">
-                                    <div class="bz-card-caption orange uppercase">"Статический пост"</div>
-                                    <div class="bz-card-sub-caption">Привязан к заданной тобой местности.</div>
-                                    <div class="bz-card-text">Если ты хочешь, чтобы Светлячок указывал на твою мастерскую, офис или кабинет, и ты больше времени проводишь там, чем в движении - создай Статический пост. Светлячок "включится" автоматически, когда ты будешь рядом и отключится, если ты покинул его!</div>
+                                    <div class="bz-card-caption orange uppercase">"{{ t9n 'WHY_WE_ARE_HELPFUL.STATIC' }}"</div>
+                                    <div class="bz-card-sub-caption">{{ t9n 'WHY_WE_ARE_HELPFUL.STATIC_T1' }}</div>
+                                    <div class="bz-card-text">{{ t9n 'WHY_WE_ARE_HELPFUL.STATIC_CONTENT' }}</div>
                                 </span>
                     </div>
                 </div>
@@ -445,8 +371,8 @@
                 <div class="card">
                     <div class="bz-showcase-box wide">
                         <span class="sample-icon-sq darckred">
-                            <div class="bz-card-sub-caption">Кто мы</div>
-                            <div class="bz-card-text"><p>Мы - группа энтузиастов, которые сами давно мечтали о подобном ресурсе! Который позволит быстро и удобно <span class="bz-read-more inline"><a href="/">Читать дальше</a></span></p> 
+                            <div class="bz-card-sub-caption">{{ t9n 'WHO_ARE_WE.TITLE' }}</div>
+                            <div class="bz-card-text"><p>{{ t9n 'WHO_ARE_WE.PARAG_1' }} <span class="bz-read-more inline"><a href="/">{{ t9n 'READ_MORE' }}</a></span></p> 
                                 
                                 <!--<p>узнавать о происходящем вокруг и чувствовать себя как везде дома. Мы помним время бумажных объявлений, которые с интересом читали в детстве на улице, узнавая о том, сколько чего интересного рядом.</p>
                                 <div class="bz-next-text">
@@ -463,8 +389,8 @@
                 <div class="card">
                     <div class="bz-showcase-box wide">
                         <span class="sample-icon-sq darckred">
-                            <div class="bz-card-sub-caption">Безопасность</div>
-                            <div class="bz-card-text"><p>Вы размещаете у нас только ту информацию, которую считаете нужной. Рассылок, навязчивых предложений у нас нет! <span class="bz-read-more inline"><a href="/">Читать дальше</a></span></p>
+                            <div class="bz-card-sub-caption">{{ t9n 'SAFETY.TITLE' }}</div>
+                            <div class="bz-card-text"><p>{{ t9n 'SAFETY.PARAG_1' }} <span class="bz-read-more inline"><a href="/">{{ t9n 'READ_MORE' }}</a></span></p>
                                 <!--<p>Вы сами формируете актуальное для вас пространство. Координаты на местности явялются размытыми.</p>-->
                             </div>
                         </span>
@@ -473,8 +399,8 @@
                 <div class="card">
                     <div class="bz-showcase-box wide">
                         <span class="sample-icon-sq darckred">
-                            <div class="bz-card-sub-caption">Правила</div>
-                            <div class="bz-card-text"><p>При регистрации на «Cветлячках» Пользователь соглашается с настоящими правилами и принимает на себя <span class="bz-read-more inline"><a href="/">Читать дальше</a></span></p>
+                            <div class="bz-card-sub-caption">{{ t9n 'RULES.TITLE' }}</div>
+                            <div class="bz-card-text"><p>{{ t9n 'RULES.PARAG_1' }} <span class="bz-read-more inline"><a href="{{pathFor 'bz.rules'}}">{{ t9n 'READ_MORE' }}</a></span></p>
                                 <!--<p>указанные в них права и обязанности, связанных размещением поста.</p>
                                 <div class="bz-next-text">
                                     <span class="bz-text-more">
@@ -531,13 +457,11 @@
 
 <template name="bzAboutHelp">
     <div class="bz-about-help">
-        <h3 class="title" id="help">Связаться с нами</h3>
+        <h3 class="title" id="help">{{ t9n 'CONTACT_WITH_US.TITLE' }}</h3>
         
         <div id="bz-form-application-help" class="bz-form-container">
             <div class="bz-form-nav-wrapper">
-                <div class="bz-app-header">
-                    Если вы чего-то не нашли на сайте, или у вас есть предложение и отзывы, пишите нам. С удовольствием ответим каждому!
-                </div>
+                <div class="bz-app-header">{{ t9n 'CONTACT_WITH_US.PARAG_1' }}</div>
             </div>
             <div class="bz-form-wrapper">
                 <form class="bz-ui-form">
@@ -546,7 +470,7 @@
                     </div>
                     <div class="bz-ui-form-action-button">
                         <div class="bz-form-captcha">
-                            CAPTCHA
+                            <!--CAPTCHA-->
                         </div>
                         <div class="bz-form-button">
                             <button class="button btn-default js-send-request">Отправить</button>
@@ -557,101 +481,85 @@
         </div>
         
         <div class="bz-faq-help">
-            <div class="sub-heading" id="Qfaq">
-                <p>Частые вопросы</p>
-            </div>
+            <h3 class="title" id="Qfaq">{{ t9n 'FAQ.TITLE' }}</h3>
             <ul class="accordion" data-accordion>
                 <li class="accordion-navigation">
-                    <a href="#panel1a">Чем Светлячки мне полезны?</a>
+                    <a href="#panel1a">{{ t9n 'FAQ.PANEL1_Q' }}</a>
                     <div id="panel1a" class="content">
-                        <p>Очень часто нам не хватает информации о том, что находится в непосредственной близости от нас. Для всех, кто не безразличен к происходящему по-соседству мы создали Светлячки. Светлячки — это удобный инструмент с приятным интерфейсом, который поможет тебе пролить свет на то, что рядом c тобой и поделиться с миром актуальной для тебя информацией.</p>
-                        <p>Ищешь работу — светлячки покажут тебе вакансии рядом с твоим домом. Освободился после трудового дня— светлячки подскажут, где можно отлично провести время в непосредственной близости от твоей работы.</p>
-                        <p>Ты также узнаешь, что твоя соседка продает дорожный холодильник, который тебе как раз нужен, а приятная девушка в автобусе рядом с тобой увлекается шахматами. Отличный повод для знакомства, правда? И если ты не знаешь с кем поехать на рыбалку в выходные — установи светлячок и найди единомышленников. Будь активен, открыт миру, устанавливай Светлячки, смотри события рядом с тобой — знакомься, общайся, развивайся.</p>
+                        <p>{{ t9n 'FAQ.PANEL1_A' }}</p>
                     </div>
                 </li>
                 <li class="accordion-navigation">
-                    <a href="#panel2a">Какой пост создать?</a>
+                    <a href="#panel2a">{{ t9n 'FAQ.PANEL2_Q' }}</a>
                     <div id="panel2a" class="content">
-                        <p>Посты бы на Светлячках бывают: Статические и динамические.</p>
-                        <p>Если твое объявление привязано к определенному месту — то ты можешь создать статический пост.</p>
-                        <p>Например, ты продвигаешь свой салон красоты, или йогастудию, или сдаешь квартиру.</p>
-                        <p>Или просто хочешь, чтобы объявление было привязано не к тебе лично, а к месту. (например,к твоему дому). Такое объявление хорошо, если ты продвигаешь событие или место.</p>
-                        <p>Если же ты продаешь что-то, оказываешь услуги, нуждаешься в помощи или ищешь единомышленников – то есть хочешь использовать свое объявление как повод для общения и быстрой встречи, то тебе лучше установить динамическое объявление, которое будет перемещаться вместе с тобой.</p>
-                        <p>Установи динамический светлячок, и где бы ты не был, люди будут знать о твоем объявлении и задавать тебе вопросы.</p>
+                        <p>{{ t9n 'FAQ.PANEL2_A' }}</p>
                     </div>
                 </li>
                 <li class="accordion-navigation">
-                    <a href="#panel3a">Как искать информацию?</a>
+                    <a href="#panel3a">{{ t9n 'FAQ.PANEL3_Q' }}</a>
                     <div id="panel3a" class="content">
-                        <p>Светлячки - это поисковая система по людям вокруг. Достаточно открыть приложение или сайт и увидеть тех, кто рядом и что они предлагают, либо искать по ключевым словам в "умной строке".</p>
-                        <p>Также, можно воспользоваться поиском по категориям и тэгам. В каждом разделе можно увидеть Светлячков, которые сейчас рядом, и другие популярные посты по каждой теме.</p>
+                        <p>{{ t9n 'FAQ.PANEL3_A' }}</p>
                     </div>
                 </li>
                 <li class="accordion-navigation">
-                    <a href="#panel4a">Чем вы можете помочь?</a>
+                    <a href="#panel4a">{{ t9n 'FAQ.PANEL4_Q' }}</a>
                     <div id="panel4a" class="content">
-                        <p>Если у тебя есть что-то, что для тебя актуально: ты оказываешь услуги, продаешь что-то, ищешь работу и т.п. — мы поможем тебе добиться своей цели быстро и эффективно, привлекя людей, которые рядом с тобой.</p>
-                        <p>Установи светлячок — и об актуальном для тебя узнают те, кто рядом.</p>
+                        <p>{{ t9n 'FAQ.PANEL4_A' }}</p>
                     </div>
                 </li>
                 <li class="accordion-navigation">
-                    <a href="#panel5a">Какие сферы интересов?</a>
+                    <a href="#panel5a">{{ t9n 'FAQ.PANEL5_Q' }}</a>
                     <div id="panel5a" class="content">
-                        <p>Установи Светлячок на любые сферы интересов: частное объявление, реклама услуги, ссылку на страничку или пост в ВК - т.е. на причину, по который ты бы хотел встретиться незамедлительно - и о твоем намерении незамедлительно узнают люди вокруг!
-                            Продаешь ли ты платье или ищещь работу, предлагаешь курсы по йоге или ищещь компанию для вечеринки - расскажи об этом, и мы поможем тебе найти единомышленников, покупателей, собеседников рядом!
-                        </p>
+                        <p>{{ t9n 'FAQ.PANEL5_A' }}</p>
                     </div>
                 </li>
                 <li class="accordion-navigation">
-                    <a href="#panel6a">Как найти в соц.сетях?</a>
+                    <a href="#panel6a">{{ t9n 'FAQ.PANEL6_Q' }}</a>
                     <div id="panel6a" class="content">
-                        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <p>{{ t9n 'FAQ.PANEL6_A' }}</p>
                     </div>
                 </li>
                 <li class="accordion-navigation">
-                    <a href="#panel7a">Какими могут быть материалы для публикаций?</a>
+                    <a href="#panel7a">{{ t9n 'FAQ.PANEL7_Q' }}</a>
                     <div id="panel7a" class="content">
-                        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <p>{{ t9n 'FAQ.PANEL7_A' }}</p>
                     </div>
                 </li>
                 <li class="accordion-navigation">
-                    <a href="#panel8a">Как можно сотрудничать?</a>
+                    <a href="#panel8a">{{ t9n 'FAQ.PANEL8_Q' }}</a>
                     <div id="panel8a" class="content">
-                        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <p>{{ t9n 'FAQ.PANEL8_A' }}</p>
                     </div>
                 </li>
                 <li class="accordion-navigation">
-                    <a href="#panel9a">Чем полезно сотрудничество с вами?</a>
+                    <a href="#panel9a">{{ t9n 'FAQ.PANEL9_Q' }}</a>
                     <div id="panel9a" class="content">
-                        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <p>{{ t9n 'FAQ.PANEL9_A' }}</p>
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#panel10a">{{ t9n 'FAQ.PANEL10_Q' }}</a>
+                    <div id="panel10a" class="content">
+                        <p>{{ t9n 'FAQ.PANEL10_A' }}</p>
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#panel11a">{{ t9n 'FAQ.PANEL11_Q' }}</a>
+                    <div id="panel11a" class="content">
+                        <p>{{ t9n 'FAQ.PANEL11_A' }}</p>
+                    </div>
+                </li>
+
+                <li class="accordion-navigation">
+                    <a href="#panel12a">{{ t9n 'FAQ.PANEL12_Q' }}</a>
+                    <div id="panel12a" class="content">
+                        <p>{{ t9n 'FAQ.PANEL12_A' }}</p>
                     </div>
                 </li>
             </ul>
         </div>
-        
-    </div>
-</template>
-
-<template name="bzAboutSupportUs">
-    <div class="bz-about-support-us">
-        <h3 class="title"  id="supportUs">Поддержать нас</h3>
-        
-        <div class="bz-about-support-us-description">
-            <p>Если у вас возникло желание каким-то образом поучаствовать в жизни проекта ...</p> 
-        </div>
-
-        <div class="sub-heading">
-            <p>С кем мы сотрудничаем?</p>
-        </div>
-        
-        <div class="bz-company-partnership">
-            <p>Многие замечательные люди и сервисы видят в нашем партнерства долгосрочные перспективы. И освещают на Светлячках свою информацию.</p>
-            
-            <p>Присоединяйтесь, будем рады!</p>
-        </div>
 
         {{> bzSetFireFly}}
-        
         
     </div>
 </template>
