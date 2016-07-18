@@ -217,7 +217,7 @@ CreateNewPostFromView = function (v) {
       }
 
       if (!e && r && r !== '') {
-        bz.ui.alert(`Ваш <a href="/post/${r}">пост</a> успешно создан`);
+        bz.ui.alert(`Ваш <a href="/post/${r.result}">пост</a> успешно создан`);
         clearPostData();
         bz.runtime.newPost.postId = r;
       } else {

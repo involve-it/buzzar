@@ -38,7 +38,7 @@ Router.map(function () {
           r.result.getDistanceToCurrentLocation = bz.help.posts.getDistanceToCurrentLocation.apply(r.result);
 
           self.result = r.result;
-          
+          Session.set('bz.posts.current', r.result); // very temp solution related to getPost being object, not cursor
         } else {
           bz.ui.alert('Error ID: ' + r.error.errorId, {type:'error', timeout: 2000});
         }
