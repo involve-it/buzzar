@@ -55,3 +55,4 @@ bz.const.push.type.post = 'default';
 
 bz.help.makeNamespace('bz.const.verification');
 bz.const.verification.profileDetailsKeys=["firstName", "lastName", "city","phone","skype", "vk", "twitter", "facebook"];
+bz.const.verification.pushPlatforms = ['apn'];

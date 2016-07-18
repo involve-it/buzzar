@@ -57,7 +57,7 @@ bz.bus.postsHandler = {
       });
       postsSort=posts.sort(function(a,b){return a.distance-b.distance});
     }
-    postsRet=bz.bus.postsHandler.buildPostObject({posts:postsSort});
+    postsRet=bz.bus.postsHandler.buildPostsObject({posts:postsSort});
     ret={success:true, result:postsRet};
     return ret;
   },
@@ -65,7 +65,7 @@ bz.bus.postsHandler = {
     var post, ret={},
       postDb=bz.cols.posts.findOne({_id: requestedPostId});
     if (postDb){
-      post=bz.bus.postsHandler.buildPostObject({posts:[postDb]});
+      post=bz.bus.postsHandler.buildPostsObject({posts:[postDb]});
       ret={success:true, result:post[0]};
     }else{
       //error
@@ -92,7 +92,7 @@ bz.bus.postsHandler = {
       return ret;
     }
     if (arrPosts.length>0) {
-      posts=bz.bus.postsHandler.buildPostObject({posts:arrPosts});
+      posts=bz.bus.postsHandler.buildPostsObject({posts:arrPosts});
       ret={success:true, result:posts};
     }else{
       ret={success:true, result: []};
@@ -325,8 +325,32 @@ bz.bus.postsHandler = {
     }
     return ret;
   },
+  buildPostObject: function(_post) {
+    var locations = [], postDb = _post, post = _post;
+    // obscure locations:
+    _.each(postDb.details.locations, function (item) {
+      locations.push({_id: item._id, coords: item.obscuredCoords, name: item.name, placeType: item.placeType});
+    });
+    post.details.locations = locations;
+    // return photos as array of urls instead of ids:
+    if(!!postDb.details.photos.length) {
+      post.details.photos = bz.cols.images.find({ _id: {$in: post.details.photos }}).fetch().map(function(p) { return p.data;});
+    }
+    // hz:?
+    /*if (postDb.type == 'jobs') {
+      post.jobsDetails = postDb.jobsDetails;
+    } else if (postDb.type == 'trainings') {
+      post.trainingsDetails = postDb.trainingsDetails;
+    } else {
 
-  buildPostObject: function(data){
+    }*/
+    // return user object instead of user id, only for non-anon:
+    if (!postDb.details.anonymousPost) {
+      post.user = Meteor.users.findOne(postDb.userId);
+    }
+    return post;
+  },
+  buildPostsObject: function(data, isMobile){
     var post,posts,postsRet=[], ret={}, locations=[],arrPhoto, photos,usersIds, arrUsers, users;
     posts=data.posts;
     if (posts && posts.length>0) {
@@ -386,7 +410,13 @@ bz.bus.postsHandler = {
             return user._id === postDb.userId
           })[0];
         }
-        postsRet.push(post)
+
+        // set post distance to current location:
+        if (isMobile) { // this is for mobile phones - stub for now.
+          // post.distance = bz.help.posts.getDistanceToCurrentLocation
+        }
+
+        postsRet.push(post);
       });
       ret = postsRet;
     }
@@ -462,11 +492,11 @@ bz.bus.postsHandler = {
         }
       });
       postsSort=posts;/!*.sort(function(a,b) {
-        debugger;
         return a.distance-b.distance;
       });*!/
     }*/
-    postsRet = bz.bus.postsHandler.buildPostObject({ posts:posts });
+    // postsRet = bz.bus.postsHandler.buildPostsObject({ posts:posts });
+    postsRet = posts;
     ret = { success:true, result:postsRet };
     return ret;
   },
@@ -512,7 +542,8 @@ bz.bus.postsHandler = {
     }
     postsQuery['status'] ={ visible: bz.const.posts.status.visibility.VISIBLE };
     posts = bz.cols.posts.find(postsQuery, options).fetch();
-    postsRet = bz.bus.postsHandler.buildPostObject({ posts:posts });
+    // postsRet = bz.bus.postsHandler.buildPostsObject({ posts:posts });
+    postsRet = posts;
     ret={ success:true, result:postsRet };
     return ret;
   },

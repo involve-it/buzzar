@@ -40,6 +40,7 @@ Meteor.publish('posts-my', function () {
 
 //new code publication
 Meteor.publish('posts-nearby',function(request){
+  request = request || {};
   var ret, lat,lng,radius, postsQuery={},posts,arrTypes=[], activeCats, box;
   lat=request.lat;
   lng=request.lng;
@@ -56,7 +57,8 @@ Meteor.publish('posts-nearby',function(request){
       };
     }
   }else{
-
+    //to return 0 results:
+    postsQuery = { _id: 'this id is not possible, meaning of this is to return 0 results'};
   }
   if (activeCats && Array.isArray(activeCats) && activeCats.length > 0) {
     postsQuery['type'] = {$in: activeCats};

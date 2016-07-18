@@ -66,10 +66,10 @@ if(typeof Template !== 'undefined') {
     now = new Date();
 
     /* Created posts, ms */
-    start = new Date(bz.cols.posts.findOne({_id: this._id}).timestamp); // Dec 26 2015
+    start = new Date(this.timestamp); // Dec 26 2015
 
     /* N Days of Activism, FINISH */
-    finish = new Date(bz.cols.posts.findOne({_id: this._id}).endDatePost); // Jan 25 2016
+    finish = new Date(this.endDatePost); // Jan 25 2016
 
     /* ALL ms or 100% */
     duration = finish - start;
