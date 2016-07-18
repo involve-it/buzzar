@@ -334,7 +334,7 @@ bz.bus.postsHandler = {
     post.details.locations = locations;
     // return photos as array of urls instead of ids:
     if(!!postDb.details.photos.length) {
-      post.details.photos = bz.cols.images.find({ _id: {$in: post.details.photos }}).fetch();
+      post.details.photos = bz.cols.images.find({ _id: {$in: post.details.photos }}).fetch().map(function(p) { return p.data;});
     }
     // hz:?
     /*if (postDb.type == 'jobs') {
