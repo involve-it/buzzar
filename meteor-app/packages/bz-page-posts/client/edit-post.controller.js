@@ -168,7 +168,7 @@ SavePostFromView = function (v, data) {
         }
 
         if (!e && result) {
-          bz.ui.alert(`Ваш <a href="/post/${result}">пост</a> сохранен`);
+          bz.ui.alert(`Ваш <a href="/post/${result.result}">пост</a> сохранен`);
           //clearPostData();
           //bz.runtime.newPost.postId = res;
         } else if(e) {
