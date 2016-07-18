@@ -168,10 +168,14 @@ bz.bus.proximityHandler = {
             return {};
         } else {
             var box = bz.bus.proximityHandler.getLatLngBox(coords.lat, coords.lng, rad);
-            return {
-                lat: Math.random()*(box.lat2-box.lat1)+box.lat1,
-                lng: Math.random()*(box.lng2-box.lng1)+box.lng1
-            };
+            if (!box) {
+                return {}
+            } else {
+                return {
+                    lat: Math.random() * (box.lat2 - box.lat1) + box.lat1,
+                    lng: Math.random() * (box.lng2 - box.lng1) + box.lng1
+                };
+            }
         }
     },
     processLocationReport: function(posts, lat, lng){
