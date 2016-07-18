@@ -192,7 +192,7 @@ Template.bzDatePickerModal.onRendered(function() {
   
   /* Show the datepicker */
   datePicker.fdatepicker('show');
-  
+  $('.js-duration-select-picker').trigger('change');
 });
 
 

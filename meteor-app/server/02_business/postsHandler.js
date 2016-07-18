@@ -336,7 +336,7 @@ bz.bus.postsHandler = {
     post.details.locations = locations;
     // return photos as array of urls instead of ids:
     if(!!postDb.details.photos.length) {
-      post.details.photos = bz.cols.images.find({ _id: {$in: post.details.photos }}).fetch().map(function(p) { return p.data;});
+      post.details.photosUrls = bz.cols.images.find({ _id: {$in: post.details.photos }}).fetch().map(function(p) { return p.data;});
     }
     // hz:?
     /*if (postDb.type == 'jobs') {
@@ -365,7 +365,7 @@ bz.bus.postsHandler = {
         return post.details.photos
       }).reduce(function (a, b) {
         return a.concat(b);
-      });
+      }).filter(function(p) { return p !== undefined; });
       if (arrPhoto.length > 0) {
         photos = bz.bus.imagesHandler.getPhotos(arrPhoto);
       }
@@ -392,6 +392,7 @@ bz.bus.postsHandler = {
           lastEditedTs: postDb.lastEditedTs
         };
         _.each(postDb.details.locations, function (item) {
+
           locations.push({_id: item._id,
             coords: bz.bus.proximityHandler.getObscuredCoords(item.coords, 0.1),
             name: item.name, placeType: item.placeType});
@@ -402,6 +403,9 @@ bz.bus.postsHandler = {
           post.details.photos = _.filter(photos, function (photo) {
             return postDb.details.photos.indexOf(photo._id) !== -1
           });
+        }
+        if(postDb.details.photosUrls) {
+          post.details.photosUrls = postDb.details.photosUrls;
         }
         if (postDb.type == 'jobs') {
           post.jobsDetails = postDb.jobsDetails;
@@ -414,11 +418,6 @@ bz.bus.postsHandler = {
           post.user = _.filter(users, function (user) {
             return user._id === postDb.userId
           })[0];
-        }
-
-        // set post distance to current location:
-        if (isMobile) { // this is for mobile phones - stub for now.
-          // post.distance = bz.help.posts.getDistanceToCurrentLocation
         }
 
         postsRet.push(post);
