@@ -26,6 +26,11 @@ Package.onUse(function(api) {
     'client/browser/about-us.html',
     'client/browser/about-us.less',
     'client/browser/about-us.js',
+      
+    'client/browser/rules.html',
+    'client/browser/rules.js',
+    'client/browser/rules.less',
+      
     'client/browser/page-not-found.html',
     'client/browser/page-about-us.html',
     'client/browser/page-contact-us.html',
