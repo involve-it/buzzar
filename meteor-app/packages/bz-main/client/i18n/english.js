@@ -64,9 +64,10 @@ en = {
 
 
   //No posts around
-  NO_ITEMS_AROUND_YOU: 'No posts around you',
+  NO_ITEMS_AROUND_YOU: 'No posts around you yet',
+  NO_ITEMS_AROUND_LOCATION_NOT_DEFINED: 'Your location was not defined',
   YOU_CAN_CREATE_POST: 'Create your post and other users can contact you!',
-  TRY_TO_SET_LOCATION: 'Try to set location again.',
+  TRY_TO_SET_LOCATION: 'Set location manually',
   TRY_TO_RESET_SEARCH: 'Reset search filters',
   BUTTONS_BACK: 'Back',
 

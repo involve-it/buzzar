@@ -11,6 +11,11 @@ Template.bzAroundYou.onRendered(function () {
   Meteor.startup(function () {});
 });
 
+Template.notFoundAroundItems.helpers({
+  locationWasDefined: function() {
+    return !!Session.get('currentLocation');
+  }
+});
 Template.bzAroundYou.helpers({
   getData: function() {
     return Template.instance().getSearchData.get();

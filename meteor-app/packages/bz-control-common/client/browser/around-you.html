@@ -125,25 +125,37 @@
 <template name="notFoundAroundItems">
     <div class="not-found-items">
         <div class="bz-flex-box bz-margin">
-            <div class="title-message">{{ t9n 'NO_ITEMS_AROUND_YOU'}}</div>
-            <div class="subtitle-message margin-bottom-20px">{{ t9n 'YOU_CAN_CREATE_POST'}}</div>
-    
-            <a href="/posts/new?type=ad" class="button alert bz-margin-zero">
-                <div class="labelText bz-flex bz-flex-middle"><i class="fa fa-plus show-for-small-only"></i> <span class="show-for-medium-up">{{ t9n 'MENU_BUTTON_NEW_POST'}}</span></div>
-            </a>
+            {{#if locationWasDefined}}
+                <!--location was defined thus really no posts, offer to create some:-->
+                <div class="title-message">{{ t9n 'NO_ITEMS_AROUND_YOU'}}</div>
+                <div class="subtitle-message margin-bottom-20px">{{ t9n 'YOU_CAN_CREATE_POST'}}</div>
+
+                <a href="/posts/new?type=ad" class="button alert bz-margin-zero">
+                    <div class="labelText bz-flex bz-flex-middle"><i class="fa fa-plus show-for-small-only"></i> <span class="show-for-medium-up">{{ t9n 'MENU_BUTTON_NEW_POST'}}</span></div>
+                </a>
+                <div class="bz-location-name" style="position: static; top: auto; left: auto;">
+                    <br/>
+                    <a class="js-try-to-reset-search" style="color: #5ab1ce;">
+                        <span style="border-bottom-color: #5ab1ce;">{{ t9n 'TRY_TO_RESET_SEARCH'}}</span>
+                    </a>
+                </div>
+            {{else}}
+                <!--location was not defined thus no posts found, offer user to redefined loc:-->
+                <div class="title-message">{{ t9n 'NO_ITEMS_AROUND_LOCATION_NOT_DEFINED'}}</div>
+
+                <div class="bz-location-name" style="position: static; top: auto; left: auto;">
+                    <a class="js-try-to-set-location bz-link-lacation-name" style="color: #5ab1ce;">
+                        <i class="fa fa-map-marker bz-fa-location-not-defined"></i>
+                        <span style="border-bottom-color: #5ab1ce;">{{ t9n 'TRY_TO_SET_LOCATION'}}</span>
+                    </a>
+                    <br/>
+                </div>
+            {{/if}}
+
+
             <br/>
             <br/>
-            <div class="bz-location-name" style="position: static; top: auto; left: auto;">
-                <a class="js-try-to-set-location bz-link-lacation-name" style="color: #5ab1ce;">
-                    <i class="fa fa-map-marker bz-fa-location-not-defined"></i>
-                    <span style="border-bottom-color: #5ab1ce;">{{ t9n 'TRY_TO_SET_LOCATION'}}</span>
-                </a>
-                <br/>
-                <br/>
-                <a class="js-try-to-reset-search" style="color: #5ab1ce;">
-                    <span style="border-bottom-color: #5ab1ce;">{{ t9n 'TRY_TO_RESET_SEARCH'}}</span>
-                </a>
-            </div>
+
         </div>
     </div>
 </template>

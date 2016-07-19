@@ -18,3 +18,7 @@ to set settings in js:
 https://github.com/fourquet/meteor-package-settings
 
 meteor add force-ssl (for redirects)
+
+Handlebar template helpers:
+https://github.com/raix/Meteor-handlebar-helpers:
+{{$.Session.get key}} etc
