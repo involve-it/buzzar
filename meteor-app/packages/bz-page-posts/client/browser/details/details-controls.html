@@ -110,8 +110,18 @@
 <!--Forms for different types:-->
 <template name="postDetailsDetailsCommon">
 
-  <div class="item-divider">
-    <h2 class="title space-1">{{ details.title }}</h2>
+    <div class="item-divider">
+        <div class="bz-post-title-edit">
+            <h2 class="title space-1"> {{ details.title }} </h2>
+            {{#if belongsToCurrentUser }}
+                <span class="bz-post-edit-post-btn">
+                    <a class="bz-post-action-link" href="/posts/{{ getCurrentPostId }}/edit" title="Edit">
+                        <i class="fa fa-pencil-square"></i>
+                    </a>
+                </span>
+            {{/if}}
+        </div>
+      
     {{> postRatingInfo}}
       
     {{#each details.locations }}
@@ -128,7 +138,7 @@
             <a target="_blank" href="{{ getGoogleMapsHref }}" class="js-show-location-on-map">{{ t9n 'POST_DETAILS_VIEW_MAP' }}</a>
         </div>
     {{/each}}
-  </div>
+    </div>
 
   <div class="post-item overflow">
     <div class="post-details">
