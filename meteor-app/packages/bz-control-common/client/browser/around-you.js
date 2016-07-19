@@ -191,6 +191,7 @@ Template.bzAroundYouItem.helpers({
   },
   getRank: function () {},
   getProgressBar: function () {
+    debugger;
   },
   getTimeStamp: function () {
     return Date.now();

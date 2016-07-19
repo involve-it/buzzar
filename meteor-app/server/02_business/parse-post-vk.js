@@ -76,6 +76,8 @@ bz.bus.parseUrlVk = function(url) {
       
       var string = JSON.parse(response.content).response[0];
 
+      //debugger;
+
       if(typeof string === 'object') {
 
         if (string.text === '') {

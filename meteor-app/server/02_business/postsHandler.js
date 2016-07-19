@@ -359,7 +359,6 @@ bz.bus.postsHandler = {
       usersIds = _.map(posts, function (post) {
         return post.userId
       });
-
       arrUsers = bz.bus.usersHandler.userDbQuery(usersIds);
       users = bz.bus.usersHandler.buildUserObject(arrUsers);
       arrPhoto = _.map(posts, function (post) {

@@ -235,6 +235,7 @@ Template.userSettings.events({
     /*var qs = {
       toUser: this._id
     }*/
+    //debugger;
     if(Meteor.userId() !== this._id) {
       var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this._id);
       Router.go('/chat/' + chatId);

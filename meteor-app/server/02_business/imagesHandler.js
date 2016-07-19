@@ -5,7 +5,7 @@ bz.bus.imagesHandler = {
   getPhotos: function(photosId){
     var ret, arrPhoto;
     check(photosId, [String]);
-    arrPhoto = bz.cols.images.find({_id: {$in: photosId}}).fetch();
+    arrPhoto=bz.cols.images.find({_id: {$in: photosId}}).fetch();
     ret=arrPhoto;
     return ret;
   },

@@ -3,7 +3,7 @@
  */
 
 bz.cols.locations = new Mongo.Collection('bz.locations');
-typeof Ground !== 'undefined' && Ground.Collection(bz.cols.locations);
+Ground.Collection(bz.cols.locations);
 if(Meteor.isServer){
   //bz.cols.locations.remove({});
 }

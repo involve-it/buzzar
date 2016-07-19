@@ -22,6 +22,7 @@ Router.map(function () {
       }
     },
     onBeforeAction: function () {
+      //debugger;
       var qs = this.params.query;
       //console.log(qs);
       setSearchTextFromQs(qs);

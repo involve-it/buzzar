@@ -2,7 +2,7 @@
  * Created by Ashot on 9/27/15.
  */
 bz.cols.hashes =  new Mongo.Collection('bz.hashes');
-typeof Ground !== 'undefined' && Ground.Collection(bz.cols.hashes);
+Ground.Collection(bz.cols.hashes);
 if(Meteor.isServer) {
   Meteor.publish('bz.hashes.all', function () {
     return bz.cols.hashes.find();

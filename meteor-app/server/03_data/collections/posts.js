@@ -23,45 +23,6 @@ bz.cols.postTypes.insert({
 
 bz.cols.nearbyPosts = new Mongo.Collection('nearbyPosts');
 
-// ---- POST DETAILS PAGE (used for website post details page):
-Meteor.publish('postByIds', function(postId) {
-  console.log('postByIds: ' + bz.cols.posts.find({_id: postId}).count());
-
-  return bz.cols.posts.find({_id: postId});
-})
-Meteor.publish('profileDetailsByPostId', function(postId) {
-  var posts = bz.cols.posts.find({_id: postId}).fetch();
-
-  var usersIds = _.map(posts, function (post) {
-    return post.userId
-  });
-  console.log('profileDetailsByPostId: ' + bz.cols.profileDetails.find({userId: {$in: usersIds}}).count());
-
-  return bz.cols.profileDetails.find({userId: {$in: usersIds}});
-});
-Meteor.publish('postPhotosByPostId', function(postId) {
-  var posts = bz.cols.posts.find({_id: postId}).fetch();
-  var photosId = _.map(posts, function (post) {
-    return post.details.photos
-  }).reduce(function (a, b) {
-    return a.concat(b);
-  }).filter(function(p) { return p !== undefined; });
-  console.log('postPhotosByPostId: ' + bz.cols.images.find({_id: {$in: photosId}}).count());
-
-  return bz.cols.images.find({_id: {$in: photosId}});
-});
-Meteor.publish('postUsersByPostId', function(postId) {
-  var posts = bz.cols.posts.find({_id: postId}).fetch();
-  var usersIds = _.map(posts, function (post) {
-    return post.userId
-  });
-  console.log('postUsersByPostId: ' + Meteor.users.find({_id:{$in: usersIds}}).count());
-
-  return Meteor.users.find({_id:{$in: usersIds}})
-});
-// ---- END POST DETAILS
-
-
 Meteor.publish('posts-all', function () {
   var now = new Date().getTime();
   return bz.cols.posts.find({

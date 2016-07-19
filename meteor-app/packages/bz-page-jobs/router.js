@@ -31,6 +31,7 @@ Router.map(function () {
       this.next();
     },
     onAfterAction: function(){
+      /*debugger;*/
       bz.ui.putCategoriesToSession('jobs');
     },
     onStop: function(){
