@@ -18,7 +18,6 @@ Router.map(function () {
     template: 'postsPageDetails',
     waitOn: function() {
       if(this.data()) return;
-debugger;
       var self = this, postId = this.params._id;
       return [ Meteor.subscribe('profileDetailsByPostId', postId), Meteor.subscribe('postUsersByPostId', postId) , Meteor.subscribe('postPhotosByPostId', postId) ];
 
