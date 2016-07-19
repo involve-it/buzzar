@@ -64,9 +64,10 @@ ru = {
 
   //No posts around
   NO_ITEMS_AROUND_YOU: 'Рядом с вами пока нет постов',
+  NO_ITEMS_AROUND_LOCATION_NOT_DEFINED: 'Не удалось определить местоположение',
   YOU_CAN_CREATE_POST: 'Создайте свое объявление, чтобы о вашем запросе узнали другие пользователи и могли с вами связаться!',
-  TRY_TO_SET_LOCATION: 'Задать местоположение еще раз.',
-  TRY_TO_RESET_SEARCH: 'Сбросить поисковые фильтры.',
+  TRY_TO_SET_LOCATION: 'Задать местоположение самостоятельно',
+  TRY_TO_RESET_SEARCH: 'Сбросить поисковые фильтры',
   //Buttons
   BUTTON_CHECK: 'Проверить',
   BUTTONS_BACK: 'Назад',
