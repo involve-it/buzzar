@@ -212,12 +212,92 @@ en = {
 
   /*PAGE ABOUT US*/
   HEADER: {
-    /* why */ 'PARAG_1': 'Knowledge is light. Knowledge about who is around us, what languages they speak, how they live, what they offer and what they believe in. Knowledge, that can let people meet instantly and with no boundaries. Knowledge, that will make World brighter and better, because it will give opportunities - and this is what progress is about!',
-    /* how */ 'PARAG_2': ' Today\'s mobile geolocation technologies offer us a unique way of exchanging information with people around us - whatever is important and requires an immediate live meeting can be "attached" to real places and people and constantly emit bites of data.. like fireflies emit lights - not too far, just enough to be seen around.',
+    'TITLE': 'The only service that offers live presence!',
+    'PARAG_1': 'Shiners allow you to connect an advertisement or any other address on the internet to the current location of a user and as a result you can implement an instant search of information among the people who surround you. It enables you to look for information here and now in order to meet its owner immediately. Unnecessary intermediate link (search on the internet, arranging of the meeting, a road to the particular place) can be excluded if a potentially interesting person is near you.',
+    'PARAG_2': 'We are expending the abilities of web by connecting an information to real people and to the coordinates that gives web-resources something new – specious and timeless quality in other words a road directly to the aim. You can also see us in Google and social networks and that is why your advertisement will transform into your own internet-page, which can be open to the whole internet.',
     // 'PARAG_2': 'But Shiners are not just for the sake of curiosity. They serve us as live ads around. You install Shiners and your ad gets a new source of views - people who are nearby! Imagine a virtual card, but you don’t wear it in your wallet but in your mobile phone. And this card is being seen by not only selected users but all those who are next to you! We can be searched in Google and other social networks as well. That’s why your ad turns to separate web page being shown the entire Internet if desired.',
-    'PARAG_3': 'Imagine a virtual business card, but unlike the business card, you carry it in your cell phone, and it is visible to everyone around you.',
     // 'PARAG_4': 'SHINERS GLAD TO WELCOME YOU! We will introduce you to the people, places and events around! Use the Internet for live meetings!'
   },
+  HOW_DOES_IT_WORK: {
+    'TITLE': 'How does it work?',
+    'PARAG_1': 'Just imagine a virtual visit-card that you can carry around with you not in the wallet but in your mobile phone and all people who surround you can see it, and not the only chosen ones!',
+    'CREATE_POST':'Create your post',
+    'YOU_FIND':'You find - You can be found',
+    'MEETING':'Arrange a meeting – meet people'
+  },
+  WHY_WE_ARE_HELPFUL: {
+    'TITLE': 'Why we are helpful?',
+    'PARAG_1':'One service for other services – shiners give you an opportunity to connect any kind of post that is located on any internet-resource to the current location of the user.',
+    'TYPES_OF_POSTS_ACCORDING':'Types of posts according to the content',
+    'ADVERTISEMENT':'An advertisement',
+    'ADVERTISEMENT_T1':'A full-page on the internet.',
+    'ADVERTISEMENT_CONTENT':'Type down all the data that is needed for a decent advertisement and you will receive a page of the post on the internet that is connected to the place and your «availability',
+    'LINK':'Link',
+    'LINK_T1':'A quick creation of the post by one click!',
+    'LINK_CONTENT':'In case you already have an internet address that gives you all the necessary information - simply use this link and receive a ready Shiner! It will be convenient not to waste your time on creating the advertisement. Just several clicks and all the necessary information will be glittering with Shiners.',
+    'TYPES_OF_POSTS_LOCATION':'Types of the location of the post',
+    'DYNAMIC':'Dynamic post',
+    'DYNAMIC_T1':'Moving along with you.',
+    'DYNAMIC_CONTENT':'Carry it in your pocket – install a shiner one time and it will be moving along with you showing your advertisement to the people around you. Use shiners as a reason for getting acquainted with others and for real meeting. A shiner will be always turned on!',
+    'STATIC':'Static post',
+    'STATIC_T1':'It is connected to the location that you have chosen.',
+    'STATIC_CONTENT':'If you want a Shiner to point on your shop, office or study-room because you know that you spend more time there then moving around then you ought to create a Statistic post. The shiner will be turned on automatically when you will be around and it will turn off automatically the minute you leave it!'
+  },
+  WHO_ARE_WE: {
+    'TITLE':'Who are we?',
+    'PARAG_1':'We are a small startup team placed in Silicon Valley. We created this resource in the first place for ourselves.'
+  },
+  SAFETY: {
+    'TITLE':'Safety',
+    'PARAG_1':'You place here only information you want to provide. We don’t send mailing and intrusive offers.'
+  },
+  RULES: {
+    'TITLE':'Rules',
+    'PARAG_1':'Registering on Shiners the User agrees with the present rules and accepts the rights and obligations connected'
+  },
+  'CONTACT_WITH_US': {
+    'TITLE':'Contact with us',
+    'PARAG_1':'If you didn\'t find anything on the website or you have some proposals and reviews, e-mail us. We will be happy to reply to each and every!'
+  },
+  FAQ: {
+    'TITLE':'FAQ',
+    'PANEL1_Q':'How do Shiners work?',
+    'PANEL1_A':'Shiners is a search engine for live ads of real people around. By Shiners you can also create your live ads that will move with you and will be shown to people nearby.',
+    
+    'PANEL2_Q':'How to search information?',
+    'PANEL2_A':'Just open the app or website and see who is nearby and what they offer, or search by keywords in the \"smart string\". You also can use search by categories and tags. In each section you can see Shiners that are nearby and other popular posts for each topic.',
+
+    'PANEL3_Q':'What to do on the website?',
+    'PANEL3_A':'1. Create your post – place your ad or place a link to the post on the other resource – you will get a ready shiner. 2. Now your ad is always with you in your pocket. It will move with you showing your ad to others around. 3. Watch live ads from people nearby – find what is interesting and important for you. 4. Meet – chat and date.',
+
+    'PANEL4_Q':'Why to set a shiner?',
+    'PANEL4_A':'Shiner attaches any your ad to your location. Then your ad will be connected with you, will move with you, and will be seen by people nearby.',
+
+    'PANEL5_Q':'Which post to create?',
+    'PANEL5_A':'You can place any ad – specify the reason why you would like to meet immediately – and other people nearby will immediately learn about your intention. It can be a private ad, service advertisement, link to the page or post in VK. Whether you sell a dress or look for a job, offer yoga classes or look for a company for your party – tell about that and Shiners will help you to find associates, buyers or interlocutors nearby.',
+
+    'PANEL6_Q':'What is the difference between dynamic and static post?',
+    'PANEL6_A':'Dynamic post is linked to you and move with you, it is seen by people nearby wherever you are. Static post is linked to a certain address, it is active at the moment when you are near this address and inactive when you are far from it.',
+
+    'PANEL7_Q':'Is it possible not to delete a post but remove it from show for a while (turn off a shiner)?',
+    'PANEL7_A':'Yes, you can turn on and off each of the shiners you published. When you turn it on – information is shown to others nearby, when turn it off – it is hidden. You decide by yourself which posts to share and which not to, and thus you form your actual space.',
+
+    'PANEL8_Q':'Is it possible to use Shiners without registration?',
+    'PANEL8_A':'Yes, even without registration you can follow the posts that are nearby.',
+
+    'PANEL9_Q':'How many posts can I create?',
+    'PANEL9_A':'The amount of posts is unlimited.',
+
+    'PANEL10_Q':'Should I delete/turn off my ads that are no more relevant or it happens automatically?',
+    'PANEL10_A':'When creating a post you can indicate the term of its showing, and when this term will end your ad will become inactive (will be turned off, other users will stop seeing it). Also you can turn on/turn off your ad anytime by yourself.',
+
+    'PANEL11_Q':'Can I hide my profile when create a post?',
+    'PANEL11_A':'Yes, you can place an ad as an anonymous user. Then your personal information and the information about your other posts will be hidden.',
+
+    'PANEL12_Q':'Is it possible to create a post and immediately share it in social networks?',
+    'PANEL12_A':'Yes, each post has a share button.'
+  }
 };
+
 T9n.map('en', en);
 bz.help.makeNamespace('bz.language.i18n.en', en);

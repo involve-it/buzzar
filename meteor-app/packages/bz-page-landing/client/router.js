@@ -6,6 +6,12 @@ Router.map(function () {
     path: '/about-us',
     template: 'aboutUsRu'
   });
+
+  this.route('bz.rules', {
+    path: '/about-us/rules',
+    template: 'bzRules'
+  });
+  
   this.route('contactUs', {
     path: '/contacts',
     template: 'pageContactUs'

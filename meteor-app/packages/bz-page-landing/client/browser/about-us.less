@@ -3,7 +3,7 @@
 
   p {
     color: rgb(63, 68, 82);
-    font-size: 18px;
+    font-size: 16px;
     font-family: "Roboto-light", "Roboto", sans-serif;
   }
   
@@ -11,7 +11,7 @@
     font-family: "Roboto-light", "Roboto", sans-serif;
     font-size: 46px;
     line-height: 40px;
-    color: rgba(89,99,107, .95);
+    color: rgba(63, 68, 82, 1);
     small {}
   }
 
@@ -19,7 +19,7 @@
     font-family: "Roboto", sans-serif;
     font-size: 36px;
     line-height: 30px;
-    color: rgba(89,99,107, 1);
+    color: rgba(63, 68, 82, 1);
     font-weight: 400;
   }
   
@@ -27,7 +27,7 @@
     font-family: "Roboto", sans-serif;
     font-size: 22px;
     line-height: 26px;
-    color: rgba(89,99,107, 1);
+    color: rgba(63, 68, 82, 1);
   }
 
   h1, h2, h3, h4 {
@@ -50,7 +50,7 @@
     font-size: 22px;
     margin-bottom: 20px;
     line-height: 28px;
-    color: rgba(89,99,107,.95);
+    color: rgba(63, 68, 82, .75);
     text-shadow: 0 1px rgba(255,255,255, .5);
   }
   
@@ -181,8 +181,8 @@
           }
 
           .bz-card-text {
-            font-size: 18px;
-            color: #88858c;
+            font-size: 16px;
+            color: rgba(63, 68, 82, 1);
           }
 
           .bz-showcase-box {
@@ -284,6 +284,14 @@
     p {
       text-indent: 1em;
     }
+    
+    .bz-header-description-ad-list {
+      color: #3f4452;
+      font-size: 16px;
+      font-family: "Roboto-light", "Roboto", sans-serif;
+      margin-left: 40px;
+      margin-top: -10px;
+    }
   }
   
   
@@ -358,7 +366,7 @@
       dl {
         
         dd {
-          font-size: 18px;
+          font-size: 16px;
           font-weight: 300;
           padding: 5px 10px;
           margin-bottom: 3px;
@@ -455,6 +463,10 @@
                     &.bz-img-quick-post {
                       background-image: url("/img/content/posts/q-post.png");
                     }
+
+                    &.bz-img-quick-link {
+                      background-image: url("/img/content/posts/q-link.png");
+                    }
                   }
                 }
                 
@@ -476,7 +488,8 @@
                     }
                     
                     .bz-card-text {
-                      font-size: 18px;
+                      font-size: 16px;
+                      color: rgba(63, 68, 82, 1);
                       font-family: "Roboto-light", "Roboto", sans-serif;
                     }
                   }
@@ -618,30 +631,6 @@
         }
       }
       
-      .bz-about-support-us {
-        margin-top: 30px;
-        
-        .bz-about-support-us-description {
-          p {
-            font-size: 16px;
-            font-family: "Roboto-light", "Roboto", sans-serif;
-          }
-        }
-        
-        .sub-heading {
-          p {
-            text-align: left;
-          }
-          + .bz-company-partnership {
-            margin-top: 15px;
-
-            p {
-              font-size: 16px;
-              font-family: "Roboto-light", "Roboto", sans-serif;
-            }
-          }
-        }
-      }
     }
   }
 }
