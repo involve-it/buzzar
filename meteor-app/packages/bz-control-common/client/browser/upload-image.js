@@ -127,7 +127,8 @@ Template.uploadImageModal.events({
   },
   'click .js-use-random-image-url': function (e, v) {
     var that = this, imgData,
-      randomImgUrl = bz.const.randomImageSite + '?ts=' + Date.now();
+      randomImgUrl = bz.const.randomImageSite;
+      // randomImgUrl = bz.const.randomImageSite + '?ts=' + Date.now();
     if (randomImgUrl) {
       bz.ui.spinnerAdd('.js-preview-wrapper');
       $('.js-preview').animate({opacity: 0}, 150);

@@ -35,7 +35,8 @@ bz.const.posts.locationGlobal = 'bz.runtime.newPost.location';
 bz.const.posts.location1 = 'bz.posts.new.location1';
 bz.const.posts.location2 = 'bz.posts.new.location2';
 
-bz.const.randomImageSite = 'http://lorempixel.com/600/500/';
+bz.const.randomImageSite = 'https://unsplash.it/600/500/?random';
+// bz.const.randomImageSite = 'http://lorempixel.com/600/500/';
 
 // SEARCH:
 
