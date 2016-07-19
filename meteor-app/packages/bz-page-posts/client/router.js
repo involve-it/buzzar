@@ -18,18 +18,19 @@ Router.map(function () {
     template: 'postsPageDetails',
     waitOn: function() {
       if(this.data()) return;
-      
-      var dep = new Deps.Dependency;
-      var ready = false;
-      var handle = {
-        ready: function() {
-          dep.depend();
-          return ready;
-        }
-      };
-      
+debugger;
       var self = this, postId = this.params._id;
-      
+      return [ Meteor.subscribe('profileDetailsByPostId', postId), Meteor.subscribe('postUsersByPostId', postId) , Meteor.subscribe('postPhotosByPostId', postId) ];
+
+      /*
+       var dep = new Deps.Dependency;
+       var ready = false;
+       var handle = {
+       ready: function() {
+       dep.depend();
+       return ready;
+       }
+       };
       Meteor.call('getPost', postId, function(e, r) {
         
         if(r.success && r.result) {
@@ -48,11 +49,10 @@ Router.map(function () {
         
       });
       
-      return handle;
+      return handle;*/
     },
     result: null,
     data: function () {
-      
       /* OLD CODE */
       /*var ret;
       ret = bz.cols.posts.findOne({_id: this.params._id});
@@ -60,24 +60,21 @@ Router.map(function () {
         Meteor.subscribe('bz.users.all')
       }
       return ret;*/
-      
-      return this.result;
+      var ret;
+      this.postDb = bz.cols.posts.findOne({_id: this.params._id});
+      //profileDetails=bz.cols.profileDetails.find({userId: {$in: userIds}}).fetch()
+      if (this.postDb) {
+        var post = bz.bus.postsHandler.buildPostsObject({posts: [this.postDb]});
+        ret = post[0];
+      }
+      return ret;
     },
     //controller: 'requireLoginController',
     onAfterAction: function () {
       var post = this.data();
       post && runHitTracking(post);
-      /*CONSOLE CLEAR
-      console.log('onAfterAction', this.data());
-      */
     },
-    onBeforeAction: function () {
-      /*if (!this.data()) {
-        Router.go('/page-not-found');
-      }*/
-      
-      this.next();
-    }
+    fastRender: true
   });
   this.route('posts.edit', {
     path: '/posts/:_id/edit',

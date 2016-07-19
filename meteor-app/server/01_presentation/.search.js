@@ -65,7 +65,6 @@ Meteor.startup(function () {
   });
 
   /*if(Meteor.isClient){
-    debugger;
     EasySearch.search('posts', '', function (error, data) {
       // use data
       debugger;

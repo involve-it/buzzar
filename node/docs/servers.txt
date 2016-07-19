@@ -43,7 +43,6 @@ http://stackoverflow.com/questions/27963749/setup-https-ssl-on-localhost-for-met
 meteor add tarang:ssl
 
 Meteor.startup(function () {
-  debugger;
   SSLProxy({
     port: 6000, //or 443 (normal port/requires sudo)
     ssl: {

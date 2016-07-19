@@ -2,7 +2,7 @@
  * Created by xvolkx48 on 19.02.2016.
  */
 bz.cols.profileDetails = new Mongo.Collection('profileDetails');
-Ground.Collection(bz.cols.profileDetails);
+typeof Ground !== 'undefined' && Ground.Collection(bz.cols.profileDetails);
 if (Meteor.isServer) {
   Meteor.publish('profileDetails-my', function () {
     return bz.cols.profileDetails.find({userId: this.userId});

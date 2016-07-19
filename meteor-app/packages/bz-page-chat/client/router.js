@@ -149,7 +149,6 @@ Router.map(function () {
 
  onBeforeAction: function () {
  if (!this.data() || !this.data().user || !this.data().messages) {
- debugger;
  Router.go('/page-not-found');
  } else {
  this.next();

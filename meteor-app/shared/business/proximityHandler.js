@@ -5,20 +5,20 @@
 //ad search radius (box, actually)
 var defaultRadius = 1,
     nearbyRadius = 0.5;
-
-Meteor.onConnection(function(connection){
-    //console.info('Connected: ' + connection.id);
-    var connectionId = connection.id;
-    connection.onClose(function(){
-        //console.info('Disconnected: ' + connectionId);
-        var user = Meteor.users.findOne({'sessionIds': connectionId});
-        if (user){
-            //console.info('Found userId: ' + user._id);
-            bz.bus.proximityHandler.processUserDisconnect(user._id, connectionId);
-        }
+if (Meteor.isServer) {
+    Meteor.onConnection(function (connection) {
+        //console.info('Connected: ' + connection.id);
+        var connectionId = connection.id;
+        connection.onClose(function () {
+            //console.info('Disconnected: ' + connectionId);
+            var user = Meteor.users.findOne({'sessionIds': connectionId});
+            if (user) {
+                //console.info('Found userId: ' + user._id);
+                bz.bus.proximityHandler.processUserDisconnect(user._id, connectionId);
+            }
+        });
     });
-});
-
+}
 bz.bus.proximityHandler = {
     isUserOnline: function(userId){
         /*var sockets = Meteor.default_server.stream_server.open_sockets;

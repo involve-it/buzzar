@@ -10,7 +10,6 @@
 
  instance.on('autosuggestSelected', function (values) {
  // run every time the autosuggest selection changes
- debugger;
  });
  });*!/
  });*/

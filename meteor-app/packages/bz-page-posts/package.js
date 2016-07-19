@@ -13,7 +13,7 @@ Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
   api.use(['underscore', 'iron:router', 'iron:layout', 'mongo', 'reactive-var', 'tracker', 'ecmascript', 'dburles:collection-helpers',
-    'arutune:bz-main', 'ground:db'
+    'arutune:bz-main'
   ], ['client', 'server']);
   api.use(['percolate:synced-cron'
   ], 'server');
