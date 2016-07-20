@@ -69,14 +69,17 @@ Template.bzUserProfileBasic.helpers({
       });
     }
     return ins.someUserData.get();
-  },
+  }
+  
+  /*,
   belongsToCurrentUser: function (e, v) {
     return this._id === Meteor.userId();
   },
   getCurrentPostId: function(){
     var post = bz.bus.posts.getCurrentPost();
     return post && post._id;
-  }
+  }*/
+  
 });
 
 Template.bzUserProfileBasic.events({
