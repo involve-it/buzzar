@@ -115,6 +115,15 @@ Template.postDetailsDetailsCommon.helpers({
   getGoogleMapsHref: function(){
     var lat = this.coords.lat, lon = this.coords.lng;
     return `http://maps.google.com/maps?z=12&t=m&q=loc:${ lat }+${ lon }`;
+  },
+  belongsToCurrentUser: function () {
+
+    //debugger;
+    return this.user._id === Meteor.userId();
+  },
+  getCurrentPostId: function(){
+    var post = bz.bus.posts.getCurrentPost();
+    return post && post._id;
   }
   
   /* OLD CODE */
