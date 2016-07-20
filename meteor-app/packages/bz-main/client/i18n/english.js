@@ -181,7 +181,7 @@ en = {
   IMAGE_SELECT_DONE: 'Done',
   IMAGE_SELECT_UPLOAD_NEW_PROFILE_IMAGE: 'Upload New Profile Image with File Picker',
   IMAGE_SELECT_CHOOSE_IMAGE: 'Choose image',
-  COMMON_IMAGE_GET_RANDOM: 'Get random image',
+  COMMON_IMAGE_GET_RANDOM: 'Get more',
   IMAGE_PHOTO_LIBRARY_IS_NOT_AVAILABLE:'Photo Library is not available.',
   IMAGE_PHOTO_INDEX_NOT_FOUND: 'Image index does not found.',
 
