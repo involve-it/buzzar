@@ -198,7 +198,7 @@ ru = {
   ERROR_INVALID_FIELD: 'Это поле обязательно для заполнения',
   ERROR_INVALID_INTEGER_PATTERN: 'Это поле обязательно и только цифры',
 
-  COMMON_IMAGE_GET_RANDOM: 'Загрузить случайное фото',
+  COMMON_IMAGE_GET_RANDOM: 'Загрузить еще',
 
   //Sign In and Sign Up
   SIGN_IN:'Войдите в систему',
