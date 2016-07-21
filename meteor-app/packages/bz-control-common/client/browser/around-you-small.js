@@ -24,6 +24,11 @@ Template.aroundYouSmall.helpers({
     ret = _(ret).chain().sortBy(function(doc) {
       return doc._getDistanceToCurrentLocationNumber();
     }).value();
+    
+    setTimeout(function() {
+      bz.ui.initSwiper();
+    }, 100);
+    
     return ret;
   }
 });
