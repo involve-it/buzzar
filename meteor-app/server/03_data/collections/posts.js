@@ -80,10 +80,10 @@ Meteor.publish('posts-nearby',function(request){
     insert: function () {
       return Meteor.user() && Meteor.user().isAdmin();
     },
-    update: function () {
-      return Meteor.user() && Meteor.user().isAdmin();
+    update: function (___, post) {
+      return Meteor.user() && (Meteor.user().isAdmin() || Meteor.user().postBelongsToUser(post));
     },
-    remove: function () {
-      return Meteor.user() && Meteor.user().isAdmin();
+    remove: function (___, post) {
+      return Meteor.user() && (Meteor.user().isAdmin() || Meteor.user().postBelongsToUser(post));
     }
   });
