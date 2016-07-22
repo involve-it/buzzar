@@ -28,7 +28,7 @@ bz.bus.proximityHandler = {
         var user = Meteor.users.findOne({ 'status.online': true,  _id: userId});
         console.log('---------user status.online:-----------------');
 
-        console.log(!!user);
+        console.log(userId, !!user);
         console.log('-----------------------------------');
         return !!user;
     },

@@ -7,7 +7,7 @@ bz.bus.usersHandler = {
         var user, ret={},
             userDb = bz.bus.usersHandler.userDbQuery([requestedUserId]);
         if (userDb) {
-          user=bz.bus.usersHandler.buildUserObject(userDb)[0];
+            user=bz.bus.usersHandler.buildUserObject(userDb)[0];
           ret={success:true, result: user};
         }else{
           //error
@@ -130,11 +130,12 @@ bz.bus.usersHandler = {
     _.each(users,function(userDb){
       profileDetails=[];
       tempArrprofileDetails=[];
-      user = {
+        console.log(userDb.online);
+        user = {
         _id: userDb._id,
         createdAt: userDb.createdAt,
         username: userDb.username,
-        online: userDb.online,
+        online: userDb.status.online,
         image:{
           imageUrl: userDb.profile && userDb.profile.image && userDb.profile.image.data,
           thumbnail: userDb.profile && userDb.profile.image && userDb.profile.image.data && userDb.profile.image.thumbnail

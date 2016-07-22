@@ -24,13 +24,15 @@ bz.cols.postTypes.insert({
 bz.cols.nearbyPosts = new Mongo.Collection('nearbyPosts');
 
 Meteor.publish('posts-all', function () {
+  var ret;
   var now = new Date().getTime();
-  return bz.cols.posts.find({
+  ret = bz.cols.posts.find({
     'status.visible': {$ne: null},
     endDatePost: {$gte: now}
   }, {
     fields: {'details.locations.coords':0}
-  });
+  })
+  return ret;
 });
 Meteor.publish('posts-my', function () {
   return bz.cols.posts.find({
@@ -39,8 +41,11 @@ Meteor.publish('posts-my', function () {
 });
 
 //new code publication
+
+// NOT USED NOW..
 Meteor.publish('posts-nearby',function(request){
   request = request || {};
+  var self = this;
   var ret, lat,lng,radius, postsQuery={},posts,arrTypes=[], activeCats, box;
   lat=request.lat;
   lng=request.lng;
@@ -71,7 +76,12 @@ Meteor.publish('posts-nearby',function(request){
     postsQuery['type'] = {$in: arrTypes};
   }
   postsQuery['status'] ={visible: bz.const.posts.status.visibility.VISIBLE};
-  posts= bz.cols.posts.find(postsQuery);
+  // tis doesn't work yet, try this( http://stackoverflow.com/questions/20895154/how-to-transform-data-returned-via-a-meteor-publish/20896561#20896561)
+  posts= bz.cols.posts.find(postsQuery).forEach(function(entry) {
+    self.hasLivePresence = true;
+    self.added('posts-nearby', entry._id, entry);
+  });
+  self.ready();
   ret=posts;
   return ret;
 });

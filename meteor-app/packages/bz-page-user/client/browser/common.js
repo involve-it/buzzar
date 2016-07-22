@@ -41,34 +41,32 @@ Template.bzUserProfileBasic.rendered = function () {
 };
 
 Template.bzUserProfileBasic.onCreated(function() {
+  var userId = this._id, ins = Template.instance(), innerObj = {}, usegObj = {};
+  /*console.info(Router.current().params._id);
+   console.info(this._id);*/
+    Meteor.call('getUser', userId, function(e, r){
+      if(e) {
+        //error
+      } else {
+        innerObj = r.result;
+
+        _.each(innerObj, function(value, key, list) {
+
+          if(key === 'image') {
+            usegObj['image'] = list.image
+          }
+
+        });
+        usegObj['username'] = innerObj.username;
+        ins.someUserData.set(usegObj);
+      }
+    });
   this.someUserData = new ReactiveVar(false);
 });
 
 Template.bzUserProfileBasic.helpers({
   getUser: function() {
-    var userId = this._id, ins = Template.instance(), innerObj = {}, usegObj = {};
-    /*console.info(Router.current().params._id);
-    console.info(this._id);*/
-    if (ins.someUserData.get() === false) {
-      Meteor.call('getUser', userId, function(e, r){
-        if(e) {
-          //error
-        } else {
-          innerObj = r.result;
-
-          _.each(innerObj, function(value, key, list) {
-
-            if(key === 'image') {
-              usegObj['image'] = list.image
-            }
-
-          });
-          usegObj['username'] = innerObj.username;
-          ins.someUserData.set(usegObj);
-        }
-      });
-    }
-    return ins.someUserData.get();
+    return this.someUserData.get();
   }
   
   /*,
