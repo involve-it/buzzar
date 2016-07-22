@@ -41,7 +41,7 @@
             </div>
         {{/if}}
 
-        
+
         {{#if type }}
           <div class="post-details">
             <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-list-alt"></i> {{ t9n 'POST_DETAILS_TYPE' }}</div>
@@ -57,14 +57,14 @@
                 <p>{{ getDistanceToCurrentLocation }}</p>
             </div>
         </div>
-        
+
         <div class="post-details">
             <div class="small-12 medium-4 bz-post-label columns"><i class="fa fa-heart"></i> {{ t9n 'POST_DETAILS_LIKES' }}</div>
             <div class="small-12 medium-8 large-8 bz-post-result columns">
                 <p>{{ postLikes }}</p>
             </div>
         </div>
-      
+
 
       {{#if details.price }}
         <div class="post-details">
@@ -77,7 +77,7 @@
       {{/if}}
 
       <!--<div class="bz-separate"></div>-->
-        
+
     </div>
   </div>
 
@@ -99,7 +99,14 @@
         <i class="fa fa-heart-o"></i> <span>{{ t9n 'POST_DETAILS_LIKE' }}</span>
       {{/if}}
     </div>
-    <div class="bz-wish-list-items" style="display: none">
+      {{#if isAdminOrOwner }}
+
+      <div class="js-remove-post bz-small button alert">
+        <i class="fa fa-times"></i> <span>{{ t9n 'TRASH_POST' }}</span>
+      </div>
+      {{/if}}
+
+      <div class="bz-wish-list-items" style="display: none">
       <div class="bz-wish-list-item"><i class="fa fa-envelope-o"></i> Email</div>
       <div class="bz-wish-list-item"><i class="fa fa-facebook"></i> Facebook</div>
       <div class="bz-wish-list-item"><i class="fa fa-ellipsis-h"></i> {{ t9n 'MORE' }}</div>
@@ -121,9 +128,9 @@
                 </span>
             {{/if}}
         </div>
-      
+
     {{> postRatingInfo}}
-      
+
     {{#each details.locations }}
         <div class="post-location">
             <i class="fa fa-map-marker"></i>
@@ -154,14 +161,14 @@
             <div class="bz-rating-box">
                 <div class="rating js-rating"></div>
             </div>
-            
+
             <div class="bz-rating-count">{{#if details.reviews}} ** reviews {{else}}
                 {{#if noReviews }}
                     <span>{{ t9n 'POST_DETAILS_REVIEWS_FIRST' }}</span>
                 {{/if}}
               {{/if}}</div>
         </div>
-        
+
         <div class="bz-rating-details" style="display: none">
             <a href="#" class="bz-rating-details-link js-rating-details">
                 <span>{{ t9n 'POST_DETAILS_DETAILS' }}</span>
@@ -262,7 +269,7 @@
 <template name="postDetailsPhoto">
   <div class="photos">
       <div class="single-photo cover-img js-main-photo-large" style="background-image: url('{{ getMainPhoto }}')"></div>
-        
+
       {{#if moreThanOnePhotos }}
             <ul class="clearing-thumbs js-clearing-thumbs" data-clearing>
                 {{#each getPhotos }}

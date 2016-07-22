@@ -36,10 +36,24 @@ Template.bzSocialButtons.events({
   'click .js-like-btn': function(e) {
     var el = $(e.target);
     var res = LikePostByUser(this._id);
+  },
+  'click .js-remove-post': function(e) {
+    bz.cols.posts.remove(this._id);
+    Router.go('/home');
   }
 });
 
 Template.bzSocialButtons.helpers({
+  isAdminOrOwner: function() {
+    var ret = false;
+    if (Meteor.user()) {
+      var postOwnerId = this.userId;
+      if (Meteor.user().postBelongsToUser(this) || Meteor.user().isAdmin()) {
+        ret = true;
+      }
+    }
+    return ret;
+  },
   isLikedByUser: function(){
     return PostIsLikedByCurrentUser();
   },
@@ -117,8 +131,6 @@ Template.postDetailsDetailsCommon.helpers({
     return `http://maps.google.com/maps?z=12&t=m&q=loc:${ lat }+${ lon }`;
   },
   belongsToCurrentUser: function () {
-
-    //debugger;
     return this.user._id === Meteor.userId();
   },
   getCurrentPostId: function(){

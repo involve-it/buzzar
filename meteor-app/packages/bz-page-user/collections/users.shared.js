@@ -30,6 +30,16 @@ usersCol.helpers({
   },
   isAdmin: function() {
     return (this.profile && this.profile.isAdmin) ? true : false;
+  },
+  postBelongsToUser: function (post) {
+      var ret = false, userId;
+      if (post && (post.user || post.userId)) {
+          var postOwnerId = post.user && post.user._id || post.userId; //old style..
+          userId = this._id;
+          ret = postOwnerId && (postOwnerId === userId);
+      }
+
+    return ret;
   }
 });
 
