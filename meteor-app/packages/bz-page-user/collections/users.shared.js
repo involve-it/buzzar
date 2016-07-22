@@ -27,6 +27,9 @@ usersCol.helpers({
     var ret;
     ret = this.profile && this.profile.language;
     return ret;
+  },
+  isAdmin: function() {
+    return (this.profile && this.profile.isAdmin) ? true : false;
   }
 });
 

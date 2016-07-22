@@ -1,6 +1,22 @@
 /**
  * Created by Ashot on 9/27/15.
  */
+const adminsList = [
+    'arutune@gmail.com',
+    'yvdorofeev@gmail.com',
+    'infpartner@gmail.com',
+    'tatiana@napodiume.ru',
+    'iyirischa@yandex.ru'
+]
+Meteor.startup(function() {
+  var user;
+  adminsList.forEach(function(u) {
+    user = Meteor.users.findOne({ 'emails.0.address': u});
+    user && Meteor.users.update({'_id': user._id}, {
+      $set: { 'profile.isAdmin': true }
+    });
+  });
+})
 Meteor.publish('bz.users.all', function(){
   return Meteor.users.find({}, {fields: {
     '_id':1,

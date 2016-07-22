@@ -66,6 +66,7 @@ if (Meteor.isServer) {
 bz.cols.messages.before.insert(function (userId, doc) {
 
 });
+// todo: check situation that ANY user can remove ANY message/chat etc!
 if (Meteor.isServer) {
   bz.cols.messages.allow({
     insert: function () {
