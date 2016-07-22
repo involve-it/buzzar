@@ -11,8 +11,6 @@ Template.mainLayout.onRendered(function() {
   //UIkit.$html.trigger('changed.uk.dom');
 });
 
-
-
 Template.mainLayoutHome.rendered = function () {
   InitFoundationOffCanvas();
   layoutRenderedLazyLoad();

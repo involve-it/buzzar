@@ -75,3 +75,15 @@ Meteor.publish('posts-nearby',function(request){
   ret=posts;
   return ret;
 });
+
+  bz.cols.posts.allow({
+    insert: function () {
+      return Meteor.user() && Meteor.user().isAdmin();
+    },
+    update: function () {
+      return Meteor.user() && Meteor.user().isAdmin();
+    },
+    remove: function () {
+      return Meteor.user() && Meteor.user().isAdmin();
+    }
+  });
