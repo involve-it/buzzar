@@ -142,7 +142,10 @@ bz.bus.search.searchePostsAroundAndPopular = () => {
     aroundYouQuery['type'] = {$in: arrTypes};
     popularQuery['type'] = {$in: arrTypes}
   }
-  aroundYouSmallQuery['$where'] = function(){return !!bz.help.posts.hasLivePresence.apply(this)};
+  aroundYouSmallQuery['$where'] = function(){
+    var a = aroundYouSmallQuery;
+    return !!bz.help.posts.hasLivePresence.apply(this)
+  };
   aroundYouSmall= bz.cols.posts.find(aroundYouSmallQuery, {sort: {'stats.seenTotal': -1},limit: 10}).fetch();
   ids.push(undefined);
   ids.push('');
