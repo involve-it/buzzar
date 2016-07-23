@@ -16,6 +16,21 @@ var helperFunctions = {
     var c  = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a)); // great circle distance in radians
     // great circle distance in miles
     return c * bz.const.locations.earthRadius;
+  },
+  getCurrentLocation: function(){
+    var currentLoc = Session.get('currentLocation');
+    if (currentLoc) {
+      currentLoc = {
+        lat: currentLoc.latitude,
+        lng: currentLoc.longitude
+      };
+    } else {
+      currentLoc = Session.get('bz.control.search.location');
+      if (currentLoc) {
+        currentLoc = currentLoc.coords;
+      }
+    }
+    return currentLoc;
   }
 };
 

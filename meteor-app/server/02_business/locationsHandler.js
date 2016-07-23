@@ -52,10 +52,10 @@ bz.bus.locationsHandler = {
     return ret;
   },
 
-  reportLocation: function(report){
+  reportLocation: function(report, userId){
     var posts, currentUserId, ret;
-    check(report,{lat: Number,lng: Number});
-    currentUserId = Meteor.userId();
+    check(report,{lat: Number,lng: Number, sessionId: Match.Optional(String)});
+    currentUserId = userId || Meteor.userId();
     if (currentUserId){
       posts = bz.cols.posts.find({userId: currentUserId}).fetch();
       if (posts) {
