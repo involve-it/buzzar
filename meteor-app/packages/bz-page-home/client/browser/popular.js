@@ -118,8 +118,9 @@ Template.bzHomePopularItem.events({
       Router.go('/sign-in');
     }
     if (Meteor.userId() !== this.userId && this.userId) {
-      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this.userId);
-      Router.go('/chat/' + chatId);
+      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this.userId).then(function(chatId) {
+          Router.go('/chat/' + chatId);
+      });
     }
   }
 })
