@@ -61,6 +61,7 @@ Template.bzInnerMenuLeft.onCreated(function() {
         }
       });
       Object.assign(innerObj, profileObj);
+      Object.assign(innerObj, bz.help.users); // let's not forget about helpers!
       that.data = innerObj;
       ins.userData.set(innerObj);
     }
