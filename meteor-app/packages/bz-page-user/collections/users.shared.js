@@ -10,12 +10,12 @@ var usersCol = Meteor.users;
 usersCol.helpers({
   //removed as it is not a necessity
   /*_isOnline: function () {
-    var ret;
-    if(this.online){
-      ret = this.online;
-    }
-    return ret;
-  },*/
+   var ret;
+   if(this.online){
+   ret = this.online;
+   }
+   return ret;
+   },*/
   _getAvatarImage: function () {
     var ret;
     if (this.profile && this.profile.image) {
@@ -23,22 +23,30 @@ usersCol.helpers({
     }
     return ret;
   },
-  _getLanguage: function() {
+  _getLanguage: function () {
     var ret;
     ret = this.profile && this.profile.language;
     return ret;
   },
-  isAdmin: function() {
+  isAdmin: function () {
     return (this.profile && this.profile.isAdmin) ? true : false;
   },
   postBelongsToUser: function (post) {
-      var ret = false, userId;
-      if (post && (post.user || post.userId)) {
-          var postOwnerId = post.user && post.user._id || post.userId; //old style..
-          userId = this._id;
-          ret = postOwnerId && (postOwnerId === userId);
-      }
-
+    var ret = false, userId;
+    if (post && (post.user || post.userId)) {
+      var postOwnerId = post.user && post.user._id || post.userId; //old style..
+      userId = this._id;
+      ret = postOwnerId && (postOwnerId === userId);
+    }
+    return ret;
+  },
+  getUserThumb: function () {
+    var user = this, ret;
+    if (user && user.profile && user.profile.image && (user.profile.image.data || user.profile.image.thumbnail)) {
+      ret = user.profile.image.thumbnail || user.profile.image.data;
+    } else {
+      ret = '/img/content/avatars/avatar-no.png';
+    }
     return ret;
   }
 });
