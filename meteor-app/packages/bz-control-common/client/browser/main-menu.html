@@ -12,8 +12,8 @@
       {{#if currentUser}}
           <div class="user-area-box clearfix link-menu">
               <a href="/profile" class="user-area-avatar">
-                  <div class="bz-avatar" style="background-image: url({{#if getUser.image.imageUrl}} {{getUser.image.imageUrl}} {{else}} '/img/content/avatars/avatar-no.png' {{/if}})"></div>
-                  {{> bzAvatarUserStatus currentStatusUser}}
+                  <div class="bz-avatar" style="background-image: url({{ getUser.getUserThumb }})"></div>
+                  {{> bzAvatarUserStatus getUser}}
               </a>
         
               <div class="user-area-side link-menu">

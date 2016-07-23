@@ -121,6 +121,8 @@ Router.map(function () {
       ]
     },
     onBeforeAction: function () {
+      // temporarily redirect to create post, remove when create link is ready:
+      Router.go(`/posts/new?type=ad`);
       if (this.params.query.type && this.params.query.type !== 'undefined') {
         newPostType.set(this.params.query.type);
       } else {

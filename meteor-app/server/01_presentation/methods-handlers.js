@@ -33,11 +33,19 @@ Meteor.methods({
   getPopularPosts: function(request){
     return bz.bus.postsHandler.getPopularPosts(request);
   },
-  addPost: function(requset){
-    return bz.bus.postsHandler.addPost(requset, Meteor.userId());
+  addPost: function(request, currentLocation){
+    var post = bz.bus.postsHandler.addPost(request, Meteor.userId());
+    if (currentLocation){
+      bz.bus.locationsHandler.reportLocation(currentLocation);
+    }
+    return post;
   },
-  editPost: function(requset){
-    return bz.bus.postsHandler.editPost(requset, Meteor.userId());
+  editPost: function(request, currentLocation){
+    var post = bz.bus.postsHandler.editPost(request, Meteor.userId());
+    if (currentLocation){
+      bz.bus.locationsHandler.reportLocation(currentLocation);
+    }
+    return post;
   },
   deletePost: function(request){
     return bz.bus.postsHandler.deletePost(request, Meteor.userId());
@@ -89,7 +97,7 @@ Meteor.methods({
   addLocation: function(request){
     return bz.bus.locationsHandler.addLocation(request);
   },
-  reportLocationTest: function(report){
-    return bz.bus.locationsHandler.reportLocation(report)
+  reportLocation: function(report){
+    return bz.bus.locationsHandler.reportLocation(report);
   }
 });
