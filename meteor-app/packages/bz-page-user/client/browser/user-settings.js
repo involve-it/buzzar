@@ -237,8 +237,9 @@ Template.userSettings.events({
     }*/
     //debugger;
     if(Meteor.userId() !== this._id) {
-      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this._id);
-      Router.go('/chat/' + chatId);
+      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this._id).then(function(chatId) {
+          Router.go('/chat/' + chatId);
+      });
     }
   }
 });
