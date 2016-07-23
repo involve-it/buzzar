@@ -41,7 +41,7 @@ Template.bzUserProfileBasic.rendered = function () {
 };
 
 Template.bzUserProfileBasic.onCreated(function() {
-  var userId = this._id, ins = Template.instance(), innerObj = {}, usegObj = {};
+  var userId = this.data._id, ins = Template.instance(), innerObj = {}, usegObj = {};
   /*console.info(Router.current().params._id);
    console.info(this._id);*/
     Meteor.call('getUser', userId, function(e, r){
@@ -61,12 +61,12 @@ Template.bzUserProfileBasic.onCreated(function() {
         ins.someUserData.set(usegObj);
       }
     });
-  this.someUserData = new ReactiveVar(false);
+  this.someUserData = new ReactiveVar({});
 });
 
 Template.bzUserProfileBasic.helpers({
   getUser: function() {
-    return this.someUserData.get();
+    return Template.instance().someUserData.get();
   }
   
   /*,

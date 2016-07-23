@@ -18,7 +18,7 @@ Template.profileSettings.onCreated(function() {
       inst.someUserData.set(innerObj);
     }
   });
-  this.someUserData = new ReactiveVar();
+  inst.someUserData = new ReactiveVar({});
 });
 
 Template.profileSettings.onRendered(function() {
