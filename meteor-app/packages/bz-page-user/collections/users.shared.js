@@ -7,7 +7,7 @@
  */
 
 var usersCol = Meteor.users;
-usersCol.helpers({
+bz.help.makeNamespace('bz.help.users', {
   //removed as it is not a necessity
   /*_isOnline: function () {
    var ret;
@@ -41,13 +41,14 @@ usersCol.helpers({
     return ret;
   },
   getUserThumb: function () {
-    var user = this, ret;
-    if (user && user.profile && user.profile.image && (user.profile.image.data || user.profile.image.thumbnail)) {
-      ret = user.profile.image.thumbnail || user.profile.image.data;
-    } else {
-      ret = '/img/content/avatars/avatar-no.png';
+    var user = this, ret, imgObj = user && (user.profile && user.profile.image || user.image);  // user.image - some weird format , sometimes passed from method 'getUser'..
+    if (imgObj) {
+      ret = imgObj.thumbnail || imgObj.data || imgObj.imageUrl; // imageUrl - same , format mess
     }
+    ret = ret || '/img/content/avatars/avatar-no.png';
     return ret;
   }
 });
+
+usersCol.helpers(bz.help.users);
 
