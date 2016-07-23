@@ -2,8 +2,8 @@
  * Created by arutu_000 on 12/13/2015.
  */
 
-newPostType = new ReactiveVar(),
-  imagesArrayReactive = new ReactiveVar();
+newPostType = new ReactiveVar({}),
+  imagesArrayReactive = new ReactiveVar({});
 
 Meteor.startup(()=> {
   imagesArrayReactive.set([]);
