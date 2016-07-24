@@ -27,13 +27,14 @@ Meteor.startup(function(){
   bz.bus.pushHandler = {
     push: function(userId, title, msg, payload, badge){
       Push.debug = true;
-      badge = badge == null ? 0 : badge;
+      badge = badge == null ? 1 : badge;
       var notification = {
             from: 'Shiners',
             title: title,
             text: msg,
             badge: badge,
             payload: payload,
+            sound: 'default',
             query: {
               userId: userId
             }

@@ -40,13 +40,10 @@ Router.map(function() {
           bz.cols.nativeLocationReports.insert(requestData);
           console.log(requestData);
 
-          bz.bus.proximityHandler.reportLocation({
-            deviceId: requestData.deviceId,
-            userId: requestData.userId,
+          bz.bus.locationsHandler.reportLocation({
             lat: requestData.lat,
-            lng: requestData.lng,
-            background: true
-          });
+            lng: requestData.lng
+          }, requestData.userId);
         }
       }
 

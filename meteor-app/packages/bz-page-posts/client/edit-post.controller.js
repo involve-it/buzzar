@@ -113,25 +113,12 @@ SavePostFromView = function (v, data) {
       //endDatePost: GetEndDatePost(v, endTimestamp)
     };
 
-    var currentLoc = Session.get('currentLocation');
-    if (currentLoc) {
-      currentLoc = {
-        lat: currentLoc.latitude,
-        lng: currentLoc.longitude
-      };
-    } else {
-      currentLoc = Session.get('bz.control.search.location');
-      if (currentLoc) {
-        currentLoc = currentLoc.coords;
-      }
-    }
-
     bz.runtime.changesNotSaved = false;
-    Router.go(`/post/${data._id}`);
-    
-    
-    
-    Meteor.call('editPost', newPost, function(e, r) {
+    Router.go('/post/${data._id}');
+
+    var currentLoc = bz.help.location.getCurrentLocation();
+
+    Meteor.call('editPost', newPost, currentLoc, function(e, r) {
       var result = {},
           imgArray = imagesArrayReactive.get();
       /*CONSOLE CLEAR
