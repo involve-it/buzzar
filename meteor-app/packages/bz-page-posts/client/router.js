@@ -11,7 +11,6 @@ Router.map(function () {
     onBeforeAction: function () {
       Router.go('/posts/my');
     }
-
   });
   this.route('posts.details', {
     path: '/post/:_id',
@@ -21,6 +20,9 @@ Router.map(function () {
       
       var dep = new Deps.Dependency;
       var ready = false;
+
+
+
       var handle = {
         ready: function() {
           dep.depend();
@@ -33,11 +35,14 @@ Router.map(function () {
       Meteor.call('getPost', postId, function(e, r) {
         
         if(r.success && r.result) {
-
           r.result.hasLivePresence = bz.help.posts.hasLivePresence.apply(r.result);
           r.result.getDistanceToCurrentLocation = bz.help.posts.getDistanceToCurrentLocation.apply(r.result);
 
           self.result = r.result;
+          var data = r.result, photoHelpers = bz.help.images;
+          // extend with helpers, since we're not using collection anymore:
+          data.details && data.details.photos && data.details.photos.forEach(p => Object.assign(p, photoHelpers));
+
           Session.set('bz.posts.current', r.result); // very temp solution related to getPost being object, not cursor
         } else {
           bz.ui.alert('Error ID: ' + r.error.errorId, {type:'error', timeout: 2000});
@@ -60,7 +65,7 @@ Router.map(function () {
         Meteor.subscribe('bz.users.all')
       }
       return ret;*/
-      
+
       return this.result;
     },
     //controller: 'requireLoginController',
@@ -82,6 +87,9 @@ Router.map(function () {
   this.route('posts.edit', {
     path: '/posts/:_id/edit',
     template: 'pagePostsEdit',
+    waitOn: function(){
+      return [ Meteor.subscribe('bz.images.user', Meteor.userId()) ]
+    },
     data: function () {
       var ret;
       ret = bz.cols.posts.findOne({_id: this.params._id});
@@ -108,7 +116,12 @@ Router.map(function () {
   this.route('postsMy', {
     path: '/posts/my',
     layoutTemplate: 'mainLayout',
-    controller: 'requireLoginController'
+    controller: 'requireLoginController',
+    waitOn: function () {
+      return [
+        Meteor.subscribe('bz.images.user', Meteor.userId()),
+      ]
+    }
   });
 
   // create post flow:
@@ -117,6 +130,7 @@ Router.map(function () {
     controller: 'requireLoginController',
     waitOn: function () {
       return [
+        Meteor.subscribe('bz.images.user', Meteor.userId()),
         bz.help.maps.googleMapsLoad()
       ]
     },
@@ -141,7 +155,7 @@ Router.map(function () {
     template: 'newPostPageShare',
     controller: 'requireLoginController',
     waitOn: function () {
-      return []
+      return [ Meteor.subscribe('bz.images.user', Meteor.userId()) ];
     }
   });
 });

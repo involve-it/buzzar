@@ -9,7 +9,13 @@ Router.map(function () {
     layoutTemplate: 'mainLayoutHome',
     controller: 'baseController',
     //fastRender: true,
-    waitOn: function () {},
+    waitOn: function () {
+      return [
+        // temp solution
+        Meteor.subscribe('posts-all'),
+        Meteor.subscribe('posts-images')
+      ]
+    },
     data: function() {
       var path = this.route.path();
       return {
@@ -23,7 +29,6 @@ Router.map(function () {
       }
     },
     onBeforeAction: function () {
-      //debugger;
       var qs = this.params.query;
       //console.log(qs);
       setSearchTextFromQs(qs);

@@ -49,6 +49,11 @@ Template.bzHomePopular.helpers({
           _.each(res.result, p => {
             Object.assign(p, bz.cols.posts.bzHelpers);
           });
+
+          // extend with helpers, since we're not using collection anymore:
+          var photoHelpers = bz.help.images;
+          r.result.forEach(data => data.details && data.details.photos && data.details.photos.forEach(p => Object.assign(p, photoHelpers)));
+
           (res.result.length > 0) ? ins.getPopularData.set(res.result) : ins.getPopularData.set([]);
           //console.info('Данные из метода getPopularPosts: ', res.result);
         } else {
@@ -81,9 +86,9 @@ Template.bzHomePopularItem.helpers({
     return Date.now();
   },
   getImgSrc: function () {
-    var ret, phId = this.details.photos && this.details.photos[0];
-    if (phId) {
-      ret = bz.cols.images.findOne(phId);
+    var ret, ret = this.details.photos && this.details.photos[0];
+    if (ret) {
+      // ret = bz.cols.images.findOne(phId);
       ret = ret && ret.data;
     }
     return ret;

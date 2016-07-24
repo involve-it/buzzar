@@ -196,16 +196,18 @@ Template.postDetailsPhoto.helpers({
 
   },
   getPhotos: function(){
-    bz.cols.images.find({}); // <- for reactiveness
+    // bz.cols.images.find({}); // <- for reactiveness
     //bz.cols.images.find({_id: {$in: this.details.photos}}); // <- for reactiveness
-    var ret = getPostPhotoObjectsByIds(this.details.photos);
+    var ret = this.details.photos;
+    // var ret = getPostPhotoObjectsByIds(this.details.photos);
     return ret;
   },
   getMainPhoto: function(){
     var ret = {
         data: '../img/content/no-photo.png'
       },
-      main, photos = getPostPhotoObjectsByIds(this.details.photos);
+      main, photos = this.details.photos;
+      // main, photos = getPostPhotoObjectsByIds(this.details.photos);
     if (photos) {
       main = _.filter(photos, function(item){
         return item && item.isMain === true;
@@ -220,7 +222,8 @@ Template.postDetailsPhoto.helpers({
   },
   moreThanOnePhotos: function(){
     var ret = false,
-      photos = getPostPhotoObjectsByIds(this.details.photos);
+      photos = this.details.photos;
+      // photos = getPostPhotoObjectsByIds(this.details.photos);
     if (!photos || photos.length < 2){
       ret = false;
     } else {

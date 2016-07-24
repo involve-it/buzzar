@@ -72,7 +72,7 @@
 }));*/
 
 if(Meteor.isClient){
-  Meteor.subscribe('posts-all');
+  // Meteor.subscribe('posts-all');
   Meteor.subscribe('posts-my');
-  Meteor.subscribe('posts-images');
+  // Meteor.subscribe('posts-images');
 }
