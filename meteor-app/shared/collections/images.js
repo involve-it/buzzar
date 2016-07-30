@@ -3,8 +3,8 @@
  */
 
 bz.cols.images = new Mongo.Collection('images');
-Ground.Collection(bz.cols.images);
-bz.cols.images.helpers({
+// Ground.Collection(bz.cols.images);
+bz.help.makeNamespace('bz.help.images', {
   _getThumbnailUrl: function(){
     var image = this;
 
@@ -23,6 +23,7 @@ bz.cols.images.helpers({
     return image;
   },
   _getImageUrl: function(){
+
     var image = this;
     if(image) {
       if(image.data){
@@ -34,24 +35,26 @@ bz.cols.images.helpers({
     return image;
   }
 });
-if(Meteor.isServer){
+bz.cols.images.helpers(bz.help.images);
+
+if(Meteor.isServer) {
   bz.cols.images.allow({
     insert: function (userId, doc) {
-      if(userId && userId === doc.userId) {
+      if (userId && userId === doc.userId) {
         return true;
       } else {
         return false;
       }
     },
-    update: function(userId, doc, fieldNames, modifier){
-      if(userId && doc && doc.userId === userId) {
+    update: function (userId, doc, fieldNames, modifier) {
+      if (userId && doc && doc.userId === userId) {
         return true;
       } else {
         return false;
       }
     },
-    remove: function(userId, doc){
-      if(userId && doc && doc.userId === userId) {
+    remove: function (userId, doc) {
+      if (userId && doc && doc.userId === userId) {
         return true;
       } else {
         return false;
@@ -60,5 +63,9 @@ if(Meteor.isServer){
   });
   Meteor.publish('posts-images', function () {
     return bz.cols.images.find();
+  });
+  Meteor.publish('bz.images.user', function (userId) {
+    userId = userId || Meteor.userId();
+    return bz.cols.images.find({userId: userId});
   });
 }

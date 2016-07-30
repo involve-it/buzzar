@@ -1,6 +1,8 @@
 /**
  * Created by xvolkx48 on 02.06.2016.
  */
+var nearbyRadius = 0.5;
+
 bz.bus.locationsHandler = {
   addLocation: function(request){
     var ret, coords, placeType,name, public,currentUser,location, locId;
@@ -54,9 +56,18 @@ bz.bus.locationsHandler = {
 
   reportLocation: function(report, userId){
     var posts, currentUserId, ret;
-    check(report,{lat: Number,lng: Number, sessionId: Match.Optional(String)});
+    check(report,{lat: Number,lng: Number, sessionId: Match.Optional(String), deviceId: Match.Optional(String)});
     currentUserId = userId || Meteor.userId();
     if (currentUserId){
+      if (report.deviceId) {
+        console.log('trying to send notification about nearby posts');
+        var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
+        console.log(nearbyPosts);
+        if (nearbyPosts && nearbyPosts.length > 0) {
+          bz.bus.proximityHandler.notifyNearbyPosts(userId, nearbyPosts);
+        }
+      }
+
       posts = bz.cols.posts.find({userId: currentUserId}).fetch();
       if (posts) {
         bz.bus.proximityHandler.processLocationReport(posts, report.lat, report.lng);

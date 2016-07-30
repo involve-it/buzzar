@@ -21,7 +21,7 @@ SavePostFromView = function (v, data) {
   // gather all data and submit for post-create:
   if (userId) {
     // 1. remove deleted images (take those ids that are in db array but not in in new array:
-    diffElemsArr = _.difference(imgArr, _.map(imgArrReact, function(item) { return item._id}));
+    diffElemsArr = _.difference(imgArr, _.map(imgArrReact, function(item) { return item && item._id}));
     _.each(diffElemsArr, function(imgItem){
       if(imgItem){
         bz.cols.images.remove(imgItem);
