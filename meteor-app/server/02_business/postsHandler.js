@@ -103,9 +103,26 @@ bz.bus.postsHandler = {
   addPost: function(request, currentUserId){
     var ret={},post, newPost, postData, validate, locations=[],loc;
     postData=request;
-    if(postData){
+    if(postData && currentUserId){
       validate=bz.bus.postsHandler.validatePost(postData);
       if (validate.success){
+        var photos = [];
+        if (postData.details && postData.details.photos && postData.details.photos.length > 0 && typeof postData.details.photos[0] === 'object'){
+          var photo;
+          _.each(postData.details.photos, function(e){
+            if (e.data) {
+              photo = {
+                userId: currentUserId,
+                name: null,
+                data: e.data,
+                thumbnail: e.data
+              };
+              photos.push(bz.cols.images.insert(photo));
+            }
+          });
+        } else {
+          photos = postData.details.photos || [];
+        }
         newPost={
           userId: currentUserId,
           type: postData.type,
@@ -116,7 +133,7 @@ bz.bus.postsHandler = {
             title: postData.details.title,
             description: postData.details.description,
             price: postData.details.price,
-            photos: postData.details.photos,
+            photos: photos,
             other: postData.details.other
           },
           status: {
@@ -335,7 +352,7 @@ bz.bus.postsHandler = {
     });
     post.details.locations = locations;
     // return photos as array of urls instead of ids:
-    if(!!postDb.details.photos.length) {
+    if(postDb.details.photos && postDb.details.photos.length>0) {
       post.details.photosUrls = bz.cols.images.find({ _id: {$in: post.details.photos }}).fetch().map(function(p) { return p.data;});
     }
     // hz:?
@@ -365,7 +382,7 @@ bz.bus.postsHandler = {
         return post.details.photos
       }).reduce(function (a, b) {
         return a.concat(b);
-      }).filter(function(p) { return p !== undefined; });
+      }).filter(function(p) { return !!p; });
       if (arrPhoto.length > 0) {
         photos = bz.bus.imagesHandler.getPhotos(arrPhoto);
       }
