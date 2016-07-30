@@ -103,7 +103,7 @@ bz.bus.postsHandler = {
   addPost: function(request, currentUserId){
     var ret={},post, newPost, postData, validate, locations=[],loc;
     postData=request;
-    if(postData){
+    if(postData && currentUserId){
       validate=bz.bus.postsHandler.validatePost(postData);
       if (validate.success){
         var photos = [];
