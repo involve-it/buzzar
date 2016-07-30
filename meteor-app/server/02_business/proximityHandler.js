@@ -4,7 +4,8 @@
 
 //ad search radius (box, actually)
 var defaultRadius = 1,
-    nearbyRadius = 0.5;
+    nearbyRadius = 0.5,
+    nearbyNotificationTimeDiffMinutes = 1000 * 60 * 30;
 
 Meteor.onConnection(function(connection){
     //console.info('Connected: ' + connection.id);
@@ -85,24 +86,31 @@ bz.bus.proximityHandler = {
         }
     },
     notifyNearbyPosts: function(userId, posts){
-        if (posts) {
+        var user = Meteor.users.findOne({_id: userId});
+        !user.lastNearbyNotification && (user.lastNearbyNotification = 0);
+        var diff = (new Date()).getTime() - user.lastNearbyNotification;
+        console.log('Difference: ' + diff);
+        if (posts && user && diff >= nearbyNotificationTimeDiffMinutes) {
             var filtered = _.filter(posts, function (post) {
                 return post.userId !== userId;
             }), post;
             console.log('filtered');
             console.log(filtered);
-            if (filtered.length === 1) {
-                post = filtered[0];
-                console.log('Notifying single post: ' + post.details.title);
-                bz.bus.pushHandler.push(userId, 'Activity around you', post.details.title, {
-                    type: bz.const.push.type.post,
-                    id: post._id
-                }, 0);
-            } else if (filtered.length > 1) {
-                console.log('Notifying multiple posts. Count: ' + filtered.length);
-                bz.bus.pushHandler.push(userId, 'Activity around you', 'There are ' + filtered.length + ' posts around you. Check them out!', {
-                    type: bz.const.push.type.default
-                }, 0);
+            if (filtered.length > 0) {
+                Meteor.users.update({_id: userId}, {$set: {lastNearbyNotification: (new Date()).getTime()}});
+                if (filtered.length === 1) {
+                    post = filtered[0];
+                    console.log('Notifying single post: ' + post.details.title);
+                    bz.bus.pushHandler.push(userId, 'Activity around you', post.details.title, {
+                        type: bz.const.push.type.post,
+                        id: post._id
+                    }, 0);
+                } else if (filtered.length > 1) {
+                    console.log('Notifying multiple posts. Count: ' + filtered.length);
+                    bz.bus.pushHandler.push(userId, 'Activity around you', 'There are ' + filtered.length + ' posts around you. Check them out!', {
+                        type: bz.const.push.type.default
+                    }, 0);
+                }
             }
         }
     },
