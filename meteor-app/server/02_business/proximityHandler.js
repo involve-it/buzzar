@@ -196,7 +196,7 @@ bz.bus.proximityHandler = {
                 presences = {};
                 _.each(post.details.locations, function(loc){
                     if (loc.placeType === bz.const.locations.type.DYNAMIC){
-                        if (loc.coords.lat !== lat || loc.coords.lng != lng) {
+                        if (loc.coords && (loc.coords.lat !== lat || loc.coords.lng != lng)) {
                             //console.log('Updating moving coordinates for ad: ' + post.details.title);
                             loc.coords = {
                                 lat: lat,
