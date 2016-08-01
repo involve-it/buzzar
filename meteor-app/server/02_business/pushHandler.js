@@ -24,9 +24,9 @@
  */
 
 Meteor.startup(function(){
+  Push.debug = true;
   bz.bus.pushHandler = {
     push: function(userId, title, msg, payload, badge){
-      Push.debug = true;
       badge = badge == null ? 1 : badge;
       var notification = {
             from: 'Shiners',
@@ -35,27 +35,16 @@ Meteor.startup(function(){
             badge: badge,
             payload: payload,
             sound: 'default',
-            query: {
-              userId: userId
+            apn:{
+              text: title + ': ' + msg
             }
           };
 
-      /*if (!Array.isArray(userIds)) {
-        userIds = [userIds];
-      }
-
-      var users = Meteor.users.find({_id: {$in: userIds}}).fetch(), tokens = [];
-      _.each(users, function(user){
-        if (user.tokens){
-          tokens = tokens.concat(_.pluck(user.tokens, 'token'));
-        }
-      });
-
-      if (tokens.length > 0) {
-        notification.tokens = tokens;
+      var user = Meteor.users.findOne({_id: userId});
+      if (user && user.tokens && user.tokens.length > 0){
+        notification.tokens = _.pluck(user.tokens, 'token');
         Push.send(notification);
-      }*/
-      Push.send(notification);
+      }
     },
     registerPushToken: function(deviceId, userId, token, platform){
       if (deviceId && userId && token && userId === Meteor.userId()){
@@ -228,7 +217,11 @@ Meteor.startup(function(){
   bz.cols.messages.after.insert(function(userId, doc){
     if (doc && doc.text && doc.toUserId){
       //console.log('sending push: ' + doc.text);
-      bz.bus.pushHandler.push(doc.toUserId, 'New message', doc.text, {
+      var user = Meteor.users.findOne({_id: userId}), title = 'New message';
+      if (user){
+        title = user.username;
+      }
+      bz.bus.pushHandler.push(doc.toUserId, title, doc.text, {
         type: bz.const.push.type.chat,
         id: doc.chatId
       });
