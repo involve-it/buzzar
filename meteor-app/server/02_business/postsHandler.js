@@ -79,7 +79,7 @@ bz.bus.postsHandler = {
     type=requestPage.type;
     take= requestPage.take;
     skip=requestPage.skip;
-    option={sort:{timestamp:-1},skip: skip, limit: take};
+    option={sort:{timestamp:1},skip: skip, limit: take};
     if (type=='all'){
       arrPosts=bz.cols.posts.find({userId: currentUserId},option).fetch();
     }else if(type=='active'){
