@@ -56,28 +56,31 @@ bz.bus.locationsHandler = {
 
   reportLocation: function(report, userId){
     var posts, currentUserId, ret;
-    check(report,{lat: Number,lng: Number, sessionId: Match.Optional(String), deviceId: Match.Optional(String)});
-    currentUserId = userId || Meteor.userId();
-    if (currentUserId){
-      if (report.deviceId) {
-        console.log('trying to send notification about nearby posts');
-        var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
-        console.log(nearbyPosts);
-        if (nearbyPosts && nearbyPosts.length > 0) {
-          bz.bus.proximityHandler.notifyNearbyPosts(userId, nearbyPosts);
+    if (report.lat && report.lng) {
+      currentUserId = userId || Meteor.userId();
+      if (currentUserId) {
+        if (report.deviceId) {
+          console.log('trying to send notification about nearby posts');
+          var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
+          console.log(nearbyPosts);
+          if (nearbyPosts && nearbyPosts.length > 0) {
+            bz.bus.proximityHandler.notifyNearbyPosts(userId, nearbyPosts);
+          }
         }
-      }
 
-      posts = bz.cols.posts.find({userId: currentUserId}).fetch();
-      if (posts) {
-        bz.bus.proximityHandler.processLocationReport(posts, report.lat, report.lng);
-        ret={success: true}
-      }else{
-        ret={success: true}
+        posts = bz.cols.posts.find({userId: currentUserId}).fetch();
+        if (posts) {
+          bz.bus.proximityHandler.processLocationReport(posts, report.lat, report.lng);
+          ret = {success: true}
+        } else {
+          ret = {success: true}
+        }
+      } else {
+        //error not logged
+        ret = {success: false, error: bz.const.errors.global.notLogged};
       }
     } else {
-      //error not logged
-      ret={success: false, error: bz.const.errors.global.notLogged};
+      ret = {success: false};
     }
     return ret;
   }
