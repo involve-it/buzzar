@@ -193,6 +193,7 @@ bz.bus.postsHandler = {
         ret={success:false, error: bz.const.errors.posts.emptyTitle};
         return ret;
       }
+      /*
       //validate description
       if (post.details.description) {
         if (true) {
@@ -208,6 +209,7 @@ bz.bus.postsHandler = {
         ret={success:false, error: bz.const.errors.posts.emptyDescription};
         return ret;
       }
+      */
       //validate url
       //validate locations
       if (post.details.locations){

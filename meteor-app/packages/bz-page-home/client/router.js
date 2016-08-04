@@ -17,8 +17,8 @@ Router.map(function () {
           logoType: '/img/logo/logo-home-logotype.png',
           logo: '/img/logo/logo-home.png',
           backgroundMobile: '/img/content/bg/mobile-home.jpg',
-          backgroundDesktop:  'https://buzzar.s3-us-west-1.amazonaws.com/v1.0/public/images/1468976184271-b2e1af31-0b3a-c704-461d-42bd6320a36a.png'
-          // backgroundDesktop:  '/img/content/bg/desktop-home.jpg'
+          //backgroundDesktop:  'https://buzzar.s3-us-west-1.amazonaws.com/v1.0/public/images/1468976184271-b2e1af31-0b3a-c704-461d-42bd6320a36a.png'
+          backgroundDesktop:  '/img/content/bg/desktop-home.jpg'
         }
       }
     },
