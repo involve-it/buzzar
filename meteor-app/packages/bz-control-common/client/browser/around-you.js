@@ -110,7 +110,11 @@ Template.bzAroundYou.helpers({
             _.each(res.result, p => {
               Object.assign(p, bz.cols.posts.bzHelpers);
             });
-            //ins.getNearByData.set(res.result);
+
+            // extend with helpers, since we're not using collection anymore:
+            var photoHelpers = bz.help.images;
+            r.result.forEach(data => data.details && data.details.photos && data.details.photos.forEach(p => Object.assign(p, photoHelpers)));
+
             (res.result.length > 0) ? ins.getSearchData.set(res.result) : ins.getSearchData.set([]);
             //console.info('Данные из метода nearbyPosts: ', ins.getNearByData.get());
   
@@ -196,15 +200,15 @@ Template.bzAroundYouItem.helpers({
   },
   getRank: function () {},
   getProgressBar: function () {
-    debugger;
   },
   getTimeStamp: function () {
     return Date.now();
   },
   getImgSrc: function () {
-    var ret, phId = this.details.photos && this.details.photos[0];
-    if (phId) {
-      ret = bz.cols.images.findOne(phId);
+
+    var ret, ret = this.details.photos && this.details.photos[0];
+    if (ret) {
+      // ret = bz.cols.images.findOne(phId);
       ret = ret && ret._getThumbnailUrl();
     }
 
@@ -241,8 +245,9 @@ Template.bzAroundYouItem.events({
       Router.go('/sign-in');
     }
     if (Meteor.userId() !== this.userId && this.userId) {
-      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this.userId);
-      Router.go('/chat/' + chatId);
+      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this.userId).then(function(chatId) {
+          Router.go('/chat/' + chatId);
+      });
     }
   }
 });

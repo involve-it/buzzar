@@ -143,9 +143,9 @@ Meteor.methods({
   getNearbyPosts: function(userId, lat, lng){
     return bz.bus.proximityHandler.getNearbyPosts(userId, lat, lng);
   },
-  reportLocation: function(report){
+  /*reportLocation: function(report){
     return bz.bus.proximityHandler.reportLocation(report);
-  },
+  },*/
   logOut: function(userId, deviceId){
     if (userId) {
       if (deviceId){
@@ -370,6 +370,10 @@ Meteor.methods({
       $set: { 'profile.checkOwnPosts': toggle }},
       {upsert: true}
     );
+  },
+  // CHATS:
+  'bz.chats.fromToUser': function(user1, user2) {
+    return bz.cols.chats.find({ $and: [{ users: { $in: [ user1 ] }}, { users: { $in: [ user2 ] }}]}, { sort: { 'lastMessageTs': -1 }}).fetch()[0];
   }
 });
 

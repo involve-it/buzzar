@@ -21,10 +21,8 @@ var Location = {
                      });*/
                     //37.314008, -121.791756
                     Meteor.call('reportLocation', {
-                        userId: Meteor.userId(),
                         lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                        sessionId: Meteor.connection._lastSessionId
+                        lng: position.coords.longitude
                     }, function (err, posts) { });
                 }
             });

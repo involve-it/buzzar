@@ -50,7 +50,6 @@ Meteor.startup(function () {
   //searchPostsReactive();
   bz.help.maps.initPlacesCollection();
   Template.bzControlSearch && Template.bzControlSearch.onCreated(function () {
-    //debugger;
 
     //bz.help.maps.initLocation();
 
@@ -142,7 +141,10 @@ bz.bus.search.searchePostsAroundAndPopular = () => {
     aroundYouQuery['type'] = {$in: arrTypes};
     popularQuery['type'] = {$in: arrTypes}
   }
-  aroundYouSmallQuery['$where'] = function(){return !!bz.help.posts.hasLivePresence.apply(this)};
+  aroundYouSmallQuery['$where'] = function(){
+    var a = aroundYouSmallQuery;
+    return !!bz.help.posts.hasLivePresence.apply(this)
+  };
   aroundYouSmall= bz.cols.posts.find(aroundYouSmallQuery, {sort: {'stats.seenTotal': -1},limit: 10}).fetch();
   ids.push(undefined);
   ids.push('');
@@ -161,11 +163,11 @@ bz.bus.search.searchePostsAroundAndPopular = () => {
   _.each(aroundYou, function(post){ids.push(post._id)});
   popularQuery['$where'] = function(){return (this.status) ? this.status.visible !== null : false};
   popularQuery['_id']={$nin: ids};
-  popular = bz.cols.posts.find(popularQuery,{sort: {'stats.seenTotal': -1},limit: bz.const.search.POPULAR_LIMIT}).fetch();
+  //popular = bz.cols.posts.find(popularQuery,{sort: {'stats.seenTotal': -1},limit: bz.const.search.POPULAR_LIMIT}).fetch();
   ret = {
     aroundYouSmall: aroundYouSmall,
     aroundYou: aroundYou,
-    popular: popular
+    //popular: popular
   };
   return ret;
 };

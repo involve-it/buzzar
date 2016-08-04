@@ -41,34 +41,32 @@ Template.bzUserProfileBasic.rendered = function () {
 };
 
 Template.bzUserProfileBasic.onCreated(function() {
-  this.someUserData = new ReactiveVar(false);
+  var userId = this.data._id, ins = Template.instance(), innerObj = {}, usegObj = {};
+  /*console.info(Router.current().params._id);
+   console.info(this._id);*/
+    Meteor.call('getUser', userId, function(e, r){
+      if(e) {
+        //error
+      } else {
+        innerObj = r.result;
+
+        _.each(innerObj, function(value, key, list) {
+
+          if(key === 'image') {
+            usegObj['image'] = list.image
+          }
+
+        });
+        usegObj['username'] = innerObj.username;
+        ins.someUserData.set(usegObj);
+      }
+    });
+  this.someUserData = new ReactiveVar({});
 });
 
 Template.bzUserProfileBasic.helpers({
   getUser: function() {
-    var userId = this._id, ins = Template.instance(), innerObj = {}, usegObj = {};
-    /*console.info(Router.current().params._id);
-    console.info(this._id);*/
-    if (ins.someUserData.get() === false) {
-      Meteor.call('getUser', userId, function(e, r){
-        if(e) {
-          //error
-        } else {
-          innerObj = r.result;
-
-          _.each(innerObj, function(value, key, list) {
-
-            if(key === 'image') {
-              usegObj['image'] = list.image
-            }
-
-          });
-          usegObj['username'] = innerObj.username;
-          ins.someUserData.set(usegObj);
-        }
-      });
-    }
-    return ins.someUserData.get();
+    return Template.instance().someUserData.get();
   }
   
   /*,
@@ -88,8 +86,9 @@ Template.bzUserProfileBasic.events({
      toUser: this._id
      }*/
     if (Meteor.userId() !== this._id) {
-      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this._id);
-      Router.go('/chat/' + chatId);
+      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this._id).then(function(chatId) {
+          Router.go('/chat/' + chatId);
+      });
     }
   }
 })

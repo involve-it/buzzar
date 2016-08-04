@@ -12,13 +12,11 @@ Meteor.startup(() => {
 
 class GrouponPosts {
   constructor(options) {
-    debugger;
     var loc = options.loc;
     if (loc) {
 
 
       Meteor.call('groupon-api-deals', loc, (err, res) => {
-        debugger;
       });
 
       /*$.get(url, {__id: 234}, function (data) {
@@ -56,14 +54,11 @@ if (Meteor.isServer) {
 
   Meteor.methods({
     'groupon-api-deals': function (loc) {
-      debugger;
-
       var post, url = `https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&lat=${ loc.latitude }&lng=${  loc.longitude }&radius=${ loc.accuracy }`;
       Meteor.http.call('GET', url, {}, (err, res) => {
         if (err) {
 
         } else if (res) {
-          debugger;
           res.data.deals.forEach((item) => {
             post = GrouponPosts.getPostFromJson(item);
             grouponPostsCollection.insert(post);

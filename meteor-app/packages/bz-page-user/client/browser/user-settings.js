@@ -3,7 +3,23 @@
  */
 
 Template.userSettings.onCreated(function () {
-  this.anotherUserData = new ReactiveVar(false);
+  var userId = this.data._id, ins = Template.instance(), innerObj = {}, profileObj = {}, that = this;
+  Meteor.call('getUser', userId, function (e, r) {
+    if (e) {
+    } else if (r && r.result){
+      innerObj = r.result;
+      _.each(innerObj.profileDetails, function (item) {
+        profileObj[item.key] = {
+          value: item.value,
+          policy: item.policy
+        }
+      });
+      Object.assign(innerObj, profileObj);
+      that.data = innerObj;
+      ins.userData.set(innerObj);
+    }
+  });
+  ins.userData = new ReactiveVar({});
 });
 
 Template.userSettings.onRendered(function () {
@@ -15,37 +31,7 @@ Template.userSettings.onRendered(function () {
 Template.userSettings.helpers({
   /* NEW CODE */
   getUser: function() {
-    var userId = this._id, ins = Template.instance(), innerObj = {}, usegObj = {};
-    if (ins.anotherUserData.get() === false) {
-      Meteor.call('getUser', userId, function(e, r){
-        if(e) {
-          //error
-        } else {
-          innerObj = r.result;
-
-          _.each(innerObj, function(value, key, list) {
-            
-            if(key === 'image') {
-              usegObj['image'] = list.image
-            }
-            
-            if(key === 'profileDetails') {
-              _.each(list.profileDetails, function(item) {
-                usegObj[item.key] = {
-                  value:  item.value,
-                  policy: item.policy
-                };
-              });
-            }
-
-          });
-          usegObj['username'] = innerObj.username;
-          //console.info(usegObj);
-          ins.anotherUserData.set(usegObj);
-        }
-      });
-    }
-    return ins.anotherUserData.get();
+    return Template.instance().userData.get();
   },
   getIdProfile: function () {
     //console.log('ID профайла пользователя ' + this._id);
@@ -235,10 +221,10 @@ Template.userSettings.events({
     /*var qs = {
       toUser: this._id
     }*/
-    //debugger;
     if(Meteor.userId() !== this._id) {
-      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this._id);
-      Router.go('/chat/' + chatId);
+      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this._id).then(function(chatId) {
+          Router.go('/chat/' + chatId);
+      });
     }
   }
 });

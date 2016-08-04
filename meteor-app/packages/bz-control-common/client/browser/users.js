@@ -1,6 +1,6 @@
 
-Template.bzInnerMenuLeft.helpers({
-  currentStatusUser: function() {
-    return Meteor.user();
+Template.bzAvatarUserStatus.helpers({
+  isUserOnline: function() {
+    return this.online;
   }
 });

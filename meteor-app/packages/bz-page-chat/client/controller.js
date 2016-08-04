@@ -6,30 +6,32 @@ bz.help.makeNamespace('bz.bus.chats');
 sendMessage = function (messageText, chat, friendUserId) {
   var  msgTs = Date.now();
 
-  createChatIfFirstMessage(currentUser._id, friendUserId),
-  makeChatActive(chat);
+  createChatIfFirstMessage(currentUser._id, friendUserId).then(function() {
+      makeChatActive(chat);
 
-  bz.cols.messages.insert({
-    userId: currentUser._id,
-    user: {
-      username:  currentUser.username,
-      profile: {
-        image:  currentUser.profile.image
-      }
-    },
-    toUserId: friendUserId,
-    chatId: chat._id,
-    text: messageText,
-    timestamp: msgTs,
-    keyMessage: 'own-message',
-    seen: false
-  });
+      bz.cols.messages.insert({
+          userId: currentUser._id,
+          user: {
+              username:  currentUser.username,
+              profile: {
+                  image:  currentUser.profile.image
+              }
+          },
+          toUserId: friendUserId,
+          chatId: chat._id,
+          text: messageText,
+          timestamp: msgTs,
+          keyMessage: 'own-message',
+          seen: false
+      });
 
-  bz.cols.chats.update({
-    _id: chat._id
-  },{$set:{lastMessageTs: msgTs}}
-  );
-  scrollMessages();
+      bz.cols.chats.update({
+              _id: chat._id
+          },{$set:{lastMessageTs: msgTs}}
+      );
+      scrollMessages();
+
+  })
 
 };
 scrollMessages = function () {
@@ -55,39 +57,46 @@ createChatIfFirstMessage = function (userFrom, userTo) {
    bz.cols.chats.remove({
    userId: userFrom
    });*/
-  var chatId, chats1, chats2, chatsAll;
-  chats1 = bz.cols.chats.find({
-    userId: userFrom,
-    users: {$in: [userTo]}
-  }).fetch();
-  chats2 = bz.cols.chats.find({
-    userId: userTo,
-    users: {$in: [userFrom]}
-  }).fetch();
-  chatsAll = _.union(chats1, chats2);
-  _.each(chatsAll, function (item) {
-    //bz.cols.chats.remove(item._id);
-  });
-  /*bz.cols.chats.remove({
-   userId: userFrom
-   });*/
-  if (chatsAll.length === 0) {
-    /*bz.cols.chats.insert({
-     userId: userFrom,
-     users: [userTo],
-     timeBegin: Date.now()
-     });*/
-    chatId = bz.cols.chats.insert({
-      userId: userFrom,
-      users: [userTo, userFrom],
-      timeBegin: Date.now(),
-      lastMessageTs: Date.now(),
-      activated: false // we just create record in DB, but we don't wanna show this conv-n to the other user
-    });
-  } else {
-    chatId = chatsAll[0]._id
-  }
-  return chatId;
+  var ret = new Promise((resolve, reject) => {
+      Meteor.call('bz.chats.fromToUser', userFrom, userTo, function(err, lastMessageChat) {
+        var chatId, chats1, chats2, chatsAll;
+        /*chats1 = bz.cols.chats.find({
+          userId: userFrom,
+          users: {$in: [userTo]}
+        }).fetch();
+        chats2 = bz.cols.chats.find({
+          userId: userTo,
+          users: {$in: [userFrom]}
+        }).fetch();
+        chatsAll = _.union(chats1, chats2);
+        _.each(chatsAll, function (item) {
+          //bz.cols.chats.remove(item._id);
+        });
+        /!*bz.cols.chats.remove({
+         userId: userFrom
+         });*!/*/
+        if (!lastMessageChat) {
+          /*bz.cols.chats.insert({
+           userId: userFrom,
+           users: [userTo],
+           timeBegin: Date.now()
+           });*/
+          chatId = bz.cols.chats.insert({
+            userId: userFrom,
+            users: [userTo, userFrom],
+            timeBegin: Date.now(),
+            lastMessageTs: Date.now(),
+            activated: false // we just create record in DB, but we don't wanna show this conv-n to the other user
+          });
+        } else {
+          chatId = lastMessageChat._id
+        }
+        resolve(chatId);
+  // return chatId;
+      })
+
+  })
+  return ret;
 }
 
 getUniqueChatsForUser = function (userId, all) {

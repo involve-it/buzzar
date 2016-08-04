@@ -2,9 +2,23 @@
  * Created by douson on 09.07.15.
  */
 Template.profileSettings.onCreated(function() {
-  //Meteor.subscribe('users', Router.current().params._id);
+  var userId = Meteor.userId(), inst = Template.instance(), innerObj = {}, profileObj = {};
 
-  this.someUserData = new ReactiveVar(false);
+  Meteor.call('getUser', userId, function(e, r){
+    if(e) {
+    } else {
+      innerObj = r.result;
+      _.each(innerObj.profileDetails, function(item) {
+        profileObj[item.key] = {
+          value:  item.value,
+          policy: item.policy
+        };
+      });
+      Object.assign(innerObj, profileObj);
+      inst.someUserData.set(innerObj);
+    }
+  });
+  inst.someUserData = new ReactiveVar({});
 });
 
 Template.profileSettings.onRendered(function() {
@@ -32,28 +46,7 @@ Template.profileSettings.helpers({
   },
   /* NEW CODE */
   getUser: function() {
-    var userId = Meteor.userId(), ins = Template.instance(), innerObj = {}, usegObj = {};
-    if (ins.someUserData.get() === false) {
-      Meteor.call('getUser', userId, function(e, r){
-        if(e) {
-          //error
-        } else {
-          innerObj = r.result;
-          
-          _.each(innerObj.profileDetails, function(item) {
-            usegObj[item.key] = {
-              value:  item.value,
-              policy: item.policy
-            };
-          });
-          
-          usegObj['username'] = innerObj.username;
-          //console.info(usegObj);
-          ins.someUserData.set(usegObj);
-        }
-      });
-    }
-    return ins.someUserData.get();
+    return Template.instance().someUserData.get();
   },
   /* OLD CODE */
   getPostsCount: function(){

@@ -78,7 +78,6 @@ isShuffleFair = function (shuffleFunction, array) {
   //} else if(length - sames > num && !isOdd && closes === 0) {
     isFair = true;
   }
-                             debugger;
   // check if array is sorted:
   sortedSD = _.sortBy(array, function(item){ return item});
   if(isFair){

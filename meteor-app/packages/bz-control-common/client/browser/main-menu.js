@@ -49,44 +49,30 @@ Template.bzControlMenuHashesMainMenu.helpers({
 });
 
 Template.bzInnerMenuLeft.onCreated(function() {
-  this.someUserData = new ReactiveVar(false);
+  var userId = Meteor.userId(), ins = Template.instance(), innerObj = {}, profileObj = {}, that = this;
+  Meteor.call('getUser', userId, function (e, r) {
+    if (e) {
+    } else if (r && r.result){
+      innerObj = r.result;
+      _.each(innerObj.profileDetails, function (item) {
+        profileObj[item.key] = {
+          value: item.value,
+          policy: item.policy
+        }
+      });
+      Object.assign(innerObj, profileObj);
+      Object.assign(innerObj, bz.help.users); // let's not forget about helpers!
+      that.data = innerObj;
+      ins.userData.set(innerObj);
+    }
+  });
+  ins.userData = new ReactiveVar({});
 });
 
 Template.bzInnerMenuLeft.helpers({
   getUser: function() {
-    var userId = Meteor.userId(), ins = Template.instance(), innerObj = {}, usegObj = {};
-    if (ins.someUserData.get() === false) {
-      Meteor.call('getUser', userId, function(e, r){
-        if(e) {
-          //error
-        } else {
-          innerObj = r.result;
-
-          _.each(innerObj, function(value, key, list) {
-
-            if(key === 'image') {
-              usegObj['image'] = list.image
-            }
-
-          });
-          usegObj['username'] = innerObj.username;
-          ins.someUserData.set(usegObj);
-        }
-      });
-    }
-    return ins.someUserData.get();
+    return Template.instance().userData.get();
   }
-  /*getCurrentUserName: function(){
-    return Meteor.user() && Meteor.user().username;
-  },
-  getUserAvatar: function(){
-    var ret = '/img/content/avatars/avatar-no.png';
-    var user = Meteor.user();
-    if(user && user._getAvatarImage()){
-      ret = user._getAvatarImage();
-    }
-    return ret;
-  }*/
 });
 
 Template.bzInnerMenuLeft.events({

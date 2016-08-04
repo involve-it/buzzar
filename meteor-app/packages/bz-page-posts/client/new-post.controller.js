@@ -2,8 +2,8 @@
  * Created by arutu_000 on 12/13/2015.
  */
 
-newPostType = new ReactiveVar(),
-  imagesArrayReactive = new ReactiveVar();
+newPostType = new ReactiveVar({}),
+  imagesArrayReactive = new ReactiveVar({});
 
 Meteor.startup(()=> {
   imagesArrayReactive.set([]);
@@ -172,25 +172,12 @@ CreateNewPostFromView = function (v) {
 
     };
 
-    /* OLD CODE */
-    /*var currentLoc = Session.get('currentLocation');
-    if (currentLoc) {
-      currentLoc = {
-        lat: currentLoc.latitude,
-        lng: currentLoc.longitude
-      };
-    } else {
-      currentLoc = Session.get('bz.control.search.location');
-      if (currentLoc) {
-        currentLoc = currentLoc.coords;
-      }
-    }*/
+    var currentLoc = bz.help.location.getCurrentLocation();
 
     bz.runtime.changesNotSaved = false;
-    Router.go('/posts/my');
+
     
-    Meteor.call('addPost', newPost, function(e, r) {
-      
+    Meteor.call('addPost', newPost, currentLoc, function(e, r) {
       var imgArray = imagesArrayReactive.get();
       if (!!imgArray.length) {
         saveImage(imgArray.pop());
@@ -217,6 +204,7 @@ CreateNewPostFromView = function (v) {
       }
 
       if (!e && r && r !== '') {
+        Router.go('/posts/my');
         bz.ui.alert(`Ваш <a href="/post/${r.result}">пост</a> успешно создан`);
         clearPostData();
         bz.runtime.newPost.postId = r;
