@@ -270,7 +270,7 @@ bz.bus.postsHandler = {
                   title: postData.details.title,
                   description: postData.details.description,
                   price: postData.details.price,
-                  photos: postData.details.photos,
+                  //photos: postData.details.photos,
                   other: postData.details.other
                 },
                 lastEditedTs: now
