@@ -60,6 +60,8 @@ bz.bus.locationsHandler = {
       currentUserId = userId || Meteor.userId();
       if (currentUserId) {
         if (report.deviceId) {
+          Meteor.users.update({_id: currentUserId}, {$set: {lastMobileLocationReport: new Date}});
+
           console.log('trying to send notification about nearby posts');
           var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
           console.log(nearbyPosts);

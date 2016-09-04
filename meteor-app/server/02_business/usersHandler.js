@@ -139,7 +139,8 @@ bz.bus.usersHandler = {
         image:{
           imageUrl: userDb.profile && userDb.profile.image && userDb.profile.image.data,
           thumbnail: userDb.profile && userDb.profile.image && userDb.profile.image.data && userDb.profile.image.thumbnail
-        }
+        },
+        lastMobileLocationReport: userDb.lastMobileLocationReport
       };
       if (userDb._id === currentUserId) {
         tempArrprofileDetails=_.filter(arrProfileDetails,function(item){return item.userId==userDb._id});
