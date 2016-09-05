@@ -87,29 +87,31 @@ bz.bus.proximityHandler = {
     },
     notifyNearbyPosts: function(userId, posts){
         var user = Meteor.users.findOne({_id: userId});
-        !user.lastNearbyNotification && (user.lastNearbyNotification = 0);
-        var diff = (new Date()).getTime() - user.lastNearbyNotification;
-        console.log('Difference: ' + diff);
-        if (posts && user && diff >= nearbyNotificationTimeDiffMinutes) {
-            var filtered = _.filter(posts, function (post) {
-                return post.userId !== userId;
-            }), post;
-            console.log('filtered');
-            console.log(filtered);
-            if (filtered.length > 0) {
-                Meteor.users.update({_id: userId}, {$set: {lastNearbyNotification: (new Date()).getTime()}});
-                if (filtered.length === 1) {
-                    post = filtered[0];
-                    console.log('Notifying single post: ' + post.details.title);
-                    bz.bus.pushHandler.push(userId, 'Activity around you', post.details.title, {
-                        type: bz.const.push.type.post,
-                        id: post._id
-                    }, 0);
-                } else if (filtered.length > 1) {
-                    console.log('Notifying multiple posts. Count: ' + filtered.length);
-                    bz.bus.pushHandler.push(userId, 'Activity around you', 'There are ' + filtered.length + ' posts around you. Check them out!', {
-                        type: bz.const.push.type.default
-                    }, 0);
+        if (user) {
+            !user.lastNearbyNotification && (user.lastNearbyNotification = 0);
+            var diff = (new Date()).getTime() - user.lastNearbyNotification;
+            console.log('Difference: ' + diff);
+            if (posts && user && diff >= nearbyNotificationTimeDiffMinutes) {
+                var filtered = _.filter(posts, function (post) {
+                    return post.userId !== userId;
+                }), post;
+                console.log('filtered');
+                console.log(filtered);
+                if (filtered.length > 0) {
+                    Meteor.users.update({_id: userId}, {$set: {lastNearbyNotification: (new Date()).getTime()}});
+                    if (filtered.length === 1) {
+                        post = filtered[0];
+                        console.log('Notifying single post: ' + post.details.title);
+                        bz.bus.pushHandler.push(userId, 'Activity around you', post.details.title, {
+                            type: bz.const.push.type.post,
+                            id: post._id
+                        }, 0);
+                    } else if (filtered.length > 1) {
+                        console.log('Notifying multiple posts. Count: ' + filtered.length);
+                        bz.bus.pushHandler.push(userId, 'Activity around you', 'There are ' + filtered.length + ' posts around you. Check them out!', {
+                            type: bz.const.push.type.default
+                        }, 0);
+                    }
                 }
             }
         }
@@ -194,7 +196,7 @@ bz.bus.proximityHandler = {
                 presences = {};
                 _.each(post.details.locations, function(loc){
                     if (loc.placeType === bz.const.locations.type.DYNAMIC){
-                        if (loc.coords.lat !== lat || loc.coords.lng != lng) {
+                        if (loc.coords && (loc.coords.lat !== lat || loc.coords.lng != lng)) {
                             //console.log('Updating moving coordinates for ad: ' + post.details.title);
                             loc.coords = {
                                 lat: lat,

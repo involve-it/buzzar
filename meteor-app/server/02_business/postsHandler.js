@@ -79,7 +79,7 @@ bz.bus.postsHandler = {
     type=requestPage.type;
     take= requestPage.take;
     skip=requestPage.skip;
-    option={sort:{timestamp:-1},skip: skip, limit: take};
+    option={sort:{timestamp:1},skip: skip, limit: take};
     if (type=='all'){
       arrPosts=bz.cols.posts.find({userId: currentUserId},option).fetch();
     }else if(type=='active'){
@@ -210,6 +210,7 @@ bz.bus.postsHandler = {
         ret={success:false, error: bz.const.errors.posts.emptyTitle};
         return ret;
       }
+      /*
       //validate description
       if (post.details.description) {
         if (true) {
@@ -225,6 +226,7 @@ bz.bus.postsHandler = {
         ret={success:false, error: bz.const.errors.posts.emptyDescription};
         return ret;
       }
+      */
       //validate url
       //validate locations
       if (post.details.locations){
@@ -270,7 +272,7 @@ bz.bus.postsHandler = {
                   title: postData.details.title,
                   description: postData.details.description,
                   price: postData.details.price,
-                  photos: postData.details.photos,
+                  //photos: postData.details.photos,
                   other: postData.details.other
                 },
                 lastEditedTs: now
