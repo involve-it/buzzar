@@ -9,7 +9,7 @@ bz.bus.imagesHandler = {
 
     if (typeof photosId === 'string') {
       arrPhoto=bz.cols.images.find({_id: photosId }).fetch();
-    } else if (Array.is(photosId)){
+    } else if (Array.isArray(photosId)){
       arrPhoto=bz.cols.images.find({_id: {$in: photosId}}).fetch();
     }
     ret = arrPhoto;
