@@ -466,8 +466,7 @@ bz.bus.postsHandler = {
     }
     options = {
       sort: { 'stats.seenTotal': -1 },
-      skip: skip,
-      limit: take
+      skip: skip
     };
     optionsForArray = {
       sort: function(a, b) {
@@ -500,7 +499,8 @@ bz.bus.postsHandler = {
       postsQuery['type'] = {$in: arrTypes};
     }
     postsQuery['status'] = { visible:  bz.const.posts.status.visibility.VISIBLE };
-    posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort);
+    // posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort);
+    posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort).slice(0, take);
     /*if (lat && lng) {
       _.each(posts, function (post) {
         if (post.details && post.details.locations && Array.isArray(post.details.locations) && post.details.locations.length > 0) {
