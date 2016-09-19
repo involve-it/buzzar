@@ -105,8 +105,8 @@ bz.ui.initSwiper = function() {
 layoutRenderedLazyLoad = function () {
   setTimeout(function () {
     toast(
-      '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css',
-      '//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js',
+      'https://s3.amazonaws.com/shiners/v1.0/public/libs/toastr.min.css',
+      'https://s3.amazonaws.com/shiners/v1.0/public/libs/toastr.min.js',
       function () {
         //toastr.info('Are you the 6 fingered man?');
       }
