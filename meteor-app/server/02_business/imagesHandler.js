@@ -4,9 +4,15 @@
 bz.bus.imagesHandler = {
   getPhotos: function(photosId){
     var ret, arrPhoto;
-    check(photosId, [String]);
-    arrPhoto=bz.cols.images.find({_id: {$in: photosId}}).fetch();
-    ret=arrPhoto;
+    // check(photosId, [String]);
+    console.log('ASDFASDFASDFASDF', photosId);
+
+    if (typeof photosId === 'string') {
+      arrPhoto=bz.cols.images.find({_id: photosId }).fetch();
+    } else if (Array.is(photosId)){
+      arrPhoto=bz.cols.images.find({_id: {$in: photosId}}).fetch();
+    }
+    ret = arrPhoto;
     return ret;
   },
   addImage: function(request, currentUserId){
