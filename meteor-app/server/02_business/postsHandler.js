@@ -210,6 +210,7 @@ bz.bus.postsHandler = {
         ret={success:false, error: bz.const.errors.posts.emptyTitle};
         return ret;
       }
+      /*
       //validate description
       if (post.details.description) {
         if (true) {
@@ -225,6 +226,7 @@ bz.bus.postsHandler = {
         ret={success:false, error: bz.const.errors.posts.emptyDescription};
         return ret;
       }
+      */
       //validate url
       //validate locations
       if (post.details.locations){
@@ -270,7 +272,7 @@ bz.bus.postsHandler = {
                   title: postData.details.title,
                   description: postData.details.description,
                   price: postData.details.price,
-                  photos: postData.details.photos,
+                  //photos: postData.details.photos,
                   other: postData.details.other
                 },
                 lastEditedTs: now
@@ -464,8 +466,7 @@ bz.bus.postsHandler = {
     }
     options = {
       sort: { 'stats.seenTotal': -1 },
-      skip: skip,
-      limit: take
+      skip: skip
     };
     optionsForArray = {
       sort: function(a, b) {
@@ -498,7 +499,8 @@ bz.bus.postsHandler = {
       postsQuery['type'] = {$in: arrTypes};
     }
     postsQuery['status'] = { visible:  bz.const.posts.status.visibility.VISIBLE };
-    posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort);
+    // posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort);
+    posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort).slice(0, take);
     /*if (lat && lng) {
       _.each(posts, function (post) {
         if (post.details && post.details.locations && Array.isArray(post.details.locations) && post.details.locations.length > 0) {
