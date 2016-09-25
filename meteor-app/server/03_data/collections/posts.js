@@ -91,9 +91,9 @@ Meteor.publish('posts-nearby',function(request){
       return Meteor.user() && Meteor.user().isAdmin();
     },
     update: function (___, post) {
-      return Meteor.user() && (Meteor.user().isAdmin() || Meteor.user().postBelongsToUser(post));
+      return Meteor.user() && (Meteor.user().isAdmin());// || Meteor.user().postBelongsToUser(post));
     },
     remove: function (___, post) {
-      return Meteor.user() && (Meteor.user().isAdmin() || Meteor.user().postBelongsToUser(post));
+      return Meteor.user() && (Meteor.user().isAdmin());// || Meteor.user().postBelongsToUser(post));
     }
   });

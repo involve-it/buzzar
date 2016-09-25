@@ -62,11 +62,13 @@ bz.bus.locationsHandler = {
         if (report.deviceId) {
           Meteor.users.update({_id: currentUserId}, {$set: {lastMobileLocationReport: new Date}});
 
-          console.log('trying to send notification about nearby posts');
-          var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
-          console.log(nearbyPosts);
-          if (nearbyPosts && nearbyPosts.length > 0) {
-            bz.bus.proximityHandler.notifyNearbyPosts(userId, nearbyPosts);
+          if (report.notify) {
+            console.log('trying to send notification about nearby posts');
+            var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
+            console.log(nearbyPosts);
+            if (nearbyPosts && nearbyPosts.length > 0) {
+              bz.bus.proximityHandler.notifyNearbyPosts(userId, nearbyPosts);
+            }
           }
         }
 

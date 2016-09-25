@@ -167,6 +167,7 @@ bz.bus.proximityHandler = {
             _.each(posts, function (post) {
                 if (post && post.details && post.details.locations && Array.isArray(post.details.locations)) {
                     updated = false;
+
                     bz.cols.posts.update({'_id': post._id}, {$set: {presences: {}}});
                 }
             });
@@ -194,17 +195,24 @@ bz.bus.proximityHandler = {
             if (post && post.details && post.details.locations && Array.isArray(post.details.locations)){
                 updated = false;
                 presences = {};
+                var index = 0, updateObj = {};
                 _.each(post.details.locations, function(loc){
                     if (loc.placeType === bz.const.locations.type.DYNAMIC){
                         if (loc.coords && (loc.coords.lat !== lat || loc.coords.lng != lng)) {
                             //console.log('Updating moving coordinates for ad: ' + post.details.title);
-                            loc.coords = {
+                            /*loc.coords = {
+                                lat: lat,
+                                lng: lng,
+                                timestamp: new Date()
+                            };*/
+                            //loc.obscuredCoords=bz.bus.proximityHandler.getObscuredCoords(loc.coords, 0.1);
+                            updated = true;
+                            updateObj['details.locations.' + (index) + '.coords'] = {
                                 lat: lat,
                                 lng: lng,
                                 timestamp: new Date()
                             };
-                            loc.obscuredCoords=bz.bus.proximityHandler.getObscuredCoords(loc.coords, 0.1);
-                            updated = true;
+                            updateObj['details.locations.' + (index) + '.obscuredCoords'] = bz.bus.proximityHandler.getObscuredCoords(loc.coords, 0.1);
                         }
                         presences[bz.const.locations.type.DYNAMIC] = bz.const.posts.status.presence.NEAR;
                     } else {
@@ -214,9 +222,12 @@ bz.bus.proximityHandler = {
                             presences[loc._id] = bz.const.posts.status.presence.NEAR;
                         }
                     }
+                    index++;
                 });
+                updateObj.presences = presences;
                 if (updated || !post.presences || Object.keys(presences).length !== Object.keys(post.presences).length){
-                    bz.cols.posts.update({'_id': post._id}, {$set: {presences: presences, 'details.locations': post.details.locations}});
+                    bz.cols.posts.update({'_id': post._id}, {$set: updateObj});
+                    //{presences: presences, 'details.locations': post.details.locations}
                 }
             }
         });

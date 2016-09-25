@@ -42,7 +42,7 @@ Meteor.startup(function(){
 
       var user = Meteor.users.findOne({_id: userId});
       if (user && user.tokens && user.tokens.length > 0){
-        notification.tokens = _.pluck(user.tokens, 'token');
+        notification.tokens = _.filter(_.pluck(user.tokens, 'token'), function(token){return token;});
         Push.send(notification);
       }
     },
@@ -200,6 +200,27 @@ Meteor.startup(function(){
     }
   };
 
+  /*bz.cols.posts.after.update(function(userId, doc, fieldNames, modifier, options){
+    debugger;
+  });
+
+  bz.cols.posts.before.update(function(userId, doc, fieldNames, modifier, options){
+    debugger;
+  });*/
+
+  bz.cols.posts.after.insert(function(userId, doc){
+    if (userId && doc && doc._id){
+      var date = new Date((new Date).getTime() - 20 * 1000 * 60);
+      var users = Meteor.users.find({lastMobileLocationReport: {$gte: date}, _id: {$ne: userId}}).fetch();
+      _.each(users, function(user){
+        console.log('sending push new post to user id: ' + user._id);
+        bz.bus.pushHandler.push(user._id, 'New post nearby', doc.details.title, {
+          type: bz.const.push.type.post,
+          id: doc._id
+        });
+      });
+    }
+  });
 
   bz.cols.reviews.after.insert(function(userId, doc){
     if (userId && doc && doc.entityId && doc.text){
