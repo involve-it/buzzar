@@ -122,7 +122,7 @@ CreateNewPostFromView = function (v) {
     timestamp = Date.now();
     endTimestamp = new Date(timestamp);
     // old code stripOutScriptTags(v.$('.js-post-description').val())
-    descriptionFormatted = stripOutScriptTags(htmlditor.currentvalue) || stripOutScriptTags(v.$('.js-post-description').val()) || undefined;
+    descriptionFormatted = (htmlditor && stripOutScriptTags(htmlditor.currentvalue)) || stripOutScriptTags(v.$('.js-post-description').val()) || undefined;
     descriptionFormatted = descriptionFormatted && descriptionFormatted.replace(/\n/gi, '<br/>');
     
     var newPost = {

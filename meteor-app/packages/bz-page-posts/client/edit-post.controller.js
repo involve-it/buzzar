@@ -80,7 +80,7 @@ SavePostFromView = function (v, data) {
       });
     }
     // old code stripOutScriptTags(v.$('.js-post-description').val())
-    descriptionFormatted = stripOutScriptTags(htmlditor.currentvalue) || stripOutScriptTags(v.$('.js-post-description').val()) || undefined;
+    descriptionFormatted = (htmlditor && stripOutScriptTags(htmlditor.currentvalue)) || stripOutScriptTags(v.$('.js-post-description').val()) || undefined;
     descriptionFormatted = descriptionFormatted && descriptionFormatted.replace(/\n/gi, '<br/>');
     // created timestamp:
     timestamp = Date.now();

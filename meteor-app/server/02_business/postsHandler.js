@@ -101,7 +101,7 @@ bz.bus.postsHandler = {
   },
 
   addPost: function(request, currentUserId){
-    var ret={},post, newPost, postData, validate, locations=[],loc;
+    var ret={},post, newPost, postData, validate, locations=[];
     postData=request;
     if(postData && currentUserId){
       validate=bz.bus.postsHandler.validatePost(postData);
@@ -161,10 +161,12 @@ bz.bus.postsHandler = {
           _.each(postData.details.locations, function(location){
             if (location.placeType === bz.const.locations.type.DYNAMIC){
               location.obscuredCoords = bz.bus.proximityHandler.getObscuredCoords(location.coords, 0.1);
+            } else {
+              location.obscuredCoords = location.coords;
             }
           });
           _.each(postData.details.locations, function(location){
-            loc ={
+            var loc ={
               userId: location.userId,
               name:location.name,
               accurateAddress:location.accurateAddress,
@@ -172,7 +174,7 @@ bz.bus.postsHandler = {
               placeType:location.placeType,
               public:location.public,
               _id:location._id,
-              obscuredCoords: bz.bus.proximityHandler.getObscuredCoords(location.coords, 0.1)
+              obscuredCoords: location.obscuredCoords
             };
             locations.push(loc)
           });

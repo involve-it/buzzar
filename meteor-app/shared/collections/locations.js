@@ -138,6 +138,10 @@ var locationsSchema = new SimpleSchema({
   origObj: {
     type: Object,
     optional: true
+  },
+  obscuredCoords: {
+    type: coordsSchema,
+    optional: true
   }
 });
 

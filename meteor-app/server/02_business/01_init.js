@@ -43,7 +43,8 @@ Router.map(function() {
           bz.bus.locationsHandler.reportLocation({
             lat: requestData.lat,
             lng: requestData.lng,
-            deviceId: requestData.deviceId
+            deviceId: requestData.deviceId,
+            notify: requestData.notify
           }, requestData.userId);
         }
       }
