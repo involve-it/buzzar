@@ -167,7 +167,7 @@ bz.bus.proximityHandler = {
             _.each(posts, function (post) {
                 if (post && post.details && post.details.locations && Array.isArray(post.details.locations)) {
                     updated = false;
-                    debugger;
+
                     bz.cols.posts.update({'_id': post._id}, {$set: {presences: {}}});
                 }
             });
