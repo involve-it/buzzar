@@ -53,16 +53,19 @@ Meteor.startup(function(){
         if (bz.const.verification.pushPlatforms.indexOf(platform) !== -1){
 
           Meteor.users.update({_id: {$ne: userId}}, {$pull: {tokens: {deviceId: deviceId}}});
-
-          if (!_.find(user.tokens, function(t){return t.deviceId === deviceId})) {
+          var existing = _.find(user.tokens, function(t){return t.deviceId === deviceId});
+          if (!existing) {
             var tokenObj = {
               deviceId: deviceId,
               token: {}
             };
             tokenObj.token[platform] = token;
             user.tokens.push(tokenObj);
-            Meteor.users.update(user._id, user);
+          } else {
+            existing.token = {};
+            existing.token[platform]= token;
           }
+          Meteor.users.update(user._id, user);
           return {success: true};
         }
       }

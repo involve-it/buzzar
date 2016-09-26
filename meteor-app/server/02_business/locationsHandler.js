@@ -65,7 +65,6 @@ bz.bus.locationsHandler = {
           if (report.notify) {
             console.log('trying to send notification about nearby posts');
             var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
-            console.log(nearbyPosts);
             if (nearbyPosts && nearbyPosts.length > 0) {
               bz.bus.proximityHandler.notifyNearbyPosts(userId, nearbyPosts);
             }
