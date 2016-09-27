@@ -122,7 +122,9 @@ Template.chatMessage.onCreated(function() {
 });
 
 Template.chatMessage.onRendered(function(){
-  bz.cols.messages.update(this.data._id, {$set: {seen: true}});
+  if (this.data.toUserId === Meteor.userId()) {
+    bz.cols.messages.update(this.data._id, {$set: {seen: true}});
+  }
 });
 
 Template.chatMessage.helpers({
