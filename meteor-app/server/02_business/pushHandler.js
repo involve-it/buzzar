@@ -26,7 +26,7 @@
 Meteor.startup(function(){
   Push.debug = true;
   bz.bus.pushHandler = {
-    push: function(userId, title, msg, payload, badge){
+    push: function(userId, title, msg, payload, badge, user){
       badge = badge == null ? 1 : badge;
       var notification = {
             from: 'Shiners',
@@ -40,7 +40,7 @@ Meteor.startup(function(){
             }
           };
 
-      var user = Meteor.users.findOne({_id: userId});
+      user = user || Meteor.users.findOne({_id: userId});
       if (user && user.tokens && user.tokens.length > 0){
         notification.tokens = _.filter(_.pluck(user.tokens, 'token'), function(token){return token;});
         Push.send(notification);
@@ -245,10 +245,31 @@ Meteor.startup(function(){
       if (user){
         title = user.username;
       }
-      bz.bus.pushHandler.push(doc.toUserId, title, doc.text, {
-        type: bz.const.push.type.chat,
-        id: doc.chatId
-      });
+      var otherUser = Meteor.users.findOne({_id: doc.toUserId});
+      if (otherUser){
+        if (!otherUser.status || !otherUser.status.online){
+          bz.bus.pushHandler.push(doc.toUserId, title, doc.text, {
+            type: bz.const.push.type.chat,
+            id: doc.chatId
+          }, 1, otherUser);
+        } else {
+          console.log('Delaying push');
+          Meteor.setTimeout(function(){
+            var messageDb = bz.cols.messages.findOne({_id: doc._id});
+            if (!messageDb.seen){
+              console.log('Sending delayed push');
+              bz.bus.pushHandler.push(messageDb.toUserId, title, messageDb.text, {
+                type: bz.const.push.type.chat,
+                id: messageDb.chatId
+              }, 1, otherUser);
+            } else {
+              console.log('Push cancelled');
+              console.log(messageDb);
+            }
+          }, 1000);
+        }
+      }
+
     }
   });
 });

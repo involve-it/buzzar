@@ -92,6 +92,16 @@ Meteor.methods({
   deleteChats: function(request){
     return bz.bus.messagesChatsHandler.deleteChats(request);
   },
+  messagesSetSeen: function(request){
+    if (request && request.messageIds && Array.isArray(request.messageIds) && request.messageIds.length > 0 && Meteor.userId()){
+      var messages = bz.cols.messages.find({_id: {$in: request.messageIds}}).fetch();
+      if (_.all(messages, function(message){return message.toUserId === Meteor.userId()})) {
+        bz.cols.messages.update({_id: {$in: request.messageIds}}, {$set: {seen: true}});
+        return {success: true};
+      }
+    }
+    return {success: false};
+  },
 
   //locations
   addLocation: function(request){
