@@ -76,13 +76,17 @@ Meteor.publish('posts-nearby',function(request){
     postsQuery['type'] = {$in: arrTypes};
   }
   postsQuery['status'] ={visible: bz.const.posts.status.visibility.VISIBLE};
+  // get only non-expired posts (if no value provided in call):
+  if (!postsQuery['endDatePost']) {
+    postsQuery['endDatePost'] = { $gte : Date.now() }
+  }
   // tis doesn't work yet, try this( http://stackoverflow.com/questions/20895154/how-to-transform-data-returned-via-a-meteor-publish/20896561#20896561)
   posts= bz.cols.posts.find(postsQuery).forEach(function(entry) {
     self.hasLivePresence = true;
     self.added('posts-nearby', entry._id, entry);
   });
   self.ready();
-  ret=posts;
+  ret = posts;
   return ret;
 });
 
