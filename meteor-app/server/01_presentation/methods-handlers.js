@@ -109,5 +109,9 @@ Meteor.methods({
   },
   reportLocation: function(report){
     return bz.bus.locationsHandler.reportLocation(report);
+  },
+
+  getPostAdTypes:function () {
+    return bz.bus.postAdTypesHandler.getPostAdTypes();    
   }
 });
