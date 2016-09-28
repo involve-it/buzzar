@@ -100,7 +100,7 @@ bz.bus.messagesChatsHandler = {
             chat.lastMessage = _.map(_.filter(lastMessages, function (i) {
               return i.chatId === item._id && i.timestamp === item.lastMessageTs
             }), function (message) {
-              return {text: message.text};
+              return {text: message.text, seen: message.seen};
             })[0];
             chatsRet.push(chat);
           });
