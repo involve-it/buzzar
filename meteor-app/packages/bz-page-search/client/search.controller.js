@@ -145,7 +145,11 @@ bz.bus.search.searchePostsAroundAndPopular = () => {
     var a = aroundYouSmallQuery;
     return !!bz.help.posts.hasLivePresence.apply(this)
   };
-  aroundYouSmall= bz.cols.posts.find(aroundYouSmallQuery, {sort: {'stats.seenTotal': -1},limit: 10}).fetch();
+  // get only non-expired posts (if no value provided in call):
+  if (!aroundYouSmallQuery['endDatePost']) {
+    aroundYouSmallQuery['endDatePost'] = { $gte : Date.now() }
+  }
+  aroundYouSmall = bz.cols.posts.find(aroundYouSmallQuery, {sort: {'stats.seenTotal': -1},limit: 10}).fetch();
   ids.push(undefined);
   ids.push('');
   _.each(aroundYouSmall, function(post){ ids.push(post._id)});
@@ -159,6 +163,10 @@ bz.bus.search.searchePostsAroundAndPopular = () => {
     aroundYouQuery['_id']={$nin: ids};
   }
   aroundYouQuery['$where'] = function(){return this.status.visible !== null};
+  // get only non-expired posts (if no value provided in call):
+  if (!aroundYouQuery['endDatePost']) {
+    aroundYouQuery['endDatePost'] = { $gte : Date.now() }
+  }
   aroundYou= bz.cols.posts.find(aroundYouQuery, {sort: {'stats.seenTotal': -1},limit: aroundYouLimit}).fetch();
   _.each(aroundYou, function(post){ids.push(post._id)});
   popularQuery['$where'] = function(){return (this.status) ? this.status.visible !== null : false};
