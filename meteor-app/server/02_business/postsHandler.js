@@ -41,6 +41,11 @@ bz.bus.postsHandler = {
       {'details.price': {$regex: query}}
     ];
     postsQuery['status'] ={visible: bz.const.posts.status.visibility.VISIBLE};
+    // get only non-expired posts (if no value provided in call):
+    if (!postsQuery['endDatePost']) {
+      postsQuery['endDatePost'] = { $gte : Date.now() }
+    }
+
     posts= bz.cols.posts.find(postsQuery).fetch();
     if (lat && lng) {
       _.each(posts, function (post) {
@@ -501,6 +506,10 @@ bz.bus.postsHandler = {
       postsQuery['type'] = {$in: arrTypes};
     }
     postsQuery['status'] = { visible:  bz.const.posts.status.visibility.VISIBLE };
+    // get only non-expired posts (if no value provided in call):
+    if (!postsQuery['endDatePost']) {
+      postsQuery['endDatePost'] = { $gte : Date.now() }
+    }
     // posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort);
     posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort).slice(0, take);
     /*if (lat && lng) {
@@ -566,6 +575,11 @@ bz.bus.postsHandler = {
       postsQuery['type'] = { $in: arrTypes };
     }
     postsQuery['status'] ={ visible: bz.const.posts.status.visibility.VISIBLE };
+
+    // get only non-expired posts (if no value provided in call):
+    if (!postsQuery['endDatePost']) {
+      postsQuery['endDatePost'] = { $gte : Date.now() }
+    }
     posts = bz.cols.posts.find(postsQuery, options).fetch();
     postsRet = bz.bus.postsHandler.buildPostsObject({ posts:posts });
     //postsRet = posts;
