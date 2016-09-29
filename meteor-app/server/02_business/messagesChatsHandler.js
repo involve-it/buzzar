@@ -102,11 +102,9 @@ bz.bus.messagesChatsHandler = {
             chat.lastMessage = _.map(_.filter(lastMessages, function (i) {
               return i._id === item._id
             }), function (msgObj) {
+              chat.lastMessageTs = msgObj.message.timestamp;
               return {text: msgObj.message.text, seen: msgObj.message.seen, toUserId: msgObj.message.toUserId};
             })[0];
-            if (chat.lastMessage){
-              chat.lastMessageTs = chat.lastMessage.timestamp;
-            }
             chatsRet.push(chat);
           });
           ret = {success: true, result: chatsRet};
