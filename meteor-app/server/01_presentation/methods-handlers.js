@@ -78,7 +78,7 @@ Meteor.methods({
     return bz.bus.messagesChatsHandler.getChat(chatId);
   },
   getChats: function(request){
-    return bz.bus.messagesChatsHandler.getChats(request);
+    return bz.bus.messagesChatsHandler.getChats(request, Meteor.userId());
   },
   getMessages: function(request){
     return bz.bus.messagesChatsHandler.getMessages(request);
@@ -109,5 +109,9 @@ Meteor.methods({
   },
   reportLocation: function(report){
     return bz.bus.locationsHandler.reportLocation(report);
+  },
+
+  getPostAdTypes:function () {
+    return bz.bus.postAdTypesHandler.getPostAdTypes();    
   }
 });

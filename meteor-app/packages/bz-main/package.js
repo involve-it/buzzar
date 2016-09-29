@@ -19,6 +19,7 @@ Package.onUse(function (api) {
   api.use(['fourseven:scss@3.2.0', 'edgee:slingshot']);
   //api.use(['zeroasterisk:meteor-cordova-geolocation-background'], 'web.cordova'); // had to add it to the main project (meteor add zeroasterisk:cordova-geolocation-background)
   api.use(['arutune:bz-api', 'arutune:bz-control-common']);
+  api.use(['meteorhacks:aggregate'], ['server']);
   api.use([
    /* 'meteoric:ionic',
     'meteoric:ionic-sass',

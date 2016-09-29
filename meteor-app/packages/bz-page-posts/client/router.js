@@ -88,7 +88,9 @@ Router.map(function () {
     path: '/posts/:_id/edit',
     template: 'pagePostsEdit',
     waitOn: function(){
-      return [ Meteor.subscribe('bz.images.user', Meteor.userId()) ]
+      if (Meteor.userId()) {
+        return [Meteor.subscribe('bz.images.user', Meteor.userId())]
+      }
     },
     data: function () {
       var ret;
@@ -118,9 +120,11 @@ Router.map(function () {
     layoutTemplate: 'mainLayout',
     controller: 'requireLoginController',
     waitOn: function () {
-      return [
-        Meteor.subscribe('bz.images.user', Meteor.userId()),
-      ]
+      if (Meteor.userId()){
+        return [
+          Meteor.subscribe('bz.images.user', Meteor.userId()),
+        ]
+      }
     }
   });
 
@@ -129,10 +133,12 @@ Router.map(function () {
     path: '/posts/new',
     controller: 'requireLoginController',
     waitOn: function () {
-      return [
-        Meteor.subscribe('bz.images.user', Meteor.userId()),
-        bz.help.maps.googleMapsLoad()
-      ]
+      if(Meteor.userId()) {
+        return [
+          Meteor.subscribe('bz.images.user', Meteor.userId()),
+          bz.help.maps.googleMapsLoad()
+        ]
+      }
     },
     onBeforeAction: function () {
       // temporarily redirect to create post, remove when create link is ready:
@@ -155,7 +161,9 @@ Router.map(function () {
     template: 'newPostPageShare',
     controller: 'requireLoginController',
     waitOn: function () {
-      return [ Meteor.subscribe('bz.images.user', Meteor.userId()) ];
+      if(Meteor.userId()) {
+        return [Meteor.subscribe('bz.images.user', Meteor.userId())];
+      }
     }
   });
 });

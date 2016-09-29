@@ -105,12 +105,12 @@ bz.bus.proximityHandler = {
                         bz.bus.pushHandler.push(userId, 'Activity around you', post.details.title, {
                             type: bz.const.push.type.post,
                             id: post._id
-                        }, 0);
+                        });
                     } else if (filtered.length > 1) {
                         console.log('Notifying multiple posts. Count: ' + filtered.length);
                         bz.bus.pushHandler.push(userId, 'Activity around you', 'There are ' + filtered.length + ' posts around you. Check them out!', {
                             type: bz.const.push.type.default
-                        }, 0);
+                        });
                     }
                 }
             }
