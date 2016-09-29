@@ -26,13 +26,26 @@
 Meteor.startup(function(){
   Push.debug = true;
   bz.bus.pushHandler = {
-    push: function(userId, title, msg, payload, badge, user){
-      badge = badge == null ? 1 : badge;
+    getTotalEventsCount: function(userId){
+      var chats = bz.bus.messagesChatsHandler.getChats({take: 100, skip: 0}, userId),
+        counter = 0;
+      _.each(chats.result, function(chat){
+        if (chat.lastMessage) {
+          if (chat.lastMessage.seen == undefined) {
+            chat.lastMessage.seen = true;
+          }
+          if (!chat.lastMessage.seen && chat.lastMessage.toUserId == userId) {
+            counter++;
+          }
+        }
+      });
+      return counter;
+    },
+    push: function(userId, title, msg, payload, user){
       var notification = {
             from: 'Shiners',
             title: title,
             text: msg,
-            badge: badge,
             payload: payload,
             sound: 'default',
             apn:{
@@ -41,6 +54,7 @@ Meteor.startup(function(){
           };
 
       user = user || Meteor.users.findOne({_id: userId});
+      notification.badge = bz.bus.pushHandler.getTotalEventsCount(userId);
       if (user && user.tokens && user.tokens.length > 0){
         notification.tokens = _.filter(_.pluck(user.tokens, 'token'), function(token){return token;});
         Push.send(notification);
@@ -225,7 +239,8 @@ Meteor.startup(function(){
     }
   });
 
-  bz.cols.reviews.after.insert(function(userId, doc){
+  //temporarily disabled since not implemented in the app
+  /*bz.cols.reviews.after.insert(function(userId, doc){
     if (userId && doc && doc.entityId && doc.text){
       //console.log('sending push: ' + doc.text);
       var post = bz.cols.posts.findOne({_id: doc.entityId});
@@ -236,7 +251,7 @@ Meteor.startup(function(){
         });
       }
     }
-  });
+  });*/
 
   bz.cols.messages.after.insert(function(userId, doc){
     if (doc && doc.text && doc.toUserId){
@@ -251,7 +266,7 @@ Meteor.startup(function(){
           bz.bus.pushHandler.push(doc.toUserId, title, doc.text, {
             type: bz.const.push.type.chat,
             id: doc.chatId
-          }, 1, otherUser);
+          }, otherUser);
         } else {
           console.log('Delaying push');
           Meteor.setTimeout(function(){
@@ -261,7 +276,7 @@ Meteor.startup(function(){
               bz.bus.pushHandler.push(messageDb.toUserId, title, messageDb.text, {
                 type: bz.const.push.type.chat,
                 id: messageDb.chatId
-              }, 1, otherUser);
+              }, otherUser);
             } else {
               console.log('Push cancelled');
               console.log(messageDb);

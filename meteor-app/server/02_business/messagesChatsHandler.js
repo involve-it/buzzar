@@ -31,7 +31,7 @@ bz.bus.messagesChatsHandler = {
     }
     return ret;
   },
-  getChats: function(request){
+  getChats: function(request, userId){
     var ret, skip,take,chats,arrChats,option, currentUser;
     check(request,{
       take: Match.Maybe(Number),
@@ -42,7 +42,7 @@ bz.bus.messagesChatsHandler = {
     if (take){
       take++;
     }
-    currentUser=Meteor.userId();
+    currentUser=userId;
     option={sort:{lastMessageTs:-1},skip: skip, limit: take};
     if (currentUser){
       arrChats=bz.cols.chats.find({users: currentUser},option).fetch();
@@ -61,6 +61,7 @@ bz.bus.messagesChatsHandler = {
       //error not logged
       ret={success: false, error: bz.const.errors.global.notLogged};
     }
+
     return ret;
   },
   buildChatsObject: function(chats, currentUserId){
@@ -82,15 +83,16 @@ bz.bus.messagesChatsHandler = {
           return item !== currentUserId
         });
         arrUsers = bz.bus.usersHandler.userDbQuery(users);
-        users = bz.bus.usersHandler.buildUserObject(arrUsers);
-        lastMessages = bz.cols.messages.find({chatId: {$in: chatsId}, timestamp: {$in: lastMessageTs}}).fetch();
+        users = bz.bus.usersHandler.buildUserObject(arrUsers, currentUserId);
+        //lastMessages = bz.cols.messages.find({chatId: {$in: chatsId}, timestamp: {$in: lastMessageTs}}).fetch();
+        lastMessages = bz.cols.messages.aggregate([{$sort: {timestamp: -1}}, {$group : {_id: '$chatId', message: {$first: '$$ROOT'}}}]);
        // if (lastMessages && lastMessages.length===chats.length) {
           _.each(chats, function (item) {
             chat = {
               _id: item._id,
               userId: item.userId,
               users: item.users,
-              lastMessageTs: item.lastMessageTs,
+              //lastMessageTs: item.lastMessageTs,
               activated: item.activated,
               timeBegin: item.timeBegin
             };
@@ -98,10 +100,13 @@ bz.bus.messagesChatsHandler = {
               return item.users.indexOf(user._id) !== -1;
             });
             chat.lastMessage = _.map(_.filter(lastMessages, function (i) {
-              return i.chatId === item._id && i.timestamp === item.lastMessageTs
-            }), function (message) {
-              return {text: message.text, seen: message.seen};
+              return i._id === item._id
+            }), function (msgObj) {
+              return {text: msgObj.message.text, seen: msgObj.message.seen, toUserId: msgObj.message.toUserId};
             })[0];
+            if (chat.lastMessage){
+              chat.lastMessageTs = chat.lastMessage.timestamp;
+            }
             chatsRet.push(chat);
           });
           ret = {success: true, result: chatsRet};

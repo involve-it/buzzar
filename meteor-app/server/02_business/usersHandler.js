@@ -122,9 +122,9 @@ bz.bus.usersHandler = {
     ret=profileDetails;
     return ret;
   },
-  buildUserObject: function(data){
+  buildUserObject: function(data, userId){
     var ret={},users, usersRet=[], user, arrProfileDetails,profileDetails=[],tempArrprofileDetails,
-      currentUserId=Meteor.userId();
+      currentUserId=userId || Meteor.userId();
     users=data.users;
     arrProfileDetails=data.profileDetails;
     _.each(users,function(userDb){
