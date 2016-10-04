@@ -227,15 +227,35 @@ Meteor.startup(function(){
 
   bz.cols.posts.after.insert(function(userId, doc){
     if (userId && doc && doc._id){
-      var date = new Date((new Date).getTime() - 20 * 1000 * 60);
-      var users = Meteor.users.find({lastMobileLocationReport: {$gte: date}, _id: {$ne: userId}}).fetch();
-      _.each(users, function(user){
-        console.log('sending push new post to user id: ' + user._id);
-        bz.bus.pushHandler.push(user._id, 'New post nearby', doc.details.title, {
-          type: bz.const.push.type.post,
-          id: doc._id
+      var date = new Date((new Date).getTime() - 20 * 1000 * 60), coords, box;
+      if (doc.details && doc.details.locations && Array.isArray(doc.details.locations)){
+        _.find(doc.details.locations, function(loc){
+          coords = loc && loc.coords;
+
+          if (loc.placeType == bz.const.locations.type.DYNAMIC) {
+            return true;
+          }
         });
-      });
+        if (coords){
+          box = bz.bus.proximityHandler.getLatLngBox(coords.lat, coords.lng, bz.bus.locationsHandler.nearbyRadius);
+          if (box) {
+            var users = Meteor.users.find({
+              lastMobileLocationReport: {$gte: date},
+              _id: {$ne: userId},
+              'coords.lat': {$gte: box.lat1, $lte: box.lat2},
+              'coords.lng': {$gte: box.lng1, $lte: box.lng2}
+            }).fetch();
+
+            _.each(users, function (user) {
+              console.log('sending push new post to user id: ' + user._id);
+              bz.bus.pushHandler.push(user._id, 'New post nearby', doc.details.title, {
+                type: bz.const.push.type.post,
+                id: doc._id
+              });
+            });
+          }
+        }
+      }
     }
   });
 
