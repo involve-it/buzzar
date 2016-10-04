@@ -1,9 +1,9 @@
 /**
  * Created by xvolkx48 on 02.06.2016.
  */
-var nearbyRadius = 0.5;
 
 bz.bus.locationsHandler = {
+  nearbyRadius: 0.5,
   addLocation: function(request){
     var ret, coords, placeType,name, public,currentUser,location, locId;
     check(request,{
@@ -59,17 +59,24 @@ bz.bus.locationsHandler = {
     if (report.lat && report.lng) {
       currentUserId = userId || Meteor.userId();
       if (currentUserId) {
+        var userUpdateObj = {
+          coords: {
+            lat: report.lat,
+            lng: report.lng
+          }
+        };
         if (report.deviceId) {
-          Meteor.users.update({_id: currentUserId}, {$set: {lastMobileLocationReport: new Date}});
+          userUpdateObj.lastMobileLocationReport = new Date;
 
           if (report.notify) {
             console.log('trying to send notification about nearby posts');
-            var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
+            var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, bz.bus.locationsHandler.nearbyRadius);
             if (nearbyPosts && nearbyPosts.length > 0) {
               bz.bus.proximityHandler.notifyNearbyPosts(userId, nearbyPosts);
             }
           }
         }
+        Meteor.users.update({_id: currentUserId}, {$set: userUpdateObj});
 
         posts = bz.cols.posts.find({userId: currentUserId}).fetch();
         if (posts) {
