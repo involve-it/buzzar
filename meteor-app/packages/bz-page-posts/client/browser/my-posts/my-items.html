@@ -2,92 +2,87 @@
 
 
   <div class="list">
-
-    {{#if hasPosts}}
-
-      <!--<div class="side-a small-12 medium-3 columns">
-
-        <div class="bz-posts-items-owner-menu">
-          <ul class="bz-nav bz-nav-side-a">
-            <li class="active"><a href="#">Your posts</a></li>
-            <li><a href="#">Posts Requirements</a></li>
-          </ul>
-        </div>
-
-
-      </div>-->
-
-      <!--SIDE B-->
-      <!--<div class="side-b small-12 medium-9 large-9 columns">-->
+          <!--<div class="side-a small-12 medium-3 columns">
     
-       
-        <div>
-            <div class="bz-posts-items-owner-post-menu">
-                <!-- OLD CODE -->
-                <!--<ul class="tabs bz-nav bz-horizontal bz-nav-side-b" data-tab="">
-                  <li class="tab-title active"><a id="activePosts" href="#activePosts" aria-selected="true" tabindex="0" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ACTIVE_HINT'}}">{{t9n 'ACTIVE'}} &lt;!&ndash;({{ getCountActivePosts }})&ndash;&gt;</a></li>
-                  <li class="tab-title"><a id="livePosts" href="#livePosts" aria-selected="false" tabindex="1" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'LIVE_HINT'}}">{{t9n 'LIVE'}} &lt;!&ndash;({{ getCountLivePosts }})&ndash;&gt;</a></li>
-                  <li class="tab-title"><a id="active" href="#allPosts" aria-selected="false" tabindex="2" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ALL_HINT'}}"><b>{{t9n 'ALL'}}</b></a></li>
-                </ul>-->
-
-                <ul class="tabs bz-nav bz-horizontal bz-nav-side-b nav-pills">
-                    <li data-template="active" role="presentation" class="tab-title active"><a  id="activePosts" href="#" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ACTIVE_HINT'}}">{{t9n 'ACTIVE'}}</a></li>
-                    <li data-template="live" role="presentation" class="tab-title"><a id="livePosts" href="#" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'LIVE_HINT'}}">{{t9n 'LIVE'}}</a></li>
-                    <li data-template="all" role="presentation" class="tab-title"><a id="active" href="#" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ALL_HINT'}}"><b>{{t9n 'ALL'}}</b></a></li>
-                </ul>
+            <div class="bz-posts-items-owner-menu">
+              <ul class="bz-nav bz-nav-side-a">
+                <li class="active"><a href="#">Your posts</a></li>
+                <li><a href="#">Posts Requirements</a></li>
+              </ul>
             </div>
-            
-            {{> Template.dynamic template="myPostsItems" data=getMyPosts}}
-            
-            <!--OLD CODE-->
-            <!--<div class="tabs-content">
-              <div class="content active" id="activePosts" aria-hidden="false">
-                <div class="tabs-content-wrapper">
-                    
-                  {{#each activePosts}}
-                    {{> onePostRowItemOwner}}
-                  {{/each}}
-                    
-                    
+    
+    
+          </div>-->
+    
+          <!--SIDE B-->
+          <!--<div class="side-b small-12 medium-9 large-9 columns">-->
+        
+           
+            <div>
+                <div class="bz-posts-items-owner-post-menu">
+                    <!-- OLD CODE -->
+                    <!--<ul class="tabs bz-nav bz-horizontal bz-nav-side-b" data-tab="">
+                      <li class="tab-title active"><a id="activePosts" href="#activePosts" aria-selected="true" tabindex="0" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ACTIVE_HINT'}}">{{t9n 'ACTIVE'}} &lt;!&ndash;({{ getCountActivePosts }})&ndash;&gt;</a></li>
+                      <li class="tab-title"><a id="livePosts" href="#livePosts" aria-selected="false" tabindex="1" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'LIVE_HINT'}}">{{t9n 'LIVE'}} &lt;!&ndash;({{ getCountLivePosts }})&ndash;&gt;</a></li>
+                      <li class="tab-title"><a id="active" href="#allPosts" aria-selected="false" tabindex="2" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ALL_HINT'}}"><b>{{t9n 'ALL'}}</b></a></li>
+                    </ul>-->
+    
+                    <ul class="tabs bz-nav bz-horizontal bz-nav-side-b nav-pills">
+                        <li data-template="active" role="presentation" class="tab-title active"><a  id="activePosts" href="#" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ACTIVE_HINT'}}">{{t9n 'ACTIVE'}}</a></li>
+                        <li data-template="live" role="presentation" class="tab-title"><a id="livePosts" href="#" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'LIVE_HINT'}}">{{t9n 'LIVE'}}</a></li>
+                        <li data-template="all" role="presentation" class="tab-title"><a id="active" href="#" data-uk-tooltip="{delay:1500, animation:true}" title="{{t9n 'ALL_HINT'}}"><b>{{t9n 'ALL'}}</b></a></li>
+                    </ul>
                 </div>
-                {{> bzPaginationPosts }}
-              </div>
-                <div class="content" id="livePosts" aria-hidden="true">
+                
+            {{#unless noRender}}
+                {{> Template.dynamic template="myPostsItems" data=getMyPosts}}
+            {{else}}
+                {{> loadData}}
+            {{/unless}}
+                <!--OLD CODE-->
+                <!--<div class="tabs-content">
+                  <div class="content active" id="activePosts" aria-hidden="false">
                     <div class="tabs-content-wrapper">
                         
-                        {{#each livePosts}}
-                            {{> onePostRowItemOwner}}
-                        {{/each}}
+                      {{#each activePosts}}
+                        {{> onePostRowItemOwner}}
+                      {{/each}}
+                        
                         
                     </div>
                     {{> bzPaginationPosts }}
-                </div>
-              <div class="content" id="allPosts" aria-hidden="true">
-                <div class="tabs-content-wrapper">
-                    
-                  {{#each allPosts}}
-                    {{> onePostRowItemOwner}}
-                  {{/each}}
-                    
-                </div>
-                {{> bzPaginationPosts }}
-              </div>
-            </div>-->
-            
-        </div>
-    
-    
-
-      <!--</div>-->
+                  </div>
+                    <div class="content" id="livePosts" aria-hidden="true">
+                        <div class="tabs-content-wrapper">
+                            
+                            {{#each livePosts}}
+                                {{> onePostRowItemOwner}}
+                            {{/each}}
+                            
+                        </div>
+                        {{> bzPaginationPosts }}
+                    </div>
+                  <div class="content" id="allPosts" aria-hidden="true">
+                    <div class="tabs-content-wrapper">
+                        
+                      {{#each allPosts}}
+                        {{> onePostRowItemOwner}}
+                      {{/each}}
+                        
+                    </div>
+                    {{> bzPaginationPosts }}
+                  </div>
+                </div>-->
+                
+            </div>
         
         
-    {{else}}
-      {{> noPosts}}
-    {{/if}}
-
+    
+          <!--</div>-->
   </div>
 
-
+    <button id="clicked" class="hidden">refresh</button>
+    
 </template>
 
 <template name="onePostRowItemSearch">
@@ -258,6 +253,19 @@
       </div>
     </div>
   </div>
+</template>
+
+<template name="loadData">
+    <div class="bz-segment">
+        <div class="loaderBox">
+            <div class="posts-loader medium text loader">
+                <span>Loading</span>
+            </div>
+        </div>
+        <img src="/img/content/short-paragraph.png" alt="" class="wireframe image">
+        <img src="/img/content/short-paragraph.png" alt="" class="wireframe image">
+        
+    </div>
 </template>
 
 <template name="chooseCurrency">
