@@ -390,7 +390,7 @@ bz.bus.postsHandler = {
       arrPhoto = _.map(posts, function (post) {
         return post.details.photos
       }).reduce(function (a, b) {
-        return a.concat(b);
+        return (a || []).concat(b || []);
       }).filter(function(p) { return !!p; });
       if (arrPhoto.length > 0) {
         photos = bz.bus.imagesHandler.getPhotos(arrPhoto);
