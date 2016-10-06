@@ -5,8 +5,9 @@ Template.onePostRowItemOwner.onRendered(function () {});
 
 Template.myItems.onCreated(function () {
   //return Meteor.subscribe('posts-images');
-  this.currentTab = new ReactiveVar( "active" );
-  this.getMyPostsData = new ReactiveVar(false);
+    this.currentTab = new ReactiveVar( "active" );
+    this.getMyPostsData = new ReactiveVar(false);
+    this.noRender = new ReactiveVar(false)
 });
 
 Template.onePostRowItemSearch.rendered = function() {
@@ -21,10 +22,14 @@ Template.myItems.onRendered(function () {
 });
 
 Template.myItems.helpers({
-  hasPosts: function () {
-    var posts = bz.cols.posts.find({userId: Meteor.userId()}).fetch();
-    return posts.length !== 0;
-  }
+    hasPosts: function () {
+        var posts = bz.cols.posts.find({userId: Meteor.userId()}).fetch();
+        return posts.length !== 0;
+    },
+    noRender: function() {
+        return Template.instance().noRender.get();
+    }
+    
   /*OLD CODE*/
   /*,
   allPosts: function () {
@@ -54,21 +59,27 @@ Template.myItems.helpers({
   getMyPosts: function(type) {
     var tab = Template.instance().currentTab.get(), ins = Template.instance();
 
+      
+      
     if (ins.getMyPostsData.get() === false) {
-      Meteor.call('getMyPosts', {type:tab}, function(e, r) {
-        if(e) {
-          //error
-        } else if(r.success && r.result) {
-          ins.getMyPostsData.set(r.result);
-          
-          _.each(r.result, function(post){
-            post.hasLivePresence = bz.help.posts.hasLivePresence.apply(post);
-          });
-          
-        } else {
-          bz.ui.alert('Error ID: ' + r.error.errorId, {type:'error', timeout: 2000});
-        }
-      });
+        ins.noRender.set(true);
+    
+        Meteor.call('getMyPosts', {type:tab}, function(e, r) {
+            if(e) {
+            //error
+            } else if(r.success && r.result) {
+                ins.getMyPostsData.set(r.result);
+            
+                _.each(r.result, function(post){
+                post.hasLivePresence = bz.help.posts.hasLivePresence.apply(post);
+                });
+            
+            } else {
+                bz.ui.alert('Error ID: ' + r.error.errorId, {type:'error', timeout: 2000});
+            }
+
+            ins.noRender.set(false);
+        });
     }
     //console.info(ins.getMyPostsData.get());
     return {postType: tab, items: ins.getMyPostsData.get()};
@@ -81,19 +92,17 @@ Template.myItems.events({
         type = v.currentTab;
     
     if(type.get() !== currentTab.data("template")) {
-      v.getMyPostsData.set(false);
-      /*$( ".list-group" ).fadeOut( 'slow' );*/
-      currentTab.addClass( "active" );
-      $( ".nav-pills li" ).not( currentTab ).removeClass( "active" );
-      type.set( currentTab.data( "template" ) );
+        v.getMyPostsData.set(false);
+        /*$( ".list-group" ).fadeOut( 'slow' );*/
+        currentTab.addClass( "active" );
+        $( ".nav-pills li" ).not( currentTab ).removeClass( "active" );
+        type.set(currentTab.data( "template" ));
     }
+  },
+  'click #clicked': function(e, v) {
+      v.getMyPostsData.set(false);
   }
 });
-
-
-
-
-
 
 
 Template.onePostRowItemSearch.helpers({
@@ -193,7 +202,8 @@ Template.onePostRowItemOwner.events({
          /* bz.cols.posts.update({_id: v.data._id}, {
             $set: obj
           });*/
-          Meteor.call('timePostUpdate',v.data._id,obj);
+            Meteor.call('timePostUpdate',v.data._id,obj);
+            $('#clicked').trigger( "click" );
         });
       }
     }
@@ -204,7 +214,8 @@ Template.onePostRowItemOwner.events({
     var currentPostId = this._id,
         content = this.details.description;
     bz.ui.modal(content, function() {
-      Meteor.call('removePost', currentPostId, Meteor.userId());
+        Meteor.call('removePost', currentPostId, Meteor.userId());
+        $('#clicked').trigger( "click" );
     });
   },
   'click .js-reset-post': function(e, v) {
@@ -237,7 +248,8 @@ Template.onePostRowItemOwner.events({
         */
         
         bz.ui.modal.confirm(content, function() {
-          Meteor.call('timePostUpdate', v.data._id, obj);
+            Meteor.call('timePostUpdate', v.data._id, obj);
+            $('#clicked').trigger( "click" );
         });
       }
   }
