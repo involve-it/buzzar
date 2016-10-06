@@ -136,6 +136,7 @@ bz.bus.usersHandler = {
         createdAt: userDb.createdAt,
         username: userDb.username,
         online: userDb.status.online,
+        lastLogin: userDb.status && userDb.status.lastLogin && userDb.status.lastLogin.date,
         image:{
           imageUrl: userDb.profile && userDb.profile.image && userDb.profile.image.data,
           thumbnail: userDb.profile && userDb.profile.image && userDb.profile.image.data && userDb.profile.image.thumbnail
