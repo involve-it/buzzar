@@ -36,7 +36,7 @@ Meteor.methods({
   addPost: function(request, currentLocation){
     var currentUserId;
     if(!Meteor.userId() && request.IFrameUserId){
-      if (bz.cols.users.findOne({_id:request.IFrameUserId})){
+      if (Meteor.users.findOne({_id:request.IFrameUserId})){
         currentUserId = request.IFrameUserId;
       }
     }else{
