@@ -219,7 +219,7 @@ bz.bus.proximityHandler = {
                         if (bz.bus.proximityHandler.withinRadius(lat, lng, nearbyRadius, loc)) {
                             //console.log('Changing status to Near for ad: ' + post.details.title);
                             updated = true;
-                            presences[loc._id] = bz.const.posts.status.presence.NEAR;
+                            presences[bz.const.locations.type.STATIC] = bz.const.posts.status.presence.NEAR;
                         }
                     }
                     index++;
