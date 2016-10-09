@@ -127,6 +127,29 @@ Router.map(function () {
       }
     }
   });
+  //create post for iframe(mvc project)
+  this.route('postsNewIframe',{
+    path:'/posts/new_forIframe/:userid',
+    template: 'postsNew',
+    waitOn: function () {
+      var userId = this.params.userid;
+      Session.set('IFrameUserId', userId);
+      if(userId) {
+        return [
+          Meteor.subscribe('bz.images.user', userId),
+          bz.help.maps.googleMapsLoad()
+        ]
+      }
+    },
+    onBeforeAction: function () {
+      var userId = this.params.userid;
+      $("#bz-header").css("display","none");
+      $("#bz-footer").css("display","none");
+      newPostType.set('ad');
+      this.next();
+    },
+    onStop: Router.UnsavedPageRouteStopHandler
+  });
 
   // create post flow:
   this.route('postsNew', {

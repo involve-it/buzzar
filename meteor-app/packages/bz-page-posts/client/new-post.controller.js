@@ -64,7 +64,9 @@ CreateNewPostFromView = function (v) {
     rad = $('.js-radius-slider').attr('data-slider') && Number.parseInt($('.js-radius-slider').attr('data-slider')),
     otherKeyValuePairs = [], timestamp, endTimestamp,
     imgsPromisesArr = [], imgPromise;
-
+  if (!userId){
+    userId=Session.get('IFrameUserId');
+  }
   // gather all data and submit for post-create:
   if (userId) {
     _.each(imagesArrayReactive.get(), function (imgItem, i) {
@@ -126,6 +128,9 @@ CreateNewPostFromView = function (v) {
     descriptionFormatted = descriptionFormatted && descriptionFormatted.replace(/\n/gi, '<br/>');
     
     var newPost = {
+      //запись для IFrame
+      IFrameUserId:Session.get('IFrameUserId'),
+
       userId: userId,
       type: DeterminePostTypeFromView(v),
       tags: v.$('.post-tags').find('select').val(),
@@ -187,9 +192,9 @@ CreateNewPostFromView = function (v) {
         if (!imgItem._id && !imgItem.isSaved) {
           imgItem.save().then(img => {
             var imgItem = img;
-            bz.cols.images.update(imgItem.tempId, {$set: {data: img.src}});
+            bz.cols.images.update(imgItem.tempId, {$set: {data: img.src, userId: userId}});
             imgItem.thumbnail.save().then(thumb => {
-              bz.cols.images.update(imgItem.tempId, {$set: {thumbnail: thumb.src}});
+              bz.cols.images.update(imgItem.tempId, {$set: {thumbnail: thumb.src, userId: userId}});
               // bz.ui.alert(`Фотография поста (иконка + оригинал) была создана`);
               if (!!imgArray.length) {
                 saveImage(imgArray.pop());
@@ -204,7 +209,9 @@ CreateNewPostFromView = function (v) {
       }
 
       if (!e && r && r !== '') {
-        Router.go('/posts/my');
+        if(!Session.get('IFrameUserId')) {
+          Router.go('/posts/my');
+        }
         bz.ui.alert(`Ваш <a href="/post/${r.result}">пост</a> успешно создан`);
         clearPostData();
         bz.runtime.newPost.postId = r;

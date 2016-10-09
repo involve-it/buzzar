@@ -34,9 +34,17 @@ Meteor.methods({
     return bz.bus.postsHandler.getPopularPosts(request);
   },
   addPost: function(request, currentLocation){
-    var post = bz.bus.postsHandler.addPost(request, Meteor.userId());
+    var currentUserId;
+    if(!Meteor.userId() && request.IFrameUserId){
+      if (Meteor.users.findOne({_id:request.IFrameUserId})){
+        currentUserId = request.IFrameUserId;
+      }
+    }else{
+      currentUserId=Meteor.userId();
+    }
+    var post = bz.bus.postsHandler.addPost(request,currentUserId);
     if (currentLocation){
-      bz.bus.locationsHandler.reportLocation(currentLocation);
+      bz.bus.locationsHandler.reportLocation(currentLocation,currentUserId);
     }
     return post;
   },
