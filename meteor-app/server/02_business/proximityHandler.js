@@ -92,13 +92,23 @@ bz.bus.proximityHandler = {
             var diff = (new Date()).getTime() - user.lastNearbyNotification;
             console.log('Difference: ' + diff);
             if (posts && user && diff >= nearbyNotificationTimeDiffMinutes) {
-                var filtered = _.filter(posts, function (post) {
+                var postsToNotify = posts, userUpdateObj = {};
+                if (user.notifiedPostIds && Array.isArray(user.notifiedPostIds) && user.notifiedPostIds.length > 0){
+                    postsToNotify = _.filter(posts, function(post){return user.notifiedPostIds.indexOf(post._id) === -1;});
+                    userUpdateObj.notifiedPostIds = user.notifiedPostIds;
+                } else {
+                    userUpdateObj.notifiedPostIds = [];
+                }
+
+                var filtered = _.filter(postsToNotify, function (post) {
                     return post.userId !== userId;
                 }), post;
+                userUpdateObj.notifiedPostIds = userUpdateObj.notifiedPostIds.concat(_.pluck(filtered, '_id'));
                 console.log('filtered');
                 console.log(filtered);
                 if (filtered.length > 0) {
-                    Meteor.users.update({_id: userId}, {$set: {lastNearbyNotification: (new Date()).getTime()}});
+                    userUpdateObj.lastNearbyNotification = new Date().getTime();
+                    Meteor.users.update({_id: userId}, {$set: userUpdateObj});
                     if (filtered.length === 1) {
                         post = filtered[0];
                         console.log('Notifying single post: ' + post.details.title);
@@ -112,7 +122,38 @@ bz.bus.proximityHandler = {
                             type: bz.const.push.type.default
                         });
                     }
+
+                    Meteor.setTimeout(function(){
+                        bz.bus.proximityHandler.cleanupNotifiedPostIds(user._id);
+                    }, 0);
                 }
+            }
+        }
+    },
+    cleanupNotifiedPostIds: function(userId){
+        var user = Meteor.users.findOne({_id: userId});
+        if (user && user.notifiedPostIds && Array.isArray(user.notifiedPostIds) && user.notifiedPostIds.length > 0){
+            var posts = bz.cols.posts.find({_id: {$in: user.notifiedPostIds}}).fetch(), modified = false, allPostIds = _.pluck(posts, '_id'), notifiedPostIds = [];
+
+            _.each(user.notifiedPostIds, function(id, i){
+                if (allPostIds.indexOf(id) !== -1){
+                    notifiedPostIds.push(id);
+                } else {
+                    modified = true;
+                }
+            });
+            _.each(posts, function(post){
+                if (!post.status || !post.status.visible || post.status.visible != bz.const.posts.status.visibility.VISIBLE){
+                    var index = notifiedPostIds.indexOf(post._id);
+                    if (index !== -1){
+                        notifiedPostIds.splice(index, 1);
+                        modified = true;
+                    }
+                }
+            });
+
+            if (modified){
+                Meteor.users.update({_id: user._id}, {$set: {notifiedPostIds: notifiedPostIds}});
             }
         }
     },
