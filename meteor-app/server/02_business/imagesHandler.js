@@ -5,7 +5,7 @@ bz.bus.imagesHandler = {
   getPhotos: function(photosId){
     var ret, arrPhoto;
     // check(photosId, [String]);
-    console.log('ASDFASDFASDFASDF', photosId);
+    //console.log('ASDFASDFASDFASDF', photosId);
 
     if (typeof photosId === 'string') {
       arrPhoto=bz.cols.images.find({_id: photosId }).fetch();
