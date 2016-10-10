@@ -156,3 +156,12 @@ bz.error = function(error){
   bz.help.logError(error);
   Meteor.error(error);
 }
+
+bz.help.getParamURL = function () {
+  var queries = {};
+  $.each(document.location.search.substr(1).split('&'),function(c,q){
+    var i = q.split('=');
+    queries[i[0].toString()] = i[1].toString();
+  });
+  return queries;
+}
