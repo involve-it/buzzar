@@ -7,7 +7,7 @@ Template.mainLayout.onRendered(function() {
   InitMmenuOffCanvas();
   InitFoundationOffCanvas();
   layoutRenderedLazyLoad();
-
+  IfIframeHideElements();
   //UIkit.$html.trigger('changed.uk.dom');
 });
 
@@ -19,6 +19,7 @@ Template.mainLayoutHome.rendered = function () {
 
 Template.mainLayoutHome.onRendered(function() {
     InitMmenuOffCanvas();
+    IfIframeHideElements();
 });
 
 Template.basicLayout.onRendered(function() {

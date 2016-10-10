@@ -35,5 +35,15 @@ InitMmenuOffCanvas = function() {
   });
 };
   
-  
-
+IfIframeHideElements = function () {
+  var iFrameStatus;
+  try {
+    iFrameStatus=bz.help.getParamURL();
+    if(iFrameStatus&&iFrameStatus.isiframe){
+      $("#bz-header").css("display","none");
+      $("#bz-footer").css("display","none");
+    }
+  }catch(err){
+    console.info('ошибка в обработке url: '+err.message);
+  }
+};  
