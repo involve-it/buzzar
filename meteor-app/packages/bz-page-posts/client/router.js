@@ -165,7 +165,16 @@ Router.map(function () {
     },
     onBeforeAction: function () {
       // temporarily redirect to create post, remove when create link is ready:
-      Router.go(`/posts/new?type=ad`);
+      var iFrameStatus;
+      try {
+        iFrameStatus=bz.help.getParamURL();
+        iFrameStatus=(iFrameStatus&&iFrameStatus.isiframe);
+      }catch(err){
+        console.info('ошибка в обработке url: '+err.message);
+      }
+      if(iFrameStatus!=='true') {
+        Router.go(`/posts/new?type=ad`);
+      }
       if (this.params.query.type && this.params.query.type !== 'undefined') {
         newPostType.set(this.params.query.type);
       } else {
