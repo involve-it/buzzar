@@ -175,7 +175,8 @@ bz.bus.messagesChatsHandler = {
     check(request,{
       message: String,
       type: Match.Maybe(String),
-      destinationUserId: String
+      destinationUserId: String,
+      associatedPostId: Match.Optional(String)
     });
     now=Date.now();
     text=request.message;
@@ -210,7 +211,8 @@ bz.bus.messagesChatsHandler = {
               timestamp: now,
               keyMessage: keyMessage,
               type: type,
-              seen: false
+              seen: false,
+              associatedPostId: request.associatedPostId
             };
             messageId=bz.cols.messages.insert(message);
             bz.cols.chats.update({_id: chatId},{$set: {lastMessageTs: now}});
