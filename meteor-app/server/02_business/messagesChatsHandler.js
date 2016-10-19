@@ -176,7 +176,7 @@ bz.bus.messagesChatsHandler = {
       message: String,
       type: Match.Maybe(String),
       destinationUserId: String,
-      associatedPostId: Match.Optional(String)
+      associatedPostId: Match.Maybe(String)
     });
     now=Date.now();
     text=request.message;
