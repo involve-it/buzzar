@@ -14,7 +14,7 @@ Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
   api.use(['ecmascript'], global.bzSettings.webBrowserArrayWithServer);
-  api.use(['reactive-var', 'iron:router', 'iron:layout', 'less', 'sergeyt:typeahead', 'anti:i18n'], 'client'); // todo: replace typeahead with required file
+  api.use(['reactive-var', 'iron:router', 'iron:layout', 'less', 'sergeyt:typeahead', 'anti:i18n', 'tracker'], 'client'); // todo: replace typeahead with required file
   api.use(['templating'], global.bzSettings.webBrowserArray);
   api.use(['fourseven:scss@3.2.0', 'edgee:slingshot']);
   //api.use(['zeroasterisk:meteor-cordova-geolocation-background'], 'web.cordova'); // had to add it to the main project (meteor add zeroasterisk:cordova-geolocation-background)
