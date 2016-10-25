@@ -230,10 +230,12 @@ Meteor.startup(function(){
       var date = new Date((new Date).getTime() - 20 * 1000 * 60), coords, box;
       if (doc.details && doc.details.locations && Array.isArray(doc.details.locations)){
         _.find(doc.details.locations, function(loc){
-          coords = loc && loc.coords;
+          if (loc) {
+            coords = loc.coords;
 
-          if (loc.placeType == bz.const.locations.type.DYNAMIC) {
-            return true;
+            if (coords && loc.placeType == bz.const.locations.type.DYNAMIC) {
+              return true;
+            }
           }
         });
         if (coords){
@@ -247,11 +249,13 @@ Meteor.startup(function(){
             }).fetch();
 
             _.each(users, function (user) {
-              console.log('sending push new post to user id: ' + user._id);
-              bz.bus.pushHandler.push(user._id, 'New post nearby', doc.details.title, {
-                type: bz.const.push.type.post,
-                id: doc._id
-              });
+              if (user.enableNearbyNotifications) {
+                console.log('sending push new post to user id: ' + user._id);
+                bz.bus.pushHandler.push(user._id, 'New post nearby', doc.details.title, {
+                  type: bz.const.push.type.post,
+                  id: doc._id
+                });
+              }
             });
           }
         }
