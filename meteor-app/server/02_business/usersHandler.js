@@ -67,6 +67,9 @@ bz.bus.usersHandler = {
                     );
                 })
             }
+            if (requestData.enableNearbyNotifications != null){
+              user.enableNearbyNotifications = requestData.enableNearbyNotifications;
+            }
             if(requestImageUrl || email){
                 if (requestImageUrl){
                     user.profile = {image:{ data: requestImageUrl, thumbnail: null}}
@@ -95,11 +98,13 @@ bz.bus.usersHandler = {
                     username: user.username,
                     email: user.email,
                     password: user.password,
-                    profile: _.extend(profile, user.profile)
+                    profile: _.extend(profile, user.profile),
+                    enableNearbyNotifications: true
                 });
             } else {
-                userId = Accounts.createUser({email: user.email, password: user.password, profile: _.extend(profile, user.profile)});
+                userId = Accounts.createUser({email: user.email, password: user.password, profile: _.extend(profile, user.profile), enableNearbyNotifications: true});
             }
+
             if (user.email && Accounts._options.sendVerificationEmail) {
                 Accounts.sendVerificationEmail(userId, user.email);
             }
@@ -144,6 +149,7 @@ bz.bus.usersHandler = {
         lastMobileLocationReport: userDb.lastMobileLocationReport
       };
       if (userDb._id === currentUserId) {
+        user.enableNearbyNotifications = userDb.enableNearbyNotifications;
         tempArrprofileDetails=_.filter(arrProfileDetails,function(item){return item.userId==userDb._id});
       }else{
         tempArrprofileDetails=_.filter(arrProfileDetails,function(item){return item.userId==userDb._id && item.policy=="1"});

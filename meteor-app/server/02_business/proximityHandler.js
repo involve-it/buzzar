@@ -52,7 +52,7 @@ bz.bus.proximityHandler = {
         }
         if (user) {
             //if app closed, reports come from native code - send notification if there are nearby posts.
-            if (report.deviceId) {
+            if (report.deviceId && user.enableNearbyNotifications) {
                 console.log('trying to send notification about nearby posts');
                 var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
                 console.log(nearbyPosts);
@@ -87,7 +87,7 @@ bz.bus.proximityHandler = {
     },
     notifyNearbyPosts: function(userId, posts){
         var user = Meteor.users.findOne({_id: userId});
-        if (user) {
+        if (user && user.enableNearbyNotifications) {
             !user.lastNearbyNotification && (user.lastNearbyNotification = 0);
             var diff = (new Date()).getTime() - user.lastNearbyNotification;
             console.log('Difference: ' + diff);
