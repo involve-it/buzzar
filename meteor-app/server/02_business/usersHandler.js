@@ -75,7 +75,7 @@ bz.bus.usersHandler = {
                     user.profile = {image:{ data: requestImageUrl, thumbnail: null}}
                 }
                 if (email){
-                    user.emails={address:email};
+                    user.emails=[{address:email, verified: false}];
                 }
                 Meteor.users.update({_id:currentUserId},{$set: user})
             }
@@ -150,6 +150,7 @@ bz.bus.usersHandler = {
       };
       if (userDb._id === currentUserId) {
         user.enableNearbyNotifications = userDb.enableNearbyNotifications;
+        user.emails = userDb.emails;
         tempArrprofileDetails=_.filter(arrProfileDetails,function(item){return item.userId==userDb._id});
       }else{
         tempArrprofileDetails=_.filter(arrProfileDetails,function(item){return item.userId==userDb._id && item.policy=="1"});
