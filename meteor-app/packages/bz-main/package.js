@@ -41,6 +41,7 @@ Package.onUse(function (api) {
   api.addFiles([
     'client/main.less',
     'client/controller.js',
+    'client/controller.iframe.js',
     'client/language.js',
     'client/router.js',
     'client/app-loading.html',
