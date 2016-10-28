@@ -111,7 +111,8 @@ Template.profileSettings.helpers({
   
   getUserProfileLink: function() {
     // protocol / user/ user_id
-    var urlBase = Meteor.absoluteUrl();
+    var urlBase = 'https://shiners.ru/';
+    //var urlBase = Meteor.absoluteUrl();
     return urlBase && urlBase + 'user/' + this._id;
   }
 

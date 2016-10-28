@@ -15,6 +15,21 @@ var Maps = {
     });
     //}
   },
+  getIframeCoordinates: function() {
+    var ret;
+    if (bz.help.getParamURL().isiframe && bz.help.getParamURL().lng && bz.help.getParamURL().lat) {
+      ret = {
+        lat: parseFloat(bz.help.getParamURL().lat),
+        lng: parseFloat(bz.help.getParamURL().lng)
+      }
+    } else if (Session.get('iframeObject') && Session.get('iframeObject').lng && Session.get('iframeObject').lat) {
+      ret = {
+        lat: parseFloat(parseFloat(Session.get('iframeObject').lat)),
+        lng: parseFloat(parseFloat(Session.get('iframeObject').lng))
+      }
+    }
+    return ret;
+  },
   getCurrentLocation: function (callback) {
     var args = Array.prototype.slice.apply(arguments).slice(1);
     var that = this;
@@ -26,15 +41,22 @@ var Maps = {
      args.unshift(loc)
      callback.apply(that, args);
      return;*/
-    
-    
-    // check navigation
-    if(navigator && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(geo_success, geo_error);
+
+    if (bz.help.maps.getIframeCoordinates()) {
+      geo_success({
+        coords: {
+          latitude: bz.help.maps.getIframeCoordinates().lat,
+          longitude: bz.help.maps.getIframeCoordinates().lng
+        }
+      })
     } else {
-      console.info('Geolocation is not supported.');
+      // check navigation
+      if (navigator && navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(geo_success, geo_error);
+      } else {
+        console.info('Geolocation is not supported.');
+      }
     }
-    
     //console.info('2: getCurrentLocation');
     
     function geo_success(a) {
@@ -63,10 +85,12 @@ var Maps = {
     
   },
   initPlacesCollection: function () {
-    if (!bz.runtime.maps.places && !bz.help.collectionExists('maps.places')) {
+    if (bz.runtime.maps) {
+      if (!bz.runtime.maps.places && !bz.help.collectionExists('maps.places')) {
 
-      var placesCol = new Meteor.Collection("maps.places"); // client-side only.
-      bz.help.makeNamespace('bz.runtime.maps.places', placesCol);
+        var placesCol = new Meteor.Collection("maps.places"); // client-side only.
+        bz.help.makeNamespace('bz.runtime.maps.places', placesCol);
+      }
     }
   },
   googleMapsLoad: function () {      // need run after doc.ready

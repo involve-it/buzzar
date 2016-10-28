@@ -58,10 +58,12 @@ Meteor.startup(function () {
   });
   // fill google maps locations into bz.runtime.maps.places:
   Tracker.autorun(function () {
-    bz.runtime.maps.places._collection.remove({});
-    if (Session.get('bz.control.search.location')) {
-      if (GoogleMaps.loaded()) {
-        fillNearByPlacesFromLocationGoogle(Session.get('bz.control.search.location'), GOOGLE_LOCALS_SEARCH_RADIUS);
+    if (bz.runtime.maps) {
+      bz.runtime.maps.places._collection.remove({});
+      if (Session.get('bz.control.search.location')) {
+        if (GoogleMaps.loaded()) {
+          fillNearByPlacesFromLocationGoogle(Session.get('bz.control.search.location'), GOOGLE_LOCALS_SEARCH_RADIUS);
+        }
       }
     }
   });

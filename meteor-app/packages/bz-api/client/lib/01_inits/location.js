@@ -6,7 +6,17 @@ var Location = {
     startWatchingLocation: function(){
         //report location only if logged in
         if (Meteor.userId()) {
-            navigator.geolocation.getCurrentPosition(function (position) {
+            if (bz.help.maps.getIframeCoordinates()) {
+                geo_success({
+                    coords: {
+                        latitude: bz.help.maps.getIframeCoordinates().lat,
+                        longitude: bz.help.maps.getIframeCoordinates().lng
+                    }
+                })
+            } else {
+                navigator.geolocation.getCurrentPosition(geo_success);
+            }
+            function geo_success(position) {
                 var currentLocation = Session.get('currentLocation');
 
                 if (!currentLocation || currentLocation.accuracy != position.coords.accuracy || currentLocation.latitude != position.coords.latitude || currentLocation.longitude != position.coords.longitude) {
@@ -21,11 +31,12 @@ var Location = {
                      });*/
                     //37.314008, -121.791756
                     Meteor.call('reportLocation', {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    }, function (err, posts) { });
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        }, function (err, posts) {
+                    });
                 }
-            });
+            }
         }
     },
     logOut: function(){
