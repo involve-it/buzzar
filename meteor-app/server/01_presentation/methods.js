@@ -158,6 +158,8 @@ Meteor.methods({
     return bz.bus.pushHandler.registerPushToken(request.deviceId, request.userId, request.token, request.platform);
   },
   unregisterPushToken: function(request){
+    console.log('Unregister request: ');
+    console.log(request);
     return bz.bus.pushHandler.unregisterPushToken(request.deviceId, request.userId, request.platform);
   },
   /*registerTokenAndDeviceId: function(deviceId, token, userId){
