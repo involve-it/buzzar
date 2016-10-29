@@ -52,7 +52,7 @@ Template.bzHomePopular.helpers({
 
           // extend with helpers, since we're not using collection anymore:
           var photoHelpers = bz.help.images;
-          r.result.forEach(data => data.details && data.details.photos && data.details.photos.forEach(p => Object.assign(p, photoHelpers)));
+          r.result.length && r.result.forEach(data => data.details && data.details.photos && data.details.photos.forEach(p => Object.assign(p, photoHelpers)));
 
           (res.result.length > 0) ? ins.getPopularData.set(res.result) : ins.getPopularData.set([]);
           //console.info('Данные из метода getPopularPosts: ', res.result);
