@@ -17,6 +17,15 @@ IfIframeHideElements = function () {
         console.info('ошибка в обработке url: '+err.message);
     }
 };
+Meteor.startup(() => {
+    Tracker.autorun(() => {
+        if (Session.get('iframeObject')) {
+            $('#bz-header').hide();
+            $('#bz-footer').hide();
+        }
+    });
+});
+
 setIframeSessionObj = function() {
     Session.set('iframeObject', {
         lat: bz.help.getParamURL().lat,
