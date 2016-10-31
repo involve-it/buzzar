@@ -280,10 +280,14 @@ bz.bus.postsHandler = {
                   description: postData.details.description,
                   price: postData.details.price,
                   //photos: postData.details.photos,
+                  photos: postDb.details.photos,
                   other: postData.details.other
                 },
                 lastEditedTs: now
               };
+              if (postData.status){
+                updatePost.status = postData.status
+              }
               if (postData.type=='jobs'){
                 updatePost.jobsDetails={
                   seniority: postData.jobsDetails.seniority,

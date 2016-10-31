@@ -49,15 +49,15 @@ bz.bus.usersHandler = {
               return ret;
             }
         }
-        if (requestImageUrl) {
-            if (bz.const.RegExp.imageUrlRegEx.test(requestImageUrl)) {
+        /*if (requestImageUrl) {
+            if (bz.const.RegExp.imageUrlRegEx.test(requestImageUrl) || bz.const.RegExp.imageUrlRegEx2.test(requestImageUrl)) {
 
             } else {
               //error
               ret = {success: false, error: bz.const.errors.users.badImageUrl};
               return ret;
             }
-        }
+        }*/
         if (userDb) {
             if(profileDetails.length>0){
                 _.each(profileDetails, function(profileDetail){
