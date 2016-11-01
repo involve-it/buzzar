@@ -31,6 +31,8 @@ Router.map(function () {
       };
       
       var self = this, postId = this.params._id;
+
+      runHitTracking(postId);
       
       Meteor.call('getPost', postId, function(e, r) {
         
@@ -70,8 +72,8 @@ Router.map(function () {
     },
     //controller: 'requireLoginController',
     onAfterAction: function () {
-      var post = this.data();
-      post && runHitTracking(post);
+      //var post = this.data();
+      //post && runHitTracking(post);
       /*CONSOLE CLEAR
       console.log('onAfterAction', this.data());
       */
