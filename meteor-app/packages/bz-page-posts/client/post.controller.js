@@ -43,40 +43,49 @@ staticLocationPanelClick = function (isSet) {
   }
 };
 
-userSeenAll;
+userSeenAll = false;
 // this function calculates browser-specific hits
-runHitTracking = function (post, browserInfo) {
+runHitTracking = function (postId, browserInfo) {
   var userSeenTotal, userSeenToday, seenTotalPost, seenTodayPost, seenObj;
-  userSeenTotal = Cookie.get('bz.posts.seenTotal.postId.' + post._id);
+  userSeenTotal = Cookie.get('bz.posts.seenTotal.postId.' + postId);
   if (!userSeenTotal) {
-    seenTotalPost = post.stats && post.stats.seenTotal || 0;
+    /*seenTotalPost = post.stats && post.stats.seenTotal || 0;
     ++seenTotalPost;
     seenObj = {'stats.seenTotal': seenTotalPost};
-    Meteor.call('seenPostUpdate',post._id,seenObj);
+    Meteor.call('seenPostUpdate',post._id,seenObj);*/
     //setCookie('bz.posts.seenTotal.postId.' + post._id, true);
-    Cookie.set('bz.posts.seenTotal.postId.' + post._id, true);
-    userSeenTotal = undefined;
+    Cookie.set('bz.posts.seenTotal.postId.' + postId, true);
+    //userSeenTotal = undefined;
   } else {
     // user seen this already, do nothing!
   }
   // set total unique today:
-  userSeenToday = Cookie.get('bz.posts.seenToday.postId.' + post._id);
+  userSeenToday = Cookie.get('bz.posts.seenToday.postId.' + postId);
   if (!userSeenToday) {
-    seenTodayPost = post.stats && post.stats.seenToday || 0;
+    /*seenTodayPost = post.stats && post.stats.seenToday || 0;
     ++seenTodayPost;
     seenObj = {'stats.seenToday': seenTodayPost};
-    Meteor.call('seenPostUpdate',post._id,seenObj);
-    Cookie.set('bz.posts.seenToday.postId.' + post._id, true, {days: 1});
-    userSeenToday = undefined;
+    Meteor.call('seenPostUpdate',post._id,seenObj);*/
+    Cookie.set('bz.posts.seenToday.postId.' + postId, true, {days: 1});
+    //userSeenToday = undefined;
   } else {
     // user seen this already, do nothing!
   }
   // set total loads (non-unique), WE DON'T USE THIS!:
   if (!userSeenAll) { // need to run only on-time on full load
-    userSeenAll = !userSeenAll && post.stats && post.stats.seenAll || 0;
+    /*userSeenAll = !userSeenAll && post.stats && post.stats.seenAll || 0;
     ++userSeenAll;
     seenObj = {'stats.seenAll': userSeenAll};
-    Meteor.call('seenPostUpdate',post._id,seenObj);
+    Meteor.call('seenPostUpdate',post._id,seenObj);*/
+  }
+
+  if (!userSeenAll || !userSeenToday || !userSeenTotal){
+    Meteor.call('incrementPostSeenCounters', {
+      postId: postId,
+      incrementAll: !userSeenAll,
+      incrementToday: !userSeenToday,
+      incrementTotal: !userSeenTotal
+    })
   }
 };
 clearPostData = function () {

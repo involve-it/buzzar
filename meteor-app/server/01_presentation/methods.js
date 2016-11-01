@@ -68,11 +68,25 @@ Meteor.methods({
       return post;
     }
   },*/
-  seenPostUpdate: function(postId,seenObject){
+  incrementPostSeenCounters: function(request){
+    if (request.postId && (request.incrementTotal || request.incrementToday || request.incrementAll)){
+      console.log('Incrementing post seen counters for post id: ' + request.postId);
+      console.log(request);
+      bz.cols.posts.update({_id: request.postId}, {$inc: {
+        'stats.seenTotal': request.incrementTotal === true ? 1 : 0,
+        'stats.seenToday': request.incrementToday === true ? 1 : 0,
+        'stats.seenAll': request.incrementAll === true ? 1 : 0
+      }});
+      return {success: true};
+    } else {
+      return {success: false};
+    }
+  },
+  /*seenPostUpdate: function(postId,seenObject){
     if (postId && seenObject) {
       bz.cols.posts.update(postId, {$set: seenObject});
     }
-  },
+  },*/
   likePostUpdate: function(postId,userId,like){
     if (postId && userId){
       if(like){
