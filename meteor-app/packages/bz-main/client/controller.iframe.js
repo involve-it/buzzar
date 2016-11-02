@@ -24,13 +24,23 @@ Meteor.startup(() => {
             $('#bz-footer').hide();
         }
     });
+    Tracker.autorun(() => {
+        if (Session.get('iframePage')) {
+            console.log('iframe:receiveMessage', event.data.pagePath)
+            IfIframeHideElements();
+            Router.go(Session.get('iframePage'));
+        }
+    });
 });
 
+setIframePageSession = function(pageName) {
+    pageName && Session.set('iframePage', pageName);
+}
 setIframeSessionObj = function() {
     Session.set('iframeObject', {
         lat: bz.help.getParamURL().lat,
         lng: bz.help.getParamURL().lng
-    })
+    });
 }
 redirectLinksToShinersRu = function() {
     setTimeout(function() {
@@ -47,8 +57,9 @@ SetIframeEventListeners = () => {
     {
         if (event.data.pagePath) {
             console.log('iframe:receiveMessage', event.data.pagePath)
-            IfIframeHideElements();
-            Router.go(event.data.pagePath);
+            // IfIframeHideElements();
+            // Router.go(event.data.pagePath);
+            setIframePageSession(event.data.pagePath)
         }
         //event.source.postMessage('hi there yourself!  the secret response is: rheeeeet!', event.origin);
     }
