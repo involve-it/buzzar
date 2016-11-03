@@ -144,7 +144,7 @@ bz.bus.postsHandler = {
           status: {
             visible: bz.const.posts.status.visibility.VISIBLE
           },
-          timestamp: postData.timestamp,
+          timestamp: new Date().getTime(),
           endDatePost: postData.endDatePost
         };
         if (postData.type=='jobs'){
