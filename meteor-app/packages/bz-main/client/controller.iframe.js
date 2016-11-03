@@ -71,8 +71,22 @@ PostMessage = (data) => {
     data && window.parent.postMessage(data, '*');//$('body').height()
 }
 $(document).ready(function() {
-    alert(navigator.userAgent)//very temp!
+    //alert(navigator.userAgent)//very temp!
+    if(inIframe()) {
+            $('#bz-header').css('display', 'none');
+            $('#bz-footer').css('display', 'none');
+            setIframeSessionObj();
+            SetIframeEventListeners();
+            redirectLinksToShinersRu();
+    }
     console.log('iframe:doc ready', $('body').height(), window.innerHeight, window.outerHeight) ;
+    function inIframe () {
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return true;
+    }
+}
 });
 Tracker.autorun(function(e){
     if(Meteor.userId()){
