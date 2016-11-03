@@ -203,6 +203,25 @@ Meteor.methods({
     var res = Email.send(emailOptions);
     return ret;
   },
+  contactUs: function(request){
+    var emailOptions = {
+      from: 'info@shiners.ru',
+      to: 'info@shiners.ru',
+      cc: 'arutune@gmail.com,yury.dorofeev@gmail.com,',
+      subject: 'from Shiners.ru: feedback from Contact Us page',
+      html: '<h1>'+request.subject+'</h1><p>' + request.message + '</p><br> Please contact <a href="'+Meteor.absoluteUrl()+'user/'+request.userId+'">this user</a> or email: <a href="mailto:'+request.email+'">'+request.email+'</a>.'
+    };
+    bz.cols.contactUsMsgs.insert({
+      text: request.message,
+      subject: request.subject,
+      email: request.email,
+      options: emailOptions,
+      userId: request.userId //optional
+    });
+
+    Email.send(emailOptions);
+    return {success: true};
+  },
   setUserCurrentLocation: function (userId, coords) {
     //var name = Session.get('getAccurateAddress') || T9n.get('MY_LOCATION_TEXT'), id;
     //TODO: removing due to errors: session is not available on server
