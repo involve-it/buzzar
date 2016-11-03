@@ -64,6 +64,9 @@ Meteor.methods({
       } else {
         userId = Accounts.createUser({email: user.email, password: user.password, profile: _.extend(profile, user.profile)});
       }
+      if (userId){
+        Meteor.users.update({_id: userId}, {$set: {enableNearbyNotifications: true}});
+      }
       if (user.email && Accounts._options.sendVerificationEmail) {
         Accounts.sendVerificationEmail(userId, user.email);
       }
