@@ -98,11 +98,14 @@ bz.bus.usersHandler = {
                     username: user.username,
                     email: user.email,
                     password: user.password,
-                    profile: _.extend(profile, user.profile),
-                    enableNearbyNotifications: true
+                    profile: _.extend(profile, user.profile)
                 });
             } else {
                 userId = Accounts.createUser({email: user.email, password: user.password, profile: _.extend(profile, user.profile), enableNearbyNotifications: true});
+            }
+
+            if (userId){
+              Meteor.users.update({_id: userId}, {$set: {enableNearbyNotifications: true}});
             }
 
             if (user.email && Accounts._options.sendVerificationEmail) {

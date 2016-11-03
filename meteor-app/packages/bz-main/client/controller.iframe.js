@@ -71,6 +71,7 @@ PostMessage = (data) => {
     data && window.parent.postMessage(data, '*');//$('body').height()
 }
 $(document).ready(function() {
+    alert(navigator.userAgent)//very temp!
     console.log('iframe:doc ready', $('body').height(), window.innerHeight, window.outerHeight) ;
 });
 Tracker.autorun(function(e){
