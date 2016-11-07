@@ -70,24 +70,20 @@ PostMessage = (data) => {
     //console.log('iframe:postMessage', $('body').height(), window.innerHeight, window.outerHeight) ;
     data && window.parent.postMessage(data, '*');//$('body').height()
 }
+
+Meteor.startup(()=> {
+    Template.mainLayout.onRendered(function() {
+        checkAndHideUsingWindowTop();
+    });
+    Template.mainLayoutHome.onRendered(function() {
+        checkAndHideUsingWindowTop();
+    });
+    Template.basicLayout.onRendered(function() {
+        checkAndHideUsingWindowTop();
+    });
+})
 $(document).ready(function() {
-    debugger;
-    //alert(navigator.userAgent)//very temp!
-    if(inIframe()) {
-            $('#bz-header').css('display', 'none');
-            $('#bz-footer').css('display', 'none');
-            setIframeSessionObj();
-            SetIframeEventListeners();
-            redirectLinksToShinersRu();
-    }
-    console.log('iframe:doc ready', $('body').height(), window.innerHeight, window.outerHeight) ;
-    function inIframe () {
-    try {
-        return window.self !== window.top;
-    } catch (e) {
-        return true;
-    }
-}
+    checkAndHideUsingWindowTop();
 });
 Tracker.autorun(function(e){
     if(Meteor.userId()){
@@ -106,3 +102,23 @@ Tracker.autorun(function(e){
         //Router.onAfterAction(function() { console.log('asdf') })
     }
 });
+
+function checkAndHideUsingWindowTop(){
+    debugger;
+    if(inIframe()) {
+        $('#bz-header').css('display', 'none');
+        $('#bz-footer').css('display', 'none');
+        setIframeSessionObj();
+        SetIframeEventListeners();
+        redirectLinksToShinersRu();
+    }
+    function inIframe () {
+        var ret = window.self !== window.top;
+        console.log('window.self !== window.top: ' + ret);
+        try {
+            return ret;
+        } catch (e) {
+            return true;
+        }
+    }
+}
