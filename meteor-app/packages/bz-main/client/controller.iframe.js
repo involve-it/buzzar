@@ -81,13 +81,12 @@ $(document).ready(function() {
     }
     console.log('iframe:doc ready', $('body').height(), window.innerHeight, window.outerHeight) ;
     function inIframe () {
-        debugger;
-        try {
-            return window.self !== window.top;
-        } catch (e) {
-            return true;
-        }
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return true;
     }
+}
 });
 Tracker.autorun(function(e){
     if(Meteor.userId()){
