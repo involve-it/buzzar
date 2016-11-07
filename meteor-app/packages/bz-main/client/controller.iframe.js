@@ -71,6 +71,7 @@ PostMessage = (data) => {
     data && window.parent.postMessage(data, '*');//$('body').height()
 }
 $(document).ready(function() {
+    debugger;
     //alert(navigator.userAgent)//very temp!
     if(inIframe()) {
             $('#bz-header').css('display', 'none');
