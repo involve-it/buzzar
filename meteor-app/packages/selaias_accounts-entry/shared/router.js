@@ -125,6 +125,10 @@ _.each(Router.routes, function(route) {
 
 Router.onStop(function() {
   if (!_.contains(exclusions, (Router.current().route) !== null ? Router.current().url : undefined)) {
-    Session.set('fromWhere', Router.current().url);
+    var url = Router.current().url;
+    var arr = url && url.split('/');
+    if (arr[arr.length - 1] !== 'sign-in') {
+      Session.set('fromWhere', Router.current().url);
+    }
   }
 });
