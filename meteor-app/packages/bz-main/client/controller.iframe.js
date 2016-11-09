@@ -119,7 +119,7 @@ function checkAndHideUsingWindowTop(){
 }
 
 function setRelativeLinksToAbsoluteMainSite() {
-    $('a[href^="/"]:not([href^="//"])').attr('href', function(i, url) {
+    $('a.btn[href^="/"]:not([href^="//"])').attr('href', function(i, url) {
         return MAIN_SITE_URL + url;
     });
 }
