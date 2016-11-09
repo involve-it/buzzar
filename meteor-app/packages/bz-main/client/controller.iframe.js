@@ -1,18 +1,13 @@
+const MAIN_SITE_URL = 'https://shiners.ru';
 
 IfIframeHideElements = function () {
     var iFrameStatus;
     try {
-        iFrameStatus=bz.help.getParamURL();
-        console.log('iframe:IfIframeHideElements', iFrameStatus&&iFrameStatus.isiframe);
-
-        if(iFrameStatus&&iFrameStatus.isiframe){
             $('#bz-header').css('display', 'none');
             $('#bz-footer').css('display', 'none');
             setIframeSessionObj();
             SetIframeEventListeners();
             redirectLinksToShinersRu();
-        }
-
     }catch(err){
         console.info('ошибка в обработке url: '+err.message);
     }
@@ -104,21 +99,27 @@ Tracker.autorun(function(e){
 });
 
 function checkAndHideUsingWindowTop(){
-    debugger;
     if(inIframe()) {
         $('#bz-header').css('display', 'none');
         $('#bz-footer').css('display', 'none');
+        $('.entry-logo').hide();
+        setRelativeLinksToAbsoluteMainSite();
         setIframeSessionObj();
         SetIframeEventListeners();
         redirectLinksToShinersRu();
     }
     function inIframe () {
-        var ret = window.self !== window.top;
-        console.log('window.self !== window.top: ' + ret);
+        var ret = window.self !== window.top || bz.help.getParamURL().isiframe;
         try {
             return ret;
         } catch (e) {
             return true;
         }
     }
+}
+
+function setRelativeLinksToAbsoluteMainSite() {
+    $('a[href^="/"]:not([href^="//"])').attr('href', function(i, url) {
+        return MAIN_SITE_URL + url;
+    });
 }
