@@ -148,6 +148,7 @@ ru = {
   PROFILE_USER_TWITTER: 'Twitter',
   PROFILE_USER_TOWN: 'Город',
   PROFILE_CANCEL: 'Отмена',
+  PROFILE_LOGOUT: 'Выйти',
 
   //Another user profile details
   PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Личные данные',
