@@ -285,6 +285,9 @@ Template.profileSettings.events({
     v.$('div.btn-edit-account a.js-edit-btn').removeClass('disabled');
     
   },
+  'click div.btn-edit-account a.js-logout-btn':function(event, v){
+    Meteor.logout();
+  },
   'click #user-public-publications-police': function(e, v) {
     var checkbox = v.$(e.target), toggle;
     toggle = checkbox.prop('checked');

@@ -150,6 +150,7 @@ en = {
   PROFILE_USER_TWITTER: 'Twitter',
   PROFILE_USER_TOWN: 'Town',
   PROFILE_CANCEL: 'Cancel',
+  PROFILE_LOGOUT: 'Logout',
 
   //Another user profile details
   PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Personal data',
