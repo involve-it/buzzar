@@ -50,51 +50,11 @@ makeChatActive = function (chat) {
   }
 };
 createChatIfFirstMessage = function (userFrom, userTo) {
-  //var usersArr = [userFrom, userTo];
-  /*bz.cols.chats.remove({
-   userId: userTo
-   });
-   bz.cols.chats.remove({
-   userId: userFrom
-   });*/
-  var ret = new Promise((resolve, reject) => {
-      Meteor.call('bz.chats.fromToUser', userFrom, userTo, function(err, lastMessageChat) {
-        var chatId, chats1, chats2, chatsAll;
-        /*chats1 = bz.cols.chats.find({
-          userId: userFrom,
-          users: {$in: [userTo]}
-        }).fetch();
-        chats2 = bz.cols.chats.find({
-          userId: userTo,
-          users: {$in: [userFrom]}
-        }).fetch();
-        chatsAll = _.union(chats1, chats2);
-        _.each(chatsAll, function (item) {
-          //bz.cols.chats.remove(item._id);
-        });
-        /!*bz.cols.chats.remove({
-         userId: userFrom
-         });*!/*/
-        if (!lastMessageChat) {
-          /*bz.cols.chats.insert({
-           userId: userFrom,
-           users: [userTo],
-           timeBegin: Date.now()
-           });*/
-          chatId = bz.cols.chats.insert({
-            userId: userFrom,
-            users: [userTo, userFrom],
-            timeBegin: Date.now(),
-            lastMessageTs: Date.now(),
-            activated: false // we just create record in DB, but we don't wanna show this conv-n to the other user
-          });
-        } else {
-          chatId = lastMessageChat._id
-        }
-        resolve(chatId);
-  // return chatId;
-      })
 
+  var ret = new Promise((resolve, reject) => {
+      Meteor.call('bz.chats.createChatIfFirstMessage', userFrom, userTo, function(err, chatId) {
+        resolve(chatId);
+      });
   })
   return ret;
 }

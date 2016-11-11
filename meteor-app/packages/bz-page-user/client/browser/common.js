@@ -85,10 +85,14 @@ Template.bzUserProfileBasic.events({
     /*var qs = {
      toUser: this._id
      }*/
-    if (Meteor.userId() !== this._id) {
-      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this._id).then(function(chatId) {
+    if(Meteor.userId()) {
+      if (Meteor.userId() !== this._id) {
+        var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this._id).then(function (chatId) {
           Router.go('/chat/' + chatId);
-      });
+        });
+      }
+    } else {
+      bz.ui.error('Please <a href="/sign-in">login</a>');
     }
   }
 })
