@@ -90,6 +90,7 @@ Meteor.startup(function(){
       if (deviceId && userId && userId === Meteor.userId() && bz.const.verification.pushPlatforms.indexOf(platform) !== -1) {
         var user = Meteor.user();
         user.tokens && (user.tokens = _.filter(user.tokens, function(t){return t.deviceId !== deviceId || !t.token[platform] }));
+        user.lastMobileLocationReport = 0;
         Meteor.users.update(user._id, user);
         return {success: true};
       }

@@ -253,7 +253,7 @@ bz.bus.proximityHandler = {
                                 lng: lng,
                                 timestamp: new Date()
                             };
-                            updateObj['details.locations.' + (index) + '.obscuredCoords'] = bz.bus.proximityHandler.getObscuredCoords(loc.coords, 0.1);
+                            updateObj['details.locations.' + (index) + '.obscuredCoords'] = bz.bus.proximityHandler.getObscuredCoords({lat: lat, lng: lng}, 0.1);
                         }
                         presences[bz.const.locations.type.DYNAMIC] = bz.const.posts.status.presence.NEAR;
                     } else {
