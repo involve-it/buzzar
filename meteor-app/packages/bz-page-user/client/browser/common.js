@@ -92,7 +92,7 @@ Template.bzUserProfileBasic.events({
         });
       }
     } else {
-      bz.ui.alert('Please login');
+      bz.ui.error('Please <a href="/sign-in">login</a>');
     }
   }
 })
