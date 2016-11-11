@@ -7,13 +7,20 @@ Meteor.startup(function () {
   avatarThumbnailReactive.set();
   Tracker.autorun(function () {
     var img = avatarThumbnailReactive.get();
-    if (img && img !== '') {
-      img.save().then(img1=> {
-        Meteor.users.update(Meteor.userId(), { $set: {'profile.image': {
-          data: img1.data
-        } }});
-      });
-
+    if (!Meteor.userId()) {
+      avatarThumbnailReactive.set();
+    } else {
+      if (img && img !== '') {
+        img.save().then(img1=> {
+          Meteor.users.update(Meteor.userId(), {
+            $set: {
+              'profile.image': {
+                data: img1.data
+              }
+            }
+          });
+        });
+      }
     }
   });
 });
