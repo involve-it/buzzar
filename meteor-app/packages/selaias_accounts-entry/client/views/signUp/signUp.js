@@ -139,6 +139,8 @@ AccountsEntry.entrySignUpEvents = {
           var isEmailSignUp, userCredential;
           if (err) {
             Alerts.add(err.reason, 'danger');
+            // bz.ui.error(Alerts);
+            bz.ui.error(err.reason);
             return;
           }
           isEmailSignUp = _.contains(['USERNAME_AND_EMAIL', 'EMAIL_ONLY'], AccountsEntry.settings.passwordSignupFields);
