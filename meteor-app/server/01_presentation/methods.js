@@ -342,7 +342,7 @@ Meteor.methods({
   },
   // function for testing in the console Meteor runtime server-side:
   console: function(){
-    debugger;
+    debugger; // don't remove!
   },
   /* OLD CODE */
   updateProfileDetails: function(userId, attributes){
@@ -409,7 +409,30 @@ Meteor.methods({
   // CHATS:
   'bz.chats.fromToUser': function(user1, user2) {
     return bz.cols.chats.find({ $and: [{ users: { $in: [ user1 ] }}, { users: { $in: [ user2 ] }}]}, { sort: { 'lastMessageTs': -1 }}).fetch()[0];
+  },
+  'bz.chats.createChatIfFirstMessage': function(userFrom, userTo) {
+    var ret;
+    var chatId, lastMessageChat = Meteor.call('bz.chats.fromToUser', userFrom, userTo);
+    // , function(err, lastMessageChat) {
+    var chats1, chats2, chatsAll;
+      if (!lastMessageChat) {
+
+        chatId = bz.cols.chats.insert({
+          userId: userFrom,
+          users: [userTo, userFrom],
+          timeBegin: Date.now(),
+          lastMessageTs: Date.now(),
+          activated: false // we just create record in DB, but we don't wanna show this conv-n to the other user
+        });
+      } else {
+        chatId = lastMessageChat._id
+      }
+      ret = chatId;
+      return ret;
+    // });
+    return ret;
   }
+
 });
 
 //test comment
