@@ -222,6 +222,15 @@ Meteor.methods({
     Email.send(emailOptions);
     return {success: true};
   },
+  errorLog: function(request){
+    var record = {
+      userId: request.userId,
+      timestamp: new Date(),
+      data: request.data
+    };
+    bz.cols.errorLogs.insert(record);
+    return {success: true};
+  },
   setUserCurrentLocation: function (userId, coords) {
     //var name = Session.get('getAccurateAddress') || T9n.get('MY_LOCATION_TEXT'), id;
     //TODO: removing due to errors: session is not available on server
