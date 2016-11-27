@@ -265,7 +265,7 @@ Meteor.startup(function(){
   });
 
   //temporarily disabled since not implemented in the app
-  /*bz.cols.reviews.after.insert(function(userId, doc){
+  bz.cols.reviews.after.insert(function(userId, doc){
     if (userId && doc && doc.entityId && doc.text){
       //console.log('sending push: ' + doc.text);
       var post = bz.cols.posts.findOne({_id: doc.entityId});
@@ -276,7 +276,7 @@ Meteor.startup(function(){
         });
       }
     }
-  });*/
+  });
 
   bz.cols.messages.after.insert(function(userId, doc){
     if (doc && doc.text && doc.toUserId){

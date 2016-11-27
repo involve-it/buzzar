@@ -43,15 +43,18 @@ Meteor.publish('comments-my', function(){
     _id: 1,
     text: 1,
     userId: 1,
-    dateTime: 1
+    dateTime: 1,
+    username: 1,
+    entityId: 1
   };
-  currentUser=Meteor.userId();
+  currentUser = this.userId;
   if(currentUser){
     time = Date.now() - 5000;
     postsMy = _.map(bz.cols.posts.find({userId: currentUser}).fetch(), function (item) {
       return item._id
     });
     newComments = bz.cols.reviews.find({entityId: {$in: postsMy}, dateTime: {$gte: time}}, {fields: fields});
+
     ret=newComments;
   }else{
     ret=[];
