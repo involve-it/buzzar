@@ -147,7 +147,7 @@ bz.bus.postsHandler = {
           timestamp: new Date().getTime(),
           endDatePost: postData.endDatePost
         };
-        if (postData.type=='jobs'){
+        if (postData.type=='jobs' && postData.jobsDetails){
           newPost.jobsDetails={
             seniority: postData.jobsDetails.seniority,
             gender: postData.jobsDetails.gender,
@@ -156,7 +156,7 @@ bz.bus.postsHandler = {
             typeCategory: postData.jobsDetails.typeCategory,
             jobsType: postData.jobsDetails.jobsType,
             payMethod: postData.jobsDetails.payMethod};
-        }else if(postData.type=='trainings') {
+        }else if(postData.type=='trainings' && postData.trainingsDetails) {
           newPost.trainingsDetails = {
             sectionLearning: postData.trainingsDetails.sectionLearning,
             typeCategory: postData.trainingsDetails.typeCategory

@@ -42,6 +42,25 @@ Meteor.publish('posts-my', function () {
 
 //new code publication
 
+Meteor.publish('posts-nearby-events', function(request){
+  if (request && request.lat && request.lng && request.radius){
+    var box = bz.bus.proximityHandler.getLatLngBox(request.lat, request.lng, request.radius);
+    if (box){
+      return bz.cols.posts.find({
+        'details.locations': {
+          $elemMatch: {
+            'obscuredCoords.lat': {$gte: box.lat1, $lte: box.lat2},
+            'obscuredCoords.lng': {$gte: box.lng1, $lte: box.lng2}
+          }
+        },
+        'status': {visible: bz.const.posts.status.visibility.VISIBLE},
+        'endDatePost': { $gte : Date.now() }
+      });
+    }
+  }
+  return null;
+});
+
 // NOT USED NOW..
 Meteor.publish('posts-nearby',function(request){
   request = request || {};

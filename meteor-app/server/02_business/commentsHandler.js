@@ -85,7 +85,8 @@ bz.bus.commentsHandler = {
             entityId:postId,
             userId: currentUserId,
             dateTime: now,
-            text: commentText
+            text: commentText,
+            username: Meteor.user().username
           };
           commentAdd=bz.cols.reviews.insert(comment);
           if (commentAdd) {

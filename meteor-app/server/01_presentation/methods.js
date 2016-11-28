@@ -226,7 +226,9 @@ Meteor.methods({
     var record = {
       userId: request.userId,
       timestamp: new Date(),
-      data: request.data
+      data: request.data,
+      platform: request.platform,
+      version: request.version
     };
     bz.cols.errorLogs.insert(record);
     return {success: true};
