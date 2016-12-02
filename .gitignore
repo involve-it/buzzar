@@ -9,6 +9,7 @@
 .idea/workspace.xml
 .idea/deployment.xml
 .idea/misc.xml
+.idea/webServers.xml
 meteor-app/.idea/
 meteor-app/.meteor/dev_bundle
 
