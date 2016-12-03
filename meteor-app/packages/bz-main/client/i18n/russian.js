@@ -120,7 +120,7 @@ ru = {
   ABOUT_US_TITLE: 'О нас',
 
   AROUND_YOU_TITLE: 'Срочное рядом',
-
+  NEW_POSTS_TITLE: 'Новые посты',
   //Location
   LOCATION_SET_YOUR_LOCATION: 'Настройка метоположения',
   LOCATION_YOUR_MOST_RECENT_LOCATIONS: 'Ваши последние места: ',
