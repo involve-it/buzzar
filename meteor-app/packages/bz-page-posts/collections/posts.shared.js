@@ -25,7 +25,7 @@ Mongo.Collection.prototype.elpers = function(helpers) {
 };
 
 bz.cols.posts = new Mongo.Collection('posts');
-Ground.Collection(bz.cols.posts);
+// Ground.Collection(bz.cols.posts);
 var postsColl = bz.cols.posts;
 bz.cols.posts.bzHelpers = {
   _hasLivePresence: bz.help.posts.hasLivePresence,
