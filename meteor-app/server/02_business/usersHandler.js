@@ -170,5 +170,76 @@ bz.bus.usersHandler = {
     });
     ret=usersRet;
     return ret;
-  }
+  },
+  getNearbyUsers: function(request){
+    var ret, lat, lng, radius, skip, take, query={}, posts, arrTypes=[], activeCats, box, postsRet, postsSort, coords, loc,
+      curLocation, options, optionsForArray, isHappyville = false;
+    lat=request.lat;
+    lng=request.lng;
+    radius=request.radius || bz.const.search.AROUND_YOU_RADIUS; //request.radius;
+    skip=request.skip;
+    take=request.take || bz.const.search.AROUND_YOU_LIMIT;
+    activeCats=request.activeCats;
+    bz.log('lat: ' + lat + ', lng: ' + lng, 'getNearbyUsers');
+
+    if (!lat || !lng) {
+      isHappyville = true;
+      lat = bz.const.search.DEFAULT_PLACE.lat;
+      lng = bz.const.search.DEFAULT_PLACE.lng;
+    }
+    if(lat && lng) {
+      curLocation = {
+          lat: lat,
+          lng: lng
+      }
+    }
+    options = {
+      // sort: { 'stats.seenTotal': -1 },
+      skip: skip
+    };
+    optionsForArray = {
+      sort: function(a, b) {
+        var diff = 0;
+        var coordsA = a.coords;
+        var coordsB = b.coords;
+
+        if (coordsA && coordsA.lat && coordsA.lng) {
+
+        } else {
+
+          diff = 100000;
+          return diff;
+        }
+        if (coordsB && coordsB.lat && coordsB.lng) {
+
+        } else {
+          diff = 0;
+
+          return diff;
+        }
+
+        diff = bz.help.location.getDistance(coordsA.lat, coordsA.lng, curLocation.lat, curLocation.lng);
+         - bz.help.location.getDistance(coordsB.lat, coordsB.lng, curLocation.lat, curLocation.lng);
+        // var diff = bz.help.posts.getDistanceToCurrentLocationNumber.call(a, undefined, curLocation)
+        //   - bz.help.posts.getDistanceToCurrentLocationNumber.call(b, undefined, curLocation);
+        return diff;
+      }
+    };
+    if (lat && lng && radius) {
+      box = bz.bus.proximityHandler.getLatLngBox(lat, lng, radius);
+      if (box) {
+        query['coords.lat'] = { $gte: box.lat1, $lte: box.lat2 };
+        query['coords.lng'] = { $gte: box.lng1, $lte: box.lng2 }
+      }
+    } else {
+
+    }
+
+    query['status.online'] = true;
+    posts = Meteor.users.find(query, options).fetch().sort(optionsForArray.sort).slice(0, take);
+    // postsRet = bz.bus.postsHandler.buildPostsObject({ posts:posts });
+    ret = posts;
+
+    return ret;
+  },
 };
