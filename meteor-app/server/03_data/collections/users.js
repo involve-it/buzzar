@@ -16,6 +16,11 @@ Meteor.startup(function() {
       $set: { 'profile.isAdmin': true }
     });
   });
+
+  // mark bots:
+  Meteor.users.update({ 'emails.0.address': { $regex : '.+\@shiners.ru' }}, {
+    $set: {'profile.isBot': true}
+  });
 })
 Meteor.publish('bz.users.all', function(){
   return Meteor.users.find({}, {fields: {
