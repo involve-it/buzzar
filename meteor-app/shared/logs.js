@@ -33,9 +33,9 @@ Meteor.startup(function () {
   }
 });
 
-var Log = function (text, from) { // from is any text indicating where log was called
+var Log = function (msg, from) { // msg (object, string) - message itself, from (string) is any text indicating where log was called
   bz.cols.logs.insert({
-    text: text,
+    msg: msg,
     ts: Date.now(),
     from: from,
     user: Meteor.userId()
