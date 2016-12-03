@@ -2,11 +2,7 @@
  * Created by c_aarutyunyan on 12/2/16.
  */
 // always live posts, fake online users etc. :)
-var Fake = {};
-bz.help.makeNamespace({
-  path: 'bz.fake',
-  object: Fake
-});
+bz.help.makeNamespace('bz.bus.fake');
 UserStatus.events.on("connectionLogout", function(fields) {
   updateStatusOnLogout(fields);
 });
@@ -29,4 +25,4 @@ CheckAlwaysLiveRule = function(userId) {
   ret = !!Meteor.users.findOne({ 'emails.0.address': { $regex : '.+\@shiners.ru' }, _id: userId }); // user exists
   return ret;
 }
-Fake.checkAlwaysLiveRule = CheckAlwaysLiveRule;
+bz.bus.fake.isBot = CheckAlwaysLiveRule;
