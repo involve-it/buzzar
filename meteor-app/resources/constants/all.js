@@ -45,6 +45,13 @@ bz.const.search.AROUND_YOU_RADIUS = 5;
 bz.const.search.AROUND_YOU_LIMIT = 18;
 //bz.const.search.POPULAR_RADIUS = 12;
 bz.const.search.POPULAR_LIMIT = 12;
+bz.const.search.DEFAULT_PLACE = { // i.e. Happyville
+  name: 'Lake Baikal',
+  image: 'http://voyage-russie.ru/sites/default/files/tours/baikal3.jpg',
+  image2: 'http://d98uffoa56ghc.cloudfront.net/wp-content/uploads/2014/12/30-Stunning-Secret-Places-Most-Tourists-Don%E2%80%99t-Know-About-Lake-Baikal.jpg',
+  lat: 53.872151,
+  lng: 108.210463
+};
 
 bz.const.search.defaultPostCountOnMyItemPage=5;
 
