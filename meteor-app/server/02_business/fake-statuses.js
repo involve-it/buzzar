@@ -24,9 +24,9 @@ function updateStatusOnLogout(fields) {
     }
   }
 }
-function checkAlwaysLiveRule(userId) {
+CheckAlwaysLiveRule = function(userId) {
   var ret = false;
   ret = !!Meteor.users.findOne({ 'emails.0.address': { $regex : '.+\@shiners.ru' }, _id: userId }); // user exists
   return ret;
 }
-Fake.checkAlwaysLiveRule = checkAlwaysLiveRule;
+Fake.checkAlwaysLiveRule = CheckAlwaysLiveRule;
