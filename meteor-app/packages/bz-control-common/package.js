@@ -33,6 +33,8 @@ Package.onUse(function (api) {
     'client/browser/around-you-small.html',
     'client/browser/around-you-small.js',
     'client/browser/around-you-small.less',
+    'client/browser/new-posts.html',
+    'client/browser/new-posts.js',
 
     'client/browser/category-list-buttons.html',
     'client/browser/category-list-buttons.js',

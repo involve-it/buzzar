@@ -220,6 +220,27 @@ Template.bzAroundYouItem.helpers({
       return 'disabled';
     }
     return '';
+  },
+  getPostCreatedDate: function () {
+    var ret = '';
+    var options = {
+      // era: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long',
+      //timezone: 'UTC',
+      //hour: 'numeric',
+      // minute: 'numeric',
+      // second: 'numeric'-->
+    };
+    if (this.timestamp) {
+      ret = new Date(this.timestamp).toLocaleDateString( Session.get("bz.user.language"), options);
+    }
+    return ret;
+  },
+  isVisible: function() {
+    return this.status.visible === true || this.status.visible === bz.const.posts.status.visibility.VISIBLE;
   }
 });
 
@@ -249,6 +270,15 @@ Template.bzAroundYouItem.events({
           Router.go('/chat/' + chatId);
       });
     }
+  },
+  'click .js-remove-post': function(e, v) {
+    bz.cols.posts.remove(this._id)
+  },
+  'click .js-activate-post': function(e, v) {
+    bz.cols.posts.update(this._id, { $set: { 'status.visible': bz.const.posts.status.visibility.VISIBLE }});
+  },
+  'click .js-deactivate-post': function(e, v) {
+    bz.cols.posts.update(this._id, { $set: { 'status.visible': bz.const.posts.status.visibility.INVISIBLE }});
   }
 });
 
