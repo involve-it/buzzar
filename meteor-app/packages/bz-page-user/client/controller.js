@@ -23,4 +23,14 @@ Meteor.startup(function () {
       }
     }
   });
+  if (Template) {
+    Template.registerHelper('isAdmin', function() {
+      var user = Meteor.user(), ret = false;
+      if (user && user.profile.isAdmin) {
+        ret = true;
+      }
+      return ret;
+    });
+  }
 });
+
