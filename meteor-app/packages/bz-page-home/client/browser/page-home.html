@@ -9,6 +9,10 @@
                 <!--{{> searchResults }}-->
                 {{> bzAroundYou}}
                 {{> bzHomePopular}}
+                {{#if isAdmin}}
+                    {{> bzNewPosts}}
+                {{/if}}
+
                 {{ bzRenderTemplateI18n "bzAboutUsShort" }}
             </div>
         {{else}}
@@ -80,6 +84,7 @@
         {{> bzAroundYou}}
 
         {{> bzHomePopular}}
+        {{> bzNewPosts}}
 
         {{ bzRenderTemplateI18n "bzAboutUsShort" }}
     </div>
