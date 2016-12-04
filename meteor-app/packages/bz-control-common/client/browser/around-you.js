@@ -209,7 +209,17 @@ Template.bzAroundYouItem.helpers({
     var ret, ret = this.details.photos && this.details.photos[0];
     if (ret) {
       // ret = bz.cols.images.findOne(phId);
-      ret = ret && ret._getThumbnailUrl();
+      if (typeof ret === 'string' || !ret._getThumbnailUrl) { // this is ID folks!
+        var ret1 = bz.cols.images.findOne(ret);
+        if (!ret1) {
+          bz.log(ret1 + 'not found in col', 'bzAroundYouItem.getImgSrc');
+          console.log(ret1 + 'not found in col', 'bzAroundYouItem.getImgSrc');
+        } else {
+          ret = ret1.thumbnail || ret1.data;
+        }
+      } else {
+        ret = ret && ret._getThumbnailUrl();
+      }
     }
 
     ret = ret || '/img/content/no-photo.png';
