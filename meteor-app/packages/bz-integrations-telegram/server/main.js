@@ -2,22 +2,7 @@ import { HTTP } from 'meteor/http';
 
 Meteor.startup(function () {
   bz.cols.posts.after.insert(function(userId, doc) {
-
-debugger;
     AddNewPost(doc);
-    /*
-     var options = {
-
-     }
-
-     HTTP.call('GET', 'https://api.telegram.org/bot311127101:AAFFribgKoIBl4U6UFScpyS6Ceqg81YEkUA/getMe', options, function(error, result = {}) {
-      if (!error && result.statusCode === 200) {
-        debugger;
-        _.each(result, (e, k) => {
-          console.log(e, k);
-        })
-      }
-    })*/
   })
 });
 

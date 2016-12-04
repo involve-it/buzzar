@@ -122,6 +122,7 @@ en = {
   MOST_POPULAR_TITLE: 'Another Popular',
   ABOUT_US_TITLE: 'About us',
   AROUND_YOU_TITLE: 'Buzz Around you',
+  NEW_POSTS_TITLE: 'New Posts',
 
   //Location
   LOCATION_SET_YOUR_LOCATION: 'Set your location',

@@ -4,7 +4,7 @@
 Meteor.methods({
   //users
   getUser:function(userId) {
-      console.log('getUser:', userId)
+      // console.log('getUser:', userId)
       return bz.bus.usersHandler.getUser(userId, Meteor.userId());
   },
   editUser: function(requestData){
