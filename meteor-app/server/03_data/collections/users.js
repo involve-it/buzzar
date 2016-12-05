@@ -6,7 +6,8 @@ const adminsList = [
     'yvdorofeev@gmail.com',
     'infpartner@gmail.com',
     'tatiana@napodiume.ru',
-    'iyirischa@yandex.ru'
+    'iyirischa@yandex.ru',
+    'narine.badalian@gmail.com'
 ]
 Meteor.startup(function() {
   var user;
