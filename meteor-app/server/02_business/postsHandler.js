@@ -383,7 +383,7 @@ bz.bus.postsHandler = {
     return post;
   },
   buildPostsObject: function(data, isMobile){
-    var post,posts,postsRet=[], ret={}, locations=[],arrPhoto, photos,usersIds, arrUsers, users;
+    var post,posts,postsRet=[], ret={}, locations=[],arrPhoto, photos,usersIds, arrUsers, users, likes;
     posts=data.posts;
     if (posts && posts.length>0) {
       usersIds = _.map(posts, function (post) {
@@ -399,6 +399,8 @@ bz.bus.postsHandler = {
       if (arrPhoto.length > 0) {
         photos = bz.bus.imagesHandler.getPhotos(arrPhoto);
       }
+      var postIds = _.pluck(posts, '_id');
+      likes = bz.cols.likes.find({entityId: {$in: postIds}, entityType: 'post'}).fetch();
       _.each(posts, function (postDb) {
         locations = [];
         post = {
@@ -419,8 +421,12 @@ bz.bus.postsHandler = {
           endDatePost: postDb.endDatePost,
           social: postDb.social,
           stats: postDb.stats,
-          lastEditedTs: postDb.lastEditedTs
+          lastEditedTs: postDb.lastEditedTs,
+          likes: likes.length
         };
+        if (Meteor.userId()){
+          post.liked = !!_.find(likes, function(like){return like.userId === Meteor.userId()});
+        }
         _.each(postDb.details.locations, function (item) {
 
           locations.push({_id: item._id,

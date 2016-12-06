@@ -16,7 +16,28 @@ Meteor.methods({
   socialLogIn: function(request){
     return bz.bus.socialLogInHandler.socialLogIn(request);
   },
-
+  likePost: function(request){
+    if (request.postId && request.userId && request.userId == Meteor.userId()){
+      var existing = bz.cols.likes.findOne({entityId: request.postId, userId: request.userId, entityType: 'post'});
+      if (!existing){
+        bz.cols.likes.insert({userId: request.userId, entityId: request.postId, entityType: 'post', timestamp: new Date()});
+      }
+      return {success: true};
+    } else {
+      return { success: false};
+    }
+  },
+  unlikePost: function(request){
+    if (request.postId && request.userId && request.userId == Meteor.userId()){
+      var existing = bz.cols.likes.findOne({entityId: request.postId, userId: request.userId, entityType: 'post'});
+      if (existing){
+        bz.cols.likes.remove({entityId: request.postId, userId: request.userId, entityType: 'post'});
+      }
+      return {success: true};
+    } else {
+      return { success: false};
+    }
+  },
   //posts
   searchPosts: function(request){
     return bz.bus.postsHandler.searchPosts(request);
