@@ -425,7 +425,7 @@ bz.bus.postsHandler = {
           likes: _.filter(likes, function(like){ return like.entityId === postDb._id}).length
         };
         if (Meteor.userId()){
-          post.liked = !!_.find(likes, function(like){return like.userId === Meteor.userId()});
+          post.liked = !!_.find(likes, function(like){return like.entityId === postDb._id && like.userId === Meteor.userId()});
         }
         _.each(postDb.details.locations, function (item) {
 
