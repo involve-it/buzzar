@@ -422,7 +422,7 @@ bz.bus.postsHandler = {
           social: postDb.social,
           stats: postDb.stats,
           lastEditedTs: postDb.lastEditedTs,
-          likes: likes.length
+          likes: _.filter(likes, function(like){ return like.entityId === postDb._id}).length
         };
         if (Meteor.userId()){
           post.liked = !!_.find(likes, function(like){return like.userId === Meteor.userId()});
