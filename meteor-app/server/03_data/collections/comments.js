@@ -62,6 +62,26 @@ Meteor.publish('comments-my', function(){
   return ret;
 });
 
+Meteor.publish('comments-post', function(postId){
+  var ret, time, newComments, fields;
+  fields={
+    _id: 1,
+    text: 1,
+    userId: 1,
+    dateTime: 1,
+    username: 1,
+    entityId: 1
+  };
+
+  time = Date.now() - 5000;
+
+  newComments = bz.cols.reviews.find({entityId: postId, dateTime: {$gte: time}}, {fields: fields});
+
+  ret=newComments;
+
+  return ret;
+});
+
 
 Meteor.publish('comments', function(postId) {
   //check(postId, String);
