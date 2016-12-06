@@ -26,7 +26,7 @@ Meteor.methods({
   'bz.generateNotificationLink': function(userId, trackId) {
     userId = userId || Meteor.userId();
     if (userId) {
-      var link = `http://localhost:3000/share-location?requesterUserId=${ userId }&trackId=${ trackId }`;
+      var link = `https://shiners.mobi/share-location?requesterUserId=${ userId }&trackId=${ trackId }`;
       // var link = `https://shiners.mobi/shasre-location?requesterUserId=${ userId }`;
     } else {
       throw 'no userId defined'
