@@ -24,6 +24,9 @@
  */
 
 Meteor.startup(function(){
+  if (typeof Push === 'undefined') {
+    var Push = Push || {};
+  }
   Push.debug = true;
   bz.bus.pushHandler = {
     getTotalEventsCount: function(userId){
