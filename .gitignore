@@ -10,6 +10,7 @@
 .idea/deployment.xml
 .idea/misc.xml
 .idea/webServers.xml
+.idea/ionic.iml
 meteor-app/.idea/
 meteor-app/.meteor/dev_bundle
 
