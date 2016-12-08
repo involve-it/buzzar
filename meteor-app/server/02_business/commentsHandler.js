@@ -51,12 +51,20 @@ bz.bus.commentsHandler = {
       });
       users = bz.bus.usersHandler.userDbQuery(usersId);
       arrUser=bz.bus.usersHandler.buildUserObject(users);
+      var commentIds = _.pluck(comments, '_id'),
+          likes = bz.cols.likes.find({entityId: {$in: commentIds}, entityType: bz.const.likeEntityType.comment}).fetch(), commentLikes;
       _.each(comments,function(item){
+        commentLikes = _.filter(likes, function(like){ return like.entityId === item._id});
         comment={
           _id: item._id,
           text: item.text,
-          dateTime: item.dateTime
+          dateTime: item.dateTime,
+          likes: commentLikes.length,
+          userId: item.userId
         };
+        if (Meteor.userId()){
+          comment.liked = !!_.find(commentLikes, function(like){return like.userId === Meteor.userId()});
+        }
         comment.user=_.find(arrUser,function(user){
           return user._id==item.userId;
         });
@@ -119,8 +127,13 @@ bz.bus.commentsHandler = {
         bz.cols.reviews.remove({_id: commentId});
         ret={success:true};
       }else {
-        //error
-        ret = {success: false, error: bz.const.errors.global.userNotAuthor};
+        var post = bz.cols.posts.findOne({_id: comment.entityId, userId: Meteor.userId()});
+        if (post){
+          ret={success:true};
+        } else {
+          //error
+          ret = {success: false, error: bz.const.errors.global.userNotAuthor};
+        }
       }
     }else{
       //error
