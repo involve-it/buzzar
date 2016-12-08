@@ -11,8 +11,12 @@
 .idea/misc.xml
 .idea/webServers.xml
 .idea/ionic.iml
+.idea/compiler.xml
+.idea/copyright/
+
 meteor-app/.idea/
 meteor-app/.meteor/dev_bundle
+meteor-app/android-build/
 
 # ignore these folders:
 
@@ -20,6 +24,7 @@ meteor-app/settings.json
 meteor-app/settings-development.json
 meteor-app/settings-production.json
 meteor-app/node_modules/
+node_modules/
 
 docs/.*
 docs/~$.*
