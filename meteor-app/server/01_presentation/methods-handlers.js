@@ -16,22 +16,22 @@ Meteor.methods({
   socialLogIn: function(request){
     return bz.bus.socialLogInHandler.socialLogIn(request);
   },
-  likePost: function(request){
-    if (request.postId && request.userId && request.userId == Meteor.userId()){
-      var existing = bz.cols.likes.findOne({entityId: request.postId, userId: request.userId, entityType: 'post'});
+  likeEntity: function(request){
+    if (request.entityId && request.userId && request.userId == Meteor.userId() && request.entityType && bz.const.likeEntityType.all.indexOf(request.entityType) !== -1){
+      var existing = bz.cols.likes.findOne({entityId: request.entityId, userId: request.userId, entityType: request.entityType});
       if (!existing){
-        bz.cols.likes.insert({userId: request.userId, entityId: request.postId, entityType: 'post', timestamp: new Date()});
+        bz.cols.likes.insert({userId: request.userId, entityId: request.entityId, entityType: request.entityType, timestamp: new Date()});
       }
       return {success: true};
     } else {
       return { success: false};
     }
   },
-  unlikePost: function(request){
-    if (request.postId && request.userId && request.userId == Meteor.userId()){
-      var existing = bz.cols.likes.findOne({entityId: request.postId, userId: request.userId, entityType: 'post'});
+  unlikeEntity: function(request){
+    if (request.entityId && request.userId && request.userId == Meteor.userId() && bz.const.likeEntityType.all.indexOf(request.entityType) !== -1){
+      var existing = bz.cols.likes.findOne({entityId: request.entityId, userId: request.userId, entityType: request.entityType});
       if (existing){
-        bz.cols.likes.remove({entityId: request.postId, userId: request.userId, entityType: 'post'});
+        bz.cols.likes.remove({entityId: request.entityId, userId: request.userId, entityType: request.entityType});
       }
       return {success: true};
     } else {
