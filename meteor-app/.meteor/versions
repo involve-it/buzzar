@@ -11,7 +11,6 @@ anti:i18n@0.4.3
 arutune:bz-api@0.0.1
 arutune:bz-control-common@0.0.1
 arutune:bz-integrations-telegram@0.0.1
-arutune:bz-location-request@0.0.1
 arutune:bz-main@0.0.1
 arutune:bz-page-chat@0.0.1
 arutune:bz-page-connect@0.0.1
