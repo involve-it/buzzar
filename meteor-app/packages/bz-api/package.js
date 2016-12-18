@@ -39,13 +39,7 @@ Package.onUse(function (api) {
     'server/lib/accounts.js'
   ], 'server');
 
-  /*UI kit fonts*/
-  api.addAssets([
-    'client/lib/vendor/uikit/fonts/FontAwesome.otf',
-    'client/lib/vendor/uikit/fonts/fontawesome-webfont.ttf',
-    'client/lib/vendor/uikit/fonts/fontawesome-webfont.woff',
-    'client/lib/vendor/uikit/fonts/fontawesome-webfont.woff2'
-  ], 'client');
+
   
   api.addFiles([
     'client/lib/01_inits/version.js',
@@ -57,25 +51,11 @@ Package.onUse(function (api) {
     'client/lib/01_inits/fb.js',
     'client/lib/01_inits/maps.js',
     'client/lib/01_inits/template-helpers.js',
-    'client/lib/rates/jquery.raty.js',
-    'client/lib/animate/animate.css',
 
-    'client/lib/rates/jquery.raty.css',
     'client/lib/01_inits/mobile.js',
 
-    'client/lib/vendor/ui/dropdown.js',
-    'client/lib/vendor/ui/dropdown.css',
-    'client/lib/vendor/ui/transition.js',
-    'client/lib/vendor/ui/transition.css',
 
   ], 'client');
-
-  api.addFiles([
-   'client/lib/vendor/uikit/css/uikit.css',
-   'client/lib/vendor/uikit/css/components/slider.css',
-   'client/lib/vendor/uikit/js/uikit.js',
-   'client/lib/vendor/uikit/js/components/slider.js'
-   ], 'client');
   
   /*api.addAssets([
     'client/lib/rates/fonts/wbotelhos.eot',

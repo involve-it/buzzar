@@ -37,8 +37,25 @@ Package.onUse(function (api) {
       'controller.server.js'
     ], ['server']
   );
+  /*UI kit fonts*/
+  api.addAssets([
 
+    'client/vendor/uikit/fonts/FontAwesome.otf',
+    'client/vendor/uikit/fonts/fontawesome-webfont.ttf',
+    'client/vendor/uikit/fonts/fontawesome-webfont.woff',
+    'client/vendor/uikit/fonts/fontawesome-webfont.woff2',
+  ], 'client');
   api.addFiles([
+    'client/vendor/ui/dropdown.js',
+    'client/vendor/ui/dropdown.css',
+    'client/vendor/ui/transition.js',
+    'client/vendor/ui/transition.css',
+    'client/vendor/uikit/css/uikit.css',
+    'client/vendor/uikit/css/components/slider.css',
+    'client/vendor/uikit/js/uikit.js',
+    'client/vendor/uikit/js/components/slider.js',
+    'client/rates/jquery.raty.js',
+    'client/animate/animate.css',
     'client/main.less',
     'client/controller.js',
     'client/controller.iframe.js',

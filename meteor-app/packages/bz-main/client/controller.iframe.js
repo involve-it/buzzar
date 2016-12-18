@@ -13,21 +13,28 @@ IfIframeHideElements = function () {
     }
 };
 Meteor.startup(() => {
-    Tracker.autorun(() => {
+    /*Tracker.autorun(() => {
         if (Session.get('iframeObject')) {
             $('#bz-header').hide();
             $('#bz-footer').hide();
+        }
+    });*/
+    Tracker.autorun(() => {
+        if (Session.get('isIframe')) {
+          IfIframeHideElements();
         }
     });
     Tracker.autorun(() => {
         if (Session.get('iframePage')) {
             console.log('iframe:receiveMessage', event.data.pagePath)
-            IfIframeHideElements();
             Router.go(Session.get('iframePage'));
         }
     });
 });
 
+setIframePageFlag = function() {
+    Session.set('isIframe', true);
+}
 setIframePageSession = function(pageName) {
     pageName && Session.set('iframePage', pageName);
 }
@@ -105,11 +112,12 @@ function checkAndHideUsingWindowTop(){
         $('.entry-logo').hide();
         setRelativeLinksToAbsoluteMainSite();
         setIframeSessionObj();
+        setIframePageFlag();
         SetIframeEventListeners();
         redirectLinksToShinersRu();
     }
     function inIframe () {
-        var ret = window.self !== window.top || bz.help.getParamURL().isiframe;
+        var ret = window.self !== window.top || bz.help.getParamURL().isiframe || Session.get('isIframe');
         try {
             return ret;
         } catch (e) {
