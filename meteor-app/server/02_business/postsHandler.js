@@ -462,10 +462,10 @@ bz.bus.postsHandler = {
     }
     return ret;
   },
-  getNearbyPosts: function(request){
+  getNearbyPosts: function(request, showOffline){
     var ret, lat, lng, radius, skip, take, postsQuery={}, posts, arrTypes=[], activeCats, box, postsRet, postsSort, coords, loc,
         curLocation,
-        serverLimit = 20, options, optionsForArray;
+        serverLimit = 20, options, optionsForArray, onlineOnlyQuery;
     lat=request.lat;
     lng=request.lng;
     radius=request.radius; //request.radius;
@@ -519,6 +519,10 @@ bz.bus.postsHandler = {
     // get only non-expired posts (if no value provided in call):
     if (!postsQuery['endDatePost']) {
       postsQuery['endDatePost'] = { $gte : Date.now() }
+    }
+    // only return live posts, if no showOffline flag provided:
+    if (!showOffline) {
+      postsQuery["$or"] = [ { "presences" : {}} , { "presences" : null }];
     }
     // posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort);
     posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort).slice(0, take);
