@@ -10,7 +10,10 @@
       //"pem": "~/.ssh/id_rsa"
     }
   ],
-
+ "buildOptions": {
+    // build with the debug mode on
+    "debug": true
+  },
   // Install MongoDB in the server, does not destroy local MongoDB on future setup
   "setupMongo": true,
 
