@@ -15,6 +15,8 @@ Template.postsNew.rendered = function () {
 
 Template.postsNew.created = function () {
   this.data ? _.extend(this.data, data) : _.extend({}, data);
+  Session.set(bz.const.posts.location1, undefined);
+  Session.set(bz.const.posts.location2, undefined);
   //$('.js-new-post-placeholder').append();
   //temp
   /*Meteor.call('parseUrl', 'https://en.wikipedia.org/wiki/NASA', function(error, response){
