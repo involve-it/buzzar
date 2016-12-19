@@ -522,7 +522,7 @@ bz.bus.postsHandler = {
     }
     // only return live posts, if no showOffline flag provided:
     if (!showOffline) {
-      postsQuery["$or"] = [ { "presences.dynamic" : {'$eq': 'close' } }, { "presences.static" : {'$eq': 'close' }} ];
+      //postsQuery["$or"] = [ { "presences.dynamic" : {'$eq': 'close' } }, { "presences.static" : {'$eq': 'close' }} ];
       //db.getCollection('posts').find({ '$or': [ { "presences.dynamic" : {'$eq': 'close' } }, { "presences.static" : {'$eq': 'close' }} ]})
     }
     // posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort);
