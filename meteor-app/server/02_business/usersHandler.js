@@ -16,6 +16,20 @@ bz.bus.usersHandler = {
         }
         return ret;
     },
+    getUserByName: function (username) {
+      var ret = {success: false, error: bz.const.errors.global.dataNotFound};
+      var user = Meteor.users.findOne({username:username});
+      if (user) {
+        var profileDetails = bz.bus.usersHandler.profileDetailsDbQuery([user._id]);
+        var userDb = {users: [user], profileDetails: profileDetails};
+
+        if (userDb) {
+          user = bz.bus.usersHandler.buildUserObject(userDb)[0];
+          ret = {success: true, result: user};
+        }
+      }
+      return ret;
+    },
     editUser: function (requestData, currentUserId) {
         var requestProfileDetails,requestImageUrl,requestEmail,profileDetails=[], email, user={},ret={},
             userDb = Meteor.users.findOne({_id: currentUserId});

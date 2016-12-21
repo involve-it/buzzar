@@ -7,6 +7,10 @@ Meteor.methods({
       // console.log('getUser:', userId)
       return bz.bus.usersHandler.getUser(userId, Meteor.userId());
   },
+  getUserByName:function(username) {
+    // console.log('getUser:', userId)
+    return bz.bus.usersHandler.getUserByName(username);
+  },
   editUser: function(requestData){
     return bz.bus.usersHandler.editUser(requestData, Meteor.userId());
   },
