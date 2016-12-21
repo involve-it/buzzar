@@ -21,6 +21,17 @@ Meteor.methods({
   },
   'bz.user.getUsersAround': function (request) {
     request = request || {};
-    return bz.bus.usersHandler.getNearbyUsers(request);
+    var result, error, success = true;
+    try {
+      result = bz.bus.usersHandler.getNearbyUsers(request);
+    } catch (e) {
+      success = false;
+      error = e;
+    }
+    return {
+      result,
+      success,
+      error
+    }
   }
 });
