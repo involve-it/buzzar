@@ -262,6 +262,7 @@ bz.bus.postsHandler = {
     return ret;
   },
   editPost: function(request, currentUserId){
+    console.log(request.details.photos);
     var now, ret={},postDb, updatePost, postData, validate,update, locations=[],loc;
     postData=request;
     now = Date.now();
@@ -279,16 +280,43 @@ bz.bus.postsHandler = {
                   title: postData.details.title,
                   description: postData.details.description,
                   price: postData.details.price,
-                  //photos: postData.details.photos,
                   photos: postDb.details.photos,
                   other: postData.details.other
                 },
                 lastEditedTs: now
               };
+              if (postData.type){
+                updatePost.type = postData.type;
+              }
+              if (postData.endDatePost){
+                updatePost.endDatePost = postData.endDatePost
+              }
+              //mobile format
+              if (postDb.details.photos) {
+                bz.cols.images.remove({_id: {$in: postDb.details.photos}});
+              }
+              if (postData.details && postData.details.photos){
+                var photoIds = [], photo;
+
+                postData.details.photos.forEach(function(e){
+                  if (e.data) {
+                    photo = {
+                      userId: currentUserId,
+                      name: null,
+                      data: e.data,
+                      thumbnail: e.data
+                    };
+                    photoIds.push(bz.cols.images.insert(photo));
+                  }
+                });
+                updatePost.details.photos = photoIds;
+              } else {
+                updatePost.details.photos = [];
+              }
               if (postData.status){
                 updatePost.status = postData.status
               }
-              if (postData.type=='jobs'){
+              if (postData.type=='jobs' && postData.jobsDetails){
                 updatePost.jobsDetails={
                   seniority: postData.jobsDetails.seniority,
                   gender: postData.jobsDetails.gender,
@@ -297,7 +325,7 @@ bz.bus.postsHandler = {
                   typeCategory: postData.jobsDetails.typeCategory,
                   jobsType: postData.jobsDetails.jobsType,
                   payMethod: postData.jobsDetails.payMethod};
-              }else if(postData.type=='trainings') {
+              }else if(postData.type=='trainings' && postData.trainingsDetails) {
                 updatePost.trainingsDetails = {
                   sectionLearning: postData.trainingsDetails.sectionLearning,
                   typeCategory: postData.trainingsDetails.typeCategory
