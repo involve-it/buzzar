@@ -262,10 +262,10 @@ bz.bus.postsHandler = {
     return ret;
   },
   editPost: function(request, currentUserId){
-    console.log(request.details.photos);
     var now, ret={},postDb, updatePost, postData, validate,update, locations=[],loc;
     postData=request;
     now = Date.now();
+
     if(postData){
       if(postData._id){
         postDb=bz.cols.posts.findOne(postData._id);
