@@ -428,6 +428,7 @@ bz.bus.postsHandler = {
         photos = bz.bus.imagesHandler.getPhotos(arrPhoto);
       }
       var postIds = _.pluck(posts, '_id');
+
       likes = bz.cols.likes.find({entityId: {$in: postIds}, entityType: 'post'}).fetch();
       _.each(posts, function (postDb) {
         locations = [];
@@ -549,29 +550,29 @@ bz.bus.postsHandler = {
       postsQuery['endDatePost'] = { $gte : Date.now() }
     }
     // only return live posts, if no showOffline flag provided:
-    if (!showOffline) {
-      postsQuery["$or"] = [ { "presences.dynamic" : {'$eq': 'close' } }, { "presences.static" : {'$eq': 'close' }} ];
-      //db.getCollection('posts').find({ '$or': [ { "presences.dynamic" : {'$eq': 'close' } }, { "presences.static" : {'$eq': 'close' }} ]})
-    }
-    // posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort);
-    posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort).slice(0, take);
-    /*if (lat && lng) {
-      _.each(posts, function (post) {
-        if (post.details && post.details.locations && Array.isArray(post.details.locations) && post.details.locations.length > 0) {
-          loc = _.find(post.details.locations, function (l) {
-            return l.placeType === bz.const.locations.type.DYNAMIC
-          });
-          if (!loc) {
-            loc = post.details.locations[0];
+    if (showOffline) {
+      posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort).slice(0, take);
+    } else {
+      postsQuery["$or"] = [{"presences.dynamic": {'$eq': 'close'}}, {"presences.static": {'$eq': 'close'}}];
+      try {
+        posts = bz.cols.posts.aggregate([
+          {$match: {"$or": [{"presences.dynamic": {'$eq': 'close'}}, {"presences.static": {'$eq': 'close'}}]}},
+          {
+            $lookup: {
+              from: "users",
+              localField: "userId",
+              foreignField: "_id",
+              as: "userObject"
+            }
+          },
+          {
+            $match: {"userObject.0.status.online": true}
           }
-          coords = loc.obscuredCoords || loc.coords;
-          post.distance = bz.help.location.getDistance(lat, lng, coords.lat, coords.lng);
-        }
-      });
-      postsSort=posts;/!*.sort(function(a,b) {
-        return a.distance-b.distance;
-      });*!/
-    }*/
+        ]);
+      } catch(ex) {
+        console.log(ex);
+      }
+    }
     postsRet = bz.bus.postsHandler.buildPostsObject({ posts:posts });
     //postsRet = posts;
     ret = { success:true, result:postsRet };
