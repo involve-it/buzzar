@@ -71,7 +71,7 @@ bz.bus.proximityHandler = {
 
             if (user && report.sessionId) {
                 var setObj = {
-                    online: true,
+                  'status.online': true,
                     sessionIds: user.sessionIds || []
                 };
                 if (setObj.sessionIds.indexOf(report.sessionId) === -1) {
@@ -195,7 +195,7 @@ bz.bus.proximityHandler = {
 
         Meteor.users.update({'_id': userId}, {
             $set: {
-                online: online,
+                'status.online': online,
                 sessionIds: sessionIds
             }
         });
