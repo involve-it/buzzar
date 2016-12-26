@@ -3,6 +3,9 @@
 
 DB is now accessible from outside using following URL: mongodb://shiners.mobi:27017/buzzar and requires authorization.
 
+Command to run localhost locally with production DB:
+`MONGO_URL="mongodb://buzzarrw:7Y3MEgANBDsIWgHdhHLUJYMbs@shiners.mobi:27017/buzzar" meteor`
+
 --------------------------------------------
 
 Users setup:
