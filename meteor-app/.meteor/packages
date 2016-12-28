@@ -13,7 +13,7 @@ tracker@1.1.1                 # Meteor's client-side reactive programming librar
 
 es5-shim@4.6.15                # ECMAScript 5 compatibility for older browsers.
 
-
+arutune:bz-page-landing
 dburles:collection-helpers
 aldeed:collection2
 aldeed:simple-schema
@@ -31,13 +31,27 @@ arutune:bz-main
 less@2.7.8
 matb33:collection-hooks
 arutune:bz-api
+arutune:bz-page-posts
+arutune:bz-page-user
+arutune:bz-page-chat
 iron:router
+arutune:bz-page-map
 dburles:google-maps
 selaias-local:accounts-entry
 
 accounts-password@1.3.3
 mrt:cheerio
 edgee:slingshot
+
+arutune:bz-page-home
+arutune:bz-page-jobs
+arutune:bz-page-training
+arutune:bz-page-connect
+arutune:bz-page-trade
+arutune:bz-page-housing
+arutune:bz-page-events
+arutune:bz-page-services
+arutune:bz-page-help
 
 meteorhacks:kadira
 meteorhacks:zones
@@ -50,6 +64,7 @@ standard-minifier-js@1.2.1
 
 okgrow:analytics
 aslagle:reactive-table
+arutune:bz-page-tags
 ground:db
 force-ssl@1.0.13
 mizzao:user-status
