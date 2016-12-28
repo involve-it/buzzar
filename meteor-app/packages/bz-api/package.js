@@ -16,8 +16,8 @@ Package.describe({
 Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
-  api.use(['anti:i18n', 'softwarerero:accounts-t9n'], ['client', 'server']);
-  api.use(['iron:router', 'iron:layout', 'selaias-local:accounts-entry', 'ecmascript'], global.bzSettings.webBrowserArrayWithServer);
+  // api.use(['anti:i18n', 'softwarerero:accounts-t9n'], ['client', 'server']);
+  api.use(['ecmascript'], global.bzSettings.webBrowserArrayWithServer);
   api.use('service-configuration', ['server']);
 
   //api.use(['cordova:cordova-plugin-geolocation@2.1.0'], 'web.cordova');
@@ -63,13 +63,6 @@ Package.onUse(function (api) {
     'client/lib/rates/fonts/wbotelhos.ttf',
     'client/lib/rates/fonts/wbotelhos.woff'
   ], 'client');*/
-});
-
-Package.onTest(function (api) {
-  //api.use('tinytest');  // use in-built tinytets
-  api.use('sanjo:jasmine');
-  api.use('arutune:bz-api');
-  api.addFiles('bz-main-tests.js', ['client']);
 });
 
 // HELPERS:

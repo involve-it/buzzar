@@ -13,8 +13,7 @@ Package.onUse(function (api) {
   //api.versionsFrom('1.1.0.3');
 
   api.use(['underscore', 'iron:router', 'iron:layout', 'mongo', 'reactive-var', 'tracker', 'ecmascript', 'dburles:collection-helpers',
-    'benjick:telegram-bot',
-    'arutune:bz-main', 'arutune:bz-page-posts'
+    'benjick:telegram-bot', 'arutune:bz-data'
   ], ['client', 'server']);
 
   api.use(['templating', 'less'], 'client');
