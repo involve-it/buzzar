@@ -59,6 +59,13 @@ Meteor.startup(function(){
         notification.tokens = _.filter(_.pluck(user.tokens, 'token'), function(token){return token;});
         Push.send(notification);
       }
+
+      // let's send notify whoever needed about push notification:
+      if (user && title !== 'New post nearby') {
+        bz.bus.notifications.push({
+          userId, title, msg, payload, user
+        });
+      }
     },
     registerPushToken: function(deviceId, userId, token, platform){
       if (deviceId && userId && token && userId === Meteor.userId()){
@@ -219,11 +226,9 @@ Meteor.startup(function(){
   };
 
   /*bz.cols.posts.after.update(function(userId, doc, fieldNames, modifier, options){
-    debugger;
   });
 
   bz.cols.posts.before.update(function(userId, doc, fieldNames, modifier, options){
-    debugger;
   });*/
 
   bz.cols.posts.after.insert(function(userId, doc){

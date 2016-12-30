@@ -27,16 +27,17 @@ Template.bzAroundYou.helpers({
         currentLocation = Session.get('currentLocation'),
         radius = Session.get('bz.control.search.distance'),
         activeCats = Session.get('bz.control.category-list.activeCategories'),
-        searchAmount;
+        searchAmount,
+      take = 30
     
     //var throttle = _.throttle(function(){console.log('called')}, 10000);
     
     if(currentLocation) {
-      ret = (inputSearchText) ? searchPosts(inputSearchText, currentLocation, radius, activeCats) : nearbyPosts(currentLocation, radius, activeCats) ;
+      ret = (inputSearchText) ? searchPosts(inputSearchText, currentLocation, radius, activeCats) : nearbyPosts(currentLocation, radius, activeCats, take) ;
     }
     
     
-    
+    // not used, 12/28/16
     function searchPosts(text, loc, radius, activeCats) {
       var request = {};
         
@@ -85,16 +86,17 @@ Template.bzAroundYou.helpers({
     }
     
     
-    function nearbyPosts(loc, radius, activeCats) {
+    function nearbyPosts(loc, radius, activeCats, take) {
       var request = {};
 
       request = {
         lat: loc.latitude,
         lng: loc.longitude,
         radius: radius,
-        activeCats: activeCats
+        activeCats: activeCats,
+        take: take
       };
-
+debugger
       /*if (ins.getNearByData.get() === false) {*/
       Meteor.call('getNearbyPostsTest', request, function (e, r) {
           var res;
