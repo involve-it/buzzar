@@ -12,11 +12,12 @@ UserStatus.events.on("connectionIdle", function(fields) {
 UserStatus.events.on("connectionLogin", function(fields) {
 });
 
+
 Meteor.startup(function () {
   SyncedCron.add({
     name: 'set fake users online status each 15 minutes',
     schedule: function (parser) {
-      return parser.text('every 15 minutes');
+      return parser.text('every 24 hours');
     },
     job: function () {
       return UpdateAllAlwaysLiveUsers();
@@ -24,11 +25,12 @@ Meteor.startup(function () {
   });
 });
 
+
 function updateStatusOnLogout(fields) {
   var user = Meteor.users.findOne(fields.userId);
   if (user && CheckAlwaysLiveRule(user._id)) {
     if (user.status) {
-      var res = Meteor.users.update({ _id: user._id }, { $set: { 'status.online': true }});
+      var res = Meteor.users.update({ _id: user._id }, { $set: { 'status.onlineFake': true }});
     }
   }
 }
@@ -41,7 +43,11 @@ UpdateAllAlwaysLiveUsers();
 function UpdateAllAlwaysLiveUsers() {
   var ret = false;
   ret = Meteor.users.update({ 'emails.0.address': { $regex : '.+\@shiners.ru' } }, {
-    $set: { 'status.online': true }
+    // $set: { 'status.online': true },
+    $set: {
+      'status.onlineFake': true,
+      'presences.static': 'close'
+    } // don't use status.online - it's used by https://github.com/mizzao/meteor-user-status package
   }, {
     multi: true
   });

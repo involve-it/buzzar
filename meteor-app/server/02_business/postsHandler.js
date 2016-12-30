@@ -144,8 +144,8 @@ bz.bus.postsHandler = {
           status: {
             visible: bz.const.posts.status.visibility.VISIBLE
           },
-          timestamp: new Date().getTime(),
-          endDatePost: postData.endDatePost
+          timestamp: new Date(),
+          endDatePost: new Date(postData.endDatePost)
         };
         if (postData.type=='jobs' && postData.jobsDetails){
           newPost.jobsDetails={
@@ -283,7 +283,7 @@ bz.bus.postsHandler = {
                   photos: postDb.details.photos,
                   other: postData.details.other
                 },
-                lastEditedTs: now
+                lastEditedTs: new Date(now)
               };
               if (postData.type){
                 updatePost.type = postData.type;
@@ -445,12 +445,12 @@ bz.bus.postsHandler = {
           },
           presences: postDb.presences,
           status: postDb.status,
-          timestamp: postDb.timestamp,
-          timePause: postDb.timePause,
-          endDatePost: postDb.endDatePost,
+          timestamp: new Date(postDb.timestamp),
+          timePause: new Date(postDb.timePause),
+          endDatePost: new Date(postDb.endDatePost),
           social: postDb.social,
           stats: postDb.stats,
-          lastEditedTs: postDb.lastEditedTs,
+          lastEditedTs: new Date(postDb.lastEditedTs),
           likes: _.filter(likes, function(like){ return like.entityId === postDb._id}).length
         };
         if (Meteor.userId()){
@@ -547,7 +547,7 @@ bz.bus.postsHandler = {
     postsQuery['status'] = { visible:  bz.const.posts.status.visibility.VISIBLE };
     // get only non-expired posts (if no value provided in call):
     if (!postsQuery['endDatePost']) {
-      postsQuery['endDatePost'] = { $gte : Date.now() }
+      postsQuery['endDatePost'] = { $gte : new Date() }
     }
     // only return live posts, if no showOffline flag provided:
     if (showOffline) {
@@ -556,7 +556,9 @@ bz.bus.postsHandler = {
       postsQuery["$or"] = [{"presences.dynamic": {'$eq': 'close'}}, {"presences.static": {'$eq': 'close'}}];
       try {
         posts = bz.cols.posts.aggregate([
-          {$match: {"$or": [{"presences.dynamic": {'$eq': 'close'}}, {"presences.static": {'$eq': 'close'}}]}},
+          // {$match: {"$or": [{"presences.dynamic": {'$eq': 'close'}}, {"presences.static": {'$eq': 'close'}}]}},
+          {$match: postsQuery},
+
           {
             $lookup: {
               from: "users",
@@ -566,7 +568,7 @@ bz.bus.postsHandler = {
             }
           },
           {
-            $match: {"userObject.0.status.online": true}
+            $match: {"$or": [{"userObject.0.status.online": true}, {"userObject.0.status.onlineFake": true} ] }
           }
         ]);
       } catch(ex) {
