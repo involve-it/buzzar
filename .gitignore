@@ -20,5 +20,9 @@ meteor-app/settings-development.json
 meteor-app/settings-production.json
 meteor-app/node_modules/
 
+meteor-app/packages
 docs/.*
 docs/~$.*
+
+packages
+

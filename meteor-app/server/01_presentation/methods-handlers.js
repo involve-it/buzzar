@@ -48,6 +48,11 @@ Meteor.methods({
   getMyPosts: function(requestPage){
     return bz.bus.postsHandler.getMyPosts(requestPage, Meteor.userId());
   },
+  // getNearbyPosts: function(userId, lat, lng){
+  getNearbyPosts: function(request, showOffline){
+    return bz.bus.postsHandler.getNearbyPosts(request, showOffline);
+  },
+  // remove this!!!:
   getNearbyPostsTest: function(request, showOffline){
     return bz.bus.postsHandler.getNearbyPosts(request, showOffline);
   },

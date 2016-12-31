@@ -136,9 +136,9 @@ Meteor.methods({
     posts = bz.cols.posts.find(filter).fetch();
     return posts;
   },*/
-  getNearbyPosts: function(userId, lat, lng){
+  /*getNearbyPosts: function(userId, lat, lng){
     return bz.bus.proximityHandler.getNearbyPosts(userId, lat, lng);
-  },
+  },*/
   /*reportLocation: function(report){
     return bz.bus.proximityHandler.reportLocation(report);
   },*/
