@@ -314,7 +314,6 @@ GetEndDatePost = function(v, start) {
       */
       break;
   }
-
   return ret && ret.getTime();
 };
 

@@ -2,47 +2,49 @@
  * Created by root on 9/15/15.
  */
 
-Template.bzAroundYou.onCreated(function() {
+Template.bzAroundYou.onCreated(function () {
   this.getSearchData = new ReactiveVar(false);
   //this.getNearByData = new ReactiveVar(false);
 });
 
 Template.bzAroundYou.onRendered(function () {
-  Meteor.startup(function () {});
+  Meteor.startup(function () {
+  });
 });
 
 Template.notFoundAroundItems.helpers({
-  locationWasDefined: function() {
+  locationWasDefined: function () {
     return !!Session.get('currentLocation');
   }
 });
 Template.bzAroundYou.helpers({
-  getData: function() {
+  getData: function () {
     return Template.instance().getSearchData.get();
   },
   getAroundItems: function () {
     var ret,
-        ins = Template.instance(),
-        inputSearchText = Session.get('bz.control.search.searchedText'),
-        currentLocation = Session.get('currentLocation'),
-        radius = Session.get('bz.control.search.distance'),
-        activeCats = Session.get('bz.control.category-list.activeCategories'),
-        searchAmount;
-    
+      ins = Template.instance(),
+      inputSearchText = Session.get('bz.control.search.searchedText'),
+      currentLocation = Session.get('currentLocation'),
+      radius = Session.get('bz.control.search.distance'),
+      activeCats = Session.get('bz.control.category-list.activeCategories'),
+      searchAmount,
+      take = 30
+
     //var throttle = _.throttle(function(){console.log('called')}, 10000);
-    
-    if(currentLocation) {
-      ret = (inputSearchText) ? searchPosts(inputSearchText, currentLocation, radius, activeCats) : nearbyPosts(currentLocation, radius, activeCats) ;
+
+    if (currentLocation) {
+      ret = (inputSearchText) ? searchPosts(inputSearchText, currentLocation, radius, activeCats) : nearbyPosts(currentLocation, radius, activeCats, take);
     }
-    
-    
-    
+
+
+    // not used, 12/28/16
     function searchPosts(text, loc, radius, activeCats) {
       var request = {};
-        
+
 
       //console.info('DATA: ', ins.getSearchData.get());
-      
+
       request = {
         query: text,
         lat: loc.latitude,
@@ -52,39 +54,39 @@ Template.bzAroundYou.helpers({
       };
 
       //if (ins.getSearchData.get() === false) {
-        Meteor.call('searchPosts', request, function(e, r) {
-          var res;
-          //console.info('Зашли в метод');          
-          res = (!e) ? r : e;
+      Meteor.call('searchPosts', request, function (e, r) {
+        var res;
+        //console.info('Зашли в метод');
+        res = (!e) ? r : e;
 
-          if (res.error) {
-            bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
-            return;
-          }
+        if (res.error) {
+          bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+          return;
+        }
 
-          if(res.success && res.result) {
-            _.each(res.result, p => {
-              Object.assign(p, bz.cols.posts.bzHelpers);
-            });
-            searchAmount = res.result.length;
-            (res.result.length > 0) ? ins.getSearchData.set(res.result) : ins.getSearchData.set([]);
-            //console.info('Вернувшийся результат: ', res.result);
-            //console.info('Данные из метода: ', ins.getSearchData.get());
-            Session.set('bz.control.search.amount', searchAmount);
-          } else {
-            bz.ui.alert('Error ID: ' + res.error.errorId, {type:'error', timeout: 2000});
-          }
-          
-          
-        });
+        if (res.success && res.result) {
+          _.each(res.result, p => {
+            Object.assign(p, bz.cols.posts.bzHelpers);
+          });
+          searchAmount = res.result.length;
+          (res.result.length > 0) ? ins.getSearchData.set(res.result) : ins.getSearchData.set([]);
+          //console.info('Вернувшийся результат: ', res.result);
+          //console.info('Данные из метода: ', ins.getSearchData.get());
+          Session.set('bz.control.search.amount', searchAmount);
+        } else {
+          bz.ui.alert('Error ID: ' + res.error.errorId, {type: 'error', timeout: 2000});
+        }
+
+
+      });
       //}
       /*CONSOLE CLEAR
-      console.log('searchPosts');
-      */
+       console.log('searchPosts');
+       */
       return ins.getSearchData;
     }
-    
-    
+
+
     function nearbyPosts(loc, radius, activeCats) {
       var request = {};
 
@@ -97,52 +99,52 @@ Template.bzAroundYou.helpers({
 
       /*if (ins.getNearByData.get() === false) {*/
       Meteor.call('getNearbyPostsTest', request, function (e, r) {
-          var res;
-  
-          res = (!e) ? r : e;
-  
-          if (res.error) {
-            bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
-            return;
-          }
-  
-          if (res.success && res.result) {
-            _.each(res.result, p => {
-              Object.assign(p, bz.cols.posts.bzHelpers);
-            });
+        var res;
 
-            // extend with helpers, since we're not using collection anymore:
-            var photoHelpers = bz.help.images;
-            r.result.length && r.result.forEach(data => data.details && data.details.photos && data.details.photos.forEach(p => Object.assign(p, photoHelpers)));
+        res = (!e) ? r : e;
 
-            (res.result.length > 0) ? ins.getSearchData.set(res.result) : ins.getSearchData.set([]);
-            //console.info('Данные из метода nearbyPosts: ', ins.getNearByData.get());
-  
-          } else {
-            bz.ui.alert('Error ID: ' + res.error.errorId, {type: 'error', timeout: 2000});
-          }
-  
-        });
-    /*}*/
+        if (res.error) {
+          bz.ui.alert('Error ID: ' + res.error, {type: 'error', timeout: 2000});
+          return;
+        }
+
+        if (res.success && res.result) {
+          _.each(res.result, p => {
+            Object.assign(p, bz.cols.posts.bzHelpers);
+          });
+
+          // extend with helpers, since we're not using collection anymore:
+          var photoHelpers = bz.help.images;
+          r.result.length && r.result.forEach(data => data.details && data.details.photos && data.details.photos.forEach(p => Object.assign(p, photoHelpers)));
+
+          (res.result.length > 0) ? ins.getSearchData.set(res.result) : ins.getSearchData.set([]);
+          //console.info('Данные из метода nearbyPosts: ', ins.getNearByData.get());
+
+        } else {
+          bz.ui.alert('Error ID: ' + res.error.errorId, {type: 'error', timeout: 2000});
+        }
+
+      });
+      /*}*/
       //console.log('nearbyPosts');
       //return console.log('nearbyPosts');
       return ins.getSearchData;
     }
-    
+
     //return ret;
-    
-    
+
+
     /*ret = getSearchResultsFromSessionParameters({
-      loc: Session.get('bz.control.search.location'),
-      dist: Session.get('bz.control.search.distance'),
-      cats: Session.get('bz.control.category-list.activeCategories'),
-      text: Session.get('bz.control.search.searchedText')
-    });
-        
-    Session.set('bz.control.search.amount', ret && ret.length);
-    
-    return ret;*/
-    
+     loc: Session.get('bz.control.search.location'),
+     dist: Session.get('bz.control.search.distance'),
+     cats: Session.get('bz.control.category-list.activeCategories'),
+     text: Session.get('bz.control.search.searchedText')
+     });
+
+     Session.set('bz.control.search.amount', ret && ret.length);
+
+     return ret;*/
+
     /* OLD CODE */
     /*var ret, loc = Session.get('bz.control.search.location'),
      distSession = Session.get('bz.control.search.distance') || [],
@@ -175,13 +177,13 @@ Template.bzAroundYou.helpers({
 });
 
 Template.bzAroundYou.events({
-  'click .js-show-more-posts-btn': function (e, v){
+  'click .js-show-more-posts-btn': function (e, v) {
     bz.bus.search.showMorePosts();
   },
-  'click .js-try-to-set-location': function(e, v) {
+  'click .js-try-to-set-location': function (e, v) {
     $('.js-link-location-name').click();
   },
-  'click .js-try-to-reset-search': function(e, v) {
+  'click .js-try-to-reset-search': function (e, v) {
     $('.typeahead').typeahead('val', ''); // searched text
     Session.set('bz.control.search.searchedText', '');
   }
@@ -198,7 +200,8 @@ Template.bzAroundYouItem.helpers({
   getPostOwner: function () {
     return Meteor.users.findOne(this.userId);
   },
-  getRank: function () {},
+  getRank: function () {
+  },
   getProgressBar: function () {
   },
   getTimeStamp: function () {
@@ -245,17 +248,17 @@ Template.bzAroundYouItem.helpers({
       // second: 'numeric'-->
     };
     if (this.timestamp) {
-      ret = new Date(this.timestamp).toLocaleDateString( Session.get("bz.user.language"), options);
+      ret = new Date(this.timestamp).toLocaleDateString(Session.get("bz.user.language"), options);
     }
     return ret;
   },
-  isVisible: function() {
+  isVisible: function () {
     return this.status.visible === true || this.status.visible === bz.const.posts.status.visibility.VISIBLE;
   }
 });
 
 
-Template.bzAroundYouItem.onRendered(function() {
+Template.bzAroundYouItem.onRendered(function () {
   var template = this, textH, text;
 
   text = template.$('.post-item-text');
@@ -276,19 +279,19 @@ Template.bzAroundYouItem.events({
       Router.go('/sign-in');
     }
     if (Meteor.userId() !== this.userId && this.userId) {
-      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this.userId).then(function(chatId) {
-          Router.go('/chat/' + chatId);
+      var chatId = bz.bus.chats.createChatIfFirstMessage(Meteor.userId(), this.userId).then(function (chatId) {
+        Router.go('/chat/' + chatId);
       });
     }
   },
-  'click .js-remove-post': function(e, v) {
+  'click .js-remove-post': function (e, v) {
     bz.cols.posts.remove(this._id)
   },
-  'click .js-activate-post': function(e, v) {
-    bz.cols.posts.update(this._id, { $set: { 'status.visible': bz.const.posts.status.visibility.VISIBLE }});
+  'click .js-activate-post': function (e, v) {
+    bz.cols.posts.update(this._id, {$set: {'status.visible': bz.const.posts.status.visibility.VISIBLE}});
   },
-  'click .js-deactivate-post': function(e, v) {
-    bz.cols.posts.update(this._id, { $set: { 'status.visible': bz.const.posts.status.visibility.INVISIBLE }});
+  'click .js-deactivate-post': function (e, v) {
+    bz.cols.posts.update(this._id, {$set: {'status.visible': bz.const.posts.status.visibility.INVISIBLE}});
   }
 });
 
@@ -316,17 +319,17 @@ function getLatLngBox(lat, lng, radius) {
 }
 
 
-function getSearchResultsFromSessionParameters(options = {}){
+function getSearchResultsFromSessionParameters(options = {}) {
   var ret;
   bz.cols.posts.find({});
   ret = bz.bus.search.searchePostsAroundAndPopular().aroundYou;
-  if (ret.length<Session.get('bz.control.search.postCountLimit')){
+  if (ret.length < Session.get('bz.control.search.postCountLimit')) {
     $('div.show-more-button a.js-show-more-posts-btn').addClass('disabled');
   }
-  else{
+  else {
     $('div.show-more-button a.js-show-more-posts-btn').removeClass('disabled');
   }
-  ret = _(ret).chain().sortBy(function(doc) {
+  ret = _(ret).chain().sortBy(function (doc) {
     return doc._getDistanceToCurrentLocationNumber();
   }).value();
   return ret;
