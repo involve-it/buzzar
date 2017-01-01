@@ -120,7 +120,7 @@ bz.bus.postsHandler = {
                 userId: currentUserId,
                 name: null,
                 data: e.data,
-                thumbnail: e.data
+                thumbnail: e.thumbnail || e.data
               };
               photos.push(bz.cols.images.insert(photo));
             }
