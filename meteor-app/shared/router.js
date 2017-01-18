@@ -62,4 +62,20 @@ Meteor.startup(function () {
       }
     }
   });
+  requireAdminUserController = baseController.extend({
+//requireLoginController = FastRender.RouteController.extend({
+    onBeforeAction: function () {
+      if (!Meteor.user()) {
+        if (Meteor.loggingIn()) {
+          this.render(this.loadingTemplate);
+        } else {
+          Router.signIn(true);
+        }
+      } else if (Meteor.user().isAdmin()){
+        this.next();
+      } else {
+        bz.ui.error('You need to be admin to see this page!')
+      }
+    }
+  });
 });

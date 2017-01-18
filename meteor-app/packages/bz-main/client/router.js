@@ -19,6 +19,19 @@ Router.configure({
   loadingTemplate: 'appLoading'
 });
 
+Router.map(function () {
+
+  this.route('admin', {
+    path: 'admin',
+    controller: 'requireAdminUserController',
+    waitOn: function () {
+      return [
+        Meteor.subscribe('users-admin')
+      ]
+    }
+  });
+});
+
 bz.help.makeNamespace('bz.router');
 
 // let's extend the router with convenience method:
