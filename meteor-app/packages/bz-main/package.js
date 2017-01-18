@@ -63,7 +63,11 @@ Package.onUse(function (api) {
     'client/router.js',
     'client/app-loading.html',
     'client/i18n/english.js',
-    'client/i18n/russian.js'
+    'client/i18n/russian.js',
+
+      'client/browser/admin/admin.html',
+      'client/browser/admin/admin.js',
+      'client/browser/admin/admin.less'
   ], 'client');
   
   api.addFiles([

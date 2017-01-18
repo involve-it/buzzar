@@ -41,6 +41,21 @@ Meteor.publish('users', function () {
     'online':1
   }});
 });
+Meteor.publish('users-admin', function () {
+  var ret;
+  if (Meteor.users.findOne(this.userId) && Meteor.users.findOne(this.userId).isAdmin()){
+    ret = Meteor.users.find();
+  } else {
+    Meteor.users.find({}, {fields: {
+      '_id':1,
+      'username':1,
+      'createdAt':1,
+      'profile':1,
+      'online':1
+    }});
+  }
+  return ret;
+});
 
 
 Meteor.publish('users-one', function (userIds) {
