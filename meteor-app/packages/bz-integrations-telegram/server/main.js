@@ -4,6 +4,9 @@ Meteor.startup(function () {
   bz.cols.posts.after.insert(function(userId, doc) {
     AddNewPost(doc);
   })
+  Meteor.users.after.insert(function(userId, doc) {
+    AddedNewUser(doc);
+  })
 });
 
 GetNearbyPosts = function(loc = {}) {

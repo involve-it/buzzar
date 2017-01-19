@@ -7,7 +7,7 @@ Template.admin.rendered = function () {
 
 Template.admin.helpers({
     getUsers: function() {
-        return Meteor.users.find({ createdAt: { $gte: new Date(+new Date - 12096e5) }});  // today - 2 weeks
+        return Meteor.users.find({ createdAt: { $gte: new Date(+new Date - 2 * 12096e5) }});  // today - 2 weeks
     }
 })
 
@@ -22,5 +22,9 @@ Template.userItem.helpers({
     },
     getCreatedDate() {
         return moment(this.createdAt).toString();
+    },
+    getLastLoginDate() {
+        var dt = this.status && this.status.lastLogin && this.status.lastLogin.date;
+        return moment(dt).toString();
     }
 })
