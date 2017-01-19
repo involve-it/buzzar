@@ -577,7 +577,9 @@ bz.bus.postsHandler = {
     }
     postsRet = bz.bus.postsHandler.buildPostsObject({ posts:posts });
     //postsRet = posts;
-    postsRet = postsRet.sort(optionsForArray.sort).slice(0, take);
+    if (postsRet && typeof postsRet.sort === 'function') {
+      postsRet = postsRet.sort(optionsForArray.sort).slice(0, take);
+    }
     ret = { success:true, result:postsRet };
     return ret;
   },

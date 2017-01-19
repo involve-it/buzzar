@@ -1,4 +1,5 @@
 <template name="admin">
+    <h5>Users, registered in the last 4 weeks: </h5>
     <table class="admin-users-table">
         {{#each getUsers }}
             <tr>
@@ -24,5 +25,8 @@
     </td>
     <td>
         registered at: {{ getCreatedDate }}
+    </td>
+    <td>
+        Last login at: {{ getLastLoginDate }}
     </td>
 </template>

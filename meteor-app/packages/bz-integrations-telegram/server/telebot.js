@@ -53,7 +53,6 @@ Meteor.startup(() => {
       Please use command '/posts', or simply send us your location to get closest live posts around!`;
   });
   TelegramBot.setCatchAllText(true, function(a, b, c) {
-    debugger;
   })
   TelegramBot.poll();
 });
@@ -63,6 +62,13 @@ Meteor.startup(() => {
 AddNewPost = function(post) {
   bz.cols.telegramChats.find().fetch().forEach(c => {
     var res = TelegramBot.send(`New post created! \n ${ post.details.title }:  ${ post.details.description }`, c.chat.id);
+  })
+}
+
+AddedNewUser = function(user) {
+  bz.cols.telegramChats.find().fetch().forEach(c => {
+    var res = TelegramBot.send(`New user registered! \n ${ user._id }:  ${ user.username }, email: ${ user.emails[0] && user.emails[0].address },
+     createdAt: ${ user.createdAt }`, c.chat.id);
   })
 }
 // private
