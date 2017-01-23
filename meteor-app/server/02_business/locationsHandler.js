@@ -3,7 +3,7 @@
  */
 
 bz.bus.locationsHandler = {
-  nearbyRadius: 0.5,
+  nearbyRadius: 0.2,
   addLocation: function(request){
     var ret, coords, placeType,name, public,currentUser,location, locId;
     check(request,{
