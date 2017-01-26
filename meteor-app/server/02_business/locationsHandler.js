@@ -55,39 +55,45 @@ bz.bus.locationsHandler = {
   },
 
   reportLocation: function(report, userId){
-    var posts, currentUserId, ret;
+    var posts, currentUserId, ret, user;
     if (report.lat && report.lng) {
       currentUserId = userId || Meteor.userId();
-      if (currentUserId) {
-        var userUpdateObj = {
-          coords: {
-            lat: report.lat,
-            lng: report.lng
-          }
-        };
-        if (report.deviceId) {
-          userUpdateObj.lastMobileLocationReport = new Date;
+      user = Meteor.users.findOne({_id: currentUserId});
+      if (user && !user.isInvisible) {
+          if (currentUserId) {
+              var userUpdateObj = {
+                  coords: {
+                      lat: report.lat,
+                      lng: report.lng
+                  }
+              };
+              if (report.deviceId) {
+                  userUpdateObj.lastMobileLocationReport = new Date;
 
-          if (report.notify) {
-            console.log('trying to send notification about nearby posts');
-            var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, bz.bus.locationsHandler.nearbyRadius);
-            if (nearbyPosts && nearbyPosts.length > 0) {
-              bz.bus.proximityHandler.notifyNearbyPosts(userId, nearbyPosts);
-            }
-          }
-        }
-        Meteor.users.update({_id: currentUserId}, {$set: userUpdateObj});
+                  if (report.notify) {
+                      console.log('trying to send notification about nearby posts');
+                      var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, bz.bus.locationsHandler.nearbyRadius);
+                      if (nearbyPosts && nearbyPosts.length > 0) {
+                          bz.bus.proximityHandler.notifyNearbyPosts(currentUserId, nearbyPosts);
+                      }
+                  }
+              }
 
-        posts = bz.cols.posts.find({userId: currentUserId}).fetch();
-        if (posts) {
-          bz.bus.proximityHandler.processLocationReport(posts, report.lat, report.lng);
-          ret = {success: true}
-        } else {
-          ret = {success: true}
-        }
+              Meteor.users.update({_id: currentUserId}, {$set: userUpdateObj});
+
+              posts = bz.cols.posts.find({userId: currentUserId}).fetch();
+              if (posts) {
+                  bz.bus.proximityHandler.processLocationReport(posts, report.lat, report.lng);
+                  ret = {success: true}
+              } else {
+                  ret = {success: true}
+              }
+          } else {
+              //error not logged
+              ret = {success: false, error: bz.const.errors.global.notLogged};
+          }
       } else {
-        //error not logged
-        ret = {success: false, error: bz.const.errors.global.notLogged};
+          ret = {success: false};
       }
     } else {
       ret = {success: false};

@@ -52,7 +52,7 @@ bz.bus.proximityHandler = {
         }
         if (user) {
             //if app closed, reports come from native code - send notification if there are nearby posts.
-            if (report.deviceId && user.enableNearbyNotifications) {
+            if (report.deviceId && user.enableNearbyNotifications && !user.isInvisible) {
                 console.log('trying to send notification about nearby posts');
                 var nearbyPosts = bz.bus.proximityHandler.getNearbyPosts(report.lat, report.lng, nearbyRadius);
                 console.log(nearbyPosts);
