@@ -6,7 +6,9 @@ var helperFunctions = {
   hasLivePresence: function () {
     var loc = null;
     if(this.status.visible) {
-      if (this.presences && Object.keys(this.presences).length > 0) {
+      if (this.presences && Object.keys(this.presences).length > 0 &&
+          (!this.user || !this.user.isInvisible &&
+          (this.user.online || this.user.lastMobileLocationReport && (new Date().getTime() - this.user.lastMobileLocationReport.getTime()) <= 20 * 60 * 10000))) {
         _.each(this.presences, function (e, i) {
           if (i === bz.const.locations.type.DYNAMIC) {
             loc = _.find(this.details.locations, function (location) {

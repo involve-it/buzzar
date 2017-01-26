@@ -255,7 +255,7 @@ Meteor.startup(function(){
             }).fetch();
 
             _.each(users, function (user) {
-              if (user.enableNearbyNotifications) {
+              if (user.enableNearbyNotifications && !user.isInvisible) {
                 console.log('sending push new post to user id: ' + user._id);
                 bz.bus.pushHandler.push(user._id, 'New post nearby', doc.details.title, {
                   type: bz.const.push.type.post,

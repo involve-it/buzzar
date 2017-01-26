@@ -84,6 +84,12 @@ bz.bus.usersHandler = {
             if (requestData.enableNearbyNotifications != null){
               user.enableNearbyNotifications = requestData.enableNearbyNotifications;
             }
+            if (requestData.isInvisible != null){
+                user.isInvisible = requestData.isInvisible;
+                if (user.isInvisible){
+                    user.lastMobileLocationReport = null;
+                }
+            }
             if(requestImageUrl || email){
                 if (requestImageUrl){
                     user.profile = {image:{ data: requestImageUrl, thumbnail: null}}
@@ -157,7 +163,8 @@ bz.bus.usersHandler = {
         _id: userDb._id,
         createdAt: userDb.createdAt,
         username: userDb.username,
-        online: userDb.status.online,
+        online: userDb.status.online && !userDb.isInvisible,
+        isInvisible: !!userDb.isInvisible,
         lastLogin: userDb.status && userDb.status.lastLogin && userDb.status.lastLogin.date,
         image:{
           imageUrl: userDb.profile && userDb.profile.image && userDb.profile.image.data,
