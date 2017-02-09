@@ -411,7 +411,7 @@ bz.bus.postsHandler = {
     return post;
   },
   buildPostsObject: function(data, isMobile){
-    var post,posts,postsRet=[], ret={}, locations=[],arrPhoto, photos,usersIds, arrUsers, users, likes;
+    var post,posts,postsRet=[], ret=[], locations=[],arrPhoto, photos,usersIds, arrUsers, users, likes;
     posts=data.posts;
     if (posts && posts.length>0) {
       usersIds = _.map(posts, function (post) {
@@ -580,6 +580,7 @@ bz.bus.postsHandler = {
     if (postsRet && typeof postsRet.sort === 'function') {
       postsRet = postsRet.sort(optionsForArray.sort).slice(0, take);
     }
+
     ret = { success:true, result:postsRet };
     return ret;
   },

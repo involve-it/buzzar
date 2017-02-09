@@ -63,7 +63,7 @@ bz.const.push.type.post = 'post';
 
 bz.help.makeNamespace('bz.const.verification');
 bz.const.verification.profileDetailsKeys=["firstName", "lastName", "city","phone","skype", "vk", "twitter", "facebook"];
-bz.const.verification.pushPlatforms = ['apn'];
+bz.const.verification.pushPlatforms = ['apn', 'gcm'];
 
 bz.help.makeNamespace('bz.const.likeEntityType');
 bz.const.likeEntityType.post = 'post';
