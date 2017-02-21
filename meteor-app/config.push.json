@@ -10,8 +10,8 @@
     "cert": "ApnDevCert.pem"
   },
   "gcm":{
-    "apiKey": "AIzaSyCzq470boS0yo_r7hh8KC2Qjm0mtQZIoFw",
-    "projectNumber": "485548710693"
+    "apiKey": "AIzaSyCHifDq93d-gOZi5YWlVe3xOkReNWj4Zuk",
+    "projectNumber": "218885288507"
   },
   "production": true,
   "badge": true,
