@@ -43,7 +43,7 @@ bz.bus.postsHandler = {
     postsQuery['status'] ={visible: bz.const.posts.status.visibility.VISIBLE};
     // get only non-expired posts (if no value provided in call):
     if (!postsQuery['endDatePost']) {
-      postsQuery['endDatePost'] = { $gte : Date.now() }
+      postsQuery['endDatePost'] = { $gte : new Date() }
     }
 
     posts= bz.cols.posts.find(postsQuery).fetch();
@@ -289,7 +289,7 @@ bz.bus.postsHandler = {
                 updatePost.type = postData.type;
               }
               if (postData.endDatePost){
-                updatePost.endDatePost = postData.endDatePost
+                updatePost.endDatePost = new Date(postData.endDatePost);
               }
               //mobile format
               if (postDb.details.photos) {
