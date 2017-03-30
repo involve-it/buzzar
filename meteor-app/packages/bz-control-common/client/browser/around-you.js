@@ -96,7 +96,7 @@ Template.bzAroundYou.helpers({
         activeCats: activeCats,
         take: take
       };
-debugger
+
       /*if (ins.getNearByData.get() === false) {*/
       Meteor.call('getNearbyPostsTest', request, function (e, r) {
           var res;
