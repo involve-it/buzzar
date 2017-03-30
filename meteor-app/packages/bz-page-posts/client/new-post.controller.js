@@ -180,6 +180,8 @@ CreateNewPostFromView = function (v) {
     var currentLoc = bz.help.location.getCurrentLocation();
 
     bz.runtime.changesNotSaved = false;
+
+    
     Meteor.call('addPost', newPost, currentLoc, function(e, r) {
       var imgArray = imagesArrayReactive.get();
       if (!!imgArray.length) {

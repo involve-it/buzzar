@@ -375,7 +375,6 @@ Template.onePostRowItemOwner.helpers({
       } else if( percent >= 50 ) {
         barClass = 'green';
       }
-      
       if( percent <= 0 ) {
         percent = 0;
         status = false;
@@ -384,9 +383,7 @@ Template.onePostRowItemOwner.helpers({
         var obj ={ status: {visible: null}, timePause: 0};
         Meteor.call('timePostUpdate',this._id,obj);
       }
-      
       language = Session.get('bz.user.language');
-      
       function endingOfTheWord(lang, number, title, titleEng) {
         if( lang === 'en' ) {
 
