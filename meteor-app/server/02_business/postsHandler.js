@@ -309,7 +309,7 @@ bz.bus.postsHandler = {
 								updatePost.type = postData.type;
 							}
 							if (postData.endDatePost) {
-								updatePost.endDatePost = postData.endDatePost
+								updatePost.endDatePost = new Date(postData.endDatePost);
 							}
 							//mobile format
 							if (postDb.details.photos) {
@@ -609,6 +609,7 @@ bz.bus.postsHandler = {
 				console.log(ex);
 			}
 		}
+		debugger;
 		postsRet = bz.bus.postsHandler.buildPostsObject({posts: posts});
 		//postsRet = posts;
 		if (postsRet && typeof postsRet.sort === 'function') {
