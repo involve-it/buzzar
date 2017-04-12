@@ -36,8 +36,8 @@ bz.bus.postsHandler = {
       postsQuery['type'] = {$in: arrTypes};
     }
     postsQuery['$or'] = [
-      {'details.title': {$regex: query}},
-      {'details.description': {$regex: query}},
+      {'details.title': {$regex: query, $options: 'i'}},
+      {'details.description': {$regex: query, $options: 'i'}},
       {'details.price': {$regex: query}}
     ];
     postsQuery['status'] ={visible: bz.const.posts.status.visibility.VISIBLE};
