@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
-    "bcrypt": "^1.0.1",
+    "bcrypt": "^1.0.2",
     "noty": "^2.3.8",
     "pyrsmk-toast": "^2.1.0"
   }
