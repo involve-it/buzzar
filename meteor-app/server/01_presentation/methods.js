@@ -432,7 +432,20 @@ Meteor.methods({
   'bz.blog.getPostById': function(id) {
     var ret = bz.cols.blogPosts.find({ _id: id }).fetch()[0];
     return ret;
-  }
+  },
+    'bz.auth.forgotPassword': function(email) {
+      debugger;
+        Accounts.forgotPassword({
+            email: email
+        });
+    },
+    'bz.auth.resetPassword': function(token, newPassword) {
+      debugger;
+      //Accounts.resetPassword(token, newPassword, [callback])
+        Accounts.resetPassword(token, newPassword, () => {
+            debugger;
+        });
+    }
 
 });
 
