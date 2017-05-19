@@ -1,1 +1,0 @@
-bz.cols.blogPosts = Blog.Post;
