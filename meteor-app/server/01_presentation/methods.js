@@ -1,6 +1,7 @@
 /**
  * Created by ashot on 7/26/15.
  */
+
 var defaultDistance = 5,
   defaultLimit = 50;
 
@@ -424,8 +425,15 @@ Meteor.methods({
       return ret;
     // });
     return ret;
+  },
+  'bz.blog.getPosts': function() {
+    var ret = bz.cols.blogPosts.find().fetch();
+    return ret;
+  },
+  'bz.blog.getPostById': function(id) {
+      var ret = bz.cols.blogPosts.find({_id: id}).fetch()[0];
+      return ret;
   }
-
 });
 
 //test comment
