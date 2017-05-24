@@ -1,5 +1,5 @@
-accounts-base@1.2.16
-accounts-password@1.3.5
+accounts-base@1.2.17
+accounts-password@1.3.6
 alanning:roles@1.2.16
 aldeed:collection2@2.10.0
 aldeed:collection2-core@1.2.0
@@ -134,7 +134,7 @@ meteorhacks:subs-manager@1.6.4
 meteorhacks:zones@1.6.0
 minifier-css@1.2.16
 minifier-js@2.0.0
-minimongo@1.0.21
+minimongo@1.0.23
 mizzao:timesync@0.5.0
 mizzao:user-status@0.6.6
 mobile-experience@1.0.4
@@ -142,7 +142,7 @@ mobile-status-bar@1.0.14
 modules@0.8.2
 modules-runtime@0.7.10
 momentjs:moment@2.18.1
-mongo@1.1.16
+mongo@1.1.17
 mongo-id@1.0.6
 mongo-livedata@1.0.12
 mquandalle:ismobile@0.1.0
@@ -173,7 +173,7 @@ retry@1.0.9
 routepolicy@1.0.12
 ryw:blog@0.8.6
 sacha:spin@2.3.1
-selaias-local:accounts-entry@0.8.2
+selaias-local:accounts-entry@0.9.0
 selaias:alerts@0.3.1
 sergeyt:typeahead@0.11.1_9
 service-configuration@1.0.11
@@ -192,7 +192,7 @@ templating-compiler@1.3.2
 templating-runtime@1.3.2
 templating-tools@1.1.2
 thinksoftware:image-resize-client@1.0.0
-tracker@1.1.2
+tracker@1.1.3
 ui@1.0.13
 underscore@1.0.10
 url@1.1.0
