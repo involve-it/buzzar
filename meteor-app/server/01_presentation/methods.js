@@ -1,6 +1,7 @@
 /**
  * Created by ashot on 7/26/15.
  */
+
 var defaultDistance = 5,
   defaultLimit = 50;
 
@@ -430,23 +431,9 @@ Meteor.methods({
     return ret;
   },
   'bz.blog.getPostById': function(id) {
-    var ret = bz.cols.blogPosts.find({ _id: id }).fetch()[0];
-    return ret;
-  },
-    'bz.auth.forgotPassword': function(email) {
-      debugger;
-        Accounts.forgotPassword({
-            email: email
-        });
-    },
-    'bz.auth.resetPassword': function(token, newPassword) {
-      debugger;
-      //Accounts.resetPassword(token, newPassword, [callback])
-        Accounts.resetPassword(token, newPassword, () => {
-            debugger;
-        });
-    }
-
+      var ret = bz.cols.blogPosts.find({_id: id}).fetch()[0];
+      return ret;
+  }
 });
 
 //test comment
