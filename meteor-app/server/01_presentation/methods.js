@@ -426,12 +426,29 @@ Meteor.methods({
     // });
     return ret;
   },
-  'bz.blog.getPosts': function() {
-    var ret = bz.cols.blogPosts.find().fetch();
+  'bz.blog.getPosts': function(limit) {
+    var ret;
+    limit = limit || Number.MAX_SAFE_INTEGER;
+    ret = Blog.Post.find({
+        mode: 'public'
+    }, {
+        fields: {
+            body: 0
+        },
+        sort: {
+            publishedAt: -1
+        },
+        limit: limit
+    }).fetch();
     return ret;
   },
   'bz.blog.getPostById': function(id) {
-      var ret = bz.cols.blogPosts.find({_id: id}).fetch()[0];
+      var ret;
+      if(id) {
+          ret = Blog.Post.find({
+              _id: id
+          }).fetch()[0];
+      }
       return ret;
   }
 });
