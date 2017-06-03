@@ -4,10 +4,10 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-base@1.0.4             # Packages every Meteor app needs to have
+meteor-base@1.1.0             # Packages every Meteor app needs to have
 mobile-experience@1.0.4       # Packages for a great mobile UX
 
-mongo@1.1.17                   # The database Meteor supports right now
+mongo@1.1.18                   # The database Meteor supports right now
 session@1.1.7                 # Client-side reactive dictionary for your app
 jquery@1.11.10                  # Helpful client-side library
 tracker@1.1.3                 # Meteor's client-side reactive programming library
@@ -29,7 +29,7 @@ raix:push
 service-configuration@1.0.11
 zimme:active-route
 arutune:bz-main
-less@2.7.8
+less@2.7.9
 matb33:collection-hooks
 arutune:bz-api
 arutune:bz-page-posts
@@ -63,18 +63,19 @@ blaze-html-templates
 check@1.2.5
 email@1.2.1
 standard-minifier-css@1.3.4
-standard-minifier-js@2.0.0
+standard-minifier-js@2.1.0
 
 okgrow:analytics
 aslagle:reactive-table
 arutune:bz-page-tags
 ground:db
-force-ssl@1.0.13
+force-ssl@1.0.14
 mizzao:user-status
 meteorhacks:aggregate
 arutune:bz-integrations-telegram
 benjick:telegram-bot
 ryw:blog
-shell-server
+shell-server@0.2.3
 percolate:synced-cron
-ecmascript
+ecmascript@0.8.0
+dynamic-import@0.1.0
