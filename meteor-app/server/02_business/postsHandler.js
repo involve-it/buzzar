@@ -451,7 +451,8 @@ bz.bus.postsHandler = {
           social: postDb.social,
           stats: postDb.stats,
           lastEditedTs: new Date(postDb.lastEditedTs),
-          likes: _.filter(likes, function(like){ return like.entityId === postDb._id}).length
+          likes: _.filter(likes, function(like){ return like.entityId === postDb._id}).length,
+          premium: postDb.premium
         };
         if (Meteor.userId()){
           post.liked = !!_.find(likes, function(like){return like.entityId === postDb._id && like.userId === Meteor.userId()});
@@ -516,9 +517,9 @@ bz.bus.postsHandler = {
     };
     optionsForArray = {
       sort: function(a, b) {
-        var diff = bz.help.posts.getDistanceToCurrentLocationNumber.call(a, undefined, curLocation)
-            - bz.help.posts.getDistanceToCurrentLocationNumber.call(b, undefined, curLocation);
-        return diff;
+          var diff = bz.help.posts.getDistanceToCurrentLocationNumber.call(a, undefined, curLocation)
+              - bz.help.posts.getDistanceToCurrentLocationNumber.call(b, undefined, curLocation);
+          return diff;
       }
     };
     if (lat && lng && radius) {
@@ -551,14 +552,13 @@ bz.bus.postsHandler = {
     }
     // only return live posts, if no showOffline flag provided:
     if (showOffline) {
-      posts = bz.cols.posts.find(postsQuery, options).fetch().sort(optionsForArray.sort).slice(0, take);
+      posts = bz.cols.posts.find({$or: [postsQuery, {'premium': 1}]}, options).fetch().sort(optionsForArray.sort).slice(0, take);
     } else {
       postsQuery["$or"] = [{"presences.dynamic": {'$eq': 'close'}}, {"presences.static": {'$eq': 'close'}}];
       try {
         posts = bz.cols.posts.aggregate([
           // {$match: {"$or": [{"presences.dynamic": {'$eq': 'close'}}, {"presences.static": {'$eq': 'close'}}]}},
-          {$match: postsQuery},
-
+          {$match: {$or: [postsQuery, {'premium': 1}]}},
           {
             $lookup: {
               from: "users",
@@ -577,6 +577,17 @@ bz.bus.postsHandler = {
     }
     postsRet = bz.bus.postsHandler.buildPostsObject({ posts:posts });
     //postsRet = posts;
+      debugger;
+    if (postsRet){
+      postsRet.forEach(function(post){
+        if (post.premium && post.details && post.details.locations && post.details.locations.length){
+          post.details.locations[0].coords = {
+            lat: request.lat,
+            lng: request.lng
+          }
+        }
+      });
+    }
     if (postsRet && typeof postsRet.sort === 'function') {
       postsRet = postsRet.sort(optionsForArray.sort).slice(0, take);
     }
