@@ -24,13 +24,14 @@ Meteor.startup(function () {
     bz.cols.invitationCodes = new Mongo.Collection('invitationCodes');
     bz.cols.invitationCodes.remove({});
     // we add id's so that it's consistent:
-debugger;
-console.log('imhere!!!!');
-    bz.cols.invitationCodes.insert({
-        issuerId: Meteor.users.findOne({ 'emails.0.address': 'arutune@gmail.com'})._id,
-        codeType: bz.cols.invitationCodeTypes.findOne({ name: 'global' }),
+    if(Meteor.users.findOne({ 'emails.0.address': 'arutune@gmail.com'})) {
+        bz.cols.invitationCodes.insert({
+            issuerId: Meteor.users.findOne({ 'emails.0.address': 'arutune@gmail.com'})._id,
+            codeType: bz.cols.invitationCodeTypes.findOne({ name: 'global' }),
 
-    });
+        });
+    }
+
 
 
 });
