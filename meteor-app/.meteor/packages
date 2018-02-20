@@ -55,8 +55,6 @@ arutune:bz-page-events
 arutune:bz-page-services
 arutune:bz-page-help
 
-meteorhacks:kadira
-meteorhacks:zones
 blaze
 blaze-html-templates
 
@@ -74,7 +72,6 @@ mizzao:user-status
 meteorhacks:aggregate
 arutune:bz-integrations-telegram
 benjick:telegram-bot
-ryw:blog
 shell-server@0.3.1
 percolate:synced-cron
 ecmascript@0.10.0
