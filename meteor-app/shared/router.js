@@ -41,10 +41,24 @@ Meteor.startup(function () {
       console.log('baseController - route stopped: ' + new Date());
       */
       //bz.ui.spinnerAdd('body', true);
-    }
+    },
     /*onAfterAction: function () {
       bz.ui.spinnerRemove('body', true);
     }*/
+    // temporarily close:
+      onBeforeAction: function () {
+          if (!Meteor.user()) {
+              if (Meteor.loggingIn()) {
+                  this.render(this.loadingTemplate);
+              } else {
+                  Router.signIn(true);
+                  //Router.go('entrySignUp');
+                  //Router.go('entrySignIn');
+              }
+          } else {
+              this.next();
+          }
+      }
   });
   requireLoginController = baseController.extend({
 //requireLoginController = FastRender.RouteController.extend({

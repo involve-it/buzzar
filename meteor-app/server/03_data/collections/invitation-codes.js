@@ -11,7 +11,7 @@ Meteor.startup(function () {
         name: 'global',
     });
     bz.cols.invitationCodeTypes.insert({
-        name: 'clubAdmin'
+        name: 'admin'
     });
     bz.cols.invitationCodeTypes.insert({
         name: 'trainer'
@@ -25,13 +25,28 @@ Meteor.startup(function () {
     bz.cols.invitationCodes.remove({});
     // we add id's so that it's consistent:
     if(Meteor.users.findOne({ 'emails.0.address': 'arutune@gmail.com'})) {
-        bz.cols.invitationCodes.insert({
-            issuerId: Meteor.users.findOne({ 'emails.0.address': 'arutune@gmail.com'})._id,
-            codeType: bz.cols.invitationCodeTypes.findOne({ name: 'global' }),
+        //debugger;
+        //if (!bz.cols.invitationCodes.find({ issuerId: Meteor.users.findOne({ 'emails.0.address': 'arutune@gmail.com'})._id})) {
+            bz.cols.invitationCodes.insert({
+                issuerId: Meteor.users.findOne({ 'emails.0.address': 'arutune@gmail.com'})._id,
+                codeType: bz.cols.invitationCodeTypes.findOne({ name: 'global' }),
 
-        });
+            });
+        //}
     }
 
-
+    Meteor.publish('invitationCodes', function(){
+        var ret;
+        ret = bz.cols.invitationCodes.find();
+        return ret;
+    });
+    bz.cols.invitationCodes.allow({
+        insert: function () {
+            return Meteor.user();
+        },
+        remove: function () {
+            return Meteor.user();
+        }
+    });
 
 });

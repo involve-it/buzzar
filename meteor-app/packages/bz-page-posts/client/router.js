@@ -14,6 +14,7 @@ Router.map(function () {
   });
   this.route('posts.details', {
     path: '/post/:_id',
+    controller: 'baseController',
     template: 'postsPageDetails',
     waitOn: function() {
       if(this.data()) return;
