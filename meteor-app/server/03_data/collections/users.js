@@ -77,3 +77,28 @@ Meteor.publish('users-one', function (userIds) {
 /*Meteor.publish('bz.users.byId', function(userId){
   return Meteor.users.findOne(userId);
 })*/
+
+// bz.cols.userTypes =  new Meteor.Collection('bz.userTypes');
+// bz.cols.userTypes.insert({ value: 'visitor' }); // default user
+// bz.cols.userTypes.insert({ value: 'admin' });
+// bz.cols.userTypes.insert({ value: 'trainer' });
+
+
+
+bz.const.userTypes = { visitor: 'visitor', admin: 'admin', trainer: 'trainer', hero: 'hero' };
+
+// create hero users:
+Meteor.users.remove({ 'emails.0.address': 'arutune@gmail.com' }); Accounts.createUser({username: 'a', password: 'g1', email: 'arutune@gmail.com', profile: { name: 'Эш', type: bz.const.userTypes.hero }});
+
+// create fake treners:
+Meteor.users.remove({ username: 'john1' }); Accounts.createUser({username: 'john1', password: 'j1', profile: { name: 'Василий Пупкин', type: bz.const.userTypes.trainer }});
+Meteor.users.remove({ username: 'john2' }); Accounts.createUser({username: 'john2', password: 'j1', profile: { name: 'Герман Павлович Мейерхольд', type: bz.const.userTypes.trainer }});
+Meteor.users.remove({ username: 'john3' }); Accounts.createUser({username: 'john3', password: 'j1', profile: { name: 'Здоб Ши Здуб Печорkин', type: bz.const.userTypes.trainer }});
+
+// bz.cols.usersTrainers = new Mongo.Collection('bz.users.trainers');
+Meteor.publish('bz.users.trainers', function(){
+    // return Meteor.users.find({});
+    return Meteor.users.find({
+        'profile.type': bz.const.userTypes.trainer
+    }, { });
+});

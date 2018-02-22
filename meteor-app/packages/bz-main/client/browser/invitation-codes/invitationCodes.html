@@ -17,6 +17,9 @@
             <th>
                 Название события
             </th>
+            <th>
+                Город кода
+            </th>
         </thead>
         <tbody>
         {{#each getCodes }}
@@ -33,7 +36,7 @@
     <div class="js-create-code-modal-holder reveal-modal" data-reveal aria-labelledby="modalTitle"
          aria-hidden="true" role="dialog">
         <div class=" js-location-modal-holder-global"></div>
-        <!--{{> bzCreateInvitationCodeModal }}-->
+        {{> bzCreateInvitationCodeModal }}
         <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     </div>
 </template>
@@ -55,6 +58,9 @@
         {{ eventName }}
     </td>
     <td>
+        {{ cityName }}
+    </td>
+    <td>
         <a class="js-remove">Удалить</a>
     </td>
 </template>
@@ -63,37 +69,44 @@
 
         <div class="header-toolbar">
             <div class="header-toolbar-title">
-                <span>Generate code</span>
+                <span>Создать пригласительный код</span>
             </div>
 
             <div class="header-toolbar-search">
                 <div class="header-toolbar-search-field">
                     <form id="bzCreateCodeForm" data-abide>
 
-                                <input class="form-control bz-margin-zero typeahead js-event-name-input" name="team" type="text" style="height: 44px;"
+                                <input class="form-control bz-margin-zero typeahead js-event-name-input" type="text" style="height: 44px; width: 300px;"
                                        placeholder="Имя События"
-                                       data-sets="placesArray"
-
+                                       data-source="usersArray"
+                                       data-opened="opened"
+                                       data-highlight="true"
                                        autocomplete="off" spellcheck="off"
                                        data-min-length="0"
-                                       data-opened="opened" data-selected="locationItemSelected"
-                                       data-template="teamList"
                                 />
 
                         <div>ИЛИ </div>
-                                <input class="form-control typeahead js-trainer-name-input" name="team" type="text"
-                                       placeholder="Имя тренера"
-                                       data-sets="placesArray"
+                            <input class="form-control typeahead js-trainer-name-input" name="team" type="text" style="height: 44px; width: 300px;"
+                                   placeholder="Имя тренера"
+                                   data-source="usersArray"
+                                   data-highlight="true"
+                                   autocomplete="off" spellcheck="off"
+                                   data-min-length="0"
 
-                                       autocomplete="off" spellcheck="off"
-                                       data-min-length="0"
-                                       data-opened="opened" data-selected="locationItemSelected"
-                                       data-template="teamList"
-                                />
+                            /><div>Выберите город </div>
 
-                        <div class="margin-left">
+                        <input class="form-control bz-margin-zero typeahead js-city-name-input" name="team" type="text" style="height: 44px; width: 300px;"
+                               placeholder="Выберите город"
+                               data-source="citiesArray"
+
+                               data-highlight="true"
+                               autocomplete="off" spellcheck="off"
+                               data-min-length="0"
+                        />
+
+                        <div class="margin-left margin-top-20px">
                             <a class="button btn-default bz-small js-create-code-button">Создать</a>
-                            <div><span class="js-create-code-code-holder hidden">awef</span></div>
+                            <div class="margin-top-20px margin-bottom-20px"><span style="color: red;" class="js-create-code-code-holder hidden">awef</span></div>
                             <a class="button btn-default bz-small js-create-code-close-button hidden">Закрыть</a>
                         </div>
                     </form>
@@ -102,4 +115,8 @@
 
 
         </div>
+</template>
+
+<template name="autosuggestItem">
+    <h4><i>{{ name }}</i></h4>
 </template>
