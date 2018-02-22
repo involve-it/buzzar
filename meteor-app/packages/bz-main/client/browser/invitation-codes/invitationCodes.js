@@ -2,8 +2,6 @@
  * Created by arutu_000 on 1/17/2017.
  */
 
-Template.invitationCodes.rendered = function () {
-};
 
 Template.invitationCodes.helpers({
     getCodes: function() {
@@ -54,13 +52,36 @@ Template.bzCreateInvitationCodeModal.helpers({
         return ret;
     }
 });
+Template.bzCreateInvitationCodeModal.onRendered(function() {
+
+    Meteor.setTimeout(function() {
+        $(document).on('open.fndtn.reveal', '[data-reveal]', function () {
+            $('body').css('overflow', 'hidden')
+        });
+
+        $(document).on('close.fndtn.reveal', '[data-reveal]', function () {
+            $('body').css('overflow', '');
+            codeCreateModalClosed();
+        });
+    }, 1000);
+
+});
+
+var codeCreateModalClosed = function() {
+    $('.js-event-name-input').val('');
+    $('.js-trainer-name-input').val('');
+    $('.js-city-name-input').val('');
+    $('.js-create-code-button').show();
+    $('.js-create-code-code-holder').hide().text('');
+    $('.js-create-code-close-button').hide();
+
+}
 Template.bzCreateInvitationCodeModal.rendered = function() {
     Meteor.typeahead.inject();
 }
 Template.bzCreateInvitationCodeModal.events({
     'click .js-create-code-button': function(e, view) {
         var code;
-        debugger;
         code = bz.bus.invitationCodes.createCode({
             trainerName: view.$('.js-trainer-name-input.tt-input').val() || view.$('.js-trainer-name-input').val(), //= $('.js-location-name-input.tt-input').val() || $('.js-location-name-input').val();
             eventName: view.$('.js-event-name-input.tt-input').val() || view.$('.js-event-name-input').val(),
