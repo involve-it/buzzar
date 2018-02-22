@@ -9,6 +9,8 @@ const adminsList = [
     'iyirischa@yandex.ru',
     'narine.badalian@gmail.com'
 ]
+bz.help.makeNamespace('bz.const');
+bz.const.adminsList = adminsList;
 Meteor.startup(function() {
   var user;
   adminsList.forEach(function(u) {
