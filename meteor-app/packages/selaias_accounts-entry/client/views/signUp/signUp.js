@@ -126,7 +126,7 @@ AccountsEntry.entrySignUpEvents = {
       Alerts.add(i18n("error.signupCodeRequired"), 'danger');
       return;
     }
-    Meteor.call('entryValidateSignupCode', signupCode, function(err, valid) {
+    Meteor.call('entryValidateSignupCode', signupCode, email, function(err, valid) {
       var newUserData;
       if (valid) {
         newUserData = {
