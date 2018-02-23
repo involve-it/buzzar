@@ -93,11 +93,20 @@
                                    autocomplete="off" spellcheck="off"
                                    data-min-length="0"
 
-                            /><div>Выберите город </div>
+                            /><div>Выберите город * </div>
 
                         <input class="form-control bz-margin-zero typeahead js-city-name-input" name="team" type="text" style="height: 44px; width: 300px;"
                                placeholder="Выберите город"
                                data-source="citiesArray"
+
+                               data-highlight="true"
+                               autocomplete="off" spellcheck="off"
+                               data-min-length="0"
+                        />
+                        <div class="margin-top-20px"></div>
+                        <input class="form-control bz-margin-zero typeahead js-role-name-input" name="team" type="text" style="height: 44px; width: 300px;"
+                               placeholder="Выберите Права"
+                               data-source="rolesArray"
 
                                data-highlight="true"
                                autocomplete="off" spellcheck="off"

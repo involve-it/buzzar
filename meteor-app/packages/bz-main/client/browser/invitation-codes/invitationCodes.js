@@ -50,6 +50,16 @@ Template.bzCreateInvitationCodeModal.helpers({
         });
         // var ret = bz.cols.cities.find().fetch().map(it=>it.name);
         return ret;
+    },
+    rolesArray: function() {
+        var ret = ['Тренер', 'Посетитель', 'Админ'].map(function (object) {
+            return {
+                // id: object._id,
+                value: object,
+            };
+        });
+        // var ret = bz.cols.cities.find().fetch().map(it=>it.name);
+        return ret;
     }
 });
 Template.bzCreateInvitationCodeModal.onRendered(function() {
