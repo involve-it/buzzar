@@ -14,3 +14,13 @@ Accounts.validateNewUser(function(user) {
 Accounts.onLogin(function(user){
   //console.log(user);
 });
+
+bz.help.makeNamespace('bz.config');
+bz.config.sendAdminNotificationEmail = function(userId, useremail) {
+ var options = {
+   header: 'Регистрация нового пользователя на ужине в платьях',
+     title: 'Регистрация нового пользователя на ужине в платьях',
+     msg: `Регистрация нового пользователя на ужине в платьях <a href="http://shiners.mobi/users/${ userId }">${ userId }</a>, email: ${ useremail }"`
+ }
+ bz.bus.notifications.sendEmailToClubAdmins(options);
+}

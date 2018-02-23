@@ -76,9 +76,14 @@ Meteor.methods({
       if (user.email && Accounts._options.sendVerificationEmail) {
         Accounts.sendVerificationEmail(userId, user.email);
       }
+      if (bz.config.sendAdminNotificationEmail) {
+          bz.config.sendAdminNotificationEmail(userId, user.email);
+      }
     }catch(ex){
       console.log(ex)
       throw new Meteor.Error(403, ex.message);
     }
   }
 });
+
+

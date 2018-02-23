@@ -35,3 +35,14 @@ Notifications.sendEmail = function (options ) {
   }
   Email.send(emailOptions(data));
 }
+
+Notifications.sendEmailToClubAdmins = function (options, clubId ) {
+  // todo: after we add clubs,
+    Meteor.users.find({ 'profile.type': bz.const.userTypes.admin }).fetch().forEach((i) => {
+        Notifications.sendEmail(_.extend({
+            user: { email: i.emails && i.emails[0] && i.emails[0].address },
+            username: i.username,
+            userId: i._id
+        }, options))
+    })
+}

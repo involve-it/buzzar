@@ -13,9 +13,9 @@ AccountsEntry = {
     entrySignUp: '/sign-up',
     emailVerificationPendingRoute: '/verification-pending',
     extraSignUpFields: [],
-    showOtherLoginServices: false,
+    showOtherLoginServices: true,
     fluidLayout: false,
-    requirePasswordConfirmation: true,
+    requirePasswordConfirmation: false,
     showSpinner: true,
     waitEmailVerification: true
   },
