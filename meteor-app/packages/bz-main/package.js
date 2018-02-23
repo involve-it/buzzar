@@ -67,7 +67,11 @@ Package.onUse(function (api) {
 
       'client/browser/admin/admin.html',
       'client/browser/admin/admin.js',
-      'client/browser/admin/admin.less'
+      'client/browser/admin/admin.less',
+
+      'client/browser/invitation-codes/invitationCodes.html',
+      'client/browser/invitation-codes/invitationCodes.js',
+      'client/browser/invitation-codes/invitationCodes.less'
   ], 'client');
   
   api.addFiles([

@@ -1,0 +1,122 @@
+<template name="invitationCodes">
+    <h5>invitationCodes: </h5>
+    <table class="admin-users-table">
+        <thead>
+            <th>
+                Внутренний Код
+            </th>
+            <th>
+                Кто выдал
+            </th>
+            <th>
+                Тип кода
+            </th>
+            <th>
+                Имя тренера
+            </th>
+            <th>
+                Название события
+            </th>
+            <th>
+                Город кода
+            </th>
+        </thead>
+        <tbody>
+        {{#each getCodes }}
+
+            <tr>
+                {{> invitationCodesItem }}
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+    <br/>
+    <button id="generateInvitationCode">Generate Invitation Code</button>
+
+    <div class="js-create-code-modal-holder reveal-modal" data-reveal aria-labelledby="modalTitle"
+         aria-hidden="true" role="dialog">
+        <div class=" js-location-modal-holder-global"></div>
+        {{> bzCreateInvitationCodeModal }}
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+</template>
+
+<template name="invitationCodesItem">
+    <td>
+        {{ _id }}
+    </td>
+    <td>
+        {{ issuerId }}
+    </td>
+    <td>
+        {{ codeType }}
+    </td>
+    <td>
+        {{ trainerName }}
+    </td>
+    <td>
+        {{ eventName }}
+    </td>
+    <td>
+        {{ cityName }}
+    </td>
+    <td>
+        <a class="js-remove">Удалить</a>
+    </td>
+</template>
+
+<template name="bzCreateInvitationCodeModal">
+
+        <div class="header-toolbar">
+            <div class="header-toolbar-title">
+                <span>Создать пригласительный код</span>
+            </div>
+
+            <div class="header-toolbar-search">
+                <div class="header-toolbar-search-field">
+                    <form id="bzCreateCodeForm" data-abide>
+
+                                <input class="form-control bz-margin-zero typeahead js-event-name-input" type="text" style="height: 44px; width: 300px;"
+                                       placeholder="Имя События"
+                                       data-source="usersArray"
+                                       data-opened="opened"
+                                       data-highlight="true"
+                                       autocomplete="off" spellcheck="off"
+                                       data-min-length="0"
+                                />
+
+                        <div>ИЛИ </div>
+                            <input class="form-control typeahead js-trainer-name-input" name="team" type="text" style="height: 44px; width: 300px;"
+                                   placeholder="Имя тренера"
+                                   data-source="usersArray"
+                                   data-highlight="true"
+                                   autocomplete="off" spellcheck="off"
+                                   data-min-length="0"
+
+                            /><div>Выберите город </div>
+
+                        <input class="form-control bz-margin-zero typeahead js-city-name-input" name="team" type="text" style="height: 44px; width: 300px;"
+                               placeholder="Выберите город"
+                               data-source="citiesArray"
+
+                               data-highlight="true"
+                               autocomplete="off" spellcheck="off"
+                               data-min-length="0"
+                        />
+
+                        <div class="margin-left margin-top-20px">
+                            <a class="button btn-default bz-small js-create-code-button">Создать</a>
+                            <div class="margin-top-20px margin-bottom-20px"><span style="color: red;" class="js-create-code-code-holder hidden">awef</span></div>
+                            <a class="button btn-default bz-small js-create-code-close-button hidden">Закрыть</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+</template>
+
+<template name="autosuggestItem">
+    <h4><i>{{ name }}</i></h4>
+</template>

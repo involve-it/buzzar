@@ -44,9 +44,15 @@ Meteor.startup(function() {
 
 });
 Meteor.methods({
-  entryValidateSignupCode: function(signupCode) {
+  entryValidateSignupCode: function(signupCode, email) {
+    var codeIsValid, isInDb, isAdminUser;
+    isInDb = !!bz.cols.invitationCodes.findOne({ _id: signupCode });
     check(signupCode, Match.OneOf(String, null, undefined));
-    return !AccountsEntry.settings.signupCode || signupCode === AccountsEntry.settings.signupCode;
+    isAdminUser = !!bz.const.adminsList.find(e => e == email);
+    codeIsValid = signupCode && isInDb || isAdminUser;
+
+      //codeIsValid = !AccountsEntry.settings.signupCode || signupCode === AccountsEntry.settings.signupCode; // original
+    return codeIsValid;
   },
   entryCreateUser: function(user) {
     var profile, userId;
@@ -74,13 +80,5 @@ Meteor.methods({
       console.log(ex)
       throw new Meteor.Error(403, ex.message);
     }
-
   }
-});
-// надо перенести к нам!!:
-Meteor.startup(function () {
-  AccountsEntry.config({
-    //signupCode: 'сплин',         // only restricts username+password users, not OAuth
-    //showSignupCode: true,         // place it also on server for extra security
-  });
 });
