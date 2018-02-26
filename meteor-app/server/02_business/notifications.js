@@ -14,7 +14,6 @@ var emailOptions = function(data) {
   return {
     from: 'info@shiners.ru',
     to: data.email || 'bots@shiners.ru',
-    //cc: 'arutune@gmail.com,yury.dorofeev@gmail.com,',
     subject: `Shiners - Bot Notification! ${ data.title }`,
     html: `<h1>${ data.title }</h1><p>${ data.msg }</p>
         <br> Please contact <a href="${ Meteor.absoluteUrl() }user/${ data.userId }">Group admins</a>.`
