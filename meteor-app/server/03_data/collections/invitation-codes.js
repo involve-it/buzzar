@@ -22,23 +22,21 @@ Meteor.startup(function () {
 
   //сами коды (создадим пару глобальных)
     bz.cols.invitationCodes = new Mongo.Collection('invitationCodes');
-    bz.cols.invitationCodes.remove({});
     // we add id's so that it's consistent:
-    if(!Meteor.users.findOne({ 'emails.0.address': 'arutune@gmail.com'})) {
-        //debugger;
-        //if (!bz.cols.invitationCodes.find({ issuerId: Meteor.users.findOne({ 'emails.0.address': 'arutune@gmail.com'})._id})) {
+    if (!bz.cols.invitationCodes.findOne({ note: 'main' })) {
+        if (!Meteor.users.findOne({'emails.0.address': 'arutune@gmail.com'})) {
             bz.cols.invitationCodes.insert({
                 issuerId: 0, // system
-                codeType: bz.cols.invitationCodeTypes.findOne({ name: 'global' }),
-
+                codeType: bz.cols.invitationCodeTypes.findOne({name: 'global'}),
+                note: 'main'
             });
-        //}
-    } else {
-        bz.cols.invitationCodes.insert({
-            issuerId: Meteor.users.findOne({ 'emails.0.address': 'arutune@gmail.com'})._id,
-            codeType: bz.cols.invitationCodeTypes.findOne({ name: 'global' }),
-
-        });
+        } else {
+            bz.cols.invitationCodes.insert({
+                issuerId: Meteor.users.findOne({'emails.0.address': 'arutune@gmail.com'})._id,
+                codeType: bz.cols.invitationCodeTypes.findOne({name: 'global'}),
+                note: 'main'
+            });
+        }
     }
 
     Meteor.publish('invitationCodes', function(){
