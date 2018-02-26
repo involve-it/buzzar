@@ -15,7 +15,7 @@ AccountsEntry = {
     extraSignUpFields: [],
     showOtherLoginServices: true,
     fluidLayout: false,
-    requirePasswordConfirmation: false,
+    requirePasswordConfirmation: true,
     showSpinner: true,
     waitEmailVerification: true
   },
