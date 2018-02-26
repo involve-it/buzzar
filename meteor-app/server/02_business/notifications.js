@@ -13,12 +13,11 @@ var emailOptions = function(data) {
   data = data || {}
   return {
     from: 'info@shiners.ru',
-    to: 'bots@shiners.ru',
+    to: data.email || 'bots@shiners.ru',
     //cc: 'arutune@gmail.com,yury.dorofeev@gmail.com,',
     subject: `Shiners - Bot Notification! ${ data.title }`,
     html: `<h1>${ data.title }</h1><p>${ data.msg }</p>
-        <br> Please contact <a href="${ Meteor.absoluteUrl() }user/${ data.userId }">this user</a> 
-        or email: <a href="mailto:${ data.email }"> ${ data.email }</a>`
+        <br> Please contact <a href="${ Meteor.absoluteUrl() }user/${ data.userId }">Group admins</a>.`
   }
 }
 Notifications.push = function(options) { // userId, title, msg, payload, user
@@ -26,14 +25,16 @@ Notifications.push = function(options) { // userId, title, msg, payload, user
 }
 Notifications.sendEmail = function (options ) {
   options = options || {}
-  var data = {
+  var res, data = {
     header: options.header,
     title: options.title,
     msg: options.msg,
     email: options.user && options.user.email,
     userId: options.userId
   }
-  Email.send(emailOptions(data));
+  res = Email.send(emailOptions(data));
+  console.log(emailOptions(data));
+  console.log('sendEmail res: ' + res);
 }
 
 Notifications.sendEmailToClubAdmins = function (options, clubId ) {
