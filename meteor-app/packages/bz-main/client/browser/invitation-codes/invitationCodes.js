@@ -54,7 +54,7 @@ Template.bzCreateInvitationCodeModal.helpers({
     rolesArray: function() {
         var ret = ['Тренер', 'Посетитель', 'Админ'].map(function (object) {
             return {
-                // id: object._id,
+                id: object._id,
                 value: object,
             };
         });

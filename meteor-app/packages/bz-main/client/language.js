@@ -3,7 +3,9 @@
  */
 
 Meteor.startup(function () {
-  GetUserLanguage().then((lang)=>{
+    typeof(T9n) !== 'undefined' && (T9n.defaultLanguage = 'ru');
+
+    GetUserLanguage().then((lang)=>{
     SetUiLanguage(lang);
   });
   Accounts.onLogin(function(user){
@@ -53,7 +55,7 @@ GetUiLanguage = function () {
 }
 
 function GetUserLanguage() {
-  var langProm, detectedLang = detectClientLanguage();
+  var langProm, detectedLang = 'ru';//detectClientLanguage();
   if (Meteor.user()) {
     langProm = new Promise((resolve, reject)=>{
       Meteor.call('bz.user.getLanguage', detectedLang, function (err, res) {

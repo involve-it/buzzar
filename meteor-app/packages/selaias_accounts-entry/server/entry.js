@@ -44,14 +44,8 @@ Meteor.startup(function() {
 
 });
 Meteor.methods({
-  entryValidateSignupCode: function(signupCode, email) {
-    var codeIsValid, isInDb, isAdminUser;
-    isInDb = !!bz.cols.invitationCodes.findOne({ _id: signupCode });
-    check(signupCode, Match.OneOf(String, null, undefined));
-    isAdminUser = !!bz.const.adminsList.find(e => e == email);
-    codeIsValid = signupCode && isInDb || isAdminUser;
-
-      //codeIsValid = !AccountsEntry.settings.signupCode || signupCode === AccountsEntry.settings.signupCode; // original
+  entryValidateSignupCode: function(signupCode) {
+    var codeIsValid = !AccountsEntry.settings.signupCode || signupCode === AccountsEntry.settings.signupCode; // original
     return codeIsValid;
   },
   entryCreateUser: function(user) {

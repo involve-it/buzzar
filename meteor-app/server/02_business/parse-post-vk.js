@@ -1,6 +1,7 @@
 /**
  * Created by douson on 4/14/16.
  */
+import { HTTP } from 'meteor/http';
 
 // Парсим URL который приходит с формы
 bz.bus.getTypeUrl = function(url) {
@@ -65,7 +66,7 @@ bz.bus.parseUrlVk = function(url) {
   try {
     
     //response = Meteor.http.call("GET", 'https://api.vk.com/method/'+data.method+'?'+data.typeItem+'=-43726747_87397&v='+data.verAPI);
-    response = Meteor.http.call("GET", 'https://api.vk.com/method/'+data.method+'?'+data.typeItem+'='+ data.postId +'&v='+data.verAPI);
+    response = HTTP.call("GET", 'https://api.vk.com/method/'+data.method+'?'+data.typeItem+'='+ data.postId +'&v='+data.verAPI);
     
     if (response && response.statusCode === 200) {
 
@@ -81,12 +82,9 @@ bz.bus.parseUrlVk = function(url) {
       if(typeof string === 'object') {
 
         if (string.text === '') {
-          if(string.attachments.length > 0) {
+          if(string.attachments && string.attachments.length > 0) {
             //console.info('Photo attachments[array]', string.attachments);
             result.images = string.attachments;
-          } else if(string.attachment.length > 0) {
-            //console.info('Photo attachment[photo]', string.attachment);
-            //result.images = string.attachment;
           }
         } else {
           

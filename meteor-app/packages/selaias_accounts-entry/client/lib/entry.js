@@ -12,12 +12,26 @@ AccountsEntry = {
     usernameToLower: false,
     entrySignUp: '/sign-up',
     emailVerificationPendingRoute: '/verification-pending',
-    extraSignUpFields: [],
     showOtherLoginServices: true,
     fluidLayout: false,
     requirePasswordConfirmation: true,
     showSpinner: true,
-    waitEmailVerification: true
+    waitEmailVerification: true,
+      extraSignUpFields: [{                      // Add extra signup fields on the signup page
+          field: "phone",                           // The database property you want to store the data in
+          name: "",  // An initial value for the field, if you want one
+          label: "Телефон",                      // The html lable for the field
+          placeholder: "Телефон",                 // A placeholder for the field
+          type: "text",                            // The type of field you want
+          required: true                           // Adds html 5 required property if true
+      }, {                      // Add extra signup fields on the signup page
+          field: "city",                           // The database property you want to store the data in
+          name: "Липецк",  // An initial value for the field, if you want one
+          label: "Город",                      // The html lable for the field
+          placeholder: "Город",                 // A placeholder for the field
+          type: "text",                            // The type of field you want
+          required: true                           // Adds html 5 required property if true
+      }]
   },
   isStringEmail: function(email) {
     var emailPattern;

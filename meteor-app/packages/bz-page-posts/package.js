@@ -85,7 +85,10 @@ Package.onUse(function (api) {
 
     'client/browser/places-autoform.less',
     'client/browser/places-autoform.html',
-    'client/browser/places-autoform.js'
+    'client/browser/places-autoform.js',
+
+    'client/browser/city-celector.html',
+    'client/browser/city-celector.js'
   ], global.bzSettings.webBrowserArray);
 
 });

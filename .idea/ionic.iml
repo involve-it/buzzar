@@ -9,7 +9,9 @@
       <excludeFolder url="file://$MODULE_DIR$/meteor-app/.meteor" />
       <excludeFolder url="file://$MODULE_DIR$/meteor-app/cordova-build-override-files/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/meteor-app/cordova-build-override/.platforms-other" />
+      <excludeFolder url="file://$MODULE_DIR$/meteor-app/packages/bz-control-honeycomb" />
       <excludeFolder url="file://$MODULE_DIR$/meteor-app/packages/bz-page-posts/client/ionic" />
+      <excludeFolder url="file://$MODULE_DIR$/node/POC" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

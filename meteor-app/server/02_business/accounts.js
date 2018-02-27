@@ -1,8 +1,39 @@
 /**
  * Created by root on 9/5/15.
  */
-
+var validateSignupCode = function(signupCode, email) {
+    var codeIsValid, isInDb, isAdminUser, code;
+    code = bz.cols.invitationCodes.findOne({ _id: signupCode });
+    isInDb = !!code;
+    check(signupCode, Match.OneOf(String, null, undefined));
+    isAdminUser = !!bz.const.adminsList.find(e => e == email);
+    codeIsValid = signupCode && isInDb || isAdminUser;
+    if(codeIsValid) {
+        return code;
+    } else {
+        return false;
+    }
+}
 Accounts.validateNewUser(function(user) {
+    debugger;
+    if (user.profile.inviteCode) {
+        var res = validateSignupCode(user.profile.inviteCode, user.emails[0].address);
+        if (res) {
+            // set role:
+
+            // set city:
+            return true;
+        } else {
+            throw new Meteor.Error(403, "Указан неверный код регистрации");
+
+            return false;
+        }
+    } else {
+        throw new Meteor.Error(403, "Не указан код регистрации");
+        // disable automatic registration for now:
+        return false;
+    }
+
   return true;
   if (user.username && user.username.lastIndexOf('djan') === user.username.length - 4)
     return true;
@@ -10,7 +41,6 @@ Accounts.validateNewUser(function(user) {
   // disable automatic registration for now:
   return false;
 });
-
 Accounts.onLogin(function(user){
   //console.log(user);
 });
@@ -24,3 +54,4 @@ bz.config.sendAdminNotificationEmail = function(userId, useremail) {
  }
  bz.bus.notifications.sendEmailToClubAdmins(options);
 }
+
