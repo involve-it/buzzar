@@ -3,7 +3,6 @@
  */
 bz.cols.contactUsMsgs = new Mongo.Collection('bz.contactUsMsgs');
 bz.cols.errorLogs = new Mongo.Collection('errorLogs');
-Ground.Collection(bz.cols.contactUsMsgs);
 
 if(Meteor.isServer)  {
   //bz.cols.contactUsMsgs.remove({});
