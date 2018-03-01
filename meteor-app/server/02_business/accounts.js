@@ -16,14 +16,16 @@ var validateSignupCode = function(signupCode, email) {
 }
 Accounts.validateNewUser(function(user) {
     if (user.profile.inviteCode) {
-        var res = validateSignupCode(user.profile.inviteCode, user.emails[0].address);
+        var myInvCodes, code, res = validateSignupCode(user.profile.inviteCode, user.emails[0].address);
         if (res) {
             // set role:
-            var code = bz.cols.invitationCodes.findOne(user.profile.inviteCode);
+            code = bz.cols.invitationCodes.findOne(user.profile.inviteCode);
             user.profile.role = code.codeType && code.codeType.name;
             // set city:
             user.profile.cityId = 'kSZKjEGYJb8LvSiRr';
 
+            myInvCodes = bz.bus.invitationCodes.generateUserCodes(user);
+            user.profile.myInvitationCodes = myInvCodes;
             return true;
         } else {
             throw new Meteor.Error(403, "Указан неверный код регистрации");
