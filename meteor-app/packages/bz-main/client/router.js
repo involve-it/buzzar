@@ -30,6 +30,16 @@ Router.map(function () {
       ]
     }
   });
+  // add clubs later:
+  this.route('invitation-codes', {
+    path: 'invitation-codes',
+    controller: 'requireAdminUserController',
+    waitOn: function () {
+      return [
+        Meteor.subscribe('invitationCodes')
+      ]
+    }
+  });
 });
 
 bz.help.makeNamespace('bz.router');

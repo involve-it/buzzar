@@ -5,7 +5,6 @@ const
     POST_TYPE = 'postType',
     USER_TYPE = 'userType';
 bz.cols.reviews = new Mongo.Collection('bz.reviews');
-Ground.Collection(bz.cols.reviews);
 //bz.cols.posts.remove({});
 
 /*bz.cols.posts.attachSchema(new SimpleSchema({

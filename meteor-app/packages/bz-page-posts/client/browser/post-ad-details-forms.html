@@ -237,10 +237,10 @@
 <template name="postDetailsEvents">
   <div class="clearfix padding-top">
     <label class="item item-input item-select">
-      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
+      <div class="medium-3 input-label left" style="visibility: hidden;">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
       <div class="medium-5 large-7 left">
-        <select class="js-service-type-select">
-          <option value="provide">{{ t9n 'NEW_POST_PROVIDE' }}</option>
+        <select class="js-service-type-select" style="visibility: hidden;">
+          <option value="provide" selected>{{ t9n 'NEW_POST_PROVIDE' }}</option>
           <option value="need">{{ t9n 'NEW_POST_NEED' }}</option>
         </select>
       </div>
@@ -251,7 +251,7 @@
 <template name="postDetailsServices">
   <div class="clearfix padding-top">
     <label class="item item-input item-select">
-      <div class="medium-3 input-label left">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
+      <div class="medium-3 input-label left" style="visibility: hidden;">{{ t9n 'NEW_POST_LOOKING_FOR' }}</div>
       <div class="medium-5 large-7 left">
         <select class="js-service-type-select">
           <option value="provide">{{ t9n 'NEW_POST_PROVIDE' }}</option>

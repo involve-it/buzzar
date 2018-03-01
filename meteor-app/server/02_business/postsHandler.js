@@ -577,7 +577,6 @@ bz.bus.postsHandler = {
     }
     postsRet = bz.bus.postsHandler.buildPostsObject({ posts:posts });
     //postsRet = posts;
-      debugger;
     if (postsRet){
       postsRet.forEach(function(post){
         if (post.premium && post.details && post.details.locations && post.details.locations.length){

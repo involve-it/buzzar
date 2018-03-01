@@ -173,7 +173,7 @@ Meteor.methods({
     var emailOptions = {
       from: 'info@shiners.ru',
       to: 'info@shiners.ru',
-      cc: 'arutune@gmail.com,yury.dorofeev@gmail.com,',
+      cc: 'arutune@gmail.com',
       subject: 'from Shiners.ru: feedback from Contact Us page',
       html: 'Message: ' + msg + '<br> Please contact <a href="'+Meteor.absoluteUrl()+'user/'+userId+'">this user</a>.'
     };
@@ -190,7 +190,7 @@ Meteor.methods({
     var emailOptions = {
       from: 'info@shiners.ru',
       to: 'info@shiners.ru',
-      cc: 'arutune@gmail.com,yury.dorofeev@gmail.com,',
+      cc: 'arutune@gmail.com',
       subject: 'from Shiners.ru: feedback from Contact Us page',
       html: '<h1>'+request.subject+'</h1><p>' + request.message + '</p><br> Please contact <a href="'+Meteor.absoluteUrl()+'user/'+request.userId+'">this user</a> or email: <a href="mailto:'+request.email+'">'+request.email+'</a>.'
     };

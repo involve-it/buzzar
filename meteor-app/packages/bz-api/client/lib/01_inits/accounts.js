@@ -20,8 +20,8 @@ Meteor.startup(function () {
       signInAfterRegistration: true,    // Set to false to avoid prevent users being automatically signed up upon sign-up e.g. to wait until their email has been verified.
       emailVerificationPendingRoute: '/verification-pending', // The route to which users should be directed after sign-up. Only relevant if signInAfterRegistration is false.
       showSpinner: true,                // Show the spinner when the client is talking to the server (spin.js)
-      spinnerOptions: {color: "#000", top: "80%"} // options as per [spin.js](http://fgnass.github.io/spin.js/)
-
+      spinnerOptions: {color: "#000", top: "80%"}, // options as per [spin.js](http://fgnass.github.io/spin.js/)
+      showSignupCode: true
     });
   }
 });

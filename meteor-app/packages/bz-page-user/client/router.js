@@ -31,6 +31,7 @@ Router.map(function () {
 
   this.route('userProfile', {
     path: '/user/:_id',
+    controller: 'baseController',
     template: 'userSettings',
     //controller: 'requireLoginController',
     waitOn: function () {

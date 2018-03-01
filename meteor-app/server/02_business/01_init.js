@@ -12,7 +12,7 @@ bz.help.makeNamespace({
 });
 
 Meteor.startup(function () {
-  process.env.MAIL_URL = 'smtp://info%40shiners.ru:Shiners77@smtp.timeweb.ru:465';
+  process.env.MAIL_URL = 'smtps://info%40shiners.ru:Shiners77@smtp.timeweb.ru:465';
 });
 
 Router.map(function() {
