@@ -31,6 +31,13 @@ Meteor.startup(function () {
       }
       return ret;
     });
+    Template.registerHelper('isAdminRole', function() {
+      var user = Meteor.user(), ret = false;
+      if (user && (user.profile.type === 'admin' || user.profile.type === 'hero')) {
+        ret = true;
+      }
+      return ret;
+    });
   }
 });
 
