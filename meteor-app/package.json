@@ -9,7 +9,9 @@
     "@babel/runtime": "^7.0.0-beta.40",
     "babel-runtime": "^6.23.0",
     "bcrypt": "^1.0.3",
+    "fibers": "^2.0.0",
     "noty": "^2.3.8",
-    "pyrsmk-toast": "^2.1.0"
+    "pyrsmk-toast": "^2.1.0",
+    "simpl-schema": "^1.4.2"
   }
 }

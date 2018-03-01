@@ -23,25 +23,26 @@ Helpers.makeNamespace = function (initialObject) {
       object: arguments[1]
     }
   };
-  var buildFromName, first, foreverFirst, global, l1, l2, namespace, retObj, sc, subPaths;
+  var buildFromName, first, foreverFirst, gl, l1, l2, namespace, retObj, sc, subPaths;
   if(Meteor.isClient){
-    global = typeof window !== 'undefined' && window !== null ? window : {};
+    gl = typeof window !== '' +
+    'undefined' && window !== null ? window : {};
   } else if (Meteor.isServer) {
-    global = typeof GLOBAL !== 'undefined' && GLOBAL !== null ? GLOBAL : {};
+    gl = typeof global !== 'undefined' && global !== null ? global : {};
   }
 
-  if (typeof global === 'string') {
-    global = eval(global);
+  if (typeof gl === 'string') {
+    gl = eval(gl);
   }
   subPaths = initialObject.path.split('.').reverse();
   foreverFirst = subPaths[0];
   first = subPaths.pop();
-  namespace = global[first] = typeof global[first] !== 'undefined' && global[first] || {};
+  namespace = gl[first] = typeof gl[first] !== 'undefined' && gl[first] || {};
   if (subPaths.length === 0) {
-    if (typeof global[first] !== 'undefined' && global[first]) {
-      _.extend(global[first], initialObject);
+    if (typeof gl[first] !== 'undefined' && gl[first]) {
+      _.extend(gl[first], initialObject);
     } else {
-      global[first] = initialObject.object;
+      gl[first] = initialObject.object;
     }
     return namespace;
   }
