@@ -9,7 +9,7 @@ Meteor.startup(function () {
   bz.cols.postAdTypes.remove({});
   // we add id's so that it's consistent:
 
-  bz.cols.postAdTypes.insert({
+  /*bz.cols.postAdTypes.insert({
     name: 'jobs',
     intName: 'jobs',
     id: 'qGedj9iA6jS7inCCk',
@@ -23,8 +23,8 @@ Meteor.startup(function () {
       }
     },
     hasRoute: true // use this to redirect to same route on click
-  });
-  bz.cols.postAdTypes.insert({
+  });*/
+  /*bz.cols.postAdTypes.insert({
     name: 'trainings',
     intName: 'trainings',
     id: '9qzjsToxam3GCHREN',
@@ -34,11 +34,11 @@ Meteor.startup(function () {
     i18n: {
       ru: {
         name: 'тренинги',
-        fullName: 'Тренинги - платные, бесплатные'
+        fullName: 'Тренинги'
       }
     },
     hasRoute: true // use this to redirect to same route on click
-  });
+  });*/
 
   bz.cols.postAdTypes.insert({
     name: 'connect',
@@ -49,28 +49,15 @@ Meteor.startup(function () {
     order: 2,
     i18n: {
       ru: {
-        name: 'встречи',
+        name: 'знакомства',
         fullName: 'В поисках связей и знакомств'
       }
     }
   });
 
-  bz.cols.postAdTypes.insert({
-    name: 'trade',
-    intName: 'trade',
-    id: 'fveonD9cC3i33LfKj',
-    fullName: 'Buy & Sell',
-    color: 'EF376C',
-    order: 3,
-    i18n: {
-      ru: {
-        name: 'торг',
-        fullName: 'Покупка и продажа'
-      }
-    }
-  });
 
-  bz.cols.postAdTypes.insert({
+
+  /*bz.cols.postAdTypes.insert({
     id: 'otEm6ijtatqF7pQj5',
     name: 'housing',
     intName: 'housing',
@@ -87,36 +74,36 @@ Meteor.startup(function () {
         fullName: 'Рынок жилья - покупка, продажа, съем'
       }
     }
-  });
+  });*/
   bz.cols.postAdTypes.insert({
     name: 'events',
     intName: 'events',
     id: 'WsCLpEkN4tpAHxE5w',
     fullName: 'Local events',
     color: '333308',
-    order: 5,
+    order: 1,
     i18n: {
       ru: {
         name: 'события',
-        fullName: 'Местные события'
+        fullName: 'Cобытия'
       }
     }
   });
-  bz.cols.postAdTypes.insert({
+  /*bz.cols.postAdTypes.insert({
     name: 'services',
     intName: 'services',
     id: '8qzzsToxam3GCTEXT',
     fullName: 'Need or provide service',
     color: '370808',
-    order: 6,
+    order: 4,
     i18n: {
       ru: {
         name: 'услуги',
-        fullName: 'Предложения - платные, бесплатные'
+        fullName: 'Предложения'
       }
     }
-  });
-  bz.cols.postAdTypes.insert({
+  });*/
+  /*bz.cols.postAdTypes.insert({
     name: 'help',
     intName: 'help',  // international name, is used for picking templates
     id: 'M5g7ujcKXEx5LHJzc',
@@ -129,7 +116,21 @@ Meteor.startup(function () {
         fullName: 'Требуется или предлагается помощь'
       },
     }
-  });
+  });*/
+    bz.cols.postAdTypes.insert({
+        name: 'ad',
+        intName: 'trade',
+        id: 'fveonD9cC3i33LfKj',
+        fullName: 'Paid Ads',
+        color: 'EF376C',
+        order: 3,
+        i18n: {
+            ru: {
+                name: 'скидки',
+                fullName: 'Платные объявления'
+            }
+        }
+    });
   Meteor.publish('postAdTypes', function(){
     return bz.cols.postAdTypes.find({}, {sort: ['order','asc']});
   });

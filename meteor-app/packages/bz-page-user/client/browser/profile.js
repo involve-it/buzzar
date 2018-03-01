@@ -189,7 +189,7 @@ Template.profileSettings.events({
       if (e){
         // Error
       } else {
-        bz.ui.alert('Profile has been saved', {type:'success', timeout: 2000});
+        bz.ui.alert('Профиль сохранен', {type:'success', timeout: 2000});
       }
     });
     

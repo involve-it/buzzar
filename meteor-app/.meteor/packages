@@ -17,7 +17,6 @@ es5-shim@4.7.0                # ECMAScript 5 compatibility for older browsers.
 arutune:bz-page-landing
 dburles:collection-helpers
 aldeed:collection2
-aldeed:simple-schema
 fortawesome:fontawesome
 juliancwirko:s-alert
 juliancwirko:s-alert-scale
@@ -66,7 +65,6 @@ standard-minifier-js@2.3.1
 okgrow:analytics
 aslagle:reactive-table
 arutune:bz-page-tags
-ground:db
 force-ssl@1.1.0
 mizzao:user-status
 meteorhacks:aggregate
@@ -76,3 +74,5 @@ shell-server@0.3.1
 percolate:synced-cron
 ecmascript@0.10.0
 dynamic-import@0.3.0
+fourseven:scss
+aldeed:simple-schema

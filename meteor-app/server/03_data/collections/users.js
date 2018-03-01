@@ -94,6 +94,7 @@ Meteor.users.remove({ 'emails.0.address': 'arutune@gmail.com' }); Accounts.creat
 Meteor.users.remove({ username: 'john1' }); Accounts.createUser({username: 'john1', password: 'j1', profile: { name: 'Василий Пупкин', type: bz.const.userTypes.trainer }});
 Meteor.users.remove({ username: 'john2' }); Accounts.createUser({username: 'john2', password: 'j1', profile: { name: 'Герман Павлович Мейерхольд', type: bz.const.userTypes.trainer }});
 Meteor.users.remove({ username: 'john3' }); Accounts.createUser({username: 'john3', password: 'j1', profile: { name: 'Здоб Ши Здуб Печорkин', type: bz.const.userTypes.trainer }});
+Meteor.users.remove({ username: 'dressup' }); Accounts.createUser({username: 'dressup', password: 'd1', profile: { name: 'Ужин в платьях', type: bz.const.userTypes.admin }, email: 'shiners.test@gmail.com' });
 
 // bz.cols.usersTrainers = new Mongo.Collection('bz.users.trainers');
 Meteor.publish('bz.users.trainers', function(){

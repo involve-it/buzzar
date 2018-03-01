@@ -1,15 +1,15 @@
 /**
  * Created by ashot on 8/12/15.
  */
-var global;
+var gl;
 if(Meteor.isClient){
-  global = typeof window !== 'undefined' && window !== null ? window : {};
+  gl = typeof window !== 'undefined' && window !== null ? window : {};
 } else if (Meteor.isServer) {
-  global = typeof GLOBAL !== 'undefined' && GLOBAL !== null ? GLOBAL : {};
+  gl = typeof global !== 'undefined' && global !== null ? global : {};
 }
-global.bz = global.bz || {};
-global.bz.cols = global.bz.cols || {};
-global.bz.runtime = global.bz.runtime || {};
+gl.bz = gl.bz || {};
+gl.bz.cols = gl.bz.cols || {};
+gl.bz.runtime = gl.bz.runtime || {};
 
 if(Meteor.isCordova)
 {
