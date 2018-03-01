@@ -7,7 +7,7 @@ var en;
 en = {
   //Global
   ADD: 'Add',
-  APP_NAME: 'Shiners',
+  APP_NAME: 'Gravity',
   CONTENT_READ_MORE_TITLE: 'Read more...',
   CONTACT_US:'Contact us',
   SEND_MESSAGE: 'Send message',

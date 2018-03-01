@@ -8,7 +8,7 @@ ru = {
   
   //Global
   ADD: 'Добавить',
-  APP_NAME: 'Светлячки',
+  APP_NAME: 'Притяжение',
   CONTENT_READ_MORE_TITLE: 'Подробнее',
   CONTACT_US:'Свяжитесь с нами',
   SEND_MESSAGE: 'Написать сообщение',
