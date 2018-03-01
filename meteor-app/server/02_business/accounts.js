@@ -15,13 +15,15 @@ var validateSignupCode = function(signupCode, email) {
     }
 }
 Accounts.validateNewUser(function(user) {
-    debugger;
     if (user.profile.inviteCode) {
         var res = validateSignupCode(user.profile.inviteCode, user.emails[0].address);
         if (res) {
             // set role:
-
+            var code = bz.cols.invitationCodes.findOne(user.profile.inviteCode);
+            user.profile.role = code.codeType && code.codeType.name;
             // set city:
+            user.profile.cityId = 'kSZKjEGYJb8LvSiRr';
+
             return true;
         } else {
             throw new Meteor.Error(403, "Указан неверный код регистрации");
