@@ -17,6 +17,9 @@ Meteor.startup(function () {
         name: 'trainer'
     });
     bz.cols.invitationCodeTypes.insert({
+        name: 'user'
+    });
+    bz.cols.invitationCodeTypes.insert({
         name: 'event'
     });
 

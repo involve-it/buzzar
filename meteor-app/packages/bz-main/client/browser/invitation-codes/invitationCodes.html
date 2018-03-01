@@ -1,4 +1,4 @@
-<template name="invitationCodes">
+<template name="bzInvitationCodes">
     <h5>invitationCodes: </h5>
     <table class="admin-users-table">
         <thead>
@@ -6,19 +6,22 @@
                 Внутренний Код
             </th>
             <th>
+                Код
+            </th>
+            <th>
                 Кто выдал
             </th>
             <th>
-                Тип кода
+                Роли
             </th>
             <th>
-                Имя тренера
+                Имя тренера *
             </th>
             <th>
-                Название события
+                Название события *
             </th>
             <th>
-                Город кода
+                Город кода *
             </th>
         </thead>
         <tbody>
@@ -31,7 +34,7 @@
         </tbody>
     </table>
     <br/>
-    <button id="generateInvitationCode">Generate Invitation Code</button>
+    <!--<button id="generateInvitationCode">Generate Invitation Code</button>-->
 
     <div class="js-create-code-modal-holder reveal-modal" data-reveal aria-labelledby="modalTitle"
          aria-hidden="true" role="dialog">
@@ -46,10 +49,13 @@
         {{ _id }}
     </td>
     <td>
-        {{ issuerId }}
+        {{ getCode }}
     </td>
     <td>
-        {{ codeType }}
+        <a href="/user/{{ issuerId }}">{{ issuerId }}</a>
+    </td>
+    <td>
+        {{ codeType.name }}
     </td>
     <td>
         {{ trainerName }}
@@ -60,7 +66,7 @@
     <td>
         {{ cityName }}
     </td>
-    <td>
+    <td >
         <a class="js-remove">Удалить</a>
     </td>
 </template>
