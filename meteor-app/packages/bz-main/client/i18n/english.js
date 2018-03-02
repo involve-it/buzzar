@@ -157,8 +157,10 @@ en = {
   PROFILE_ANOTHER_USER_DETAILS_PERSONAL_DATA: 'Personal data',
   PROFILE_DIRECT_LINK_TO_MY_PROFILE: 'Direct link to my profile',
   PROFILE_MAKE_MY_PUBLICATION_AVAILABLE_TO_ALL_USERS: 'Make my publication available to all users',
+  // Invitation Codes:
+  TRAINERS_CODE: 'Direct link to my profile',
 
-  //Profile - edit
+    //Profile - edit
   PROFILE_EDIT_USER_AVATAR: 'Edit user avatar',
   PROFILE_EDIT_PERSONAL_SETTINGS: 'Edit personal settings',
   PROFILE_SAVE_AND_UPDATE: 'Save',

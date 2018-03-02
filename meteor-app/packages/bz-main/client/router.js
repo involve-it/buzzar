@@ -33,7 +33,7 @@ Router.map(function () {
   // add clubs later:
   this.route('bz.invitationCodes', {
     path: 'invitation-codes',
-    controller: 'requireAdminUserController',
+    controller: 'requireAdminRoleUserController',
     waitOn: function () {
       return [
         Meteor.subscribe('invitationCodes')
