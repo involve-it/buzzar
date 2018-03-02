@@ -166,6 +166,12 @@ bz.bus.usersHandler = {
         online: userDb.status.online && !userDb.isInvisible,
         isInvisible: !!userDb.isInvisible,
         lastLogin: userDb.status && userDb.status.lastLogin && userDb.status.lastLogin.date,
+        profile:{
+            city: userDb.profile.city,
+            inviteCode: userDb.profile.inviteCode,
+            phone: userDb.profile.phone,
+            role: userDb.profile.role
+        },
         image:{
           imageUrl: userDb.profile && userDb.profile.image && userDb.profile.image.data,
           thumbnail: userDb.profile && userDb.profile.image && userDb.profile.image.data && userDb.profile.image.thumbnail
