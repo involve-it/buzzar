@@ -63,7 +63,6 @@ AccountsEntry.entrySignUpEvents = {
       email = email.toLowerCase();
     }
     formValues = SimpleForm.processForm(event.target);
-
     extraFields = _.pluck(AccountsEntry.settings.extraSignUpFields, 'field');
     filteredExtraFields = _.pick(formValues, extraFields);
 
@@ -126,14 +125,14 @@ AccountsEntry.entrySignUpEvents = {
       Alerts.add(i18n("error.signupCodeRequired"), 'danger');
       return;
     }
-    Meteor.call('entryValidateSignupCode', signupCode, function(err, valid) {
+    Meteor.call('entryValidateSignupCode', signupCode, email, function(err, valid) {
       var newUserData;
       if (valid) {
         newUserData = {
           username: username,
           email: email,
           password: AccountsEntry.hashPassword(password),
-          profile: filteredExtraFields
+          profile: _.extend(filteredExtraFields, { inviteCode: signupCode})
         };
         Meteor.call('entryCreateUser', newUserData, function(err, data) {
           var isEmailSignUp, userCredential;
@@ -191,4 +190,8 @@ Template.entrySignUp.rendered = function() {
       }
     }
   });
+  this.$('#phone').parent().addClass('input-symbol');
+  this.$('#phone').siblings('label[for=phone]').remove();
+  this.$('#city').parent().addClass('input-symbol');
+  this.$('#city').siblings('label[for=city]').remove();
 };

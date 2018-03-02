@@ -96,8 +96,13 @@ Template.postsNewUrl.events({
         
         //Description
         if(result && result.text) {
-          var editor = $('.CodeMirror')[0].CodeMirror;
-          editor.setValue(result.text);
+
+            if ($('.CodeMirror')[0] && $('.CodeMirror')[0].CodeMirror) {
+                var editor = $('.CodeMirror')[0].CodeMirror;
+                editor.setValue(result.text);
+            } else {
+              $('.js-post-description').val(result.text);
+            }
         }
         
         //Images

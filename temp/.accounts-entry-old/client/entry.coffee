@@ -23,7 +23,7 @@ AccountsEntry =
   config: (appConfig) ->
     @settings = _.extend(@settings, appConfig)
 
-    T9n.defaultLanguage = "en"
+    T9n.defaultLanguage = "ru"
     if appConfig.language
       T9n.language = appConfig.language
 

@@ -2,7 +2,6 @@
  * Created by ashot on 8/19/15.
  */
 bz.cols.config = new Mongo.Collection('config');
-Ground.Collection(bz.cols.config);
 if(Meteor.isServer)  {
   bz.cols.config.remove({});
   bz.cols.config.allow({

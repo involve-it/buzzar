@@ -16,7 +16,7 @@ Package.onUse(function (api) {
   api.use(['ecmascript'], global.bzSettings.webBrowserArrayWithServer);
   api.use(['reactive-var', 'iron:router', 'iron:layout', 'less', 'sergeyt:typeahead', 'anti:i18n', 'tracker'], 'client'); // todo: replace typeahead with required file
   api.use(['templating'], global.bzSettings.webBrowserArray);
-  api.use(['fourseven:scss@3.2.0', 'edgee:slingshot']);
+  api.use(['fourseven:scss', 'edgee:slingshot']);
   //api.use(['zeroasterisk:meteor-cordova-geolocation-background'], 'web.cordova'); // had to add it to the main project (meteor add zeroasterisk:cordova-geolocation-background)
   api.use(['arutune:bz-api', 'arutune:bz-control-common']);
   api.use(['meteorhacks:aggregate'], ['server']);
@@ -67,7 +67,11 @@ Package.onUse(function (api) {
 
       'client/browser/admin/admin.html',
       'client/browser/admin/admin.js',
-      'client/browser/admin/admin.less'
+      'client/browser/admin/admin.less',
+
+      'client/browser/invitation-codes/invitationCodes.html',
+      'client/browser/invitation-codes/invitationCodes.js',
+      'client/browser/invitation-codes/invitationCodes.less'
   ], 'client');
   
   api.addFiles([

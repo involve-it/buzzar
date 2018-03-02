@@ -3,7 +3,6 @@
  */
 
 bz.cols.images = new Mongo.Collection('images');
-// Ground.Collection(bz.cols.images);
 bz.help.makeNamespace('bz.help.images', {
   _getThumbnailUrl: function(){
     var image = this;

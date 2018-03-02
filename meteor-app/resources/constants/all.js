@@ -26,6 +26,8 @@ bz.const.locations.type.STATIC = 'static';
 bz.const.locations.type.DYNAMIC = 'dynamic';
 bz.const.locations.type.GOOGLEPLACE = 'google';
 bz.const.locations.type.MYPLACE = 'my place';
+bz.const.locations.type.GLOBAL = 'global';
+
 bz.const.locations.defaultDistance = 2;
 bz.const.locations.earthRadius = 3961;
 bz.const.locations.MAXRADIUS = 10000;

@@ -1,6 +1,7 @@
 /**
  * Created by ashot on 7/26/15.
  */
+
 var defaultDistance = 5,
   defaultLimit = 50;
 
@@ -172,7 +173,7 @@ Meteor.methods({
     var emailOptions = {
       from: 'info@shiners.ru',
       to: 'info@shiners.ru',
-      cc: 'arutune@gmail.com,yury.dorofeev@gmail.com,',
+      cc: 'arutune@gmail.com',
       subject: 'from Shiners.ru: feedback from Contact Us page',
       html: 'Message: ' + msg + '<br> Please contact <a href="'+Meteor.absoluteUrl()+'user/'+userId+'">this user</a>.'
     };
@@ -189,7 +190,7 @@ Meteor.methods({
     var emailOptions = {
       from: 'info@shiners.ru',
       to: 'info@shiners.ru',
-      cc: 'arutune@gmail.com,yury.dorofeev@gmail.com,',
+      cc: 'arutune@gmail.com',
       subject: 'from Shiners.ru: feedback from Contact Us page',
       html: '<h1>'+request.subject+'</h1><p>' + request.message + '</p><br> Please contact <a href="'+Meteor.absoluteUrl()+'user/'+request.userId+'">this user</a> or email: <a href="mailto:'+request.email+'">'+request.email+'</a>.'
     };
@@ -424,8 +425,32 @@ Meteor.methods({
       return ret;
     // });
     return ret;
+  },
+  'bz.blog.getPosts': function(limit) {
+    var ret;
+    limit = limit || Number.MAX_SAFE_INTEGER;
+    ret = Blog.Post.find({
+        mode: 'public'
+    }, {
+        fields: {
+            body: 0
+        },
+        sort: {
+            publishedAt: -1
+        },
+        limit: limit
+    }).fetch();
+    return ret;
+  },
+  'bz.blog.getPostById': function(id) {
+      var ret;
+      if(id) {
+          ret = Blog.Post.find({
+              _id: id
+          }).fetch()[0];
+      }
+      return ret;
   }
-
 });
 
 //test comment
