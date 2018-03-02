@@ -101,6 +101,40 @@
                         </div>
                     </div>
                 </div>
+                <div class="bz-separate"></div>
+                <div class="item-details">
+                    <div class="small-12 bz-input-label columns">
+                        <div class="bz-user-profile-link">
+                            <div class="small-12 bz-input-label columns">Инвайт Коды</div>
+                            {{#if getAdminsCode }}
+                            <div class="small-12 bz-input-result columns">
+                                <a class="bz-profile-user-link js-bz-profile-user-link-select" title="{{ t9n 'PROFILE_DIRECT_LINK_TO_MY_PROFILE' }}" href="{{getUserProfileLink}}">
+                                    {{getAdminsCodeLink}}
+                                </a>
+                            </div>
+                            {{/if }}
+                            {{#if getTrainersCode }}
+                            <div class="small-12 bz-input-result columns">
+                                <span>Код для приглашения тренеров:</span>
+                                <a class="bz-profile-user-link js-bz-profile-user-link-select" title="{{ t9n 'PROFILE_DIRECT_LINK_TO_MY_PROFILE' }}" href="{{getUserProfileLink}}">
+                                    {{getTrainersCodeLink}}
+                                </a>
+                            </div>
+                            {{/if }}
+
+                            {{#if getUsersCode }}
+                            <div class="small-12 bz-input-result columns">
+                                <span>Код для приглашения пользователей:</span>
+                                <a class="bz-profile-user-link js-bz-profile-user-link-select" title="{{ t9n 'PROFILE_DIRECT_LINK_TO_MY_PROFILE' }}" href="{{getUserProfileLink}}">
+                                    {{getUsersCodeLink}}
+                                </a>
+                            </div>
+                            {{/if }}
+                        </div>
+                    </div>
+                </div>
+                <div class="bz-separate"></div>
+
                 <div class="item-details">        
                     <div class="small-12 bz-input-label columns">
                         <div class="bz-user-profile-publications">

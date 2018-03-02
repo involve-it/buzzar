@@ -111,14 +111,51 @@ Template.profileSettings.helpers({
   
   getUserProfileLink: function() {
     // protocol / user/ user_id
-    var urlBase = 'https://shiners.ru/';
+    var urlBase = '/';
     //var urlBase = Meteor.absoluteUrl();
     return urlBase && urlBase + 'user/' + this._id;
-  }
+  },
+    getAdminsCode: function() {
+      var code;
+      if (this.profile && this.profile.type === 'hero') { // only admin or trainer can invite trainers
+        code = this.profile.myInvitationCodes && this.profile.myInvitationCodes.adminsCode;
+      }
+      return code;
+    },
+    getTrainersCode: function() {
+      var code;
+      if (this.profile && this.profile.type === 'hero' || this.profile && this.profile.type === 'admin' || this.profile && this.profile.type === 'trainer') { // only admin or trainer can invite trainers
+        code = this.profile.myInvitationCodes && this.profile.myInvitationCodes.trainersCode;
+      }
+      return code;
+    },
+    getUsersCode: function() {
+        var code;
+        if (this.profile && this.profile.type === 'hero' || this.profile && this.profile.type === 'admin' || this.profile && this.profile.type === 'trainer') {// only admin or trainer can invite users
+            code = this.profile.myInvitationCodes && this.profile.myInvitationCodes.usersCode;
+        }
+        return code;
+    },
+    getTrainersCodeLink: function() {
+        var code;
+        if (this.profile && this.profile.type === 'hero' || this.profile && this.profile.type === 'admin' || this.profile && this.profile.type === 'trainer') { // only admin or trainer can invite trainers
+            code = this.profile.myInvitationCodes && this.profile.myInvitationCodes.trainersCode;
+        }
+        return code;
+    },
+    getUsersCodeLink: function() {
+        var code;
+        if (this.profile && this.profile.type === 'hero' || this.profile && this.profile.type === 'admin' || this.profile && this.profile.type === 'trainer') {// only admin or trainer can invite users
+            code = this.profile.myInvitationCodes && this.profile.myInvitationCodes.usersCode;
+        }
+        return code;
+    }
 
 });
 
+function getCode(user) {
 
+}
 
 
 Template.profileSettings.events({

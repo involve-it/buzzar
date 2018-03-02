@@ -87,14 +87,68 @@ Meteor.publish('users-one', function (userIds) {
 
 bz.const.userTypes = { visitor: 'visitor', admin: 'admin', trainer: 'trainer', hero: 'hero' };
 
+Meteor.startup(function() {
+    var user, codes;
+
+    var invCodeAdm = bz.cols.invitationCodes.findOne({ note: 'defaultAdmin' })._id;
+    var invCodeTr = bz.cols.invitationCodes.findOne({ note: 'defaultTrainer' })._id;
 // create hero users:
-Meteor.users.remove({ 'emails.0.address': 'arutune@gmail.com' }); Accounts.createUser({username: 'a', password: 'g1', email: 'arutune@gmail.com', profile: { name: 'Эш', type: bz.const.userTypes.hero }});
+    Meteor.users.remove({'emails.0.address': 'arutune@gmail.com'});
+    Accounts.createUser({
+        username: 'a',
+        password: 'g1',
+        profile: {name: 'Эш', type: bz.const.userTypes.hero, inviteCode: invCodeAdm },
+        email: 'arutune@gmail.com'
+    });
 
 // create fake treners:
-Meteor.users.remove({ username: 'john1' }); Accounts.createUser({username: 'john1', password: 'j1', profile: { name: 'Василий Пупкин', type: bz.const.userTypes.trainer }});
-Meteor.users.remove({ username: 'john2' }); Accounts.createUser({username: 'john2', password: 'j1', profile: { name: 'Герман Павлович Мейерхольд', type: bz.const.userTypes.trainer }});
-Meteor.users.remove({ username: 'john3' }); Accounts.createUser({username: 'john3', password: 'j1', profile: { name: 'Здоб Ши Здуб Печорkин', type: bz.const.userTypes.trainer }});
-Meteor.users.remove({ username: 'dressup' }); Accounts.createUser({username: 'dressup', password: 'd1', profile: { name: 'Ужин в платьях', type: bz.const.userTypes.admin }, email: 'shiners.test@gmail.com' });
+
+    Meteor.users.remove({username: 'john1'});
+    debugger;
+    user = Accounts.createUser({
+        username: 'john1',
+        password: 'j1',
+        profile: {name: 'Василий Пупкин', type: bz.const.userTypes.trainer, inviteCode: invCodeTr },
+        email: 'john1@shiners.ru'
+    });
+    user = Meteor.users.findOne(user);
+    codes = bz.bus.invitationCodes.generateUserCodes(user);
+    user.profile.myInvitationCodes = codes;
+
+    Meteor.users.remove({username: 'john2'});
+    user = Accounts.createUser({
+        username: 'john2',
+        password: 'j1',
+        profile: {name: 'Герман Павлович Мейерхольд', type: bz.const.userTypes.trainer, inviteCode: invCodeTr },
+        email: 'john2@shiners.ru'
+
+    });
+    user = Meteor.users.findOne(user);
+    codes = bz.bus.invitationCodes.generateUserCodes(user);
+    user.profile.myInvitationCodes = codes;
+
+    Meteor.users.remove({username: 'john3'});
+    user = Accounts.createUser({
+        username: 'john3',
+        password: 'j1',
+        profile: {name: 'Здоб Ши Здуб Печорkин', type: bz.const.userTypes.trainer, inviteCode: invCodeTr },
+        email: 'john3@shiners.ru'
+    });
+    user = Meteor.users.findOne(user);
+    codes = bz.bus.invitationCodes.generateUserCodes(user);
+    user.profile.myInvitationCodes = codes;
+
+    Meteor.users.remove({username: 'dressup'});
+    user = Accounts.createUser({
+        username: 'dressup',
+        password: 'd1',
+        profile: {name: 'Ужин в платьях', type: bz.const.userTypes.admin, inviteCode: invCodeAdm },
+        email: 'shiners.test@gmail.com'
+    });
+    user = Meteor.users.findOne(user);
+    codes = bz.bus.invitationCodes.generateUserCodes(user);
+    user.profile.myInvitationCodes = codes;
+});
 
 // bz.cols.usersTrainers = new Mongo.Collection('bz.users.trainers');
 Meteor.publish('bz.users.trainers', function(){
