@@ -1,7 +1,12 @@
 /**
  * Created by arutu_000 on 1/23/2016.
  */
-
+Template.bzPostTypes.events({
+    'click a[disabled]': function(e, i){
+      bz.ui.alert('В разработке!');
+      return false;
+    }
+})
 Template.postTypeSelect.helpers({
   getSiteTypes: function () {
     var lang = Session.get('bz.user.language');
