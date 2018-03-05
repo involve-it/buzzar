@@ -18,8 +18,8 @@ try {
     },
     /*AWSAccessKeyId: 'AKIAJ7US4FBIQQ2DWIFA',// new one
     AWSSecretAccessKey: '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',*/
-    AWSAccessKeyId: 'AKIAJRKMTZEEIOLOAJ5Q',
-    AWSSecretAccessKey: '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',
+    AWSAccessKeyId: 'AKIAIHFPO7DQJXXQYI2A',
+    AWSSecretAccessKey: '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',
     key: function (file) {
       //var name = file.name;
       var name = Date.now() + '-' + file.name;
@@ -35,22 +35,6 @@ try {
   console.error('Slingshot.createDirective error', e);
 }
 
-bz.help.makeNamespace('bz.bus.invitationCodes');
-bz.bus.invitationCodes.getCodeAlias = function(data){
-    var code = data && data._id;
-    if (code) {
-        code = code.toLowerCase().substr(0, 4);
-    } else {
-        code = null;
-
-    }
-    return code;
-}
-
-bz.bus.invitationCodes.findCodeByAlias = function(code){
-    var code = bz.cols.invitationCodes.findOne({ _id: code }); // todo
-    return code;
-}
 
 // this function will generate 2 codes, that will be assigned to any new -registered user
 bz.bus.invitationCodes.generateUserCodes = function(user){

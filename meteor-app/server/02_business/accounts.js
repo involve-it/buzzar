@@ -3,9 +3,12 @@
  */
 var validateSignupCode = function(signupCode, email) {
     var codeIsValid, isInDb, isAdminUser, code;
-    code = bz.cols.invitationCodes.findOne({ _id: signupCode });
-    isInDb = !!code;
     check(signupCode, Match.OneOf(String, null, undefined));
+
+    code = bz.cols.invitationCodes.findOne({ _id: signupCode });
+    !code && (code = bz.cols.invitationCodes.findOne({ _id: { $regex : signupCode, '$options' : 'i' }}));
+    console.log(code);
+    isInDb = !!code;
     isAdminUser = !!bz.const.adminsList.find(e => e == email);
     codeIsValid = signupCode && isInDb || isAdminUser;
     if(codeIsValid) {
@@ -19,7 +22,7 @@ Accounts.validateNewUser(function(user) {
         var myInvCodes, code, res = validateSignupCode(user.profile.inviteCode, user.emails[0].address);
         if (res) {
             // set role:
-            code = bz.cols.invitationCodes.findOne(user.profile.inviteCode);
+            code = res;
             user.profile.role = code.codeType && code.codeType.name;
             // set city:
             user.profile.cityId = 'kSZKjEGYJb8LvSiRr';

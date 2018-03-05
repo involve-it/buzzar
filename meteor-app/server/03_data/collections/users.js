@@ -93,7 +93,11 @@ Meteor.startup(function() {
     var invCodeAdm = bz.cols.invitationCodes.findOne({ note: 'defaultAdmin' })._id;
     var invCodeTr = bz.cols.invitationCodes.findOne({ note: 'defaultTrainer' })._id;
 // create hero users:
-    Meteor.users.remove({'emails.0.address': 'arutune@gmail.com'});
+    var userExisting = Meteor.users.findOne({'emails.0.address': 'arutune@gmail.com'});
+    if (userExisting){
+        Meteor.users.remove(userExisting._id);
+        bz.cols.invitationCodes.remove({ issuerId: userExisting._id });
+    }
     Accounts.createUser({
         username: 'a',
         password: 'g1',
@@ -102,9 +106,11 @@ Meteor.startup(function() {
     });
 
 // create fake treners:
-
-    Meteor.users.remove({username: 'john1'});
-    debugger;
+    var userExisting = Meteor.users.findOne({ username: 'john1' });
+    if (userExisting){
+        Meteor.users.remove(userExisting._id);
+        bz.cols.invitationCodes.remove({ issuerId: userExisting._id });
+    }
     user = Accounts.createUser({
         username: 'john1',
         password: 'j1',
@@ -115,7 +121,11 @@ Meteor.startup(function() {
     codes = bz.bus.invitationCodes.generateUserCodes(user);
     user.profile.myInvitationCodes = codes;
 
-    Meteor.users.remove({username: 'john2'});
+    var userExisting = Meteor.users.findOne({ username: 'john2' });
+    if (userExisting){
+        Meteor.users.remove(userExisting._id);
+        bz.cols.invitationCodes.remove({ issuerId: userExisting._id });
+    }
     user = Accounts.createUser({
         username: 'john2',
         password: 'j1',
@@ -127,7 +137,11 @@ Meteor.startup(function() {
     codes = bz.bus.invitationCodes.generateUserCodes(user);
     user.profile.myInvitationCodes = codes;
 
-    Meteor.users.remove({username: 'john3'});
+    var userExisting = Meteor.users.findOne({ username: 'john3' });
+    if (userExisting){
+        Meteor.users.remove(userExisting._id);
+        bz.cols.invitationCodes.remove({ issuerId: userExisting._id });
+    }
     user = Accounts.createUser({
         username: 'john3',
         password: 'j1',
@@ -138,7 +152,11 @@ Meteor.startup(function() {
     codes = bz.bus.invitationCodes.generateUserCodes(user);
     user.profile.myInvitationCodes = codes;
 
-    Meteor.users.remove({username: 'dressup'});
+    var userExisting = Meteor.users.findOne({ username: 'dressup' });
+    if (userExisting){
+        Meteor.users.remove(userExisting._id);
+        bz.cols.invitationCodes.remove({ issuerId: userExisting._id });
+    }
     user = Accounts.createUser({
         username: 'dressup',
         password: 'd1',

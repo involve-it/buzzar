@@ -33,10 +33,15 @@ Package.onUse(function (api) {
     'driftyco:ionic'
   ], global.bzSettings.webCordovaArray);
   //api.use([ 'cordova:com.ionic.keyboard', 'cordova:org.apache.cordova.device' ], 'web.cordova');// @Slava: do we need this?
+    api.addFiles([
+            'controller.shared.js'
+        ], ['server', 'client']
+    );
   api.addFiles([
       'controller.server.js'
     ], ['server']
   );
+
   /*UI kit fonts*/
   api.addAssets([
 
