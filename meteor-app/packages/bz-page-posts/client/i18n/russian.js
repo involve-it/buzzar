@@ -12,7 +12,7 @@ ruI18n = {
   YOU_HAVE_NO_POSTS: 'У вас пока еще нет постов',
   PRESS_BUTTON_BELOW:'Чтобы создать новый пост нажмите кнопку ниже',
   //New post
-  NEW_POST_NEWTYPE_BEACON_TITLE: 'Выберите подходящий Светлячок',
+  NEW_POST_NEWTYPE_BEACON_TITLE: 'Выберите подходящий тип поста',
   NEW_POST_IMPORT_FROM_WEB: 'Импортировать из интернета',
   NEW_POST_IMPORT_FROM_WEB_OPTIONAL: 'необязательно',
   NEW_POST_IMPORT_FROM_WEB_URL_PLACEHOLDER: 'Url адрес объявления в интернете',
@@ -61,7 +61,7 @@ ruI18n = {
   NEW_POST_SELLING_A_HOUSE: 'Продать дома',
   NEW_POST_INCOGNITO_MODE: 'Режим инкогнито',
   NEW_POST_HASHES: 'Хэштеги',
-  NEW_POST_CREATE_BTN: 'Установить Светлячок',
+  NEW_POST_CREATE_BTN: 'Создать пост',
   NEW_POST_SET_LOCATION_BTN: 'Выберите Местоположение',
   NEW_POST_SENIORITY: 'Стаж',
   NEW_POST_GENDER: 'Пол',

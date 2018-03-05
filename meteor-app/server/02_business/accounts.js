@@ -25,7 +25,7 @@ Accounts.validateNewUser(function(user) {
             code = res;
             user.profile.role = code.codeType && code.codeType.name;
             // set city:
-            user.profile.cityId = 'kSZKjEGYJb8LvSiRr';
+            user.profile.city = 'Lipetsk';
 
             myInvCodes = bz.bus.invitationCodes.generateUserCodes(user);
             user.profile.myInvitationCodes = myInvCodes;

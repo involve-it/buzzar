@@ -98,10 +98,11 @@ Meteor.startup(function() {
         Meteor.users.remove(userExisting._id);
         bz.cols.invitationCodes.remove({ issuerId: userExisting._id });
     }
+    var cityLip = bz.cols.cities.findOne({name: 'Lipetsk'});
     Accounts.createUser({
         username: 'a',
         password: 'g1',
-        profile: {name: 'Эш', type: bz.const.userTypes.hero, inviteCode: invCodeAdm },
+        profile: {name: 'Эш', type: bz.const.userTypes.hero, inviteCode: invCodeAdm, city: 'Lipetsk' },
         email: 'arutune@gmail.com'
     });
 
@@ -114,7 +115,7 @@ Meteor.startup(function() {
     user = Accounts.createUser({
         username: 'john1',
         password: 'j1',
-        profile: {name: 'Василий Пупкин', type: bz.const.userTypes.trainer, inviteCode: invCodeTr },
+        profile: {name: 'Василий Пупкин', type: bz.const.userTypes.trainer, inviteCode: invCodeTr, city: 'Lipetsk' },
         email: 'john1@shiners.ru'
     });
     user = Meteor.users.findOne(user);
@@ -129,7 +130,7 @@ Meteor.startup(function() {
     user = Accounts.createUser({
         username: 'john2',
         password: 'j1',
-        profile: {name: 'Герман Павлович Мейерхольд', type: bz.const.userTypes.trainer, inviteCode: invCodeTr },
+        profile: {name: 'Герман Павлович Мейерхольд', type: bz.const.userTypes.trainer, inviteCode: invCodeTr, city: 'Lipetsk' },
         email: 'john2@shiners.ru'
 
     });
@@ -145,7 +146,7 @@ Meteor.startup(function() {
     user = Accounts.createUser({
         username: 'john3',
         password: 'j1',
-        profile: {name: 'Здоб Ши Здуб Печорkин', type: bz.const.userTypes.trainer, inviteCode: invCodeTr },
+        profile: {name: 'Здоб Ши Здуб Печорkин', type: bz.const.userTypes.trainer, inviteCode: invCodeTr, city: 'Lipetsk'  },
         email: 'john3@shiners.ru'
     });
     user = Meteor.users.findOne(user);
@@ -160,7 +161,7 @@ Meteor.startup(function() {
     user = Accounts.createUser({
         username: 'dressup',
         password: 'd1',
-        profile: {name: 'Ужин в платьях', type: bz.const.userTypes.admin, inviteCode: invCodeAdm },
+        profile: {name: 'Ужин в платьях', type: bz.const.userTypes.admin, inviteCode: invCodeAdm, city: 'Voronezh'  },
         email: 'shiners.test@gmail.com'
     });
     user = Meteor.users.findOne(user);
