@@ -139,12 +139,24 @@ Template.bzPostsDurationPicker.events({
 });
 
 Template.bzPostsDurationPicker.helpers({});
+Template.bzPostsDatePicker.events({
+    'click .js-open-modal-datetime': function(e, v) {
+            e.preventDefault();
+
+            v.$('.js-duration-picker').val('');
+            v.$('.js-duration-picker').removeData();
+
+            v.$('.js-duration-select-picker option[value=""]').prop('selected',true);
+            v.$('.js-date-time-picker-modal').foundation('reveal', 'open');
+    }
+});
 
 /* MODAL DATE PICKER */
 Template.bzDatePickerModal.onCreated(function() {});
 
 
 Template.bzDatePickerModal.onRendered(function() {
+  var pickTime = Template.currentData().time;
   let tmpl = this,
       datePicker,
       nowDate = new Date(),
@@ -160,7 +172,8 @@ Template.bzDatePickerModal.onRendered(function() {
     onRender: function (date) {
       /* update selected date */
       return date.valueOf() < now.valueOf() ? 'disabled' : '';
-    }
+    },
+      pickTime: !!pickTime
   });
 
   /* set data at start */
@@ -222,6 +235,7 @@ Template.bzDatePickerModal.events({
     e.preventDefault();
     
     $('.js-date-picker-modal').foundation('reveal', 'close');
+    $('.js-date-time-picker-modal').foundation('reveal', 'close');
   },
   'click .js-ok-btn': function(e, v) {
     /* button apply datepicker */
@@ -238,7 +252,9 @@ Template.bzDatePickerModal.events({
     if(!getSelectedDate) {console.error('Date is not selected')};
     
     /* format mm/dd/yyyy - en | dd/mm/yyyy - ru */
-    ( Session.get('bz.user.language') === 'ru' ) ? format = getSelectedDate.toLocaleDateString('ru-RU', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : format = getSelectedDate.toLocaleDateString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    ( Session.get('bz.user.language') === 'ru' ) ? format = getSelectedDate.toLocaleDateString('ru-RU',
+        { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' })
+        : format = getSelectedDate.toLocaleDateString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
     
     if(format && getSelectedDate) {
       input.val(format).data('selectDate', getSelectedDate);
@@ -246,10 +262,8 @@ Template.bzDatePickerModal.events({
     } else {
       input.attr('placeholder', 'format is not defined');
     }
-    
-    
     $('.js-date-picker-modal').foundation('reveal', 'close');
-    //console.info('click APPLY', getSelectedDate);
+    $('.js-date-time-picker-modal').foundation('reveal', 'close');
   }
 });
 

@@ -25,7 +25,10 @@ Template.postsPlacesAutoform.onRendered(function () {
   $(document).foundation();
 });
 Template.postsPlacesAutoform.rendered = function () {
-  var that = this;
+  var that = this, curPostType = Template.currentData().postType || {};
+  if (curPostType == 'event') {
+    that.$('.js-moving-location-panel').hide();
+  }
   if (this.data._id && this.data.details.locations) {
     _.each(this.data.details.locations, function (el) {
       if (el.placeType === bz.const.locations.type.DYNAMIC) {
