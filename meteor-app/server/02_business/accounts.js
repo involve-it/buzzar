@@ -3,9 +3,12 @@
  */
 var validateSignupCode = function(signupCode, email) {
     var codeIsValid, isInDb, isAdminUser, code;
-    code = bz.cols.invitationCodes.findOne({ _id: signupCode });
-    isInDb = !!code;
     check(signupCode, Match.OneOf(String, null, undefined));
+
+    code = bz.cols.invitationCodes.findOne({ _id: signupCode });
+    !code && (code = bz.cols.invitationCodes.findOne({ _id: { $regex : signupCode, '$options' : 'i' }}));
+    console.log(code);
+    isInDb = !!code;
     isAdminUser = !!bz.const.adminsList.find(e => e == email);
     codeIsValid = signupCode && isInDb || isAdminUser;
     if(codeIsValid) {
@@ -15,13 +18,17 @@ var validateSignupCode = function(signupCode, email) {
     }
 }
 Accounts.validateNewUser(function(user) {
-    debugger;
     if (user.profile.inviteCode) {
-        var res = validateSignupCode(user.profile.inviteCode, user.emails[0].address);
+        var myInvCodes, code, res = validateSignupCode(user.profile.inviteCode, user.emails[0].address);
         if (res) {
             // set role:
-
+            code = res;
+            user.profile.role = code.codeType && code.codeType.name;
             // set city:
+            user.profile.city = 'Lipetsk';
+
+            myInvCodes = bz.bus.invitationCodes.generateUserCodes(user);
+            user.profile.myInvitationCodes = myInvCodes;
             return true;
         } else {
             throw new Meteor.Error(403, "Указан неверный код регистрации");

@@ -128,7 +128,7 @@ bz.ui.initMarked = function() {
 };
 
 
-bz.ui.initVkAPI = function() {
+/*bz.ui.initVkAPI = function() {
   setTimeout(function () {
     toast(
         '//vk.com/js/api/openapi.js',
@@ -143,6 +143,6 @@ bz.ui.initVkAPI = function() {
     );
   })
 
-};
+};*/
 
 

@@ -87,14 +87,99 @@ Meteor.publish('users-one', function (userIds) {
 
 bz.const.userTypes = { visitor: 'visitor', admin: 'admin', trainer: 'trainer', hero: 'hero' };
 
+Meteor.startup(function() {
+    var user, codes;
+
+    var invCodeAdm = bz.cols.invitationCodes.findOne({ note: 'defaultAdmin' })._id;
+    var invCodeTr = bz.cols.invitationCodes.findOne({ note: 'defaultTrainer' })._id;
 // create hero users:
-Meteor.users.remove({ 'emails.0.address': 'arutune@gmail.com' }); Accounts.createUser({username: 'a', password: 'g1', email: 'arutune@gmail.com', profile: { name: 'Эш', type: bz.const.userTypes.hero }});
+    var userExisting = Meteor.users.findOne({'emails.0.address': 'arutune@gmail.com'});
+    if (userExisting){
+        Meteor.users.remove(userExisting._id);
+        bz.cols.invitationCodes.remove({ issuerId: userExisting._id });
+    }
+    var cityLip = bz.cols.cities.findOne({name: 'Lipetsk'});
+    Accounts.createUser({
+        username: 'a',
+        password: 'g1',
+        profile: {name: 'Эш', type: bz.const.userTypes.hero, inviteCode: invCodeAdm, city: 'Lipetsk' },
+        email: 'arutune@gmail.com'
+    });
+    var userExisting = Meteor.users.findOne({'emails.0.address': 'xvolkx48@gmail.com'});
+    if (userExisting){
+        Meteor.users.remove(userExisting._id);
+        bz.cols.invitationCodes.remove({ issuerId: userExisting._id });
+    }
+    var cityLip = bz.cols.cities.findOne({name: 'Lipetsk'});
+    Accounts.createUser({
+        username: 'x',
+        password: 'x1',
+        profile: {name: 'Евгений', type: bz.const.userTypes.hero, inviteCode: invCodeAdm, city: 'Lipetsk' },
+        email: 'xvolkx48@gmail.com'
+    });
 
 // create fake treners:
-Meteor.users.remove({ username: 'john1' }); Accounts.createUser({username: 'john1', password: 'j1', profile: { name: 'Василий Пупкин', type: bz.const.userTypes.trainer }});
-Meteor.users.remove({ username: 'john2' }); Accounts.createUser({username: 'john2', password: 'j1', profile: { name: 'Герман Павлович Мейерхольд', type: bz.const.userTypes.trainer }});
-Meteor.users.remove({ username: 'john3' }); Accounts.createUser({username: 'john3', password: 'j1', profile: { name: 'Здоб Ши Здуб Печорkин', type: bz.const.userTypes.trainer }});
-Meteor.users.remove({ username: 'dressup' }); Accounts.createUser({username: 'dressup', password: 'd1', profile: { name: 'Ужин в платьях', type: bz.const.userTypes.admin }, email: 'shiners.test@gmail.com' });
+    var userExisting = Meteor.users.findOne({ username: 'john1' });
+    if (userExisting){
+        Meteor.users.remove(userExisting._id);
+        bz.cols.invitationCodes.remove({ issuerId: userExisting._id });
+    }
+    user = Accounts.createUser({
+        username: 'john1',
+        password: 'j1',
+        profile: {name: 'Василий Пупкин', type: bz.const.userTypes.trainer, inviteCode: invCodeTr, city: 'Lipetsk' },
+        email: 'john1@shiners.ru'
+    });
+    user = Meteor.users.findOne(user);
+    codes = bz.bus.invitationCodes.generateUserCodes(user);
+    user.profile.myInvitationCodes = codes;
+
+    var userExisting = Meteor.users.findOne({ username: 'john2' });
+    if (userExisting){
+        Meteor.users.remove(userExisting._id);
+        bz.cols.invitationCodes.remove({ issuerId: userExisting._id });
+    }
+    user = Accounts.createUser({
+        username: 'john2',
+        password: 'j1',
+        profile: {name: 'Герман Павлович Мейерхольд', type: bz.const.userTypes.trainer, inviteCode: invCodeTr, city: 'Lipetsk' },
+        email: 'john2@shiners.ru'
+
+    });
+    user = Meteor.users.findOne(user);
+    codes = bz.bus.invitationCodes.generateUserCodes(user);
+    user.profile.myInvitationCodes = codes;
+
+    var userExisting = Meteor.users.findOne({ username: 'john3' });
+    if (userExisting){
+        Meteor.users.remove(userExisting._id);
+        bz.cols.invitationCodes.remove({ issuerId: userExisting._id });
+    }
+    user = Accounts.createUser({
+        username: 'john3',
+        password: 'j1',
+        profile: {name: 'Здоб Ши Здуб Печорkин', type: bz.const.userTypes.trainer, inviteCode: invCodeTr, city: 'Lipetsk'  },
+        email: 'john3@shiners.ru'
+    });
+    user = Meteor.users.findOne(user);
+    codes = bz.bus.invitationCodes.generateUserCodes(user);
+    user.profile.myInvitationCodes = codes;
+
+    var userExisting = Meteor.users.findOne({ username: 'dressup' });
+    if (userExisting){
+        Meteor.users.remove(userExisting._id);
+        bz.cols.invitationCodes.remove({ issuerId: userExisting._id });
+    }
+    user = Accounts.createUser({
+        username: 'dressup',
+        password: 'd1',
+        profile: {name: 'Ужин в платьях', type: bz.const.userTypes.admin, inviteCode: invCodeAdm, city: 'Voronezh'  },
+        email: 'shiners.test@gmail.com'
+    });
+    user = Meteor.users.findOne(user);
+    codes = bz.bus.invitationCodes.generateUserCodes(user);
+    user.profile.myInvitationCodes = codes;
+});
 
 // bz.cols.usersTrainers = new Mongo.Collection('bz.users.trainers');
 Meteor.publish('bz.users.trainers', function(){

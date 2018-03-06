@@ -71,7 +71,10 @@
     {{/if}}
 
     <!--<li class="{{isActiveRoute 'bz.map'}}"><a href="{{pathFor 'bz.map'}}">{{ t9n 'MENU_MAP' }}</a></li>-->
-    <li class="link-menu {{isActiveRoute 'bz.aboutUs'}}"><a href="{{pathFor 'bz.aboutUs'}}">{{ t9n 'MENU_ABOUT_US' }}</a></li>
+    <!--<li class="link-menu {{isActiveRoute 'bz.aboutUs'}}"><a href="{{pathFor 'bz.aboutUs'}}">{{ t9n 'MENU_ABOUT_US' }}</a></li>-->
+      {{#if isAdminRole}}
+          <li class="link-menu {{isActiveRoute 'bz.invitationCodes'}}"><a href="{{pathFor 'bz.invitationCodes'}}">Инвайт-Коды</a></li>
+      {{/if}}
   </ul>
 
     {{> bzLeftMenuSelectLanguage}}

@@ -295,7 +295,7 @@ bz.bus.postsHandler = {
               if (postDb.details.photos) {
                 bz.cols.images.remove({_id: {$in: postDb.details.photos}});
               }
-              if (postData.details && postData.details.photos){
+              if (postData.details && postData.details.photos && postData.details.photos.length > 0 && typeof postData.details.photos[0] === 'object'){
                 var photoIds = [], photo;
 
                 postData.details.photos.forEach(function(e){
@@ -311,7 +311,7 @@ bz.bus.postsHandler = {
                 });
                 updatePost.details.photos = photoIds;
               } else {
-                updatePost.details.photos = [];
+                  updatePost.details.photos = postData.details.photos || [];
               }
               if (postData.status){
                 updatePost.status = postData.status

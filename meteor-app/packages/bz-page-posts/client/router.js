@@ -130,7 +130,7 @@ Router.map(function () {
       }
     }
   });
-  //create post for iframe(mvc project)
+  /*//create post for iframe(mvc project)
   this.route('postsNewIframe',{
     path:'/posts/new_forIframe/:userid',
     template: 'postsNew',
@@ -146,13 +146,13 @@ Router.map(function () {
     },
     onBeforeAction: function () {
       var userId = this.params.userid;
-      $("#bz-header").css("display","none");
-      $("#bz-footer").css("display","none");
-      newPostType.set('ad');
+      // $("#bz-header").css("display","none");
+      // $("#bz-footer").css("display","none");
+      // newPostType.set('ad');
       this.next();
     },
     onStop: Router.UnsavedPageRouteStopHandler
-  });
+  });*/
 
   // create post flow:
   this.route('postsNew', {
@@ -176,7 +176,7 @@ Router.map(function () {
         console.info('ошибка в обработке url: '+err.message);
       }
       if(iFrameStatus!=='true') {
-        Router.go(`/posts/new?type=ad`);
+        //Router.go(`/posts/new?type=ad`);
       }
       if (this.params.query.type && this.params.query.type !== 'undefined') {
         newPostType.set(this.params.query.type);

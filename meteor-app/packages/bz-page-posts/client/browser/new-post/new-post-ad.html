@@ -1,0 +1,70 @@
+<template name="bzPostsNewFormAd">
+    <div class="main-content">
+        <div class="bz-media-q">
+            <h1 class="title uppercase">{{t9n 'NEW_POST_CREATE_NEW_POST'}}</h1>
+        </div>
+        <div class="row">
+            {{> postsNewUrl getImagesArrayReactive}}
+        </div>
+    </div>
+
+    <div class="main-content margin-top-20px">
+        <div class="item-group">
+
+            <div class="item item-divider ">
+                <h3 class="title">{{t9n 'NEW_POST_WHAT'}}</h3>
+
+                <div class="row">
+                    {{> bzAnonymousPostBtn }}
+                </div>
+
+                <p class="bz-muted-text">{{t9n 'NEW_POST_MAIN_INFORMATION_MUTED'}}</p>
+            </div>
+
+            <div class="row">
+                {{> postDetailsCommon }}
+            </div>
+
+            <div class="row">
+                {{> postTypeSelect }}
+            </div>
+
+            <div class="row">
+                <div class="js-post-details-categorized"></div>
+            </div>
+
+            <div class="row">
+                {{> postTagsSelect }}
+            </div>
+
+            <div class="item">
+                <!--<h3 class="title ">{{ t9n 'NEW_POST_GALLERY_PHOTOS' }}</h3>-->
+                <p class="bz-muted-text">{{t9n 'NEW_POST_GALLERY_PHOTOS_MUTED'}}</p>
+            </div>
+
+            <div class="row">
+                {{> postPhotoUpload }}
+            </div>
+
+            <!--<div class="row">
+              {{> postHashesControl }}
+            </div>-->
+        </div>
+    </div>
+
+    <div class="main-content margin-top-20px">
+        <div class="item-group">
+            <div class="item item-divider">
+                <h3 class="title">{{ t9n 'NEW_POST_WHERE' }}</h3>
+                <p class="bz-muted-text">{{t9n 'NEW_POST_LOCATION_MUTED'}}</p>
+            </div>
+
+            {{> postsPlacesAutoform postType="ad" }}
+
+        </div>
+    </div>
+
+    <div class="main-content margin-top-20px">
+        {{> bzPostsDurationPicker }}
+    </div>
+</template>

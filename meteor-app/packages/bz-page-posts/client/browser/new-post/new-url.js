@@ -2,7 +2,7 @@
 Template.postsNewUrl.onCreated(function() {
   
   //с прямой ссылок на парсер может не понадобиться
-  bz.ui.initVkAPI();
+  //bz.ui.initVkAPI();
   
 });
 

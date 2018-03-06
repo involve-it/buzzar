@@ -3,12 +3,12 @@
  */
 
 
-Template.invitationCodes.helpers({
+Template.bzInvitationCodes.helpers({
     getCodes: function() {
         return bz.cols.invitationCodes.find().fetch();
     }
 });
-Template.invitationCodes.events({
+Template.bzInvitationCodes.events({
     'click #generateInvitationCode': function() {
         $('[data-reveal].js-create-code-modal-holder').foundation('reveal', 'open');
     }
@@ -17,10 +17,17 @@ Template.invitationCodes.events({
 Template.invitationCodesItem.rendered = function () {
 };
 Template.invitationCodesItem.helpers({
+    getCode: function() {
+        return bz.bus.invitationCodes.getCodeAlias(this);
+    }
 });
 Template.invitationCodesItem.events({
     'click .js-remove': function (e, el) {
-        bz.cols.invitationCodes.remove(this._id);
+        if (this.note.indexOf('default') != 0) {
+            bz.cols.invitationCodes.remove(this._id);
+        } else {
+            bz.ui.alert('Эти значения нельзя удалить');
+        }
     }
 });
 
@@ -107,9 +114,3 @@ Template.bzCreateInvitationCodeModal.events({
     }
 });
 
-bz.help.makeNamespace('bz.bus.invitationCodes');
-bz.bus.invitationCodes.createCode = function(data){
-    var ret;
-    ret = bz.cols.invitationCodes.insert(data);
-    return ret;
-}

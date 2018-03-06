@@ -88,7 +88,22 @@ Meteor.startup(function () {
       } else if (Meteor.user().isAdmin()){
         this.next();
       } else {
-        bz.ui.error('You need to be admin to see this page!')
+        bz.ui.error('Необходимы права администратора!')
+      }
+    }
+  });
+  requireAdminRoleUserController = baseController.extend({
+    onBeforeAction: function () {
+      if (!Meteor.user()) {
+        if (Meteor.loggingIn()) {
+          this.render(this.loadingTemplate);
+        } else {
+          Router.signIn(true);
+        }
+      } else if (Meteor.user().isAdminRole()){
+        this.next();
+      } else {
+        bz.ui.error('Необходимы права администратора!')
       }
     }
   });

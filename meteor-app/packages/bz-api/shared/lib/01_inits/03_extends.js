@@ -74,7 +74,7 @@ bz.help.safeCode(function () {
 //  onStop: Router.UnsavedPageRouteStopHandler
 // in JS set bz.runtime.changesNotSaved = true
 
-  var origGo = Router.go, linksSelector = 'a[href]:not([href=#]):visible';
+  var origGo = Router.go, linksSelector = 'a[href]:not([href*=\\#]):visible';
   Router.AddHooksToCheckFormSaved = function (decider) {
     $(linksSelector).off('click', checkFormIsSaved);
     $(linksSelector).on('click', {decider: decider}, checkFormIsSaved);

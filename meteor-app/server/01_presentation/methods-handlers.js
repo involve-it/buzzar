@@ -50,7 +50,7 @@ Meteor.methods({
     return bz.bus.postsHandler.getPost(postId);
   },
   getMyPosts: function(requestPage){
-    return bz.bus.postsHandler.getMyPosts(requestPage, Meteor.userId());
+    return bz.bus.postsHandler.getMyPosts(requestPage, Meteor.userId());onobsolete()
   },
   getNearbyPostsTest: function(request, showOffline){
     return bz.bus.postsHandler.getNearbyPosts(request, showOffline);
@@ -59,6 +59,7 @@ Meteor.methods({
     return bz.bus.postsHandler.getPopularPosts(request);
   },
   addPost: function(request, currentLocation){
+    console.log('imimimimimi-')
     var currentUserId;
     if(!Meteor.userId() && request.IFrameUserId){
       if (Meteor.users.findOne({_id:request.IFrameUserId})){
