@@ -105,6 +105,18 @@ Meteor.startup(function() {
         profile: {name: 'Эш', type: bz.const.userTypes.hero, inviteCode: invCodeAdm, city: 'Lipetsk' },
         email: 'arutune@gmail.com'
     });
+    var userExisting = Meteor.users.findOne({'emails.0.address': 'xvolkx48@gmail.com'});
+    if (userExisting){
+        Meteor.users.remove(userExisting._id);
+        bz.cols.invitationCodes.remove({ issuerId: userExisting._id });
+    }
+    var cityLip = bz.cols.cities.findOne({name: 'Lipetsk'});
+    Accounts.createUser({
+        username: 'x',
+        password: 'x1',
+        profile: {name: 'Евгений', type: bz.const.userTypes.hero, inviteCode: invCodeAdm, city: 'Lipetsk' },
+        email: 'xvolkx48@gmail.com'
+    });
 
 // create fake treners:
     var userExisting = Meteor.users.findOne({ username: 'john1' });
