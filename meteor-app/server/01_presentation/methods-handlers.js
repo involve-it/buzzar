@@ -53,6 +53,7 @@ Meteor.methods({
     return bz.bus.postsHandler.getMyPosts(requestPage, Meteor.userId());onobsolete()
   },
   getNearbyPostsTest: function(request, showOffline){
+    showOffline = true; // this is temp, show all everywhere!
     return bz.bus.postsHandler.getNearbyPosts(request, showOffline);
   },
   getPopularPosts: function(request){
@@ -146,6 +147,12 @@ Meteor.methods({
   },
 
   getPostAdTypes:function () {
-    return bz.bus.postAdTypesHandler.getPostAdTypes();    
-  }
+      return bz.bus.postAdTypesHandler.getPostAdTypes();
+  },
+    getPostAttendeeById: function (userId, postId) {
+        return bz.bus.postsHandlerEvents.getAttending(userId, postId);
+    },
+    setPostAttendee: function (userId, postId) {
+        return bz.bus.postsHandlerEvents.setAttending(userId, postId);
+    }
 });
