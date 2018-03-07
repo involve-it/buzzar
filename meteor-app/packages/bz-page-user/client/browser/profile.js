@@ -48,6 +48,12 @@ Template.profileSettings.helpers({
   getUser: function() {
     return Template.instance().someUserData.get();
   },
+  getUserCity: function() {
+    var data = Template.instance().someUserData.get();
+    var city = data && data.profile && data.profile.city;
+
+    return city;
+  },
   /* OLD CODE */
   getPostsCount: function(){
     return bz.cols.posts.find({userId: Meteor.userId()}).count();
