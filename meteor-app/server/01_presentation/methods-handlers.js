@@ -56,6 +56,10 @@ Meteor.methods({
     showOffline = true; // this is temp, show all everywhere!
     return bz.bus.postsHandler.getNearbyPosts(request, showOffline);
   },
+  getNearbyPostsByCityAndLocation: function(request, showOffline){
+      showOffline = true; // this is temp, show all everywhere!
+      return bz.bus.postsHandler.getNearbyPostsByCityAndLocation(request, showOffline);
+  },
   getPopularPosts: function(request){
     return bz.bus.postsHandler.getPopularPosts(request);
   },

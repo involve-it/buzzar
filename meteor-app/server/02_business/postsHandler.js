@@ -594,6 +594,124 @@ bz.bus.postsHandler = {
     ret = { success:true, result:postsRet };
     return ret;
   },
+    getNearbyPostsByCityAndLocation: function(request, showOffline){ // добавим проверку на местоположение, если оно не определилось, покажем город:
+    var ret, lat, lng, radius, skip, take, postsQuery={}, posts, arrTypes=[], activeCats, box, postsRet, postsSort, coords, loc,
+        curLocation,
+        serverLimit = 20, options, optionsForArray, onlineOnlyQuery, userId, city;
+    lat=request.lat;
+    lng=request.lng;
+    radius=request.radius; //request.radius;
+    skip=request.skip;
+    take=request.take || serverLimit;
+    activeCats=request.activeCats;
+    userId = request.userId;
+    city = request.city;
+    if(lat && lng && lat !== 0 && lng !== 0) {
+      curLocation = {
+        coords: {
+          lat: lat,
+          lng: lng
+        }
+      }
+    } else if(city || userId) {
+      // set city:
+        !city && Meteor.users.findOne(userId) && (city = Meteor.users.findOne(userId).profile.city);
+
+        var cityObj = bz.cols.cities.findOne({ name: city });
+        if (cityObj) {
+            curLocation = {
+                coords: {
+                    lat: cityObj.location.coordinates[0],
+                    lng: cityObj.location.coordinates[1]
+                }
+            }
+
+        }
+
+    } else {
+      // no user id, nothing!!
+    }
+    options = {
+      sort: { 'stats.seenTotal': -1 },
+      skip: skip
+    };
+    optionsForArray = {
+      sort: function(a, b) {
+          var diff = bz.help.posts.getDistanceToCurrentLocationNumber.call(a, undefined, curLocation)
+              - bz.help.posts.getDistanceToCurrentLocationNumber.call(b, undefined, curLocation);
+          return diff;
+      }
+    };
+    if (lat && lng && radius) {
+      box = bz.bus.proximityHandler.getLatLngBox(lat, lng, radius);
+      if (box) {
+        postsQuery['details.locations'] = {
+          $elemMatch: {
+            'obscuredCoords.lat': {$gte: box.lat1, $lte: box.lat2},
+            'obscuredCoords.lng': {$gte: box.lng1, $lte: box.lng2}
+          }
+        };
+      }
+    }else{
+
+    }
+    if (activeCats && Array.isArray(activeCats) && activeCats.length > 0) {
+      postsQuery['type'] = {$in: activeCats};
+    } else {
+      arrTypes = _.map(bz.cols.postAdTypes.find().fetch(), function (item) {
+        return item.name;
+      });
+      arrTypes.push(undefined);
+      arrTypes.push('');
+      postsQuery['type'] = {$in: arrTypes};
+    }
+    postsQuery['status'] = { visible:  bz.const.posts.status.visibility.VISIBLE };
+    // get only non-expired posts (if no value provided in call):
+    if (!postsQuery['endDatePost']) {
+      postsQuery['endDatePost'] = { $gte : new Date() }
+    }
+    // only return live posts, if no showOffline flag provided:
+      //postsQuery["$or"] = [{"presences.dynamic": {'$eq': 'close'}}, {"presences.static": {'$eq': 'close'}}];
+      try {
+          posts = bz.cols.posts.find({$or: [postsQuery, {'premium': 1}]}, options).fetch().sort(optionsForArray.sort).slice(0, take);
+
+          /* posts = bz.cols.posts.aggregate([
+              {$match: {"$or": [{"presences.dynamic": {'$eq': 'close'}}, {"presences.static": {'$eq': 'close'}}]}},
+             { $match: postsQuery },
+             {
+               $lookup: {
+                 from: "users",
+                 localField: "userId",
+                 foreignField: "_id",
+                 as: "userObject"
+               }
+             },
+             {
+               //$match: {"$or": [{"userObject.0.status.online": true}, {"userObject.0.status.onlineFake": true} ] }
+             }
+           ]);*/
+      } catch(ex) {
+        console.log(ex);
+      }
+    postsRet = bz.bus.postsHandler.buildPostsObject({ posts:posts });
+    //postsRet = posts;
+    if (postsRet){
+      postsRet.forEach(function(post){
+        if (post.premium && post.details && post.details.locations && post.details.locations.length){
+          post.details.locations[0].coords = {
+            lat: request.lat,
+            lng: request.lng
+          }
+        }
+      });
+    }
+    if (postsRet && typeof postsRet.sort === 'function') {
+      postsRet = postsRet.sort(optionsForArray.sort).slice(0, take);
+    }
+
+    ret = { success:true, result:postsRet };
+    return ret;
+  },
   getPopularPosts: function(request){
     var ret, lat, lng, radius, skip, take, postsQuery={}, posts, arrTypes=[], activeCats, box, options, postsRet,
         //postsSort, coords, loc,
