@@ -170,7 +170,7 @@ bz.bus.usersHandler = {
             city: userDb.profile.city,
             inviteCode: userDb.profile.inviteCode,
             phone: userDb.profile.phone,
-            role: userDb.profile.role
+            type: userDb.profile.type
         },
         image:{
           imageUrl: userDb.profile && userDb.profile.image && userDb.profile.image.data,

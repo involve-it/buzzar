@@ -23,7 +23,7 @@ Accounts.validateNewUser(function(user) {
         if (res) {
             // set role:
             code = res;
-            user.profile.role = code.codeType && code.codeType.name;
+            user.profile.type = code.codeType && code.codeType.name;
             // set city:
             user.profile.city = 'Lipetsk';
 
