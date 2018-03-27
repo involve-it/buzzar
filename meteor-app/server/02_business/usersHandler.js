@@ -35,7 +35,7 @@ bz.bus.usersHandler = {
             userDb = Meteor.users.findOne({_id: currentUserId});
         requestProfileDetails=requestData.profileDetails;
         requestEmail=requestData.email;
-        requestImageUrl=requestData.imageUrl;
+        requestImageUrl=requestData.imageUrl || requestData.image && (requestData.image.imageUrl || requestData.image.data);
         if (requestProfileDetails) {
             if (Array.isArray(requestProfileDetails)) {
                 _.each(requestProfileDetails, function (item) {
