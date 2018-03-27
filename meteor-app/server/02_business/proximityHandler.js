@@ -261,7 +261,7 @@ bz.bus.proximityHandler = {
                             //console.log('Changing status to Near for ad: ' + post.details.title);
                             updated = true;
                             presences[bz.const.locations.type.STATIC] = bz.const.posts.status.presence.NEAR;
-                        } else if (CheckAlwaysLiveRule(Meteor.userId())) { // take care of fake users too!
+                        } else if (CheckAlwaysLiveRule(post.userId)) { // take care of fake users too!
                             updated = true;
                             presences[bz.const.locations.type.STATIC] = bz.const.posts.status.presence.NEAR;
                         }
