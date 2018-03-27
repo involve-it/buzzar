@@ -11,25 +11,23 @@ loggedInUserLazyLoad = function () {
 
   (function () {
     var initializing = true;
-    bz.cols.messages && bz.cols.messages.find({toUserId: userId, seen: false}).observeChanges({
+    // пока уберем оповещения о новых сообщениях
+    /*bz.cols.messages && bz.cols.messages.find({toUserId: userId, seen: false}).observeChanges({
       added: function (id, doc) {
-        /*CONSOLE CLEAR
-        console.log(id);
-        */
         if (Meteor.userId() === doc.toUserId) {
 
           if (!initializing) {
             //console.log(doc);
             var userObj = Meteor.users.findOne(doc.userId);
             if (Router.current().url.slice(6)!= doc.chatId) {
-              bz.bus.chats.showMessageModal(doc, userObj, id);
+              bz.bus.chats.showMessageModal(doc, id, userObj);
 
               bz.bus.chats.showbzAlerMessage(doc, userObj, id);
             }
           }
         }
       }
-    });
+    });*/
     initializing = false;
   })();
 };
