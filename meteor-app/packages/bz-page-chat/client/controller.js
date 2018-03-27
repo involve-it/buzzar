@@ -105,12 +105,12 @@ getUniqueChatsForUser = function (userId, all) {
 };
 
 messageModals = {};
-showMessageModal = function (msgObj, id) {
+showMessageModal = function (msgObj, id, userObj) {
 
   var data = {
       messageText: msgObj.text,
       chatId: msgObj.chatId,
-      user: msgObj.user
+      user: msgObj.user || userObj
     },
     parentNode = $('.js-message-popup-placeholder')[0];
     messageModals[id] = Blaze.renderWithData(Template.bzChatMessagePopup, data, parentNode);

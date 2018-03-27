@@ -61,10 +61,18 @@ Meteor.startup(function () {
             note: 'defaultUser'
         });
     }
-
     Meteor.publish('invitationCodes', function(){
-        var ret;
-        ret = bz.cols.invitationCodes.find();
+        var ret, user;
+        if (user = Meteor.user()) {
+            if (user.profile.type === bz.const.userTypes.hero) {
+                ret = bz.cols.invitationCodes.find();
+            } else if (user.profile.type === bz.const.userTypes.admin) {
+                ret = bz.cols.invitationCodes.find({ 'codeType.name': { $in: ['admin', 'trainer', 'user']}});
+
+            } else if (user.profile.type === bz.const.userTypes.trainer) {
+                ret = bz.cols.invitationCodes.find({ issuerId: user._id, 'codeType.name': { $in: ['trainer', 'user']}});
+            }
+        }
         return ret;
     });
     bz.cols.invitationCodes.allow({
