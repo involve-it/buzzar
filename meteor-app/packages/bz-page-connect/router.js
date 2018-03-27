@@ -4,7 +4,7 @@
 
 Router.map(function () {
   this.route('connect', {
-    path: '/connect',
+    path: '/dating',
     template: 'pageConnect',
     layoutTemplate: 'mainLayoutHome',
     fastRender: true,

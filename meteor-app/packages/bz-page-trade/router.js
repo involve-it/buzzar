@@ -4,7 +4,7 @@
 
 Router.map(function () {
   this.route('trade', {
-    path: '/trade',
+    path: '/sales',
     template: 'pageTrade',
     layoutTemplate: 'mainLayoutHome',
     fastRender: true,
