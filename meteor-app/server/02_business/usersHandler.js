@@ -92,7 +92,7 @@ bz.bus.usersHandler = {
             }
             if(requestImageUrl || email){
                 if (requestImageUrl){
-                    user.profile = {image:{ data: requestImageUrl, thumbnail: null}}
+                    user.profile = _.extend(requestData.profile, {image:{ data: requestImageUrl, thumbnail: null}});
                 }
                 if (email){
                     user.emails=[{address:email, verified: false}];
