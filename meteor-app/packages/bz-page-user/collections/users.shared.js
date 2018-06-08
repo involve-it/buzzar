@@ -32,7 +32,7 @@ bz.help.makeNamespace('bz.help.users', {
     return (this.profile && this.profile.isAdmin) ? true : false;
   },
   isAdminRole: function () {
-    return (this.profile && (this.profile.role === 'admin' || this.profile.role === 'hero')) ? true : false;
+    return (this.profile && (this.profile.type === 'admin' || this.profile.type === 'hero')) ? true : false;
   },
   postBelongsToUser: function (post) {
     var ret = false, userId;

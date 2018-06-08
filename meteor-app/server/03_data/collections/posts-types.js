@@ -41,8 +41,8 @@ Meteor.startup(function () {
   });*/
 
   bz.cols.postAdTypes.insert({
-    name: 'connect',
-    intName: 'connect',
+    name: 'dating',
+    intName: 'dating',
     id: 'ZiGto5xhe4TgAYJhe',
     fullName: 'Looking for Connections',
     color: 'F77012',
@@ -118,8 +118,8 @@ Meteor.startup(function () {
     }
   });*/
     bz.cols.postAdTypes.insert({
-        name: 'ad',
-        intName: 'trade',
+        name: 'sales',
+        intName: 'sales',
         id: 'fveonD9cC3i33LfKj',
         fullName: 'Paid Ads',
         color: 'EF376C',

@@ -172,12 +172,13 @@ bz.bus.messagesChatsHandler = {
   },
   addMessage: function(request){
     var ret,chat, chatId, currentUser, toUser, message,messageId,keyMessage,text, toUserId, type, validate, now;
-    check(request,{
+    /*check(request,{
       message: String,
-      type: Match.Maybe(String),
+      //type: Match.Maybe(String),
       destinationUserId: String,
       associatedPostId: Match.Maybe(String)
-    });
+    });*/
+
     now=Date.now();
     text=request.message;
     type=request.type;

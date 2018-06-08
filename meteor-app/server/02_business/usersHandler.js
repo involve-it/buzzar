@@ -35,7 +35,7 @@ bz.bus.usersHandler = {
             userDb = Meteor.users.findOne({_id: currentUserId});
         requestProfileDetails=requestData.profileDetails;
         requestEmail=requestData.email;
-        requestImageUrl=requestData.imageUrl;
+        requestImageUrl=requestData.imageUrl || requestData.image && (requestData.image.imageUrl || requestData.image.data);
         if (requestProfileDetails) {
             if (Array.isArray(requestProfileDetails)) {
                 _.each(requestProfileDetails, function (item) {
@@ -92,7 +92,7 @@ bz.bus.usersHandler = {
             }
             if(requestImageUrl || email){
                 if (requestImageUrl){
-                    user.profile = {image:{ data: requestImageUrl, thumbnail: null}}
+                    user.profile = _.extend(requestData.profile, {image:{ data: requestImageUrl, thumbnail: null}});
                 }
                 if (email){
                     user.emails=[{address:email, verified: false}];
@@ -170,7 +170,7 @@ bz.bus.usersHandler = {
             city: userDb.profile.city,
             inviteCode: userDb.profile.inviteCode,
             phone: userDb.profile.phone,
-            role: userDb.profile.role
+            type: userDb.profile.type
         },
         image:{
           imageUrl: userDb.profile && userDb.profile.image && userDb.profile.image.data,
