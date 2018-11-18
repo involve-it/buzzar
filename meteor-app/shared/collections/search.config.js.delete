@@ -1,7 +1,0 @@
-/**
- * Created by ashot on 8/30/15.
- */
-//config for ES:
-EasySearch.config({
-  'host' : 'localhost:9200'
-});

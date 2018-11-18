@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+@import "foundation/scss/normalize.scss";
+
+
+//local Foundation settings file. Copy it from git repo -> scss/foundation/_settings.scss near main .scss file. Then Uncomment the line below.
+//@import "settings"
+
+@import "foundation/scss/foundation/components/grid.scss";
+@import "foundation/scss/foundation/components/accordion.scss";
+@import "foundation/scss/foundation/components/alert-boxes.scss";
+@import "foundation/scss/foundation/components/block-grid.scss";
+//@import "foundation/scss/foundation/components/breadcrumbs.scss";
+@import "foundation/scss/foundation/components/button-groups.scss";
+@import "foundation/scss/foundation/components/buttons.scss";
+@import "foundation/scss/foundation/components/clearing.scss";       // need, Ashot
+@import "foundation/scss/foundation/components/dropdown.scss";
+@import "foundation/scss/foundation/components/dropdown-buttons.scss";
+//@import "foundation/scss/foundation/components/flex-video.scss";
+@import "foundation/scss/foundation/components/forms.scss";
+@import "foundation/scss/foundation/components/icon-bar.scss";
+@import "foundation/scss/foundation/components/inline-lists.scss";
+//@import "foundation/scss/foundation/components/joyride.scss";
+//@import "foundation/scss/foundation/components/keystrokes.scss";
+@import "foundation/scss/foundation/components/labels.scss";
+@import "foundation/scss/foundation/components/magellan.scss";
+//@import "foundation/scss/foundation/components/orbit.scss";
+@import "foundation/scss/foundation/components/pagination.scss";
+@import "foundation/scss/foundation/components/panels.scss";
+//@import "foundation/scss/foundation/components/pricing-tables.scss";
+@import "foundation/scss/foundation/components/progress-bars.scss";
+@import "foundation/scss/foundation/components/range-slider.scss";
+@import "foundation/scss/foundation/components/reveal.scss"; // need, Ashot.
+//@import "foundation/scss/foundation/components/side-nav.scss";
+@import "foundation/scss/foundation/components/split-buttons.scss";
+//@import "foundation/scss/foundation/components/sub-nav.scss";
+@import "foundation/scss/foundation/components/switches.scss";
+//@import "foundation/scss/foundation/components/tables.scss";
+@import "foundation/scss/foundation/components/tabs.scss";
+@import "foundation/scss/foundation/components/thumbs.scss";
+@import "foundation/scss/foundation/components/tooltips.scss"; // need, A
+//@import "foundation/scss/foundation/components/top-bar.scss";
+@import "foundation/scss/foundation/components/type.scss";
+@import "foundation/scss/foundation/components/offcanvas.scss";
+@import "foundation/scss/foundation/components/visibility.scss";
+
+@import "foundation-custom-settings.scss";
+
+/* Include own scss files */
+@import "_buttons.scss";
+
+

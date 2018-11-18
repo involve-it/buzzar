@@ -1,5 +1,5 @@
 {
-  "name": "Shiners",
+  "name": "Buzzar-engine",
   "scripts": {
     "start": "meteor --settings settings.json",
     "simulate": "meteor run ios --settings settings.json",
@@ -9,6 +9,7 @@
     "@babel/runtime": "^7.1.5",
     "babel-runtime": "^6.23.0",
     "bcrypt": "^1.0.3",
+    "core-js": "^2.5.7",
     "fibers": "^2.0.0",
     "noty": "^2.3.8",
     "pyrsmk-toast": "^2.1.0",

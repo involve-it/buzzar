@@ -5,7 +5,6 @@
 # but you can also edit it by hand.
 
 meteor-base@1.4.0             # Packages every Meteor app needs to have
-mobile-experience@1.0.5       # Packages for a great mobile UX
 
 mongo@1.6.0                   # The database Meteor supports right now
 session@1.1.8                 # Client-side reactive dictionary for your app
@@ -14,66 +13,40 @@ tracker@1.2.0                 # Meteor's client-side reactive programming librar
 
 es5-shim@4.8.0                # ECMAScript 5 compatibility for older browsers.
 
-arutune:bz-page-landing
+underscore
+
 dburles:collection-helpers
 aldeed:collection2
 fortawesome:fontawesome
 juliancwirko:s-alert
 juliancwirko:s-alert-scale
 momentjs:moment
-mquandalle:ismobile
-mrt:cookies
-raix:handlebar-helpers
-raix:push
-service-configuration@1.0.11
-zimme:active-route
-arutune:bz-main
-less@2.8.0
+
 matb33:collection-hooks
-arutune:bz-api
-arutune:bz-page-posts
-arutune:bz-page-user
-arutune:bz-page-chat
+
+
 iron:router
-arutune:bz-page-map
-dburles:google-maps
-selaias-local:accounts-entry
+
+#dburles:google-maps
+#selaias-local:accounts-entry
 
 accounts-password@1.5.1
 
 mrt:cheerio
 edgee:slingshot
 
-arutune:bz-page-home
-arutune:bz-page-jobs
-arutune:bz-page-training
-arutune:bz-page-connect
-arutune:bz-page-trade
-arutune:bz-page-housing
-arutune:bz-page-events
-arutune:bz-page-services
-arutune:bz-page-help
-
-blaze
-blaze-html-templates
+arutune:bz-engine
+#arutune:bz-api
+#arutune:bz-main
+#arutune:bz-page-home
 
 check@1.3.1
-email@1.2.3
-standard-minifier-css@1.5.0
-standard-minifier-js@2.4.0
 
-okgrow:analytics
-aslagle:reactive-table
-arutune:bz-page-tags
-force-ssl@1.1.0
 mizzao:user-status
 meteorhacks:aggregate
-arutune:bz-integrations-telegram
-benjick:telegram-bot
 shell-server@0.4.0
 percolate:synced-cron
 ecmascript@0.12.0
 dynamic-import@0.5.0
 fourseven:scss
 aldeed:simple-schema
-underscore

@@ -1,0 +1,130 @@
+<template name='entrySignUp'>
+  <div class="page-wrapper-auth tmpl-background">
+
+    <div class="wrapper-auth">
+
+      {{#if logo}}
+        <div class="entry-logo">
+          <a href="/">
+              <img src="{{logo}}" alt="logo">
+              <span class="entry-logo-title">{{t9n "APP_NAME"}}</span></a>
+        </div>
+      {{else}}
+        <h1 class="title-auth">Fantasia</h1>
+        <p class="subtitle-auth">emotional chat</p>
+      {{/if}}
+
+
+
+      <div class="create-account-option">
+        <h3>{{t9n "createAccount"}}</h3>
+        {{#if otherLoginServices}}
+          <p class="entry-signin-cta">{{t9n "ifYouAlreadyHaveAnAccount"}} <a
+            href="{{pathFor 'entrySignIn'}}">{{t9n "signin"}}</a>.</p>
+          <div class="entry-social">
+            {{#each loginServices}}
+              {{> entrySocial}}
+            {{/each}}
+            {{#if passwordLoginService}}
+              <div class="email-option">
+                <strong class="line-thru">{{t9n "OR"}}</strong>
+                <a data-toggle="collapse" href="#signUp">
+                  {{t9n "signUpWithYourEmailAddress"}}
+                </a>
+              </div>
+            {{/if}}
+          </div>
+        {{else}}
+          <p class="entry-signin-cta">{{t9n "ifYouAlreadyHaveAnAccount"}} <a
+            href="{{pathFor 'entrySignIn'}}">{{t9n "signin"}}</a>.</p>
+        {{/if}}
+
+        <!-- {{> alerts}}-->
+        {{> sAlert}}
+
+        {{#if passwordLoginService}}
+          <form class="entry-form {{signupClass}}" id='signUp' data-abide>
+            {{#if showUsername}}
+
+              <div class="form-group">
+                <div class="input-symbol">
+                  <input autofocus name="username" placeholder="{{t9n "username"}}" type="text" class="form-control"
+                         value='' autocapitalize="none" autocomplete="off" autocorrect="off" required>
+                  <small class="error">{{t9n 'SIGN_VALID_USERNAME'}}</small>
+                </div>
+              </div>
+
+            {{/if}}
+
+            {{#if showEmail}}
+              <div class="form-group">
+                {{#if showUsername}}
+                  <div class="input-symbol">
+                    <input type="email" placeholder="{{t9n 'emailAddress'}}" class="form-control"
+                           value='{{emailAddress}}' autocapitalize="none" autocomplete="off" autocorrect="off" required>
+                    <small class="error">{{t9n 'SIGN_VALID_EMAIL'}}</small>
+                  </div>
+                {{else}}
+                  <input autofocus type="email" placeholder="{{t9n 'emailAddress'}}" class="form-control"
+                         value='{{emailAddress}}' autocapitalize="none" autocomplete="off" autocorrect="off" required>
+                  <small class="error">{{t9n 'SIGN_VALID_EMAIL'}}</small>
+                {{/if}}
+              </div>
+            {{/if}}
+
+            <div class="form-group">
+              <div class="input-symbol">
+                <input type="password" placeholder="{{t9n "password"}}" class="form-control" name="password1" value=''
+                       required>
+                <small class="error">{{t9n 'SIGN_VALID_PASSWORD'}}</small>
+              </div>
+            </div>
+
+            {{#if showPasswordConfirmation}}
+              <div class="form-group">
+                <div class="input-symbol">
+                  <input type="password" placeholder="{{t9n "confirmPassword"}}" class="form-control" name="password2" value=''
+                         required>
+                  <small class="error">{{t9n 'SIGN_VALID_PASSWORD'}}</small>
+                </div>
+              </div>
+            {{/if}}
+
+            {{#if showSignupCode}}
+              <div class="form-group">
+                <div class="input-symbol">
+                  <input name="signupCode" placeholder="{{t9n "signupCode"}}" type="string" class="form-control"
+                         value='' autocapitalize="none" autocomplete="off" autocorrect="off" required>
+                  <small class="error">Your Sign up code must match the requirements</small>
+                </div>
+              </div>
+            {{/if}}
+
+            {{> entryExtraSignUpFields}}
+            <button type="submit" class="submit btn btn-primary">{{t9n "signUp"}}</button>
+          </form>
+        {{/if}}
+
+        {{#if both}}
+          <p class="entry-agreement">{{t9n "clickAgree"}}
+            <a href="{{privacyUrl}}">{{t9n "privacyPolicy"}}</a> {{t9n "and"}}
+            <a href="{{termsUrl}}">{{t9n "terms"}}</a>.
+          </p>
+        {{else}}
+          {{#unless neither}}
+            <p class="entry-agreement">{{t9n "clickAgree"}}
+              {{#if privacyUrl}}<a href="{{privacyUrl}}">{{t9n "privacyPolicy"}}</a>.{{/if}}
+              {{#if termsUrl}}<a href="{{termsUrl}}">{{t9n "terms"}}</a>.{{/if}}
+            </p>
+          {{/unless}}
+        {{/if}}
+
+        {{#if talkingToServer}}
+          {{> spinner}}
+        {{/if}}
+
+      </div>
+    </div>
+
+  </div>
+</template>
