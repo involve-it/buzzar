@@ -6,7 +6,7 @@
     "ios": "meteor run ios-device --settings settings.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.1.5",
+    "@babel/runtime": "^7.2.0",
     "babel-runtime": "^6.23.0",
     "bcrypt": "^1.0.3",
     "fibers": "^2.0.0",
